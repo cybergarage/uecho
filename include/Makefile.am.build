@@ -1,0 +1,27 @@
+#!/usr/bin/perl
+print<<HEADER;
+############################################################
+#
+# uEcho for C
+#
+# Copyright (C) Satoshi Konno 2015
+#
+############################################################
+
+uechoheaders = \\
+HEADER
+
+my @find_files = `find ./uecho -name *.h`;
+my @include_files;
+foreach $file (@find_files) {
+	$file =~ s/\n//;
+	$file = "\t" . $file;
+	push @include_files, $file;
+}
+print join(" \\\n", @include_files) . "\n";
+
+print<<FOTTER;
+
+nobase_include_HEADERS = \\
+	\$(uechoheaders)
+FOTTER
