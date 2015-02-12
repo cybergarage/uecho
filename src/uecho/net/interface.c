@@ -19,15 +19,15 @@
 * uecho_net_interface_new
 ****************************************/
 
-mUpnpNetworkInterface *uecho_net_interface_new()
+uEchoNetworkInterface *uecho_net_interface_new()
 {
-	mUpnpNetworkInterface *netIf;
+	uEchoNetworkInterface *netIf;
 
-	netIf = (mUpnpNetworkInterface *)malloc(sizeof(mUpnpNetworkInterface));
+	netIf = (uEchoNetworkInterface *)malloc(sizeof(uEchoNetworkInterface));
 
 	if ( NULL != netIf )
 	{
-		uecho_list_node_init((mUpnpList *)netIf);
+		uecho_list_node_init((uEchoList *)netIf);
 		netIf->name = uecho_string_new();
 		netIf->ipaddr = uecho_string_new();
 		netIf->netmask = uecho_string_new();
@@ -42,9 +42,9 @@ mUpnpNetworkInterface *uecho_net_interface_new()
 * uecho_net_interface_delete
 ****************************************/
 
-void uecho_net_interface_delete(mUpnpNetworkInterface *netIf)
+void uecho_net_interface_delete(uEchoNetworkInterface *netIf)
 {
-	uecho_list_remove((mUpnpList *)netIf);
+	uecho_list_remove((uEchoList *)netIf);
 	uecho_string_delete(netIf->name);
 	uecho_string_delete(netIf->ipaddr);
 	uecho_string_delete(netIf->netmask);
@@ -55,9 +55,9 @@ void uecho_net_interface_delete(mUpnpNetworkInterface *netIf)
 * uecho_net_interface_getany
 ****************************************/
 
-mUpnpNetworkInterface *uecho_net_interface_getany()
+uEchoNetworkInterface *uecho_net_interface_getany()
 {
-	mUpnpNetworkInterface *netIf;
+	uEchoNetworkInterface *netIf;
 
 	netIf = uecho_net_interface_new();
 	uecho_net_interface_setname(netIf, "INADDR_ANY");
@@ -70,7 +70,7 @@ mUpnpNetworkInterface *uecho_net_interface_getany()
 * uecho_net_interface_setname
 ****************************************/
 
-void uecho_net_interface_setname(mUpnpNetworkInterface *netIf, char *name)
+void uecho_net_interface_setname(uEchoNetworkInterface *netIf, char *name)
 {
 	uecho_string_setvalue(netIf->name, name);
 }
@@ -79,7 +79,7 @@ void uecho_net_interface_setname(mUpnpNetworkInterface *netIf, char *name)
 * uecho_net_interface_getname
 ****************************************/
 
-char *uecho_net_interface_getname(mUpnpNetworkInterface *netIf)
+char *uecho_net_interface_getname(uEchoNetworkInterface *netIf)
 {
 	return uecho_string_getvalue(netIf->name);
 }
@@ -88,7 +88,7 @@ char *uecho_net_interface_getname(mUpnpNetworkInterface *netIf)
 * uecho_net_interface_setaddress
 ****************************************/
 
-void uecho_net_interface_setaddress(mUpnpNetworkInterface *netIf, char *value)
+void uecho_net_interface_setaddress(uEchoNetworkInterface *netIf, char *value)
 {
 	uecho_string_setvalue(netIf->ipaddr, value);
 }
@@ -97,7 +97,7 @@ void uecho_net_interface_setaddress(mUpnpNetworkInterface *netIf, char *value)
 * uecho_net_interface_getaddress
 ****************************************/
 
-char *uecho_net_interface_getaddress(mUpnpNetworkInterface *netIf)
+char *uecho_net_interface_getaddress(uEchoNetworkInterface *netIf)
 {
 	return uecho_string_getvalue(netIf->ipaddr);
 }
@@ -106,7 +106,7 @@ char *uecho_net_interface_getaddress(mUpnpNetworkInterface *netIf)
 * uecho_net_interface_setnetmask
 ****************************************/
 
-void uecho_net_interface_setnetmask(mUpnpNetworkInterface *netIf, char *value)
+void uecho_net_interface_setnetmask(uEchoNetworkInterface *netIf, char *value)
 {
 	uecho_string_setvalue(netIf->netmask, value);
 }
@@ -115,7 +115,7 @@ void uecho_net_interface_setnetmask(mUpnpNetworkInterface *netIf, char *value)
 * uecho_net_interface_getnetmask
 ****************************************/
 
-char *uecho_net_interface_getnetmask(mUpnpNetworkInterface *netIf)
+char *uecho_net_interface_getnetmask(uEchoNetworkInterface *netIf)
 {
 	return uecho_string_getvalue(netIf->netmask);
 }
@@ -124,8 +124,8 @@ char *uecho_net_interface_getnetmask(mUpnpNetworkInterface *netIf)
 * uecho_net_interface_cmp
 ****************************************/
 
-int uecho_net_interface_cmp(mUpnpNetworkInterface *netIfA, 
-			 mUpnpNetworkInterface *netIfB)
+int uecho_net_interface_cmp(uEchoNetworkInterface *netIfA, 
+			 uEchoNetworkInterface *netIfB)
 {
 	if (netIfA == NULL && netIfB == NULL) return 0;
 	if (netIfA == NULL && netIfB != NULL) return 1;

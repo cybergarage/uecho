@@ -84,7 +84,7 @@ typedef struct _uEchoString {
 	char *value;
 	size_t memSize;
 	size_t valueSize;
-} mUpnpString;
+} uEchoString;
 	
 typedef struct _uEchoStringTokenizer {
 	char *value;
@@ -96,52 +96,52 @@ typedef struct _uEchoStringTokenizer {
 	char *nextToken;
 	char repToken;
 	BOOL hasNextTokens;
-} mUpnpStringTokenizer;
+} uEchoStringTokenizer;
 	
 /****************************************
 * Function (StringTokenizer)
 ****************************************/
 	
-mUpnpStringTokenizer *uecho_string_tokenizer_new(const char *str, const char *delim);
-void uecho_string_tokenizer_delete(mUpnpStringTokenizer *strToken);
-BOOL uecho_string_tokenizer_hasmoretoken(mUpnpStringTokenizer *strToken);
-char *uecho_string_tokenizer_nexttoken(mUpnpStringTokenizer *strToken);
-char *uecho_string_tokenizer_nextalltoken(mUpnpStringTokenizer *strToken);
+uEchoStringTokenizer *uecho_string_tokenizer_new(const char *str, const char *delim);
+void uecho_string_tokenizer_delete(uEchoStringTokenizer *strToken);
+BOOL uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer *strToken);
+char *uecho_string_tokenizer_nexttoken(uEchoStringTokenizer *strToken);
+char *uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer *strToken);
 	
-void uecho_string_tokenizer_print(mUpnpStringTokenizer *strToken);
+void uecho_string_tokenizer_print(uEchoStringTokenizer *strToken);
 	
 /****************************************
 * Function (String)
 ****************************************/
 
-mUpnpString *uecho_string_new();
-void uecho_string_delete(mUpnpString *str);
-void uecho_string_clear(mUpnpString *str);
+uEchoString *uecho_string_new();
+void uecho_string_delete(uEchoString *str);
+void uecho_string_clear(uEchoString *str);
 
-void uecho_string_setvalue(mUpnpString *str, const char *value);
-void uecho_string_setintvalue(mUpnpString *str, int value);
-void uecho_string_setlongvalue(mUpnpString *str, long value);
-void uecho_string_setfloatvalue(mUpnpString *str, float value);
-void uecho_string_setdoublevalue(mUpnpString *str, double value);
-void uecho_string_setnvalue(mUpnpString *str, const char *value, size_t len);
-void uecho_string_setpointervalue(mUpnpString *str, char *value, size_t len);
+void uecho_string_setvalue(uEchoString *str, const char *value);
+void uecho_string_setintvalue(uEchoString *str, int value);
+void uecho_string_setlongvalue(uEchoString *str, long value);
+void uecho_string_setfloatvalue(uEchoString *str, float value);
+void uecho_string_setdoublevalue(uEchoString *str, double value);
+void uecho_string_setnvalue(uEchoString *str, const char *value, size_t len);
+void uecho_string_setpointervalue(uEchoString *str, char *value, size_t len);
 
-char *uecho_string_getvalue(mUpnpString *str);
+char *uecho_string_getvalue(uEchoString *str);
 #define uecho_string_getintvalue(str) uecho_str2int(uecho_string_getvalue(str))
 #define uecho_string_getlongvalue(str) uecho_str2long(uecho_string_getvalue(str))
 #define uecho_string_getfloatvalue(str) uecho_str2float(uecho_string_getvalue(str))
 #define uecho_string_getdoublevalue(str) uecho_str2double(uecho_string_getvalue(str))
 	
-size_t uecho_string_length(mUpnpString *str);
+size_t uecho_string_length(uEchoString *str);
 
-char *uecho_string_addvalue(mUpnpString *str, const char *value);
-char *uecho_string_naddvalue(mUpnpString *str, const char *value, size_t valueLen);
-char *uecho_string_addrepvalue(mUpnpString *str, const char *value, size_t repeatCnt);
-char *uecho_string_naddrepvalue(mUpnpString *str, const char *value, size_t valueLen, size_t repeatCnt);
+char *uecho_string_addvalue(uEchoString *str, const char *value);
+char *uecho_string_naddvalue(uEchoString *str, const char *value, size_t valueLen);
+char *uecho_string_addrepvalue(uEchoString *str, const char *value, size_t repeatCnt);
+char *uecho_string_naddrepvalue(uEchoString *str, const char *value, size_t valueLen, size_t repeatCnt);
 
-char *uecho_string_replace(mUpnpString *str, char *fromStr[], char *toStr[], size_t fromStrCnt);
+char *uecho_string_replace(uEchoString *str, char *fromStr[], char *toStr[], size_t fromStrCnt);
 
-size_t uecho_string_getmemorysize(mUpnpString *str);
+size_t uecho_string_getmemorysize(uEchoString *str);
 
 #ifdef  __cplusplus
 }

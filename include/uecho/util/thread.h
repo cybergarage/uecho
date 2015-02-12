@@ -72,7 +72,7 @@ typedef struct _uEchoThread {
 	/** serves as look ahead to have the thread manage its own delete(thread) on exit */
 	BOOL isRunning;
 	BOOL deletePending;
-	mUpnpTime sleep;
+	uEchoTime sleep;
 #endif //WINCE
 
 #if defined DEBUG
@@ -102,12 +102,12 @@ typedef struct _uEchoThread {
 
 	/** Arbitrary data pointer */
 	void *userData;
-} mUpnpThread, mUpnpThreadList;
+} uEchoThread, uEchoThreadList;
 
 /**
  * Prototype for the threads' worker functions 
  */
-typedef void (*CG_THREAD_FUNC)(mUpnpThread *);
+typedef void (*CG_THREAD_FUNC)(uEchoThread *);
 
 /****************************************
 * Function
@@ -116,53 +116,53 @@ typedef void (*CG_THREAD_FUNC)(mUpnpThread *);
 /**
  * Create a new thread
  */
-mUpnpThread *uecho_thread_new();
+uEchoThread *uecho_thread_new();
 
 /**
  * Get a self reference to thread.
  */
 
-mUpnpThread *uecho_thread_self();
+uEchoThread *uecho_thread_self();
 
 /**
  * Stop and destroy a thread.
  *
  * \param thread Thread to destroy
  */
-BOOL uecho_thread_delete(mUpnpThread *thread);
+BOOL uecho_thread_delete(uEchoThread *thread);
 
 /**
  * Start a thread (must be created first with ch_thread_new())
  *
  * \param thread Thread to start
  */
-BOOL uecho_thread_start(mUpnpThread *thread);
+BOOL uecho_thread_start(uEchoThread *thread);
 
 /**
  * Stop a running thread.
  *
  * \param thread Thread to stop
  */
-BOOL uecho_thread_stop(mUpnpThread *thread);
+BOOL uecho_thread_stop(uEchoThread *thread);
 
 /**
  * Stop the running thread and signal the given CGCond.
  */
-BOOL uecho_thread_stop_with_cond(mUpnpThread *thread, mUpnpCond *cond);
+BOOL uecho_thread_stop_with_cond(uEchoThread *thread, uEchoCond *cond);
 
 /**
  * Restart a thread. Essentially calls uecho_thread_stop() and uecho_thread_start()
  *
  * \param thread Thread to restart
  */
-BOOL uecho_thread_restart(mUpnpThread *thread);
+BOOL uecho_thread_restart(uEchoThread *thread);
 
 /**
  * Check if a thread has been started
  *
  * \param thread Thread to check
  */
-BOOL uecho_thread_isrunnable(mUpnpThread *thread);
+BOOL uecho_thread_isrunnable(uEchoThread *thread);
 
 /**
  * Set the thread's worker function.
@@ -170,7 +170,7 @@ BOOL uecho_thread_isrunnable(mUpnpThread *thread);
  * \param thread Thread struct
  * \param actionFunc Function pointer to set as the worker function
  */
-void uecho_thread_setaction(mUpnpThread *thread, CG_THREAD_FUNC actionFunc);
+void uecho_thread_setaction(uEchoThread *thread, CG_THREAD_FUNC actionFunc);
 
 /**
  * Set the user data pointer
@@ -178,25 +178,25 @@ void uecho_thread_setaction(mUpnpThread *thread, CG_THREAD_FUNC actionFunc);
  * \param thread Thread struct
  * \param data Pointer to user data
  */
-void uecho_thread_setuserdata(mUpnpThread *thread, void *data);
+void uecho_thread_setuserdata(uEchoThread *thread, void *data);
 
 /**
  * Get the user data pointer
  *
  * \param thread Thread from which to get the pointer
  */
-void *uecho_thread_getuserdata(mUpnpThread *thread);
+void *uecho_thread_getuserdata(uEchoThread *thread);
 
 #if defined (WINCE)
-void uecho_thread_sleep(mUpnpThread *thread); 
+void uecho_thread_sleep(uEchoThread *thread); 
 void uecho_thread_exit(DWORD exitCode);
 #if defined DEBUG_MEM
-void uecho_thread_monitor(mUpnpThread *thread);
+void uecho_thread_monitor(uEchoThread *thread);
 #endif //DEBUG_MEM
 #endif //WIN32_WCE
 
-#define uecho_thread_next(thread) (mUpnpThread *)uecho_list_next((mUpnpList *)thread)
-#define uecho_thread_remove(thread) uecho_list_remove((mUpnpList *)thread)
+#define uecho_thread_next(thread) (uEchoThread *)uecho_list_next((uEchoList *)thread)
+#define uecho_thread_remove(thread) uecho_list_remove((uEchoList *)thread)
 
 /****************************************
 * Function (Thread List)
@@ -207,35 +207,35 @@ void uecho_thread_monitor(mUpnpThread *thread);
  *
  * \return Thread list
  */
-mUpnpThreadList *uecho_threadlist_new();
+uEchoThreadList *uecho_threadlist_new();
 
 /**
  * Destroy a thread list
  *
  * \param threadList The thread list in question
  */
-void uecho_threadlist_delete(mUpnpThreadList *threadList);
+void uecho_threadlist_delete(uEchoThreadList *threadList);
 
 /**
  * Clear the contents of a thread list
  *
  * \param threadList Thread list in question
  */
-#define uecho_threadlist_clear(threadList) uecho_list_clear((mUpnpList *)threadList, (CG_LIST_DESTRUCTORFUNC)uecho_thread_delete)
+#define uecho_threadlist_clear(threadList) uecho_list_clear((uEchoList *)threadList, (CG_LIST_DESTRUCTORFUNC)uecho_thread_delete)
 
 /**
  * Get the size of a thread list
  *
  * \param threadList The thread list in question
  */
-#define uecho_threadlist_size(threadList) uecho_list_size((mUpnpList *)threadList)
+#define uecho_threadlist_size(threadList) uecho_list_size((uEchoList *)threadList)
 
 /**
  * Get the first actual item from a thread list to use as an iterator
  *
  * \param threadList The thread list in question
  */
-#define uecho_threadlist_gets(threadList) (mUpnpThread *)uecho_list_next((mUpnpList *)threadList)
+#define uecho_threadlist_gets(threadList) (uEchoThread *)uecho_list_next((uEchoList *)threadList)
 
 /**
  * Add a thread into a thread list
@@ -243,7 +243,7 @@ void uecho_threadlist_delete(mUpnpThreadList *threadList);
  * \param threadList The thread list in question
  * \param thread The thread to add to the list
  */
-#define uecho_threadlist_add(threadList, thread) uecho_list_add((mUpnpList *)threadList, (mUpnpList *)thread)
+#define uecho_threadlist_add(threadList, thread) uecho_list_add((uEchoList *)threadList, (uEchoList *)thread)
 
 /**
  * Remove a thread from thread list
@@ -251,7 +251,7 @@ void uecho_threadlist_delete(mUpnpThreadList *threadList);
  * \param threadList The thread list in question
  * \param thread The thread to be removed 
  */
-#define uecho_threadlist_remove(thread) uecho_list_remove((mUpnpList *)thread)
+#define uecho_threadlist_remove(thread) uecho_list_remove((uEchoList *)thread)
 
 /**
 
@@ -259,14 +259,14 @@ void uecho_threadlist_delete(mUpnpThreadList *threadList);
  *
  * \param threadList The thread list in question
  */
-BOOL uecho_threadlist_start(mUpnpThreadList *threadList);
+BOOL uecho_threadlist_start(uEchoThreadList *threadList);
 
 /**
  * Stop all threads in the thread list
  *
  * \param threadList The thread list in question
  */
-BOOL uecho_threadlist_stop(mUpnpThreadList *threadList);
+BOOL uecho_threadlist_stop(uEchoThreadList *threadList);
 
 #ifdef  __cplusplus
 

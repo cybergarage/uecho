@@ -23,13 +23,13 @@
 * uecho_mutex_new
 ****************************************/
 
-mUpnpMutex *uecho_mutex_new()
+uEchoMutex *uecho_mutex_new()
 {
-	mUpnpMutex *mutex;
+	uEchoMutex *mutex;
 
 	uecho_log_debug_l4("Entering...\n");
 	
-	mutex = (mUpnpMutex *)malloc(sizeof(mUpnpMutex));
+	mutex = (uEchoMutex *)malloc(sizeof(uEchoMutex));
 
 	if ( NULL != mutex )
 	{
@@ -67,7 +67,7 @@ mUpnpMutex *uecho_mutex_new()
 * uecho_mutex_delete
 ****************************************/
 
-BOOL uecho_mutex_delete(mUpnpMutex *mutex)
+BOOL uecho_mutex_delete(uEchoMutex *mutex)
 {
 	if (!mutex)
 		return FALSE;
@@ -104,7 +104,7 @@ BOOL uecho_mutex_delete(mUpnpMutex *mutex)
 /* Contains record for every thread which has lock or is
  * waiting for lock
  */
-mUpnpLockInfo *uecho_tlt_list = NULL;
+uEchoLockInfo *uecho_tlt_list = NULL;
 
 /* Used to synchronize the thread lock record db access.
  */
@@ -113,11 +113,11 @@ pthread_mutex_t tlt_mutex = PTHREAD_MUTEX_INITIALIZER;
 BOOL uecho_mutex_lock_trace(	const char *file, 
 				int line, 
 				const char *function,
-				mUpnpMutex *mutex)
+				uEchoMutex *mutex)
 {
 	pthread_t thid;
 	int found;
-	mUpnpLockInfo *temp;
+	uEchoLockInfo *temp;
 
 	if (!mutex)
 		return FALSE;
@@ -166,7 +166,7 @@ BOOL uecho_mutex_lock_trace(	const char *file,
 	/* No locks found for this thread, inserting new record.
 	 */
 
-	temp = malloc(sizeof(mUpnpLockInfo));
+	temp = malloc(sizeof(uEchoLockInfo));
 	temp->thread_id = thid;
         temp->file = strdup(file);
         temp->line = line;
@@ -224,11 +224,11 @@ BOOL uecho_mutex_lock_trace(	const char *file,
 BOOL uecho_mutex_unlock_trace(	const char *file, 
 				int line, 
 				const char *function,
-				mUpnpMutex *mutex)
+				uEchoMutex *mutex)
 {
         pthread_t thid;
         int found;
-        mUpnpLockInfo *temp, *ptemp;
+        uEchoLockInfo *temp, *ptemp;
 
 		if (!mutex)
 			return FALSE;
@@ -291,7 +291,7 @@ BOOL uecho_mutex_unlock_trace(	const char *file,
 	return TRUE;
 }
 #else
-BOOL uecho_mutex_lock(mUpnpMutex *mutex)
+BOOL uecho_mutex_lock(uEchoMutex *mutex)
 {
 	if (!mutex)
 		return FALSE;
@@ -321,7 +321,7 @@ BOOL uecho_mutex_lock(mUpnpMutex *mutex)
 * uecho_mutex_unlock
 ****************************************/
 
-BOOL uecho_mutex_unlock(mUpnpMutex *mutex)
+BOOL uecho_mutex_unlock(uEchoMutex *mutex)
 {
 	if (!mutex)
 		return FALSE;

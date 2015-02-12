@@ -38,7 +38,7 @@ typedef void (*CG_LIST_DESTRUCTORFUNC)(void *);
  * Each struct in CyberLinkC, that is designed to be a part of
  * a list, must have these elements in their definition before the
  * actual struct definition. The struct pointers are then cast to
- * mUpnpList* and operated with uecho_list_* functions.
+ * uEchoList* and operated with uecho_list_* functions.
  */
 typedef struct _uEchoList {
 
@@ -49,7 +49,7 @@ typedef struct _uEchoList {
   /** Pointer to the previous list node */
   struct _uEchoList *next;
 
-} mUpnpList;
+} uEchoList;
 
 /****************************************
  * Functions
@@ -60,14 +60,14 @@ typedef struct _uEchoList {
  *
  * \param list List node
  */
-void uecho_list_header_init(mUpnpList *list);
+void uecho_list_header_init(uEchoList *list);
 
 /**
  * Initialize a list node to act as a regular node, part of a list.
  *
  * \param list List node
  */
-void uecho_list_node_init(mUpnpList *list);
+void uecho_list_node_init(uEchoList *list);
 
 /**
  * Insert a list node or a complete list structure after the given node
@@ -75,14 +75,14 @@ void uecho_list_node_init(mUpnpList *list);
  * \param prevList Insert after this node
  * \param list List node or list structure to insert
  */
-void uecho_list_insert(mUpnpList *prevList, mUpnpList *list);
+void uecho_list_insert(uEchoList *prevList, uEchoList *list);
 
 /**
  * \todo This works essentially like insert, although it is more error-prone?!
  * \todo There might be a bug in this function.
  *
  */
-void uecho_list_add(mUpnpList *headList, mUpnpList *list);
+void uecho_list_add(uEchoList *headList, uEchoList *list);
 
 /**
  * Remove a node from a list. Does not free any memory, but only removes
@@ -90,7 +90,7 @@ void uecho_list_add(mUpnpList *headList, mUpnpList *list);
  *
  * \param list List node to remove
  */
-void uecho_list_remove(mUpnpList *list);
+void uecho_list_remove(uEchoList *list);
 
 /**
  * Get the number of nodes in the current list structure. Counts forwards from the given
@@ -98,7 +98,7 @@ void uecho_list_remove(mUpnpList *list);
  *
  * \param headList List header
  */
-int uecho_list_size(mUpnpList *headList);
+int uecho_list_size(uEchoList *headList);
 
 /**
  * Get an item from the list by the item's index
@@ -106,7 +106,7 @@ int uecho_list_size(mUpnpList *headList);
  * \param headList List header
  * \param index The index of the item to get
  */
-mUpnpList *uecho_list_get(mUpnpList *headList, int index);
+uEchoList *uecho_list_get(uEchoList *headList, int index);
 
 /**
  * Get the previous node. Wrap around if the beginning has been reached.
@@ -114,28 +114,28 @@ mUpnpList *uecho_list_get(mUpnpList *headList, int index);
  *
  * \param list Current node
  */
-mUpnpList *uecho_list_prev_circular(mUpnpList *list);
+uEchoList *uecho_list_prev_circular(uEchoList *list);
 
 /**
  * Get the previous node. Returns NULL if beginning has been reached
  *
  * \param list Current node
  */
-mUpnpList *uecho_list_prev(mUpnpList *list);
+uEchoList *uecho_list_prev(uEchoList *list);
 
 /**
  * Get the next node. Wrap around if the end has been reached.
  *
  * \param list Current node
  */
-mUpnpList *uecho_list_next_circular(mUpnpList *list);
+uEchoList *uecho_list_next_circular(uEchoList *list);
 
 /**
  * Get the next node. Returns NULL if end has been reached.
  *
  * \param list Current node
  */
-mUpnpList *uecho_list_next(mUpnpList *list);
+uEchoList *uecho_list_next(uEchoList *list);
 
 /**
  * Clear the list and delete all of its contents with \ref CG_LIST_DESTRUCTORFUNC
@@ -143,7 +143,7 @@ mUpnpList *uecho_list_next(mUpnpList *list);
  * \param headList List header
  * \param destructorFunc Function pointer that clears the contents of individual nodes
  */
-void uecho_list_clear(mUpnpList *headList, CG_LIST_DESTRUCTORFUNC destructorFunc);
+void uecho_list_clear(uEchoList *headList, CG_LIST_DESTRUCTORFUNC destructorFunc);
 
 /**
  * Get the first actual item from a list for iteration

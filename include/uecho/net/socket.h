@@ -82,7 +82,7 @@ typedef struct _uEchoSocket {
 	SOCKET id;
 	int type;
 	int direction;
-	mUpnpString *ipaddr;
+	uEchoString *ipaddr;
 	int port;
 #if defined(ITRON)
 	UH *sendWinBuf;
@@ -92,15 +92,15 @@ typedef struct _uEchoSocket {
 	SSL_CTX* ctx;
 	SSL* ssl;
 #endif
-} mUpnpSocket, mUpnpSocketList;
+} uEchoSocket, uEchoSocketList;
 
 typedef struct _uEchoDatagramPacket {
-	mUpnpString *data;
-	mUpnpString *localAddress;
+	uEchoString *data;
+	uEchoString *localAddress;
 	int localPort;
-	mUpnpString *remoteAddress;
+	uEchoString *remoteAddress;
 	int remotePort;
-} mUpnpDatagramPacket;
+} uEchoDatagramPacket;
 
 /****************************************
 * Function (Socket)
@@ -109,12 +109,12 @@ typedef struct _uEchoDatagramPacket {
 void uecho_socket_startup();
 void uecho_socket_cleanup();
 
-mUpnpSocket *uecho_socket_new(int type);
+uEchoSocket *uecho_socket_new(int type);
 #define uecho_socket_stream_new() uecho_socket_new(CG_NET_SOCKET_STREAM)
 #define uecho_socket_dgram_new() uecho_socket_new(CG_NET_SOCKET_DGRAM)
-BOOL uecho_socket_delete(mUpnpSocket *socket);
+BOOL uecho_socket_delete(uEchoSocket *socket);
 
-void uecho_socket_setid(mUpnpSocket *socket, SOCKET value);
+void uecho_socket_setid(uEchoSocket *socket, SOCKET value);
 #define uecho_socket_getid(socket) (socket->id)
 
 #define uecho_socket_settype(socket, value) (socket->type = value)
@@ -132,21 +132,21 @@ void uecho_socket_setid(mUpnpSocket *socket, SOCKET value);
 #define uecho_socket_getaddress(socket) uecho_string_getvalue(socket->ipaddr)
 #define uecho_socket_getport(socket) (socket->port)
 
-BOOL uecho_socket_isbound(mUpnpSocket *socket);
-BOOL uecho_socket_close(mUpnpSocket *socket);
+BOOL uecho_socket_isbound(uEchoSocket *socket);
+BOOL uecho_socket_close(uEchoSocket *socket);
 
-BOOL uecho_socket_listen(mUpnpSocket *socket);
+BOOL uecho_socket_listen(uEchoSocket *socket);
 
-BOOL uecho_socket_bind(mUpnpSocket *sock, int bindPort, const char *bindAddr, BOOL bindFlag, BOOL reuseFlag);
-BOOL uecho_socket_accept(mUpnpSocket *sock, mUpnpSocket *clientSock);
-BOOL uecho_socket_connect(mUpnpSocket *sock, const char *addr, int port);
-ssize_t uecho_socket_read(mUpnpSocket *sock, char *buffer, size_t bufferLen);
-size_t uecho_socket_write(mUpnpSocket *sock, const char *buffer, size_t bufferLen);
-ssize_t uecho_socket_readline(mUpnpSocket *sock, char *buffer, size_t bufferLen);
-size_t uecho_socket_skip(mUpnpSocket *sock, size_t skipLen);
+BOOL uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, BOOL bindFlag, BOOL reuseFlag);
+BOOL uecho_socket_accept(uEchoSocket *sock, uEchoSocket *clientSock);
+BOOL uecho_socket_connect(uEchoSocket *sock, const char *addr, int port);
+ssize_t uecho_socket_read(uEchoSocket *sock, char *buffer, size_t bufferLen);
+size_t uecho_socket_write(uEchoSocket *sock, const char *buffer, size_t bufferLen);
+ssize_t uecho_socket_readline(uEchoSocket *sock, char *buffer, size_t bufferLen);
+size_t uecho_socket_skip(uEchoSocket *sock, size_t skipLen);
 
-size_t uecho_socket_sendto(mUpnpSocket *sock, const char *addr, int port, const char *data, size_t dataeLen);
-ssize_t uecho_socket_recv(mUpnpSocket *sock, mUpnpDatagramPacket *dgmPkt);
+size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const char *data, size_t dataeLen);
+ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt);
 
 int uecho_socket_getlasterror();
 
@@ -154,22 +154,22 @@ int uecho_socket_getlasterror();
 * Function (Multicast)
 ****************************************/
 
-BOOL uecho_socket_joingroup(mUpnpSocket *sock, const char *mcastAddr, const char *ifAddr);
+BOOL uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char *ifAddr);
 
 /****************************************
 * Function (Option)
 ****************************************/
 
-BOOL uecho_socket_setreuseaddress(mUpnpSocket *socket, BOOL flag);
-BOOL uecho_socket_setmulticastttl(mUpnpSocket *sock,  int ttl);
-BOOL uecho_socket_settimeout(mUpnpSocket *sock, int sec);
+BOOL uecho_socket_setreuseaddress(uEchoSocket *socket, BOOL flag);
+BOOL uecho_socket_setmulticastttl(uEchoSocket *sock,  int ttl);
+BOOL uecho_socket_settimeout(uEchoSocket *sock, int sec);
 
 /****************************************
 * Function (DatagramPacket)
 ****************************************/
 
-mUpnpDatagramPacket *uecho_socket_datagram_packet_new();
-void uecho_socket_datagram_packet_delete(mUpnpDatagramPacket *dgmPkt);
+uEchoDatagramPacket *uecho_socket_datagram_packet_new();
+void uecho_socket_datagram_packet_delete(uEchoDatagramPacket *dgmPkt);
 
 #define uecho_socket_datagram_packet_setdata(dgmPkt, value) uecho_string_setvalue(dgmPkt->data, value)
 #define uecho_socket_datagram_packet_getdata(dgmPkt) uecho_string_getvalue(dgmPkt->data)
@@ -183,7 +183,7 @@ void uecho_socket_datagram_packet_delete(mUpnpDatagramPacket *dgmPkt);
 #define uecho_socket_datagram_packet_setremoteport(dgmPkt, port) (dgmPkt->remotePort = port)
 #define uecho_socket_datagram_packet_getremoteport(dgmPkt) (dgmPkt->remotePort)
 
-void uecho_socket_datagram_packet_copy(mUpnpDatagramPacket *dstDgmPkt, mUpnpDatagramPacket *srcDgmPkt);
+void uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoDatagramPacket *srcDgmPkt);
 
 /****************************************
 * Function (SSLSocket)
@@ -201,15 +201,15 @@ void uecho_socket_datagram_packet_copy(mUpnpDatagramPacket *dstDgmPkt, mUpnpData
 
 #if defined(CG_NET_USE_SOCKET_LIST)
 
-#define uecho_socket_next(sock) (mUpnpSocket *)uecho_list_next((mUpnpList *)sock)
+#define uecho_socket_next(sock) (uEchoSocket *)uecho_list_next((uEchoList *)sock)
 
-mUpnpSocketList *uecho_socketlist_new();
-void uecho_socketlist_delete(mUpnpSocketList *sockList);
+uEchoSocketList *uecho_socketlist_new();
+void uecho_socketlist_delete(uEchoSocketList *sockList);
 
-#define uecho_socketlist_clear(sockList) uecho_list_clear((mUpnpList *)sockList, (CG_LIST_DESTRUCTORFUNC)uecho_socket_delete)
-#define uecho_socketlist_size(sockList) uecho_list_size((mUpnpList *)sockList)
-#define uecho_socketlist_gets(sockList) (mUpnpSocket *)uecho_list_next((mUpnpList *)sockList)
-#define uecho_socketlist_add(sockList, sock) uecho_list_add((mUpnpList *)sockList, (mUpnpList *)sock)
+#define uecho_socketlist_clear(sockList) uecho_list_clear((uEchoList *)sockList, (CG_LIST_DESTRUCTORFUNC)uecho_socket_delete)
+#define uecho_socketlist_size(sockList) uecho_list_size((uEchoList *)sockList)
+#define uecho_socketlist_gets(sockList) (uEchoSocket *)uecho_list_next((uEchoList *)sockList)
+#define uecho_socketlist_add(sockList, sock) uecho_list_add((uEchoList *)sockList, (uEchoList *)sock)
 
 #endif
 

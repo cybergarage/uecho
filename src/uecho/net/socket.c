@@ -60,7 +60,7 @@
 static int socketCnt = 0;
 
 #if defined(CG_NET_USE_SOCKET_LIST)
-static mUpnpSocketList *socketList;
+static uEchoSocketList *socketList;
 #endif
 
 #if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
@@ -86,7 +86,7 @@ BOOL uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struc
 #endif
 
 #if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
-BOOL uecho_socket_setmulticastinterface(mUpnpSocket *sock, char *ifaddr);
+BOOL uecho_socket_setmulticastinterface(uEchoSocket *sock, char *ifaddr);
 #endif
 
 #if defined(CG_NET_USE_SOCKET_LIST)
@@ -95,8 +95,8 @@ static int uecho_socket_getavailableport();
 #endif
 
 #if defined(ITRON)
-BOOL uecho_socket_initwindowbuffer(mUpnpSocket *sock);
-BOOL uecho_socket_freewindowbuffer(mUpnpSocket *sock);
+BOOL uecho_socket_initwindowbuffer(uEchoSocket *sock);
+BOOL uecho_socket_freewindowbuffer(uEchoSocket *sock);
 static ER uecho_socket_udp_callback(ID cepid, FN fncd, VP parblk);
 static ER uecho_socket_tcp_callback(ID cepid, FN fncd, VP parblk);
 static BOOL uecho_socket_getavailablelocaladdress(T_IPV4EP *localAddr);
@@ -188,13 +188,13 @@ void uecho_socket_cleanup()
 * uecho_socket_new
 ****************************************/
 
-mUpnpSocket *uecho_socket_new(int type)
+uEchoSocket *uecho_socket_new(int type)
 {
-	mUpnpSocket *sock;
+	uEchoSocket *sock;
 
 	uecho_socket_startup();
 
-	sock = (mUpnpSocket *)malloc(sizeof(mUpnpSocket));
+	sock = (uEchoSocket *)malloc(sizeof(uEchoSocket));
 
 	if ( NULL != sock )
 	{
@@ -230,7 +230,7 @@ mUpnpSocket *uecho_socket_new(int type)
 * uecho_socket_delete
 ****************************************/
 
-BOOL uecho_socket_delete(mUpnpSocket *sock)
+BOOL uecho_socket_delete(uEchoSocket *sock)
 {
 	uecho_socket_close(sock);
 	uecho_string_delete(sock->ipaddr);
@@ -247,7 +247,7 @@ BOOL uecho_socket_delete(mUpnpSocket *sock)
 * uecho_socket_isbound
 ****************************************/
 
-BOOL uecho_socket_isbound(mUpnpSocket *sock)
+BOOL uecho_socket_isbound(uEchoSocket *sock)
 {
 #if defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__) && !defined(ITRON)
 	return (sock->id != INVALID_SOCKET) ? TRUE: FALSE;
@@ -260,7 +260,7 @@ BOOL uecho_socket_isbound(mUpnpSocket *sock)
 * uecho_socket_setid
 ****************************************/
 
-void uecho_socket_setid(mUpnpSocket *socket, SOCKET value)
+void uecho_socket_setid(uEchoSocket *socket, SOCKET value)
 {
 #if defined(WIN32) || defined(HAVE_IP_PKTINFO) || (!defined(WIN32) || defined(__CYGWIN__)) && !defined(BTRON) && !defined(ITRON) && !defined(TENGINE) && defined(HAVE_SO_NOSIGPIPE)
 	int on=1;
@@ -282,7 +282,7 @@ void uecho_socket_setid(mUpnpSocket *socket, SOCKET value)
 * uecho_socket_close
 ****************************************/
 
-BOOL uecho_socket_close(mUpnpSocket *sock)
+BOOL uecho_socket_close(uEchoSocket *sock)
 {
 	if (uecho_socket_isbound(sock) == FALSE)
 		return TRUE;
@@ -365,7 +365,7 @@ BOOL uecho_socket_close(mUpnpSocket *sock)
 * uecho_socket_listen
 ****************************************/
 
-BOOL uecho_socket_listen(mUpnpSocket *sock)
+BOOL uecho_socket_listen(uEchoSocket *sock)
 {
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
 	ERR ret = so_listen(sock->id, 10);
@@ -385,7 +385,7 @@ BOOL uecho_socket_listen(mUpnpSocket *sock)
 * uecho_socket_bind
 ****************************************/
 
-BOOL uecho_socket_bind(mUpnpSocket *sock, int bindPort, const char *bindAddr, BOOL bindFlag, BOOL reuseFlag)
+BOOL uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, BOOL bindFlag, BOOL reuseFlag)
 {
 #if defined(BTRON) || defined(TENGINE)
 	struct sockaddr_in sockaddr;
@@ -500,7 +500,7 @@ BOOL uecho_socket_bind(mUpnpSocket *sock, int bindPort, const char *bindAddr, BO
 * uecho_socket_accept
 ****************************************/
 
-BOOL uecho_socket_accept(mUpnpSocket *serverSock, mUpnpSocket *clientSock)
+BOOL uecho_socket_accept(uEchoSocket *serverSock, uEchoSocket *clientSock)
 {
 	struct sockaddr_in sockaddr;
 	socklen_t socklen;
@@ -561,7 +561,7 @@ uecho_log_debug_s("clientSock->id = %d\n", uecho_socket_getport(clientSock));
 * uecho_socket_connect
 ****************************************/
 
-BOOL uecho_socket_connect(mUpnpSocket *sock, const char *addr, int port)
+BOOL uecho_socket_connect(uEchoSocket *sock, const char *addr, int port)
 {
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
 	ERR ret;
@@ -637,7 +637,7 @@ BOOL uecho_socket_connect(mUpnpSocket *sock, const char *addr, int port)
 * uecho_socket_read
 ****************************************/
 
-ssize_t uecho_socket_read(mUpnpSocket *sock, char *buffer, size_t bufferLen)
+ssize_t uecho_socket_read(uEchoSocket *sock, char *buffer, size_t bufferLen)
 {
 	ssize_t recvLen;
 
@@ -678,7 +678,7 @@ ssize_t uecho_socket_read(mUpnpSocket *sock, char *buffer, size_t bufferLen)
 #define CG_NET_SOCKET_SEND_RETRY_CNT 10
 #define CG_NET_SOCKET_SEND_RETRY_WAIT_MSEC 20
 
-size_t uecho_socket_write(mUpnpSocket *sock, const char *cmd, size_t cmdLen)
+size_t uecho_socket_write(uEchoSocket *sock, const char *cmd, size_t cmdLen)
 {
 	ssize_t nSent;
 	size_t nTotalSent = 0;
@@ -745,7 +745,7 @@ uecho_log_debug_s("w %d : %s\n", nTotalSent, ((cmd != NULL) ? cmd : ""));
 * uecho_socket_readline
 ****************************************/
 
-ssize_t uecho_socket_readline(mUpnpSocket *sock, char *buffer, size_t bufferLen)
+ssize_t uecho_socket_readline(uEchoSocket *sock, char *buffer, size_t bufferLen)
 {
 	ssize_t readCnt;
 	ssize_t readLen;
@@ -776,7 +776,7 @@ ssize_t uecho_socket_readline(mUpnpSocket *sock, char *buffer, size_t bufferLen)
 * uecho_socket_skip
 ****************************************/
 
-size_t uecho_socket_skip(mUpnpSocket *sock, size_t skipLen)
+size_t uecho_socket_skip(uEchoSocket *sock, size_t skipLen)
 {
 	ssize_t readCnt;
 	ssize_t readLen;
@@ -797,7 +797,7 @@ size_t uecho_socket_skip(mUpnpSocket *sock, size_t skipLen)
 * uecho_socket_sendto
 ****************************************/
 
-size_t uecho_socket_sendto(mUpnpSocket *sock, const char *addr, int port, const char *data, size_t dataLen)
+size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const char *data, size_t dataLen)
 {
 #if defined(BTRON) || defined(TENGINE)
 	struct sockaddr_in sockaddr;
@@ -874,7 +874,7 @@ uecho_log_debug_s("sentLen : %d\n", sentLen);
 * uecho_socket_recv
 ****************************************/
 
-ssize_t uecho_socket_recv(mUpnpSocket *sock, mUpnpDatagramPacket *dgmPkt)
+ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt)
 {
 	ssize_t recvLen = 0;
 	char recvBuf[CG_NET_SOCKET_DGRAM_RECV_BUFSIZE+1];
@@ -943,7 +943,7 @@ ssize_t uecho_socket_recv(mUpnpSocket *sock, mUpnpDatagramPacket *dgmPkt)
 * uecho_socket_setreuseaddress
 ****************************************/
 
-BOOL uecho_socket_setreuseaddress(mUpnpSocket *sock, BOOL flag)
+BOOL uecho_socket_setreuseaddress(uEchoSocket *sock, BOOL flag)
 {
 	int sockOptRet;
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
@@ -985,7 +985,7 @@ BOOL uecho_socket_setreuseaddress(mUpnpSocket *sock, BOOL flag)
 * uecho_socket_setmulticastttl
 ****************************************/
 
-BOOL uecho_socket_setmulticastttl(mUpnpSocket *sock, int ttl)
+BOOL uecho_socket_setmulticastttl(uEchoSocket *sock, int ttl)
 {
 	int sockOptRet;
 	int ttl_;
@@ -1015,7 +1015,7 @@ BOOL uecho_socket_setmulticastttl(mUpnpSocket *sock, int ttl)
 * uecho_socket_settimeout
 ****************************************/
 
-BOOL uecho_socket_settimeout(mUpnpSocket *sock, int sec)
+BOOL uecho_socket_settimeout(uEchoSocket *sock, int sec)
 {
 	int sockOptRet;
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
@@ -1052,7 +1052,7 @@ BOOL uecho_socket_settimeout(mUpnpSocket *sock, int sec)
 
 #if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
 
-BOOL uecho_socket_joingroup(mUpnpSocket *sock, const char *mcastAddr, const char *ifAddr)
+BOOL uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char *ifAddr)
 {
 	struct ip_mreq ipmr;
 	u_long ifInetAddr = ka_inet_addr(ifAddr);
@@ -1076,14 +1076,14 @@ BOOL uecho_socket_joingroup(mUpnpSocket *sock, const char *mcastAddr, const char
 
 #elif defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
 
-BOOL uecho_socket_joingroup(mUpnpSocket *sock, char *mcastAddr, char *ifAddr)
+BOOL uecho_socket_joingroup(uEchoSocket *sock, char *mcastAddr, char *ifAddr)
 {
 	return TRUE;
 }
 
 #elif defined(ITRON)
 
-BOOL uecho_socket_joingroup(mUpnpSocket *sock, char *mcastAddr, char *ifAddr)
+BOOL uecho_socket_joingroup(uEchoSocket *sock, char *mcastAddr, char *ifAddr)
 {
 	UW optval;
 	ER ret;
@@ -1095,7 +1095,7 @@ BOOL uecho_socket_joingroup(mUpnpSocket *sock, char *mcastAddr, char *ifAddr)
 }
 #else
 
-BOOL uecho_socket_joingroup(mUpnpSocket *sock, const char *mcastAddr, const char *ifAddr)
+BOOL uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char *ifAddr)
 {
 	struct addrinfo hints;
 	struct addrinfo *mcastAddrInfo, *ifAddrInfo;
@@ -1272,13 +1272,13 @@ BOOL uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struc
 
 #if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
 
-BOOL uecho_socket_setmulticastinterface(mUpnpSocket *sock, char *ifaddr)
+BOOL uecho_socket_setmulticastinterface(uEchoSocket *sock, char *ifaddr)
 {
 	struct sockaddr_in sockaddr;
 	BOOL sockAddrSuccess;
 	int optSuccess;
-	mUpnpNetworkInterfaceList *netIfList;
-	mUpnpNetworkInterface *netIf;
+	uEchoNetworkInterfaceList *netIfList;
+	uEchoNetworkInterface *netIf;
 	int netIfCnt;
 
 	netIfList = NULL;
@@ -1316,7 +1316,7 @@ BOOL uecho_socket_setmulticastinterface(mUpnpSocket *sock, char *ifaddr)
 
 static int uecho_socket_getavailableid(int type)
 {
-	mUpnpSocket *sock;
+	uEchoSocket *sock;
 	int id;
 	BOOL isIDUsed;
 
@@ -1349,7 +1349,7 @@ static int uecho_socket_getavailableid(int type)
 
 static int uecho_socket_getavailableport()
 {
-	mUpnpSocket *sock;
+	uEchoSocket *sock;
 	int port;
 	BOOL isPortUsed;
 
@@ -1376,7 +1376,7 @@ static int uecho_socket_getavailableport()
 
 #if defined(ITRON)
 
-BOOL uecho_socket_initwindowbuffer(mUpnpSocket *sock)
+BOOL uecho_socket_initwindowbuffer(uEchoSocket *sock)
 {
 	if (sock->sendWinBuf == NULL)
 		sock->sendWinBuf = (char *)malloc(sizeof(UH) * CG_NET_SOCKET_WINDOW_BUFSIZE);
@@ -1392,7 +1392,7 @@ BOOL uecho_socket_initwindowbuffer(mUpnpSocket *sock)
 		return TRUE;
 }
 
-BOOL uecho_socket_freewindowbuffer(mUpnpSocket *sock)
+BOOL uecho_socket_freewindowbuffer(uEchoSocket *sock)
 {
 	if (sock->sendWinBuf != NULL)
 		free(sock->sendWinBuf);
@@ -1432,8 +1432,8 @@ static BOOL uecho_socket_getavailablelocaladdress(T_IPV4EP *localAddr)
 	char *ifAddr;
 	int localPort;
 
-	mUpnpNetworkInterfaceList *netIfList;
-	mUpnpNetworkInterface *netIf;
+	uEchoNetworkInterfaceList *netIfList;
+	uEchoNetworkInterface *netIf;
 	int netIfCnt;
 	netIfList = uecho_net_interfacelist_new();
 	netIfCnt = uecho_net_gethostinterfaces(netIfList);

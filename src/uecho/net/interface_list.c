@@ -15,15 +15,15 @@
 * uecho_net_interfacelist_new
 ****************************************/
 
-mUpnpNetworkInterfaceList *uecho_net_interfacelist_new()
+uEchoNetworkInterfaceList *uecho_net_interfacelist_new()
 {
-	mUpnpNetworkInterfaceList *netIfList;
+	uEchoNetworkInterfaceList *netIfList;
 
-	netIfList = (mUpnpNetworkInterfaceList *)malloc(sizeof(mUpnpNetworkInterfaceList));
+	netIfList = (uEchoNetworkInterfaceList *)malloc(sizeof(uEchoNetworkInterfaceList));
 
 	if ( NULL != netIfList )
 	{
-		uecho_list_header_init((mUpnpList *)netIfList);
+		uecho_list_header_init((uEchoList *)netIfList);
 		netIfList->name = NULL;
 		netIfList->ipaddr = NULL;
 	}
@@ -35,7 +35,7 @@ mUpnpNetworkInterfaceList *uecho_net_interfacelist_new()
 * uecho_net_interfacelist_delete
 ****************************************/
 
-void uecho_net_interfacelist_delete(mUpnpNetworkInterfaceList *netIfList)
+void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList *netIfList)
 {
 	uecho_net_interfacelist_clear(netIfList);
 	free(netIfList);
@@ -45,9 +45,9 @@ void uecho_net_interfacelist_delete(mUpnpNetworkInterfaceList *netIfList)
 * uecho_net_interfacelist_getinterface
 ****************************************/
 
-mUpnpNetworkInterface *uecho_net_interfacelist_get(mUpnpNetworkInterfaceList *netIfList, char *name)
+uEchoNetworkInterface *uecho_net_interfacelist_get(uEchoNetworkInterfaceList *netIfList, char *name)
 {
-	mUpnpNetworkInterface *netIf;
+	uEchoNetworkInterface *netIf;
 	char *ifName;
 
 	if (name == NULL)
@@ -68,12 +68,12 @@ mUpnpNetworkInterface *uecho_net_interfacelist_get(mUpnpNetworkInterfaceList *ne
 * uecho_net_interfacelist_getchanges
 ****************************************/
 
-void uecho_net_interfacelist_getchanges(mUpnpNetworkInterfaceList *netIfListOld,
-				     mUpnpNetworkInterfaceList *netIfListNew,
-				     mUpnpNetworkInterfaceList *netIfListAdded,
-				     mUpnpNetworkInterfaceList *netIfListRemoved)
+void uecho_net_interfacelist_getchanges(uEchoNetworkInterfaceList *netIfListOld,
+				     uEchoNetworkInterfaceList *netIfListNew,
+				     uEchoNetworkInterfaceList *netIfListAdded,
+				     uEchoNetworkInterfaceList *netIfListRemoved)
 {
-	mUpnpNetworkInterface *netIfOld, *netIfNew, *tmp;
+	uEchoNetworkInterface *netIfOld, *netIfNew, *tmp;
 	BOOL found;
 	
 	/* Browse through old interfaces and check, if they are in the new */

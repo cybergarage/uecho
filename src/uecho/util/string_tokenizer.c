@@ -14,13 +14,13 @@
 * uecho_string_tokenizer_new
 ****************************************/
 
-mUpnpStringTokenizer *uecho_string_tokenizer_new(const char *value, const char *delim)
+uEchoStringTokenizer *uecho_string_tokenizer_new(const char *value, const char *delim)
 {
-	mUpnpStringTokenizer *strToken;
+	uEchoStringTokenizer *strToken;
 
 	uecho_log_debug_l4("Entering...\n");
 
-	strToken = (mUpnpStringTokenizer *)malloc(sizeof(mUpnpStringTokenizer));
+	strToken = (uEchoStringTokenizer *)malloc(sizeof(uEchoStringTokenizer));
 
 	if ( NULL != strToken )
 	{
@@ -43,7 +43,7 @@ mUpnpStringTokenizer *uecho_string_tokenizer_new(const char *value, const char *
 * uecho_string_tokenizer_delete
 ****************************************/
 
-void uecho_string_tokenizer_delete(mUpnpStringTokenizer *strToken)
+void uecho_string_tokenizer_delete(uEchoStringTokenizer *strToken)
 {
 	uecho_log_debug_l4("Entering...\n");
 
@@ -58,7 +58,7 @@ void uecho_string_tokenizer_delete(mUpnpStringTokenizer *strToken)
 * uecho_string_tokenizer_hasmoretoken
 ****************************************/
 
-BOOL uecho_string_tokenizer_hasmoretoken(mUpnpStringTokenizer *strToken)
+BOOL uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer *strToken)
 {
 	uecho_log_debug_l4("Entering...\n");
 
@@ -71,7 +71,7 @@ BOOL uecho_string_tokenizer_hasmoretoken(mUpnpStringTokenizer *strToken)
 * uecho_string_tokenizer_nexttoken
 ****************************************/
 
-char *uecho_string_tokenizer_nexttoken(mUpnpStringTokenizer *strToken)
+char *uecho_string_tokenizer_nexttoken(uEchoStringTokenizer *strToken)
 {
 	size_t tokenCnt;
 	size_t i, j;
@@ -121,7 +121,7 @@ char *uecho_string_tokenizer_nexttoken(mUpnpStringTokenizer *strToken)
 * uecho_string_tokenizer_nextalltoken
 ****************************************/
 
-char *uecho_string_tokenizer_nextalltoken(mUpnpStringTokenizer *strToken)
+char *uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer *strToken)
 {
 	size_t nextTokenLen;
 
@@ -141,7 +141,7 @@ char *uecho_string_tokenizer_nextalltoken(mUpnpStringTokenizer *strToken)
 * uecho_string_tokenizer_print
 ****************************************/
 
-void uecho_string_tokenizer_print(mUpnpStringTokenizer *strToken)
+void uecho_string_tokenizer_print(uEchoStringTokenizer *strToken)
 {
 	uecho_log_debug_l4("Entering...\n");
 

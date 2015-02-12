@@ -57,7 +57,7 @@ typedef struct _uEchoMutex {
 	/** The mutex entity */
 	pthread_mutex_t mutexID;
 #endif
-} mUpnpMutex;
+} uEchoMutex;
 
 #if defined(WITH_THREAD_LOCK_TRACE) && defined(__USE_ISOC99)
 #include <stdlib.h>
@@ -68,7 +68,7 @@ typedef struct _uEchoLockInfo
 	pthread_t thread_id;
 	char *file, *function;
 	int line, mutex_id;
-} mUpnpLockInfo;
+} uEchoLockInfo;
 #endif
 
 /****************************************
@@ -78,14 +78,14 @@ typedef struct _uEchoLockInfo
 /** 
  * Create a new mutex
  */
-mUpnpMutex *uecho_mutex_new();
+uEchoMutex *uecho_mutex_new();
 
 /** 
  * Destroy a mutex
  *
  * \param mutex The mutex to destroy
  */
-BOOL uecho_mutex_delete(mUpnpMutex *mutex);
+BOOL uecho_mutex_delete(uEchoMutex *mutex);
 
 /** 
  * Acquire a mutex lock
@@ -96,7 +96,7 @@ BOOL uecho_mutex_delete(mUpnpMutex *mutex);
 #if defined(WITH_THREAD_LOCK_TRACE) && defined(__USE_ISOC99)
 #	define uecho_mutex_lock(mutex) uecho_mutex_lock_trace(__FILE__,  __LINE__, __PRETTY_FUNCTION__, mutex)
 #else
-	BOOL uecho_mutex_lock(mUpnpMutex *mutex);
+	BOOL uecho_mutex_lock(uEchoMutex *mutex);
 #endif
 
 /** 
@@ -107,7 +107,7 @@ BOOL uecho_mutex_delete(mUpnpMutex *mutex);
 #if defined(WITH_THREAD_LOCK_TRACE) && defined(__USE_ISOC99)
 #       define uecho_mutex_unlock(mutex) uecho_mutex_unlock_trace(__FILE__,  __LINE__, __PRETTY_FUNCTION__, mutex)
 #else
-	BOOL uecho_mutex_unlock(mUpnpMutex *mutex);
+	BOOL uecho_mutex_unlock(uEchoMutex *mutex);
 #endif
 
 #ifdef  __cplusplus
