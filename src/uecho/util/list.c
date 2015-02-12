@@ -14,7 +14,7 @@
 * uecho_list_header_init
 ****************************************/
 
-void uecho_list_header_init(mUpnpList *list)
+void uecho_list_header_init(uEchoList *list)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -31,7 +31,7 @@ void uecho_list_header_init(mUpnpList *list)
 * uecho_list_node_init
 ****************************************/
 
-void uecho_list_node_init(mUpnpList *list)
+void uecho_list_node_init(uEchoList *list)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -48,9 +48,9 @@ void uecho_list_node_init(mUpnpList *list)
 * uecho_list_size
 ****************************************/
 
-int uecho_list_size(mUpnpList *headList)
+int uecho_list_size(uEchoList *headList)
 {
-	mUpnpList *list;
+	uEchoList *list;
 	int listCnt;
 	
 	uecho_log_debug_l5("Entering...\n");
@@ -71,9 +71,9 @@ int uecho_list_size(mUpnpList *headList)
 * uecho_list_get
 ****************************************/
 
-mUpnpList *uecho_list_get(mUpnpList *headList, int index)
+uEchoList *uecho_list_get(uEchoList *headList, int index)
 {
-	mUpnpList *list;
+	uEchoList *list;
 	int n;
 	
 	uecho_log_debug_l5("Entering...\n");
@@ -98,8 +98,8 @@ mUpnpList *uecho_list_get(mUpnpList *headList, int index)
 ****************************************/
 
 void uecho_list_insert(
-mUpnpList *prevList,
-mUpnpList *list)
+uEchoList *prevList,
+uEchoList *list)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -119,8 +119,8 @@ mUpnpList *list)
 ****************************************/
 
 void uecho_list_add(
-mUpnpList *headList,
-mUpnpList *list)
+uEchoList *headList,
+uEchoList *list)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -139,7 +139,7 @@ mUpnpList *list)
 * uecho_list_remove
 ****************************************/
 
-void uecho_list_remove(mUpnpList *list)
+void uecho_list_remove(uEchoList *list)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -160,8 +160,8 @@ void uecho_list_remove(mUpnpList *list)
 * uecho_list_prev_circular
 ****************************************/
 
-mUpnpList *uecho_list_prev_circular (
-mUpnpList *list)
+uEchoList *uecho_list_prev_circular (
+uEchoList *list)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -183,8 +183,8 @@ mUpnpList *list)
 * uecho_list_prev
 ****************************************/
 
-mUpnpList *uecho_list_prev(
-mUpnpList *list)
+uEchoList *uecho_list_prev(
+uEchoList *list)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -206,8 +206,8 @@ mUpnpList *list)
 * uecho_list_next_circular
 ****************************************/
 
-mUpnpList *uecho_list_next_circular(
-mUpnpList *list)
+uEchoList *uecho_list_next_circular(
+uEchoList *list)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -229,8 +229,8 @@ mUpnpList *list)
 * uecho_list_next
 ****************************************/
 
-mUpnpList *uecho_list_next(
-mUpnpList *list)
+uEchoList *uecho_list_next(
+uEchoList *list)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -252,9 +252,9 @@ mUpnpList *list)
 * uecho_list_clear
 ****************************************/
 
-void uecho_list_clear(mUpnpList *headList, CG_LIST_DESTRUCTORFUNC destructorFunc)
+void uecho_list_clear(uEchoList *headList, CG_LIST_DESTRUCTORFUNC destructorFunc)
 {
-	mUpnpList *list;
+	uEchoList *list;
 
 	uecho_log_debug_l5("Entering...\n");
 

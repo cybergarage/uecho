@@ -30,9 +30,9 @@ extern "C" {
 ****************************************/
 
 #if defined(BTRON) || defined(ITRON) 
-typedef size_t mUpnpTime;
+typedef size_t uEchoTime;
 #else
-typedef time_t mUpnpTime;
+typedef time_t uEchoTime;
 #endif
 
 /****************************************
@@ -41,13 +41,13 @@ typedef time_t mUpnpTime;
 
 float uecho_random();
 
-void uecho_wait(mUpnpTime mtime);
-void uecho_waitrandom(mUpnpTime mtime);
+void uecho_wait(uEchoTime mtime);
+void uecho_waitrandom(uEchoTime mtime);
 
 #define uecho_sleep(val) uecho_wait(val)
 #define uecho_sleeprandom(val) uecho_waitrandom(val)
 
-mUpnpTime uecho_getcurrentsystemtime();
+uEchoTime uecho_getcurrentsystemtime();
 
 #ifdef  __cplusplus
 }

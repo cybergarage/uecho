@@ -48,30 +48,30 @@ typedef struct _uEchoNetworkInterface {
 	BOOL headFlag;
 	struct _uEchoNetworkInterface *prev;
 	struct _uEchoNetworkInterface *next;
-	mUpnpString *name;
-	mUpnpString *ipaddr;
-	mUpnpString *netmask;
-	mUpnpByte macaddr[CG_NET_MACADDR_SIZE];
+	uEchoString *name;
+	uEchoString *ipaddr;
+	uEchoString *netmask;
+	uEchoByte macaddr[CG_NET_MACADDR_SIZE];
 	int index;
-} mUpnpNetworkInterface, mUpnpNetworkInterfaceList;
+} uEchoNetworkInterface, uEchoNetworkInterfaceList;
 
 /****************************************
 * Function (NetworkInterface)
 ****************************************/
 
-mUpnpNetworkInterface *uecho_net_interface_new();
-void uecho_net_interface_delete(mUpnpNetworkInterface *netIf);
-mUpnpNetworkInterface* uecho_net_interface_getany();
+uEchoNetworkInterface *uecho_net_interface_new();
+void uecho_net_interface_delete(uEchoNetworkInterface *netIf);
+uEchoNetworkInterface* uecho_net_interface_getany();
 
-#define uecho_net_interface_next(netIf) (mUpnpNetworkInterface *)uecho_list_next((mUpnpList *)netIf)
-#define uecho_net_interface_remove(netIf) uecho_list_remove((mUpnpList *)netIf)
+#define uecho_net_interface_next(netIf) (uEchoNetworkInterface *)uecho_list_next((uEchoList *)netIf)
+#define uecho_net_interface_remove(netIf) uecho_list_remove((uEchoList *)netIf)
 
-void uecho_net_interface_setname(mUpnpNetworkInterface *netIf, char *name);
-char *uecho_net_interface_getname(mUpnpNetworkInterface *netIf);
-void uecho_net_interface_setaddress(mUpnpNetworkInterface *netIf, char *ipaddr);
-char *uecho_net_interface_getaddress(mUpnpNetworkInterface *netIf);
-void uecho_net_interface_setnetmask(mUpnpNetworkInterface *netIf, char *ipaddr);
-char *uecho_net_interface_getnetmask(mUpnpNetworkInterface *netIf);
+void uecho_net_interface_setname(uEchoNetworkInterface *netIf, char *name);
+char *uecho_net_interface_getname(uEchoNetworkInterface *netIf);
+void uecho_net_interface_setaddress(uEchoNetworkInterface *netIf, char *ipaddr);
+char *uecho_net_interface_getaddress(uEchoNetworkInterface *netIf);
+void uecho_net_interface_setnetmask(uEchoNetworkInterface *netIf, char *ipaddr);
+char *uecho_net_interface_getnetmask(uEchoNetworkInterface *netIf);
 char *uecho_net_selectaddr(struct sockaddr *remoteaddr);
 
 #define uecho_net_interface_setmacaddress(netIf, value) memcpy(netIf->macaddr, value, CG_NET_MACADDR_SIZE)
@@ -83,22 +83,22 @@ char *uecho_net_selectaddr(struct sockaddr *remoteaddr);
 /**
  * Compares two interfaces based on IP-address.
  */
-int uecho_net_interface_cmp(mUpnpNetworkInterface *netIfA, 
-			 mUpnpNetworkInterface *netIfB);
+int uecho_net_interface_cmp(uEchoNetworkInterface *netIfA, 
+			 uEchoNetworkInterface *netIfB);
 
 /****************************************
 * Function (NetworkInterfaceList)
 ****************************************/
 
-mUpnpNetworkInterfaceList *uecho_net_interfacelist_new();
-void uecho_net_interfacelist_delete(mUpnpNetworkInterfaceList *netIfList);
+uEchoNetworkInterfaceList *uecho_net_interfacelist_new();
+void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList *netIfList);
 
-#define uecho_net_interfacelist_clear(netIfList) uecho_list_clear((mUpnpList *)netIfList, (CG_LIST_DESTRUCTORFUNC)uecho_net_interface_delete)
-#define uecho_net_interfacelist_size(netIfList) uecho_list_size((mUpnpList *)netIfList)
-#define uecho_net_interfacelist_gets(netIfList) (mUpnpNetworkInterface *)uecho_list_next((mUpnpList *)netIfList)
-#define uecho_net_interfacelist_add(netIfList,netIf) uecho_list_add((mUpnpList *)netIfList, (mUpnpList *)netIf)
+#define uecho_net_interfacelist_clear(netIfList) uecho_list_clear((uEchoList *)netIfList, (CG_LIST_DESTRUCTORFUNC)uecho_net_interface_delete)
+#define uecho_net_interfacelist_size(netIfList) uecho_list_size((uEchoList *)netIfList)
+#define uecho_net_interfacelist_gets(netIfList) (uEchoNetworkInterface *)uecho_list_next((uEchoList *)netIfList)
+#define uecho_net_interfacelist_add(netIfList,netIf) uecho_list_add((uEchoList *)netIfList, (uEchoList *)netIf)
 
-mUpnpNetworkInterface *uecho_net_interfacelist_get(mUpnpNetworkInterfaceList *netIfList, char *name);
+uEchoNetworkInterface *uecho_net_interfacelist_get(uEchoNetworkInterfaceList *netIfList, char *name);
 
 /**
  * Gets changes in the two given (aka old and new) interface lists. Changes
@@ -111,10 +111,10 @@ mUpnpNetworkInterface *uecho_net_interfacelist_get(mUpnpNetworkInterfaceList *ne
  * @param netIfListRemoved List to store interfaces, which were in 
  *			   netIfListOld, but were not in netIfListNew.
  */
-void uecho_net_interfacelist_getchanges(mUpnpNetworkInterfaceList *netIfListOld,
-				     mUpnpNetworkInterfaceList *netIfListNew,
-				     mUpnpNetworkInterfaceList *netIfListAdded,
-				     mUpnpNetworkInterfaceList *netIfListRemoved);
+void uecho_net_interfacelist_getchanges(uEchoNetworkInterfaceList *netIfListOld,
+				     uEchoNetworkInterfaceList *netIfListNew,
+				     uEchoNetworkInterfaceList *netIfListAdded,
+				     uEchoNetworkInterfaceList *netIfListRemoved);
 
 /****************************************
 * Function
@@ -124,7 +124,7 @@ void uecho_net_interfacelist_getchanges(mUpnpNetworkInterfaceList *netIfListOld,
 void uecho_net_setinterface(const char *ifaddr);
 #endif
 
-int uecho_net_gethostinterfaces(mUpnpNetworkInterfaceList *netIfList);
+int uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList);
 
 BOOL uecho_net_isipv6address(const char *addr);
 int uecho_net_getipv6scopeid(const char *addr);

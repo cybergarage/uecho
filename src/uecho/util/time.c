@@ -40,7 +40,7 @@
 * uecho_time_wait
 ****************************************/
 
-void uecho_wait(mUpnpTime mtime)
+void uecho_wait(uEchoTime mtime)
 {
 #if defined(WIN32) && !defined(ITRON)
 	Sleep(mtime);
@@ -61,7 +61,7 @@ void uecho_wait(mUpnpTime mtime)
 * uecho_time_wait
 ****************************************/
 
-void uecho_waitrandom(mUpnpTime mtime)
+void uecho_waitrandom(uEchoTime mtime)
 {
 	double factor;
 	long waitTime;
@@ -75,15 +75,15 @@ void uecho_waitrandom(mUpnpTime mtime)
 * uecho_time_wait
 ****************************************/
 
-mUpnpTime uecho_getcurrentsystemtime()
+uEchoTime uecho_getcurrentsystemtime()
 {
 #if defined(BTRON)
-	STIME mUpnpTime;
+	STIME uEchoTime;
 	TIMEZONE tz;
 	STIME localtime;
-	if (get_tim(&mUpnpTime, &tz) != 0)
+	if (get_tim(&uEchoTime, &tz) != 0)
 		return 0;
-	localtime = mUpnpTime - tz.adjust + (tz.dst_flg ? (tz.dst_adj*60): 0);
+	localtime = uEchoTime - tz.adjust + (tz.dst_flg ? (tz.dst_adj*60): 0);
 #elif defined(ITRON)
 	static BOOL initialized = FALSE;
 	SYSTIM sysTim;

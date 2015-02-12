@@ -20,13 +20,13 @@
 * uecho_string_new
 ****************************************/
 
-mUpnpString *uecho_string_new()
+uEchoString *uecho_string_new()
 {
-	mUpnpString *str;
+	uEchoString *str;
 
 	uecho_log_debug_l5("Entering...\n");
 
-	str = (mUpnpString *)malloc(sizeof(mUpnpString));
+	str = (uEchoString *)malloc(sizeof(uEchoString));
 
 	if (NULL != str) {
 		str->value = NULL;
@@ -43,7 +43,7 @@ mUpnpString *uecho_string_new()
 * uecho_string_delete
 ****************************************/
 
-void uecho_string_delete(mUpnpString *str)
+void uecho_string_delete(uEchoString *str)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -59,7 +59,7 @@ void uecho_string_delete(mUpnpString *str)
 * uecho_string_delete
 ****************************************/
 
-void uecho_string_clear(mUpnpString *str)
+void uecho_string_clear(uEchoString *str)
 {
 	uecho_log_debug_l5("Entering...\n");
 	
@@ -79,7 +79,7 @@ void uecho_string_clear(mUpnpString *str)
 * uecho_string_setvalue
 ****************************************/
 
-void uecho_string_setvalue(mUpnpString *str, const char *value)
+void uecho_string_setvalue(uEchoString *str, const char *value)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -95,7 +95,7 @@ void uecho_string_setvalue(mUpnpString *str, const char *value)
 * uecho_string_setintvalue
 ****************************************/
 
-void uecho_string_setintvalue(mUpnpString *str, int value)
+void uecho_string_setintvalue(uEchoString *str, int value)
 {
 	char buf[CG_STRING_INTEGER_BUFLEN];
 
@@ -110,7 +110,7 @@ void uecho_string_setintvalue(mUpnpString *str, int value)
 * uecho_string_setlongvalue
 ****************************************/
 
-void uecho_string_setlongvalue(mUpnpString *str, long value)
+void uecho_string_setlongvalue(uEchoString *str, long value)
 {
 	char buf[CG_STRING_LONG_BUFLEN];
 
@@ -125,7 +125,7 @@ void uecho_string_setlongvalue(mUpnpString *str, long value)
 * uecho_string_setnvalue
 ****************************************/
 
-void uecho_string_setnvalue(mUpnpString *str, const char *value, size_t len)
+void uecho_string_setnvalue(uEchoString *str, const char *value, size_t len)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -154,7 +154,7 @@ void uecho_string_setnvalue(mUpnpString *str, const char *value, size_t len)
 * uecho_string_setpointervalue
 ****************************************/
 
-void uecho_string_setpointervalue(mUpnpString *str, char *value, size_t len)
+void uecho_string_setpointervalue(uEchoString *str, char *value, size_t len)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -172,7 +172,7 @@ void uecho_string_setpointervalue(mUpnpString *str, char *value, size_t len)
 * uecho_string_getvalue
 ****************************************/
 
-char *uecho_string_getvalue(mUpnpString *str)
+char *uecho_string_getvalue(uEchoString *str)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -185,7 +185,7 @@ char *uecho_string_getvalue(mUpnpString *str)
 * uecho_string_getmemorysize
 ****************************************/
 
-size_t uecho_string_getmemorysize(mUpnpString *str)
+size_t uecho_string_getmemorysize(uEchoString *str)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -201,7 +201,7 @@ size_t uecho_string_getmemorysize(mUpnpString *str)
 * uecho_string_length
 ****************************************/
 
-size_t uecho_string_length(mUpnpString *str)
+size_t uecho_string_length(uEchoString *str)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -220,7 +220,7 @@ size_t uecho_string_length(mUpnpString *str)
 * uecho_string_add
 ****************************************/
 
-char *uecho_string_addvalue(mUpnpString *str, const char *value)
+char *uecho_string_addvalue(uEchoString *str, const char *value)
 {
 	uecho_log_debug_l5("Entering...\n");
 
@@ -233,7 +233,7 @@ char *uecho_string_addvalue(mUpnpString *str, const char *value)
 * uecho_string_add
 ****************************************/
 
-char *uecho_string_naddvalue(mUpnpString *str, const char *value, size_t valueLen)
+char *uecho_string_naddvalue(uEchoString *str, const char *value, size_t valueLen)
 {
 	char *newValue = NULL;
 	size_t newMemSize = 0;
@@ -285,7 +285,7 @@ char *uecho_string_naddvalue(mUpnpString *str, const char *value, size_t valueLe
 * uecho_string_addrep
 ****************************************/
 
-char *uecho_string_addrepvalue(mUpnpString *str, const char *value, size_t repeatCnt)
+char *uecho_string_addrepvalue(uEchoString *str, const char *value, size_t repeatCnt)
 {
 	int n;
 	uecho_log_debug_l5("Entering...\n");
@@ -302,7 +302,7 @@ char *uecho_string_addrepvalue(mUpnpString *str, const char *value, size_t repea
 * uecho_string_naddrep
 ****************************************/
 
-char *uecho_string_naddrepvalue(mUpnpString *str, const char *value, size_t valueLen, size_t repeatCnt)
+char *uecho_string_naddrepvalue(uEchoString *str, const char *value, size_t valueLen, size_t repeatCnt)
 {
 	int n;
 
@@ -320,14 +320,14 @@ char *uecho_string_naddrepvalue(mUpnpString *str, const char *value, size_t valu
 * uecho_string_replace
 ****************************************/
 
-char *uecho_string_replace(mUpnpString *str, char *fromStr[], char *toStr[], size_t fromStrCnt)
+char *uecho_string_replace(uEchoString *str, char *fromStr[], char *toStr[], size_t fromStrCnt)
 {
 	char *orgValue = NULL;
 	size_t orgValueLen = 0;
 	int n = 0;
 	int copyPos = 0;
 	size_t *fromStrLen = NULL;
-	mUpnpString *repValue = NULL;
+	uEchoString *repValue = NULL;
 	BOOL isReplaced = FALSE;
 
 	uecho_log_debug_l5("Entering...\n");

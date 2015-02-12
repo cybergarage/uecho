@@ -16,14 +16,14 @@
 * uecho_socketlist_new
 ****************************************/
 
-mUpnpSocketList *uecho_socketlist_new()
+uEchoSocketList *uecho_socketlist_new()
 {
 	uecho_log_debug_l4("Entering...\n");
 
-	mUpnpSocketList *socketList = (mUpnpSocketList *)malloc(sizeof(mUpnpSocketList));
+	uEchoSocketList *socketList = (uEchoSocketList *)malloc(sizeof(uEchoSocketList));
 
 	if ( NULL != socketList )
-		uecho_list_header_init((mUpnpList *)socketList);
+		uecho_list_header_init((uEchoList *)socketList);
 
 	return socketList;
 
@@ -34,7 +34,7 @@ mUpnpSocketList *uecho_socketlist_new()
 * uecho_socketlist_delete
 ****************************************/
 
-void uecho_socketlist_delete(mUpnpSocketList *socketList)
+void uecho_socketlist_delete(uEchoSocketList *socketList)
 {
 	uecho_log_debug_l4("Entering...\n");
 

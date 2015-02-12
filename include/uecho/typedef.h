@@ -64,7 +64,7 @@ typedef int BOOL;
 #endif
 #endif
 	
-typedef unsigned char mUpnpByte;
+typedef unsigned char uEchoByte;
 
 #ifdef  __cplusplus
 }
