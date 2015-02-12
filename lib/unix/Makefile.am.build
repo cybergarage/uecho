@@ -1,0 +1,45 @@
+#!/usr/bin/perl
+print<<HEADER;
+############################################################
+#
+# uEcho for C
+#
+# Copyright (C) The uecho Authors 2015
+#
+############################################################
+
+#if HAVE_LIBTOOL
+#lib_LTLIBRARIES = libuecho.la
+#else
+lib_LIBRARIES = libuecho.a
+#endif
+
+AM_CFLAGS = -I\$(top_srcdir)/include -I\$(top_builddir)/include
+
+uecho_sources = \\
+HEADER
+my @find_files = `find ../../src/uecho -name *.c`;
+my @source_files;
+foreach $file (@find_files) {
+	$file =~ s/\n//;
+	$file = "\t" . $file;
+	push @source_files, $file;
+}
+print join(" \\\n", @source_files) . "\n";
+
+print<<FOTTER;
+
+libuechoincludedir = \$(includedir)/uecho
+nobase_libuechoinclude_HEADERS =  \\
+        \$(uecho_headers)
+
+#if HAVE_LIBTOOL
+#libuecho_la_SOURCES = \\
+#        \$(uecho_source)
+#libuecho_la_CFLAGS = \$(AM_CFLAGS)
+#else
+libuecho_a_SOURCES = \\
+        \$(uecho_sources)
+libuecho_a_CFLAGS = \$(AM_CFLAGS)
+#endif
+FOTTER
