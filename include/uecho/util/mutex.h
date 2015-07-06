@@ -1,9 +1,8 @@
 /******************************************************************
  *
- * mUPnP for C
+ * uEcho for C
  *
- * Copyright (C) The uecho Authors 2005
- * Copyright (C) 2006 Nokia Corporation. All rights reserved.
+ * Copyright (C) The uecho Authors 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -85,7 +84,7 @@ uEchoMutex *uecho_mutex_new();
  *
  * \param mutex The mutex to destroy
  */
-BOOL uecho_mutex_delete(uEchoMutex *mutex);
+bool uecho_mutex_delete(uEchoMutex *mutex);
 
 /** 
  * Acquire a mutex lock
@@ -96,7 +95,7 @@ BOOL uecho_mutex_delete(uEchoMutex *mutex);
 #if defined(WITH_THREAD_LOCK_TRACE) && defined(__USE_ISOC99)
 #	define uecho_mutex_lock(mutex) uecho_mutex_lock_trace(__FILE__,  __LINE__, __PRETTY_FUNCTION__, mutex)
 #else
-	BOOL uecho_mutex_lock(uEchoMutex *mutex);
+	bool uecho_mutex_lock(uEchoMutex *mutex);
 #endif
 
 /** 
@@ -107,7 +106,7 @@ BOOL uecho_mutex_delete(uEchoMutex *mutex);
 #if defined(WITH_THREAD_LOCK_TRACE) && defined(__USE_ISOC99)
 #       define uecho_mutex_unlock(mutex) uecho_mutex_unlock_trace(__FILE__,  __LINE__, __PRETTY_FUNCTION__, mutex)
 #else
-	BOOL uecho_mutex_unlock(uEchoMutex *mutex);
+	bool uecho_mutex_unlock(uEchoMutex *mutex);
 #endif
 
 #ifdef  __cplusplus

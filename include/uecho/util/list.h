@@ -1,9 +1,8 @@
 /******************************************************************
  *
- * mUPnP for C
+ * uEcho for C
  *
- * Copyright (C) The uecho Authors 2005
- * Copyright (C) 2006 Nokia Corporation. All rights reserved.
+ * Copyright (C) The uecho Authors 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -43,7 +42,7 @@ typedef void (*CG_LIST_DESTRUCTORFUNC)(void *);
 typedef struct _uEchoList {
 
   /** Marks the beginning of a list */
-  BOOL headFlag;
+  bool headFlag;
   /** Pointer to the next list node */
   struct _uEchoList *prev;
   /** Pointer to the previous list node */

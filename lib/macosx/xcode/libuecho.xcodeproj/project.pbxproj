@@ -25,6 +25,10 @@
 		21678F0C1A8D512000AE79AA /* string_tokenizer.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678F011A8D512000AE79AA /* string_tokenizer.c */; };
 		21678F0D1A8D512000AE79AA /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678F021A8D512000AE79AA /* time.c */; };
 		21678F101A8D51C800AE79AA /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678F0F1A8D51C800AE79AA /* typedef.h */; };
+		21EFF1A01B4A9A5E002B5E57 /* controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EFF19E1B4A9A5E002B5E57 /* controller.h */; };
+		21EFF1A11B4A9A5E002B5E57 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EFF19F1B4A9A5E002B5E57 /* node.h */; };
+		21EFF1A41B4A9A76002B5E57 /* controller.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EFF1A21B4A9A76002B5E57 /* controller.c */; };
+		21EFF1A51B4A9A76002B5E57 /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EFF1A31B4A9A76002B5E57 /* node.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +51,10 @@
 		21678F011A8D512000AE79AA /* string_tokenizer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string_tokenizer.c; sourceTree = "<group>"; };
 		21678F021A8D512000AE79AA /* time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = time.c; sourceTree = "<group>"; };
 		21678F0F1A8D51C800AE79AA /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = typedef.h; sourceTree = "<group>"; };
+		21EFF19E1B4A9A5E002B5E57 /* controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controller.h; sourceTree = "<group>"; };
+		21EFF19F1B4A9A5E002B5E57 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
+		21EFF1A21B4A9A76002B5E57 /* controller.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = controller.c; sourceTree = "<group>"; };
+		21EFF1A31B4A9A76002B5E57 /* node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = node.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,8 @@
 		21678EE21A8D510100AE79AA /* uecho */ = {
 			isa = PBXGroup;
 			children = (
+				21EFF19E1B4A9A5E002B5E57 /* controller.h */,
+				21EFF19F1B4A9A5E002B5E57 /* node.h */,
 				21678F0F1A8D51C800AE79AA /* typedef.h */,
 				21678EE31A8D510100AE79AA /* net */,
 				21678EE61A8D510100AE79AA /* util */,
@@ -128,6 +138,8 @@
 		21678EF61A8D512000AE79AA /* uecho */ = {
 			isa = PBXGroup;
 			children = (
+				21EFF1A21B4A9A76002B5E57 /* controller.c */,
+				21EFF1A31B4A9A76002B5E57 /* node.c */,
 				21678EF71A8D512000AE79AA /* net */,
 				21678EFC1A8D512000AE79AA /* util */,
 			);
@@ -168,12 +180,14 @@
 			files = (
 				21678EF11A8D510100AE79AA /* mutex.h in Headers */,
 				21678EF31A8D510100AE79AA /* thread.h in Headers */,
+				21EFF1A11B4A9A5E002B5E57 /* node.h in Headers */,
 				21678EF21A8D510100AE79AA /* string.h in Headers */,
 				21678EF41A8D510100AE79AA /* time.h in Headers */,
 				21678EED1A8D510100AE79AA /* interface.h in Headers */,
 				21678EEF1A8D510100AE79AA /* list.h in Headers */,
 				21678EEE1A8D510100AE79AA /* socket.h in Headers */,
 				21678F101A8D51C800AE79AA /* typedef.h in Headers */,
+				21EFF1A01B4A9A5E002B5E57 /* controller.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +217,7 @@
 		212ADD801A8D4F000054EC0F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "The uecho Authors";
 				TargetAttributes = {
 					212ADD871A8D4F000054EC0F = {
@@ -237,10 +251,12 @@
 				21678F081A8D512000AE79AA /* list.c in Sources */,
 				21678F0A1A8D512000AE79AA /* string.c in Sources */,
 				21678F041A8D512000AE79AA /* interface.c in Sources */,
+				21EFF1A41B4A9A76002B5E57 /* controller.c in Sources */,
 				21678F051A8D512000AE79AA /* interface_list.c in Sources */,
 				21678F0C1A8D512000AE79AA /* string_tokenizer.c in Sources */,
 				21678F091A8D512000AE79AA /* mutex.c in Sources */,
 				21678F071A8D512000AE79AA /* socket_list.c in Sources */,
+				21EFF1A51B4A9A76002B5E57 /* node.c in Sources */,
 				21678F0B1A8D512000AE79AA /* string_function.c in Sources */,
 				21678F061A8D512000AE79AA /* socket.c in Sources */,
 			);
@@ -255,7 +271,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -300,7 +316,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -336,16 +352,22 @@
 		212ADD8D1A8D4F000054EC0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
 		212ADD8E1A8D4F000054EC0F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};

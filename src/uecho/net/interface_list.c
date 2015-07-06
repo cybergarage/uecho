@@ -74,7 +74,7 @@ void uecho_net_interfacelist_getchanges(uEchoNetworkInterfaceList *netIfListOld,
 				     uEchoNetworkInterfaceList *netIfListRemoved)
 {
 	uEchoNetworkInterface *netIfOld, *netIfNew, *tmp;
-	BOOL found;
+	bool found;
 	
 	/* Browse through old interfaces and check, if they are in the new */
 	tmp = uecho_net_interfacelist_gets(netIfListOld);
@@ -82,19 +82,19 @@ void uecho_net_interfacelist_getchanges(uEchoNetworkInterfaceList *netIfListOld,
 	{
 		netIfOld = tmp; tmp = uecho_net_interface_next(netIfOld);
 		
-		found = FALSE;
+		found = false;
 		for (netIfNew = uecho_net_interfacelist_gets(netIfListNew); netIfNew != NULL;
 		     netIfNew = uecho_net_interface_next(netIfNew))
 		{
 			if (uecho_net_interface_cmp(netIfOld, netIfNew) == 0)
 			{
-				found = TRUE;
+				found = true;
 				break;
 			}
 		}
 		
 		/* Old interface was not found in new ones, so it's removed */
-		if (found == FALSE)
+		if (found == false)
 		{
 			uecho_net_interface_remove(netIfOld);
 			if (netIfListRemoved != NULL)
@@ -110,19 +110,19 @@ void uecho_net_interfacelist_getchanges(uEchoNetworkInterfaceList *netIfListOld,
 	{
 		netIfNew = tmp; tmp = uecho_net_interface_next(netIfNew);
 		
-		found = FALSE;
+		found = false;
 		for (netIfOld = uecho_net_interfacelist_gets(netIfListOld); netIfOld != NULL;
 		     netIfOld = uecho_net_interface_next(netIfOld))
 		{
 			if (uecho_net_interface_cmp(netIfOld, netIfNew) == 0)
 			{
-				found = TRUE;
+				found = true;
 				break;
 			}
 		}
 		
 		/* New interface was not found in old ones, so it's added */
-		if (found == FALSE)
+		if (found == false)
 		{
 			uecho_net_interface_remove(netIfNew);
 			if (netIfListAdded != NULL)

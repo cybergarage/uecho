@@ -40,7 +40,7 @@
 * uecho_time_wait
 ****************************************/
 
-void uecho_wait(uEchoTime mtime)
+void uecho_wait(size_t mtime)
 {
 #if defined(WIN32) && !defined(ITRON)
 	Sleep(mtime);
@@ -61,7 +61,7 @@ void uecho_wait(uEchoTime mtime)
 * uecho_time_wait
 ****************************************/
 
-void uecho_waitrandom(uEchoTime mtime)
+void uecho_waitrandom(size_t mtime)
 {
 	double factor;
 	long waitTime;
@@ -75,19 +75,19 @@ void uecho_waitrandom(uEchoTime mtime)
 * uecho_time_wait
 ****************************************/
 
-uEchoTime uecho_getcurrentsystemtime()
+size_t uecho_getcurrentsystemtime()
 {
 #if defined(BTRON)
-	STIME uEchoTime;
+	STIME clock_t;
 	TIMEZONE tz;
 	STIME localtime;
-	if (get_tim(&uEchoTime, &tz) != 0)
+	if (get_tim(&clock_t, &tz) != 0)
 		return 0;
-	localtime = uEchoTime - tz.adjust + (tz.dst_flg ? (tz.dst_adj*60): 0);
+	localtime = clock_t - tz.adjust + (tz.dst_flg ? (tz.dst_adj*60): 0);
 #elif defined(ITRON)
-	static BOOL initialized = FALSE;
+	static bool initialized = false;
 	SYSTIM sysTim;
-	if (initialized == FALSE) {
+	if (initialized == false) {
 		sysTim.utime = 0;
 		sysTim.ltime = 0;
 		set_tim(&sysTim);
@@ -100,7 +100,7 @@ uEchoTime uecho_getcurrentsystemtime()
 #elif defined(ITRON)
 	return ((sysTim.utime / 1000) << 32) + (sysTim.ltime / 1000);
 #else
-  return 0;//time((time_t *)NULL);
+  return 0;//time((clock_t *)NULL);
 #endif
 }
 
@@ -110,11 +110,11 @@ uEchoTime uecho_getcurrentsystemtime()
 
 float uecho_random()
 {
-	static BOOL seedDone = FALSE;
+	static bool seedDone = false;
 
-	if (seedDone == FALSE) {
+	if (seedDone == false) {
 		srand((int)(uecho_getcurrentsystemtime() % INT_MAX));
-		seedDone = TRUE;
+		seedDone = true;
 	}
   
 	return (float)rand() / (float)RAND_MAX;

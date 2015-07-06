@@ -44,23 +44,23 @@ extern "C" {
 * Data Type
 ****************************************/
 
-#if !defined(BOOL) && !defined(BTRON) && !defined(TENGINE) && !defined(__OBJC__)
-typedef int BOOL;
+#if !defined(bool) && !defined(BTRON) && !defined(TENGINE) && !defined(__OBJC__)
+typedef int bool;
 #endif
 
-#if !defined(TRUE)
+#if !defined(true)
 #if defined(__OBJC__)
-#define TRUE YES
+#define true YES
 #else
-#define TRUE (1)
+#define true (1)
 #endif
 #endif
 
-#if !defined(FALSE)
+#if !defined(false)
 #if defined(__OBJC__)
-#define FALSE NO
+#define false NO
 #else
-#define FALSE (0)
+#define false (0)
 #endif
 #endif
 	

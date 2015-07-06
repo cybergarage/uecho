@@ -45,7 +45,7 @@ extern "C" {
 ****************************************/
 
 typedef struct _uEchoNetworkInterface {
-	BOOL headFlag;
+	bool headFlag;
 	struct _uEchoNetworkInterface *prev;
 	struct _uEchoNetworkInterface *next;
 	uEchoString *name;
@@ -126,7 +126,7 @@ void uecho_net_setinterface(const char *ifaddr);
 
 int uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList);
 
-BOOL uecho_net_isipv6address(const char *addr);
+bool uecho_net_isipv6address(const char *addr);
 int uecho_net_getipv6scopeid(const char *addr);
 
 #ifdef  __cplusplus

@@ -58,13 +58,11 @@ void uecho_string_tokenizer_delete(uEchoStringTokenizer *strToken)
 * uecho_string_tokenizer_hasmoretoken
 ****************************************/
 
-BOOL uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer *strToken)
+bool uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer *strToken)
 {
 	uecho_log_debug_l4("Entering...\n");
 
 	return strToken->hasNextTokens;
-
-	uecho_log_debug_l4("Leaving...\n");
 }
 
 /****************************************
@@ -80,41 +78,39 @@ char *uecho_string_tokenizer_nexttoken(uEchoStringTokenizer *strToken)
 
 	strToken->currToken = strToken->nextToken;
 	strToken->nextToken = NULL;
-	strToken->hasNextTokens = FALSE;
+	strToken->hasNextTokens = false;
 	strToken->repToken = '\0';
 	
 	tokenCnt = 0;
 	for (i=strToken->nextStartPos; i<=strToken->lastPos; i++) {
-		BOOL isDelimChar = FALSE;
+		bool isDelimChar = false;
 		for (j=0; j<strToken->delimCnt; j++) {
 			if (strToken->value[i] == strToken->delim[j]) {
-				isDelimChar = TRUE;
+				isDelimChar = true;
 				if (tokenCnt == 0) {
 					strToken->nextStartPos = i + 1;
 					break;
 				}
-				strToken->hasNextTokens = TRUE;
+				strToken->hasNextTokens = true;
 				strToken->repToken = strToken->value[i];
 				strToken->value[i] = '\0';
 				strToken->nextToken = strToken->value + strToken->nextStartPos;
 				strToken->nextStartPos = i + 1;
 			}
 		}
-		if (strToken->hasNextTokens == TRUE)
+		if (strToken->hasNextTokens == true)
 			break;
-		if (isDelimChar == FALSE)
+		if (isDelimChar == false)
 			tokenCnt++;
 	}
 	
-	if (strToken->hasNextTokens == FALSE && 0 < tokenCnt) {
-		strToken->hasNextTokens = TRUE;
+	if (strToken->hasNextTokens == false && 0 < tokenCnt) {
+		strToken->hasNextTokens = true;
 		strToken->nextToken = strToken->value + strToken->nextStartPos;
 		strToken->nextStartPos = strToken->lastPos + 1;
 	}
 
 	return strToken->currToken;
-
-	uecho_log_debug_l4("Leaving...\n");
 }
 
 /****************************************
@@ -125,38 +121,10 @@ char *uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer *strToken)
 {
 	size_t nextTokenLen;
 
-	uecho_log_debug_l4("Entering...\n");
-
 	nextTokenLen = uecho_strlen(strToken->nextToken);
 	strToken->nextToken[nextTokenLen] = strToken->repToken;
 	strToken->currToken = strToken->nextToken;
 	strToken->nextToken = NULL;
-	strToken->hasNextTokens = FALSE;
+	strToken->hasNextTokens = false;
 	return strToken->currToken;
-
-	uecho_log_debug_l4("Leaving...\n");
-}
-
-/****************************************
-* uecho_string_tokenizer_print
-****************************************/
-
-void uecho_string_tokenizer_print(uEchoStringTokenizer *strToken)
-{
-	uecho_log_debug_l4("Entering...\n");
-
-uecho_log_debug_s(
-		"uecho_string_tokenizer_print\n"
-		"value = %s\n, delim = %s,\n delimCnt = %d,\n nextStartPos = %d,\n lastPos = %d,\n currToken = %s,\n nextToken = %s,\n repToken = %c,\n hasNextTokens = %d\n",
-		strToken->value,
-		strToken->delim,
-		strToken->delimCnt,
-		strToken->nextStartPos,
-		strToken->lastPos,
-		strToken->currToken,
-		strToken->nextToken,
-		strToken->repToken,
-		strToken->hasNextTokens);
-
-	uecho_log_debug_l4("Leaving...\n");
 }

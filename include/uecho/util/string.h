@@ -1,9 +1,8 @@
 /******************************************************************
  *
- * mUPnP for C
+ * uEcho for C
  *
- * Copyright (C) The uecho Authors 2005
- * Copyright (C) 2006 Nokia Corporation. All rights reserved.
+ * Copyright (C) The uecho Authors 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -48,8 +47,8 @@ char *uecho_strcat(char *dest, const char *src);
 int uecho_strcmp(const char *str1, const char *str2);
 int uecho_strncmp(const char *str1, const char *str2, int nchars);
 int uecho_strcasecmp(const char *str1, const char *str2);
-BOOL uecho_streq(const char *str1, const char *str2);
-BOOL uecho_strcaseeq(const char *str1, const char *str2);
+bool uecho_streq(const char *str1, const char *str2);
+bool uecho_strcaseeq(const char *str1, const char *str2);
 ssize_t uecho_strchr(const char *str, const char *chars, size_t nchars);
 ssize_t uecho_strrchr(const char *str, const char *chars, size_t nchars);
 ssize_t uecho_strstr(const char *haystack, const char *needle);
@@ -95,7 +94,7 @@ typedef struct _uEchoStringTokenizer {
 	char *currToken;
 	char *nextToken;
 	char repToken;
-	BOOL hasNextTokens;
+	bool hasNextTokens;
 } uEchoStringTokenizer;
 	
 /****************************************
@@ -104,11 +103,9 @@ typedef struct _uEchoStringTokenizer {
 	
 uEchoStringTokenizer *uecho_string_tokenizer_new(const char *str, const char *delim);
 void uecho_string_tokenizer_delete(uEchoStringTokenizer *strToken);
-BOOL uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer *strToken);
+bool uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer *strToken);
 char *uecho_string_tokenizer_nexttoken(uEchoStringTokenizer *strToken);
 char *uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer *strToken);
-	
-void uecho_string_tokenizer_print(uEchoStringTokenizer *strToken);
 	
 /****************************************
 * Function (String)
