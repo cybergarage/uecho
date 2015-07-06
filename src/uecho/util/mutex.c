@@ -34,7 +34,7 @@ uEchoMutex *uecho_mutex_new()
 	if ( NULL != mutex )
 	{
 #if defined(WIN32) && !defined(ITRON)
-		mutex->mutexID = CreateMutex(NULL, FALSE, NULL);
+		mutex->mutexID = CreateMutex(NULL, false, NULL);
 #elif defined(BTRON)
 		mutex->mutexID = cre_sem(1, SEM_EXCL);
 #elif defined(ITRON) 
@@ -67,10 +67,10 @@ uEchoMutex *uecho_mutex_new()
 * uecho_mutex_delete
 ****************************************/
 
-BOOL uecho_mutex_delete(uEchoMutex *mutex)
+bool uecho_mutex_delete(uEchoMutex *mutex)
 {
 	if (!mutex)
-		return FALSE;
+		return false;
 
 	uecho_log_debug_l4("Entering...\n");
 
@@ -91,7 +91,7 @@ BOOL uecho_mutex_delete(uEchoMutex *mutex)
 
 	uecho_log_debug_l4("Leaving...\n");
 
-	return TRUE;
+	return true;
 }
 
 /****************************************
@@ -110,7 +110,7 @@ uEchoLockInfo *uecho_tlt_list = NULL;
  */
 pthread_mutex_t tlt_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-BOOL uecho_mutex_lock_trace(	const char *file, 
+bool uecho_mutex_lock_trace(	const char *file, 
 				int line, 
 				const char *function,
 				uEchoMutex *mutex)
@@ -120,7 +120,7 @@ BOOL uecho_mutex_lock_trace(	const char *file,
 	uEchoLockInfo *temp;
 
 	if (!mutex)
-		return FALSE;
+		return false;
 
 	thid = pthread_self();
 	pthread_mutex_lock(&tlt_mutex);
@@ -218,10 +218,10 @@ BOOL uecho_mutex_lock_trace(	const char *file,
 		pthread_mutex_lock(&mutex->mutexID);
 	}
 
-	return TRUE;
+	return true;
 }
 
-BOOL uecho_mutex_unlock_trace(	const char *file, 
+bool uecho_mutex_unlock_trace(	const char *file, 
 				int line, 
 				const char *function,
 				uEchoMutex *mutex)
@@ -231,7 +231,7 @@ BOOL uecho_mutex_unlock_trace(	const char *file,
         uEchoLockInfo *temp, *ptemp;
 
 		if (!mutex)
-			return FALSE;
+			return false;
 
         thid = pthread_self();
         pthread_mutex_lock(&tlt_mutex);
@@ -288,13 +288,13 @@ BOOL uecho_mutex_unlock_trace(	const char *file,
 
 	pthread_mutex_unlock(&mutex->mutexID);
 
-	return TRUE;
+	return true;
 }
 #else
-BOOL uecho_mutex_lock(uEchoMutex *mutex)
+bool uecho_mutex_lock(uEchoMutex *mutex)
 {
 	if (!mutex)
-		return FALSE;
+		return false;
 
 	uecho_log_debug_l4("Entering...\n");
 
@@ -314,17 +314,17 @@ BOOL uecho_mutex_lock(uEchoMutex *mutex)
 
 	uecho_log_debug_l4("Leaving...\n");
 
-	return TRUE;
+	return true;
 }
 
 /****************************************
 * uecho_mutex_unlock
 ****************************************/
 
-BOOL uecho_mutex_unlock(uEchoMutex *mutex)
+bool uecho_mutex_unlock(uEchoMutex *mutex)
 {
 	if (!mutex)
-		return FALSE;
+		return false;
 
 	uecho_log_debug_l4("Entering...\n");
 
@@ -341,7 +341,7 @@ BOOL uecho_mutex_unlock(uEchoMutex *mutex)
 #else
 	pthread_mutex_unlock(&mutex->mutexID);
 #endif
-	return TRUE;
+	return true;
 
 	uecho_log_debug_l4("Leaving...\n");
 }

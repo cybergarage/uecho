@@ -16,15 +16,11 @@
 
 void uecho_list_header_init(uEchoList *list)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL == list)
 		return;
 
-	list->headFlag = TRUE;			
+	list->headFlag = true;			
 	list->prev = list->next = list;
-
-	uecho_log_debug_l5("Leaving...\n");
 }
 
 /****************************************
@@ -33,15 +29,11 @@ void uecho_list_header_init(uEchoList *list)
 
 void uecho_list_node_init(uEchoList *list)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL == list)
 		return;
 
-	list->headFlag = FALSE;			
+	list->headFlag = false;			
 	list->prev = list->next = list;
-
-	uecho_log_debug_l5("Leaving...\n");
 }
 
 /****************************************
@@ -52,8 +44,6 @@ int uecho_list_size(uEchoList *headList)
 {
 	uEchoList *list;
 	int listCnt;
-	
-	uecho_log_debug_l5("Entering...\n");
 
 	if (NULL == headList)
 		return 0;
@@ -61,8 +51,6 @@ int uecho_list_size(uEchoList *headList)
 	listCnt = 0;
 	for (list = uecho_list_next(headList); list != NULL; list = uecho_list_next(list))
 		listCnt++;
-	
-	uecho_log_debug_l5("Leaving...\n");
 	
 	return listCnt;
 }
@@ -76,8 +64,6 @@ uEchoList *uecho_list_get(uEchoList *headList, int index)
 	uEchoList *list;
 	int n;
 	
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL == headList)
 		return NULL;
 
@@ -87,8 +73,6 @@ uEchoList *uecho_list_get(uEchoList *headList, int index)
 			break;
 		list = uecho_list_next(list);
 	}
-		
-	uecho_log_debug_l5("Leaving...\n");
 	
 	return list;
 }
@@ -101,8 +85,6 @@ void uecho_list_insert(
 uEchoList *prevList,
 uEchoList *list)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if ((NULL == prevList) || (NULL == list))
 		return;
 
@@ -110,8 +92,6 @@ uEchoList *list)
 	list->next = prevList->next;
 	prevList->next->prev = list;
 	prevList->next = list;
-
-	uecho_log_debug_l5("Leaving...\n");
 }
 
 /****************************************
@@ -122,8 +102,6 @@ void uecho_list_add(
 uEchoList *headList,
 uEchoList *list)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if ((NULL == headList) || (NULL == list))
 		return;
 
@@ -131,8 +109,6 @@ uEchoList *list)
 		return;
 	
 	uecho_list_insert(headList->prev, list);
-
-	uecho_log_debug_l5("Leaving...\n");
 }
 
 /****************************************
@@ -141,8 +117,6 @@ uEchoList *list)
 
 void uecho_list_remove(uEchoList *list)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL == list)
 		return;
 
@@ -152,8 +126,6 @@ void uecho_list_remove(uEchoList *list)
 	list->prev->next = list->next;
 	list->next->prev = list->prev;
 	list->prev = list->next = list;
-
-	uecho_log_debug_l5("Leaving...\n");
 }
 
 /****************************************
@@ -163,8 +135,6 @@ void uecho_list_remove(uEchoList *list)
 uEchoList *uecho_list_prev_circular (
 uEchoList *list)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL == list)
 		return NULL;
 
@@ -173,8 +143,6 @@ uEchoList *list)
 	
 	if (list->prev->headFlag)
 		list = list->prev;
-
-	uecho_log_debug_l5("Leaving...\n");
 
 	return list->prev;
 }
@@ -186,18 +154,14 @@ uEchoList *list)
 uEchoList *uecho_list_prev(
 uEchoList *list)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL == list)
 		return NULL;
 
 	if (NULL == list->prev)
 		return NULL;
 	
-	if (list->prev->headFlag == TRUE)
+	if (list->prev->headFlag == true)
 		return NULL;
-	
-	uecho_log_debug_l5("Leaving...\n");
 
 	return list->prev;
 }
@@ -209,18 +173,14 @@ uEchoList *list)
 uEchoList *uecho_list_next_circular(
 uEchoList *list)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL == list)
 		return NULL;
 
 	if (NULL == list->next)
 		return NULL;
 	
-	if (list->next->headFlag == TRUE)
+	if (list->next->headFlag == true)
 		list = list->next;
-
-	uecho_log_debug_l5("Leaving...\n");
 	
 	return list->next;
 }
@@ -232,18 +192,14 @@ uEchoList *list)
 uEchoList *uecho_list_next(
 uEchoList *list)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL == list)
 		return NULL;
 
 	if (NULL == list->next)
 		return NULL;
 	
-	if (list->next->headFlag == TRUE)
+	if (list->next->headFlag == true)
 		return NULL;
-
-	uecho_log_debug_l5("Leaving...\n");
 
 	return list->next;
 }
@@ -256,15 +212,12 @@ void uecho_list_clear(uEchoList *headList, CG_LIST_DESTRUCTORFUNC destructorFunc
 {
 	uEchoList *list;
 
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL == headList)
 		return;
 
 	list = uecho_list_next(headList);
 	while(list != NULL) {
 		uecho_list_remove(list);
-		//Theo Beisch: use destructorFunc or just free(listElement)
 		if (destructorFunc != NULL){
 			destructorFunc(list);
 		} else {
@@ -272,9 +225,4 @@ void uecho_list_clear(uEchoList *headList, CG_LIST_DESTRUCTORFUNC destructorFunc
 		}
 		list = uecho_list_next(headList);
 	}
-
-	/*** list header must be deleted by user ***/
-	/* free(headList); */
-
-	uecho_log_debug_l5("Leaving...\n");
 }

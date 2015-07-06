@@ -1,0 +1,329 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		213C5BFD1B4A548B0013DDD9 /* liblibuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 213C5BFA1B4A54630013DDD9 /* liblibuecho.a */; };
+		216F1DFA1B4A5BAA003C7B6A /* uEchoTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216F1DF91B4A5BAA003C7B6A /* uEchoTest.cpp */; };
+		216F1DFC1B4A5BB8003C7B6A /* ControllerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216F1DFB1B4A5BB8003C7B6A /* ControllerTest.cpp */; };
+		21EFF1A71B4AA06D002B5E57 /* NodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EFF1A61B4AA06D002B5E57 /* NodeTest.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		213C5BF91B4A54630013DDD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 213C5BF51B4A54630013DDD9 /* libuecho.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 212ADD881A8D4F000054EC0F;
+			remoteInfo = libuecho;
+		};
+		213C5BFB1B4A54860013DDD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 213C5BF51B4A54630013DDD9 /* libuecho.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 212ADD871A8D4F000054EC0F;
+			remoteInfo = libuecho;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2103632F1B4A51B300DB3025 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		210363311B4A51B300DB3025 /* uEchoTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uEchoTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		213C5BF51B4A54630013DDD9 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
+		216F1DF91B4A5BAA003C7B6A /* uEchoTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uEchoTest.cpp; path = ../../uEchoTest.cpp; sourceTree = "<group>"; };
+		216F1DFB1B4A5BB8003C7B6A /* ControllerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ControllerTest.cpp; path = ../../ControllerTest.cpp; sourceTree = "<group>"; };
+		21EFF1A61B4AA06D002B5E57 /* NodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeTest.cpp; path = ../../NodeTest.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2103632E1B4A51B300DB3025 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				213C5BFD1B4A548B0013DDD9 /* liblibuecho.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		210363281B4A51B300DB3025 = {
+			isa = PBXGroup;
+			children = (
+				217993091B4A5A6B00A158CD /* Sources */,
+				213C5BF41B4A543C0013DDD9 /* Frameworks */,
+				210363321B4A51B300DB3025 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		210363321B4A51B300DB3025 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				210363311B4A51B300DB3025 /* uEchoTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		213C5BF41B4A543C0013DDD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				213C5BF51B4A54630013DDD9 /* libuecho.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		213C5BF61B4A54630013DDD9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				213C5BFA1B4A54630013DDD9 /* liblibuecho.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		217993091B4A5A6B00A158CD /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				21EFF1A61B4AA06D002B5E57 /* NodeTest.cpp */,
+				216F1DFB1B4A5BB8003C7B6A /* ControllerTest.cpp */,
+				216F1DF91B4A5BAA003C7B6A /* uEchoTest.cpp */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		210363301B4A51B300DB3025 /* uEchoTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 210363381B4A51B300DB3025 /* Build configuration list for PBXNativeTarget "uEchoTest" */;
+			buildPhases = (
+				2103632D1B4A51B300DB3025 /* Sources */,
+				2103632E1B4A51B300DB3025 /* Frameworks */,
+				2103632F1B4A51B300DB3025 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				213C5BFC1B4A54860013DDD9 /* PBXTargetDependency */,
+			);
+			name = uEchoTest;
+			productName = uEchoTest;
+			productReference = 210363311B4A51B300DB3025 /* uEchoTest */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		210363291B4A51B300DB3025 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = cybergarage;
+				TargetAttributes = {
+					210363301B4A51B300DB3025 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = 2103632C1B4A51B300DB3025 /* Build configuration list for PBXProject "uEchoTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 210363281B4A51B300DB3025;
+			productRefGroup = 210363321B4A51B300DB3025 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 213C5BF61B4A54630013DDD9 /* Products */;
+					ProjectRef = 213C5BF51B4A54630013DDD9 /* libuecho.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				210363301B4A51B300DB3025 /* uEchoTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		213C5BFA1B4A54630013DDD9 /* liblibuecho.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblibuecho.a;
+			remoteRef = 213C5BF91B4A54630013DDD9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2103632D1B4A51B300DB3025 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21EFF1A71B4AA06D002B5E57 /* NodeTest.cpp in Sources */,
+				216F1DFA1B4A5BAA003C7B6A /* uEchoTest.cpp in Sources */,
+				216F1DFC1B4A5BB8003C7B6A /* ControllerTest.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		213C5BFC1B4A54860013DDD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libuecho;
+			targetProxy = 213C5BFB1B4A54860013DDD9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		210363361B4A51B300DB3025 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		210363371B4A51B300DB3025 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		210363391B4A51B300DB3025 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = "-lboost_unit_test_framework-mt";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2103633A1B4A51B300DB3025 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = "-lboost_unit_test_framework-mt";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2103632C1B4A51B300DB3025 /* Build configuration list for PBXProject "uEchoTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				210363361B4A51B300DB3025 /* Debug */,
+				210363371B4A51B300DB3025 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		210363381B4A51B300DB3025 /* Build configuration list for PBXNativeTarget "uEchoTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				210363391B4A51B300DB3025 /* Debug */,
+				2103633A1B4A51B300DB3025 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 210363291B4A51B300DB3025 /* Project object */;
+}

@@ -24,8 +24,6 @@ uEchoString *uecho_string_new()
 {
 	uEchoString *str;
 
-	uecho_log_debug_l5("Entering...\n");
-
 	str = (uEchoString *)malloc(sizeof(uEchoString));
 
 	if (NULL != str) {
@@ -33,8 +31,6 @@ uEchoString *uecho_string_new()
 		str->memSize = 0;
 		str->valueSize = 0;
 	}
-
-	uecho_log_debug_l5("Leaving...\n");
 
 	return str;
 }
@@ -45,14 +41,10 @@ uEchoString *uecho_string_new()
 
 void uecho_string_delete(uEchoString *str)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL != str) {
 		uecho_string_clear(str);
 		free(str);
 	}
-	
-	uecho_log_debug_l5("Leaving...\n");
 }
 
 /****************************************
@@ -61,8 +53,6 @@ void uecho_string_delete(uEchoString *str)
 
 void uecho_string_clear(uEchoString *str)
 {
-	uecho_log_debug_l5("Entering...\n");
-	
 	if (NULL != str) {
 		if (str->value != NULL) {
 			free(str->value);
@@ -71,8 +61,6 @@ void uecho_string_clear(uEchoString *str)
 			str->valueSize = 0;
 		}
 	}
-
-	uecho_log_debug_l5("Leaving...\n");
 }
 
 /****************************************
@@ -81,14 +69,10 @@ void uecho_string_clear(uEchoString *str)
 
 void uecho_string_setvalue(uEchoString *str, const char *value)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL != str) {
 		if (value != NULL)
 			uecho_string_setnvalue(str, value, uecho_strlen(value));
 	}
-	
-	uecho_log_debug_l5("Leaving...\n");
 }
 
 /****************************************
@@ -99,11 +83,7 @@ void uecho_string_setintvalue(uEchoString *str, int value)
 {
 	char buf[CG_STRING_INTEGER_BUFLEN];
 
-	uecho_log_debug_l5("Entering...\n");
-
 	uecho_string_setvalue(str, uecho_int2str(value, buf, sizeof(buf)));
-
-	uecho_log_debug_l5("Leaving...\n");
 }
 
 /****************************************
@@ -112,13 +92,9 @@ void uecho_string_setintvalue(uEchoString *str, int value)
 
 void uecho_string_setlongvalue(uEchoString *str, long value)
 {
-	char buf[CG_STRING_LONG_BUFLEN];
-
-	uecho_log_debug_l5("Entering...\n");
-
+	char buf[CG_STRING_LONG_BUFLEN]
+    ;
 	uecho_string_setvalue(str, uecho_long2str(value, buf, sizeof(buf)));
-
-	uecho_log_debug_l5("Leaving...\n");
 }
 
 /****************************************
@@ -127,8 +103,6 @@ void uecho_string_setlongvalue(uEchoString *str, long value)
 
 void uecho_string_setnvalue(uEchoString *str, const char *value, size_t len)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL != str) {
 		uecho_string_clear(str);
 		if (value != NULL) {
@@ -137,7 +111,6 @@ void uecho_string_setnvalue(uEchoString *str, const char *value, size_t len)
 			str->value = (char *)malloc(str->memSize * sizeof(char));
 
 			if ( NULL == str->value ) {
-				uecho_log_debug_s("Memory allocation failure!\n");
 				return;
 			}
 
@@ -146,8 +119,6 @@ void uecho_string_setnvalue(uEchoString *str, const char *value, size_t len)
 			str->value[len] = '\0';
 		}
 	}
-
-	uecho_log_debug_l5("Leaving...\n");
 }
 
 /****************************************
@@ -156,16 +127,12 @@ void uecho_string_setnvalue(uEchoString *str, const char *value, size_t len)
 
 void uecho_string_setpointervalue(uEchoString *str, char *value, size_t len)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL != str) {
 		uecho_string_clear(str);
 		str->value = value;
 		str->valueSize = len;
 		str->memSize = str->valueSize + 1;
 	}
-	
-	uecho_log_debug_l5("Leaving...\n");
 }
 
 /****************************************
@@ -174,10 +141,6 @@ void uecho_string_setpointervalue(uEchoString *str, char *value, size_t len)
 
 char *uecho_string_getvalue(uEchoString *str)
 {
-	uecho_log_debug_l5("Entering...\n");
-
-	uecho_log_debug_l5("Leaving...\n");
-
 	return (NULL != str) ? str->value : NULL;
 }
 
@@ -187,12 +150,8 @@ char *uecho_string_getvalue(uEchoString *str)
 
 size_t uecho_string_getmemorysize(uEchoString *str)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL == str)
 		return 0;
-
-	uecho_log_debug_l5("Leaving...\n");
 
 	return str->memSize;
 }
@@ -203,15 +162,11 @@ size_t uecho_string_getmemorysize(uEchoString *str)
 
 size_t uecho_string_length(uEchoString *str)
 {
-	uecho_log_debug_l5("Entering...\n");
-
 	if (NULL == str)
 		return 0;
 
 	if (str->value == NULL)
 		return 0;
-
-	uecho_log_debug_l5("Leaving...\n");
 
 	return str->valueSize;
 }
@@ -222,10 +177,6 @@ size_t uecho_string_length(uEchoString *str)
 
 char *uecho_string_addvalue(uEchoString *str, const char *value)
 {
-	uecho_log_debug_l5("Entering...\n");
-
-	uecho_log_debug_l5("Leaving...\n");
-
 	return uecho_string_naddvalue(str, value, uecho_strlen(value));
 }
 
@@ -237,8 +188,6 @@ char *uecho_string_naddvalue(uEchoString *str, const char *value, size_t valueLe
 {
 	char *newValue = NULL;
 	size_t newMemSize = 0;
-
-	uecho_log_debug_l5("Entering...\n");
 
 	if (NULL == str)
 		return NULL;
@@ -276,8 +225,6 @@ char *uecho_string_naddvalue(uEchoString *str, const char *value, size_t valueLe
 	/* In case this is a string, append a termination character */
 	str->value[str->valueSize] = '\0';
 
-	uecho_log_debug_l5("Leaving...\n");
-
 	return uecho_string_getvalue(str);
 }
 
@@ -288,12 +235,9 @@ char *uecho_string_naddvalue(uEchoString *str, const char *value, size_t valueLe
 char *uecho_string_addrepvalue(uEchoString *str, const char *value, size_t repeatCnt)
 {
 	int n;
-	uecho_log_debug_l5("Entering...\n");
 
 	for (n = 0; n < repeatCnt; n++)
 		uecho_string_addvalue(str, value);
-
-	uecho_log_debug_l5("Leaving...\n");
 
 	return uecho_string_getvalue(str);
 }
@@ -306,12 +250,8 @@ char *uecho_string_naddrepvalue(uEchoString *str, const char *value, size_t valu
 {
 	int n;
 
-	uecho_log_debug_l5("Entering...\n");
-
 	for (n = 0; n < repeatCnt; n++)
 		uecho_string_naddvalue(str, value, valueLen);
-
-	uecho_log_debug_l5("Leaving...\n");
 
 	return uecho_string_getvalue(str);
 }
@@ -328,9 +268,7 @@ char *uecho_string_replace(uEchoString *str, char *fromStr[], char *toStr[], siz
 	int copyPos = 0;
 	size_t *fromStrLen = NULL;
 	uEchoString *repValue = NULL;
-	BOOL isReplaced = FALSE;
-
-	uecho_log_debug_l5("Entering...\n");
+	bool isReplaced = false;
 
 	if (NULL == str )
 		return NULL;
@@ -342,7 +280,6 @@ char *uecho_string_replace(uEchoString *str, char *fromStr[], char *toStr[], siz
 	if ( NULL == fromStrLen )
 	{
         uecho_string_delete(repValue);
-		uecho_log_debug_s("Memory allocation failure!\n");
 		return NULL;
 	}
 	
@@ -354,16 +291,16 @@ char *uecho_string_replace(uEchoString *str, char *fromStr[], char *toStr[], siz
 	
 	copyPos = 0;
 	while (copyPos<orgValueLen) {
-		isReplaced = FALSE;
+		isReplaced = false;
 		for (n=0; n<fromStrCnt; n++) {
 			if (strncmp(fromStr[n], orgValue + copyPos,  fromStrLen[n]) == 0) {
 				uecho_string_addvalue(repValue, toStr[n]);
 				copyPos += fromStrLen[n];
-				isReplaced = TRUE;
+				isReplaced = true;
 				continue;
 			}
 		}
-		if (isReplaced == TRUE)
+		if (isReplaced == true)
 			continue;
 		uecho_string_naddvalue(repValue, orgValue + copyPos, 1);
 		copyPos++;
@@ -375,7 +312,5 @@ char *uecho_string_replace(uEchoString *str, char *fromStr[], char *toStr[], siz
 
 	uecho_string_delete(repValue);
 		
-	uecho_log_debug_l5("Leaving...\n");
-
 	return uecho_string_getvalue(str);
 }

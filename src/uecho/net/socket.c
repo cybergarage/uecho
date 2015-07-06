@@ -72,11 +72,11 @@ ttUserInterface kaInterfaceHandle;
 ****************************************/
 
 #if !defined(ITRON)
-BOOL uecho_socket_tosockaddrin(const char *addr, int port, struct sockaddr_in *sockaddr, BOOL isBindAddr);
+bool uecho_socket_tosockaddrin(const char *addr, int port, struct sockaddr_in *sockaddr, bool isBindAddr);
 #endif
 
 #if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
-BOOL uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struct addrinfo **addrInfo, BOOL isBindAddr);
+bool uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struct addrinfo **addrInfo, bool isBindAddr);
 #endif
 
 #define uecho_socket_getrawtype(socket) (((socket->type & CG_NET_SOCKET_STREAM) == CG_NET_SOCKET_STREAM) ? SOCK_STREAM : SOCK_DGRAM)
@@ -86,7 +86,7 @@ BOOL uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struc
 #endif
 
 #if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
-BOOL uecho_socket_setmulticastinterface(uEchoSocket *sock, char *ifaddr);
+bool uecho_socket_setmulticastinterface(uEchoSocket *sock, char *ifaddr);
 #endif
 
 #if defined(CG_NET_USE_SOCKET_LIST)
@@ -95,11 +95,11 @@ static int uecho_socket_getavailableport();
 #endif
 
 #if defined(ITRON)
-BOOL uecho_socket_initwindowbuffer(uEchoSocket *sock);
-BOOL uecho_socket_freewindowbuffer(uEchoSocket *sock);
+bool uecho_socket_initwindowbuffer(uEchoSocket *sock);
+bool uecho_socket_freewindowbuffer(uEchoSocket *sock);
 static ER uecho_socket_udp_callback(ID cepid, FN fncd, VP parblk);
 static ER uecho_socket_tcp_callback(ID cepid, FN fncd, VP parblk);
-static BOOL uecho_socket_getavailablelocaladdress(T_IPV4EP *localAddr);
+static bool uecho_socket_getavailablelocaladdress(T_IPV4EP *localAddr);
 #endif
 
 /****************************************
@@ -230,7 +230,7 @@ uEchoSocket *uecho_socket_new(int type)
 * uecho_socket_delete
 ****************************************/
 
-BOOL uecho_socket_delete(uEchoSocket *sock)
+bool uecho_socket_delete(uEchoSocket *sock)
 {
 	uecho_socket_close(sock);
 	uecho_string_delete(sock->ipaddr);
@@ -240,19 +240,19 @@ BOOL uecho_socket_delete(uEchoSocket *sock)
 	free(sock);
 	uecho_socket_cleanup();
 
-	return TRUE;
+	return true;
 }
 
 /****************************************
 * uecho_socket_isbound
 ****************************************/
 
-BOOL uecho_socket_isbound(uEchoSocket *sock)
+bool uecho_socket_isbound(uEchoSocket *sock)
 {
 #if defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__) && !defined(ITRON)
-	return (sock->id != INVALID_SOCKET) ? TRUE: FALSE;
+	return (sock->id != INVALID_SOCKET) ? true: false;
 #else
-	return (0 < sock->id) ? TRUE : FALSE;
+	return (0 < sock->id) ? true : false;
 #endif
 }
 
@@ -282,13 +282,13 @@ void uecho_socket_setid(uEchoSocket *socket, SOCKET value)
 * uecho_socket_close
 ****************************************/
 
-BOOL uecho_socket_close(uEchoSocket *sock)
+bool uecho_socket_close(uEchoSocket *sock)
 {
-	if (uecho_socket_isbound(sock) == FALSE)
-		return TRUE;
+	if (uecho_socket_isbound(sock) == false)
+		return true;
 
 #if defined(CG_USE_OPENSSL)
-	if (uecho_socket_isssl(sock) == TRUE) {
+	if (uecho_socket_isssl(sock) == true) {
 		if (sock->ctx) {
 			SSL_shutdown(sock->ssl); 
 			SSL_free(sock->ssl);
@@ -334,7 +334,7 @@ BOOL uecho_socket_close(uEchoSocket *sock)
 	#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
 	ka_tfClose(sock->id);
 	#elif defined(ITRON)
-	if (uecho_socket_issocketstream(sock) == TRUE) {
+	if (uecho_socket_issocketstream(sock) == true) {
 		tcp_can_cep(sock->id, TFN_TCP_ALL);
 		tcp_sht_cep(sock->id);
 		tcp_del_cep(sock->id);
@@ -358,14 +358,14 @@ BOOL uecho_socket_close(uEchoSocket *sock)
 	uecho_socket_setaddress(sock, "");
 	uecho_socket_setport(sock, -1);
 
-	return TRUE;
+	return true;
 }
 
 /****************************************
 * uecho_socket_listen
 ****************************************/
 
-BOOL uecho_socket_listen(uEchoSocket *sock)
+bool uecho_socket_listen(uEchoSocket *sock)
 {
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
 	ERR ret = so_listen(sock->id, 10);
@@ -378,14 +378,14 @@ BOOL uecho_socket_listen(uEchoSocket *sock)
 	int ret = listen(sock->id, SOMAXCONN);
 #endif
 
-	return (ret == 0) ? TRUE: FALSE;
+	return (ret == 0) ? true: false;
 }
 
 /****************************************
 * uecho_socket_bind
 ****************************************/
 
-BOOL uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, BOOL bindFlag, BOOL reuseFlag)
+bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, bool bindFlag, bool reuseFlag)
 {
 #if defined(BTRON) || defined(TENGINE)
 	struct sockaddr_in sockaddr;
@@ -400,61 +400,61 @@ BOOL uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, BO
 #endif
 
 	if (bindPort <= 0 /* || bindAddr == NULL*/)
-		return FALSE;
+		return false;
 
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
-	if (uecho_socket_tosockaddrin(bindAddr, bindPort, &sockaddr, bindFlag) == FALSE)
-		return FALSE;
+	if (uecho_socket_tosockaddrin(bindAddr, bindPort, &sockaddr, bindFlag) == false)
+		return false;
    	uecho_socket_setid(sock, so_socket(PF_INET, uecho_socket_getrawtype(sock), 0));
 	if (sock->id < 0)
-		return FALSE;
-	if (reuseFlag == TRUE) {
-		if (uecho_socket_setreuseaddress(sock, TRUE) == FALSE) {
+		return false;
+	if (reuseFlag == true) {
+		if (uecho_socket_setreuseaddress(sock, true) == false) {
 			uecho_socket_close(sock);
-			return FALSE;
+			return false;
 		}
 	}
 	ret = so_bind(sock->id, (SOCKADDR *)&sockaddr, sizeof(struct sockaddr_in));
 	if (ret < 0) {
 		uecho_socket_close(sock);
-		return FALSE;
+		return false;
 	}
 #elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
-	if (uecho_socket_tosockaddrin(bindAddr, bindPort, &sockaddr, bindFlag) == FALSE)
-		return FALSE;
+	if (uecho_socket_tosockaddrin(bindAddr, bindPort, &sockaddr, bindFlag) == false)
+		return false;
 	uecho_socket_setid(sock, ka_socket( PF_INET, uecho_socket_getrawtype(sock), uecho_socket_getprototype(sock)));
 	if (sock->id < 0)
-		return FALSE;
+		return false;
 	/*
-	if (uecho_socket_setmulticastinterface(sock, bindAddr) == FALSE)
-		return FALSE;
+	if (uecho_socket_setmulticastinterface(sock, bindAddr) == false)
+		return false;
 	*/
-	if (reuseFlag == TRUE) {
-		if (uecho_socket_setreuseaddress(sock, TRUE) == FALSE) {
+	if (reuseFlag == true) {
+		if (uecho_socket_setreuseaddress(sock, true) == false) {
 			uecho_socket_close(sock);
-			return FALSE;
+			return false;
 		}
 	}
 	ret = ka_bind(sock->id, (struct sockaddr *)&sockaddr, sizeof(struct sockaddr_in));
 	if (ret < 0) {
 		uecho_socket_close(sock);
-		return FALSE;
+		return false;
 	}
 #elif defined(ITRON)
 	uecho_socket_setid(sock, uecho_socket_getavailableid(uecho_socket_issocketstream(sock)));
 	if (sock->id < 0)
-		return FALSE;
-	if (uecho_socket_issocketstream(sock) == TRUE) {
+		return false;
+	if (uecho_socket_issocketstream(sock) == true) {
 		if (bindAddr != NULL)
 			tcpcrep.myaddr.ipaddr = ascii_to_ipaddr(bindAddr);
 		tcpcrep.myaddr.ipaddr = htons(bindPort);
 		if (tcp_cre_rep(sock->id, &tcpcrep) != E_OK) {
 			uecho_socket_close(sock);
-			return FALSE;
+			return false;
 		}
 		if (tcp_cre_cep(sock->id, &tcpccep) != E_OK) {
 			uecho_socket_close(sock);
-			return FALSE;
+			return false;
 		}
 	}
 	else {
@@ -463,21 +463,21 @@ BOOL uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, BO
 		udpccep.myaddr.ipaddr = htons(bindPort);
 		if (udp_cre_cep(sock->id, &udpccep) != E_OK) {
 			uecho_socket_close(sock);
-			return FALSE;
+			return false;
 		}
 	}
 #else
-	if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), bindAddr, bindPort, &addrInfo, bindFlag) == FALSE)
-		return FALSE;
+	if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), bindAddr, bindPort, &addrInfo, bindFlag) == false)
+		return false;
 	uecho_socket_setid(sock, socket(addrInfo->ai_family, addrInfo->ai_socktype, 0));
 	if (sock->id== -1) {
 		uecho_socket_close(sock);
-		return FALSE;
+		return false;
 	}
-	if (reuseFlag == TRUE) {
-		if (uecho_socket_setreuseaddress(sock, TRUE) == FALSE) {
+	if (reuseFlag == true) {
+		if (uecho_socket_setreuseaddress(sock, true) == false) {
 			uecho_socket_close(sock);
-			return FALSE;
+			return false;
 		}
 	}
 	ret = bind(sock->id, addrInfo->ai_addr, addrInfo->ai_addrlen);
@@ -486,21 +486,21 @@ BOOL uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, BO
 
 #if !defined(ITRON)
 	if (ret != 0)
-		return FALSE;
+		return false;
 #endif
 
 	uecho_socket_setdirection(sock, CG_NET_SOCKET_SERVER);
 	uecho_socket_setaddress(sock, bindAddr);
 	uecho_socket_setport(sock, bindPort);
 
-	return TRUE;
+	return true;
 }
 
 /****************************************
 * uecho_socket_accept
 ****************************************/
 
-BOOL uecho_socket_accept(uEchoSocket *serverSock, uEchoSocket *clientSock)
+bool uecho_socket_accept(uEchoSocket *serverSock, uEchoSocket *clientSock)
 {
 	struct sockaddr_in sockaddr;
 	socklen_t socklen;
@@ -517,7 +517,7 @@ BOOL uecho_socket_accept(uEchoSocket *serverSock, uEchoSocket *clientSock)
 #elif defined(ITRON)
 	T_IPV4EP dstAddr;
 	if (tcp_acp_cep(serverSock->id, serverSock->id, &dstAddr, TMO_FEVR) != E_OK)
-		return FALSE;
+		return false;
 	uecho_socket_setid(clientSock, uecho_socket_getid(serverSock));
 #else
 	struct sockaddr_storage sockClientAddr;
@@ -531,10 +531,10 @@ uecho_log_debug_s("clientSock->id = %d\n", clientSock->id);
 	
 #if defined (WIN32) && !defined(ITRON)
 	if (clientSock->id == INVALID_SOCKET)
-		return FALSE;
+		return false;
 #else
 	if (clientSock->id < 0)
-		return FALSE;
+		return false;
 #endif
 	
 	uecho_socket_setaddress(clientSock, uecho_socket_getaddress(serverSock));
@@ -554,29 +554,29 @@ uecho_log_debug_s("clientSock->id = %s\n", uecho_socket_getaddress(clientSock));
 uecho_log_debug_s("clientSock->id = %d\n", uecho_socket_getport(clientSock));
 #endif
 	
-	return TRUE;
+	return true;
 }
 
 /****************************************
 * uecho_socket_connect
 ****************************************/
 
-BOOL uecho_socket_connect(uEchoSocket *sock, const char *addr, int port)
+bool uecho_socket_connect(uEchoSocket *sock, const char *addr, int port)
 {
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
 	ERR ret;
 	struct sockaddr_in sockaddr;
-	if (uecho_socket_tosockaddrin(addr, port, &sockaddr, TRUE) == FALSE)
-		return FALSE;
-	if (uecho_socket_isbound(sock) == FALSE)
+	if (uecho_socket_tosockaddrin(addr, port, &sockaddr, true) == false)
+		return false;
+	if (uecho_socket_isbound(sock) == false)
 	   	uecho_socket_setid(sock, so_socket(PF_INET, uecho_socket_getrawtype(sock), 0));
 	ret = so_connect(sock->id, (SOCKADDR *)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
 	ERR ret;
 	struct sockaddr_in sockaddr;
-	if (uecho_socket_tosockaddrin(addr, port, &sockaddr, TRUE) == FALSE)
-		return FALSE;
-	if (uecho_socket_isbound(sock) == FALSE)
+	if (uecho_socket_tosockaddrin(addr, port, &sockaddr, true) == false)
+		return false;
+	if (uecho_socket_isbound(sock) == false)
 	   	uecho_socket_setid(sock, ka_socket(PF_INET, uecho_socket_getrawtype(sock), uecho_socket_getprototype(sock)));
 	ret = ka_connect(sock->id, (struct sockaddr *)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(ITRON)
@@ -584,13 +584,13 @@ BOOL uecho_socket_connect(uEchoSocket *sock, const char *addr, int port)
 	T_IPV4EP localAddr;
 	T_IPV4EP dstAddr;
 	ER ret;
-	if (uecho_socket_getavailablelocaladdress(&localAddr) == FALSE)
-		return FALSE;
-	if (uecho_socket_isbound(sock) == FALSE) {
+	if (uecho_socket_getavailablelocaladdress(&localAddr) == false)
+		return false;
+	if (uecho_socket_isbound(sock) == false) {
 		uecho_socket_initwindowbuffer(sock);
 		uecho_socket_setid(sock, uecho_socket_getavailableid(uecho_socket_issocketstream(sock)));
 		if (tcp_cre_cep(sock->id, &tcpccep) != E_OK)
-			return FALSE;
+			return false;
 	}
 	dstAddr.ipaddr = ascii_to_ipaddr(addr);
 	dstAddr.portno = htons(port);
@@ -605,9 +605,9 @@ BOOL uecho_socket_connect(uEchoSocket *sock, const char *addr, int port)
 #else
 	struct addrinfo *toaddrInfo;
 	int ret;
-	if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), addr, port, &toaddrInfo, TRUE) == FALSE)
-		return FALSE;
-	if (uecho_socket_isbound(sock) == FALSE)
+	if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), addr, port, &toaddrInfo, true) == false)
+		return false;
+	if (uecho_socket_isbound(sock) == false)
 		uecho_socket_setid(sock, socket(toaddrInfo->ai_family, toaddrInfo->ai_socktype, 0));
 	ret = connect(sock->id, toaddrInfo->ai_addr, toaddrInfo->ai_addrlen);
 	freeaddrinfo(toaddrInfo);
@@ -616,21 +616,21 @@ BOOL uecho_socket_connect(uEchoSocket *sock, const char *addr, int port)
 	uecho_socket_setdirection(sock, CG_NET_SOCKET_CLIENT);
 
 #if defined(CG_USE_OPENSSL)
-	if (uecho_socket_isssl(sock) == TRUE) {
+	if (uecho_socket_isssl(sock) == true) {
 		sock->ctx = SSL_CTX_new( SSLv23_client_method());
 		sock->ssl = SSL_new(sock->ctx);
 		if (SSL_set_fd(sock->ssl, uecho_socket_getid(sock)) == 0) {
 			uecho_socket_close(sock);
-			return FALSE;
+			return false;
 		}
 		if (SSL_connect(sock->ssl) < 1) {
 			uecho_socket_close(sock);
-			return FALSE;
+			return false;
 		}
 	}
 #endif
 
-	return (ret == 0) ? TRUE : FALSE;
+	return (ret == 0) ? true : false;
 }
 
 /****************************************
@@ -642,7 +642,7 @@ ssize_t uecho_socket_read(uEchoSocket *sock, char *buffer, size_t bufferLen)
 	ssize_t recvLen;
 
 #if defined(CG_USE_OPENSSL)
-	if (uecho_socket_isssl(sock) == FALSE) {
+	if (uecho_socket_isssl(sock) == false) {
 #endif
 
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
@@ -690,7 +690,7 @@ size_t uecho_socket_write(uEchoSocket *sock, const char *cmd, size_t cmdLen)
 
 	do {
 #if defined(CG_USE_OPENSSL)
-		if (uecho_socket_isssl(sock) == FALSE) {
+		if (uecho_socket_isssl(sock) == false) {
 #endif
 
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
@@ -808,7 +808,7 @@ size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const 
 	struct addrinfo *addrInfo;
 #endif
 	ssize_t sentLen;
-	BOOL isBoundFlag;
+	bool isBoundFlag;
 
 	if (data == NULL)
 		return 0;
@@ -820,36 +820,36 @@ size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const 
 	isBoundFlag = uecho_socket_isbound(sock);
 	sentLen = -1;
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
-	if (uecho_socket_tosockaddrin(addr, port, &sockaddr, TRUE) == FALSE)
+	if (uecho_socket_tosockaddrin(addr, port, &sockaddr, true) == false)
 		return -1;
-	if (isBoundFlag == FALSE)
+	if (isBoundFlag == false)
 	   	uecho_socket_setid(sock, so_socket(PF_INET, uecho_socket_getrawtype(sock), 0));
 	if (0 <= sock->id)
 		sentLen = so_sendto(sock->id, (B*)data, dataLen, 0, (SOCKADDR*)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
-	if (uecho_socket_tosockaddrin(addr, port, &sockaddr, TRUE) == FALSE)
+	if (uecho_socket_tosockaddrin(addr, port, &sockaddr, true) == false)
 		return -1;
-	if (isBoundFlag == FALSE) {
+	if (isBoundFlag == false) {
 	   	uecho_socket_setid(sock, ka_socket(PF_INET, uecho_socket_getrawtype(sock), uecho_socket_getprototype(sock)));
 		uecho_socket_setmulticastinterface(sock, NULL);
 	}
 	if (0 <= sock->id)
 		sentLen = ka_sendto(sock->id, data, dataLen, 0, (struct sockaddr *)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(ITRON)
-	if (isBoundFlag == FALSE) {
+	if (isBoundFlag == false) {
 		uecho_socket_setid(sock, uecho_socket_getavailableid(uecho_socket_issocketstream(sock)));
 		if (sock->id < 0)
-			return FALSE;
+			return false;
 		if (udp_cre_cep(sock->id, &udpccep) != E_OK)
-			return FALSE;
+			return false;
 	}
 	dstaddr.ipaddr = ascii_to_ipaddr(addr);
 	dstaddr.portno = htons(port);
 	sentLen = udp_snd_dat(sock->id, &dstaddr, data, dataLen, TMO_FEVR);
 #else
-	if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), addr, port, &addrInfo, TRUE) == FALSE)
+	if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), addr, port, &addrInfo, true) == false)
 		return -1;
-	if (isBoundFlag == FALSE)
+	if (isBoundFlag == false)
 		uecho_socket_setid(sock, socket(addrInfo->ai_family, addrInfo->ai_socktype, 0));
 	
 	/* Setting multicast time to live in any case to default */
@@ -860,7 +860,7 @@ size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const 
 	freeaddrinfo(addrInfo);
 #endif
 
-	if (isBoundFlag == FALSE)
+	if (isBoundFlag == false)
 		uecho_socket_close(sock);
 
 #ifdef SOCKET_DEBUG
@@ -943,7 +943,7 @@ ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt)
 * uecho_socket_setreuseaddress
 ****************************************/
 
-BOOL uecho_socket_setreuseaddress(uEchoSocket *sock, BOOL flag)
+bool uecho_socket_setreuseaddress(uEchoSocket *sock, bool flag)
 {
 	int sockOptRet;
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
@@ -951,25 +951,25 @@ BOOL uecho_socket_setreuseaddress(uEchoSocket *sock, BOOL flag)
 #elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
 	int optval;
 #elif defined (WIN32)
-	BOOL optval;
+	bool optval;
 #else
 	int optval;
 #endif
 
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
-	optval = (flag == TRUE) ? 1 : 0;
+	optval = (flag == true) ? 1 : 0;
 	sockOptRet = so_setsockopt(sock->id, SOL_SOCKET, SO_REUSEADDR, (B *)&optval, sizeof(optval));
 #elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
-	optval = (flag == TRUE) ? 1 : 0;
+	optval = (flag == true) ? 1 : 0;
 	sockOptRet = ka_setsockopt(sock->id, SOL_SOCKET, SO_REUSEADDR, (const char *)&optval, sizeof(optval));
 #elif defined (ITRON)
 	/**** Not Implemented for NORTi ***/
 	sockOptRet = -1;
 #elif defined (WIN32)
-	optval = (flag == TRUE) ? 1 : 0;
+	optval = (flag == true) ? 1 : 0;
 	sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_REUSEADDR, (const char *)&optval, sizeof(optval));
 #else
-	optval = (flag == TRUE) ? 1 : 0;
+	optval = (flag == true) ? 1 : 0;
 	sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_REUSEADDR, (const char *)&optval, sizeof(optval));
 	#if defined(USE_SO_REUSEPORT) || defined(TARGET_OS_MAC) || defined(TARGET_OS_IPHONE)
 	if (sockOptRet == 0) {
@@ -978,14 +978,14 @@ BOOL uecho_socket_setreuseaddress(uEchoSocket *sock, BOOL flag)
 	#endif
 #endif
 
-	return (sockOptRet == 0) ? TRUE : FALSE;
+	return (sockOptRet == 0) ? true : false;
 }
 
 /****************************************
 * uecho_socket_setmulticastttl
 ****************************************/
 
-BOOL uecho_socket_setmulticastttl(uEchoSocket *sock, int ttl)
+bool uecho_socket_setmulticastttl(uEchoSocket *sock, int ttl)
 {
 	int sockOptRet;
 	int ttl_;
@@ -1008,14 +1008,14 @@ BOOL uecho_socket_setmulticastttl(uEchoSocket *sock, int ttl)
 	}
 #endif
 
-	return (sockOptRet == 0) ? TRUE : FALSE;
+	return (sockOptRet == 0) ? true : false;
 }
 
 /****************************************
 * uecho_socket_settimeout
 ****************************************/
 
-BOOL uecho_socket_settimeout(uEchoSocket *sock, int sec)
+bool uecho_socket_settimeout(uEchoSocket *sock, int sec)
 {
 	int sockOptRet;
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
@@ -1035,7 +1035,7 @@ BOOL uecho_socket_settimeout(uEchoSocket *sock, int sec)
 		sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_SNDTIMEO, (const char *)&timeout, sizeof(timeout));
 #else
 	struct timeval timeout;
-	timeout.tv_sec = (time_t)sec;
+	timeout.tv_sec = (clock_t)sec;
 	timeout.tv_usec = 0;
 
 	sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_RCVTIMEO, (const char *)&timeout, sizeof(timeout));
@@ -1043,7 +1043,7 @@ BOOL uecho_socket_settimeout(uEchoSocket *sock, int sec)
 		sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_SNDTIMEO, (const char *)&timeout, sizeof(timeout));
 #endif
 
-	return (sockOptRet == 0) ? TRUE : FALSE;
+	return (sockOptRet == 0) ? true : false;
 }
 
 /****************************************
@@ -1052,38 +1052,38 @@ BOOL uecho_socket_settimeout(uEchoSocket *sock, int sec)
 
 #if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
 
-BOOL uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char *ifAddr)
+bool uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char *ifAddr)
 {
 	struct ip_mreq ipmr;
 	u_long ifInetAddr = ka_inet_addr(ifAddr);
 	
-	BOOL joinSuccess;
+	bool joinSuccess;
 	int sockOptRetCode;
 
-	joinSuccess = TRUE;
+	joinSuccess = true;
 	
 	ka_inet_pton( AF_INET, mcastAddr, &(ipmr.imr_multiaddr) );
 	memcpy(&ipmr.imr_interface, &ifInetAddr, sizeof(struct in_addr));
 	sockOptRetCode = ka_setsockopt(sock->id, IP_PROTOIP, IPO_ADD_MEMBERSHIP, (char *)&ipmr, sizeof(ipmr));
 
 	if (sockOptRetCode != 0)
-		joinSuccess = FALSE;
+		joinSuccess = false;
 
-	uecho_string_setvalue(sock->ipaddr, (joinSuccess == TRUE) ? ifAddr : NULL);
+	uecho_string_setvalue(sock->ipaddr, (joinSuccess == true) ? ifAddr : NULL);
 
 	return joinSuccess;
 }
 
 #elif defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
 
-BOOL uecho_socket_joingroup(uEchoSocket *sock, char *mcastAddr, char *ifAddr)
+bool uecho_socket_joingroup(uEchoSocket *sock, char *mcastAddr, char *ifAddr)
 {
-	return TRUE;
+	return true;
 }
 
 #elif defined(ITRON)
 
-BOOL uecho_socket_joingroup(uEchoSocket *sock, char *mcastAddr, char *ifAddr)
+bool uecho_socket_joingroup(uEchoSocket *sock, char *mcastAddr, char *ifAddr)
 {
 	UW optval;
 	ER ret;
@@ -1091,11 +1091,11 @@ BOOL uecho_socket_joingroup(uEchoSocket *sock, char *mcastAddr, char *ifAddr)
 	optval = ascii_to_ipaddr(mcastAddr);
 	ret = udp_set_opt(sock->id, IP_ADD_MEMBERSHIP, &optval, sizeof(optval));
 
-	return (ret == E_OK) ? TRUE : FALSE;
+	return (ret == E_OK) ? true : false;
 }
 #else
 
-BOOL uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char *ifAddr)
+bool uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char *ifAddr)
 {
 	struct addrinfo hints;
 	struct addrinfo *mcastAddrInfo, *ifAddrInfo;
@@ -1109,23 +1109,23 @@ BOOL uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char
 	struct ip_mreq ipmr;
 	struct sockaddr_in toaddr, ifaddr;
 	
-	BOOL joinSuccess;
+	bool joinSuccess;
 	int sockOptRetCode;
 
 	memset(&hints, 0, sizeof(hints));
 	hints.ai_flags= AI_NUMERICHOST | AI_PASSIVE;
 
 	if (getaddrinfo(mcastAddr, NULL, &hints, &mcastAddrInfo) != 0) 
-		return FALSE;
+		return false;
 
 	if (getaddrinfo(ifAddr, NULL, &hints, &ifAddrInfo) != 0) {
 		freeaddrinfo(mcastAddrInfo);
-		return FALSE;
+		return false;
 	}
 
-	joinSuccess = TRUE;
+	joinSuccess = true;
 	
-	if (uecho_net_isipv6address(mcastAddr) == TRUE) {
+	if (uecho_net_isipv6address(mcastAddr) == true) {
 		memcpy(&toaddr6, mcastAddrInfo->ai_addr, sizeof(struct sockaddr_in6));
 		memcpy(&ifaddr6, ifAddrInfo->ai_addr, sizeof(struct sockaddr_in6));
 		ipv6mr.ipv6mr_multiaddr = toaddr6.sin6_addr;	
@@ -1135,12 +1135,12 @@ BOOL uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char
 		sockOptRetCode = setsockopt(sock->id, IPPROTO_IPV6, IPV6_MULTICAST_IF, (char *)&scopeID, sizeof(scopeID));
 
 		if (sockOptRetCode != 0)
-			joinSuccess = FALSE;
+			joinSuccess = false;
 
 		sockOptRetCode = setsockopt(sock->id, IPPROTO_IPV6, IPV6_JOIN_GROUP, (char *)&ipv6mr, sizeof(ipv6mr));
 
 		if (sockOptRetCode != 0)
-			joinSuccess = FALSE;
+			joinSuccess = false;
 
 	}
 	else {
@@ -1150,11 +1150,11 @@ BOOL uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char
 		memcpy(&ipmr.imr_interface.s_addr, &ifaddr.sin_addr, sizeof(struct in_addr));
 		sockOptRetCode = setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_IF, (char *)&ipmr.imr_interface.s_addr, sizeof(struct in_addr));
 		if (sockOptRetCode != 0)
-			joinSuccess = FALSE;
+			joinSuccess = false;
 		sockOptRetCode = setsockopt(sock->id, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ipmr, sizeof(ipmr));
 		
 		if (sockOptRetCode != 0)
-			joinSuccess = FALSE;
+			joinSuccess = false;
 	}
 
 	freeaddrinfo(mcastAddrInfo);
@@ -1171,7 +1171,7 @@ BOOL uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char
 
 #if !defined(ITRON)
 
-BOOL uecho_socket_tosockaddrin(const char *addr, int port, struct sockaddr_in *sockaddr, BOOL isBindAddr)
+bool uecho_socket_tosockaddrin(const char *addr, int port, struct sockaddr_in *sockaddr, bool isBindAddr)
 {
 	uecho_socket_startup();
 
@@ -1187,14 +1187,14 @@ BOOL uecho_socket_tosockaddrin(const char *addr, int port, struct sockaddr_in *s
 	sockaddr->sin_port = htons((unsigned short)port);
 #endif
 
-	if (isBindAddr == TRUE) {
+	if (isBindAddr == true) {
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
 		sockaddr->sin_addr.s_addr = inet_addr(addr);
 		if (sockaddr->sin_addr.s_addr == -1 /*INADDR_NONE*/) {
 			struct hostent hent;
 			B hostBuf[HBUFLEN];
 			if (so_gethostbyname((B*)addr, &hent, hostBuf) != 0)
-				return FALSE;
+				return false;
 			memcpy(&(sockaddr->sin_addr), hent.h_addr, hent.h_length);
 		}
 #elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
@@ -1204,13 +1204,13 @@ BOOL uecho_socket_tosockaddrin(const char *addr, int port, struct sockaddr_in *s
 		if (sockaddr->sin_addr.s_addr == INADDR_NONE) {
 			struct hostent *hent = gethostbyname(addr);
 			if (hent == NULL)
-				return FALSE;
+				return false;
 			memcpy(&(sockaddr->sin_addr), hent->h_addr, hent->h_length);
 		}
 #endif
 	}
 
-	return TRUE;
+	return true;
 }
 #endif
 
@@ -1220,7 +1220,7 @@ BOOL uecho_socket_tosockaddrin(const char *addr, int port, struct sockaddr_in *s
 
 #if !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
 
-BOOL uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struct addrinfo **addrInfo, BOOL isBindAddr)
+bool uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struct addrinfo **addrInfo, bool isBindAddr)
 {
 #if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
 	struct addrinfo hints;
@@ -1239,28 +1239,28 @@ BOOL uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struc
 	hints.ai_flags= 0; /*AI_NUMERICHOST | AI_PASSIVE*/;
 	sprintf(portStr, "%d", port);
 	if (ka_getaddrinfo(addr, portStr, &hints, addrInfo) != 0)
-		return FALSE;
-	if (isBindAddr == TRUE)
-		return TRUE;
+		return false;
+	if (isBindAddr == true)
+		return true;
 	hints.ai_family = (*addrInfo)->ai_family;
 	ka_freeaddrinfo(*addrInfo);
 	if (ka_getaddrinfo(NULL, portStr, &hints, addrInfo) != 0)
-		return FALSE;
-	return TRUE;
+		return false;
+	return true;
 #else
 	memset(&hints, 0, sizeof(struct addrinfo));
 	hints.ai_socktype = sockType;
 	hints.ai_flags= /*AI_NUMERICHOST | */AI_PASSIVE;
 	sprintf(portStr, "%d", port);
 	if ( (errorn = getaddrinfo(addr, portStr, &hints, addrInfo)) != 0)
-		return FALSE;
-	if (isBindAddr == TRUE)
-		return TRUE;
+		return false;
+	if (isBindAddr == true)
+		return true;
 	hints.ai_family = (*addrInfo)->ai_family;
 	freeaddrinfo(*addrInfo);
 	if ((errorn = getaddrinfo(NULL, portStr, &hints, addrInfo)) != 0)
-		return FALSE;
-	return TRUE;
+		return false;
+	return true;
 #endif
  }
 
@@ -1272,10 +1272,10 @@ BOOL uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struc
 
 #if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
 
-BOOL uecho_socket_setmulticastinterface(uEchoSocket *sock, char *ifaddr)
+bool uecho_socket_setmulticastinterface(uEchoSocket *sock, char *ifaddr)
 {
 	struct sockaddr_in sockaddr;
-	BOOL sockAddrSuccess;
+	bool sockAddrSuccess;
 	int optSuccess;
 	uEchoNetworkInterfaceList *netIfList;
 	uEchoNetworkInterface *netIf;
@@ -1287,23 +1287,23 @@ BOOL uecho_socket_setmulticastinterface(uEchoSocket *sock, char *ifaddr)
 		netIfCnt = uecho_net_gethostinterfaces(netIfList);
 		if (netIfCnt <= 0) {
 			uecho_net_interfacelist_delete(netIfList);
-			return FALSE;
+			return false;
 		}
 		netIf = uecho_net_interfacelist_gets(netIfList);
 		ifaddr = uecho_net_interface_getaddress(netIf);
 	}
 
-	sockAddrSuccess = uecho_socket_tosockaddrin(ifaddr, 0, &sockaddr, TRUE);
+	sockAddrSuccess = uecho_socket_tosockaddrin(ifaddr, 0, &sockaddr, true);
 	if (netIfList != NULL)
 		uecho_net_interfacelist_delete(netIfList);
-	if (sockAddrSuccess == FALSE)
-		return FALSE;
+	if (sockAddrSuccess == false)
+		return false;
 
 	optSuccess = ka_setsockopt(sock->id, IP_PROTOIP, IPO_MULTICAST_IF, (const char *)&sockaddr.sin_addr, sizeof(sockaddr.sin_addr));
 	if (optSuccess != 0)
-		return FALSE;
+		return false;
 
-	return TRUE;
+	return true;
 }
 
 #endif
@@ -1318,21 +1318,21 @@ static int uecho_socket_getavailableid(int type)
 {
 	uEchoSocket *sock;
 	int id;
-	BOOL isIDUsed;
+	bool isIDUsed;
 
   id = 0;
 	do {
 		id++;
-		isIDUsed = FALSE;
+		isIDUsed = false;
 		for (sock = uecho_socketlist_gets(socketList); sock != NULL; sock = uecho_socket_next(sock)) {
 			if (uecho_socket_gettype(sock) != type)
 				continue;
 			if (uecho_socket_getid(sock) == id) {
-				isIDUsed = TRUE;
+				isIDUsed = true;
 				break;
 			}
 		}
-	} while (isIDUsed != FALSE);
+	} while (isIDUsed != false);
 
 	return id;
 }
@@ -1351,19 +1351,19 @@ static int uecho_socket_getavailableport()
 {
 	uEchoSocket *sock;
 	int port;
-	BOOL isPortUsed;
+	bool isPortUsed;
 
 	port = CG_NET_SOCKET_MIN_SOCKET_PORT - 1;
 	do {
 		port++;
-		isPortUsed = FALSE;
+		isPortUsed = false;
 		for (sock = uecho_socketlist_gets(socketList); sock != NULL; sock = uecho_socket_next(sock)) {
 			if (uecho_socket_getport(sock) == port) {
-				isPortUsed = TRUE;
+				isPortUsed = true;
 				break;
 			}
 		}
-	} while (isPortUsed != FALSE);
+	} while (isPortUsed != false);
 
 	return port;
 }
@@ -1376,7 +1376,7 @@ static int uecho_socket_getavailableport()
 
 #if defined(ITRON)
 
-BOOL uecho_socket_initwindowbuffer(uEchoSocket *sock)
+bool uecho_socket_initwindowbuffer(uEchoSocket *sock)
 {
 	if (sock->sendWinBuf == NULL)
 		sock->sendWinBuf = (char *)malloc(sizeof(UH) * CG_NET_SOCKET_WINDOW_BUFSIZE);
@@ -1386,13 +1386,13 @@ BOOL uecho_socket_initwindowbuffer(uEchoSocket *sock)
 	if ( ( NULL == sock->sendWinBuf ) || ( NULL == sock->sendWinBuf ) )
 	{
 		uecho_log_debug_s("Memory allocation failure!\n");
-		return FALSE;
+		return false;
 	}
 	else
-		return TRUE;
+		return true;
 }
 
-BOOL uecho_socket_freewindowbuffer(uEchoSocket *sock)
+bool uecho_socket_freewindowbuffer(uEchoSocket *sock)
 {
 	if (sock->sendWinBuf != NULL)
 		free(sock->sendWinBuf);
@@ -1426,7 +1426,7 @@ static ER uecho_socket_tcp_callback(ID cepid, FN fncd, VP parblk)
 
 #if defined(ITRON)
 
-static BOOL uecho_socket_getavailablelocaladdress(T_IPV4EP *localAddr)
+static bool uecho_socket_getavailablelocaladdress(T_IPV4EP *localAddr)
 {
 	ER ret;
 	char *ifAddr;
@@ -1439,7 +1439,7 @@ static BOOL uecho_socket_getavailablelocaladdress(T_IPV4EP *localAddr)
 	netIfCnt = uecho_net_gethostinterfaces(netIfList);
 	if (netIfCnt <= 0) {
 		uecho_net_interfacelist_delete(netIfList);
-		return FALSE;
+		return false;
 	}
 	netIf = uecho_net_interfacelist_gets(netIfList);
 	ifAddr = uecho_net_interface_getaddress(netIf);
@@ -1448,7 +1448,7 @@ static BOOL uecho_socket_getavailablelocaladdress(T_IPV4EP *localAddr)
 	localAddr->portno = htons(localPort);
 	uecho_net_interfacelist_delete(netIfList);
 
-	return FALSE;
+	return false;
 }
 #endif
 
