@@ -75,7 +75,7 @@ typedef int SOCKET;
 
 typedef struct _uEchoSocket {
 #if defined(CG_NET_USE_SOCKET_LIST)
-	BOOL headFlag;
+	bool headFlag;
 	struct _uEchoSocket *prev;
 	struct _uEchoSocket *next;
 #endif
@@ -112,34 +112,34 @@ void uecho_socket_cleanup();
 uEchoSocket *uecho_socket_new(int type);
 #define uecho_socket_stream_new() uecho_socket_new(CG_NET_SOCKET_STREAM)
 #define uecho_socket_dgram_new() uecho_socket_new(CG_NET_SOCKET_DGRAM)
-BOOL uecho_socket_delete(uEchoSocket *socket);
+bool uecho_socket_delete(uEchoSocket *socket);
 
 void uecho_socket_setid(uEchoSocket *socket, SOCKET value);
 #define uecho_socket_getid(socket) (socket->id)
 
 #define uecho_socket_settype(socket, value) (socket->type = value)
 #define uecho_socket_gettype(socket) (socket->type)
-#define uecho_socket_issocketstream(socket) ((socket->type & CG_NET_SOCKET_STREAM) ? TRUE : FALSE)
-#define uecho_socket_isdatagramstream(socket) ((socket->type & CG_NET_SOCKET_DGRAM) ? TRUE : FALSE)
+#define uecho_socket_issocketstream(socket) ((socket->type & CG_NET_SOCKET_STREAM) ? true : false)
+#define uecho_socket_isdatagramstream(socket) ((socket->type & CG_NET_SOCKET_DGRAM) ? true : false)
 
 #define uecho_socket_setdirection(socket, value) (socket->direction = value)
 #define uecho_socket_getdirection(socket) (socket->direction)
-#define uecho_socket_isclient(socket) ((socket->direction == CG_NET_SOCKET_CLIENT) ? TRUE : FALSE)
-#define uecho_socket_isserver(socket) ((socket->direction == CG_NET_SOCKET_SERVER) ? TRUE : FALSE)
+#define uecho_socket_isclient(socket) ((socket->direction == CG_NET_SOCKET_CLIENT) ? true : false)
+#define uecho_socket_isserver(socket) ((socket->direction == CG_NET_SOCKET_SERVER) ? true : false)
 
 #define uecho_socket_setaddress(socket, value) uecho_string_setvalue(socket->ipaddr, value)
 #define uecho_socket_setport(socket, value) (socket->port = value)
 #define uecho_socket_getaddress(socket) uecho_string_getvalue(socket->ipaddr)
 #define uecho_socket_getport(socket) (socket->port)
 
-BOOL uecho_socket_isbound(uEchoSocket *socket);
-BOOL uecho_socket_close(uEchoSocket *socket);
+bool uecho_socket_isbound(uEchoSocket *socket);
+bool uecho_socket_close(uEchoSocket *socket);
 
-BOOL uecho_socket_listen(uEchoSocket *socket);
+bool uecho_socket_listen(uEchoSocket *socket);
 
-BOOL uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, BOOL bindFlag, BOOL reuseFlag);
-BOOL uecho_socket_accept(uEchoSocket *sock, uEchoSocket *clientSock);
-BOOL uecho_socket_connect(uEchoSocket *sock, const char *addr, int port);
+bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, bool bindFlag, bool reuseFlag);
+bool uecho_socket_accept(uEchoSocket *sock, uEchoSocket *clientSock);
+bool uecho_socket_connect(uEchoSocket *sock, const char *addr, int port);
 ssize_t uecho_socket_read(uEchoSocket *sock, char *buffer, size_t bufferLen);
 size_t uecho_socket_write(uEchoSocket *sock, const char *buffer, size_t bufferLen);
 ssize_t uecho_socket_readline(uEchoSocket *sock, char *buffer, size_t bufferLen);
@@ -154,15 +154,15 @@ int uecho_socket_getlasterror();
 * Function (Multicast)
 ****************************************/
 
-BOOL uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char *ifAddr);
+bool uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char *ifAddr);
 
 /****************************************
 * Function (Option)
 ****************************************/
 
-BOOL uecho_socket_setreuseaddress(uEchoSocket *socket, BOOL flag);
-BOOL uecho_socket_setmulticastttl(uEchoSocket *sock,  int ttl);
-BOOL uecho_socket_settimeout(uEchoSocket *sock, int sec);
+bool uecho_socket_setreuseaddress(uEchoSocket *socket, bool flag);
+bool uecho_socket_setmulticastttl(uEchoSocket *sock,  int ttl);
+bool uecho_socket_settimeout(uEchoSocket *sock, int sec);
 
 /****************************************
 * Function (DatagramPacket)
@@ -192,7 +192,7 @@ void uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoData
 #if defined(CG_USE_OPENSSL)
 #define CG_NET_SOCKET_SSL 0x0100
 #define uecho_socket_ssl_new() uecho_socket_new(CG_NET_SOCKET_STREAM | CG_NET_SOCKET_SSL)
-#define uecho_socket_isssl(socket) ((socket->type & CG_NET_SOCKET_SSL) ? TRUE : FALSE)
+#define uecho_socket_isssl(socket) ((socket->type & CG_NET_SOCKET_SSL) ? true : false)
 #endif
 
 /****************************************

@@ -126,22 +126,22 @@ int uecho_strcasecmp(const char *str1, const char *str2)
 * uecho_streq
 ****************************************/
 
-BOOL uecho_streq(const char *str1, const char *str2)
+bool uecho_streq(const char *str1, const char *str2)
 {
-	if (str1 == NULL || str2 == NULL) return FALSE;
+	if (str1 == NULL || str2 == NULL) return false;
 	
-	return ((uecho_strcmp(str1, str2) == 0) ? TRUE : FALSE);
+	return ((uecho_strcmp(str1, str2) == 0) ? true : false);
 }
 
 /****************************************
 * uecho_strcaseeq
 ****************************************/
 
-BOOL uecho_strcaseeq(const char *str1, const char *str2)
+bool uecho_strcaseeq(const char *str1, const char *str2)
 {
-	if (str1 == NULL || str2 == NULL) return FALSE;
+	if (str1 == NULL || str2 == NULL) return false;
 	
-	return ((uecho_strcasecmp(str1, str2) == 0) ? TRUE : FALSE);
+	return ((uecho_strcasecmp(str1, str2) == 0) ? true : false);
 }
 
 /****************************************
@@ -255,14 +255,14 @@ char *uecho_strltrim(char *str, char *delim, size_t ndelim)
 	
 	strLen = uecho_strlen(str);
 	for (i=0; i<strLen; i++) {
-		BOOL hasDelim = FALSE;
+		bool hasDelim = false;
 		for (j=0; j<ndelim; j++) {
 			if (str[i] == delim[j]) {
-				hasDelim = TRUE;
+				hasDelim = true;
 				break;
 			}
 		}
-		if (hasDelim == FALSE)
+		if (hasDelim == false)
 			return (str + i);
 	}
 	
@@ -280,15 +280,15 @@ char *uecho_strrtrim(char *str, char *delim, size_t ndelim)
 	
 	strLen = uecho_strlen(str);
 	for (i=(strLen-1); 0<=i; i--) {
-		BOOL hasDelim = FALSE;
+		bool hasDelim = false;
 		for (j=0; j<ndelim; j++) {
 			if (str[i] == delim[j]) {
-				hasDelim = TRUE;
+				hasDelim = true;
 				str[i] = '\0';
 				break;
 			}
 		}
-		if (hasDelim == FALSE)
+		if (hasDelim == false)
 			break;
 	}
 	

@@ -1,9 +1,8 @@
 /******************************************************************
  *
- * mUPnP for C
+ * uEcho for C
  *
- * Copyright (C) Satoshi Konno 2005
- * Copyright (C) 2006 Nokia Corporation. All rights reserved.
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -62,17 +61,17 @@ extern "C" {
  * compatibility between different platforms (Linux, Win32 etc..)
  */
 typedef struct _uEchoThread {
-	BOOL headFlag;
+	bool headFlag;
 	struct _uEchoThread *prev;
 	struct _uEchoThread *next;
 		
 	/** Indicates whether this thread is ready to run */
-	BOOL runnableFlag;
+	bool runnableFlag;
 #if defined WINCE
 	/** serves as look ahead to have the thread manage its own delete(thread) on exit */
-	BOOL isRunning;
-	BOOL deletePending;
-	uEchoTime sleep;
+	bool isRunning;
+	bool deletePending;
+	clock_t sleep;
 #endif //WINCE
 
 #if defined DEBUG
@@ -129,40 +128,40 @@ uEchoThread *uecho_thread_self();
  *
  * \param thread Thread to destroy
  */
-BOOL uecho_thread_delete(uEchoThread *thread);
+bool uecho_thread_delete(uEchoThread *thread);
 
 /**
  * Start a thread (must be created first with ch_thread_new())
  *
  * \param thread Thread to start
  */
-BOOL uecho_thread_start(uEchoThread *thread);
+bool uecho_thread_start(uEchoThread *thread);
 
 /**
  * Stop a running thread.
  *
  * \param thread Thread to stop
  */
-BOOL uecho_thread_stop(uEchoThread *thread);
+bool uecho_thread_stop(uEchoThread *thread);
 
 /**
  * Stop the running thread and signal the given CGCond.
  */
-BOOL uecho_thread_stop_with_cond(uEchoThread *thread, uEchoCond *cond);
+bool uecho_thread_stop_with_cond(uEchoThread *thread, uEchoCond *cond);
 
 /**
  * Restart a thread. Essentially calls uecho_thread_stop() and uecho_thread_start()
  *
  * \param thread Thread to restart
  */
-BOOL uecho_thread_restart(uEchoThread *thread);
+bool uecho_thread_restart(uEchoThread *thread);
 
 /**
  * Check if a thread has been started
  *
  * \param thread Thread to check
  */
-BOOL uecho_thread_isrunnable(uEchoThread *thread);
+bool uecho_thread_isrunnable(uEchoThread *thread);
 
 /**
  * Set the thread's worker function.
@@ -259,14 +258,14 @@ void uecho_threadlist_delete(uEchoThreadList *threadList);
  *
  * \param threadList The thread list in question
  */
-BOOL uecho_threadlist_start(uEchoThreadList *threadList);
+bool uecho_threadlist_start(uEchoThreadList *threadList);
 
 /**
  * Stop all threads in the thread list
  *
  * \param threadList The thread list in question
  */
-BOOL uecho_threadlist_stop(uEchoThreadList *threadList);
+bool uecho_threadlist_stop(uEchoThreadList *threadList);
 
 #ifdef  __cplusplus
 

@@ -1,9 +1,8 @@
 /******************************************************************
  *
- * mUPnP for C
+ * uEcho for C
  *
- * Copyright (C) Satoshi Konno 2005
- * Copyright (C) 2006 Nokia Corporation. All rights reserved.
+ * Copyright (C) Satoshi Konno 2015
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
@@ -14,25 +13,8 @@
 
 #include <uecho/typedef.h>
 
-#if defined(BTRON)
-#include <btron/proctask.h>
-#include <btron/clk.h>
-#elif defined(ITRON)
-#include <kernel.h>
-#endif
-
 #ifdef  __cplusplus
 extern "C" {
-#endif
-
-/****************************************
-* Define
-****************************************/
-
-#if defined(BTRON) || defined(ITRON) 
-typedef size_t uEchoTime;
-#else
-typedef time_t uEchoTime;
 #endif
 
 /****************************************
@@ -41,13 +23,13 @@ typedef time_t uEchoTime;
 
 float uecho_random();
 
-void uecho_wait(uEchoTime mtime);
-void uecho_waitrandom(uEchoTime mtime);
+void uecho_wait(size_t mtime);
+void uecho_waitrandom(size_t mtime);
 
 #define uecho_sleep(val) uecho_wait(val)
 #define uecho_sleeprandom(val) uecho_waitrandom(val)
 
-uEchoTime uecho_getcurrentsystemtime();
+size_t uecho_getcurrentsystemtime();
 
 #ifdef  __cplusplus
 }
