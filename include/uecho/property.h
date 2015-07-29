@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#ifndef _UECHO_NODE_H_
-#define _UECHO_NODE_H_
+#ifndef _UECHO_PROPERTY_H_
+#define _UECHO_PROPERTY_H_
 
 #include <stdbool.h>
 #include <uecho/util/list.h>
@@ -23,28 +23,27 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct _uEchoNode
+typedef struct _uEchoProperty
 {
   bool headFlag;
-  struct _uEchoNode *prev;
-  struct _uEchoNode *next;
+  struct _uEchoProperty *prev;
+  struct _uEchoProperty *next;
     
-  struct uEchoMutex *mutex;
-} uEchoNode, uEchoNodeList;
+} uEchoProperty, uEchoPropertyList;
 
 /****************************************
  * Function
  ****************************************/
 
-uEchoNode *uecho_node_new();
-void uecho_node_delete(uEchoNode *dev);
-void uecho_node_clear(uEchoNode *dev);
-#define uecho_node_next(dev) (uEchoNode *)uecho_list_next((uEchoList *)dev)
-#define uecho_node_remove(dev) uecho_list_remove((uEchoList *)dev)
+uEchoProperty *uecho_property_new();
+void uecho_property_delete(uEchoProperty *dev);
+void uecho_property_clear(uEchoProperty *dev);
+#define uecho_property_next(dev) (uEchoProperty *)uecho_list_next((uEchoList *)dev)
+#define uecho_property_remove(dev) uecho_list_remove((uEchoList *)dev)
 
-bool uecho_node_start(uEchoNode *dev);
-bool uecho_node_stop(uEchoNode *dev);
-bool uecho_node_isrunning(uEchoNode *dev);
+bool uecho_property_start(uEchoProperty *dev);
+bool uecho_property_stop(uEchoProperty *dev);
+bool uecho_property_isrunning(uEchoProperty *dev);
 	
 #ifdef  __cplusplus
 } /* extern C */

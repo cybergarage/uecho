@@ -8,42 +8,41 @@
  *
  ******************************************************************/
 
-#include <uecho/node.h>
+#include <uecho/property.h>
 
 /****************************************
-* uecho_node_new
+* uecho_property_new
 ****************************************/
 
-uEchoNode *uecho_node_new()
+uEchoProperty *uecho_property_new()
 {
-	uEchoNode *node;
+	uEchoProperty *property;
 
-	node = (uEchoNode *)malloc(sizeof(uEchoNode));
-
-    if (!node)
-        return NULL;
-        
-    echo_list_node_init((uEchoList *)node);
-	
-	return node;
-}
-
-/****************************************
-* uecho_node_delete
-****************************************/
-
-void uecho_node_delete(uEchoNode *node)
-{
-	uecho_list_remove((uEchoList *)node);
-    uecho_mutex_delete(node->mutex);
+	property = (uEchoProperty *)malloc(sizeof(uEchoProperty));
     
-	free(node);
+    if (!property)
+        return NULL;
+
+    uecho_list_node_init((uEchoList *)property);
+	
+	return property;
 }
 
 /****************************************
-* uecho_node_clear
+* uecho_property_delete
 ****************************************/
 
-void uecho_node_clear(uEchoNode *node)
+void uecho_property_delete(uEchoProperty *property)
+{
+	uecho_list_remove((uEchoList *)property);
+    
+	free(property);
+}
+
+/****************************************
+* uecho_property_clear
+****************************************/
+
+void uecho_property_clear(uEchoProperty *property)
 {
 }

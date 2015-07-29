@@ -14,11 +14,6 @@
 #include <errno.h>
 #endif
 
-#if !defined(CG_MUTEX_LOG_ENABLED)
-#undef uecho_log_debug_l4
-#define uecho_log_debug_l4(msg)
-#endif
-
 /****************************************
 * uecho_mutex_new
 ****************************************/
@@ -27,9 +22,7 @@ uEchoMutex *uecho_mutex_new()
 {
 	uEchoMutex *mutex;
 
-	uecho_log_debug_l4("Entering...\n");
-	
-	mutex = (uEchoMutex *)malloc(sizeof(uEchoMutex));
+    mutex = (uEchoMutex *)malloc(sizeof(uEchoMutex));
 
 	if ( NULL != mutex )
 	{
@@ -58,8 +51,6 @@ uEchoMutex *uecho_mutex_new()
 #endif
 	}
 
-	uecho_log_debug_l4("Leaving...\n");
-
 	return mutex;
 }
 
@@ -71,8 +62,6 @@ bool uecho_mutex_delete(uEchoMutex *mutex)
 {
 	if (!mutex)
 		return false;
-
-	uecho_log_debug_l4("Entering...\n");
 
 #if defined(WIN32) && !defined(ITRON)
 	CloseHandle(mutex->mutexID);
@@ -88,8 +77,6 @@ bool uecho_mutex_delete(uEchoMutex *mutex)
 	pthread_mutex_destroy(&mutex->mutexID);
 #endif
 	free(mutex);
-
-	uecho_log_debug_l4("Leaving...\n");
 
 	return true;
 }
@@ -296,8 +283,6 @@ bool uecho_mutex_lock(uEchoMutex *mutex)
 	if (!mutex)
 		return false;
 
-	uecho_log_debug_l4("Entering...\n");
-
 #if defined(WIN32) && !defined(ITRON)
 	WaitForSingleObject(mutex->mutexID, INFINITE);
 #elif defined(BTRON)
@@ -312,8 +297,6 @@ bool uecho_mutex_lock(uEchoMutex *mutex)
 	pthread_mutex_lock(&mutex->mutexID);
 #endif
 
-	uecho_log_debug_l4("Leaving...\n");
-
 	return true;
 }
 
@@ -325,8 +308,6 @@ bool uecho_mutex_unlock(uEchoMutex *mutex)
 {
 	if (!mutex)
 		return false;
-
-	uecho_log_debug_l4("Entering...\n");
 
 #if defined(WIN32) && !defined(ITRON)
 	ReleaseMutex(mutex->mutexID);
@@ -342,7 +323,5 @@ bool uecho_mutex_unlock(uEchoMutex *mutex)
 	pthread_mutex_unlock(&mutex->mutexID);
 #endif
 	return true;
-
-	uecho_log_debug_l4("Leaving...\n");
 }
 #endif /* WITH_THREAD_LOCK_TRACE */
