@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
 
 #if defined(WINCE) && !defined(WIN32)
 #define WIN32 1
@@ -43,28 +44,8 @@ extern "C" {
 /****************************************
 * Data Type
 ****************************************/
-
-#if !defined(bool) && !defined(BTRON) && !defined(TENGINE) && !defined(__OBJC__)
-typedef int bool;
-#endif
-
-#if !defined(true)
-#if defined(__OBJC__)
-#define true YES
-#else
-#define true (1)
-#endif
-#endif
-
-#if !defined(false)
-#if defined(__OBJC__)
-#define false NO
-#else
-#define false (0)
-#endif
-#endif
 	
-typedef unsigned char uEchoByte;
+typedef unsigned char byte;
 
 #ifdef  __cplusplus
 }

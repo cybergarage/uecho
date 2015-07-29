@@ -51,7 +51,7 @@ typedef struct _uEchoNetworkInterface {
 	uEchoString *name;
 	uEchoString *ipaddr;
 	uEchoString *netmask;
-	uEchoByte macaddr[CG_NET_MACADDR_SIZE];
+	byte macaddr[CG_NET_MACADDR_SIZE];
 	int index;
 } uEchoNetworkInterface, uEchoNetworkInterfaceList;
 

@@ -18,16 +18,12 @@
 
 uEchoSocketList *uecho_socketlist_new()
 {
-	uecho_log_debug_l4("Entering...\n");
-
 	uEchoSocketList *socketList = (uEchoSocketList *)malloc(sizeof(uEchoSocketList));
 
 	if ( NULL != socketList )
 		uecho_list_header_init((uEchoList *)socketList);
 
 	return socketList;
-
-	uecho_log_debug_l4("Leaving...\n");
 }
 
 /****************************************
@@ -36,12 +32,8 @@ uEchoSocketList *uecho_socketlist_new()
 
 void uecho_socketlist_delete(uEchoSocketList *socketList)
 {
-	uecho_log_debug_l4("Entering...\n");
-
 	uecho_socketlist_clear(socketList);
 	free(socketList);
-
-	uecho_log_debug_l4("Leaving...\n");
 }
 
 #endif

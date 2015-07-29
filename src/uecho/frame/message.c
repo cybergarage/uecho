@@ -8,42 +8,39 @@
  *
  ******************************************************************/
 
-#include <uecho/node.h>
+#include <uecho/frame/message.h>
 
 /****************************************
-* uecho_node_new
+* uecho_message_new
 ****************************************/
 
-uEchoNode *uecho_node_new()
+uEchoMessage *uecho_message_new()
 {
-	uEchoNode *node;
+	uEchoMessage *msg;
 
-	node = (uEchoNode *)malloc(sizeof(uEchoNode));
+	msg = (uEchoMessage *)malloc(sizeof(uEchoMessage));
 
-    if (!node)
+    if (!msg)
         return NULL;
-        
-    echo_list_node_init((uEchoList *)node);
 	
-	return node;
+	return msg;
 }
 
 /****************************************
-* uecho_node_delete
+* uecho_message_delete
 ****************************************/
 
-void uecho_node_delete(uEchoNode *node)
+void uecho_message_delete(uEchoMessage *msg)
 {
-	uecho_list_remove((uEchoList *)node);
-    uecho_mutex_delete(node->mutex);
+	uecho_list_remove((uEchoList *)msg);
     
-	free(node);
+	free(msg);
 }
 
 /****************************************
-* uecho_node_clear
+* uecho_message_clear
 ****************************************/
 
-void uecho_node_clear(uEchoNode *node)
+void uecho_message_clear(uEchoMessage *msg)
 {
 }

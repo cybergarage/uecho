@@ -25,6 +25,13 @@
 		21678F0C1A8D512000AE79AA /* string_tokenizer.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678F011A8D512000AE79AA /* string_tokenizer.c */; };
 		21678F0D1A8D512000AE79AA /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678F021A8D512000AE79AA /* time.c */; };
 		21678F101A8D51C800AE79AA /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678F0F1A8D51C800AE79AA /* typedef.h */; };
+		2185D9C31B68C3B500A5B0C3 /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 2185D9C21B68C3B500A5B0C3 /* const.h */; };
+		2185D9C81B68CE4800A5B0C3 /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = 2185D9C71B68CE4800A5B0C3 /* message.h */; };
+		2185D9CB1B68CE9800A5B0C3 /* message.c in Sources */ = {isa = PBXBuildFile; fileRef = 2185D9CA1B68CE9800A5B0C3 /* message.c */; };
+		2185D9CD1B68D5BC00A5B0C3 /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = 2185D9CC1B68D5BC00A5B0C3 /* object.h */; };
+		2185D9CF1B68D5C600A5B0C3 /* object.c in Sources */ = {isa = PBXBuildFile; fileRef = 2185D9CE1B68D5C600A5B0C3 /* object.c */; };
+		2185D9D11B68DEED00A5B0C3 /* property.h in Headers */ = {isa = PBXBuildFile; fileRef = 2185D9D01B68DEED00A5B0C3 /* property.h */; };
+		2185D9D31B68DF1E00A5B0C3 /* property.c in Sources */ = {isa = PBXBuildFile; fileRef = 2185D9D21B68DF1E00A5B0C3 /* property.c */; };
 		21EFF1A01B4A9A5E002B5E57 /* controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EFF19E1B4A9A5E002B5E57 /* controller.h */; };
 		21EFF1A11B4A9A5E002B5E57 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EFF19F1B4A9A5E002B5E57 /* node.h */; };
 		21EFF1A41B4A9A76002B5E57 /* controller.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EFF1A21B4A9A76002B5E57 /* controller.c */; };
@@ -51,6 +58,13 @@
 		21678F011A8D512000AE79AA /* string_tokenizer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string_tokenizer.c; sourceTree = "<group>"; };
 		21678F021A8D512000AE79AA /* time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = time.c; sourceTree = "<group>"; };
 		21678F0F1A8D51C800AE79AA /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = typedef.h; sourceTree = "<group>"; };
+		2185D9C21B68C3B500A5B0C3 /* const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = const.h; sourceTree = "<group>"; };
+		2185D9C71B68CE4800A5B0C3 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = frame/message.h; sourceTree = "<group>"; };
+		2185D9CA1B68CE9800A5B0C3 /* message.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message.c; path = frame/message.c; sourceTree = "<group>"; };
+		2185D9CC1B68D5BC00A5B0C3 /* object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
+		2185D9CE1B68D5C600A5B0C3 /* object.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = object.c; sourceTree = "<group>"; };
+		2185D9D01B68DEED00A5B0C3 /* property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property.h; sourceTree = "<group>"; };
+		2185D9D21B68DF1E00A5B0C3 /* property.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = property.c; sourceTree = "<group>"; };
 		21EFF19E1B4A9A5E002B5E57 /* controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controller.h; sourceTree = "<group>"; };
 		21EFF19F1B4A9A5E002B5E57 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
 		21EFF1A21B4A9A76002B5E57 /* controller.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = controller.c; sourceTree = "<group>"; };
@@ -96,9 +110,13 @@
 		21678EE21A8D510100AE79AA /* uecho */ = {
 			isa = PBXGroup;
 			children = (
+				2185D9D01B68DEED00A5B0C3 /* property.h */,
+				2185D9CC1B68D5BC00A5B0C3 /* object.h */,
+				2185D9C21B68C3B500A5B0C3 /* const.h */,
 				21EFF19E1B4A9A5E002B5E57 /* controller.h */,
 				21EFF19F1B4A9A5E002B5E57 /* node.h */,
 				21678F0F1A8D51C800AE79AA /* typedef.h */,
+				2185D9C61B68CE4000A5B0C3 /* frame */,
 				21678EE31A8D510100AE79AA /* net */,
 				21678EE61A8D510100AE79AA /* util */,
 			);
@@ -138,8 +156,11 @@
 		21678EF61A8D512000AE79AA /* uecho */ = {
 			isa = PBXGroup;
 			children = (
+				2185D9D21B68DF1E00A5B0C3 /* property.c */,
+				2185D9CE1B68D5C600A5B0C3 /* object.c */,
 				21EFF1A21B4A9A76002B5E57 /* controller.c */,
 				21EFF1A31B4A9A76002B5E57 /* node.c */,
+				2185D9C91B68CE7000A5B0C3 /* frame */,
 				21678EF71A8D512000AE79AA /* net */,
 				21678EFC1A8D512000AE79AA /* util */,
 			);
@@ -171,6 +192,22 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		2185D9C61B68CE4000A5B0C3 /* frame */ = {
+			isa = PBXGroup;
+			children = (
+				2185D9C71B68CE4800A5B0C3 /* message.h */,
+			);
+			name = frame;
+			sourceTree = "<group>";
+		};
+		2185D9C91B68CE7000A5B0C3 /* frame */ = {
+			isa = PBXGroup;
+			children = (
+				2185D9CA1B68CE9800A5B0C3 /* message.c */,
+			);
+			name = frame;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -178,16 +215,20 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2185D9C81B68CE4800A5B0C3 /* message.h in Headers */,
 				21678EF11A8D510100AE79AA /* mutex.h in Headers */,
 				21678EF31A8D510100AE79AA /* thread.h in Headers */,
 				21EFF1A11B4A9A5E002B5E57 /* node.h in Headers */,
 				21678EF21A8D510100AE79AA /* string.h in Headers */,
 				21678EF41A8D510100AE79AA /* time.h in Headers */,
 				21678EED1A8D510100AE79AA /* interface.h in Headers */,
+				2185D9D11B68DEED00A5B0C3 /* property.h in Headers */,
 				21678EEF1A8D510100AE79AA /* list.h in Headers */,
 				21678EEE1A8D510100AE79AA /* socket.h in Headers */,
 				21678F101A8D51C800AE79AA /* typedef.h in Headers */,
 				21EFF1A01B4A9A5E002B5E57 /* controller.h in Headers */,
+				2185D9C31B68C3B500A5B0C3 /* const.h in Headers */,
+				2185D9CD1B68D5BC00A5B0C3 /* object.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,10 +296,13 @@
 				21678F051A8D512000AE79AA /* interface_list.c in Sources */,
 				21678F0C1A8D512000AE79AA /* string_tokenizer.c in Sources */,
 				21678F091A8D512000AE79AA /* mutex.c in Sources */,
+				2185D9CF1B68D5C600A5B0C3 /* object.c in Sources */,
 				21678F071A8D512000AE79AA /* socket_list.c in Sources */,
 				21EFF1A51B4A9A76002B5E57 /* node.c in Sources */,
 				21678F0B1A8D512000AE79AA /* string_function.c in Sources */,
+				2185D9D31B68DF1E00A5B0C3 /* property.c in Sources */,
 				21678F061A8D512000AE79AA /* socket.c in Sources */,
+				2185D9CB1B68CE9800A5B0C3 /* message.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

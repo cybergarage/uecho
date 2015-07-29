@@ -16,10 +16,10 @@ uEchoControlPoint *uecho_controller_new()
 
     ctrl = (uEchoControlPoint *)malloc(sizeof(uEchoControlPoint));
 
-	if ( NULL != ctrl )
-	{
-		ctrl->mutex = uecho_mutex_new();
-	}
+    if (!ctrl)
+        return NULL;
+
+    ctrl->mutex = uecho_mutex_new();
 
 	return ctrl;
 }
@@ -28,7 +28,6 @@ void uecho_controller_delete(uEchoControlPoint *ctrl)
 {
 	uecho_controller_stop(ctrl);
 	
-	/* Delete expiration handlers */
 	uecho_mutex_delete(ctrl->mutex);
 
     free(ctrl);
