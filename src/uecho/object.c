@@ -8,42 +8,41 @@
  *
  ******************************************************************/
 
-#include <uecho/node.h>
+#include <uecho/object.h>
 
 /****************************************
-* uecho_node_new
+* uecho_object_new
 ****************************************/
 
-uEchoNode *uecho_node_new()
+uEchoObject *uecho_object_new()
 {
-	uEchoNode *node;
+	uEchoObject *object;
 
-	node = (uEchoNode *)malloc(sizeof(uEchoNode));
-
-    if (!node)
-        return NULL;
-        
-    echo_list_node_init((uEchoList *)node);
-	
-	return node;
-}
-
-/****************************************
-* uecho_node_delete
-****************************************/
-
-void uecho_node_delete(uEchoNode *node)
-{
-	uecho_list_remove((uEchoList *)node);
-    uecho_mutex_delete(node->mutex);
+	object = (uEchoObject *)malloc(sizeof(uEchoObject));
     
-	free(node);
+    if (!object)
+        return NULL;
+
+    uecho_list_node_init((uEchoList *)object);
+	
+	return object;
 }
 
 /****************************************
-* uecho_node_clear
+* uecho_object_delete
 ****************************************/
 
-void uecho_node_clear(uEchoNode *node)
+void uecho_object_delete(uEchoObject *object)
+{
+	uecho_list_remove((uEchoList *)object);
+    
+	free(object);
+}
+
+/****************************************
+* uecho_object_clear
+****************************************/
+
+void uecho_object_clear(uEchoObject *object)
 {
 }

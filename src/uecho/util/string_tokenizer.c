@@ -18,8 +18,6 @@ uEchoStringTokenizer *uecho_string_tokenizer_new(const char *value, const char *
 {
 	uEchoStringTokenizer *strToken;
 
-	uecho_log_debug_l4("Entering...\n");
-
 	strToken = (uEchoStringTokenizer *)malloc(sizeof(uEchoStringTokenizer));
 
 	if ( NULL != strToken )
@@ -34,8 +32,6 @@ uEchoStringTokenizer *uecho_string_tokenizer_new(const char *value, const char *
 		uecho_string_tokenizer_nexttoken(strToken);
 	}
   
-	uecho_log_debug_l4("Leaving...\n");
-  
 	return strToken;
 }
 
@@ -45,13 +41,9 @@ uEchoStringTokenizer *uecho_string_tokenizer_new(const char *value, const char *
 
 void uecho_string_tokenizer_delete(uEchoStringTokenizer *strToken)
 {
-	uecho_log_debug_l4("Entering...\n");
-
 	free(strToken->value);
 	free(strToken->delim);
 	free(strToken);
-
-	uecho_log_debug_l4("Leaving...\n");
 }
 
 /****************************************
@@ -60,8 +52,6 @@ void uecho_string_tokenizer_delete(uEchoStringTokenizer *strToken)
 
 bool uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer *strToken)
 {
-	uecho_log_debug_l4("Entering...\n");
-
 	return strToken->hasNextTokens;
 }
 
@@ -74,8 +64,6 @@ char *uecho_string_tokenizer_nexttoken(uEchoStringTokenizer *strToken)
 	size_t tokenCnt;
 	size_t i, j;
 	
-	uecho_log_debug_l4("Entering...\n");
-
 	strToken->currToken = strToken->nextToken;
 	strToken->nextToken = NULL;
 	strToken->hasNextTokens = false;

@@ -8,12 +8,13 @@
  *
  ******************************************************************/
 
-#ifndef _UECHO_NODE_H_
-#define _UECHO_NODE_H_
+#ifndef _UECHO_MESSAGE_H_
+#define _UECHO_MESSAGE_H_
 
 #include <stdbool.h>
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
+#include <uecho/object.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -23,28 +24,27 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct _uEchoNode
+typedef struct _uEchoMessage
 {
-  bool headFlag;
-  struct _uEchoNode *prev;
-  struct _uEchoNode *next;
-    
-  struct uEchoMutex *mutex;
-} uEchoNode, uEchoNodeList;
+    uEchoObject SEOJ;
+    uEchoObject DEOJ;
+    byte ESV;
+    byte OPC;
+} uEchoMessage;
 
 /****************************************
  * Function
  ****************************************/
 
-uEchoNode *uecho_node_new();
-void uecho_node_delete(uEchoNode *dev);
-void uecho_node_clear(uEchoNode *dev);
-#define uecho_node_next(dev) (uEchoNode *)uecho_list_next((uEchoList *)dev)
-#define uecho_node_remove(dev) uecho_list_remove((uEchoList *)dev)
+uEchoMessage *uecho_message_new();
+void uecho_message_delete(uEchoMessage *dev);
+void uecho_message_clear(uEchoMessage *dev);
+#define uecho_message_next(dev) (uEchoMessage *)uecho_list_next((uEchoList *)dev)
+#define uecho_message_remove(dev) uecho_list_remove((uEchoList *)dev)
 
-bool uecho_node_start(uEchoNode *dev);
-bool uecho_node_stop(uEchoNode *dev);
-bool uecho_node_isrunning(uEchoNode *dev);
+bool uecho_message_start(uEchoMessage *dev);
+bool uecho_message_stop(uEchoMessage *dev);
+bool uecho_message_isrunning(uEchoMessage *dev);
 	
 #ifdef  __cplusplus
 } /* extern C */
