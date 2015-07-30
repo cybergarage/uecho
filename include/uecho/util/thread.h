@@ -13,7 +13,6 @@
 
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
-#include <uecho/util/cond.h>
 
 #include <uecho/util/time.h>
 #if defined(WIN32) && !defined(ITRON)
@@ -143,11 +142,6 @@ bool uecho_thread_start(uEchoThread *thread);
  * \param thread Thread to stop
  */
 bool uecho_thread_stop(uEchoThread *thread);
-
-/**
- * Stop the running thread and signal the given CGCond.
- */
-bool uecho_thread_stop_with_cond(uEchoThread *thread, uEchoCond *cond);
 
 /**
  * Restart a thread. Essentially calls uecho_thread_stop() and uecho_thread_start()
