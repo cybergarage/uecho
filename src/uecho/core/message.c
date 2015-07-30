@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/frame/message.h>
+#include <uecho/core/message.h>
 
 /****************************************
 * uecho_message_new
