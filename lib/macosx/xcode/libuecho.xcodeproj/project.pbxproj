@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		214186CB1B6B47F20086EEC0 /* messages.c in Sources */ = {isa = PBXBuildFile; fileRef = 214186CA1B6B47F20086EEC0 /* messages.c */; };
 		21678EED1A8D510100AE79AA /* interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678EE41A8D510100AE79AA /* interface.h */; };
 		21678EEE1A8D510100AE79AA /* socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678EE51A8D510100AE79AA /* socket.h */; };
 		21678EEF1A8D510100AE79AA /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678EE71A8D510100AE79AA /* list.h */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		212ADD881A8D4F000054EC0F /* liblibuecho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibuecho.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		214186CA1B6B47F20086EEC0 /* messages.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = messages.c; path = core/messages.c; sourceTree = "<group>"; };
 		21678EE41A8D510100AE79AA /* interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interface.h; sourceTree = "<group>"; };
 		21678EE51A8D510100AE79AA /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
 		21678EE71A8D510100AE79AA /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		21757F481B6A0CA500281E6F /* core */ = {
 			isa = PBXGroup;
 			children = (
+				214186CA1B6B47F20086EEC0 /* messages.c */,
 				21757F541B6A0E3200281E6F /* server.c */,
 				21757F4E1B6A0D9400281E6F /* mcast_server.c */,
 				21757F4F1B6A0D9400281E6F /* udp_server.c */,
@@ -312,6 +315,7 @@
 				21678F0C1A8D512000AE79AA /* string_tokenizer.c in Sources */,
 				21678F091A8D512000AE79AA /* mutex.c in Sources */,
 				2185D9CF1B68D5C600A5B0C3 /* object.c in Sources */,
+				214186CB1B6B47F20086EEC0 /* messages.c in Sources */,
 				21678F071A8D512000AE79AA /* socket_list.c in Sources */,
 				21EFF1A51B4A9A76002B5E57 /* node.c in Sources */,
 				21678F0B1A8D512000AE79AA /* string_function.c in Sources */,

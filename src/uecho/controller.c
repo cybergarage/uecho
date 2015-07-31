@@ -10,40 +10,77 @@
 
 #include <uecho/controller.h>
 
+/****************************************
+ * uecho_controller_new
+ ****************************************/
+
 uEchoControlPoint *uecho_controller_new()
 {
-	uEchoControlPoint *ctrl;
+	uEchoControlPoint *cp;
 
-    ctrl = (uEchoControlPoint *)malloc(sizeof(uEchoControlPoint));
+    cp = (uEchoControlPoint *)malloc(sizeof(uEchoControlPoint));
 
-    if (!ctrl)
+    if (!cp)
         return NULL;
 
-    ctrl->mutex = uecho_mutex_new();
+    cp->mutex = uecho_mutex_new();
 
-	return ctrl;
+	return cp;
 }
 
-void uecho_controller_delete(uEchoControlPoint *ctrl)
+/****************************************
+ * uecho_object_delete
+ ****************************************/
+
+void uecho_controller_delete(uEchoControlPoint *cp)
 {
-	uecho_controller_stop(ctrl);
+	uecho_controller_stop(cp);
 	
-	uecho_mutex_delete(ctrl->mutex);
+	uecho_mutex_delete(cp->mutex);
 
-    free(ctrl);
+    free(cp);
 }
 
-bool uecho_controller_start(uEchoControlPoint *ctrl)
+/****************************************
+ * uecho_controller_start
+ ****************************************/
+
+bool uecho_controller_start(uEchoControlPoint *cp)
 {
 	return true;
 }
 
-bool uecho_controller_stop(uEchoControlPoint *ctrl)
+/****************************************
+ * uecho_controller_stop
+ ****************************************/
+
+bool uecho_controller_stop(uEchoControlPoint *cp)
 {
 	return true;
 }
 
-bool uecho_controller_isrunning(uEchoControlPoint *ctrl)
+/****************************************
+ * uecho_controller_isrunning
+ ****************************************/
+
+bool uecho_controller_isrunning(uEchoControlPoint *cp)
 {
 	return true;
+}
+
+/****************************************
+ * uecho_controller_searchall
+ ****************************************/
+
+bool uecho_controller_searchall(uEchoControlPoint *cp) {
+    byte nodeProfileObj[3] = {0x0E, 0xF0, 0x01};
+    return true;
+}
+
+/****************************************
+ * uecho_controller_searchobject
+ ****************************************/
+
+bool uecho_controller_searchobject(uEchoControlPoint *cp) {
+    return true;
 }
