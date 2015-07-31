@@ -45,7 +45,13 @@ void uecho_message_clear(uEchoMessage *dev);
 bool uecho_message_start(uEchoMessage *dev);
 bool uecho_message_stop(uEchoMessage *dev);
 bool uecho_message_isrunning(uEchoMessage *dev);
-	
+
+/****************************************
+* Function
+****************************************/
+
+uEchoMessage *uecho_message_search_new();
+
 #ifdef  __cplusplus
 } /* extern C */
 #endif

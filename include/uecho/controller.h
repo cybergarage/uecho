@@ -22,65 +22,21 @@ extern "C" {
 * Data Type
 ****************************************/
 
-/**
- * Prototype for control point's device listener callback.
- * 
- * @param udn The UDN of the device, that the status update concerns
- * @param status The new status
- */
-	
 typedef struct _uEchoControlPoint {
 	uEchoMutex *mutex;
 } uEchoControlPoint;
 	
-/****************************************************************************
- * Control Point top-level control
- ****************************************************************************/
+/****************************************
+ * Function
+****************************************/
 
-/**
- * Create a new control point. Does not start any threads.
- *
- * @return A newly-created uEchoControlPoint
- */
 uEchoControlPoint *uecho_controller_new();
-
-/**
- * Destroy the given control point
- *
- * @param ctrlPoint The control point struct to destroy
- */
-void uecho_controller_delete(uEchoControlPoint *ctrlPoint);
-
-/**
- * Activate the control point. Starts listening for SSDP messages etc.
- * You must call this function before you can actually use a control point.
- *
- * @param ctrlPoint The control point to start
- *
- * @return true if successful; otherwise false
- *
- */
-bool uecho_controller_start(uEchoControlPoint *ctrlPoint);
-
-/**
- * Stop the control point. Stops sending/receiveing/responding to any messages.
- *
- * @param ctrlPoint The control point to stop
- *
- * @return true if successful; otherwise false
- *
- */
-bool uecho_controller_stop(uEchoControlPoint *ctrlPoint);
-
-/**
-* Check if  the control point is activated.
-*
-* @param ctrlPoint The control point to stop
-*
-* @return true if running; otherwise false
-*
-*/
-bool uecho_controller_isrunning(uEchoControlPoint *ctrlPoint);
+void uecho_controller_delete(uEchoControlPoint *cp);
+bool uecho_controller_start(uEchoControlPoint *cp);
+bool uecho_controller_stop(uEchoControlPoint *cp);
+bool uecho_controller_isrunning(uEchoControlPoint *cp);
+bool uecho_controller_searchall(uEchoControlPoint *cp);
+bool uecho_controller_searchobject(uEchoControlPoint *cp);
 
 #ifdef  __cplusplus
 }
