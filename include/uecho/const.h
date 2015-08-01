@@ -24,7 +24,10 @@ extern "C" {
 #define UECHO_TCP_PORT UECHO_LISTEN_PORT
 
 #define UECHO_MULTICAST_ADDR "224.0.23.0"
-    
+ 
+#define UECHO_EHD1 0x10
+#define UECHO_EHD2 0x81
+  
 #ifdef  __cplusplus
 }
 #endif

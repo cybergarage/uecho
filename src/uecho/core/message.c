@@ -22,7 +22,10 @@ uEchoMessage *uecho_message_new()
 
     if (!msg)
         return NULL;
-	
+
+  uecho_message_setehd1(msg, UECHO_EHD1);
+  uecho_message_setehd2(msg, UECHO_EHD2);
+
 	return msg;
 }
 
@@ -38,9 +41,17 @@ void uecho_message_delete(uEchoMessage *msg)
 }
 
 /****************************************
-* uecho_message_clear
-****************************************/
+ * uecho_message_settid
+ ****************************************/
 
-void uecho_message_clear(uEchoMessage *msg)
-{
+void uecho_message_settid(uEchoMessage *msg, int val) {
+  
+}
+
+/****************************************
+ * uecho_message_gettid
+ ****************************************/
+
+int uecho_message_gettid(uEchoMessage *msg) {
+  return 0;
 }
