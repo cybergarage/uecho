@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <uecho/core/message.h>
+#include <uecho/net/socket.h>
 
 /****************************************
 * uecho_message_new
@@ -44,14 +45,18 @@ void uecho_message_delete(uEchoMessage *msg)
  * uecho_message_settid
  ****************************************/
 
-void uecho_message_settid(uEchoMessage *msg, int val) {
-  
+bool uecho_message_settid(uEchoMessage *msg, unsigned int val) {
+  uint16_t nval = htons(val);
+  msg->TID[1] = nval & 0xFF00;
+  msg->TID[0] = nval & 0x00FF;
+  return true;
 }
 
 /****************************************
  * uecho_message_gettid
  ****************************************/
 
-int uecho_message_gettid(uEchoMessage *msg) {
-  return 0;
+unsigned int uecho_message_gettid(uEchoMessage *msg) {
+  uint16_t nval = (msg->TID[1] << 8) + msg->TID[0];
+  return ntohs(nval);
 }
