@@ -47,8 +47,8 @@ void uecho_message_delete(uEchoMessage *msg);
 #define uecho_message_setehd2(msg, val) (msg->EHD2 = val)
 #define uecho_message_getehd2(msg) (msg->EHD2)
 
-void uecho_message_settid(uEchoMessage *msg, int val);
-int uecho_message_gettid(uEchoMessage *msg);
+bool uecho_message_settid(uEchoMessage *msg, unsigned int val);
+unsigned int uecho_message_gettid(uEchoMessage *msg);
 
 bool uecho_message_start(uEchoMessage *msg);
 bool uecho_message_stop(uEchoMessage *msg);
