@@ -10,6 +10,7 @@
 		213C5BFD1B4A548B0013DDD9 /* liblibuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 213C5BFA1B4A54630013DDD9 /* liblibuecho.a */; };
 		216F1DFA1B4A5BAA003C7B6A /* uEchoTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216F1DF91B4A5BAA003C7B6A /* uEchoTest.cpp */; };
 		216F1DFC1B4A5BB8003C7B6A /* ControllerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216F1DFB1B4A5BB8003C7B6A /* ControllerTest.cpp */; };
+		2183CDA71B6D0E1400EE7E49 /* MessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2183CDA61B6D0E1400EE7E49 /* MessageTest.cpp */; };
 		21EFF1A71B4AA06D002B5E57 /* NodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EFF1A61B4AA06D002B5E57 /* NodeTest.cpp */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		213C5BF51B4A54630013DDD9 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
 		216F1DF91B4A5BAA003C7B6A /* uEchoTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uEchoTest.cpp; path = ../../uEchoTest.cpp; sourceTree = "<group>"; };
 		216F1DFB1B4A5BB8003C7B6A /* ControllerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ControllerTest.cpp; path = ../../ControllerTest.cpp; sourceTree = "<group>"; };
+		2183CDA61B6D0E1400EE7E49 /* MessageTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageTest.cpp; path = ../../MessageTest.cpp; sourceTree = "<group>"; };
 		21EFF1A61B4AA06D002B5E57 /* NodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeTest.cpp; path = ../../NodeTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2183CDA61B6D0E1400EE7E49 /* MessageTest.cpp */,
 				21EFF1A61B4AA06D002B5E57 /* NodeTest.cpp */,
 				216F1DFB1B4A5BB8003C7B6A /* ControllerTest.cpp */,
 				216F1DF91B4A5BAA003C7B6A /* uEchoTest.cpp */,
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21EFF1A71B4AA06D002B5E57 /* NodeTest.cpp in Sources */,
+				2183CDA71B6D0E1400EE7E49 /* MessageTest.cpp in Sources */,
 				216F1DFA1B4A5BAA003C7B6A /* uEchoTest.cpp in Sources */,
 				216F1DFC1B4A5BB8003C7B6A /* ControllerTest.cpp in Sources */,
 			);
