@@ -11,9 +11,8 @@
 #ifndef _UECHO_MESSAGE_H_
 #define _UECHO_MESSAGE_H_
 
-#include <stdbool.h>
-#include <uecho/util/list.h>
-#include <uecho/util/mutex.h>
+#include <uecho/typedef.h>
+#include <uecho/const.h>
 #include <uecho/object.h>
 
 #ifdef  __cplusplus
@@ -26,6 +25,9 @@ extern "C" {
 
 typedef struct _uEchoMessage
 {
+    byte EHD1;
+    byte EHD2;
+    byte TID[2];
     uEchoObject SEOJ;
     uEchoObject DEOJ;
     byte ESV;
@@ -37,14 +39,20 @@ typedef struct _uEchoMessage
  ****************************************/
 
 uEchoMessage *uecho_message_new();
-void uecho_message_delete(uEchoMessage *dev);
-void uecho_message_clear(uEchoMessage *dev);
-#define uecho_message_next(dev) (uEchoMessage *)uecho_list_next((uEchoList *)dev)
-#define uecho_message_remove(dev) uecho_list_remove((uEchoList *)dev)
+void uecho_message_delete(uEchoMessage *msg);
 
-bool uecho_message_start(uEchoMessage *dev);
-bool uecho_message_stop(uEchoMessage *dev);
-bool uecho_message_isrunning(uEchoMessage *dev);
+#define uecho_message_setehd1(msg, val) (msg->EHD1 = val)
+#define uecho_message_getehd1(msg) (msg->EHD1)
+
+#define uecho_message_setehd2(msg, val) (msg->EHD2 = val)
+#define uecho_message_getehd2(msg) (msg->EHD2)
+
+void uecho_message_settid(uEchoMessage *msg, int val);
+int uecho_message_gettid(uEchoMessage *msg);
+
+bool uecho_message_start(uEchoMessage *msg);
+bool uecho_message_stop(uEchoMessage *msg);
+bool uecho_message_isrunning(uEchoMessage *msg);
 
 /****************************************
 * Function
