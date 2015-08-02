@@ -20,8 +20,8 @@ uEchoMessage *uecho_message_search_new()
 
 	msg = uecho_message_new();
 
-    if (!msg)
-        return NULL;
+  if (!msg)
+    return NULL;
 	
 	return msg;
 }
