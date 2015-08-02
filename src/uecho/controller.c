@@ -18,13 +18,15 @@ uEchoControlPoint *uecho_controller_new()
 {
 	uEchoControlPoint *cp;
 
-    cp = (uEchoControlPoint *)malloc(sizeof(uEchoControlPoint));
+  cp = (uEchoControlPoint *)malloc(sizeof(uEchoControlPoint));
 
-    if (!cp)
-        return NULL;
+  if (!cp)
+    return NULL;
 
-    cp->mutex = uecho_mutex_new();
+  cp->mutex = uecho_mutex_new();
 
+  uecho_controller_setlasttid(cp, 0);
+  
 	return cp;
 }
 
@@ -66,6 +68,20 @@ bool uecho_controller_stop(uEchoControlPoint *cp)
 bool uecho_controller_isrunning(uEchoControlPoint *cp)
 {
 	return true;
+}
+
+/****************************************
+ * uecho_controller_getnexttid
+ ****************************************/
+
+uEchoTID uecho_controller_getnexttid(uEchoControlPoint *cp) {
+  if (cp->lastTID == UECHO_TID_MAX) {
+    cp->lastTID = 1;
+  }
+  else {
+    cp->lastTID++;
+  }
+  return cp->lastTID;
 }
 
 /****************************************
