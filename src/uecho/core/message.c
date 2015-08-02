@@ -45,7 +45,10 @@ void uecho_message_delete(uEchoMessage *msg)
  * uecho_message_settid
  ****************************************/
 
-bool uecho_message_settid(uEchoMessage *msg, unsigned int val) {
+bool uecho_message_settid(uEchoMessage *msg, uEchoTID val) {
+  if (UECHO_TID_MAX < val) {
+    val %= UECHO_TID_MAX;
+  }
   uint16_t nval = htons(val);
   msg->TID[0] = (nval & 0xFF00) >> 8;
   msg->TID[1] = nval & 0x00FF;
@@ -56,7 +59,7 @@ bool uecho_message_settid(uEchoMessage *msg, unsigned int val) {
  * uecho_message_gettid
  ****************************************/
 
-unsigned int uecho_message_gettid(uEchoMessage *msg) {
+uEchoTID uecho_message_gettid(uEchoMessage *msg) {
   uint16_t nval = (msg->TID[0] << 8) + msg->TID[1];
   return ntohs(nval);
 }

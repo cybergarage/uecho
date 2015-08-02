@@ -27,6 +27,8 @@ extern "C" {
  
 #define UECHO_EHD1 0x10
 #define UECHO_EHD2 0x81
+
+#define UECHO_TID_MAX 65535
   
 #ifdef  __cplusplus
 }
