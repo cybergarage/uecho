@@ -16,7 +16,7 @@
 
 uEchoMessage *uecho_message_search_new()
 {
-	uEchoMessage *msg;
+  uEchoMessage *msg;
 
 	msg = uecho_message_new();
 
