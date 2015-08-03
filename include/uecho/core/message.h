@@ -24,20 +24,20 @@ extern "C" {
  * Constant
 ****************************************/
 
-enum {
-  uEchoEsvPropertyValueWriteRequest = 0x60,
-  uEchoEsvPropertyValueWriteRequestResponseRequired = 0x61,
-  uEchoEsvPropertyValueReadRequest = 0x62,
-  uEchoEsvPropertyValueNotificationRequest = 0x63,
-  uEchoEsvPropertyValueWriteReadRequest = 0x6E,
+typedef enum {
+  uEchoEsvWriteRequest = 0x60,
+  uEchoEsvWriteRequestResponseRequired = 0x61,
+  uEchoEsvReadRequest = 0x62,
+  uEchoEsvNotificationRequest = 0x63,
+  uEchoEsvWriteReadRequest = 0x6E,
 
-  uEchoEsvPropertyValueWriteResponse = 0x71,
-  uEchoEsvPropertyValueReadResponse = 0x72,
-  uEchoEsvPropertyValueNotification = 0x73,
-  uEchoEsvPropertyValueNotificationResponseRequired = 0x74,
-  uEchoEsvPropertyValueNotificationResponse = 0x7A,
-  uEchoEsvPropertyValueWriteReadResponse = 0x7E,
-} uEchoEsvPropertyValueType;
+  uEchoEsvWriteResponse = 0x71,
+  uEchoEsvReadResponse = 0x72,
+  uEchoEsvNotification = 0x73,
+  uEchoEsvNotificationResponseRequired = 0x74,
+  uEchoEsvNotificationResponse = 0x7A,
+  uEchoEsvWriteReadResponse = 0x7E,
+} uEchoEsvType;
 
 /****************************************
  * Data Type
@@ -48,9 +48,9 @@ typedef struct _uEchoMessage
     byte EHD1;
     byte EHD2;
     byte TID[2];
-    uEchoObject SEOJ;
-    uEchoObject DEOJ;
-    byte ESV;
+    uEchoObject *SEOJ;
+    uEchoObject *DEOJ;
+    uEchoEsvType ESV;
     byte OPC;
 } uEchoMessage;
 
@@ -61,18 +61,49 @@ typedef struct _uEchoMessage
 uEchoMessage *uecho_message_new();
 void uecho_message_delete(uEchoMessage *msg);
 
-#define uecho_message_setehd1(msg, val) (msg->EHD1 = val)
-#define uecho_message_getehd1(msg) (msg->EHD1)
-
-#define uecho_message_setehd2(msg, val) (msg->EHD2 = val)
-#define uecho_message_getehd2(msg) (msg->EHD2)
-
 bool uecho_message_settid(uEchoMessage *msg, uEchoTID val);
 uEchoTID uecho_message_gettid(uEchoMessage *msg);
 
+bool uecho_message_setopc(uEchoMessage *msg, byte val);
+byte uecho_message_getopc(uEchoMessage *msg);
+    
 bool uecho_message_start(uEchoMessage *msg);
 bool uecho_message_stop(uEchoMessage *msg);
 bool uecho_message_isrunning(uEchoMessage *msg);
+
+/****************************************
+ * Macro
+ ****************************************/
+
+#if defined(C99)
+
+inline void uecho_message_setehd1(uEchoMessage *msg, byte val) {msg->EHD1 = val;}
+inline byte uecho_message_getehd1(uEchoMessage *msg) {return msg->EHD1;}
+    
+inline uEchoObject *uecho_message_getsourceobject(uEchoMessage *msg) {return msg->SEOJ;}
+inline uEchoObject *uecho_message_getdestinationobject(uEchoMessage *msg) {return msg->DEOJ;}
+
+inline void uecho_message_setehd2(uEchoMessage *msg, byte val) {msg->EHD2 = val;}
+inline byte uecho_message_getehd2(uEchoMessage *msg) {return msg->EHD2;}
+
+inline void uecho_message_setesv(uEchoMessage *msg, uEchoEsvType val) {msg->ESV = val;}
+inline uEchoEsvType uecho_message_getesv(uEchoMessage *msg) {return msg->ESV;}
+
+#else
+
+#define uecho_message_setehd1(msg, val) (msg->EHD1 = val)
+#define uecho_message_getehd1(msg) (msg->EHD1)
+    
+#define uecho_message_getsourceobject(msg) (msg->SEOJ)
+#define uecho_message_getdestinationobject(msg) (msg->DEOJ)
+    
+#define uecho_message_setehd2(msg, val) (msg->EHD2 = val)
+#define uecho_message_getehd2(msg) (msg->EHD2)
+    
+#define uecho_message_setesv(msg, val) (msg->ESV = val)
+#define uecho_message_getesv(msg) (msg->ESV)
+    
+#endif
 
 /****************************************
 * Function

@@ -20,12 +20,12 @@ uEchoServer *uecho_server_new()
 
 	server = (uEchoServer *)malloc(sizeof(uEchoServer));
 
-    if (!server)
-        return NULL;
+  if (!server)
+  return NULL;
 	
-    server->udpServer = uecho_udp_server_new();
-    server->mcastServer = uecho_mcast_server_new();
-    
+  server->udpServer = uecho_udp_server_new();
+  server->mcastServer = uecho_mcast_server_new();
+  
 	return server;
 }
 
@@ -35,9 +35,9 @@ uEchoServer *uecho_server_new()
 
 void uecho_server_delete(uEchoServer *server)
 {
-    uecho_udp_server_delete(server->udpServer);
-    uecho_mcast_server_delete(server->mcastServer);
-    
+  uecho_udp_server_delete(server->udpServer);
+  uecho_mcast_server_delete(server->mcastServer);
+  
 	free(server);
 }
 
@@ -47,12 +47,12 @@ void uecho_server_delete(uEchoServer *server)
 
 bool uecho_server_start(uEchoServer *server)
 {
-    bool allServerSuccess = true;
-    
-    allServerSuccess &= uecho_udp_server_start(server->udpServer);
-    allServerSuccess &= uecho_mcast_server_start(server->mcastServer);
-    
-    return allServerSuccess;
+  bool allServerSuccess = true;
+  
+  allServerSuccess &= uecho_udp_server_start(server->udpServer);
+  allServerSuccess &= uecho_mcast_server_start(server->mcastServer);
+  
+  return allServerSuccess;
 }
 
 /****************************************
@@ -61,12 +61,12 @@ bool uecho_server_start(uEchoServer *server)
 
 bool uecho_server_stop(uEchoServer *server)
 {
-    bool allServerSuccess = true;
-    
-    allServerSuccess &= uecho_udp_server_stop(server->udpServer);
-    allServerSuccess &= uecho_mcast_server_stop(server->mcastServer);
-    
-    return allServerSuccess;
+  bool allServerSuccess = true;
+  
+  allServerSuccess &= uecho_udp_server_stop(server->udpServer);
+  allServerSuccess &= uecho_mcast_server_stop(server->mcastServer);
+  
+  return allServerSuccess;
 }
 
 /****************************************
@@ -75,11 +75,11 @@ bool uecho_server_stop(uEchoServer *server)
 
 bool uecho_server_isrunning(uEchoServer *server)
 {
-    bool allServerSuccess = true;
-    
-    allServerSuccess &= uecho_udp_server_isrunning(server->udpServer);
-    allServerSuccess &= uecho_mcast_server_isrunning(server->mcastServer);
-    
-    return allServerSuccess;
-    
+  bool allServerSuccess = true;
+  
+  allServerSuccess &= uecho_udp_server_isrunning(server->udpServer);
+  allServerSuccess &= uecho_mcast_server_isrunning(server->mcastServer);
+  
+  return allServerSuccess;
+  
 }
