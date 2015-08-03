@@ -24,10 +24,19 @@ uEchoMessage *uecho_message_new()
     if (!msg)
         return NULL;
 
-  uecho_message_setehd1(msg, UECHO_EHD1);
-  uecho_message_setehd2(msg, UECHO_EHD2);
+    uecho_message_setehd1(msg, UECHO_EHD1);
+    uecho_message_setehd2(msg, UECHO_EHD2);
 
-	return msg;
+    uecho_message_settid(msg, 0);
+    
+    msg->SEOJ = uecho_object_new();
+    msg->DEOJ = uecho_object_new();
+    
+    uecho_message_setesv(msg, 0);
+
+    uecho_message_setopc(msg, 0);
+    
+    return msg;
 }
 
 /****************************************
@@ -36,7 +45,8 @@ uEchoMessage *uecho_message_new()
 
 void uecho_message_delete(uEchoMessage *msg)
 {
-	uecho_list_remove((uEchoList *)msg);
+    uecho_object_delete(msg->SEOJ);
+    uecho_object_delete(msg->DEOJ);
     
 	free(msg);
 }
@@ -63,3 +73,21 @@ uEchoTID uecho_message_gettid(uEchoMessage *msg) {
   uint16_t nval = (msg->TID[0] << 8) + msg->TID[1];
   return ntohs(nval);
 }
+
+/****************************************
+ * uecho_message_gettid
+ ****************************************/
+
+bool uecho_message_setopc(uEchoMessage *msg, byte val) {
+
+    return true;
+}
+
+/****************************************
+ * uecho_message_getopc
+ ****************************************/
+
+byte uecho_message_getopc(uEchoMessage *msg) {
+    return msg->OPC;
+}
+

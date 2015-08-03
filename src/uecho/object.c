@@ -16,33 +16,29 @@
 
 uEchoObject *uecho_object_new()
 {
-	uEchoObject *object;
+	uEchoObject *obj;
 
-	object = (uEchoObject *)malloc(sizeof(uEchoObject));
+	obj = (uEchoObject *)malloc(sizeof(uEchoObject));
     
-    if (!object)
+    if (!obj)
         return NULL;
 
-    uecho_list_node_init((uEchoList *)object);
-	
-	return object;
+    uecho_list_node_init((uEchoList *)obj);
+
+    uecho_object_setclassgroupcode(obj, 0);
+    uecho_object_setclasscode(obj, 0);
+    uecho_object_setinstancecode(obj, 0);
+    
+	return obj;
 }
 
 /****************************************
 * uecho_object_delete
 ****************************************/
 
-void uecho_object_delete(uEchoObject *object)
+void uecho_object_delete(uEchoObject *obj)
 {
-	uecho_list_remove((uEchoList *)object);
+	uecho_list_remove((uEchoList *)obj);
     
-	free(object);
-}
-
-/****************************************
-* uecho_object_clear
-****************************************/
-
-void uecho_object_clear(uEchoObject *object)
-{
+	free(obj);
 }
