@@ -24,19 +24,21 @@ extern "C" {
  * Constant
 ****************************************/
 
-#define UECHO_ESV_PROPERTY_VALUE_WRITE_REQUEST_NORESPONSE 0x60
-#define UECHO_ESV_PROPERTY_VALUE_WRITE_REQUEST_RESPONSE 0x61
-#define UECHO_ESV_PROPERTY_VALUE_READ_REQUEST 0x62
-#define UECHO_ESV_PROPERTY_VALUE_NOTIFICATION_REQUEST 0x63
-#define UECHO_ESV_PROPERTY_VALUE_WRITE_AND_READ_REQUEST 0x6E
-  
-#define UECHO_ESV_PROPERTY_VALUE_WRITE_RESPONSE 0x71
-#define UECHO_ESV_PROPERTY_VALUE_READ_RESPONSE 0x72
-#define UECHO_ESV_PROPERTY_VALUE_NOTIFICATION 0x73
-#define UECHO_ESV_PROPERTY_VALUE_NOTIFICATION_REQUIRED 0x73
-#define UECHO_ESV_PROPERTY_VALUE_NOTIFICATION_RESPONSE 0x74
-#define UECHO_ESV_PROPERTY_VALUE_WRITE_AND_READ_RESPONSE 0x7E
-  
+enum {
+  uEchoEsvPropertyValueWriteRequest = 0x60,
+  uEchoEsvPropertyValueWriteRequestResponseRequired = 0x61,
+  uEchoEsvPropertyValueReadRequest = 0x62,
+  uEchoEsvPropertyValueNotificationRequest = 0x63,
+  uEchoEsvPropertyValueWriteReadRequest = 0x6E,
+
+  uEchoEsvPropertyValueWriteResponse = 0x71,
+  uEchoEsvPropertyValueReadResponse = 0x72,
+  uEchoEsvPropertyValueNotification = 0x73,
+  uEchoEsvPropertyValueNotificationResponseRequired = 0x74,
+  uEchoEsvPropertyValueNotificationResponse = 0x7A,
+  uEchoEsvPropertyValueWriteReadResponse = 0x7E,
+} uEchoEsvPropertyValueType;
+
 /****************************************
  * Data Type
  ****************************************/
