@@ -16,33 +16,30 @@
 
 uEchoProperty *uecho_property_new()
 {
-	uEchoProperty *property;
+	uEchoProperty *prop;
 
-	property = (uEchoProperty *)malloc(sizeof(uEchoProperty));
+	prop = (uEchoProperty *)malloc(sizeof(uEchoProperty));
     
-    if (!property)
-        return NULL;
+  if (!prop)
+    return NULL;
 
-    uecho_list_node_init((uEchoList *)property);
-	
-	return property;
+	return prop;
 }
 
 /****************************************
 * uecho_property_delete
 ****************************************/
 
-void uecho_property_delete(uEchoProperty *property)
+void uecho_property_delete(uEchoProperty *prop)
 {
-	uecho_list_remove((uEchoList *)property);
-    
-	free(property);
+	free(prop);
 }
 
 /****************************************
-* uecho_property_clear
-****************************************/
+ * uecho_property_setdata
+ ****************************************/
 
-void uecho_property_clear(uEchoProperty *property)
+void uecho_property_setdata(uEchoProperty *prop, byte *data, size_t count)
 {
 }
+
