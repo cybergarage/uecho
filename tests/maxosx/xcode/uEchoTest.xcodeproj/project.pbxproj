@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		213C5BFD1B4A548B0013DDD9 /* liblibuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 213C5BFA1B4A54630013DDD9 /* liblibuecho.a */; };
+		214376311B705EAE003F2E5E /* PropertyTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214376301B705EAE003F2E5E /* PropertyTest.cpp */; };
 		2169E2FC1B6F53F00044CD8C /* ObjectTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2169E2FB1B6F53F00044CD8C /* ObjectTest.cpp */; };
 		216F1DFA1B4A5BAA003C7B6A /* uEchoTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216F1DF91B4A5BAA003C7B6A /* uEchoTest.cpp */; };
 		216F1DFC1B4A5BB8003C7B6A /* ControllerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216F1DFB1B4A5BB8003C7B6A /* ControllerTest.cpp */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		210363311B4A51B300DB3025 /* uEchoTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uEchoTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		213C5BF51B4A54630013DDD9 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
+		214376301B705EAE003F2E5E /* PropertyTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PropertyTest.cpp; path = ../../PropertyTest.cpp; sourceTree = "<group>"; };
 		2169E2FB1B6F53F00044CD8C /* ObjectTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectTest.cpp; path = ../../ObjectTest.cpp; sourceTree = "<group>"; };
 		216F1DF91B4A5BAA003C7B6A /* uEchoTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uEchoTest.cpp; path = ../../uEchoTest.cpp; sourceTree = "<group>"; };
 		216F1DFB1B4A5BB8003C7B6A /* ControllerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ControllerTest.cpp; path = ../../ControllerTest.cpp; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				214376301B705EAE003F2E5E /* PropertyTest.cpp */,
 				2169E2FB1B6F53F00044CD8C /* ObjectTest.cpp */,
 				2183CDA61B6D0E1400EE7E49 /* MessageTest.cpp */,
 				21EFF1A61B4AA06D002B5E57 /* NodeTest.cpp */,
@@ -188,6 +191,7 @@
 				21EFF1A71B4AA06D002B5E57 /* NodeTest.cpp in Sources */,
 				2183CDA71B6D0E1400EE7E49 /* MessageTest.cpp in Sources */,
 				216F1DFA1B4A5BAA003C7B6A /* uEchoTest.cpp in Sources */,
+				214376311B705EAE003F2E5E /* PropertyTest.cpp in Sources */,
 				216F1DFC1B4A5BB8003C7B6A /* ControllerTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
