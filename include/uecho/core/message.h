@@ -14,6 +14,7 @@
 #include <uecho/typedef.h>
 #include <uecho/const.h>
 #include <uecho/object.h>
+#include <uecho/property.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -23,6 +24,12 @@ extern "C" {
 /****************************************
  * Constant
 ****************************************/
+
+enum {
+  uEchoMessageMinLen = (1 + 1 + 2 + 3 + 3 + 1 + 1),
+  uEchoEhd1 = 0x10,
+  uEchoEhd2 = 0x81,
+};
 
 typedef enum {
   uEchoEsvWriteRequest = 0x60,
@@ -45,13 +52,14 @@ typedef enum {
 
 typedef struct _uEchoMessage
 {
-    byte EHD1;
-    byte EHD2;
-    byte TID[2];
-    uEchoObject *SEOJ;
-    uEchoObject *DEOJ;
-    uEchoEsvType ESV;
-    byte OPC;
+  byte EHD1;
+  byte EHD2;
+  byte TID[2];
+  uEchoObject *SEOJ;
+  uEchoObject *DEOJ;
+  uEchoEsvType ESV;
+  byte OPC;
+  uEchoProperty **EP;
 } uEchoMessage;
 
 /****************************************
@@ -61,15 +69,17 @@ typedef struct _uEchoMessage
 uEchoMessage *uecho_message_new();
 void uecho_message_delete(uEchoMessage *msg);
 
+bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen);
+
 bool uecho_message_settid(uEchoMessage *msg, uEchoTID val);
 uEchoTID uecho_message_gettid(uEchoMessage *msg);
 
 bool uecho_message_setopc(uEchoMessage *msg, byte val);
 byte uecho_message_getopc(uEchoMessage *msg);
-    
-bool uecho_message_start(uEchoMessage *msg);
-bool uecho_message_stop(uEchoMessage *msg);
-bool uecho_message_isrunning(uEchoMessage *msg);
+
+uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n);
+  
+void uecho_message_clear(uEchoMessage *msg);
 
 /****************************************
  * Macro

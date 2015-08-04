@@ -21,34 +21,56 @@ uEchoMessage *uecho_message_new()
 
 	msg = (uEchoMessage *)malloc(sizeof(uEchoMessage));
 
-    if (!msg)
-        return NULL;
+  if (!msg)
+    return NULL;
 
-    uecho_message_setehd1(msg, UECHO_EHD1);
-    uecho_message_setehd2(msg, UECHO_EHD2);
+  uecho_message_setehd1(msg, uEchoEhd1);
+  uecho_message_setehd2(msg, uEchoEhd2);
 
-    uecho_message_settid(msg, 0);
+  uecho_message_settid(msg, 0);
     
-    msg->SEOJ = uecho_object_new();
-    msg->DEOJ = uecho_object_new();
+  msg->SEOJ = uecho_object_new();
+  msg->DEOJ = uecho_object_new();
     
-    uecho_message_setesv(msg, 0);
+  uecho_message_setesv(msg, 0);
 
-    uecho_message_setopc(msg, 0);
+  msg->EP = NULL;
+  uecho_message_setopc(msg, 0);
     
-    return msg;
+  return msg;
 }
 
 /****************************************
 * uecho_message_delete
 ****************************************/
 
-void uecho_message_delete(uEchoMessage *msg)
-{
-    uecho_object_delete(msg->SEOJ);
-    uecho_object_delete(msg->DEOJ);
-    
+void uecho_message_delete(uEchoMessage *msg) {
+  uecho_object_delete(msg->SEOJ);
+  uecho_object_delete(msg->DEOJ);
+  
+  uecho_message_clear(msg);
+  
 	free(msg);
+}
+
+/****************************************
+ * uecho_message_clear
+ ****************************************/
+
+void uecho_message_clear(uEchoMessage *msg) {
+  int n;
+  
+  if (0 < msg->OPC) {
+    for (n=0; n<(int)(msg->OPC); n++) {
+      uecho_property_delete(msg->EP[n]);
+      msg->EP[n] = NULL;
+    }
+  }
+  
+  if (msg->EP) {
+    free(msg->EP);
+    msg->EP = NULL;
+  }
 }
 
 /****************************************
@@ -56,8 +78,8 @@ void uecho_message_delete(uEchoMessage *msg)
  ****************************************/
 
 bool uecho_message_settid(uEchoMessage *msg, uEchoTID val) {
-  if (UECHO_TID_MAX < val) {
-    val %= UECHO_TID_MAX;
+  if (uEchoTidMax < val) {
+    val %= uEchoTidMax;
   }
   uint16_t nval = htons(val);
   msg->TID[0] = (nval & 0xFF00) >> 8;
@@ -75,12 +97,25 @@ uEchoTID uecho_message_gettid(uEchoMessage *msg) {
 }
 
 /****************************************
- * uecho_message_gettid
+ * uecho_message_setopc
  ****************************************/
 
-bool uecho_message_setopc(uEchoMessage *msg, byte val) {
-
+bool uecho_message_setopc(uEchoMessage *msg, byte count) {
+  int n;
+  
+  uecho_message_clear(msg);
+  
+  msg->OPC = count;
+  
+  if (msg->OPC <= 0)
     return true;
+  
+  msg->EP = (uEchoProperty**)malloc(sizeof(uEchoProperty*) * count);
+  for (n=0; n<(int)(msg->OPC); n++) {
+    msg->EP[n] = uecho_property_new();
+  }
+  
+  return true;
 }
 
 /****************************************
@@ -91,3 +126,58 @@ byte uecho_message_getopc(uEchoMessage *msg) {
     return msg->OPC;
 }
 
+/****************************************
+ * uecho_message_getopc
+ ****************************************/
+
+uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n) {
+  if ((msg->OPC - 1) < n)
+    return NULL;
+  return msg->EP[n];
+}
+
+/****************************************
+ * uecho_message_parse
+ ****************************************/
+
+bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen) {
+  if (dataLen < uEchoMessageMinLen)
+    return false;
+
+  // Check Headers
+  
+  if (data[0] != uEchoEhd1)
+    return false;
+  
+  if (data[1] != uEchoEhd2)
+    return false;
+
+  // TID
+
+  msg->TID[0] = data[2];
+  msg->TID[1] = data[3];
+  
+  // SEOJ
+  
+  uecho_object_setclassgroupcode(msg->SEOJ, data[4]);
+  uecho_object_setclasscode(msg->SEOJ, data[5]);
+  uecho_object_setinstancecode(msg->SEOJ, data[6]);
+  
+  // DEOJ
+  
+  uecho_object_setclassgroupcode(msg->DEOJ, data[7]);
+  uecho_object_setclasscode(msg->DEOJ, data[8]);
+  uecho_object_setinstancecode(msg->DEOJ, data[9]);
+  
+  // ESV
+  
+  uecho_message_setesv(msg, data[10]);
+  
+  // OPC
+  
+  uecho_message_setopc(msg, data[11]);
+
+  // EP
+  
+  return false;
+}

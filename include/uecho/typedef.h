@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <stdbool.h>
 
 #if defined(WINCE) && !defined(WIN32)
 #define WIN32 1
@@ -41,8 +40,9 @@
 extern "C" {
 #endif
 
+  
 /****************************************
- * Data Type
+ * Compiler
 ****************************************/
 
 #if __STDC_VERSION__ >= 199901L
@@ -52,7 +52,21 @@ extern "C" {
 /****************************************
 * Data Type
 ****************************************/
-	
+
+#if defined(C99)
+#include <stdbool.h>
+#else
+#if !defined(bool)
+#define bool int
+#endif
+#if !defined(true)
+#define true 1
+#endif
+#if !defined(false)
+#define false 0
+#endif
+#endif
+
 typedef unsigned char byte;
 typedef unsigned int uEchoTID;
 
