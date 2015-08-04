@@ -25,26 +25,45 @@ extern "C" {
 
 typedef struct _uEchoProperty
 {
-  bool headFlag;
-  struct _uEchoProperty *prev;
-  struct _uEchoProperty *next;
-    
-} uEchoProperty, uEchoPropertyList;
+  byte code;
+  size_t count;
+  byte *data;
+} uEchoProperty;
 
 /****************************************
  * Function
  ****************************************/
 
 uEchoProperty *uecho_property_new();
-void uecho_property_delete(uEchoProperty *dev);
-void uecho_property_clear(uEchoProperty *dev);
-#define uecho_property_next(dev) (uEchoProperty *)uecho_list_next((uEchoList *)dev)
-#define uecho_property_remove(dev) uecho_list_remove((uEchoList *)dev)
+void uecho_property_delete(uEchoProperty *prop);
 
-bool uecho_property_start(uEchoProperty *dev);
-bool uecho_property_stop(uEchoProperty *dev);
-bool uecho_property_isrunning(uEchoProperty *dev);
-	
+void uecho_property_setdata(uEchoProperty *prop, byte *data, size_t count);
+  
+/****************************************
+ * Macro
+ ****************************************/
+  
+#if defined(C99)
+
+inline void uecho_property_setcode(uEchoProperty *prop, byte val) {prop->code = val;}
+inline byte uecho_property_getcode(uEchoProperty *prop) {return prop->code;}
+
+inline byte uecho_property_getcount(uEchoProperty *prop) {return prop->count;}
+
+inline byte *uecho_property_getdata(uEchoProperty *prop) {return prop->data;}
+  
+#else
+  
+#define uecho_property_setcode(prop, val) (prop->code = val)
+#define uecho_property_getcode(prop) (prop->code)
+
+#define uecho_property_getcount(prop) (prop->count)
+
+#define uecho_property_getdata(prop) (prop->data)
+
+#endif
+  
+  
 #ifdef  __cplusplus
 } /* extern C */
 #endif
