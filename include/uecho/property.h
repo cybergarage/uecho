@@ -20,6 +20,15 @@ extern "C" {
 #endif
 
 /****************************************
+ * Constant
+ ****************************************/
+
+enum {
+  uEchoPropertyCodeMin = 0,
+  uEchoPropertyCodeMax = 255,
+};
+  
+/****************************************
  * Data Type
  ****************************************/
 
@@ -37,7 +46,8 @@ typedef struct _uEchoProperty
 uEchoProperty *uecho_property_new();
 void uecho_property_delete(uEchoProperty *prop);
 
-void uecho_property_setdata(uEchoProperty *prop, byte *data, size_t count);
+bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count);
+bool uecho_property_cleardata(uEchoProperty *prop);
   
 /****************************************
  * Macro

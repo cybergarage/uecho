@@ -19,16 +19,15 @@ extern "C" {
 * Constants
 ****************************************/
 
-#define UECHO_LISTEN_PORT 3610
-#define UECHO_UDP_PORT UECHO_LISTEN_PORT
-#define UECHO_TCP_PORT UECHO_LISTEN_PORT
+#define uEchoMulticastAddr "224.0.23.0"
+  
+enum {
+  uEchoUdpPort = 3610,
+  uEchoTcpPort = 3610,
 
-#define UECHO_MULTICAST_ADDR "224.0.23.0"
- 
-#define UECHO_EHD1 0x10
-#define UECHO_EHD2 0x81
-
-#define UECHO_TID_MAX 65535
+  uEchoTidMin = 0,
+  uEchoTidMax = 65535,
+};
   
 #ifdef  __cplusplus
 }

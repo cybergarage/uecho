@@ -50,25 +50,25 @@ bool uecho_object_isrunning(uEchoObject *obj);
     
 #if defined(C99)
     
-inline void uecho_object_setclassgroupcode(uEchoMessage *msg, byte val) {obj->X[0] = val;}
-inline byte uecho_object_getclassgroupcode(uEchoMessage *msg) {return obj->X[0];}
+inline void uecho_object_setclassgroupcode(uEchoObject *obj, byte val) {obj->X[0] = val;}
+inline byte uecho_object_getclassgroupcode(uEchoObject *obj) {return obj->X[0];}
 
-inline void uecho_object_setclasscode(uEchoMessage *msg, byte val) {obj->X[1] = val;}
-inline byte uecho_object_getclasscode(uEchoMessage *msg) {return obj->X[1];}
+inline void uecho_object_setclasscode(uEchoObject *obj, byte val) {obj->X[1] = val;}
+inline byte uecho_object_getclasscode(uEchoObject *obj) {return obj->X[1];}
 
-inline void uecho_object_setinstancecode(uEchoMessage *msg, byte val) {obj->X[2] = val;}
-inline byte uecho_object_getinstancecode(uEchoMessage *msg) {return obj->X[2];}
+inline void uecho_object_setinstancecode(uEchoObject *obj, byte val) {obj->X[2] = val;}
+inline byte uecho_object_getinstancecode(uEchoObject *obj) {return obj->X[2];}
 
 #else
     
-#define uecho_object_setclassgroupcode(msg, val) (obj->X[0] = val)
-#define uecho_object_getclassgroupcode(msg) (obj->X[0])
+#define uecho_object_setclassgroupcode(obj, val) (obj->X[0] = val)
+#define uecho_object_getclassgroupcode(obj) (obj->X[0])
 
-#define uecho_object_setclasscode(msg, val) (obj->X[1] = val)
-#define uecho_object_getclasscode(msg) (obj->X[1])
+#define uecho_object_setclasscode(obj, val) (obj->X[1] = val)
+#define uecho_object_getclasscode(obj) (obj->X[1])
 
-#define uecho_object_setinstancecode(msg, val) (obj->X[2] = val)
-#define uecho_object_getinstancecode(msg) (obj->X[2])
+#define uecho_object_setinstancecode(obj, val) (obj->X[2] = val)
+#define uecho_object_getinstancecode(obj) (obj->X[2])
     
 #endif
     
