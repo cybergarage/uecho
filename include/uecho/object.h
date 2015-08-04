@@ -23,12 +23,25 @@ extern "C" {
  * Data Type
  ****************************************/
 
+enum {
+  uEchoObjectCodeMin = 0x000000,
+  uEchoObjectCodeMax = 0xFFFFFF,
+};
+  
+enum {
+  uEchoNodeProfileObject = 0x0EF001,
+};
+  
+/****************************************
+ * Data Type
+ ****************************************/
+
 typedef struct _uEchoObject {
     bool headFlag;
     struct _uEchoObject *prev;
     struct _uEchoObject *next;
 
-    byte X[3];
+    byte code[3];
 } uEchoObject, uEchoObjectList;
 
 /****************************************
@@ -40,6 +53,9 @@ void uecho_object_delete(uEchoObject *obj);
 #define uecho_object_next(obj) (uEchoObject *)uecho_list_next((uEchoList *)obj)
 #define uecho_object_remove(obj) uecho_list_remove((uEchoList *)obj)
 
+void uecho_object_setcode(uEchoObject *obj, int val);
+int uecho_object_getcode(uEchoObject *obj);
+  
 bool uecho_object_start(uEchoObject *obj);
 bool uecho_object_stop(uEchoObject *obj);
 bool uecho_object_isrunning(uEchoObject *obj);
@@ -50,25 +66,25 @@ bool uecho_object_isrunning(uEchoObject *obj);
     
 #if defined(C99)
     
-inline void uecho_object_setclassgroupcode(uEchoObject *obj, byte val) {obj->X[0] = val;}
-inline byte uecho_object_getclassgroupcode(uEchoObject *obj) {return obj->X[0];}
+inline void uecho_object_setclassgroupcode(uEchoObject *obj, byte val) {obj->code[0] = val;}
+inline byte uecho_object_getclassgroupcode(uEchoObject *obj) {return obj->code[0];}
 
-inline void uecho_object_setclasscode(uEchoObject *obj, byte val) {obj->X[1] = val;}
-inline byte uecho_object_getclasscode(uEchoObject *obj) {return obj->X[1];}
+inline void uecho_object_setclasscode(uEchoObject *obj, byte val) {obj->code[1] = val;}
+inline byte uecho_object_getclasscode(uEchoObject *obj) {return obj->code[1];}
 
-inline void uecho_object_setinstancecode(uEchoObject *obj, byte val) {obj->X[2] = val;}
-inline byte uecho_object_getinstancecode(uEchoObject *obj) {return obj->X[2];}
+inline void uecho_object_setinstancecode(uEchoObject *obj, byte val) {obj->code[2] = val;}
+inline byte uecho_object_getinstancecode(uEchoObject *obj) {return obj->code[2];}
 
 #else
     
-#define uecho_object_setclassgroupcode(obj, val) (obj->X[0] = val)
-#define uecho_object_getclassgroupcode(obj) (obj->X[0])
+#define uecho_object_setclassgroupcode(obj, val) (obj->code[0] = val)
+#define uecho_object_getclassgroupcode(obj) (obj->code[0])
 
-#define uecho_object_setclasscode(obj, val) (obj->X[1] = val)
-#define uecho_object_getclasscode(obj) (obj->X[1])
+#define uecho_object_setclasscode(obj, val) (obj->code[1] = val)
+#define uecho_object_getclasscode(obj) (obj->code[1])
 
-#define uecho_object_setinstancecode(obj, val) (obj->X[2] = val)
-#define uecho_object_getinstancecode(obj) (obj->X[2])
+#define uecho_object_setinstancecode(obj, val) (obj->code[2] = val)
+#define uecho_object_getinstancecode(obj) (obj->code[2])
     
 #endif
     

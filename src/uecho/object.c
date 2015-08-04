@@ -14,8 +14,7 @@
 * uecho_object_new
 ****************************************/
 
-uEchoObject *uecho_object_new()
-{
+uEchoObject *uecho_object_new() {
 	uEchoObject *obj;
 
 	obj = (uEchoObject *)malloc(sizeof(uEchoObject));
@@ -42,3 +41,26 @@ void uecho_object_delete(uEchoObject *obj)
     
 	free(obj);
 }
+
+/****************************************
+ * uecho_object_setcode
+ ****************************************/
+
+void uecho_object_setcode(uEchoObject *obj, int val) {
+  obj->code[0] = (val & 0xFF0000) >> 16;
+  obj->code[1] = (val & 0x00FF00) >>  8;
+  obj->code[2] = (val & 0x0000FF);
+}
+
+/****************************************
+ * uecho_object_getcode
+ ****************************************/
+
+int uecho_object_getcode(uEchoObject *obj) {
+  int code = 0;
+  code |= (obj->code[0] << 16) & 0xFF0000;
+  code |= (obj->code[1] <<  8) & 0x00FF00;
+  code |= (obj->code[2]      ) & 0x0000FF;
+  return code;
+}
+

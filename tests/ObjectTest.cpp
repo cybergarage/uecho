@@ -12,7 +12,29 @@
 
 #include <uecho/object.h>
 
-BOOST_AUTO_TEST_CASE(ObjectBasicFunctions)
+BOOST_AUTO_TEST_CASE(ObjectSetCode)
+{
+  uEchoObject *obj = uecho_object_new();
+  
+  uecho_object_setcode(obj, uEchoObjectCodeMin);
+  BOOST_CHECK_EQUAL(uecho_object_getcode(obj), uEchoObjectCodeMin);
+  
+  uecho_object_setcode(obj, (uEchoObjectCodeMin + 1));
+  BOOST_CHECK_EQUAL(uecho_object_getcode(obj), (uEchoObjectCodeMin + 1));
+  
+  uecho_object_setcode(obj, (uEchoObjectCodeMax / 2));
+  BOOST_CHECK_EQUAL(uecho_object_getcode(obj), (uEchoObjectCodeMax / 2));
+  
+  uecho_object_setcode(obj, uEchoObjectCodeMax);
+  BOOST_CHECK_EQUAL(uecho_object_getcode(obj), uEchoObjectCodeMax);
+
+  uecho_object_setcode(obj, uEchoNodeProfileObject);
+  BOOST_CHECK_EQUAL(uecho_object_getcode(obj), uEchoNodeProfileObject);
+  
+  uecho_object_delete(obj);
+}
+
+BOOST_AUTO_TEST_CASE(ObjectSetCodes)
 {
   uEchoObject *obj = uecho_object_new();
   
