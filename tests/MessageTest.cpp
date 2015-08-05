@@ -22,9 +22,6 @@ BOOST_AUTO_TEST_CASE(MessageBasicFunctions)
   uecho_message_setehd2(msg, uEchoEhd2);
   BOOST_CHECK_EQUAL(uecho_message_getehd2(msg), uEchoEhd2);
   
-  for (int n=0; n<100; n++) {
-  }
-
   uecho_message_delete(msg);
 }
 
@@ -92,7 +89,7 @@ BOOST_AUTO_TEST_CASE(MessageSearch)
     3,
     1, 1, 'a',
     2, 2, 'b', 'c',
-    3, 3, 'b', 'c', 'd',
+    3, 3, 'c', 'd', 'e',
   };
   
   BOOST_CHECK(uecho_message_parse(msg, msgBytes, sizeof(msgBytes)));
@@ -115,15 +112,15 @@ BOOST_AUTO_TEST_CASE(MessageSearch)
   
   BOOST_CHECK_EQUAL(uecho_message_getopc(msg), 3);
   
-  for (int n=0; n<uecho_message_getopc(msg); n++) {
-    uEchoProperty *prop = uecho_message_getproperty(msg, n);
+  for (int n=1; n<=uecho_message_getopc(msg); n++) {
+    uEchoProperty *prop = uecho_message_getproperty(msg, (n-1));
     BOOST_CHECK(prop);
     BOOST_CHECK_EQUAL(uecho_property_getcode(prop), n);
     BOOST_CHECK_EQUAL(uecho_property_getcount(prop), n);
     byte *data = uecho_property_getdata(prop);
     BOOST_CHECK(data);
     for (int i=0; i<uecho_property_getcount(prop); i++) {
-      BOOST_CHECK_EQUAL(data[i], 'a' + n + i);
+      BOOST_CHECK_EQUAL(data[i], 'a' + (n-1) + i);
     }
   }
   
