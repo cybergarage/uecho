@@ -15,6 +15,7 @@
 #include <uecho/const.h>
 #include <uecho/object.h>
 #include <uecho/property.h>
+#include <uecho/net/socket.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -70,6 +71,7 @@ uEchoMessage *uecho_message_new();
 void uecho_message_delete(uEchoMessage *msg);
 
 bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen);
+bool uecho_message_parsepacket(uEchoMessage *msg, uEchoDatagramPacket *dgmPkt);
 
 bool uecho_message_settid(uEchoMessage *msg, uEchoTID val);
 uEchoTID uecho_message_gettid(uEchoMessage *msg);

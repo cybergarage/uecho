@@ -26,16 +26,16 @@ extern "C" {
 * Define
 ****************************************/
 
-#define CG_NET_SOCKET_NONE 0
+#define UECHO_NET_SOCKET_NONE 0
 
-#define CG_NET_SOCKET_STREAM 0x01
-#define CG_NET_SOCKET_DGRAM 0x02
+#define UECHO_NET_SOCKET_STREAM 0x01
+#define UECHO_NET_SOCKET_DGRAM 0x02
 
-#define CG_NET_SOCKET_CLIENT 1
-#define CG_NET_SOCKET_SERVER 2
+#define UECHO_NET_SOCKET_CLIENT 1
+#define UECHO_NET_SOCKET_SERVER 2
 
-#define CG_NET_SOCKET_MAXHOST 32
-#define CG_NET_SOCKET_MAXSERV 32
+#define UECHO_NET_SOCKET_MAXHOST 32
+#define UECHO_NET_SOCKET_MAXSERV 32
 
 #if defined(BTRON) || defined(TENGINE)
 typedef W SOCKET;
@@ -47,14 +47,14 @@ typedef int SOCKET;
 
 #define CG_SOCKET_LF '\n'
 
-#define CG_NET_SOCKET_DGRAM_RECV_BUFSIZE 512
-#define CG_NET_SOCKET_DGRAM_ANCILLARY_BUFSIZE 512
-#define CG_NET_SOCKET_MULTICAST_DEFAULT_TTL 4
-#define CG_NET_SOCKET_AUTO_IP_NET 0xa9fe0000
-#define CG_NET_SOCKET_AUTO_IP_MASK 0xffff0000 
+#define UECHO_NET_SOCKET_DGRAM_RECV_BUFSIZE 512
+#define UECHO_NET_SOCKET_DGRAM_ANCILLARY_BUFSIZE 512
+#define UECHO_NET_SOCKET_MULTICAST_DEFAULT_TTL 4
+#define UECHO_NET_SOCKET_AUTO_IP_NET 0xa9fe0000
+#define UECHO_NET_SOCKET_AUTO_IP_MASK 0xffff0000 
 
 #if defined(ITRON)
-#define CG_NET_SOCKET_WINDOW_BUFSIZE 4096
+#define UECHO_NET_SOCKET_WINDOW_BUFSIZE 4096
 #endif
 
 /****************************************
@@ -62,19 +62,19 @@ typedef int SOCKET;
 ****************************************/
 
 #if defined(ITRON)
-#define CG_NET_USE_SOCKET_LIST 1
+#define UECHO_NET_USE_SOCKET_LIST 1
 #endif
 
 /****************************************
 * Data Type
 ****************************************/
 
-#if defined(CG_NET_USE_SOCKET_LIST)
+#if defined(UECHO_NET_USE_SOCKET_LIST)
 #include <uecho/util/list.h>
 #endif
 
 typedef struct _uEchoSocket {
-#if defined(CG_NET_USE_SOCKET_LIST)
+#if defined(UECHO_NET_USE_SOCKET_LIST)
 	bool headFlag;
 	struct _uEchoSocket *prev;
 	struct _uEchoSocket *next;
@@ -110,8 +110,8 @@ void uecho_socket_startup();
 void uecho_socket_cleanup();
 
 uEchoSocket *uecho_socket_new(int type);
-#define uecho_socket_stream_new() uecho_socket_new(CG_NET_SOCKET_STREAM)
-#define uecho_socket_dgram_new() uecho_socket_new(CG_NET_SOCKET_DGRAM)
+#define uecho_socket_stream_new() uecho_socket_new(UECHO_NET_SOCKET_STREAM)
+#define uecho_socket_dgram_new() uecho_socket_new(UECHO_NET_SOCKET_DGRAM)
 bool uecho_socket_delete(uEchoSocket *socket);
 
 void uecho_socket_setid(uEchoSocket *socket, SOCKET value);
@@ -119,13 +119,13 @@ void uecho_socket_setid(uEchoSocket *socket, SOCKET value);
 
 #define uecho_socket_settype(socket, value) (socket->type = value)
 #define uecho_socket_gettype(socket) (socket->type)
-#define uecho_socket_issocketstream(socket) ((socket->type & CG_NET_SOCKET_STREAM) ? true : false)
-#define uecho_socket_isdatagramstream(socket) ((socket->type & CG_NET_SOCKET_DGRAM) ? true : false)
+#define uecho_socket_issocketstream(socket) ((socket->type & UECHO_NET_SOCKET_STREAM) ? true : false)
+#define uecho_socket_isdatagramstream(socket) ((socket->type & UECHO_NET_SOCKET_DGRAM) ? true : false)
 
 #define uecho_socket_setdirection(socket, value) (socket->direction = value)
 #define uecho_socket_getdirection(socket) (socket->direction)
-#define uecho_socket_isclient(socket) ((socket->direction == CG_NET_SOCKET_CLIENT) ? true : false)
-#define uecho_socket_isserver(socket) ((socket->direction == CG_NET_SOCKET_SERVER) ? true : false)
+#define uecho_socket_isclient(socket) ((socket->direction == UECHO_NET_SOCKET_CLIENT) ? true : false)
+#define uecho_socket_isserver(socket) ((socket->direction == UECHO_NET_SOCKET_SERVER) ? true : false)
 
 #define uecho_socket_setaddress(socket, value) uecho_string_setvalue(socket->ipaddr, value)
 #define uecho_socket_setport(socket, value) (socket->port = value)
@@ -173,6 +173,7 @@ void uecho_socket_datagram_packet_delete(uEchoDatagramPacket *dgmPkt);
 
 #define uecho_socket_datagram_packet_setdata(dgmPkt, value) uecho_string_setvalue(dgmPkt->data, value)
 #define uecho_socket_datagram_packet_getdata(dgmPkt) uecho_string_getvalue(dgmPkt->data)
+#define uecho_socket_datagram_packet_getlength(dgmPkt) uecho_string_length(dgmPkt->data)
 
 #define uecho_socket_datagram_packet_setlocaladdress(dgmPkt, addr) uecho_string_setvalue(dgmPkt->localAddress, addr)
 #define uecho_socket_datagram_packet_getlocaladdress(dgmPkt) uecho_string_getvalue(dgmPkt->localAddress)
@@ -190,16 +191,16 @@ void uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoData
 ****************************************/
 
 #if defined(CG_USE_OPENSSL)
-#define CG_NET_SOCKET_SSL 0x0100
-#define uecho_socket_ssl_new() uecho_socket_new(CG_NET_SOCKET_STREAM | CG_NET_SOCKET_SSL)
-#define uecho_socket_isssl(socket) ((socket->type & CG_NET_SOCKET_SSL) ? true : false)
+#define UECHO_NET_SOCKET_SSL 0x0100
+#define uecho_socket_ssl_new() uecho_socket_new(UECHO_NET_SOCKET_STREAM | UECHO_NET_SOCKET_SSL)
+#define uecho_socket_isssl(socket) ((socket->type & UECHO_NET_SOCKET_SSL) ? true : false)
 #endif
 
 /****************************************
 * Function (SocketList)
 ****************************************/
 
-#if defined(CG_NET_USE_SOCKET_LIST)
+#if defined(UECHO_NET_USE_SOCKET_LIST)
 
 #define uecho_socket_next(sock) (uEchoSocket *)uecho_list_next((uEchoList *)sock)
 
