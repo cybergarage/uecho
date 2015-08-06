@@ -10,6 +10,9 @@
 
 #include <uecho/core/server.h>
 
+void uecho_udp_server_msglistener(uEchoUdpServer *server, uEchoMessage *msg);
+void uecho_mcast_server_msglistener(uEchoMcastServer *server, uEchoMessage *msg);
+
 /****************************************
 * uecho_server_new
 ****************************************/
@@ -24,7 +27,12 @@ uEchoServer *uecho_server_new()
   return NULL;
 	
   server->udpServer = uecho_udp_server_new();
+  uecho_udp_server_setuserdata(server->udpServer, server);
+  uecho_udp_server_setmessagelistener(server->udpServer, uecho_udp_server_msglistener);
+  
   server->mcastServer = uecho_mcast_server_new();
+  uecho_mcast_server_setuserdata(server->mcastServer, server);
+  uecho_mcast_server_setmessagelistener(server->mcastServer, uecho_mcast_server_msglistener);
   
 	return server;
 }
@@ -82,4 +90,37 @@ bool uecho_server_isrunning(uEchoServer *server)
   
   return allServerSuccess;
   
+}
+
+/****************************************
+ * uecho_server_performlistener
+ ****************************************/
+
+bool uecho_server_performlistener(uEchoServer *server, uEchoMessage *msg) {
+  if (!server->msgListener)
+    return false;
+  server->msgListener(server, msg);
+  return true;
+}
+
+/****************************************
+ * uecho_udp_server_msglistener
+ ****************************************/
+
+void uecho_udp_server_msglistener(uEchoUdpServer *udpServer, uEchoMessage *msg) {
+  uEchoServer *server = (uEchoServer *)uecho_udp_server_getuserdata(udpServer);
+  if (!server)
+    return;
+  uecho_server_performlistener(server, msg);
+}
+
+/****************************************
+ * uecho_mcast_server_msglistener
+ ****************************************/
+
+void uecho_mcast_server_msglistener(uEchoMcastServer *mcastServer, uEchoMessage *msg) {
+  uEchoServer *server = (uEchoServer *)uecho_mcast_server_getuserdata(mcastServer);
+  if (!server)
+    return;
+  uecho_server_performlistener(server, msg);
 }

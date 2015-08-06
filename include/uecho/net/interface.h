@@ -29,15 +29,15 @@ extern "C" {
 * Define
 ****************************************/
 
-#define CG_NET_IPV4_ADDRSTRING_MAXSIZE ((3*4)+(1*3)+1)
-#define CG_NET_IPV6_ADDRSTRING_MAXSIZE (1+(8*4)+(1*7)+1+1)
+#define UECHO_NET_IPV4_ADDRSTRING_MAXSIZE ((3*4)+(1*3)+1)
+#define UECHO_NET_IPV6_ADDRSTRING_MAXSIZE (1+(8*4)+(1*7)+1+1)
 
-#define CG_NET_IPV4_LOOPBACK "127.0.0.1"
-#define CG_NET_IPV6_LOOPBACK "fixmelater"
-#define CG_NET_MACADDR_SIZE 6
+#define UECHO_NET_IPV4_LOOPBACK "127.0.0.1"
+#define UECHO_NET_IPV6_LOOPBACK "fixmelater"
+#define UECHO_NET_MACADDR_SIZE 6
 
 #if defined(BTRON) || defined(TENGINE)
-#define CG_NET_DEFAULT_IFNAME "Neta"
+#define UECHO_NET_DEFAULT_IFNAME "Neta"
 #endif
 
 /****************************************
@@ -51,7 +51,7 @@ typedef struct _uEchoNetworkInterface {
 	uEchoString *name;
 	uEchoString *ipaddr;
 	uEchoString *netmask;
-	byte macaddr[CG_NET_MACADDR_SIZE];
+	byte macaddr[UECHO_NET_MACADDR_SIZE];
 	int index;
 } uEchoNetworkInterface, uEchoNetworkInterfaceList;
 
@@ -74,8 +74,8 @@ void uecho_net_interface_setnetmask(uEchoNetworkInterface *netIf, char *ipaddr);
 char *uecho_net_interface_getnetmask(uEchoNetworkInterface *netIf);
 char *uecho_net_selectaddr(struct sockaddr *remoteaddr);
 
-#define uecho_net_interface_setmacaddress(netIf, value) memcpy(netIf->macaddr, value, CG_NET_MACADDR_SIZE)
-#define uecho_net_interface_getmacaddress(netIf, buf) memcpy(buf, netIf->macaddr, CG_NET_MACADDR_SIZE)
+#define uecho_net_interface_setmacaddress(netIf, value) memcpy(netIf->macaddr, value, UECHO_NET_MACADDR_SIZE)
+#define uecho_net_interface_getmacaddress(netIf, buf) memcpy(buf, netIf->macaddr, UECHO_NET_MACADDR_SIZE)
 
 #define uecho_net_interface_setindex(netIf, value) (netIf->index = value)
 #define uecho_net_interface_getindex(netIf, buf) (netIf->index)
