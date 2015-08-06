@@ -37,11 +37,7 @@ extern "C" {
 #define UECHO_NET_SOCKET_MAXHOST 32
 #define UECHO_NET_SOCKET_MAXSERV 32
 
-#if defined(BTRON) || defined(TENGINE)
-typedef W SOCKET;
-#elif defined(ITRON)
-typedef ER SOCKET;
-#elif !defined(WIN32) && !defined(__CYGWIN__)
+#if !defined(WIN32)
 typedef int SOCKET;
 #endif
 
@@ -52,18 +48,6 @@ typedef int SOCKET;
 #define UECHO_NET_SOCKET_MULTICAST_DEFAULT_TTL 4
 #define UECHO_NET_SOCKET_AUTO_IP_NET 0xa9fe0000
 #define UECHO_NET_SOCKET_AUTO_IP_MASK 0xffff0000 
-
-#if defined(ITRON)
-#define UECHO_NET_SOCKET_WINDOW_BUFSIZE 4096
-#endif
-
-/****************************************
-* Define (SocketList)
-****************************************/
-
-#if defined(ITRON)
-#define UECHO_NET_USE_SOCKET_LIST 1
-#endif
 
 /****************************************
 * Data Type
@@ -84,10 +68,6 @@ typedef struct _uEchoSocket {
 	int direction;
 	uEchoString *ipaddr;
 	int port;
-#if defined(ITRON)
-	UH *sendWinBuf;
-	UH *recvWinBuf;
-#endif
 #if defined(UECHO_USE_OPENSSL)
 	SSL_CTX* ctx;
 	SSL* ssl;
