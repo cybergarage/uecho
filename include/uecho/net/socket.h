@@ -14,7 +14,7 @@
 #include <uecho/typedef.h>
 #include <uecho/util/string.h>
 
-#if defined(CG_USE_OPENSSL)
+#if defined(UECHO_USE_OPENSSL)
 #include <openssl/ssl.h>
 #endif
 
@@ -45,7 +45,7 @@ typedef ER SOCKET;
 typedef int SOCKET;
 #endif
 
-#define CG_SOCKET_LF '\n'
+#define UECHO_SOCKET_LF '\n'
 
 #define UECHO_NET_SOCKET_DGRAM_RECV_BUFSIZE 512
 #define UECHO_NET_SOCKET_DGRAM_ANCILLARY_BUFSIZE 512
@@ -88,7 +88,7 @@ typedef struct _uEchoSocket {
 	UH *sendWinBuf;
 	UH *recvWinBuf;
 #endif
-#if defined(CG_USE_OPENSSL)
+#if defined(UECHO_USE_OPENSSL)
 	SSL_CTX* ctx;
 	SSL* ssl;
 #endif
@@ -190,7 +190,7 @@ void uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoData
 * Function (SSLSocket)
 ****************************************/
 
-#if defined(CG_USE_OPENSSL)
+#if defined(UECHO_USE_OPENSSL)
 #define UECHO_NET_SOCKET_SSL 0x0100
 #define uecho_socket_ssl_new() uecho_socket_new(UECHO_NET_SOCKET_STREAM | UECHO_NET_SOCKET_SSL)
 #define uecho_socket_isssl(socket) ((socket->type & UECHO_NET_SOCKET_SSL) ? true : false)
@@ -207,7 +207,7 @@ void uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoData
 uEchoSocketList *uecho_socketlist_new();
 void uecho_socketlist_delete(uEchoSocketList *sockList);
 
-#define uecho_socketlist_clear(sockList) uecho_list_clear((uEchoList *)sockList, (CG_LIST_DESTRUCTORFUNC)uecho_socket_delete)
+#define uecho_socketlist_clear(sockList) uecho_list_clear((uEchoList *)sockList, (UECHO_LIST_DESTRUCTORFUNC)uecho_socket_delete)
 #define uecho_socketlist_size(sockList) uecho_list_size((uEchoList *)sockList)
 #define uecho_socketlist_gets(sockList) (uEchoSocket *)uecho_list_next((uEchoList *)sockList)
 #define uecho_socketlist_add(sockList, sock) uecho_list_add((uEchoList *)sockList, (uEchoList *)sock)
