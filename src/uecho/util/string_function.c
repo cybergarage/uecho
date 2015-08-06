@@ -12,20 +12,10 @@
 #include "config.h"
 #endif
 
-#include <uecho/util/string.h>
-
 #include <ctype.h>
-
-#if defined (WINCE)
-//Theo Beisch - needed for _i64toa_s support - 
-// strangely just with the VS2005 ce environment 
-// evc4 is only happy without :-(
-#include <altcecrt.h>
-#endif
-
-#if !defined(NORTiAPI)
 #include <string.h>
-#endif
+
+#include <uecho/util/string.h>
 
 /****************************************
 * uecho_strdup

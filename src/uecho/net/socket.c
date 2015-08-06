@@ -225,27 +225,11 @@ bool uecho_socket_close(uEchoSocket *sock)
 #endif
 
 #if defined(WIN32)
-	#if !defined(WINCE)
 	WSAAsyncSelect(sock->id, NULL, 0, FD_CLOSE);
-	#endif
 	shutdown(sock->id, SD_BOTH );
-
-#if defined WINCE
-	{
-		int nRet = 1;
-		char achDiscard[256];
-		while (nRet && (nRet != SOCKET_ERROR)){
-			if (nRet>0) {
-				achDiscard[nRet]=(char)0;
-			}
-			nRet = recv(sock->id,achDiscard,128,0);
-		}
-	}
-#endif
-
   closesocket(sock->id);
+  
   sock->id = INVALID_SOCKET;
-
 #else
 	int flag = fcntl(sock->id, F_GETFL, 0);
 	if (0 <= flag)
