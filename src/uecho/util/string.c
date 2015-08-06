@@ -14,7 +14,7 @@
 
 /* Define amount of extra characters allocated on each realloc, with this we
    can avoid many small subsequent reallocs, which takes lots of time */
-#define CG_STRING_REALLOC_EXTRA		16
+#define UECHO_STRING_REALLOC_EXTRA		16
 
 /****************************************
 * uecho_string_new
@@ -81,7 +81,7 @@ void uecho_string_setvalue(uEchoString *str, const char *value)
 
 void uecho_string_setintvalue(uEchoString *str, int value)
 {
-	char buf[CG_STRING_INTEGER_BUFLEN];
+	char buf[UECHO_STRING_INTEGER_BUFLEN];
 
 	uecho_string_setvalue(str, uecho_int2str(value, buf, sizeof(buf)));
 }
@@ -92,7 +92,7 @@ void uecho_string_setintvalue(uEchoString *str, int value)
 
 void uecho_string_setlongvalue(uEchoString *str, long value)
 {
-	char buf[CG_STRING_LONG_BUFLEN]
+	char buf[UECHO_STRING_LONG_BUFLEN]
     ;
 	uecho_string_setvalue(str, uecho_long2str(value, buf, sizeof(buf)));
 }
@@ -203,7 +203,7 @@ char *uecho_string_naddvalue(uEchoString *str, const char *value, size_t valueLe
 	if (newMemSize > str->memSize || str->value == NULL)
 	{
 		/* realloc also some extra in order to avoid multiple reallocs */
-		newMemSize += CG_STRING_REALLOC_EXTRA;
+		newMemSize += UECHO_STRING_REALLOC_EXTRA;
 		newValue = realloc(str->value, newMemSize * sizeof(char));
 
 		if (newValue == NULL)

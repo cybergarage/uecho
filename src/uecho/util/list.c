@@ -208,7 +208,7 @@ uEchoList *list)
 * uecho_list_clear
 ****************************************/
 
-void uecho_list_clear(uEchoList *headList, CG_LIST_DESTRUCTORFUNC destructorFunc)
+void uecho_list_clear(uEchoList *headList, UECHO_LIST_DESTRUCTORFUNC destructorFunc)
 {
 	uEchoList *list;
 

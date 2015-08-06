@@ -172,7 +172,7 @@ uEchoThread *uecho_thread_new()
 #if defined (WINCE)
 	thread->hThread = NULL;
 	//WINCE trial result: default sleep value to keep system load down
-	thread->sleep = CG_THREAD_MIN_SLEEP;
+	thread->sleep = UECHO_THREAD_MIN_SLEEP;
 	thread->isRunning = false;
 	thread->deletePending = false;
 #if defined DEBUG
@@ -356,7 +356,7 @@ bool uecho_thread_stop(uEchoThread *thread)
 		// so we can only mark the uecho_thread (context) for later deletion and 
 		// do the delete(thread) cleanup on return of the Win32ThreadProc.
 		// Accordingly we simulate the OK exit here as a "look ahead" (what a hack ;-) )
-		for (i=0; i<CG_THREAD_SHUTDOWN_ATTEMPTS; ++i){
+		for (i=0; i<UECHO_THREAD_SHUTDOWN_ATTEMPTS; ++i){
 #if defined (DEBUG)
 			printf("# thread stop mainloop %X %s %d. try\n",thread,thread->friendlyName,i+1);
 #endif
@@ -369,7 +369,7 @@ bool uecho_thread_stop(uEchoThread *thread)
 					return true;
 				} 
 			}
-			uecho_wait(CG_THREAD_MIN_SLEEP);
+			uecho_wait(UECHO_THREAD_MIN_SLEEP);
 		}
 		// ok - if everything up to here failed
 #if defined DEBUG
@@ -404,7 +404,7 @@ bool uecho_thread_stop(uEchoThread *thread)
 		pthread_join(thread->pThread, NULL);
 		uecho_log_debug_s("Thread %p joined.\n", thread); */
 		/* Now we wait one second for thread termination instead of using pthread_join */
-		uecho_sleep(CG_THREAD_MIN_SLEEP);
+		uecho_sleep(UECHO_THREAD_MIN_SLEEP);
 		/* MODIFICATION END Fabrice Fontaine Orange 24/04/2007 */
 #endif
 	}

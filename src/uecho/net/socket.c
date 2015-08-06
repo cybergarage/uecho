@@ -21,12 +21,12 @@
 #if (defined(WIN32) || defined(__CYGWIN__)) && !defined (ITRON)
 #include <winsock2.h>
 #include <ws2tcpip.h>
-#if defined(CG_USE_OPENSSL)
+#if defined(UECHO_USE_OPENSSL)
 #pragma comment(lib, "libeay32MD.lib")
 #pragma comment(lib, "ssleay32MD.lib")
 #endif
 #else
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 #include <typedef.h>
 #include <net/sock_com.h>
 #include <btron/bsocket.h>
@@ -36,7 +36,7 @@
 	#if defined(NORTiAPI)
 	#include <nonet.h>
 	#endif
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 #include <tk/tkernel.h>
 #include <btron/kasago.h>
 #include <sys/svc/ifkasago.h>
@@ -63,7 +63,7 @@ static int socketCnt = 0;
 static uEchoSocketList *socketList;
 #endif
 
-#if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#if defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 ttUserInterface kaInterfaceHandle;
 #endif
 
@@ -81,11 +81,11 @@ bool uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struc
 
 #define uecho_socket_getrawtype(socket) (((socket->type & UECHO_NET_SOCKET_STREAM) == UECHO_NET_SOCKET_STREAM) ? SOCK_STREAM : SOCK_DGRAM)
 
-#if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#if defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 #define uecho_socket_getprototype(socket) ((socket->type == UECHO_NET_SOCKET_STREAM) ? IPPROTO_TCP : IPPROTO_UDP)
 #endif
 
-#if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#if defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 bool uecho_socket_setmulticastinterface(uEchoSocket *sock, char *ifaddr);
 #endif
 
@@ -141,7 +141,7 @@ void uecho_socket_startup()
 #endif // WINCE
 #elif defined(ITRON) && defined(NORTiAPI)
 		tcp_ini();
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 		kaInterfaceHandle = ka_tfAddInterface(UECHO_NET_DEFAULT_IFNAME);
 #endif
 
@@ -154,7 +154,7 @@ void uecho_socket_startup()
 		socketList = uecho_socketlist_new();
 #endif	
 
-#if defined(CG_USE_OPENSSL)
+#if defined(UECHO_USE_OPENSSL)
 		SSL_library_init(); 
 #endif
 	}
@@ -217,7 +217,7 @@ uEchoSocket *uecho_socket_new(int type)
 		sock->recvWinBuf = NULL;
 #endif
 
-#if defined(CG_USE_OPENSSL)
+#if defined(UECHO_USE_OPENSSL)
 		sock->ctx = NULL;
 		sock->ssl = NULL;
 #endif
@@ -287,7 +287,7 @@ bool uecho_socket_close(uEchoSocket *sock)
 	if (uecho_socket_isbound(sock) == false)
 		return true;
 
-#if defined(CG_USE_OPENSSL)
+#if defined(UECHO_USE_OPENSSL)
 	if (uecho_socket_isssl(sock) == true) {
 		if (sock->ctx) {
 			SSL_shutdown(sock->ssl); 
@@ -328,10 +328,10 @@ bool uecho_socket_close(uEchoSocket *sock)
 	sock->id = -1;
 	#endif
 #else
-	#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+	#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	so_shutdown(sock->id, 2);
 	so_close(sock->id);
-	#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+	#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	ka_tfClose(sock->id);
 	#elif defined(ITRON)
 	if (uecho_socket_issocketstream(sock) == true) {
@@ -367,9 +367,9 @@ bool uecho_socket_close(uEchoSocket *sock)
 
 bool uecho_socket_listen(uEchoSocket *sock)
 {
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	ERR ret = so_listen(sock->id, 10);
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	ERR ret = ka_listen(sock->id, 10);
 #elif defined(ITRON)
 	/**** Not Supported ****/
@@ -402,7 +402,7 @@ bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, bo
 	if (bindPort <= 0 /* || bindAddr == NULL*/)
 		return false;
 
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	if (uecho_socket_tosockaddrin(bindAddr, bindPort, &sockaddr, bindFlag) == false)
 		return false;
    	uecho_socket_setid(sock, so_socket(PF_INET, uecho_socket_getrawtype(sock), 0));
@@ -419,7 +419,7 @@ bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, bo
 		uecho_socket_close(sock);
 		return false;
 	}
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	if (uecho_socket_tosockaddrin(bindAddr, bindPort, &sockaddr, bindFlag) == false)
 		return false;
 	uecho_socket_setid(sock, ka_socket( PF_INET, uecho_socket_getrawtype(sock), uecho_socket_getprototype(sock)));
@@ -506,11 +506,11 @@ bool uecho_socket_accept(uEchoSocket *serverSock, uEchoSocket *clientSock)
 	socklen_t socklen;
 	char localAddr[UECHO_NET_SOCKET_MAXHOST];
 	char localPort[UECHO_NET_SOCKET_MAXSERV];
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	struct sockaddr_in sockaddr;
 	W nLength = sizeof(struct sockaddr_in);
 	uecho_socket_setid(clientSock, so_accept(serverSock->id, (SOCKADDR *)&sockaddr, &nLength));
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	struct sockaddr_in sockaddr;
 	int nLength = sizeof(struct sockaddr_in);
 	uecho_socket_setid(clientSock, ka_accept(serverSock->id, (struct sockaddr *)&sockaddr, &nLength));
@@ -563,7 +563,7 @@ uecho_log_debug_s("clientSock->id = %d\n", uecho_socket_getport(clientSock));
 
 bool uecho_socket_connect(uEchoSocket *sock, const char *addr, int port)
 {
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	ERR ret;
 	struct sockaddr_in sockaddr;
 	if (uecho_socket_tosockaddrin(addr, port, &sockaddr, true) == false)
@@ -571,7 +571,7 @@ bool uecho_socket_connect(uEchoSocket *sock, const char *addr, int port)
 	if (uecho_socket_isbound(sock) == false)
 	   	uecho_socket_setid(sock, so_socket(PF_INET, uecho_socket_getrawtype(sock), 0));
 	ret = so_connect(sock->id, (SOCKADDR *)&sockaddr, sizeof(struct sockaddr_in));
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	ERR ret;
 	struct sockaddr_in sockaddr;
 	if (uecho_socket_tosockaddrin(addr, port, &sockaddr, true) == false)
@@ -615,7 +615,7 @@ bool uecho_socket_connect(uEchoSocket *sock, const char *addr, int port)
 
 	uecho_socket_setdirection(sock, UECHO_NET_SOCKET_CLIENT);
 
-#if defined(CG_USE_OPENSSL)
+#if defined(UECHO_USE_OPENSSL)
 	if (uecho_socket_isssl(sock) == true) {
 		sock->ctx = SSL_CTX_new( SSLv23_client_method());
 		sock->ssl = SSL_new(sock->ctx);
@@ -641,13 +641,13 @@ ssize_t uecho_socket_read(uEchoSocket *sock, char *buffer, size_t bufferLen)
 {
 	ssize_t recvLen;
 
-#if defined(CG_USE_OPENSSL)
+#if defined(UECHO_USE_OPENSSL)
 	if (uecho_socket_isssl(sock) == false) {
 #endif
 
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	recvLen = so_recv(sock->id, buffer, bufferLen, 0);
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	recvLen = ka_recv(sock->id, buffer, bufferLen, 0);
 #elif defined(ITRON)
 	recvLen = tcp_rcv_dat(sock->id, buffer, bufferLen, TMO_FEVR);
@@ -655,7 +655,7 @@ ssize_t uecho_socket_read(uEchoSocket *sock, char *buffer, size_t bufferLen)
 	recvLen = recv(sock->id, buffer, bufferLen, 0);
 #endif
 
-#if defined(CG_USE_OPENSSL)
+#if defined(UECHO_USE_OPENSSL)
 	}
 	else {
 		recvLen = SSL_read(sock->ssl, buffer, bufferLen);
@@ -689,13 +689,13 @@ size_t uecho_socket_write(uEchoSocket *sock, const char *cmd, size_t cmdLen)
 		return 0;
 
 	do {
-#if defined(CG_USE_OPENSSL)
+#if defined(UECHO_USE_OPENSSL)
 		if (uecho_socket_isssl(sock) == false) {
 #endif
 
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 		nSent = so_send(sock->id, (B*)(cmd + cmdPos), cmdLen, 0);
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 		nSent = ka_send(sock->id, (B*)(cmd + cmdPos), cmdLen, 0);
 #elif defined(ITRON)
 		nSent = tcp_snd_dat(sock->id, cmd + cmdPos, cmdLen, TMO_FEVR);
@@ -703,7 +703,7 @@ size_t uecho_socket_write(uEchoSocket *sock, const char *cmd, size_t cmdLen)
 		nSent = send(sock->id, cmd + cmdPos, cmdLen, 0);
 #endif
 			
-#if defined(CG_USE_OPENSSL)
+#if defined(UECHO_USE_OPENSSL)
 		}
 		else {
 			nSent = SSL_write(sock->ssl, cmd + cmdPos, cmdLen);
@@ -757,16 +757,16 @@ ssize_t uecho_socket_readline(uEchoSocket *sock, char *buffer, size_t bufferLen)
 		if (readLen <= 0)
 			return -1;
 		readCnt++;
-		if (buffer[readCnt-1] == CG_SOCKET_LF)
+		if (buffer[readCnt-1] == UECHO_SOCKET_LF)
 			break;
 	}
 	buffer[readCnt] = '\0';
-	if (buffer[readCnt-1] != CG_SOCKET_LF) {
+	if (buffer[readCnt-1] != UECHO_SOCKET_LF) {
 		do {
 			readLen = uecho_socket_read(sock, &c, sizeof(char));
 			if (readLen <= 0)
 				break;
-		} while (c != CG_SOCKET_LF);
+		} while (c != UECHO_SOCKET_LF);
 	}
 
 	return readCnt;	
@@ -819,14 +819,14 @@ size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const 
 
 	isBoundFlag = uecho_socket_isbound(sock);
 	sentLen = -1;
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	if (uecho_socket_tosockaddrin(addr, port, &sockaddr, true) == false)
 		return -1;
 	if (isBoundFlag == false)
 	   	uecho_socket_setid(sock, so_socket(PF_INET, uecho_socket_getrawtype(sock), 0));
 	if (0 <= sock->id)
 		sentLen = so_sendto(sock->id, (B*)data, dataLen, 0, (SOCKADDR*)&sockaddr, sizeof(struct sockaddr_in));
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	if (uecho_socket_tosockaddrin(addr, port, &sockaddr, true) == false)
 		return -1;
 	if (isBoundFlag == false) {
@@ -882,11 +882,11 @@ ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt)
 	char remotePort[UECHO_NET_SOCKET_MAXSERV];
 	char *localAddr;
 
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	struct sockaddr_in from;
 	W fromLen = sizeof(from);
 	recvLen = so_recvfrom(sock->id, recvBuf, sizeof(recvBuf)-1, 0, (struct sockaddr *)&from, &fromLen);
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	struct sockaddr_in from;
 	int fromLen = sizeof(from);
 	recvLen = ka_recvfrom(sock->id, recvBuf, sizeof(recvBuf)-1, 0, (struct sockaddr *)&from, &fromLen);
@@ -909,11 +909,11 @@ ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt)
 	uecho_socket_datagram_packet_setremoteaddress(dgmPkt, "");
 	uecho_socket_datagram_packet_setremoteport(dgmPkt, 0);
 
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	uecho_socket_datagram_packet_setlocaladdress(dgmPkt, uecho_socket_getaddress(sock));
 	uecho_socket_datagram_packet_setremoteaddress(dgmPkt, inet_ntoa(from.sin_addr));
 	uecho_socket_datagram_packet_setremoteport(dgmPkt, ntohl(from.sin_port));
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	uecho_socket_datagram_packet_setlocaladdress(dgmPkt, uecho_socket_getaddress(sock));
 	ka_tfInetToAscii((unsigned long)from.sin_addr.s_addr, remoteAddr);
 	uecho_socket_datagram_packet_setremoteaddress(dgmPkt, remoteAddr);
@@ -946,9 +946,9 @@ ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt)
 bool uecho_socket_setreuseaddress(uEchoSocket *sock, bool flag)
 {
 	int sockOptRet;
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	B optval
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	int optval;
 #elif defined (WIN32)
 	bool optval;
@@ -956,10 +956,10 @@ bool uecho_socket_setreuseaddress(uEchoSocket *sock, bool flag)
 	int optval;
 #endif
 
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	optval = (flag == true) ? 1 : 0;
 	sockOptRet = so_setsockopt(sock->id, SOL_SOCKET, SO_REUSEADDR, (B *)&optval, sizeof(optval));
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	optval = (flag == true) ? 1 : 0;
 	sockOptRet = ka_setsockopt(sock->id, SOL_SOCKET, SO_REUSEADDR, (const char *)&optval, sizeof(optval));
 #elif defined (ITRON)
@@ -991,9 +991,9 @@ bool uecho_socket_setmulticastttl(uEchoSocket *sock, int ttl)
 	int ttl_;
 	unsigned int len=0;
 
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	sockOptRet = so_setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, (B *)&ttl, sizeof(ttl));
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	sockOptRet = ka_setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, (const char *)&ttl, sizeof(ttl));
 #elif defined (ITRON)
 	/**** Not Implemented for NORTi ***/
@@ -1018,9 +1018,9 @@ bool uecho_socket_setmulticastttl(uEchoSocket *sock, int ttl)
 bool uecho_socket_settimeout(uEchoSocket *sock, int sec)
 {
 	int sockOptRet;
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 	sockOptRet = -1; /* TODO: Implement this */
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	sockOptRet = -1; /* TODO: Implement this */
 #elif defined (ITRON)
 	/**** Not Implemented for NORTi ***/
@@ -1050,7 +1050,7 @@ bool uecho_socket_settimeout(uEchoSocket *sock, int sec)
 * uecho_socket_joingroup
 ****************************************/
 
-#if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#if defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 
 bool uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char *ifAddr)
 {
@@ -1074,7 +1074,7 @@ bool uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char
 	return joinSuccess;
 }
 
-#elif defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#elif defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 
 bool uecho_socket_joingroup(uEchoSocket *sock, char *mcastAddr, char *ifAddr)
 {
@@ -1177,7 +1177,7 @@ bool uecho_socket_tosockaddrin(const char *addr, int port, struct sockaddr_in *s
 
 	memset(sockaddr, 0, sizeof(struct sockaddr_in));
 
-#if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#if defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	sockaddr->sin_family = AF_INET;
 	sockaddr->sin_addr.s_addr = ka_htonl(INADDR_ANY);
 	sockaddr->sin_port = ka_htons((unsigned short)port);
@@ -1188,7 +1188,7 @@ bool uecho_socket_tosockaddrin(const char *addr, int port, struct sockaddr_in *s
 #endif
 
 	if (isBindAddr == true) {
-#if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
+#if defined(BTRON) || (defined(TENGINE) && !defined(UECHO_TENGINE_NET_KASAGO))
 		sockaddr->sin_addr.s_addr = inet_addr(addr);
 		if (sockaddr->sin_addr.s_addr == -1 /*INADDR_NONE*/) {
 			struct hostent hent;
@@ -1197,7 +1197,7 @@ bool uecho_socket_tosockaddrin(const char *addr, int port, struct sockaddr_in *s
 				return false;
 			memcpy(&(sockaddr->sin_addr), hent.h_addr, hent.h_length);
 		}
-#elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#elif defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 		sockaddr->sin_addr.s_addr = ka_inet_addr(addr);
 #else
 		sockaddr->sin_addr.s_addr = inet_addr(addr);
@@ -1222,7 +1222,7 @@ bool uecho_socket_tosockaddrin(const char *addr, int port, struct sockaddr_in *s
 
 bool uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struct addrinfo **addrInfo, bool isBindAddr)
 {
-#if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#if defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	struct addrinfo hints;
 	char portStr[32];
 #else
@@ -1233,7 +1233,7 @@ bool uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struc
 
 	uecho_socket_startup();
 
-#if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#if defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 	memset(&hints, 0, sizeof(struct addrinfo));
 	hints.ai_socktype = sockType;
 	hints.ai_flags= 0; /*AI_NUMERICHOST | AI_PASSIVE*/;
@@ -1270,7 +1270,7 @@ bool uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struc
 * uecho_socket_setmulticastinterface
 ****************************************/
 
-#if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
+#if defined(TENGINE) && defined(UECHO_TENGINE_NET_KASAGO)
 
 bool uecho_socket_setmulticastinterface(uEchoSocket *sock, char *ifaddr)
 {

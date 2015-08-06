@@ -25,7 +25,7 @@ extern "C" {
  * Prototype for individual list node destructor functions
  *
  */
-typedef void (*CG_LIST_DESTRUCTORFUNC)(void *);
+typedef void (*UECHO_LIST_DESTRUCTORFUNC)(void *);
 
 /****************************************
  * Data Type
@@ -137,12 +137,12 @@ uEchoList *uecho_list_next_circular(uEchoList *list);
 uEchoList *uecho_list_next(uEchoList *list);
 
 /**
- * Clear the list and delete all of its contents with \ref CG_LIST_DESTRUCTORFUNC
+ * Clear the list and delete all of its contents with \ref UECHO_LIST_DESTRUCTORFUNC
  *
  * \param headList List header
  * \param destructorFunc Function pointer that clears the contents of individual nodes
  */
-void uecho_list_clear(uEchoList *headList, CG_LIST_DESTRUCTORFUNC destructorFunc);
+void uecho_list_clear(uEchoList *headList, UECHO_LIST_DESTRUCTORFUNC destructorFunc);
 
 /**
  * Get the first actual item from a list for iteration

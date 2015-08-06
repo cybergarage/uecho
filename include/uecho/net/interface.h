@@ -93,7 +93,7 @@ int uecho_net_interface_cmp(uEchoNetworkInterface *netIfA,
 uEchoNetworkInterfaceList *uecho_net_interfacelist_new();
 void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList *netIfList);
 
-#define uecho_net_interfacelist_clear(netIfList) uecho_list_clear((uEchoList *)netIfList, (CG_LIST_DESTRUCTORFUNC)uecho_net_interface_delete)
+#define uecho_net_interfacelist_clear(netIfList) uecho_list_clear((uEchoList *)netIfList, (UECHO_LIST_DESTRUCTORFUNC)uecho_net_interface_delete)
 #define uecho_net_interfacelist_size(netIfList) uecho_list_size((uEchoList *)netIfList)
 #define uecho_net_interfacelist_gets(netIfList) (uEchoNetworkInterface *)uecho_list_next((uEchoList *)netIfList)
 #define uecho_net_interfacelist_add(netIfList,netIf) uecho_list_add((uEchoList *)netIfList, (uEchoList *)netIf)
