@@ -10,9 +10,7 @@
 
 #include <uecho/util/mutex.h>
 
-#if !defined(WINCE)
 #include <errno.h>
-#endif
 
 /****************************************
 * uecho_mutex_new

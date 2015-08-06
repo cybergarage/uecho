@@ -15,10 +15,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-#if defined(WINCE) && !defined(WIN32)
-#define WIN32 1
-#endif
-
 #if defined(WIN32)
 #include <winsock2.h>
 #include <ws2tcpip.h>

@@ -12,10 +12,7 @@
 
 #include <limits.h>
 
-#if defined(WIN32) && !defined (WINCE)
-#include <windows.h>
-#include <time.h>
-#elif defined(WIN32) && defined (WINCE)
+#if defined(WIN32)
 #include <windows.h>
 #include <time.h>
 #else
