@@ -19,13 +19,9 @@
 #define WIN32 1
 #endif
 
-#if (defined(WIN32) || defined(__CYGWIN__)) && !defined (ITRON)
+#if defined(WIN32)
 #include <winsock2.h>
 #include <ws2tcpip.h>
-#elif defined(BTRON) || defined(TENGINE)
-#include <typedef.h>
-#elif defined(ITRON)
-#include <kernel.h>
 #endif
 
 #if defined(__APPLE_CPP__) || defined(__APPLE_CC__)

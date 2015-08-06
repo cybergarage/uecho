@@ -36,10 +36,6 @@ extern "C" {
 #define UECHO_NET_IPV6_LOOPBACK "fixmelater"
 #define UECHO_NET_MACADDR_SIZE 6
 
-#if defined(BTRON) || defined(TENGINE)
-#define UECHO_NET_DEFAULT_IFNAME "Neta"
-#endif
-
 /****************************************
 * Data Type
 ****************************************/
@@ -80,11 +76,7 @@ char *uecho_net_selectaddr(struct sockaddr *remoteaddr);
 #define uecho_net_interface_setindex(netIf, value) (netIf->index = value)
 #define uecho_net_interface_getindex(netIf, buf) (netIf->index)
 
-/**
- * Compares two interfaces based on IP-address.
- */
-int uecho_net_interface_cmp(uEchoNetworkInterface *netIfA, 
-			 uEchoNetworkInterface *netIfB);
+int uecho_net_interface_cmp(uEchoNetworkInterface *netIfA, uEchoNetworkInterface *netIfB);
 
 /****************************************
 * Function (NetworkInterfaceList)
@@ -100,17 +92,6 @@ void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList *netIfList);
 
 uEchoNetworkInterface *uecho_net_interfacelist_get(uEchoNetworkInterfaceList *netIfList, char *name);
 
-/**
- * Gets changes in the two given (aka old and new) interface lists. Changes
- * are resolved based on IP-addresses.
- * 
- * @param netIfListOld List of the old interfaces. It is changed!
- * @param netIfListNew List of the new interfaces. It is changed!
- * @param netIfListAdded List to store interfaces, which were in netIfListNew,
- *			 but were not in netIfListOld. May be NULL.
- * @param netIfListRemoved List to store interfaces, which were in 
- *			   netIfListOld, but were not in netIfListNew.
- */
 void uecho_net_interfacelist_getchanges(uEchoNetworkInterfaceList *netIfListOld,
 				     uEchoNetworkInterfaceList *netIfListNew,
 				     uEchoNetworkInterfaceList *netIfListAdded,
@@ -119,10 +100,6 @@ void uecho_net_interfacelist_getchanges(uEchoNetworkInterfaceList *netIfListOld,
 /****************************************
 * Function
 ****************************************/
-
-#if defined(ITRON)
-void uecho_net_setinterface(const char *ifaddr);
-#endif
 
 int uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList);
 
