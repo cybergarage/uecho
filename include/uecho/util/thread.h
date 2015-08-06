@@ -15,16 +15,8 @@
 #include <uecho/util/list.h>
 
 #include <uecho/util/time.h>
-#if defined(WIN32) && !defined(ITRON)
+#if defined(WIN32)
 #include <windows.h>
-#elif defined(BTRON)
-#include <btron/proctask.h>
-#elif defined(ITRON)
-#include <kernel.h>
-#elif defined(TENGINE) && !defined(PROCESS_BASE)
-#include <tk/tkernel.h>
-#elif defined(TENGINE) && defined(PROCESS_BASE)
-#include <btron/proctask.h>
 #else
 #include <pthread.h>
 #include <signal.h>
@@ -77,22 +69,11 @@ typedef struct _uEchoThread {
 	char friendlyName[32];
 #endif
 
-#if defined(WIN32) && !defined(ITRON)
+#if defined(WIN32)
 	HANDLE hThread;
 	DWORD threadID;
-#elif defined(BTRON)
-	W taskID;
-#elif defined(ITRON)
-	ER_ID taskID;
-#elif defined(TENGINE) && !defined(PROCESS_BASE)
-	ID taskID;
-#elif defined(TENGINE) && defined(PROCESS_BASE)
- 	WERR taskID;
 #else
-
-	/** The POSIX thread handle */
 	pthread_t pThread;
-
 #endif
 
 	/** Thread's worker function */
