@@ -105,7 +105,7 @@ typedef struct _uEchoThread {
 /**
  * Prototype for the threads' worker functions 
  */
-typedef void (*CG_THREAD_FUNC)(uEchoThread *);
+typedef void (*uEchoThreadFunc)(uEchoThread *);
 
 /****************************************
 * Function
@@ -163,7 +163,7 @@ bool uecho_thread_isrunnable(uEchoThread *thread);
  * \param thread Thread struct
  * \param actionFunc Function pointer to set as the worker function
  */
-void uecho_thread_setaction(uEchoThread *thread, CG_THREAD_FUNC actionFunc);
+void uecho_thread_setaction(uEchoThread *thread, uEchoThreadFunc actionFunc);
 
 /**
  * Set the user data pointer

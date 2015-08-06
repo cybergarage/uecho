@@ -336,11 +336,6 @@ bool uecho_thread_start(uEchoThread *thread)
 
 bool uecho_thread_stop(uEchoThread *thread)
 {
-	return uecho_thread_stop_with_cond(thread, NULL);
-}
-
-bool uecho_thread_stop_with_cond(uEchoThread *thread, CgCond *cond)
-{
 #if defined (WINCE)
 	int i, j;
 	bool result;
@@ -349,9 +344,6 @@ bool uecho_thread_stop_with_cond(uEchoThread *thread, CgCond *cond)
 
 	if (thread->runnableFlag == true) {
 		thread->runnableFlag = false;
-		if (cond != NULL) {
-			uecho_cond_signal(cond);
-		}
 #if defined(WIN32) && !defined (WINCE) && !defined(ITRON)
 		TerminateThread(thread->hThread, 0);
 		WaitForSingleObject(thread->hThread, INFINITE);
@@ -480,7 +472,7 @@ bool uecho_thread_isrunnable(uEchoThread *thread)
 * uecho_thread_setaction
 ****************************************/
 
-void uecho_thread_setaction(uEchoThread *thread, CG_THREAD_FUNC func)
+void uecho_thread_setaction(uEchoThread *thread, uEchoThreadFunc func)
 {
 	thread->action = func;
 }
