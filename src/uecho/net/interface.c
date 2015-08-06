@@ -32,7 +32,7 @@ uEchoNetworkInterface *uecho_net_interface_new()
 		netIf->ipaddr = uecho_string_new();
 		netIf->netmask = uecho_string_new();
 		uecho_net_interface_setindex(netIf, 0);
-		memset(netIf->macaddr, 0, (size_t)CG_NET_MACADDR_SIZE);
+		memset(netIf->macaddr, 0, (size_t)UECHO_NET_MACADDR_SIZE);
 	}
 
 	return netIf;

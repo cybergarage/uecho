@@ -10,7 +10,7 @@
 
 #include <uecho/net/socket.h>
 
-#if defined(CG_NET_USE_SOCKET_LIST)
+#if defined(UECHO_NET_USE_SOCKET_LIST)
 
 /****************************************
 * uecho_socketlist_new

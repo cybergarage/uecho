@@ -59,7 +59,7 @@
 
 static int socketCnt = 0;
 
-#if defined(CG_NET_USE_SOCKET_LIST)
+#if defined(UECHO_NET_USE_SOCKET_LIST)
 static uEchoSocketList *socketList;
 #endif
 
@@ -79,17 +79,17 @@ bool uecho_socket_tosockaddrin(const char *addr, int port, struct sockaddr_in *s
 bool uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struct addrinfo **addrInfo, bool isBindAddr);
 #endif
 
-#define uecho_socket_getrawtype(socket) (((socket->type & CG_NET_SOCKET_STREAM) == CG_NET_SOCKET_STREAM) ? SOCK_STREAM : SOCK_DGRAM)
+#define uecho_socket_getrawtype(socket) (((socket->type & UECHO_NET_SOCKET_STREAM) == UECHO_NET_SOCKET_STREAM) ? SOCK_STREAM : SOCK_DGRAM)
 
 #if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
-#define uecho_socket_getprototype(socket) ((socket->type == CG_NET_SOCKET_STREAM) ? IPPROTO_TCP : IPPROTO_UDP)
+#define uecho_socket_getprototype(socket) ((socket->type == UECHO_NET_SOCKET_STREAM) ? IPPROTO_TCP : IPPROTO_UDP)
 #endif
 
 #if defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
 bool uecho_socket_setmulticastinterface(uEchoSocket *sock, char *ifaddr);
 #endif
 
-#if defined(CG_NET_USE_SOCKET_LIST)
+#if defined(UECHO_NET_USE_SOCKET_LIST)
 static int uecho_socket_getavailableid(int type);
 static int uecho_socket_getavailableport();
 #endif
@@ -142,7 +142,7 @@ void uecho_socket_startup()
 #elif defined(ITRON) && defined(NORTiAPI)
 		tcp_ini();
 #elif defined(TENGINE) && defined(CG_TENGINE_NET_KASAGO)
-		kaInterfaceHandle = ka_tfAddInterface(CG_NET_DEFAULT_IFNAME);
+		kaInterfaceHandle = ka_tfAddInterface(UECHO_NET_DEFAULT_IFNAME);
 #endif
 
 #if (!defined(WIN32) || defined(__CYGWIN__)) && !defined(BTRON) && !defined(ITRON) && !defined(TENGINE)
@@ -150,7 +150,7 @@ void uecho_socket_startup()
 		signal(SIGPIPE,SIG_IGN);
 #endif
 
-#if defined(CG_NET_USE_SOCKET_LIST)
+#if defined(UECHO_NET_USE_SOCKET_LIST)
 		socketList = uecho_socketlist_new();
 #endif	
 
@@ -178,7 +178,7 @@ void uecho_socket_cleanup()
 		signal(SIGPIPE,SIG_DFL);
 #endif
 
-#if defined(CG_NET_USE_SOCKET_LIST)
+#if defined(UECHO_NET_USE_SOCKET_LIST)
 		uecho_socketlist_delete(socketList);
 #endif
 	}
@@ -205,7 +205,7 @@ uEchoSocket *uecho_socket_new(int type)
 #endif
 
 		uecho_socket_settype(sock, type);
-		uecho_socket_setdirection(sock, CG_NET_SOCKET_NONE);
+		uecho_socket_setdirection(sock, UECHO_NET_SOCKET_NONE);
 
 		sock->ipaddr = uecho_string_new();
 
@@ -269,7 +269,7 @@ void uecho_socket_setid(uEchoSocket *socket, SOCKET value)
 	socket->id=value;
 
 #if defined(WIN32) || defined(HAVE_IP_PKTINFO)
-	if ( CG_NET_SOCKET_DGRAM == uecho_socket_gettype(socket) ) 
+	if ( UECHO_NET_SOCKET_DGRAM == uecho_socket_gettype(socket) ) 
 		setsockopt(socket->id, IPPROTO_IP, IP_PKTINFO,  &on, sizeof(on));
 #endif
 
@@ -393,7 +393,7 @@ bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, bo
 #elif defined(ITRON)
 	T_UDP_CCEP udpccep = { 0, { IPV4_ADDRANY, UDP_PORTANY }, (FP)uecho_socket_udp_callback };
 	T_TCP_CREP tcpcrep = { 0, { IPV4_ADDRANY, 0 } };
-	T_TCP_CCEP tcpccep = { 0, sock->sendWinBuf, CG_NET_SOCKET_WINDOW_BUFSIZE, sock->recvWinBuf, CG_NET_SOCKET_WINDOW_BUFSIZE, (FP)uecho_socket_tcp_callback };
+	T_TCP_CCEP tcpccep = { 0, sock->sendWinBuf, UECHO_NET_SOCKET_WINDOW_BUFSIZE, sock->recvWinBuf, UECHO_NET_SOCKET_WINDOW_BUFSIZE, (FP)uecho_socket_tcp_callback };
 #else
 	struct addrinfo *addrInfo;
 	int ret;
@@ -489,7 +489,7 @@ bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, bo
 		return false;
 #endif
 
-	uecho_socket_setdirection(sock, CG_NET_SOCKET_SERVER);
+	uecho_socket_setdirection(sock, UECHO_NET_SOCKET_SERVER);
 	uecho_socket_setaddress(sock, bindAddr);
 	uecho_socket_setport(sock, bindPort);
 
@@ -504,8 +504,8 @@ bool uecho_socket_accept(uEchoSocket *serverSock, uEchoSocket *clientSock)
 {
 	struct sockaddr_in sockaddr;
 	socklen_t socklen;
-	char localAddr[CG_NET_SOCKET_MAXHOST];
-	char localPort[CG_NET_SOCKET_MAXSERV];
+	char localAddr[UECHO_NET_SOCKET_MAXHOST];
+	char localPort[UECHO_NET_SOCKET_MAXSERV];
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
 	struct sockaddr_in sockaddr;
 	W nLength = sizeof(struct sockaddr_in);
@@ -580,7 +580,7 @@ bool uecho_socket_connect(uEchoSocket *sock, const char *addr, int port)
 	   	uecho_socket_setid(sock, ka_socket(PF_INET, uecho_socket_getrawtype(sock), uecho_socket_getprototype(sock)));
 	ret = ka_connect(sock->id, (struct sockaddr *)&sockaddr, sizeof(struct sockaddr_in));
 #elif defined(ITRON)
-	T_TCP_CCEP tcpccep = { 0, sock->sendWinBuf, CG_NET_SOCKET_WINDOW_BUFSIZE, sock->recvWinBuf, CG_NET_SOCKET_WINDOW_BUFSIZE, (FP)uecho_socket_tcp_callback };
+	T_TCP_CCEP tcpccep = { 0, sock->sendWinBuf, UECHO_NET_SOCKET_WINDOW_BUFSIZE, sock->recvWinBuf, UECHO_NET_SOCKET_WINDOW_BUFSIZE, (FP)uecho_socket_tcp_callback };
 	T_IPV4EP localAddr;
 	T_IPV4EP dstAddr;
 	ER ret;
@@ -613,7 +613,7 @@ bool uecho_socket_connect(uEchoSocket *sock, const char *addr, int port)
 	freeaddrinfo(toaddrInfo);
 #endif
 
-	uecho_socket_setdirection(sock, CG_NET_SOCKET_CLIENT);
+	uecho_socket_setdirection(sock, UECHO_NET_SOCKET_CLIENT);
 
 #if defined(CG_USE_OPENSSL)
 	if (uecho_socket_isssl(sock) == true) {
@@ -675,8 +675,8 @@ ssize_t uecho_socket_read(uEchoSocket *sock, char *buffer, size_t bufferLen)
 * uecho_socket_write
 ****************************************/
 
-#define CG_NET_SOCKET_SEND_RETRY_CNT 10
-#define CG_NET_SOCKET_SEND_RETRY_WAIT_MSEC 20
+#define UECHO_NET_SOCKET_SEND_RETRY_CNT 10
+#define UECHO_NET_SOCKET_SEND_RETRY_WAIT_MSEC 20
 
 size_t uecho_socket_write(uEchoSocket *sock, const char *cmd, size_t cmdLen)
 {
@@ -714,7 +714,7 @@ size_t uecho_socket_write(uEchoSocket *sock, const char *cmd, size_t cmdLen)
 		if (nSent <= 0)
 		{
 			retryCnt++;
-			if (CG_NET_SOCKET_SEND_RETRY_CNT < retryCnt)
+			if (UECHO_NET_SOCKET_SEND_RETRY_CNT < retryCnt)
 			{
 				/* Must reset this because otherwise return
 				   value is interpreted as something else than
@@ -723,7 +723,7 @@ size_t uecho_socket_write(uEchoSocket *sock, const char *cmd, size_t cmdLen)
 				break;
 			}
 
-			uecho_wait(CG_NET_SOCKET_SEND_RETRY_WAIT_MSEC);
+			uecho_wait(UECHO_NET_SOCKET_SEND_RETRY_WAIT_MSEC);
 		}
 		else
 		{
@@ -853,7 +853,7 @@ size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const 
 		uecho_socket_setid(sock, socket(addrInfo->ai_family, addrInfo->ai_socktype, 0));
 	
 	/* Setting multicast time to live in any case to default */
-	uecho_socket_setmulticastttl(sock, CG_NET_SOCKET_MULTICAST_DEFAULT_TTL);
+	uecho_socket_setmulticastttl(sock, UECHO_NET_SOCKET_MULTICAST_DEFAULT_TTL);
 	
 	if (0 <= sock->id)
 		sentLen = sendto(sock->id, data, dataLen, 0, addrInfo->ai_addr, addrInfo->ai_addrlen);
@@ -877,9 +877,9 @@ uecho_log_debug_s("sentLen : %d\n", sentLen);
 ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt)
 {
 	ssize_t recvLen = 0;
-	char recvBuf[CG_NET_SOCKET_DGRAM_RECV_BUFSIZE+1];
-	char remoteAddr[CG_NET_SOCKET_MAXHOST];
-	char remotePort[CG_NET_SOCKET_MAXSERV];
+	char recvBuf[UECHO_NET_SOCKET_DGRAM_RECV_BUFSIZE+1];
+	char remoteAddr[UECHO_NET_SOCKET_MAXHOST];
+	char remotePort[UECHO_NET_SOCKET_MAXSERV];
 	char *localAddr;
 
 #if defined(BTRON) || (defined(TENGINE) && !defined(CG_TENGINE_NET_KASAGO))
@@ -1312,7 +1312,7 @@ bool uecho_socket_setmulticastinterface(uEchoSocket *sock, char *ifaddr)
 * uecho_socket_getavailableid
 ****************************************/
 
-#if defined(CG_NET_USE_SOCKET_LIST)
+#if defined(UECHO_NET_USE_SOCKET_LIST)
 
 static int uecho_socket_getavailableid(int type)
 {
@@ -1343,9 +1343,9 @@ static int uecho_socket_getavailableid(int type)
 * uecho_socket_getavailableid
 ****************************************/
 
-#if defined(CG_NET_USE_SOCKET_LIST)
+#if defined(UECHO_NET_USE_SOCKET_LIST)
 
-#define CG_NET_SOCKET_MIN_SOCKET_PORT 50000
+#define UECHO_NET_SOCKET_MIN_SOCKET_PORT 50000
 
 static int uecho_socket_getavailableport()
 {
@@ -1353,7 +1353,7 @@ static int uecho_socket_getavailableport()
 	int port;
 	bool isPortUsed;
 
-	port = CG_NET_SOCKET_MIN_SOCKET_PORT - 1;
+	port = UECHO_NET_SOCKET_MIN_SOCKET_PORT - 1;
 	do {
 		port++;
 		isPortUsed = false;
@@ -1379,9 +1379,9 @@ static int uecho_socket_getavailableport()
 bool uecho_socket_initwindowbuffer(uEchoSocket *sock)
 {
 	if (sock->sendWinBuf == NULL)
-		sock->sendWinBuf = (char *)malloc(sizeof(UH) * CG_NET_SOCKET_WINDOW_BUFSIZE);
+		sock->sendWinBuf = (char *)malloc(sizeof(UH) * UECHO_NET_SOCKET_WINDOW_BUFSIZE);
 	if (sock->sendWinBuf == NULL)
-		sock->recvWinBuf = (char *)malloc(sizeof(UH) * CG_NET_SOCKET_WINDOW_BUFSIZE);
+		sock->recvWinBuf = (char *)malloc(sizeof(UH) * UECHO_NET_SOCKET_WINDOW_BUFSIZE);
   
 	if ( ( NULL == sock->sendWinBuf ) || ( NULL == sock->sendWinBuf ) )
 	{

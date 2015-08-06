@@ -29,6 +29,17 @@ uEchoUdpServer *uecho_udp_server_new()
 }
 
 /****************************************
+ * uecho_udp_server_performlistener
+ ****************************************/
+
+bool uecho_udp_server_performlistener(uEchoUdpServer *server, uEchoMessage *msg) {
+  if (!server->msgListener)
+    return false;
+  server->msgListener(server, msg);
+  return true;
+}
+
+/****************************************
 * uecho_udp_server_delete
 ****************************************/
 

@@ -41,6 +41,17 @@ void uecho_mcast_server_delete(uEchoMcastServer *server)
 }
 
 /****************************************
+ * uecho_mcast_server_performlistener
+ ****************************************/
+
+bool uecho_mcast_server_performlistener(uEchoMcastServer *server, uEchoMessage *msg) {
+  if (!server->msgListener)
+    return false;
+  server->msgListener(server, msg);
+  return true;
+}
+
+/****************************************
  * uecho_mcast_server_action
  ****************************************/
 
