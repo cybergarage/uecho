@@ -14,26 +14,30 @@
 
 BOOST_AUTO_TEST_CASE(ControllerRun)
 {
-  uEchoController *ctrl = uecho_controller_new();
-  uecho_controller_delete(ctrl);
+  uEchoController *cp = uecho_controller_new();
+  
+  BOOST_CHECK(uecho_controller_start(cp));
+  BOOST_CHECK(uecho_controller_stop(cp));
+
+  uecho_controller_delete(cp);
 }
 
 
 BOOST_AUTO_TEST_CASE(ControllerTID)
 {
-  uEchoController *ctrl = uecho_controller_new();
+  uEchoController *cp = uecho_controller_new();
   
-  uEchoTID firstTid = uecho_controller_getnexttid(ctrl);
+  uEchoTID firstTid = uecho_controller_getnexttid(cp);
   BOOST_CHECK(uEchoTidMin <= firstTid);
   BOOST_CHECK(firstTid <= uEchoTidMax);
   
   uEchoTID prevTid = firstTid;
   for (int n=0; n<100; n++) {
-    uEchoTID tid = uecho_controller_getnexttid(ctrl);
+    uEchoTID tid = uecho_controller_getnexttid(cp);
     BOOST_CHECK(uEchoTidMin <= tid);
     BOOST_CHECK(prevTid < tid);
     BOOST_CHECK(tid <= uEchoTidMax);
   }
   
-  uecho_controller_delete(ctrl);
+  uecho_controller_delete(cp);
 }

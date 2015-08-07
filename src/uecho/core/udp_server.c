@@ -20,10 +20,10 @@ uEchoUdpServer *uecho_udp_server_new()
 
 	server = (uEchoUdpServer *)malloc(sizeof(uEchoUdpServer));
 
-    if (!server)
-        return NULL;
+  if (!server)
+    return NULL;
 	
-    server->socket = uecho_socket_dgram_new();
+  server->socket = uecho_socket_dgram_new();
     
 	return server;
 }
