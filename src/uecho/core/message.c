@@ -35,8 +35,8 @@ uEchoMessage *uecho_message_new()
   uecho_message_setesv(msg, 0);
 
   msg->EP = NULL;
-  uecho_message_setopc(msg, 0);
-    
+  msg->OPC = 0;
+  
   return msg;
 }
 
