@@ -16,7 +16,6 @@
 #include <uecho/util/time.h>
 #include <string.h>
 
-/* Private function prototypes */
 static void uecho_sig_handler(int sign);
 
 /****************************************
