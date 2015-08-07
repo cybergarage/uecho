@@ -89,7 +89,6 @@ bool uecho_server_isrunning(uEchoServer *server)
   allServerSuccess &= uecho_mcast_server_isrunning(server->mcastServer);
   
   return allServerSuccess;
-  
 }
 
 /****************************************
