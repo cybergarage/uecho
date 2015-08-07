@@ -53,17 +53,14 @@ typedef int SOCKET;
 * Data Type
 ****************************************/
 
-#if defined(UECHO_NET_USE_SOCKET_LIST)
 #include <uecho/util/list.h>
-#endif
 
 typedef struct _uEchoSocket {
-#if defined(UECHO_NET_USE_SOCKET_LIST)
 	bool headFlag;
 	struct _uEchoSocket *prev;
 	struct _uEchoSocket *next;
-#endif
-	SOCKET id;
+
+  SOCKET id;
 	int type;
 	int direction;
 	uEchoString *ipaddr;
@@ -180,8 +177,6 @@ void uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoData
 * Function (SocketList)
 ****************************************/
 
-#if defined(UECHO_NET_USE_SOCKET_LIST)
-
 #define uecho_socket_next(sock) (uEchoSocket *)uecho_list_next((uEchoList *)sock)
 
 uEchoSocketList *uecho_socketlist_new();
@@ -191,8 +186,6 @@ void uecho_socketlist_delete(uEchoSocketList *sockList);
 #define uecho_socketlist_size(sockList) uecho_list_size((uEchoList *)sockList)
 #define uecho_socketlist_gets(sockList) (uEchoSocket *)uecho_list_next((uEchoList *)sockList)
 #define uecho_socketlist_add(sockList, sock) uecho_list_add((uEchoList *)sockList, (uEchoList *)sock)
-
-#endif
 
 #ifdef  __cplusplus
 }

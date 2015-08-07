@@ -10,8 +10,6 @@
 
 #include <uecho/net/socket.h>
 
-#if defined(UECHO_NET_USE_SOCKET_LIST)
-
 /****************************************
 * uecho_socketlist_new
 ****************************************/
@@ -35,5 +33,3 @@ void uecho_socketlist_delete(uEchoSocketList *socketList)
 	uecho_socketlist_clear(socketList);
 	free(socketList);
 }
-
-#endif
