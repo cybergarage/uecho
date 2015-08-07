@@ -76,8 +76,6 @@ char *uecho_net_selectaddr(struct sockaddr *remoteaddr);
 #define uecho_net_interface_setindex(netIf, value) (netIf->index = value)
 #define uecho_net_interface_getindex(netIf, buf) (netIf->index)
 
-int uecho_net_interface_cmp(uEchoNetworkInterface *netIfA, uEchoNetworkInterface *netIfB);
-
 /****************************************
 * Function (NetworkInterfaceList)
 ****************************************/
