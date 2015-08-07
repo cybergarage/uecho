@@ -44,6 +44,7 @@ typedef struct _uEchoNetworkInterface {
 	bool headFlag;
 	struct _uEchoNetworkInterface *prev;
 	struct _uEchoNetworkInterface *next;
+  
 	uEchoString *name;
 	uEchoString *ipaddr;
 	uEchoString *netmask;
