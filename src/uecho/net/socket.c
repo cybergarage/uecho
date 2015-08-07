@@ -47,11 +47,6 @@ bool uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struc
 
 #define uecho_socket_getrawtype(socket) (((socket->type & UECHO_NET_SOCKET_STREAM) == UECHO_NET_SOCKET_STREAM) ? SOCK_STREAM : SOCK_DGRAM)
 
-#if defined(UECHO_NET_USE_SOCKET_LIST)
-static int uecho_socket_getavailableid(int type);
-static int uecho_socket_getavailableport();
-#endif
-
 /****************************************
 *
 * Socket
@@ -830,72 +825,10 @@ bool uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struc
 }
 
 /****************************************
-* uecho_socket_getavailableid
-****************************************/
-
-#if defined(UECHO_NET_USE_SOCKET_LIST)
-
-static int uecho_socket_getavailableid(int type)
-{
-	uEchoSocket *sock;
-	int id;
-	bool isIDUsed;
-
-  id = 0;
-	do {
-		id++;
-		isIDUsed = false;
-		for (sock = uecho_socketlist_gets(socketList); sock != NULL; sock = uecho_socket_next(sock)) {
-			if (uecho_socket_gettype(sock) != type)
-				continue;
-			if (uecho_socket_getid(sock) == id) {
-				isIDUsed = true;
-				break;
-			}
-		}
-	} while (isIDUsed != false);
-
-	return id;
-}
-
-#endif
-
-/****************************************
-* uecho_socket_getavailableid
-****************************************/
-
-#if defined(UECHO_NET_USE_SOCKET_LIST)
-
-#define UECHO_NET_SOCKET_MIN_SOCKET_PORT 50000
-
-static int uecho_socket_getavailableport()
-{
-	uEchoSocket *sock;
-	int port;
-	bool isPortUsed;
-
-	port = UECHO_NET_SOCKET_MIN_SOCKET_PORT - 1;
-	do {
-		port++;
-		isPortUsed = false;
-		for (sock = uecho_socketlist_gets(socketList); sock != NULL; sock = uecho_socket_next(sock)) {
-			if (uecho_socket_getport(sock) == port) {
-				isPortUsed = true;
-				break;
-			}
-		}
-	} while (isPortUsed != false);
-
-	return port;
-}
-
-#endif
-
-#if defined (WIN32)
-
-/****************************************
 * uecho_socket_getlasterror (WIN32)
 ****************************************/
+
+#if defined (WIN32)
 
 int uecho_socket_getlasterror()
 {
