@@ -157,6 +157,9 @@ uEchoSocket *uecho_socket_new(int type)
 
 bool uecho_socket_delete(uEchoSocket *sock)
 {
+  if (!sock)
+    return true;
+  
 	uecho_socket_close(sock);
 	uecho_string_delete(sock->ipaddr);
 	free(sock);
@@ -172,6 +175,9 @@ bool uecho_socket_delete(uEchoSocket *sock)
 
 bool uecho_socket_isbound(uEchoSocket *sock)
 {
+  if (!sock)
+    return false;
+  
 #if defined(WIN32)
 	return (sock->id != INVALID_SOCKET) ? true: false;
 #else
@@ -183,21 +189,24 @@ bool uecho_socket_isbound(uEchoSocket *sock)
 * uecho_socket_setid
 ****************************************/
 
-void uecho_socket_setid(uEchoSocket *socket, SOCKET value)
+void uecho_socket_setid(uEchoSocket *sock, SOCKET value)
 {
 #if defined(WIN32) || defined(HAVE_IP_PKTINFO) || (!defined(WIN32) && defined(HAVE_SO_NOSIGPIPE))
 	int on=1;
 #endif
 
-	socket->id=value;
+  if (!sock)
+    return;
+  
+	sock->id=value;
 
 #if defined(WIN32) || defined(HAVE_IP_PKTINFO)
 	if ( UECHO_NET_SOCKET_DGRAM == uecho_socket_gettype(socket) ) 
-		setsockopt(socket->id, IPPROTO_IP, IP_PKTINFO,  &on, sizeof(on));
+		setsockopt(sock->id, IPPROTO_IP, IP_PKTINFO,  &on, sizeof(on));
 #endif
 
 #if !defined(WIN32) && defined(HAVE_SO_NOSIGPIPE)
-	setsockopt(socket->id, SOL_SOCKET, SO_NOSIGPIPE,  &on, sizeof(on));
+	setsockopt(sock->id, SOL_SOCKET, SO_NOSIGPIPE,  &on, sizeof(on));
 #endif
 }
 
@@ -207,6 +216,9 @@ void uecho_socket_setid(uEchoSocket *socket, SOCKET value)
 
 bool uecho_socket_close(uEchoSocket *sock)
 {
+  if (!sock)
+    return true;
+  
 	if (uecho_socket_isbound(sock) == false)
 		return true;
 
@@ -252,6 +264,9 @@ bool uecho_socket_close(uEchoSocket *sock)
 
 bool uecho_socket_listen(uEchoSocket *sock)
 {
+  if (!sock)
+    return false;
+  
 	int ret = listen(sock->id, SOMAXCONN);
 	return (ret == 0) ? true: false;
 }
@@ -265,6 +280,9 @@ bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, bo
 	struct addrinfo *addrInfo;
 	int ret;
 
+  if (!sock)
+    return false;
+  
 	if (bindPort <= 0 /* || bindAddr == NULL*/)
 		return false;
 
@@ -340,11 +358,18 @@ bool uecho_socket_connect(uEchoSocket *sock, const char *addr, int port)
 {
 	struct addrinfo *toaddrInfo;
 	int ret;
-	if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), addr, port, &toaddrInfo, true) == false)
+
+  if (!sock)
+    return false;
+  
+  if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), addr, port, &toaddrInfo, true) == false)
 		return false;
-	if (uecho_socket_isbound(sock) == false)
+	
+  if (uecho_socket_isbound(sock) == false) {
 		uecho_socket_setid(sock, socket(toaddrInfo->ai_family, toaddrInfo->ai_socktype, 0));
-	ret = connect(sock->id, toaddrInfo->ai_addr, toaddrInfo->ai_addrlen);
+  }
+  
+  ret = connect(sock->id, toaddrInfo->ai_addr, toaddrInfo->ai_addrlen);
 	freeaddrinfo(toaddrInfo);
 
 	uecho_socket_setdirection(sock, UECHO_NET_SOCKET_CLIENT);
@@ -375,6 +400,9 @@ ssize_t uecho_socket_read(uEchoSocket *sock, char *buffer, size_t bufferLen)
 {
 	ssize_t recvLen;
 
+  if (!sock)
+    return -1;
+  
 #if defined(UECHO_USE_OPENSSL)
 	if (uecho_socket_isssl(sock) == false) {
 #endif
@@ -405,6 +433,9 @@ size_t uecho_socket_write(uEchoSocket *sock, const char *cmd, size_t cmdLen)
 	size_t cmdPos = 0;
 	int retryCnt = 0;
 
+  if (!sock)
+    return 0;
+  
 	if (cmdLen <= 0)
 		return 0;
 
@@ -454,6 +485,9 @@ ssize_t uecho_socket_readline(uEchoSocket *sock, char *buffer, size_t bufferLen)
 	ssize_t readLen;
 	char c;
 
+  if (!sock)
+    return -1;
+  
 	readCnt = 0;
 	while (readCnt < (bufferLen-1)) {
 		readLen = uecho_socket_read(sock, &buffer[readCnt], sizeof(char));
@@ -485,6 +519,9 @@ size_t uecho_socket_skip(uEchoSocket *sock, size_t skipLen)
 	ssize_t readLen;
 	char c;
 
+  if (!sock)
+    return 0;
+  
 	readCnt = 0;
 	while (readCnt < skipLen) {
 		readLen = uecho_socket_read(sock, &c, sizeof(char));
@@ -506,10 +543,16 @@ size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const 
 	ssize_t sentLen;
 	bool isBoundFlag;
 
+  if (!sock)
+    return 0;
+  
 	if (data == NULL)
 		return 0;
-	if (dataLen <= 0)
+  
+  if (dataLen <= 0) {
 		dataLen = uecho_strlen(data);
+  }
+  
 	if (dataLen <= 0)
 		return 0;
 
@@ -545,9 +588,13 @@ ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt)
 	char remoteAddr[UECHO_NET_SOCKET_MAXHOST];
 	char remotePort[UECHO_NET_SOCKET_MAXSERV];
 	char *localAddr;
-
-	struct sockaddr_storage from;
-	socklen_t fromLen = sizeof(from);
+  struct sockaddr_storage from;
+  socklen_t fromLen;
+  
+  if (!sock)
+    return -1;
+  
+  fromLen = sizeof(from);
 	recvLen = recvfrom(sock->id, recvBuf, sizeof(recvBuf)-1, 0, (struct sockaddr *)&from, &fromLen);
 
 	if (recvLen <= 0)
@@ -585,6 +632,9 @@ bool uecho_socket_setreuseaddress(uEchoSocket *sock, bool flag)
 	int optval;
 #endif
 
+  if (!sock)
+    return false;
+  
 #if defined (WIN32)
 	optval = (flag == true) ? 1 : 0;
 	sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_REUSEADDR, (const char *)&optval, sizeof(optval));
@@ -610,6 +660,9 @@ bool uecho_socket_setmulticastttl(uEchoSocket *sock, int ttl)
 	int sockOptRet;
 	int ttl_;
 	unsigned int len=0;
+
+  if (!sock)
+    return false;
 
 #if defined (WIN32)
 	sockOptRet = setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, (const char *)&ttl, sizeof(ttl));
@@ -637,6 +690,9 @@ bool uecho_socket_settimeout(uEchoSocket *sock, int sec)
 	timeout.tv_sec = sec;
 	timeout.tv_usec = 0;
 
+  if (!sock)
+    return false;
+  
 	sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_RCVTIMEO, (const char *)&timeout, sizeof(timeout));
 	if (sockOptRet == 0)
 		sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_SNDTIMEO, (const char *)&timeout, sizeof(timeout));
@@ -645,6 +701,9 @@ bool uecho_socket_settimeout(uEchoSocket *sock, int sec)
 	timeout.tv_sec = (clock_t)sec;
 	timeout.tv_usec = 0;
 
+  if (!sock)
+    return false;
+  
 	sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_RCVTIMEO, (const char *)&timeout, sizeof(timeout));
 	if (sockOptRet == 0)
 		sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_SNDTIMEO, (const char *)&timeout, sizeof(timeout));
@@ -674,6 +733,9 @@ bool uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char
 	bool joinSuccess;
 	int sockOptRetCode;
 
+  if (!sock)
+    return false;
+  
 	memset(&hints, 0, sizeof(hints));
 	hints.ai_flags= AI_NUMERICHOST | AI_PASSIVE;
 
@@ -842,11 +904,14 @@ static int uecho_socket_getavailableport()
 #endif
 
 #if defined (WIN32)
+
 /****************************************
 * uecho_socket_getlasterror (WIN32)
 ****************************************/
+
 int uecho_socket_getlasterror()
 {
 	return WSAGetLastError();
 };
+
 #endif
