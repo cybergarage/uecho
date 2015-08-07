@@ -38,10 +38,6 @@
 
 static int socketCnt = 0;
 
-#if defined(UECHO_NET_USE_SOCKET_LIST)
-static uEchoSocketList *socketList;
-#endif
-
 /****************************************
 * prototype
 ****************************************/
@@ -81,10 +77,6 @@ void uecho_socket_startup()
 		signal(SIGPIPE,SIG_IGN);
 #endif
 
-#if defined(UECHO_NET_USE_SOCKET_LIST)
-		socketList = uecho_socketlist_new();
-#endif	
-
 #if defined(UECHO_USE_OPENSSL)
 		SSL_library_init(); 
 #endif
@@ -107,10 +99,6 @@ void uecho_socket_cleanup()
 #if !defined(WIN32)
 		// Thanks for Brent Hills (10/26/04)
 		signal(SIGPIPE,SIG_DFL);
-#endif
-
-#if defined(UECHO_NET_USE_SOCKET_LIST)
-		uecho_socketlist_delete(socketList);
 #endif
 	}
 }
