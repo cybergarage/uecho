@@ -14,17 +14,18 @@
  * uecho_controller_new
  ****************************************/
 
-uEchoControlPoint *uecho_controller_new()
+uEchoController *uecho_controller_new()
 {
-	uEchoControlPoint *cp;
+	uEchoController *cp;
 
-  cp = (uEchoControlPoint *)malloc(sizeof(uEchoControlPoint));
+  cp = (uEchoController *)malloc(sizeof(uEchoController));
 
   if (!cp)
     return NULL;
 
   cp->mutex = uecho_mutex_new();
-
+  cp->server = uecho_server_new();
+  
   uecho_controller_setlasttid(cp, 0);
   
 	return cp;
@@ -34,39 +35,50 @@ uEchoControlPoint *uecho_controller_new()
  * uecho_object_delete
  ****************************************/
 
-void uecho_controller_delete(uEchoControlPoint *cp)
+void uecho_controller_delete(uEchoController *cp)
 {
 	uecho_controller_stop(cp);
 	
 	uecho_mutex_delete(cp->mutex);
+  uecho_server_delete(cp->server);
 
-    free(cp);
+  free(cp);
 }
 
 /****************************************
  * uecho_controller_start
  ****************************************/
 
-bool uecho_controller_start(uEchoControlPoint *cp)
+bool uecho_controller_start(uEchoController *cp)
 {
-	return true;
+  bool allActionsSucceeded = true;
+  
+  allActionsSucceeded &= uecho_server_start(cp->server);
+  
+  return allActionsSucceeded;
 }
 
 /****************************************
  * uecho_controller_stop
  ****************************************/
 
-bool uecho_controller_stop(uEchoControlPoint *cp)
+bool uecho_controller_stop(uEchoController *cp)
 {
-	return true;
+  bool allActionsSucceeded = true;
+  
+  allActionsSucceeded &= uecho_server_stop(cp->server);
+  
+  return allActionsSucceeded;
 }
 
 /****************************************
  * uecho_controller_isrunning
  ****************************************/
 
-bool uecho_controller_isrunning(uEchoControlPoint *cp)
+bool uecho_controller_isrunning(uEchoController *cp)
 {
+  if (!uecho_server_isrunning(cp->server))
+    return false;
 	return true;
 }
 
@@ -74,7 +86,7 @@ bool uecho_controller_isrunning(uEchoControlPoint *cp)
  * uecho_controller_getnexttid
  ****************************************/
 
-uEchoTID uecho_controller_getnexttid(uEchoControlPoint *cp) {
+uEchoTID uecho_controller_getnexttid(uEchoController *cp) {
   if (uEchoTidMax <= cp->lastTID) {
     cp->lastTID = 1;
   }
@@ -88,7 +100,7 @@ uEchoTID uecho_controller_getnexttid(uEchoControlPoint *cp) {
  * uecho_controller_searchall
  ****************************************/
 
-bool uecho_controller_searchall(uEchoControlPoint *cp) {
+bool uecho_controller_searchall(uEchoController *cp) {
     byte nodeProfileObj[3] = {0x0E, 0xF0, 0x01};
     return true;
 }
@@ -97,6 +109,6 @@ bool uecho_controller_searchall(uEchoControlPoint *cp) {
  * uecho_controller_searchobject
  ****************************************/
 
-bool uecho_controller_searchobject(uEchoControlPoint *cp) {
+bool uecho_controller_searchobject(uEchoController *cp) {
     return true;
 }

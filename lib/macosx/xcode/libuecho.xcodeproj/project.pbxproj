@@ -32,6 +32,9 @@
 		21757F511B6A0D9400281E6F /* udp_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 21757F4F1B6A0D9400281E6F /* udp_server.c */; };
 		21757F531B6A0DC300281E6F /* server.h in Headers */ = {isa = PBXBuildFile; fileRef = 21757F521B6A0DC300281E6F /* server.h */; };
 		21757F551B6A0E3200281E6F /* server.c in Sources */ = {isa = PBXBuildFile; fileRef = 21757F541B6A0E3200281E6F /* server.c */; };
+		21851C581B74724D00289276 /* net_function.c in Sources */ = {isa = PBXBuildFile; fileRef = 21851C571B74724D00289276 /* net_function.c */; };
+		21851C5A1B74738400289276 /* interface_function.c in Sources */ = {isa = PBXBuildFile; fileRef = 21851C591B74738400289276 /* interface_function.c */; };
+		21851C5C1B74804400289276 /* datagram_packet.c in Sources */ = {isa = PBXBuildFile; fileRef = 21851C5B1B74804400289276 /* datagram_packet.c */; };
 		2185D9C31B68C3B500A5B0C3 /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 2185D9C21B68C3B500A5B0C3 /* const.h */; };
 		2185D9CD1B68D5BC00A5B0C3 /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = 2185D9CC1B68D5BC00A5B0C3 /* object.h */; };
 		2185D9CF1B68D5C600A5B0C3 /* object.c in Sources */ = {isa = PBXBuildFile; fileRef = 2185D9CE1B68D5C600A5B0C3 /* object.c */; };
@@ -72,6 +75,9 @@
 		21757F4F1B6A0D9400281E6F /* udp_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udp_server.c; path = core/udp_server.c; sourceTree = "<group>"; };
 		21757F521B6A0DC300281E6F /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = server.h; path = core/server.h; sourceTree = "<group>"; };
 		21757F541B6A0E3200281E6F /* server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = server.c; path = core/server.c; sourceTree = "<group>"; };
+		21851C571B74724D00289276 /* net_function.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = net_function.c; sourceTree = "<group>"; };
+		21851C591B74738400289276 /* interface_function.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interface_function.c; sourceTree = "<group>"; };
+		21851C5B1B74804400289276 /* datagram_packet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = datagram_packet.c; sourceTree = "<group>"; };
 		2185D9C21B68C3B500A5B0C3 /* const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = const.h; sourceTree = "<group>"; };
 		2185D9CC1B68D5BC00A5B0C3 /* object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
 		2185D9CE1B68D5C600A5B0C3 /* object.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = object.c; sourceTree = "<group>"; };
@@ -185,6 +191,9 @@
 		21678EF71A8D512000AE79AA /* net */ = {
 			isa = PBXGroup;
 			children = (
+				21851C5B1B74804400289276 /* datagram_packet.c */,
+				21851C591B74738400289276 /* interface_function.c */,
+				21851C571B74724D00289276 /* net_function.c */,
 				21678EF81A8D512000AE79AA /* interface.c */,
 				21678EF91A8D512000AE79AA /* interface_list.c */,
 				21678EFA1A8D512000AE79AA /* socket.c */,
@@ -322,8 +331,10 @@
 				21678F091A8D512000AE79AA /* mutex.c in Sources */,
 				2185D9CF1B68D5C600A5B0C3 /* object.c in Sources */,
 				21EEC8591B7204D80012AB57 /* thread.c in Sources */,
+				21851C5C1B74804400289276 /* datagram_packet.c in Sources */,
 				214186CB1B6B47F20086EEC0 /* messages.c in Sources */,
 				21678F071A8D512000AE79AA /* socket_list.c in Sources */,
+				21851C5A1B74738400289276 /* interface_function.c in Sources */,
 				21EEC8581B7204D80012AB57 /* thread_list.c in Sources */,
 				21EFF1A51B4A9A76002B5E57 /* node.c in Sources */,
 				21678F0B1A8D512000AE79AA /* string_function.c in Sources */,
@@ -331,6 +342,7 @@
 				21757F511B6A0D9400281E6F /* udp_server.c in Sources */,
 				2185D9D31B68DF1E00A5B0C3 /* property.c in Sources */,
 				21678F061A8D512000AE79AA /* socket.c in Sources */,
+				21851C581B74724D00289276 /* net_function.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

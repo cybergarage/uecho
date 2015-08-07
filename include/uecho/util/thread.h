@@ -67,6 +67,7 @@ bool uecho_thread_start(uEchoThread *thread);
 bool uecho_thread_stop(uEchoThread *thread);
 bool uecho_thread_restart(uEchoThread *thread);
 bool uecho_thread_isrunnable(uEchoThread *thread);
+bool uecho_thread_isrunning(uEchoThread *thread);
   
 void uecho_thread_setaction(uEchoThread *thread, uEchoThreadFunc actionFunc);
 void uecho_thread_setuserdata(uEchoThread *thread, void *data);

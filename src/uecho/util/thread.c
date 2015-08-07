@@ -177,6 +177,15 @@ bool uecho_thread_isrunnable(uEchoThread *thread)
 }
 
 /****************************************
+ * uecho_thread_isrunning
+ ****************************************/
+
+bool uecho_thread_isrunning(uEchoThread *thread)
+{
+  return thread->runnableFlag;
+}
+
+/****************************************
 * uecho_thread_setaction
 ****************************************/
 
