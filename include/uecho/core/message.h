@@ -47,6 +47,10 @@ typedef enum {
   uEchoEsvWriteReadResponse = 0x7E,
 } uEchoEsvType;
 
+enum {
+  uEchoSelfNodeInstanceListS = 0xD6,
+};
+
 /****************************************
  * Data Type
  ****************************************/
