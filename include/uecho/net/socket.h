@@ -56,10 +56,6 @@ typedef int SOCKET;
 #include <uecho/util/list.h>
 
 typedef struct _uEchoSocket {
-	bool headFlag;
-	struct _uEchoSocket *prev;
-	struct _uEchoSocket *next;
-
   SOCKET id;
 	int type;
 	int direction;
@@ -69,7 +65,7 @@ typedef struct _uEchoSocket {
 	SSL_CTX* ctx;
 	SSL* ssl;
 #endif
-} uEchoSocket, uEchoSocketList;
+} uEchoSocket;
 
 typedef struct _uEchoDatagramPacket {
 	uEchoString *data;
@@ -170,20 +166,6 @@ void uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoData
 #define uecho_socket_ssl_new() uecho_socket_new(UECHO_NET_SOCKET_STREAM | UECHO_NET_SOCKET_SSL)
 #define uecho_socket_isssl(socket) ((socket->type & UECHO_NET_SOCKET_SSL) ? true : false)
 #endif
-
-/****************************************
-* Function (SocketList)
-****************************************/
-
-#define uecho_socket_next(sock) (uEchoSocket *)uecho_list_next((uEchoList *)sock)
-
-uEchoSocketList *uecho_socketlist_new();
-void uecho_socketlist_delete(uEchoSocketList *sockList);
-
-#define uecho_socketlist_clear(sockList) uecho_list_clear((uEchoList *)sockList, (UECHO_LIST_DESTRUCTORFUNC)uecho_socket_delete)
-#define uecho_socketlist_size(sockList) uecho_list_size((uEchoList *)sockList)
-#define uecho_socketlist_gets(sockList) (uEchoSocket *)uecho_list_next((uEchoList *)sockList)
-#define uecho_socketlist_add(sockList, sock) uecho_list_add((uEchoList *)sockList, (uEchoList *)sock)
 
 #ifdef  __cplusplus
 }
