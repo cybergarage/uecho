@@ -125,8 +125,6 @@ size_t uecho_socket_skip(uEchoSocket *sock, size_t skipLen);
 size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const char *data, size_t dataeLen);
 ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt);
 
-int uecho_socket_getlasterror();
-
 /****************************************
 * Function (Multicast)
 ****************************************/
