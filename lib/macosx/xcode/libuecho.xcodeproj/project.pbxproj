@@ -18,7 +18,6 @@
 		21678F041A8D512000AE79AA /* interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EF81A8D512000AE79AA /* interface.c */; };
 		21678F051A8D512000AE79AA /* interface_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EF91A8D512000AE79AA /* interface_list.c */; };
 		21678F061A8D512000AE79AA /* socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EFA1A8D512000AE79AA /* socket.c */; };
-		21678F071A8D512000AE79AA /* socket_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EFB1A8D512000AE79AA /* socket_list.c */; };
 		21678F081A8D512000AE79AA /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EFD1A8D512000AE79AA /* list.c */; };
 		21678F091A8D512000AE79AA /* mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EFE1A8D512000AE79AA /* mutex.c */; };
 		21678F0A1A8D512000AE79AA /* string.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EFF1A8D512000AE79AA /* string.c */; };
@@ -61,7 +60,6 @@
 		21678EF81A8D512000AE79AA /* interface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interface.c; sourceTree = "<group>"; };
 		21678EF91A8D512000AE79AA /* interface_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interface_list.c; sourceTree = "<group>"; };
 		21678EFA1A8D512000AE79AA /* socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socket.c; sourceTree = "<group>"; };
-		21678EFB1A8D512000AE79AA /* socket_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socket_list.c; sourceTree = "<group>"; };
 		21678EFD1A8D512000AE79AA /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = list.c; sourceTree = "<group>"; };
 		21678EFE1A8D512000AE79AA /* mutex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mutex.c; sourceTree = "<group>"; };
 		21678EFF1A8D512000AE79AA /* string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string.c; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 				21678EF81A8D512000AE79AA /* interface.c */,
 				21678EF91A8D512000AE79AA /* interface_list.c */,
 				21678EFA1A8D512000AE79AA /* socket.c */,
-				21678EFB1A8D512000AE79AA /* socket_list.c */,
 			);
 			path = net;
 			sourceTree = "<group>";
@@ -333,7 +330,6 @@
 				21EEC8591B7204D80012AB57 /* thread.c in Sources */,
 				21851C5C1B74804400289276 /* datagram_packet.c in Sources */,
 				214186CB1B6B47F20086EEC0 /* messages.c in Sources */,
-				21678F071A8D512000AE79AA /* socket_list.c in Sources */,
 				21851C5A1B74738400289276 /* interface_function.c in Sources */,
 				21EEC8581B7204D80012AB57 /* thread_list.c in Sources */,
 				21EFF1A51B4A9A76002B5E57 /* node.c in Sources */,
