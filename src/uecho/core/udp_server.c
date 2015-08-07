@@ -29,6 +29,17 @@ uEchoUdpServer *uecho_udp_server_new()
 }
 
 /****************************************
+ * uecho_udp_server_delete
+ ****************************************/
+
+void uecho_udp_server_delete(uEchoUdpServer *server)
+{
+  uecho_socket_delete(server->socket);
+  
+  free(server);
+}
+
+/****************************************
  * uecho_udp_server_performlistener
  ****************************************/
 
@@ -40,14 +51,40 @@ bool uecho_udp_server_performlistener(uEchoUdpServer *server, uEchoMessage *msg)
 }
 
 /****************************************
-* uecho_udp_server_delete
-****************************************/
+ * uecho_udp_server_action
+ ****************************************/
 
-void uecho_udp_server_delete(uEchoUdpServer *server)
+static void uecho_udp_server_action(uEchoThread *thread)
 {
-    uecho_socket_delete(server->socket);
+  uEchoUdpServer *server;
+  uEchoDatagramPacket *dgmPkt;
+  ssize_t dgmPktLen;
+  uEchoMessage *msg;
+  
+  server = (uEchoUdpServer *)uecho_thread_getuserdata(thread);
+  
+  if (!uecho_socket_isbound(server->socket))
+    return;
+  
+  while (uecho_thread_isrunnable(thread)) {
+    dgmPkt = uecho_socket_datagram_packet_new();
+    if (!dgmPkt)
+      break;
     
-	free(server);
+    dgmPktLen = uecho_socket_recv(server->socket, dgmPkt);
+    if (dgmPktLen < 0)
+      break;
+    
+    msg = uecho_message_new();
+    if (!msg)
+      continue;
+    
+    if (uecho_message_parsepacket(msg, dgmPkt)) {
+      uecho_udp_server_performlistener(server, msg);
+    }
+    
+    uecho_message_delete(msg);
+  }
 }
 
 /****************************************
@@ -56,7 +93,27 @@ void uecho_udp_server_delete(uEchoUdpServer *server)
 
 bool uecho_udp_server_start(uEchoUdpServer *server)
 {
-    return true;
+  uecho_udp_server_stop(server);
+  
+  // open udp socket
+  
+  server->socket = uecho_socket_dgram_new();
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, "", false, true)) {
+    uecho_udp_server_stop(server);
+    return false;
+  }
+  
+  // start server
+  
+  server->thread = uecho_thread_new();
+  uecho_thread_setaction(server->thread, uecho_udp_server_action);
+  uecho_thread_setuserdata(server->thread, server);
+  if (!uecho_thread_start(server->thread)) {
+    uecho_udp_server_stop(server);
+    return false;
+  }
+  
+  return true;
 }
 
 /****************************************
@@ -65,7 +122,33 @@ bool uecho_udp_server_start(uEchoUdpServer *server)
 
 bool uecho_udp_server_stop(uEchoUdpServer *server)
 {
+  // close multicast socket
+  
+  if (server->socket) {
     uecho_socket_close(server->socket);
-    
-    return true;
+    uecho_socket_delete(server->socket);
+    server->socket = NULL;
+  }
+  
+  // stop server
+  
+  if (server->thread) {
+    uecho_thread_stop(server->thread);
+    uecho_thread_delete(server->thread);
+    server->thread = NULL;
+  }
+  
+  return true;
+}
+
+/****************************************
+ * uecho_udp_server_isrunning
+ ****************************************/
+
+bool uecho_udp_server_isrunning(uEchoUdpServer *server)
+{
+  if (!server->thread)
+    return false;
+
+  return uecho_thread_isrunning(server->thread);
 }
