@@ -823,16 +823,3 @@ bool uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struc
 		return false;
 	return true;
 }
-
-/****************************************
-* uecho_socket_getlasterror (WIN32)
-****************************************/
-
-#if defined (WIN32)
-
-int uecho_socket_getlasterror()
-{
-	return WSAGetLastError();
-};
-
-#endif
