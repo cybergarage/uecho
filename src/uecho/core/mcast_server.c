@@ -60,6 +60,7 @@ static void uecho_mcast_server_action(uEchoThread *thread)
   uEchoMcastServer *server;
   uEchoDatagramPacket *dgmPkt;
   ssize_t dgmPktLen;
+  uEchoMessage *msg;
   
   server = (uEchoMcastServer *)uecho_thread_getuserdata(thread);
 
@@ -74,6 +75,16 @@ static void uecho_mcast_server_action(uEchoThread *thread)
     dgmPktLen = uecho_socket_recv(server->socket, dgmPkt);
     if (dgmPktLen < 0)
       break;
+    
+    msg = uecho_message_new();
+    if (!msg)
+      continue;
+    
+    if (uecho_message_parsepacket(msg, dgmPkt)) {
+      uecho_mcast_server_performlistener(server, msg);
+    }
+    
+    uecho_message_delete(msg);
   }
 }
 
@@ -134,4 +145,16 @@ bool uecho_mcast_server_stop(uEchoMcastServer *server)
   }
   
   return true;
+}
+
+/****************************************
+ * uecho_mcast_server_isrunning
+ ****************************************/
+
+bool uecho_mcast_server_isrunning(uEchoMcastServer *server)
+{
+  if (!server->thread)
+    return false;
+
+  return uecho_thread_isrunning(server->thread);
 }
