@@ -119,18 +119,3 @@ char *uecho_net_interface_getnetmask(uEchoNetworkInterface *netIf)
 {
 	return uecho_string_getvalue(netIf->netmask);
 }
-
-/****************************************
-* uecho_net_interface_cmp
-****************************************/
-
-int uecho_net_interface_cmp(uEchoNetworkInterface *netIfA, 
-			 uEchoNetworkInterface *netIfB)
-{
-	if (netIfA == NULL && netIfB == NULL) return 0;
-	if (netIfA == NULL && netIfB != NULL) return 1;
-	if (netIfA != NULL && netIfB == NULL) return -1;
-	
-	return uecho_strcmp(uecho_net_interface_getaddress(netIfA), 
-			 uecho_net_interface_getaddress(netIfB));
-}
