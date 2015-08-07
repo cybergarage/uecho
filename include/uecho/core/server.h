@@ -14,6 +14,7 @@
 #include <uecho/typedef.h>
 #include <uecho/net/socket.h>
 #include <uecho/util/thread.h>
+#include <uecho/util/list.h>
 #include <uecho/object.h>
 #include <uecho/core/message.h>
 
@@ -28,22 +29,30 @@ extern "C" {
 // UDP Server
 
 typedef struct _uEchoUdpServer {
+  bool headFlag;
+  struct _uEchoUdpServer *prev;
+  struct _uEchoUdpServer *next;
+  
   uEchoSocket *socket;
   uEchoThread *thread;
   void (*msgListener)(struct _uEchoUdpServer *, uEchoMessage *); /* uEchoUdpServerMessageListener */
   void *userData;
-} uEchoUdpServer;
+} uEchoUdpServer, uEchoUdpServerList;
 
 typedef void (*uEchoUdpServerMessageListener)(uEchoUdpServer *, uEchoMessage *);
   
 // Multicast Server
 
 typedef struct _uEchoMcastServer {
+  bool headFlag;
+  struct _uEchoMcastServer *prev;
+  struct _uEchoMcastServer *next;
+  
   uEchoSocket *socket;
   uEchoThread *thread;
   void (*msgListener)(struct _uEchoMcastServer *, uEchoMessage *); /* uEchoMcastServerMessageListener */
   void *userData;
-} uEchoMcastServer;
+} uEchoMcastServer, uEchoMcastServerList;
 
 typedef void (*uEchoMcastServerMessageListener)(uEchoUdpServer *, uEchoMessage *);
 
@@ -94,6 +103,26 @@ bool uecho_mcast_server_performlistener(uEchoMcastServer *server, uEchoMessage *
 bool uecho_mcast_server_start(uEchoMcastServer *server);
 bool uecho_mcast_server_stop(uEchoMcastServer *server);
 bool uecho_mcast_server_isrunning(uEchoMcastServer *server);
+
+/****************************************
+ * Function (ServerList)
+ ****************************************/
+  
+uEchoUdpServerList *uecho_udp_serverlist_new();
+void uecho_udp_serverlist_delete(uEchoUdpServerList *servers);
+
+#define uecho_udp_serverlist_clear(servers) uecho_list_clear((uEchoList *)servers, (UECHO_LIST_DESTRUCTORFUNC)uecho_udp_server_delete)
+#define uecho_udp_serverlist_size(servers) uecho_list_size((uEchoList *)servers)
+#define uecho_udp_serverlist_gets(servers) (uEchoNetworkInterface *)uecho_list_next((uEchoList *)servers)
+#define uecho_udp_serverlist_add(servers,server) uecho_list_add((uEchoList *)servers, (uEchoList *)server)
+
+uEchoMcastServerList *uecho_mcast_serverlist_new();
+void uecho_mcast_serverlist_delete(uEchoMcastServerList *servers);
+
+#define uecho_mcast_serverlist_clear(servers) uecho_list_clear((uEchoList *)servers, (UECHO_LIST_DESTRUCTORFUNC)uecho_mcast_server_delete)
+#define uecho_mcast_serverlist_size(servers) uecho_list_size((uEchoList *)servers)
+#define uecho_mcast_serverlist_gets(servers) (uEchoNetworkInterface *)uecho_list_next((uEchoList *)servers)
+#define uecho_mcast_serverlist_add(servers,server) uecho_list_add((uEchoList *)servers, (uEchoList *)server)
 
 /****************************************
  * Macro

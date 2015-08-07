@@ -20,13 +20,12 @@ uEchoNetworkInterfaceList *uecho_net_interfacelist_new()
 	uEchoNetworkInterfaceList *netIfList;
 
 	netIfList = (uEchoNetworkInterfaceList *)malloc(sizeof(uEchoNetworkInterfaceList));
+  if (!netIfList)
+    return NULL;
 
-	if ( NULL != netIfList )
-	{
-		uecho_list_header_init((uEchoList *)netIfList);
-		netIfList->name = NULL;
-		netIfList->ipaddr = NULL;
-	}
+  uecho_list_header_init((uEchoList *)netIfList);
+  netIfList->name = NULL;
+  netIfList->ipaddr = NULL;
 
 	return netIfList;
 }
