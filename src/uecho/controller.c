@@ -51,7 +51,11 @@ void uecho_controller_delete(uEchoController *cp)
 
 bool uecho_controller_start(uEchoController *cp)
 {
-	return true;
+  bool allActionsSucceeded = true;
+  
+  allActionsSucceeded &= uecho_server_start(cp->server);
+  
+  return allActionsSucceeded;
 }
 
 /****************************************
@@ -60,7 +64,11 @@ bool uecho_controller_start(uEchoController *cp)
 
 bool uecho_controller_stop(uEchoController *cp)
 {
-	return true;
+  bool allActionsSucceeded = true;
+  
+  allActionsSucceeded &= uecho_server_stop(cp->server);
+  
+  return allActionsSucceeded;
 }
 
 /****************************************
@@ -69,6 +77,8 @@ bool uecho_controller_stop(uEchoController *cp)
 
 bool uecho_controller_isrunning(uEchoController *cp)
 {
+  if (!uecho_server_isrunning(cp->server))
+    return false;
 	return true;
 }
 
