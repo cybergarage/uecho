@@ -90,13 +90,6 @@ void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList *netIfList);
 #define uecho_net_interfacelist_gets(netIfList) (uEchoNetworkInterface *)uecho_list_next((uEchoList *)netIfList)
 #define uecho_net_interfacelist_add(netIfList,netIf) uecho_list_add((uEchoList *)netIfList, (uEchoList *)netIf)
 
-uEchoNetworkInterface *uecho_net_interfacelist_get(uEchoNetworkInterfaceList *netIfList, char *name);
-
-void uecho_net_interfacelist_getchanges(uEchoNetworkInterfaceList *netIfListOld,
-				     uEchoNetworkInterfaceList *netIfListNew,
-				     uEchoNetworkInterfaceList *netIfListAdded,
-				     uEchoNetworkInterfaceList *netIfListRemoved);
-
 /****************************************
 * Function
 ****************************************/
