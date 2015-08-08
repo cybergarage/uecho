@@ -216,8 +216,32 @@ bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen) {
  * uecho_message_parsepacket
  ****************************************/
 
-bool uecho_message_parsepacket(uEchoMessage *msg, uEchoDatagramPacket *dgmPkt) {
+bool uecho_message_parsepacket(uEchoMessage *msg, uEchoDatagramPacket *dgmPkt)
+{
   if (!msg || !dgmPkt)
     return false;
   return uecho_message_parse(msg, uecho_socket_datagram_packet_getdata(dgmPkt), uecho_socket_datagram_packet_getlength(dgmPkt));
+}
+
+/****************************************
+ * uecho_message_size
+ ****************************************/
+
+size_t uecho_message_size(uEchoMessage *msg)
+{
+  uEchoProperty *prop;
+  size_t msgLen, n;
+  
+  msgLen = uEchoMessageMinLen;
+
+  for (n = 0; n<(size_t)(msg->OPC); n++) {
+    prop = uecho_message_getproperty(msg, n);
+    if (!prop)
+      continue;
+    
+    msgLen += 2;
+    msgLen += uecho_property_getcount(prop);
+  }
+  
+  return msgLen;
 }
