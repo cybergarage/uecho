@@ -45,7 +45,7 @@ bool uecho_controller_isrunning(uEchoController *cp);
 uEchoTID uecho_controller_getnexttid(uEchoController *cp);
   
 bool uecho_controller_searchall(uEchoController *cp);
-bool uecho_controller_searchobject(uEchoController *cp);
+bool uecho_controller_searchobject(uEchoController *cp, byte objCode);
 
 #ifdef  __cplusplus
 }

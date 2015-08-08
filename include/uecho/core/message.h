@@ -27,7 +27,8 @@ extern "C" {
 ****************************************/
 
 enum {
-  uEchoMessageMinLen = (1 + 1 + 2 + 3 + 3 + 1 + 1),
+  uEchoMessageHeaderLen = (1 + 1 + 2),
+  uEchoMessageMinLen = (uEchoMessageHeaderLen + 3 + 3 + 1 + 1),
   uEchoEhd1 = 0x10,
   uEchoEhd2 = 0x81,
 };
@@ -48,9 +49,23 @@ typedef enum {
 } uEchoEsvType;
 
 enum {
-  uEchoSelfNodeInstanceListS = 0xD6,
+  uEchoOperatingStatus           = 0x80,
+  uEchoVersionInformation        = 0x82,
+  uEchoIdentificationNumber      = 0x83,
+  uEchoFaultContent              = 0x89,
+  uEchoUniqueIdentifierData      = 0xBF,
+  uEchoNumberOfSelfNodeInstances = 0xD3,
+  uEchoNumberOfSelfNodeClasses   = 0xD4,
+  uEchoInstanceListNotification  = 0xD5,
+  uEchoSelfNodeInstanceListS     = 0xD6,
+  uEchoSelfNodeClassListS        = 0xD7,
 };
 
+enum {
+uEchoBooting = 0x30,
+uEchoNotBooting = 0x31,
+};
+  
 /****************************************
  * Data Type
  ****************************************/
@@ -73,6 +88,7 @@ typedef struct _uEchoMessage
 
 uEchoMessage *uecho_message_new();
 void uecho_message_delete(uEchoMessage *msg);
+void uecho_message_clear(uEchoMessage *msg);
 
 bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen);
 bool uecho_message_parsepacket(uEchoMessage *msg, uEchoDatagramPacket *dgmPkt);
@@ -84,9 +100,9 @@ bool uecho_message_setopc(uEchoMessage *msg, byte val);
 byte uecho_message_getopc(uEchoMessage *msg);
 
 uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n);
-  
-void uecho_message_clear(uEchoMessage *msg);
 
+size_t uecho_message_size(uEchoMessage *msg);
+  
 /****************************************
  * Macro
  ****************************************/
