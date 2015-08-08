@@ -26,13 +26,9 @@ uEchoServer *uecho_server_new()
   if (!server)
   return NULL;
 	
-  server->udpServer = uecho_udp_server_new();
-  uecho_udp_server_setuserdata(server->udpServer, server);
-  uecho_udp_server_setmessagelistener(server->udpServer, uecho_udp_server_msglistener);
+  server->udpServers = uecho_udp_serverlist_new();
   
-  server->mcastServer = uecho_mcast_server_new();
-  uecho_mcast_server_setuserdata(server->mcastServer, server);
-  uecho_mcast_server_setmessagelistener(server->mcastServer, uecho_mcast_server_msglistener);
+  server->mcastServers = uecho_mcast_serverlist_new();
   
 	return server;
 }
@@ -43,8 +39,8 @@ uEchoServer *uecho_server_new()
 
 void uecho_server_delete(uEchoServer *server)
 {
-  uecho_udp_server_delete(server->udpServer);
-  uecho_mcast_server_delete(server->mcastServer);
+  uecho_udp_serverlist_delete(server->udpServers);
+  uecho_mcast_serverlist_delete(server->mcastServers);
   
 	free(server);
 }
@@ -57,8 +53,21 @@ bool uecho_server_start(uEchoServer *server)
 {
   bool allActionsSucceeded = true;
   
-  allActionsSucceeded &= uecho_udp_server_start(server->udpServer);
-  allActionsSucceeded &= uecho_mcast_server_start(server->mcastServer);
+  uecho_server_stop(server);
+  
+  allActionsSucceeded &= uecho_udp_serverlist_open(server->udpServers);
+  allActionsSucceeded &= uecho_udp_serverlist_start(server->udpServers);
+  uecho_udp_serverlist_setuserdata(server->udpServers, server);
+  uecho_udp_serverlist_setmessagelistener(server->udpServers, uecho_udp_server_msglistener);
+  
+  allActionsSucceeded &= uecho_mcast_serverlist_open(server->mcastServers);
+  allActionsSucceeded &= uecho_mcast_serverlist_start(server->mcastServers);
+  uecho_mcast_serverlist_setuserdata(server->mcastServers, server);
+  uecho_mcast_serverlist_setmessagelistener(server->mcastServers, uecho_mcast_server_msglistener);
+
+  if (!allActionsSucceeded) {
+    uecho_server_stop(server);
+  }
   
   return allActionsSucceeded;
 }
@@ -71,8 +80,13 @@ bool uecho_server_stop(uEchoServer *server)
 {
   bool allActionsSucceeded = true;
   
-  allActionsSucceeded &= uecho_udp_server_stop(server->udpServer);
-  allActionsSucceeded &= uecho_mcast_server_stop(server->mcastServer);
+  allActionsSucceeded &= uecho_udp_serverlist_close(server->udpServers);
+  allActionsSucceeded &= uecho_udp_serverlist_stop(server->udpServers);
+  uecho_udp_serverlist_clear(server->udpServers);
+  
+  allActionsSucceeded &= uecho_mcast_serverlist_close(server->mcastServers);
+  allActionsSucceeded &= uecho_mcast_serverlist_stop(server->mcastServers);
+  uecho_udp_serverlist_clear(server->mcastServers);
   
   return allActionsSucceeded;
 }
@@ -85,8 +99,8 @@ bool uecho_server_isrunning(uEchoServer *server)
 {
   bool allActionsSucceeded = true;
   
-  allActionsSucceeded &= uecho_udp_server_isrunning(server->udpServer);
-  allActionsSucceeded &= uecho_mcast_server_isrunning(server->mcastServer);
+  allActionsSucceeded &= (0 < uecho_udp_serverlist_size(server->udpServers)) ? true : false;
+  allActionsSucceeded &= (0 < uecho_udp_serverlist_size(server->mcastServers)) ? true : false;
   
   return allActionsSucceeded;
 }

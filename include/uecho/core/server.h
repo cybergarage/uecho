@@ -54,13 +54,13 @@ typedef struct _uEchoMcastServer {
   void *userData;
 } uEchoMcastServer, uEchoMcastServerList;
 
-typedef void (*uEchoMcastServerMessageListener)(uEchoUdpServer *, uEchoMessage *);
+typedef void (*uEchoMcastServerMessageListener)(uEchoMcastServer *, uEchoMessage *);
 
 // Server
 
 typedef struct _uEchoServer {
-  uEchoUdpServer   *udpServer;
-  uEchoMcastServer *mcastServer;
+  uEchoUdpServerList   *udpServers;
+  uEchoMcastServerList *mcastServers;
   void (*msgListener)(struct _uEchoServer *, uEchoMessage *); /* uEchoServerMessageListener */
   void *userData;
 } uEchoServer;
@@ -127,6 +127,8 @@ bool uecho_udp_serverlist_open(uEchoUdpServerList *servers);
 bool uecho_udp_serverlist_close(uEchoUdpServerList *servers);
 bool uecho_udp_serverlist_start(uEchoUdpServerList *servers);
 bool uecho_udp_serverlist_stop(uEchoUdpServerList *servers);
+void uecho_udp_serverlist_setmessagelistener(uEchoUdpServerList *servers, uEchoUdpServerMessageListener listener);
+void uecho_udp_serverlist_setuserdata(uEchoUdpServerList *servers, void *data);
 
 #define uecho_udp_serverlist_clear(servers) uecho_list_clear((uEchoList *)servers, (UECHO_LIST_DESTRUCTORFUNC)uecho_udp_server_delete)
 #define uecho_udp_serverlist_size(servers) uecho_list_size((uEchoList *)servers)
@@ -139,6 +141,8 @@ bool uecho_mcast_serverlist_open(uEchoMcastServerList *servers);
 bool uecho_mcast_serverlist_close(uEchoMcastServerList *servers);
 bool uecho_mcast_serverlist_start(uEchoMcastServerList *servers);
 bool uecho_mcast_serverlist_stop(uEchoMcastServerList *servers);
+void uecho_mcast_serverlist_setmessagelistener(uEchoMcastServerList *servers, uEchoMcastServerMessageListener listener);
+void uecho_mcast_serverlist_setuserdata(uEchoMcastServerList *servers, void *data);
 
 #define uecho_mcast_serverlist_clear(servers) uecho_list_clear((uEchoList *)servers, (UECHO_LIST_DESTRUCTORFUNC)uecho_mcast_server_delete)
 #define uecho_mcast_serverlist_size(servers) uecho_list_size((uEchoList *)servers)
