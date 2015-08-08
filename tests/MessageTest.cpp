@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(MessageBadHeader)
   uecho_message_delete(msg);
 }
 
-BOOST_AUTO_TEST_CASE(MessageSearch)
+BOOST_AUTO_TEST_CASE(MessageRequest)
 {
   uEchoMessage *msg = uecho_message_new();
 
@@ -123,6 +123,15 @@ BOOST_AUTO_TEST_CASE(MessageSearch)
       BOOST_CHECK_EQUAL(data[i], 'a' + (n-1) + i);
     }
   }
+  
+  uecho_message_delete(msg);
+}
+
+BOOST_AUTO_TEST_CASE(MessageSearch)
+{
+  uEchoMessage *msg = uecho_message_search_new();
+  
+  BOOST_CHECK_EQUAL(uecho_message_size(msg), 14);
   
   uecho_message_delete(msg);
 }

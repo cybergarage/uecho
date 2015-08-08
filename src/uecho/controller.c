@@ -100,15 +100,46 @@ uEchoTID uecho_controller_getnexttid(uEchoController *cp) {
  * uecho_controller_searchall
  ****************************************/
 
+bool uecho_controller_sendsearchmessage(uEchoController *cp, uEchoMessage *msg) {
+  uEchoObject *obj;
+  
+  uecho_message_settid(msg, uecho_controller_getnexttid(cp));
+
+  obj = uecho_message_getsourceobject(msg);
+  uecho_object_setcode(obj, uEchoNodeProfileObject);
+  
+  return true;
+}
+
+/****************************************
+ * uecho_controller_searchall
+ ****************************************/
+
 bool uecho_controller_searchall(uEchoController *cp) {
-    byte nodeProfileObj[3] = {0x0E, 0xF0, 0x01};
-    return true;
+  uEchoMessage *msg;
+  
+  msg = uecho_message_search_new();
+
+  return uecho_controller_sendsearchmessage(cp, msg);
 }
 
 /****************************************
  * uecho_controller_searchobject
  ****************************************/
 
-bool uecho_controller_searchobject(uEchoController *cp) {
-    return true;
+bool uecho_controller_searchobject(uEchoController *cp, byte objCode) {
+  uEchoMessage *msg;
+  uEchoObject *obj;
+  uEchoProperty *prop;
+  
+  msg = uecho_message_search_new();
+  
+  obj = uecho_message_getdestinationobject(msg);
+  uecho_object_setcode(obj, objCode);
+  
+  prop = uecho_message_getproperty(msg, 0);
+  uecho_property_setcode(prop, uEchoOperatingStatus);
+  uecho_property_setdata(prop, NULL, 0);
+  
+  return uecho_controller_sendsearchmessage(cp, msg);
 }
