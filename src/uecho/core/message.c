@@ -243,9 +243,6 @@ size_t uecho_message_size(uEchoMessage *msg)
 
   for (n = 0; n<(size_t)(msg->OPC); n++) {
     prop = uecho_message_getproperty(msg, n);
-    if (!prop)
-      continue;
-    
     msgLen += 2;
     msgLen += uecho_property_getcount(prop);
   }
@@ -259,11 +256,56 @@ size_t uecho_message_size(uEchoMessage *msg)
 
 byte *uecho_message_getbytes(uEchoMessage *msg)
 {
+  uEchoProperty *prop;
+  size_t n, offset, count;
+  
   if (msg->bytes) {
     free(msg->bytes);
   }
 
   msg->bytes = (byte *)malloc(uecho_message_size(msg));
 
+  msg->bytes[0] = msg->EHD1;
+  msg->bytes[1] = msg->EHD2;
+  msg->bytes[2] = msg->TID[0];
+  msg->bytes[3] = msg->TID[1];
+  msg->bytes[4] = msg->SEOJ->code[0];
+  msg->bytes[5] = msg->SEOJ->code[1];
+  msg->bytes[6] = msg->SEOJ->code[2];
+  msg->bytes[7] = msg->DEOJ->code[0];
+  msg->bytes[8] = msg->DEOJ->code[1];
+  msg->bytes[9] = msg->DEOJ->code[2];
+  msg->bytes[10] = msg->ESV;
+  msg->bytes[11] = msg->OPC;
+
+  offset = 12;
+  for (n = 0; n<(size_t)(msg->OPC); n++) {
+    prop = uecho_message_getproperty(msg, n);
+    count = uecho_property_getcount(prop);
+    msg->bytes[offset++] = uecho_property_getcode(prop);
+    msg->bytes[offset++] = count;
+    memcpy((msg->bytes + offset), uecho_property_getdata(prop), count);
+    offset += count;
+  }
+  
   return msg->bytes;
+}
+
+/****************************************
+ * uecho_message_equals
+ ****************************************/
+
+bool uecho_message_equals(uEchoMessage *msg1, uEchoMessage *msg2)
+{
+  size_t msgSize;
+  byte *msg1Bytes, *msg2Bytes;
+  
+  msgSize = uecho_message_size(msg1);
+  if (msgSize != uecho_message_size(msg2))
+    return false;
+
+  msg1Bytes = uecho_message_getbytes(msg1);
+  msg2Bytes = uecho_message_getbytes(msg2);
+
+  return (memcmp(msg1Bytes, msg2Bytes, msgSize) == 0) ? true : false;
 }
