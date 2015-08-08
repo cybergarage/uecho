@@ -37,6 +37,8 @@ uEchoMessage *uecho_message_new()
   msg->EP = NULL;
   msg->OPC = 0;
   
+  msg->bytes = NULL;
+  
   return msg;
 }
 
@@ -45,10 +47,10 @@ uEchoMessage *uecho_message_new()
 ****************************************/
 
 void uecho_message_delete(uEchoMessage *msg) {
+  uecho_message_clear(msg);
+
   uecho_object_delete(msg->SEOJ);
   uecho_object_delete(msg->DEOJ);
-  
-  uecho_message_clear(msg);
   
 	free(msg);
 }
@@ -70,6 +72,11 @@ void uecho_message_clear(uEchoMessage *msg) {
   if (msg->EP) {
     free(msg->EP);
     msg->EP = NULL;
+  }
+
+  if (msg->bytes) {
+    free(msg->bytes);
+    msg->bytes = NULL;
   }
 }
 
@@ -244,4 +251,19 @@ size_t uecho_message_size(uEchoMessage *msg)
   }
   
   return msgLen;
+}
+
+/****************************************
+ * uecho_message_getbytes
+ ****************************************/
+
+byte *uecho_message_getbytes(uEchoMessage *msg)
+{
+  if (msg->bytes) {
+    free(msg->bytes);
+  }
+
+  msg->bytes = (byte *)malloc(uecho_message_size(msg));
+
+  return msg->bytes;
 }

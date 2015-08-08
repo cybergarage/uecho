@@ -80,6 +80,7 @@ typedef struct _uEchoMessage
   uEchoEsvType ESV;
   byte OPC;
   uEchoProperty **EP;
+  byte *bytes;
 } uEchoMessage;
 
 /****************************************
@@ -102,6 +103,7 @@ byte uecho_message_getopc(uEchoMessage *msg);
 uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n);
 
 size_t uecho_message_size(uEchoMessage *msg);
+byte *uecho_message_getbytes(uEchoMessage *msg);
   
 /****************************************
  * Macro
