@@ -24,7 +24,8 @@ uEchoMcastServer *uecho_mcast_server_new()
   if (!server)
     return NULL;
 	
-  server->socket = uecho_socket_dgram_new();
+  server->socket = NULL;
+  server->thread = NULL;
   
 	return server;
 }
@@ -41,13 +42,65 @@ void uecho_mcast_server_delete(uEchoMcastServer *server)
 }
 
 /****************************************
+ * uecho_mcast_server_open
+ ****************************************/
+
+bool uecho_mcast_server_open(uEchoMcastServer *server, const char *bindAddr)
+{
+  uecho_mcast_server_close(server);
+  
+  server->socket = uecho_socket_dgram_new();
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, false, true)) {
+    uecho_mcast_server_close(server);
+    return false;
+  }
+  
+  if (!uecho_socket_joingroup(server->socket, uEchoMulticastAddr, bindAddr)) {
+    uecho_mcast_server_close(server);
+    return false;
+  }
+  
+  return true;
+}
+
+/****************************************
+ * uecho_mcast_server_close
+ ****************************************/
+
+bool uecho_mcast_server_close(uEchoMcastServer *server)
+{
+  if (!server->socket)
+    return true;
+  
+  uecho_socket_close(server->socket);
+  uecho_socket_delete(server->socket);
+  server->socket = NULL;
+  
+  return true;
+}
+
+/****************************************
+ * uecho_mcast_server_isopened
+ ****************************************/
+
+bool uecho_mcast_server_isopened(uEchoMcastServer *server)
+{
+  if (!server->socket)
+    return false;
+  return true;
+}
+
+/****************************************
  * uecho_mcast_server_performlistener
  ****************************************/
 
-bool uecho_mcast_server_performlistener(uEchoMcastServer *server, uEchoMessage *msg) {
+bool uecho_mcast_server_performlistener(uEchoMcastServer *server, uEchoMessage *msg)
+{
   if (!server->msgListener)
     return false;
+  
   server->msgListener(server, msg);
+
   return true;
 }
 
@@ -96,20 +149,8 @@ bool uecho_mcast_server_start(uEchoMcastServer *server)
 {
   uecho_mcast_server_stop(server);
 
-  // open multicast socket
-  
-  server->socket = uecho_socket_dgram_new();
-  if (!uecho_socket_bind(server->socket, uEchoUdpPort, "", false, true)) {
-    uecho_mcast_server_stop(server);
+  if (!uecho_mcast_server_isopened(server))
     return false;
-  }
-  
-  if (!uecho_socket_joingroup(server->socket, uEchoMulticastAddr, "")) {
-    uecho_mcast_server_stop(server);
-    return false;
-  }
-
-  // start server
   
   server->thread = uecho_thread_new();
   uecho_thread_setaction(server->thread, uecho_mcast_server_action);
@@ -128,21 +169,12 @@ bool uecho_mcast_server_start(uEchoMcastServer *server)
 
 bool uecho_mcast_server_stop(uEchoMcastServer *server)
 {
-  // close multicast socket
+  if (!server->thread)
+    return true;
   
-  if (server->socket) {
-    uecho_socket_close(server->socket);
-    uecho_socket_delete(server->socket);
-    server->socket = NULL;
-  }
-  
-  // stop server
-  
-  if (server->thread) {
-    uecho_thread_stop(server->thread);
-    uecho_thread_delete(server->thread);
-    server->thread = NULL;
-  }
+  uecho_thread_stop(server->thread);
+  uecho_thread_delete(server->thread);
+  server->thread = NULL;
   
   return true;
 }
