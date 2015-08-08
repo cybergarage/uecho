@@ -23,8 +23,9 @@ uEchoUdpServer *uecho_udp_server_new()
   if (!server)
     return NULL;
 	
-  server->socket = uecho_socket_dgram_new();
-    
+  server->socket = NULL;
+  server->thread = NULL;
+  
 	return server;
 }
 
@@ -37,6 +38,50 @@ void uecho_udp_server_delete(uEchoUdpServer *server)
   uecho_socket_delete(server->socket);
   
   free(server);
+}
+
+/****************************************
+ * uecho_udp_server_open
+ ****************************************/
+
+bool uecho_udp_server_open(uEchoUdpServer *server, const char *bindAddr)
+{
+  uecho_udp_server_close(server);
+  
+  server->socket = uecho_socket_dgram_new();
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, true, true)) {
+    uecho_udp_server_close(server);
+    return false;
+  }
+  
+  return true;
+}
+
+/****************************************
+ * uecho_udp_server_close
+ ****************************************/
+
+bool uecho_udp_server_close(uEchoUdpServer *server)
+{
+  if (!server->socket)
+    return true;
+  
+  uecho_socket_close(server->socket);
+  uecho_socket_delete(server->socket);
+  server->socket = NULL;
+  
+  return true;
+}
+
+/****************************************
+ * uecho_udp_server_isopened
+ ****************************************/
+
+bool uecho_udp_server_isopened(uEchoUdpServer *server)
+{
+  if (!server->socket)
+    return false;
+  return true;
 }
 
 /****************************************
@@ -95,15 +140,8 @@ bool uecho_udp_server_start(uEchoUdpServer *server)
 {
   uecho_udp_server_stop(server);
   
-  // open udp socket
-  
-  server->socket = uecho_socket_dgram_new();
-  if (!uecho_socket_bind(server->socket, uEchoUdpPort, "", false, true)) {
-    uecho_udp_server_stop(server);
+  if (!uecho_udp_server_isopened(server))
     return false;
-  }
-  
-  // start server
   
   server->thread = uecho_thread_new();
   uecho_thread_setaction(server->thread, uecho_udp_server_action);
@@ -122,21 +160,12 @@ bool uecho_udp_server_start(uEchoUdpServer *server)
 
 bool uecho_udp_server_stop(uEchoUdpServer *server)
 {
-  // close multicast socket
+  if (!server->thread)
+    return true;
   
-  if (server->socket) {
-    uecho_socket_close(server->socket);
-    uecho_socket_delete(server->socket);
-    server->socket = NULL;
-  }
-  
-  // stop server
-  
-  if (server->thread) {
-    uecho_thread_stop(server->thread);
-    uecho_thread_delete(server->thread);
-    server->thread = NULL;
-  }
+  uecho_thread_stop(server->thread);
+  uecho_thread_delete(server->thread);
+  server->thread = NULL;
   
   return true;
 }

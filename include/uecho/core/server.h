@@ -86,9 +86,15 @@ bool uecho_server_isrunning(uEchoServer *server);
   
 uEchoUdpServer *uecho_udp_server_new();
 void uecho_udp_server_delete(uEchoUdpServer *server);
+
+#define uecho_udp_server_next(netIf) (uEchoUdpServer *)uecho_list_next((uEchoList *)netIf)
+#define uecho_udp_server_remove(netIf) uecho_list_remove((uEchoList *)netIf)
   
 bool uecho_udp_server_performlistener(uEchoUdpServer *server, uEchoMessage *msg);
 
+bool uecho_udp_server_open(uEchoUdpServer *server, const char *bindAddr);
+bool uecho_udp_server_close(uEchoUdpServer *server);
+  
 bool uecho_udp_server_start(uEchoUdpServer *server);
 bool uecho_udp_server_stop(uEchoUdpServer *server);
 bool uecho_udp_server_isrunning(uEchoUdpServer *server);
@@ -97,8 +103,15 @@ bool uecho_udp_server_isrunning(uEchoUdpServer *server);
   
 uEchoMcastServer *uecho_mcast_server_new();
 void uecho_mcast_server_delete(uEchoMcastServer *server);
+
+#define uecho_mcast_server_next(netIf) (uEchoMcastServer *)uecho_list_next((uEchoList *)netIf)
+#define uecho_mcast_server_remove(netIf) uecho_list_remove((uEchoList *)netIf)
   
 bool uecho_mcast_server_performlistener(uEchoMcastServer *server, uEchoMessage *msg);
+
+bool uecho_mcast_server_open(uEchoMcastServer *server, const char *bindAddr);
+bool uecho_mcast_server_close(uEchoMcastServer *server);
+bool uecho_mcast_server_isopened(uEchoMcastServer *server);
 
 bool uecho_mcast_server_start(uEchoMcastServer *server);
 bool uecho_mcast_server_stop(uEchoMcastServer *server);
@@ -110,18 +123,26 @@ bool uecho_mcast_server_isrunning(uEchoMcastServer *server);
   
 uEchoUdpServerList *uecho_udp_serverlist_new();
 void uecho_udp_serverlist_delete(uEchoUdpServerList *servers);
+bool uecho_udp_serverlist_open(uEchoUdpServerList *servers);
+bool uecho_udp_serverlist_close(uEchoUdpServerList *servers);
+bool uecho_udp_serverlist_start(uEchoUdpServerList *servers);
+bool uecho_udp_serverlist_stop(uEchoUdpServerList *servers);
 
 #define uecho_udp_serverlist_clear(servers) uecho_list_clear((uEchoList *)servers, (UECHO_LIST_DESTRUCTORFUNC)uecho_udp_server_delete)
 #define uecho_udp_serverlist_size(servers) uecho_list_size((uEchoList *)servers)
-#define uecho_udp_serverlist_gets(servers) (uEchoNetworkInterface *)uecho_list_next((uEchoList *)servers)
+#define uecho_udp_serverlist_gets(servers) (uEchoUdpServer *)uecho_list_next((uEchoList *)servers)
 #define uecho_udp_serverlist_add(servers,server) uecho_list_add((uEchoList *)servers, (uEchoList *)server)
 
 uEchoMcastServerList *uecho_mcast_serverlist_new();
 void uecho_mcast_serverlist_delete(uEchoMcastServerList *servers);
+bool uecho_mcast_serverlist_open(uEchoMcastServerList *servers);
+bool uecho_mcast_serverlist_close(uEchoMcastServerList *servers);
+bool uecho_mcast_serverlist_start(uEchoMcastServerList *servers);
+bool uecho_mcast_serverlist_stop(uEchoMcastServerList *servers);
 
 #define uecho_mcast_serverlist_clear(servers) uecho_list_clear((uEchoList *)servers, (UECHO_LIST_DESTRUCTORFUNC)uecho_mcast_server_delete)
 #define uecho_mcast_serverlist_size(servers) uecho_list_size((uEchoList *)servers)
-#define uecho_mcast_serverlist_gets(servers) (uEchoNetworkInterface *)uecho_list_next((uEchoList *)servers)
+#define uecho_mcast_serverlist_gets(servers) (uEchoMcastServer *)uecho_list_next((uEchoList *)servers)
 #define uecho_mcast_serverlist_add(servers,server) uecho_list_add((uEchoList *)servers, (uEchoList *)server)
 
 /****************************************

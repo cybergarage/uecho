@@ -43,18 +43,93 @@ void uecho_mcast_serverlist_delete(uEchoMcastServerList *servers)
  * uecho_mcast_serverlist_open
  ****************************************/
 
-void uecho_mcast_serverlist_open(uEchoMcastServerList *servers)
+bool uecho_mcast_serverlist_open(uEchoMcastServerList *servers)
 {
+  uEchoMcastServer *server;
   uEchoNetworkInterfaceList *netIfList;
-  uEchoNetworkInterface *i;
-/*
-  if int uecho_net_gethostinterfaces(netIfList);
+  uEchoNetworkInterface *netIf;
+  bool allActionsSucceeded;
+
+  uecho_mcast_serverlist_close(servers);
   
-  for (i = uecho_net_interfacelist_gets(ifList); i; i = uecho_net_interface_next(i)) {
-    
+  if (uecho_net_gethostinterfaces(netIfList) <= 0) {
+    uecho_net_interfacelist_delete(netIfList);
+    return false;
   }
-  ifList = uecho_net_interfacelist_new();
-*/
+  
+  allActionsSucceeded = true;
+
+  for (netIf = uecho_net_interfacelist_gets(netIfList); netIf; netIf = uecho_net_interface_next(netIf)) {
+    server = uecho_mcast_server_new();
+    if (!server) {
+      allActionsSucceeded = false;
+      break;
+    }
+
+    allActionsSucceeded &= uecho_mcast_server_open(server, uecho_net_interface_getaddress(netIf));
+
+    uecho_mcast_serverlist_add(servers, server);
+  }
 
   uecho_net_interfacelist_delete(netIfList);
+
+  if (!allActionsSucceeded) {
+    uecho_mcast_serverlist_close(servers);
+    return false;
+  }
+  
+  return true;
+}
+
+/****************************************
+ * uecho_mcast_serverlist_close
+ ****************************************/
+
+bool uecho_mcast_serverlist_close(uEchoMcastServerList *servers)
+{
+  uEchoMcastServer *server;
+  bool allActionsSucceeded;
+
+  allActionsSucceeded = true;
+  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
+    allActionsSucceeded &= uecho_mcast_server_close(server);
+  }
+  
+  return allActionsSucceeded;
+}
+
+/****************************************
+ * uecho_mcast_serverlist_start
+ ****************************************/
+
+bool uecho_mcast_serverlist_start(uEchoMcastServerList *servers)
+{
+  uEchoMcastServer *server;
+  bool allActionsSucceeded;
+  
+  uecho_mcast_serverlist_stop(servers);
+  
+  allActionsSucceeded = true;
+  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
+    allActionsSucceeded &= uecho_mcast_server_start(server);
+  }
+  
+  return allActionsSucceeded;
+}
+
+/****************************************
+ * uecho_mcast_serverlist_stop
+ ****************************************/
+
+bool uecho_mcast_serverlist_stop(uEchoMcastServerList *servers)
+{
+  uEchoMcastServer *server;
+  bool allActionsSucceeded;
+  
+  allActionsSucceeded = true;
+  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
+    allActionsSucceeded &= uecho_mcast_server_stop(server);
+  }
+  
+  return allActionsSucceeded;
 }
