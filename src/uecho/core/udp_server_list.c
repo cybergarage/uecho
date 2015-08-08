@@ -34,9 +34,37 @@ uEchoUdpServerList *uecho_udp_serverlist_new()
 
 void uecho_udp_serverlist_delete(uEchoUdpServerList *servers)
 {
+  uecho_udp_serverlist_close(servers);
+  uecho_udp_serverlist_stop(servers);
   uecho_udp_serverlist_clear(servers);
   
   free(servers);
+}
+
+/****************************************
+ * uecho_udp_serverlist_setmessagelistener
+ ****************************************/
+
+void uecho_udp_serverlist_setmessagelistener(uEchoUdpServerList *servers, uEchoUdpServerMessageListener listener)
+{
+  uEchoUdpServer *server;
+  
+  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
+    uecho_udp_server_setmessagelistener(server, listener);
+  }
+}
+
+/****************************************
+ * uecho_udp_serverlist_setuserdata
+ ****************************************/
+
+void uecho_udp_serverlist_setuserdata(uEchoUdpServerList *servers, void *data)
+{
+  uEchoUdpServer *server;
+  
+  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
+    uecho_udp_server_setuserdata(server, data);
+  }
 }
 
 /****************************************
@@ -51,6 +79,8 @@ bool uecho_udp_serverlist_open(uEchoUdpServerList *servers)
   bool allActionsSucceeded;
   
   uecho_udp_serverlist_close(servers);
+  
+  netIfList = uecho_net_interfacelist_new();
   
   if (uecho_net_gethostinterfaces(netIfList) <= 0) {
     uecho_net_interfacelist_delete(netIfList);
