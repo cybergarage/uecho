@@ -102,11 +102,11 @@ uEchoTID uecho_controller_getnexttid(uEchoController *cp) {
 
 bool uecho_controller_sendsearchmessage(uEchoController *cp, uEchoMessage *msg) {
   uEchoObject *obj;
-  
   uecho_message_settid(msg, uecho_controller_getnexttid(cp));
 
   obj = uecho_message_getsourceobject(msg);
   uecho_object_setcode(obj, uEchoNodeProfileObject);
+  
   
   return true;
 }
