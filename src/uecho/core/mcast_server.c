@@ -195,11 +195,14 @@ bool uecho_mcast_server_isrunning(uEchoMcastServer *server)
  * uecho_mcast_server_post
  ****************************************/
 
-bool uecho_mcast_server_post(uEchoUdpServer *server)
+bool uecho_mcast_server_post(uEchoMcastServer *server, byte *msg, size_t msgLen)
 {
   size_t sentLen = 0;
   
-  sentLen = uecho_socket_sendto(server->socket, uEchoMulticastAddr, uEchoUdpPort, "", 0);
+  if (!server->socket)
+    return false;
   
-  return (sentLen > 0);
+  sentLen = uecho_socket_sendto(server->socket, uEchoMulticastAddr, uEchoUdpPort, msg, msgLen);
+  
+  return (sentLen == msgLen) ? true : false;
 }

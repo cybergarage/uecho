@@ -163,3 +163,22 @@ bool uecho_mcast_serverlist_stop(uEchoMcastServerList *servers)
   
   return allActionsSucceeded;
 }
+
+/****************************************
+ * uecho_mcast_serverlist_post
+ ****************************************/
+
+bool uecho_mcast_serverlist_post(uEchoMcastServerList *servers, byte *msg, size_t msgLen)
+{
+  uEchoMcastServer *server;
+
+  bool allActionsSucceeded;
+  
+  allActionsSucceeded = true;
+  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
+    allActionsSucceeded &= uecho_mcast_server_post(server, msg, msgLen);
+  }
+  
+  return allActionsSucceeded;
+}
+
