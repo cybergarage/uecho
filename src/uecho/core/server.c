@@ -137,3 +137,12 @@ void uecho_mcast_server_msglistener(uEchoMcastServer *mcastServer, uEchoMessage 
     return;
   uecho_server_performlistener(server, msg);
 }
+
+/****************************************
+ * uecho_server_postsearch
+ ****************************************/
+
+bool uecho_server_postsearch(uEchoServer *server, byte *msg, size_t msgLen)
+{
+  return uecho_mcast_serverlist_post(server->mcastServers, msg, msgLen);
+}
