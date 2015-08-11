@@ -100,15 +100,20 @@ uEchoTID uecho_controller_getnexttid(uEchoController *cp) {
  * uecho_controller_searchall
  ****************************************/
 
-bool uecho_controller_sendsearchmessage(uEchoController *cp, uEchoMessage *msg) {
+bool uecho_controller_postsearch(uEchoController *cp, uEchoMessage *msg) {
   uEchoObject *obj;
+  byte *msgBytes;
+  size_t msgLen;
+  
   uecho_message_settid(msg, uecho_controller_getnexttid(cp));
 
   obj = uecho_message_getsourceobject(msg);
   uecho_object_setcode(obj, uEchoNodeProfileObject);
   
+  msgBytes = uecho_message_getbytes(msg);
+  msgLen = uecho_message_size(msg);
   
-  return true;
+  return uecho_server_postsearch(cp->server, msgBytes, msgLen);
 }
 
 /****************************************
@@ -120,7 +125,7 @@ bool uecho_controller_searchall(uEchoController *cp) {
   
   msg = uecho_message_search_new();
 
-  return uecho_controller_sendsearchmessage(cp, msg);
+  return uecho_controller_postsearch(cp, msg);
 }
 
 /****************************************
@@ -141,5 +146,5 @@ bool uecho_controller_searchobject(uEchoController *cp, byte objCode) {
   uecho_property_setcode(prop, uEchoOperatingStatus);
   uecho_property_setdata(prop, NULL, 0);
   
-  return uecho_controller_sendsearchmessage(cp, msg);
+  return uecho_controller_postsearch(cp, msg);
 }
