@@ -8,6 +8,8 @@
  *
  ******************************************************************/
 
+#include <arpa/inet.h>
+
 #include <uecho/core/message.h>
 #include <uecho/net/socket.h>
 

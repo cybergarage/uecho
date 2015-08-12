@@ -446,7 +446,7 @@ char *uecho_net_selectaddr(struct sockaddr *remoteaddr)
 		}
 
 		/* Checking if we have and auto ip address */
-		if ( ( laddr & lmask ) == uecho_NET_SOCKET_AUTO_IP_NET ) {
+		if ( ( laddr & lmask ) == UECHO_NET_SOCKET_AUTO_IP_NET ) {
 			if ( NULL != auto_ip_address_candidate ) free(auto_ip_address_candidate);
 			auto_ip_address_candidate = uecho_strdup(
 					inet_ntoa((struct in_addr)((struct sockaddr_in *)ifaddr->ifa_addr)->sin_addr));
