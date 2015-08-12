@@ -13,7 +13,7 @@
 #endif
 
 #include <uecho/util/thread.h>
-#include <uecho/util/time.h>
+#include <uecho/util/timer.h>
 #include <string.h>
 
 static void uecho_sig_handler(int sign);

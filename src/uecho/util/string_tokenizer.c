@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/util/string.h>
+#include <uecho/util/strobj.h>
 
 /****************************************
 * uecho_string_tokenizer_new

@@ -14,18 +14,18 @@
 		21678EEE1A8D510100AE79AA /* socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678EE51A8D510100AE79AA /* socket.h */; };
 		21678EEF1A8D510100AE79AA /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678EE71A8D510100AE79AA /* list.h */; };
 		21678EF11A8D510100AE79AA /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678EE91A8D510100AE79AA /* mutex.h */; };
-		21678EF21A8D510100AE79AA /* string.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678EEA1A8D510100AE79AA /* string.h */; };
+		21678EF21A8D510100AE79AA /* strobj.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678EEA1A8D510100AE79AA /* strobj.h */; };
 		21678EF31A8D510100AE79AA /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678EEB1A8D510100AE79AA /* thread.h */; };
-		21678EF41A8D510100AE79AA /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678EEC1A8D510100AE79AA /* time.h */; };
+		21678EF41A8D510100AE79AA /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678EEC1A8D510100AE79AA /* timer.h */; };
 		21678F041A8D512000AE79AA /* interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EF81A8D512000AE79AA /* interface.c */; };
 		21678F051A8D512000AE79AA /* interface_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EF91A8D512000AE79AA /* interface_list.c */; };
 		21678F061A8D512000AE79AA /* socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EFA1A8D512000AE79AA /* socket.c */; };
 		21678F081A8D512000AE79AA /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EFD1A8D512000AE79AA /* list.c */; };
 		21678F091A8D512000AE79AA /* mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EFE1A8D512000AE79AA /* mutex.c */; };
-		21678F0A1A8D512000AE79AA /* string.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EFF1A8D512000AE79AA /* string.c */; };
+		21678F0A1A8D512000AE79AA /* strobj.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678EFF1A8D512000AE79AA /* strobj.c */; };
 		21678F0B1A8D512000AE79AA /* string_function.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678F001A8D512000AE79AA /* string_function.c */; };
 		21678F0C1A8D512000AE79AA /* string_tokenizer.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678F011A8D512000AE79AA /* string_tokenizer.c */; };
-		21678F0D1A8D512000AE79AA /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678F021A8D512000AE79AA /* time.c */; };
+		21678F0D1A8D512000AE79AA /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678F021A8D512000AE79AA /* timer.c */; };
 		21678F101A8D51C800AE79AA /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678F0F1A8D51C800AE79AA /* typedef.h */; };
 		21757F4B1B6A0CC600281E6F /* message.c in Sources */ = {isa = PBXBuildFile; fileRef = 21757F4A1B6A0CC600281E6F /* message.c */; };
 		21757F4D1B6A0CD600281E6F /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = 21757F4C1B6A0CD600281E6F /* message.h */; };
@@ -60,18 +60,18 @@
 		21678EE51A8D510100AE79AA /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
 		21678EE71A8D510100AE79AA /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
 		21678EE91A8D510100AE79AA /* mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mutex.h; sourceTree = "<group>"; };
-		21678EEA1A8D510100AE79AA /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
+		21678EEA1A8D510100AE79AA /* strobj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strobj.h; sourceTree = "<group>"; };
 		21678EEB1A8D510100AE79AA /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
-		21678EEC1A8D510100AE79AA /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
+		21678EEC1A8D510100AE79AA /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timer.h; sourceTree = "<group>"; };
 		21678EF81A8D512000AE79AA /* interface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interface.c; sourceTree = "<group>"; };
 		21678EF91A8D512000AE79AA /* interface_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interface_list.c; sourceTree = "<group>"; };
 		21678EFA1A8D512000AE79AA /* socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socket.c; sourceTree = "<group>"; };
 		21678EFD1A8D512000AE79AA /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = list.c; sourceTree = "<group>"; };
 		21678EFE1A8D512000AE79AA /* mutex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mutex.c; sourceTree = "<group>"; };
-		21678EFF1A8D512000AE79AA /* string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string.c; sourceTree = "<group>"; };
+		21678EFF1A8D512000AE79AA /* strobj.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strobj.c; sourceTree = "<group>"; };
 		21678F001A8D512000AE79AA /* string_function.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string_function.c; sourceTree = "<group>"; };
 		21678F011A8D512000AE79AA /* string_tokenizer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string_tokenizer.c; sourceTree = "<group>"; };
-		21678F021A8D512000AE79AA /* time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = time.c; sourceTree = "<group>"; };
+		21678F021A8D512000AE79AA /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
 		21678F0F1A8D51C800AE79AA /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = typedef.h; sourceTree = "<group>"; };
 		21757F4A1B6A0CC600281E6F /* message.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message.c; path = core/message.c; sourceTree = "<group>"; };
 		21757F4C1B6A0CD600281E6F /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = core/message.h; sourceTree = "<group>"; };
@@ -164,9 +164,9 @@
 			children = (
 				21678EE71A8D510100AE79AA /* list.h */,
 				21678EE91A8D510100AE79AA /* mutex.h */,
-				21678EEA1A8D510100AE79AA /* string.h */,
+				21678EEA1A8D510100AE79AA /* strobj.h */,
 				21678EEB1A8D510100AE79AA /* thread.h */,
-				21678EEC1A8D510100AE79AA /* time.h */,
+				21678EEC1A8D510100AE79AA /* timer.h */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -216,10 +216,10 @@
 				21EEC8571B7204D80012AB57 /* thread.c */,
 				21678EFD1A8D512000AE79AA /* list.c */,
 				21678EFE1A8D512000AE79AA /* mutex.c */,
-				21678EFF1A8D512000AE79AA /* string.c */,
+				21678EFF1A8D512000AE79AA /* strobj.c */,
 				21678F001A8D512000AE79AA /* string_function.c */,
 				21678F011A8D512000AE79AA /* string_tokenizer.c */,
-				21678F021A8D512000AE79AA /* time.c */,
+				21678F021A8D512000AE79AA /* timer.c */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -257,9 +257,9 @@
 				21678EF11A8D510100AE79AA /* mutex.h in Headers */,
 				21678EF31A8D510100AE79AA /* thread.h in Headers */,
 				21EFF1A11B4A9A5E002B5E57 /* node.h in Headers */,
-				21678EF21A8D510100AE79AA /* string.h in Headers */,
+				21678EF21A8D510100AE79AA /* strobj.h in Headers */,
 				21757F4D1B6A0CD600281E6F /* message.h in Headers */,
-				21678EF41A8D510100AE79AA /* time.h in Headers */,
+				21678EF41A8D510100AE79AA /* timer.h in Headers */,
 				21678EED1A8D510100AE79AA /* interface.h in Headers */,
 				2185D9D11B68DEED00A5B0C3 /* property.h in Headers */,
 				21757F531B6A0DC300281E6F /* server.h in Headers */,
@@ -330,9 +330,9 @@
 			files = (
 				21757F4B1B6A0CC600281E6F /* message.c in Sources */,
 				2159A1D21B751D2100A134D8 /* udp_server_list.c in Sources */,
-				21678F0D1A8D512000AE79AA /* time.c in Sources */,
+				21678F0D1A8D512000AE79AA /* timer.c in Sources */,
 				21678F081A8D512000AE79AA /* list.c in Sources */,
-				21678F0A1A8D512000AE79AA /* string.c in Sources */,
+				21678F0A1A8D512000AE79AA /* strobj.c in Sources */,
 				21757F551B6A0E3200281E6F /* server.c in Sources */,
 				21678F041A8D512000AE79AA /* interface.c in Sources */,
 				21EFF1A41B4A9A76002B5E57 /* controller.c in Sources */,

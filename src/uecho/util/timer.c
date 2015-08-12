@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/util/time.h>
+#include <uecho/util/timer.h>
 
 #include <limits.h>
 

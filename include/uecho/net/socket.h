@@ -12,7 +12,7 @@
 #define _UECHO_NET_CSOCKET_H_
 
 #include <uecho/typedef.h>
-#include <uecho/util/string.h>
+#include <uecho/util/strobj.h>
 
 #if defined(UECHO_USE_OPENSSL)
 #include <openssl/ssl.h>
@@ -121,7 +121,7 @@ size_t uecho_socket_write(uEchoSocket *sock, const char *buffer, size_t bufferLe
 ssize_t uecho_socket_readline(uEchoSocket *sock, char *buffer, size_t bufferLen);
 size_t uecho_socket_skip(uEchoSocket *sock, size_t skipLen);
 
-size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const char *data, size_t dataeLen);
+size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, byte *data, size_t dataeLen);
 ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt);
 
 /****************************************
