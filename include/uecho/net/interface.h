@@ -12,7 +12,7 @@
 #define _UECHO_NET_CINTERFACE_H_
 
 #include <uecho/typedef.h>
-#include <uecho/util/strobj.h>
+#include <uecho/util/strings.h>
 #include <uecho/util/list.h>
 
 #if !defined(WIN32)

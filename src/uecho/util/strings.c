@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/util/strobj.h>
+#include <uecho/util/strings.h>
 
 #include <string.h>
 
