@@ -16,7 +16,7 @@
 
 # Shared objects (inc. Windows DLLs)
 *.dll
-*.so
+*kefile.so
 *.so.*
 *.dylib
 
@@ -27,6 +27,14 @@
 *.i*86
 *.x86_64
 *.hex
+
+# Automake files
+config/
+config.*
+aclocal.m4
+autom4te.cache/
+*.dirstamp
+.deps/
 
 # MacOSX
 .DS_Store
