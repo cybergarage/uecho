@@ -51,7 +51,7 @@ void uecho_waitrandom(size_t mtime)
 * uecho_time_wait
 ****************************************/
 
-size_t uecho_getcurrentsystemtime()
+size_t uecho_getcurrentsystemtime(void)
 {
   return (size_t)(time((time_t *)NULL));
 }
@@ -60,7 +60,7 @@ size_t uecho_getcurrentsystemtime()
 * uecho_random
 ****************************************/
 
-float uecho_random()
+float uecho_random(void)
 {
 	static bool seedDone = false;
 

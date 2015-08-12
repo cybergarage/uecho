@@ -15,7 +15,7 @@
 * uecho_mcast_server_new
 ****************************************/
 
-uEchoMcastServer *uecho_mcast_server_new()
+uEchoMcastServer *uecho_mcast_server_new(void)
 {
 	uEchoMcastServer *server;
 

@@ -14,7 +14,7 @@
 * uecho_threadlist_new
 ****************************************/
 
-uEchoThreadList *uecho_threadlist_new()
+uEchoThreadList *uecho_threadlist_new(void)
 {
 	uEchoThreadList *threadList;
 

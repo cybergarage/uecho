@@ -39,7 +39,7 @@ typedef struct _uEchoNode
  * Function
  ****************************************/
 
-uEchoNode *uecho_node_new();
+uEchoNode *uecho_node_new(void);
 void uecho_node_delete(uEchoNode *node);
 void uecho_node_clear(uEchoNode *node);
 #define uecho_node_next(node) (uEchoNode *)uecho_list_next((uEchoList *)node)

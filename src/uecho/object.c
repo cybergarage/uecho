@@ -14,7 +14,7 @@
 * uecho_object_new
 ****************************************/
 
-uEchoObject *uecho_object_new() {
+uEchoObject *uecho_object_new(void) {
 	uEchoObject *obj;
 
 	obj = (uEchoObject *)malloc(sizeof(uEchoObject));

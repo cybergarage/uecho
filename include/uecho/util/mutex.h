@@ -39,7 +39,7 @@ typedef struct _uEchoMutex {
  * Functions
  ****************************************/
 
-uEchoMutex *uecho_mutex_new();
+uEchoMutex *uecho_mutex_new(void);
 bool uecho_mutex_delete(uEchoMutex *mutex);
 
 bool uecho_mutex_lock(uEchoMutex *mutex);

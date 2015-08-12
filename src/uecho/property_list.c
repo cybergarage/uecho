@@ -14,7 +14,7 @@
 * uecho_propertylist_new
 ****************************************/
 
-uEchoPropertyList *uecho_propertylist_new()
+uEchoPropertyList *uecho_propertylist_new(void)
 {
 	uEchoPropertyList *props;
 

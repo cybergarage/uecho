@@ -57,7 +57,7 @@ bool uecho_socket_tosockaddrinfo(int sockType, const char *addr, int port, struc
 * uecho_socket_startup
 ****************************************/
 
-void uecho_socket_startup()
+void uecho_socket_startup(void)
 {
 	if (socketCnt == 0) {
 #if defined(WIN32)
@@ -83,7 +83,7 @@ void uecho_socket_startup()
 * uecho_socket_cleanup
 ****************************************/
 
-void uecho_socket_cleanup()
+void uecho_socket_cleanup(void)
 {
 	socketCnt--;
 	if (socketCnt <= 0) {

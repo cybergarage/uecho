@@ -14,7 +14,7 @@
 * uecho_udp_server_new
 ****************************************/
 
-uEchoUdpServer *uecho_udp_server_new()
+uEchoUdpServer *uecho_udp_server_new(void)
 {
 	uEchoUdpServer *server;
 
