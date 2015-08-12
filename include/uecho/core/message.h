@@ -48,24 +48,6 @@ typedef enum {
   uEchoEsvWriteReadResponse = 0x7E,
 } uEchoEsvType;
 
-enum {
-  uEchoOperatingStatus           = 0x80,
-  uEchoVersionInformation        = 0x82,
-  uEchoIdentificationNumber      = 0x83,
-  uEchoFaultContent              = 0x89,
-  uEchoUniqueIdentifierData      = 0xBF,
-  uEchoNumberOfSelfNodeInstances = 0xD3,
-  uEchoNumberOfSelfNodeClasses   = 0xD4,
-  uEchoInstanceListNotification  = 0xD5,
-  uEchoSelfNodeInstanceListS     = 0xD6,
-  uEchoSelfNodeClassListS        = 0xD7,
-};
-
-enum {
-uEchoBooting = 0x30,
-uEchoNotBooting = 0x31,
-};
-  
 /****************************************
  * Data Type
  ****************************************/

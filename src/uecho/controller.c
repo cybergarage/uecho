@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <uecho/controller.h>
+#include <uecho/profile.h>
 
 /****************************************
  * uecho_controller_new
@@ -143,7 +144,7 @@ bool uecho_controller_searchobject(uEchoController *cp, byte objCode) {
   uecho_object_setcode(obj, objCode);
   
   prop = uecho_message_getproperty(msg, 0);
-  uecho_property_setcode(prop, uEchoOperatingStatus);
+  uecho_property_setcode(prop, uEchoProfileNodeProfileClassOperatingStatus);
   uecho_property_setdata(prop, NULL, 0);
   
   return uecho_controller_postsearch(cp, msg);
