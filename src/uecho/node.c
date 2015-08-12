@@ -20,11 +20,14 @@ uEchoNode *uecho_node_new()
 
 	node = (uEchoNode *)malloc(sizeof(uEchoNode));
 
-    if (!node)
-        return NULL;
+  if (!node)
+    return NULL;
         
-    echo_list_node_init((uEchoList *)node);
-	
+  uecho_list_node_init((uEchoList *)node);
+  
+  node->mutex = uecho_mutex_new();
+  node->objects = uecho_objectlist_new();
+  
 	return node;
 }
 
@@ -35,8 +38,10 @@ uEchoNode *uecho_node_new()
 void uecho_node_delete(uEchoNode *node)
 {
 	uecho_list_remove((uEchoList *)node);
-    uecho_mutex_delete(node->mutex);
-    
+  
+  uecho_mutex_delete(node->mutex);
+  uecho_objectlist_delete(node->objects);
+  
 	free(node);
 }
 

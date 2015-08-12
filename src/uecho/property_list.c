@@ -8,32 +8,32 @@
  *
  ******************************************************************/
 
-#include <uecho/object.h>
+#include <uecho/property.h>
 
 /****************************************
-* uecho_objectlist_new
+* uecho_propertylist_new
 ****************************************/
 
-uEchoObjectList *uecho_objectlist_new()
+uEchoPropertyList *uecho_propertylist_new()
 {
-	uEchoObjectList *objs;
+	uEchoPropertyList *props;
 
-	objs = (uEchoObjectList *)malloc(sizeof(uEchoObjectList));
-  if (!objs)
+	props = (uEchoPropertyList *)malloc(sizeof(uEchoPropertyList));
+  if (!props)
     return NULL;
 
-  uecho_list_header_init((uEchoList *)objs);
+  uecho_list_header_init((uEchoList *)props);
 
-	return objs;
+	return props;
 }
 
 /****************************************
-* uecho_objectlist_delete
+* uecho_propertylist_delete
 ****************************************/
 
-void uecho_objectlist_delete(uEchoObjectList *objs)
+void uecho_propertylist_delete(uEchoPropertyList *props)
 {
-	uecho_objectlist_clear(objs);
+	uecho_propertylist_clear(props);
 
-	free(objs);
+	free(props);
 }
