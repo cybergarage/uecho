@@ -10,6 +10,8 @@
 
 AM_CFLAGS = -I$(top_srcdir)/include -I$(top_builddir)/include -I../ -I../../common
 
+noinst_PROGRAMS = switchnode 
+
 switchnode_SOURCES = \
 	../switchnode.c
 

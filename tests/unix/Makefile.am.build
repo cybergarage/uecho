@@ -1,22 +1,19 @@
 #!/usr/bin/perl
 print<<HEADER;
-############################################################
+##################################################################
 #
 # uEcho for C
 #
 # Copyright (C) The uecho Authors 2015
 #
-############################################################
-
+# This is licensed under BSD-style license, see file COPYING.
+#
+##################################################################
 noinst_PROGRAMS = uechotest
 
 AM_CPPFLAGS = -I\$(top_srcdir)/include -I../
 
 HEADER
-
-print<<NOINST_HEADERS;
-noinst_HEADERS = \\
-NOINST_HEADERS
 
 my @find_files = `find ../ -name *.h`;
 my @include_files;
