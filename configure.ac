@@ -1,16 +1,18 @@
-#############################################################################
+##################################################################
 #
-# eEcho for C
-# 
+# uEcho for C
+#
 # Copyright (C) Satoshi Konno 2015
 #
-#############################################################################
+# This is licensed under BSD-style license, see file COPYING.
+#
+##################################################################
 
 AC_CONFIG_AUX_DIR(config)
 AM_CONFIG_HEADER(config.h)
 
-AC_INIT([echo], [0.8])
-AC_CONFIG_SRCDIR([include/mupnp/typedef.h])
+AC_INIT([uecho], [0.6])
+AC_CONFIG_SRCDIR([include/uecho/typedef.h])
 AM_INIT_AUTOMAKE([subdir-objects])
 
 ##############################
@@ -151,11 +153,15 @@ fi
 ##############################
 
 AC_OUTPUT([
-clinkc.pc
 Makefile
 include/Makefile
 lib/Makefile
 lib/unix/Makefile
 tests/Makefile
 tests/unix/Makefile
+examples/Makefile
+examples/nodesearch/Makefile
+examples/nodesearch/unix/Makefile
+examples/switchnode/Makefile
+examples/switchnode/unix/Makefile
 ])

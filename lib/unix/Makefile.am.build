@@ -1,13 +1,14 @@
 #!/usr/bin/perl
 print<<HEADER;
-############################################################
+##################################################################
 #
 # uEcho for C
 #
 # Copyright (C) Satoshi Konno 2015
 #
-############################################################
-
+# This is licensed under BSD-style license, see file COPYING.
+#
+##################################################################
 #if HAVE_LIBTOOL
 #lib_LTLIBRARIES = libuecho.la
 #else
