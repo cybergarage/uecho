@@ -10,7 +10,7 @@
 
 #include <uecho/net/socket.h>
 #include <uecho/net/interface.h>
-#include <uecho/util/time.h>
+#include <uecho/util/timer.h>
 
 #include <string.h>
 
@@ -520,7 +520,7 @@ size_t uecho_socket_skip(uEchoSocket *sock, size_t skipLen)
 * uecho_socket_sendto
 ****************************************/
 
-size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const char *data, size_t dataLen)
+size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, byte *data, size_t dataLen)
 {
 	struct addrinfo *addrInfo;
 	ssize_t sentLen;
@@ -529,16 +529,9 @@ size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const 
   if (!sock)
     return 0;
   
-	if (data == NULL)
+	if (!data && (dataLen <= 0))
 		return 0;
   
-  if (dataLen <= 0) {
-		dataLen = uecho_strlen(data);
-  }
-  
-	if (dataLen <= 0)
-		return 0;
-
 	isBoundFlag = uecho_socket_isbound(sock);
 	sentLen = -1;
 

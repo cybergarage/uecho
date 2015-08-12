@@ -14,7 +14,7 @@
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
 
-#include <uecho/util/time.h>
+#include <uecho/util/timer.h>
 #if defined(WIN32)
 #include <windows.h>
 #else

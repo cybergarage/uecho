@@ -15,7 +15,7 @@
 #include <ctype.h>
 #include <string.h>
 
-#include <uecho/util/string.h>
+#include <uecho/util/strobj.h>
 
 /****************************************
 * uecho_strdup
