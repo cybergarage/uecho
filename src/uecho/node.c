@@ -14,7 +14,7 @@
 * uecho_node_new
 ****************************************/
 
-uEchoNode *uecho_node_new()
+uEchoNode *uecho_node_new(void)
 {
 	uEchoNode *node;
 

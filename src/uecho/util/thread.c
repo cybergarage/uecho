@@ -61,7 +61,7 @@ static void *PosixThreadProc(void *param)
 * uecho_thread_new
 ****************************************/
 
-uEchoThread *uecho_thread_new()
+uEchoThread *uecho_thread_new(void)
 {
 	uEchoThread *thread;
 

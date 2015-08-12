@@ -79,8 +79,8 @@ typedef struct _uEchoDatagramPacket {
 * Function (Socket)
 ****************************************/
 
-void uecho_socket_startup();
-void uecho_socket_cleanup();
+void uecho_socket_startup(void);
+void uecho_socket_cleanup(void);
 
 uEchoSocket *uecho_socket_new(int type);
 #define uecho_socket_stream_new() uecho_socket_new(UECHO_NET_SOCKET_STREAM)
@@ -139,7 +139,7 @@ bool uecho_socket_settimeout(uEchoSocket *sock, int sec);
 * Function (DatagramPacket)
 ****************************************/
 
-uEchoDatagramPacket *uecho_socket_datagram_packet_new();
+uEchoDatagramPacket *uecho_socket_datagram_packet_new(void);
 void uecho_socket_datagram_packet_delete(uEchoDatagramPacket *dgmPkt);
 
 #define uecho_socket_datagram_packet_setdata(dgmPkt, value) uecho_string_setvalue(dgmPkt->data, value)

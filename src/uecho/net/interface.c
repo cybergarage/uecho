@@ -19,7 +19,7 @@
 * uecho_net_interface_new
 ****************************************/
 
-uEchoNetworkInterface *uecho_net_interface_new()
+uEchoNetworkInterface *uecho_net_interface_new(void)
 {
 	uEchoNetworkInterface *netIf;
 
@@ -55,7 +55,7 @@ void uecho_net_interface_delete(uEchoNetworkInterface *netIf)
 * uecho_net_interface_getany
 ****************************************/
 
-uEchoNetworkInterface *uecho_net_interface_getany()
+uEchoNetworkInterface *uecho_net_interface_getany(void)
 {
 	uEchoNetworkInterface *netIf;
 

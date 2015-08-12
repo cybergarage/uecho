@@ -15,7 +15,7 @@
  * uecho_udp_serverlist_new
  ****************************************/
 
-uEchoUdpServerList *uecho_udp_serverlist_new()
+uEchoUdpServerList *uecho_udp_serverlist_new(void)
 {
   uEchoUdpServerList *servers;
   

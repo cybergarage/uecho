@@ -111,7 +111,7 @@ char *uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer *strToken);
 * Function (String)
 ****************************************/
 
-uEchoString *uecho_string_new();
+uEchoString *uecho_string_new(void);
 void uecho_string_delete(uEchoString *str);
 void uecho_string_clear(uEchoString *str);
 

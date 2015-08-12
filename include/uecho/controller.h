@@ -34,7 +34,7 @@ typedef struct _uEchoController {
  * Function
 ****************************************/
 
-uEchoController *uecho_controller_new();
+uEchoController *uecho_controller_new(void);
 void uecho_controller_delete(uEchoController *cp);
 bool uecho_controller_start(uEchoController *cp);
 bool uecho_controller_stop(uEchoController *cp);

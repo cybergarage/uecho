@@ -16,7 +16,7 @@
 * uecho_mutex_new
 ****************************************/
 
-uEchoMutex *uecho_mutex_new()
+uEchoMutex *uecho_mutex_new(void)
 {
 	uEchoMutex *mutex;
 

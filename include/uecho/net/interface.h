@@ -56,9 +56,9 @@ typedef struct _uEchoNetworkInterface {
 * Function (NetworkInterface)
 ****************************************/
 
-uEchoNetworkInterface *uecho_net_interface_new();
+uEchoNetworkInterface *uecho_net_interface_new(void);
 void uecho_net_interface_delete(uEchoNetworkInterface *netIf);
-uEchoNetworkInterface* uecho_net_interface_getany();
+uEchoNetworkInterface* uecho_net_interface_getany(void);
 
 #define uecho_net_interface_next(netIf) (uEchoNetworkInterface *)uecho_list_next((uEchoList *)netIf)
 #define uecho_net_interface_remove(netIf) uecho_list_remove((uEchoList *)netIf)
@@ -81,7 +81,7 @@ char *uecho_net_selectaddr(struct sockaddr *remoteaddr);
 * Function (NetworkInterfaceList)
 ****************************************/
 
-uEchoNetworkInterfaceList *uecho_net_interfacelist_new();
+uEchoNetworkInterfaceList *uecho_net_interfacelist_new(void);
 void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList *netIfList);
 
 #define uecho_net_interfacelist_clear(netIfList) uecho_list_clear((uEchoList *)netIfList, (UECHO_LIST_DESTRUCTORFUNC)uecho_net_interface_delete)

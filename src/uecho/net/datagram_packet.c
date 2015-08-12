@@ -14,7 +14,7 @@
 * uecho_socket_datagram_packet_new
 ****************************************/
 
-uEchoDatagramPacket *uecho_socket_datagram_packet_new()
+uEchoDatagramPacket *uecho_socket_datagram_packet_new(void)
 {
 	uEchoDatagramPacket *dgmPkt;
 

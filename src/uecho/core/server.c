@@ -17,7 +17,7 @@ void uecho_mcast_server_msglistener(uEchoMcastServer *server, uEchoMessage *msg)
 * uecho_server_new
 ****************************************/
 
-uEchoServer *uecho_server_new()
+uEchoServer *uecho_server_new(void)
 {
 	uEchoServer *server;
 

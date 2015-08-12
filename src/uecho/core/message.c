@@ -15,7 +15,7 @@
 * uecho_message_new
 ****************************************/
 
-uEchoMessage *uecho_message_new()
+uEchoMessage *uecho_message_new(void)
 {
 	uEchoMessage *msg;
 

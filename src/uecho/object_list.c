@@ -14,7 +14,7 @@
 * uecho_objectlist_new
 ****************************************/
 
-uEchoObjectList *uecho_objectlist_new()
+uEchoObjectList *uecho_objectlist_new(void)
 {
 	uEchoObjectList *objs;
 

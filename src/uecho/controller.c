@@ -14,7 +14,7 @@
  * uecho_controller_new
  ****************************************/
 
-uEchoController *uecho_controller_new()
+uEchoController *uecho_controller_new(void)
 {
 	uEchoController *cp;
 

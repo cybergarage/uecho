@@ -20,7 +20,7 @@
 * uecho_string_new
 ****************************************/
 
-uEchoString *uecho_string_new()
+uEchoString *uecho_string_new(void)
 {
 	uEchoString *str;
 

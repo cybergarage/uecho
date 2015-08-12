@@ -87,7 +87,7 @@ typedef struct _uEchoMessage
  * Function
  ****************************************/
 
-uEchoMessage *uecho_message_new();
+uEchoMessage *uecho_message_new(void);
 void uecho_message_delete(uEchoMessage *msg);
 void uecho_message_clear(uEchoMessage *msg);
 
@@ -145,7 +145,7 @@ inline uEchoEsvType uecho_message_getesv(uEchoMessage *msg) {return msg->ESV;}
 * Function
 ****************************************/
 
-uEchoMessage *uecho_message_search_new();
+uEchoMessage *uecho_message_search_new(void);
 
 #ifdef  __cplusplus
 } /* extern C */

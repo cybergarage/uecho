@@ -15,7 +15,7 @@
 * uecho_net_interfacelist_new
 ****************************************/
 
-uEchoNetworkInterfaceList *uecho_net_interfacelist_new()
+uEchoNetworkInterfaceList *uecho_net_interfacelist_new(void)
 {
 	uEchoNetworkInterfaceList *netIfList;
 
