@@ -23,7 +23,10 @@ uEchoDatagramPacket *uecho_socket_datagram_packet_new(void)
 	if (!dgmPkt)
     return NULL;
 
-  dgmPkt->data = uecho_string_new();
+  dgmPkt->data = NULL;
+  dgmPkt->dataLen = 0;
+  
+  uecho_string_new();
   dgmPkt->localAddress = uecho_string_new();
   dgmPkt->remoteAddress = uecho_string_new();
 
@@ -39,11 +42,47 @@ uEchoDatagramPacket *uecho_socket_datagram_packet_new(void)
 
 void uecho_socket_datagram_packet_delete(uEchoDatagramPacket *dgmPkt)
 {
-	uecho_string_delete(dgmPkt->data);
-	uecho_string_delete(dgmPkt->localAddress);
+  uecho_socket_datagram_packet_clear(dgmPkt);
+
+  uecho_string_delete(dgmPkt->localAddress);
 	uecho_string_delete(dgmPkt->remoteAddress);
 
 	free(dgmPkt);
+}
+
+/****************************************
+ * uecho_socket_datagram_packet_setdata
+ ****************************************/
+
+bool uecho_socket_datagram_packet_setdata(uEchoDatagramPacket *dgmPkt, const byte *data, size_t dataLen)
+{
+  uecho_socket_datagram_packet_clear(dgmPkt);
+
+  if (dataLen <= 0)
+    return true;
+  
+  dgmPkt->data = malloc(dataLen);
+  if (dgmPkt->dataLen)
+    return false;
+  
+  memcpy(dgmPkt->data, data, dataLen);
+
+  return true;
+}
+
+/****************************************
+ * uecho_socket_datagram_packet_clear
+ ****************************************/
+
+bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket *dgmPkt)
+{
+  if (dgmPkt->data) {
+    free(dgmPkt->data);
+    dgmPkt->data = NULL;
+  }
+  dgmPkt->dataLen = 0;
+
+  return true;
 }
 
 /****************************************
@@ -52,9 +91,10 @@ void uecho_socket_datagram_packet_delete(uEchoDatagramPacket *dgmPkt)
 
 void uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoDatagramPacket *srcDgmPkt)
 {
-	uecho_socket_datagram_packet_setdata(dstDgmPkt, uecho_socket_datagram_packet_getdata(srcDgmPkt));
+	uecho_socket_datagram_packet_setdata(dstDgmPkt, uecho_socket_datagram_packet_getdata(srcDgmPkt), uecho_socket_datagram_packet_getlength(srcDgmPkt));
 	uecho_socket_datagram_packet_setlocaladdress(dstDgmPkt, uecho_socket_datagram_packet_getlocaladdress(srcDgmPkt));
 	uecho_socket_datagram_packet_setlocalport(dstDgmPkt, uecho_socket_datagram_packet_getlocalport(srcDgmPkt));
 	uecho_socket_datagram_packet_setremoteaddress(dstDgmPkt, uecho_socket_datagram_packet_getremoteaddress(srcDgmPkt));
 	uecho_socket_datagram_packet_setremoteport(dstDgmPkt, uecho_socket_datagram_packet_getremoteport(srcDgmPkt));
 }
+
