@@ -43,6 +43,7 @@
 		2185D9CF1B68D5C600A5B0C3 /* object.c in Sources */ = {isa = PBXBuildFile; fileRef = 2185D9CE1B68D5C600A5B0C3 /* object.c */; };
 		2185D9D11B68DEED00A5B0C3 /* property.h in Headers */ = {isa = PBXBuildFile; fileRef = 2185D9D01B68DEED00A5B0C3 /* property.h */; };
 		2185D9D31B68DF1E00A5B0C3 /* property.c in Sources */ = {isa = PBXBuildFile; fileRef = 2185D9D21B68DF1E00A5B0C3 /* property.c */; };
+		21E280621B7BA82C004956BA /* profile.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E280611B7BA82C004956BA /* profile.h */; };
 		21EEC8581B7204D80012AB57 /* thread_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EEC8561B7204D80012AB57 /* thread_list.c */; };
 		21EEC8591B7204D80012AB57 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EEC8571B7204D80012AB57 /* thread.c */; };
 		21EFF1A01B4A9A5E002B5E57 /* controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EFF19E1B4A9A5E002B5E57 /* controller.h */; };
@@ -89,6 +90,7 @@
 		2185D9CE1B68D5C600A5B0C3 /* object.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = object.c; sourceTree = "<group>"; };
 		2185D9D01B68DEED00A5B0C3 /* property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property.h; sourceTree = "<group>"; };
 		2185D9D21B68DF1E00A5B0C3 /* property.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = property.c; sourceTree = "<group>"; };
+		21E280611B7BA82C004956BA /* profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profile.h; sourceTree = "<group>"; };
 		21EEC8561B7204D80012AB57 /* thread_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread_list.c; sourceTree = "<group>"; };
 		21EEC8571B7204D80012AB57 /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread.c; sourceTree = "<group>"; };
 		21EFF19E1B4A9A5E002B5E57 /* controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controller.h; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				21757F491B6A0CAF00281E6F /* core */,
 				2185D9D01B68DEED00A5B0C3 /* property.h */,
+				21E280611B7BA82C004956BA /* profile.h */,
 				2185D9CC1B68D5BC00A5B0C3 /* object.h */,
 				2185D9C21B68C3B500A5B0C3 /* const.h */,
 				21EFF19E1B4A9A5E002B5E57 /* controller.h */,
@@ -254,6 +257,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E280621B7BA82C004956BA /* profile.h in Headers */,
 				21678EF11A8D510100AE79AA /* mutex.h in Headers */,
 				21678EF31A8D510100AE79AA /* thread.h in Headers */,
 				21EFF1A11B4A9A5E002B5E57 /* node.h in Headers */,
