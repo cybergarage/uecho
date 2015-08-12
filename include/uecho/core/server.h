@@ -124,6 +124,8 @@ bool uecho_mcast_server_post(uEchoMcastServer *server, byte *msg, size_t msgLen)
 /****************************************
  * Function (ServerList)
  ****************************************/
+
+// UDP Server List
   
 uEchoUdpServerList *uecho_udp_serverlist_new();
 void uecho_udp_serverlist_delete(uEchoUdpServerList *servers);
@@ -138,6 +140,8 @@ void uecho_udp_serverlist_setuserdata(uEchoUdpServerList *servers, void *data);
 #define uecho_udp_serverlist_size(servers) uecho_list_size((uEchoList *)servers)
 #define uecho_udp_serverlist_gets(servers) (uEchoUdpServer *)uecho_list_next((uEchoList *)servers)
 #define uecho_udp_serverlist_add(servers,server) uecho_list_add((uEchoList *)servers, (uEchoList *)server)
+
+// Multicast Server List
 
 uEchoMcastServerList *uecho_mcast_serverlist_new();
 void uecho_mcast_serverlist_delete(uEchoMcastServerList *servers);

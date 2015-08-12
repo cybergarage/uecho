@@ -14,6 +14,7 @@
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
+#include <uecho/property.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -37,11 +38,12 @@ enum {
  ****************************************/
 
 typedef struct _uEchoObject {
-    bool headFlag;
-    struct _uEchoObject *prev;
-    struct _uEchoObject *next;
+  bool headFlag;
+  struct _uEchoObject *prev;
+  struct _uEchoObject *next;
 
-    byte code[3];
+  byte code[3];
+  uEchoPropertyList *properties;
 } uEchoObject, uEchoObjectList;
 
 /****************************************
@@ -91,5 +93,17 @@ inline byte uecho_object_getinstancecode(uEchoObject *obj) {return obj->code[2];
 #ifdef  __cplusplus
 } /* extern C */
 #endif
+
+/****************************************
+ * Function (Object List)
+ ****************************************/
+
+uEchoObjectList *uecho_objectlist_new();
+void uecho_objectlist_delete(uEchoObjectList *objs);
+
+#define uecho_objectlist_clear(objs) uecho_list_clear((uEchoList *)objs, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_delete)
+#define uecho_objectlist_size(objs) uecho_list_size((uEchoList *)objs)
+#define uecho_objectlist_gets(objs) (uEchoObject *)uecho_list_next((uEchoList *)objs)
+#define uecho_objectlist_add(objs,server) uecho_list_add((uEchoList *)objs, (uEchoList *)server)
 
 #endif /* _UECHO_NODE_H_ */

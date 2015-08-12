@@ -34,10 +34,14 @@ enum {
 
 typedef struct _uEchoProperty
 {
+  bool headFlag;
+  struct _uEchoProperty *prev;
+  struct _uEchoProperty *next;
+  
   byte code;
   size_t count;
   byte *data;
-} uEchoProperty;
+} uEchoProperty, uEchoPropertyList;
 
 /****************************************
  * Function
@@ -73,6 +77,17 @@ inline byte *uecho_property_getdata(uEchoProperty *prop) {return prop->data;}
 
 #endif
   
+/****************************************
+ * Function (Object List)
+ ****************************************/
+  
+uEchoPropertyList *uecho_propertylist_new();
+void uecho_propertylist_delete(uEchoPropertyList *props);
+  
+#define uecho_propertylist_clear(props) uecho_list_clear((uEchoList *)props, (UECHO_LIST_DESTRUCTORFUNC)uecho_property_delete)
+#define uecho_propertylist_size(props) uecho_list_size((uEchoList *)props)
+#define uecho_propertylist_gets(props) (uEchoProperty *)uecho_list_next((uEchoList *)props)
+#define uecho_propertylist_add(props,server) uecho_list_add((uEchoList *)props, (uEchoList *)server)
   
 #ifdef  __cplusplus
 } /* extern C */
