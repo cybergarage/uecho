@@ -24,6 +24,8 @@ uEchoProperty *uecho_property_new() {
   if (!prop)
     return NULL;
 
+  uecho_list_node_init((uEchoList *)prop);
+  
   prop->count = 0;
   prop->data = NULL;
   

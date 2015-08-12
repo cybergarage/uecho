@@ -14,6 +14,7 @@
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
+#include <uecho/object.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -29,7 +30,9 @@ typedef struct _uEchoNode
   struct _uEchoNode *prev;
   struct _uEchoNode *next;
     
-  struct uEchoMutex *mutex;
+  uEchoMutex *mutex;
+  uEchoObjectList *objects;
+  
 } uEchoNode, uEchoNodeList;
 
 /****************************************
@@ -37,14 +40,14 @@ typedef struct _uEchoNode
  ****************************************/
 
 uEchoNode *uecho_node_new();
-void uecho_node_delete(uEchoNode *dev);
-void uecho_node_clear(uEchoNode *dev);
-#define uecho_node_next(dev) (uEchoNode *)uecho_list_next((uEchoList *)dev)
-#define uecho_node_remove(dev) uecho_list_remove((uEchoList *)dev)
+void uecho_node_delete(uEchoNode *node);
+void uecho_node_clear(uEchoNode *node);
+#define uecho_node_next(node) (uEchoNode *)uecho_list_next((uEchoList *)node)
+#define uecho_node_remove(node) uecho_list_remove((uEchoList *)node)
 
-bool uecho_node_start(uEchoNode *dev);
-bool uecho_node_stop(uEchoNode *dev);
-bool uecho_node_isrunning(uEchoNode *dev);
+bool uecho_node_start(uEchoNode *node);
+bool uecho_node_stop(uEchoNode *node);
+bool uecho_node_isrunning(uEchoNode *node);
 	
 #ifdef  __cplusplus
 } /* extern C */
