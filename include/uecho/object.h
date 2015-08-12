@@ -50,7 +50,7 @@ typedef struct _uEchoObject {
  * Function
  ****************************************/
 
-uEchoObject *uecho_object_new();
+uEchoObject *uecho_object_new(void);
 void uecho_object_delete(uEchoObject *obj);
 #define uecho_object_next(obj) (uEchoObject *)uecho_list_next((uEchoList *)obj)
 #define uecho_object_remove(obj) uecho_list_remove((uEchoList *)obj)

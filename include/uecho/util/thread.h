@@ -60,7 +60,7 @@ typedef void (*uEchoThreadFunc)(uEchoThread *);
 * Function
 ****************************************/
 
-uEchoThread *uecho_thread_new();
+uEchoThread *uecho_thread_new(void);
 bool uecho_thread_delete(uEchoThread *thread);
 
 bool uecho_thread_start(uEchoThread *thread);

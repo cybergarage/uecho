@@ -47,7 +47,7 @@ typedef struct _uEchoProperty
  * Function
  ****************************************/
 
-uEchoProperty *uecho_property_new();
+uEchoProperty *uecho_property_new(void);
 void uecho_property_delete(uEchoProperty *prop);
 
 bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count);
@@ -81,7 +81,7 @@ inline byte *uecho_property_getdata(uEchoProperty *prop) {return prop->data;}
  * Function (Object List)
  ****************************************/
   
-uEchoPropertyList *uecho_propertylist_new();
+uEchoPropertyList *uecho_propertylist_new(void);
 void uecho_propertylist_delete(uEchoPropertyList *props);
   
 #define uecho_propertylist_clear(props) uecho_list_clear((uEchoList *)props, (UECHO_LIST_DESTRUCTORFUNC)uecho_property_delete)

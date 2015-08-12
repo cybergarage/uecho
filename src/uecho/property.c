@@ -16,7 +16,7 @@
 * uecho_property_new
 ****************************************/
 
-uEchoProperty *uecho_property_new() {
+uEchoProperty *uecho_property_new(void) {
 	uEchoProperty *prop;
 
 	prop = (uEchoProperty *)malloc(sizeof(uEchoProperty));

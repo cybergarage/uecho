@@ -73,7 +73,7 @@ typedef void (*uEchoServerMessageListener)(uEchoServer *, uEchoMessage *);
 
 // Server
 
-uEchoServer *uecho_server_new();
+uEchoServer *uecho_server_new(void);
 void uecho_server_delete(uEchoServer *server);
 
 bool uecho_server_performlistener(uEchoServer *server, uEchoMessage *msg);
@@ -86,7 +86,7 @@ bool uecho_server_postsearch(uEchoServer *servers, byte *msg, size_t msgLen);
 
 // UDP Server
   
-uEchoUdpServer *uecho_udp_server_new();
+uEchoUdpServer *uecho_udp_server_new(void);
 void uecho_udp_server_delete(uEchoUdpServer *server);
 
 #define uecho_udp_server_next(netIf) (uEchoUdpServer *)uecho_list_next((uEchoList *)netIf)
@@ -103,7 +103,7 @@ bool uecho_udp_server_isrunning(uEchoUdpServer *server);
 
 // Multicast Server
   
-uEchoMcastServer *uecho_mcast_server_new();
+uEchoMcastServer *uecho_mcast_server_new(void);
 void uecho_mcast_server_delete(uEchoMcastServer *server);
 
 #define uecho_mcast_server_next(netIf) (uEchoMcastServer *)uecho_list_next((uEchoList *)netIf)
@@ -127,7 +127,7 @@ bool uecho_mcast_server_post(uEchoMcastServer *server, byte *msg, size_t msgLen)
 
 // UDP Server List
   
-uEchoUdpServerList *uecho_udp_serverlist_new();
+uEchoUdpServerList *uecho_udp_serverlist_new(void);
 void uecho_udp_serverlist_delete(uEchoUdpServerList *servers);
 bool uecho_udp_serverlist_open(uEchoUdpServerList *servers);
 bool uecho_udp_serverlist_close(uEchoUdpServerList *servers);
@@ -143,7 +143,7 @@ void uecho_udp_serverlist_setuserdata(uEchoUdpServerList *servers, void *data);
 
 // Multicast Server List
 
-uEchoMcastServerList *uecho_mcast_serverlist_new();
+uEchoMcastServerList *uecho_mcast_serverlist_new(void);
 void uecho_mcast_serverlist_delete(uEchoMcastServerList *servers);
 bool uecho_mcast_serverlist_open(uEchoMcastServerList *servers);
 bool uecho_mcast_serverlist_close(uEchoMcastServerList *servers);
