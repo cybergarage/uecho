@@ -227,7 +227,10 @@ bool uecho_message_parsepacket(uEchoMessage *msg, uEchoDatagramPacket *dgmPkt)
 {
   if (!msg || !dgmPkt)
     return false;
-  return uecho_message_parse(msg, uecho_socket_datagram_packet_getdata(dgmPkt), uecho_socket_datagram_packet_getlength(dgmPkt));
+  return uecho_message_parse(
+        msg,
+        uecho_socket_datagram_packet_getdata(dgmPkt),
+        uecho_socket_datagram_packet_getlength(dgmPkt));
 }
 
 /****************************************

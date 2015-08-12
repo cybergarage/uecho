@@ -68,10 +68,13 @@ typedef struct _uEchoSocket {
 } uEchoSocket;
 
 typedef struct _uEchoDatagramPacket {
-	uEchoString *data;
+  byte *data;
+  size_t dataLen;
+  
 	uEchoString *localAddress;
 	int localPort;
-	uEchoString *remoteAddress;
+	
+  uEchoString *remoteAddress;
 	int remotePort;
 } uEchoDatagramPacket;
 
@@ -141,10 +144,11 @@ bool uecho_socket_settimeout(uEchoSocket *sock, int sec);
 
 uEchoDatagramPacket *uecho_socket_datagram_packet_new(void);
 void uecho_socket_datagram_packet_delete(uEchoDatagramPacket *dgmPkt);
+bool uecho_socket_datagram_packet_setdata(uEchoDatagramPacket *dgmPkt, const byte *data, size_t dataLen);
+bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket *dgmPkt);
 
-#define uecho_socket_datagram_packet_setdata(dgmPkt, value) uecho_string_setvalue(dgmPkt->data, value)
-#define uecho_socket_datagram_packet_getdata(dgmPkt) uecho_string_getvalue(dgmPkt->data)
-#define uecho_socket_datagram_packet_getlength(dgmPkt) uecho_string_length(dgmPkt->data)
+#define uecho_socket_datagram_packet_getdata(dgmPkt) (dgmPkt->data)
+#define uecho_socket_datagram_packet_getlength(dgmPkt) (dgmPkt->dataLen)
 
 #define uecho_socket_datagram_packet_setlocaladdress(dgmPkt, addr) uecho_string_setvalue(dgmPkt->localAddress, addr)
 #define uecho_socket_datagram_packet_getlocaladdress(dgmPkt) uecho_string_getvalue(dgmPkt->localAddress)

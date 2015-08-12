@@ -567,7 +567,7 @@ size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const 
 ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt)
 {
 	ssize_t recvLen = 0;
-	char recvBuf[UECHO_NET_SOCKET_DGRAM_RECV_BUFSIZE+1];
+	byte recvBuf[UECHO_NET_SOCKET_DGRAM_RECV_BUFSIZE+1];
 	char remoteAddr[UECHO_NET_SOCKET_MAXHOST];
 	char remotePort[UECHO_NET_SOCKET_MAXSERV];
 	char *localAddr;
@@ -583,8 +583,7 @@ ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt)
 	if (recvLen <= 0)
 		return 0;
 
-	recvBuf[recvLen] = '\0';
-	uecho_socket_datagram_packet_setdata(dgmPkt, recvBuf);
+	uecho_socket_datagram_packet_setdata(dgmPkt, recvBuf, recvLen);
 
 	uecho_socket_datagram_packet_setlocalport(dgmPkt, uecho_socket_getport(sock));
 	uecho_socket_datagram_packet_setremoteaddress(dgmPkt, "");
