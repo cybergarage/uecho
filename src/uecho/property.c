@@ -43,21 +43,34 @@ void uecho_property_delete(uEchoProperty *prop) {
 }
 
 /****************************************
+ * uecho_property_setcount
+ ****************************************/
+
+bool uecho_property_setcount(uEchoProperty *prop, size_t count)
+{
+  uecho_property_cleardata(prop);
+  
+  if (count == 0)
+    return true;
+  
+  prop->data = (byte *)calloc(1, count);
+  if (!prop->data)
+    return false;
+  
+  prop->count = count;
+  
+  return true;
+}
+
+/****************************************
  * uecho_property_setdata
  ****************************************/
 
 bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count) {
-  uecho_property_cleardata(prop);
-
-  if (count == 0)
-    return true;
-  
-  prop->data = (byte *)malloc(count);
-  if (!prop->data)
+  if (!uecho_property_setcount(prop, count))
     return false;
   
   memcpy(prop->data, data, count);
-  prop->count = count;
 
   return true;
 }
