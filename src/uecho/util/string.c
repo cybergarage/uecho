@@ -92,8 +92,8 @@ void uecho_string_setintvalue(uEchoString *str, int value)
 
 void uecho_string_setlongvalue(uEchoString *str, long value)
 {
-	char buf[UECHO_STRING_LONG_BUFLEN]
-    ;
+	char buf[UECHO_STRING_LONG_BUFLEN];
+
 	uecho_string_setvalue(str, uecho_long2str(value, buf, sizeof(buf)));
 }
 
