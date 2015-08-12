@@ -12,7 +12,7 @@
 #define _UECHO_NET_CSOCKET_H_
 
 #include <uecho/typedef.h>
-#include <uecho/util/strobj.h>
+#include <uecho/util/strings.h>
 
 #if defined(UECHO_USE_OPENSSL)
 #include <openssl/ssl.h>
