@@ -87,8 +87,10 @@ bool uecho_controller_isrunning(uEchoController *cp)
  * uecho_controller_getnexttid
  ****************************************/
 
-uEchoTID uecho_controller_getnexttid(uEchoController *cp) {
-  if (uEchoTidMax <= cp->lastTID) {
+uEchoTID uecho_controller_getnexttid(uEchoController *cp)
+{
+  if (uEchoTidMax <= cp->lastTID)
+{
     cp->lastTID = 1;
   }
   else {
@@ -101,7 +103,8 @@ uEchoTID uecho_controller_getnexttid(uEchoController *cp) {
  * uecho_controller_searchall
  ****************************************/
 
-bool uecho_controller_postsearch(uEchoController *cp, uEchoMessage *msg) {
+bool uecho_controller_postsearch(uEchoController *cp, uEchoMessage *msg)
+{
   uEchoObject *obj;
   byte *msgBytes;
   size_t msgLen;
@@ -121,7 +124,8 @@ bool uecho_controller_postsearch(uEchoController *cp, uEchoMessage *msg) {
  * uecho_controller_searchall
  ****************************************/
 
-bool uecho_controller_searchall(uEchoController *cp) {
+bool uecho_controller_searchall(uEchoController *cp)
+{
   uEchoMessage *msg;
   
   msg = uecho_message_search_new();
@@ -133,7 +137,8 @@ bool uecho_controller_searchall(uEchoController *cp) {
  * uecho_controller_searchobject
  ****************************************/
 
-bool uecho_controller_searchobject(uEchoController *cp, byte objCode) {
+bool uecho_controller_searchobject(uEchoController *cp, byte objCode)
+{
   uEchoMessage *msg;
   uEchoObject *obj;
   uEchoProperty *prop;

@@ -52,3 +52,39 @@ void uecho_node_delete(uEchoNode *node)
 void uecho_node_clear(uEchoNode *node)
 {
 }
+
+/****************************************
+ * uecho_node_setobject
+ ****************************************/
+
+bool uecho_node_setobject(uEchoNode *node, uEchoObjectCode code)
+{
+  return uecho_objectlist_set(node->objects, code);
+}
+  
+/****************************************
+ * uecho_node_getobjects
+ ****************************************/
+
+uEchoObject *uecho_node_getobjects(uEchoNode *node)
+{
+  return uecho_objectlist_gets(node->objects);
+}
+    
+/****************************************
+ * uecho_node_getobjectbycode
+ ****************************************/
+
+uEchoObject *uecho_node_getobjectbycode(uEchoNode *node, uEchoObjectCode code)
+{
+  return uecho_objectlist_getbycode(node->objects, code);
+}
+      
+/****************************************
+ * uecho_node_getobjectcount
+ ****************************************/
+
+size_t uecho_node_getobjectcount(uEchoNode *node)
+{
+   return uecho_objectlist_size(node->objects);
+}

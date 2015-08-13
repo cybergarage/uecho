@@ -64,43 +64,19 @@ bool uecho_object_start(uEchoObject *obj);
 bool uecho_object_stop(uEchoObject *obj);
 bool uecho_object_isrunning(uEchoObject *obj);
 
-/****************************************
- * Macro
- ****************************************/
-    
-#if defined(C99)
-    
-inline void uecho_object_setclassgroupcode(uEchoObject *obj, byte val) {obj->code[0] = val;}
-inline byte uecho_object_getclassgroupcode(uEchoObject *obj) {return obj->code[0];}
+void uecho_object_setclassgroupcode(uEchoObject *obj, byte val);
+byte uecho_object_getclassgroupcode(uEchoObject *obj);
 
-inline void uecho_object_setclasscode(uEchoObject *obj, byte val) {obj->code[1] = val;}
-inline byte uecho_object_getclasscode(uEchoObject *obj) {return obj->code[1];}
+void uecho_object_setclasscode(uEchoObject *obj, byte val);
+byte uecho_object_getclasscode(uEchoObject *obj);
 
-inline void uecho_object_setinstancecode(uEchoObject *obj, byte val) {obj->code[2] = val;}
-inline byte uecho_object_getinstancecode(uEchoObject *obj) {return obj->code[2];}
+void uecho_object_setinstancecode(uEchoObject *obj, byte val);
+byte uecho_object_getinstancecode(uEchoObject *obj);
 
-inline bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen) {return uecho_propertylist_set(obj->properties, code, data, dataLen);}
-inline uEchoProperty *uecho_object_getproperties(uEchoObject *obj) {return uecho_propertylist_gets(obj->properties);}
-inline uEchoProperty *uecho_object_getpropertybycode(uEchoObject *obj, uEchoPropertyCode code) {return uecho_propertylist_getbycode(obj->properties, code);}
-inline size_t uecho_object_getpropertycount(uEchoObject *obj) {return uecho_propertylist_size(obj->properties);}
-
-#else
-    
-#define uecho_object_setclassgroupcode(obj, val) (obj->code[0] = val)
-#define uecho_object_getclassgroupcode(obj) (obj->code[0])
-
-#define uecho_object_setclasscode(obj, val) (obj->code[1] = val)
-#define uecho_object_getclasscode(obj) (obj->code[1])
-
-#define uecho_object_setinstancecode(obj, val) (obj->code[2] = val)
-#define uecho_object_getinstancecode(obj) (obj->code[2])
-
-#define uecho_object_setproperty(obj, code, data, dataLen) uecho_propertylist_set(obj->properties, code, data, dataLen)
-#define uecho_object_getproperties(obj) uecho_propertylist_gets(obj->properties)
-#define uecho_object_getpropertybycode(obj, code) uecho_propertylist_getbycode(obj->properties, code)
-#define uecho_object_getpropertycount(obj) uecho_propertylist_size(obj->properties)
-
-#endif
+bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen);
+uEchoProperty *uecho_object_getproperties(uEchoObject *obj);
+uEchoProperty *uecho_object_getpropertybycode(uEchoObject *obj, uEchoPropertyCode code);
+size_t uecho_object_getpropertycount(uEchoObject *obj);
 
 /****************************************
  * Function (Object List)

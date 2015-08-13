@@ -42,6 +42,32 @@ void uecho_udp_server_delete(uEchoUdpServer *server)
 }
 
 /****************************************
+ * uecho_udp_server_setmessagelistener
+ ****************************************/
+
+void uecho_udp_server_setmessagelistener(uEchoUdpServer *server, uEchoUdpServerMessageListener listener)
+{
+  server->msgListener = listener;
+}
+
+/****************************************
+ * uecho_udp_server_setuserdata
+ ****************************************/
+
+void uecho_udp_server_setuserdata(uEchoUdpServer *server, void *data)
+{
+  server->userData = data;
+}
+
+/****************************************
+ * uecho_udp_server_getuserdata
+ ****************************************/
+
+void *uecho_udp_server_getuserdata(uEchoUdpServer *server) {
+  return server->userData;
+}
+
+/****************************************
  * uecho_udp_server_open
  ****************************************/
 
@@ -50,7 +76,8 @@ bool uecho_udp_server_open(uEchoUdpServer *server, const char *bindAddr)
   uecho_udp_server_close(server);
   
   server->socket = uecho_socket_dgram_new();
-  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, true, true)) {
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, true, true))
+{
     uecho_udp_server_close(server);
     return false;
   }
@@ -89,7 +116,8 @@ bool uecho_udp_server_isopened(uEchoUdpServer *server)
  * uecho_udp_server_performlistener
  ****************************************/
 
-bool uecho_udp_server_performlistener(uEchoUdpServer *server, uEchoMessage *msg) {
+bool uecho_udp_server_performlistener(uEchoUdpServer *server, uEchoMessage *msg)
+{
   if (!server->msgListener)
     return false;
   server->msgListener(server, msg);

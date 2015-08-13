@@ -76,6 +76,10 @@ typedef void (*uEchoServerMessageListener)(uEchoServer *, uEchoMessage *);
 uEchoServer *uecho_server_new(void);
 void uecho_server_delete(uEchoServer *server);
 
+void uecho_server_setmessagelistener(uEchoServer *server, uEchoServerMessageListener listener);
+void uecho_server_setuserdata(uEchoServer *server, void *data);
+void *uecho_server_getuserdata(uEchoServer *server);
+
 bool uecho_server_performlistener(uEchoServer *server, uEchoMessage *msg);
 
 bool uecho_server_start(uEchoServer *server);
@@ -88,10 +92,14 @@ bool uecho_server_postsearch(uEchoServer *servers, byte *msg, size_t msgLen);
   
 uEchoUdpServer *uecho_udp_server_new(void);
 void uecho_udp_server_delete(uEchoUdpServer *server);
-
+  
 #define uecho_udp_server_next(netIf) (uEchoUdpServer *)uecho_list_next((uEchoList *)netIf)
 #define uecho_udp_server_remove(netIf) uecho_list_remove((uEchoList *)netIf)
-  
+
+void uecho_udp_server_setmessagelistener(uEchoUdpServer *server, uEchoUdpServerMessageListener listener);
+void uecho_udp_server_setuserdata(uEchoUdpServer *server, void *data);
+void *uecho_udp_server_getuserdata(uEchoUdpServer *server);
+
 bool uecho_udp_server_performlistener(uEchoUdpServer *server, uEchoMessage *msg);
 
 bool uecho_udp_server_open(uEchoUdpServer *server, const char *bindAddr);
@@ -108,7 +116,11 @@ void uecho_mcast_server_delete(uEchoMcastServer *server);
 
 #define uecho_mcast_server_next(netIf) (uEchoMcastServer *)uecho_list_next((uEchoList *)netIf)
 #define uecho_mcast_server_remove(netIf) uecho_list_remove((uEchoList *)netIf)
-  
+
+void uecho_mcast_server_setmessagelistener(uEchoMcastServer *server, uEchoMcastServerMessageListener listener);
+void uecho_mcast_server_setuserdata(uEchoMcastServer *server, void *data);
+void *uecho_mcast_server_getuserdata(uEchoMcastServer *server);
+
 bool uecho_mcast_server_performlistener(uEchoMcastServer *server, uEchoMessage *msg);
 
 bool uecho_mcast_server_open(uEchoMcastServer *server, const char *bindAddr);
@@ -158,53 +170,6 @@ bool uecho_mcast_serverlist_post(uEchoMcastServerList *servers, byte *msg, size_
 #define uecho_mcast_serverlist_gets(servers) (uEchoMcastServer *)uecho_list_next((uEchoList *)servers)
 #define uecho_mcast_serverlist_add(servers,server) uecho_list_add((uEchoList *)servers, (uEchoList *)server)
 
-/****************************************
- * Macro
- ****************************************/
-  
-#if defined(C99)
-  
-// Server
-
-inline void uecho_server_setmessagelistener(uEchoServer *server, uEchoServerMessageListener listener) {server->msgListener = listener;}
-inline void uecho_server_setuserdata(uEchoServer *server, void *data) {server->userData = data;}
-inline void *uecho_server_getuserdata(uEchoServer *server) {return server->userData;}
-  
-// UDP Server
-
-inline void uecho_udp_server_setmessagelistener(uEchoUdpServer *server, uEchoUdpServerMessageListener listener) {server->msgListener = listener;}
-inline void uecho_udp_server_setuserdata(uEchoUdpServer *server, void *data) {server->userData = data;}
-inline void *uecho_udp_server_getuserdata(uEchoUdpServer *server) {return server->userData;}
-
-  
-// Multicast Server
-
-inline void uecho_mcast_server_setmessagelistener(uEchoMcastServer *server, uEchoMcastServerMessageListener listener) {server->msgListener = listener;}
-inline void uecho_mcast_server_setuserdata(uEchoMcastServer *server, void *data) {server->userData = data;}
-inline void *uecho_mcast_server_getuserdata(uEchoMcastServer *server) {return server->userData;}
-  
-#else
-  
-// Server
-
-#define uecho_server_setmessagelistener(server, listener) (server->msgListener = listener)
-#define uecho_server_setuserdata(server, data) (server->userData = data)
-#define uecho_server_getuserdata(server) (server->userData)
-
-// UDP Server
-
-#define uecho_udp_server_setmessagelistener(server, listener) (server->msgListener = listener)
-#define uecho_udp_server_setuserdata(server, data) (server->userData = data)
-#define uecho_udp_server_getuserdata(server) (server->userData)
-
-// Multicast Server
-
-#define uecho_mcast_server_setmessagelistener(server, listener) (server->msgListener = listener)
-#define uecho_mcast_server_setuserdata(server, data) (server->userData = data)
-#define uecho_mcast_server_getuserdata(server) (server->userData)
-  
-#endif
-  
 #ifdef  __cplusplus
 } /* extern C */
 #endif

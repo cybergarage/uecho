@@ -56,35 +56,13 @@ bool uecho_property_setcount(uEchoProperty *prop, size_t count);
 bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count);
 bool uecho_property_cleardata(uEchoProperty *prop);
   
-/****************************************
- * Macro
- ****************************************/
-  
-#if defined(C99)
+uEchoProperty *uecho_property_next(uEchoProperty *prop);
+void uecho_property_remove(uEchoProperty *prop);
 
-inline uEchoProperty *uecho_property_next(uEchoProperty *prop) {return (uEchoProperty *)uecho_list_next((uEchoList *)prop);}
-inline void uecho_property_remove(uEchoProperty *prop) {uecho_list_remove((uEchoList *)prop);}
-
-inline void uecho_property_setcode(uEchoProperty *prop, uEchoPropertyCode val) {prop->code = val;}
-inline uEchoPropertyCode uecho_property_getcode(uEchoProperty *prop) {return prop->code;}
-
-inline byte uecho_property_getcount(uEchoProperty *prop) {return prop->count;}
-
-inline byte *uecho_property_getdata(uEchoProperty *prop) {return prop->data;}
-  
-#else
-
-#define uecho_property_next(prop) (uEchoProperty *)uecho_list_next((uEchoList *)prop)
-#define uecho_property_remove(prop) uecho_list_remove((uEchoList *)prop)
-  
-#define uecho_property_setcode(prop, val) (prop->code = val)
-#define uecho_property_getcode(prop) (prop->code)
-
-#define uecho_property_getcount(prop) (prop->count)
-
-#define uecho_property_getdata(prop) (prop->data)
-
-#endif
+void uecho_property_setcode(uEchoProperty *prop, uEchoPropertyCode val);
+uEchoPropertyCode uecho_property_getcode(uEchoProperty *prop);
+byte uecho_property_getcount(uEchoProperty *prop);
+byte *uecho_property_getdata(uEchoProperty *prop);
   
 /****************************************
  * Function (Object List)
