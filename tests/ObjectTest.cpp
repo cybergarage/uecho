@@ -57,3 +57,29 @@ BOOST_AUTO_TEST_CASE(ObjectSetCodes)
   
   uecho_object_delete(obj);
 }
+
+BOOST_AUTO_TEST_CASE(ObjectSetProperty)
+{
+  uEchoObject *obj = uecho_object_new();
+  
+  BOOST_CHECK_EQUAL(uecho_object_getpropertycount(obj), 0);
+  
+  for (size_t n=uEchoPropertyCodeMin; n<=uEchoPropertyCodeMax; n++) {
+    byte *propData = (byte *)malloc(n);
+    BOOST_CHECK(uecho_object_setproperty(obj, n, propData, n));
+    free(propData);
+  }
+  
+  BOOST_CHECK_EQUAL(uecho_object_getpropertycount(obj), (uEchoPropertyCodeMax - uEchoPropertyCodeMin + 1));
+  
+  for (size_t n=uEchoPropertyCodeMin; n<=uEchoPropertyCodeMax; n++) {
+    uEchoProperty *prop = uecho_object_getpropertybycode(obj, n);
+    BOOST_CHECK(prop);
+    BOOST_CHECK_EQUAL(uecho_property_getcode(prop), n);
+    BOOST_CHECK_EQUAL(uecho_property_getcount(prop), n);
+  }
+  
+  BOOST_CHECK_EQUAL(uecho_object_getpropertycount(obj), (uEchoPropertyCodeMax - uEchoPropertyCodeMin + 1));
+  
+  uecho_object_delete(obj);
+}

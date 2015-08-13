@@ -37,6 +37,7 @@ uEchoMcastServer *uecho_mcast_server_new(void)
 void uecho_mcast_server_delete(uEchoMcastServer *server)
 {
   uecho_mcast_server_stop(server);
+  uecho_mcast_server_remove(server);
   
 	free(server);
 }

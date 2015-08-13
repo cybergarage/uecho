@@ -36,9 +36,11 @@ uEchoProperty *uecho_property_new(void) {
 * uecho_property_delete
 ****************************************/
 
-void uecho_property_delete(uEchoProperty *prop) {
+void uecho_property_delete(uEchoProperty *prop)
+{
   uecho_property_cleardata(prop);
-  
+  uecho_property_remove(prop);
+
 	free(prop);
 }
 
@@ -69,6 +71,9 @@ bool uecho_property_setcount(uEchoProperty *prop, size_t count)
 bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count) {
   if (!uecho_property_setcount(prop, count))
     return false;
+  
+  if (count == 0)
+    return true;
   
   memcpy(prop->data, data, count);
 

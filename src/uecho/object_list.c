@@ -38,5 +38,40 @@ void uecho_objectlist_delete(uEchoObjectList *objs)
 	free(objs);
 }
 
-uEchoObject *uecho_objectlist_find(uEchoObjectList *objs, uEchoObject *obj);
-bool uecho_objectlist_set(uEchoObjectList *objs, uEchoObjectList *obj);
+/****************************************
+ * uecho_objectlist_getbycode
+ ****************************************/
+
+uEchoObject *uecho_objectlist_getbycode(uEchoObjectList *objs, uEchoObjectCode code)
+{
+  uEchoObject *obj;
+  
+  for (obj = uecho_objectlist_gets(objs); obj; obj = uecho_object_next(obj)) {
+    if (uecho_object_getcode(obj) == code)
+      return obj;
+  }
+  
+  return NULL;
+}
+
+/****************************************
+ * uecho_objectlist_set
+ ****************************************/
+
+bool uecho_objectlist_set(uEchoObjectList *objs, uEchoObjectCode code)
+{
+  uEchoObject *obj;
+  
+  obj = uecho_objectlist_getbycode(objs, code);
+  if (obj)
+    return true;
+  
+  obj = uecho_object_new();
+  if (!obj)
+    return false;
+  
+  uecho_object_setcode(obj, code);
+  uecho_objectlist_add(objs, obj);
+  
+  return true;
+}

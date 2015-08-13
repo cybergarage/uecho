@@ -37,6 +37,8 @@ enum {
  * Data Type
  ****************************************/
 
+typedef unsigned int uEchoObjectCode;
+  
 typedef struct _uEchoObject {
   bool headFlag;
   struct _uEchoObject *prev;
@@ -55,8 +57,8 @@ void uecho_object_delete(uEchoObject *obj);
 #define uecho_object_next(obj) (uEchoObject *)uecho_list_next((uEchoList *)obj)
 #define uecho_object_remove(obj) uecho_list_remove((uEchoList *)obj)
 
-void uecho_object_setcode(uEchoObject *obj, int val);
-int uecho_object_getcode(uEchoObject *obj);
+void uecho_object_setcode(uEchoObject *obj, uEchoObjectCode val);
+uEchoObjectCode uecho_object_getcode(uEchoObject *obj);
   
 bool uecho_object_start(uEchoObject *obj);
 bool uecho_object_stop(uEchoObject *obj);
@@ -77,6 +79,11 @@ inline byte uecho_object_getclasscode(uEchoObject *obj) {return obj->code[1];}
 inline void uecho_object_setinstancecode(uEchoObject *obj, byte val) {obj->code[2] = val;}
 inline byte uecho_object_getinstancecode(uEchoObject *obj) {return obj->code[2];}
 
+inline bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen) {return uecho_propertylist_set(obj->properties, code, data, dataLen);}
+inline uEchoProperty *uecho_object_getproperties(uEchoObject *obj) {return uecho_propertylist_gets(obj->properties);}
+inline uEchoProperty *uecho_object_getpropertybycode(uEchoObject *obj, uEchoPropertyCode code) {return uecho_propertylist_getbycode(obj->properties, code);}
+inline size_t uecho_object_getpropertycount(uEchoObject *obj) {return uecho_propertylist_size(obj->properties);}
+
 #else
     
 #define uecho_object_setclassgroupcode(obj, val) (obj->code[0] = val)
@@ -87,26 +94,31 @@ inline byte uecho_object_getinstancecode(uEchoObject *obj) {return obj->code[2];
 
 #define uecho_object_setinstancecode(obj, val) (obj->code[2] = val)
 #define uecho_object_getinstancecode(obj) (obj->code[2])
-    
-#endif
-    
-#ifdef  __cplusplus
-} /* extern C */
+
+#define uecho_object_setproperty(obj, code, data, dataLen) uecho_propertylist_set(obj->properties, code, data, dataLen)
+#define uecho_object_getproperties(obj) uecho_propertylist_gets(obj->properties)
+#define uecho_object_getpropertybycode(obj, code) uecho_propertylist_getbycode(obj->properties, code)
+#define uecho_object_getpropertycount(obj) uecho_propertylist_size(obj->properties)
+
 #endif
 
 /****************************************
  * Function (Object List)
  ****************************************/
-
-uEchoObjectList *uecho_objectlist_new();
+  
+uEchoObjectList *uecho_objectlist_new(void);
 void uecho_objectlist_delete(uEchoObjectList *objs);
-
-uEchoObject *uecho_objectlist_find(uEchoObjectList *objs, uEchoObject *obj);
-bool uecho_objectlist_set(uEchoObjectList *objs, uEchoObjectList *obj);
-
+  
+bool uecho_objectlist_set(uEchoObjectList *props, uEchoObjectCode code);
+uEchoObject *uecho_objectlist_getbycode(uEchoObjectList *props, uEchoObjectCode code);
+  
 #define uecho_objectlist_clear(objs) uecho_list_clear((uEchoList *)objs, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_delete)
 #define uecho_objectlist_size(objs) uecho_list_size((uEchoList *)objs)
 #define uecho_objectlist_gets(objs) (uEchoObject *)uecho_list_next((uEchoList *)objs)
 #define uecho_objectlist_add(objs,obj) uecho_list_add((uEchoList *)objs, (uEchoList *)obj)
+
+#ifdef  __cplusplus
+} /* extern C */
+#endif
 
 #endif /* _UECHO_NODE_H_ */
