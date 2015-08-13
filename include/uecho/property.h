@@ -84,11 +84,14 @@ inline byte *uecho_property_getdata(uEchoProperty *prop) {return prop->data;}
   
 uEchoPropertyList *uecho_propertylist_new(void);
 void uecho_propertylist_delete(uEchoPropertyList *props);
+
+uEchoProperty *uecho_propertylist_find(uEchoPropertyList *props, uEchoProperty *prop);
+bool uecho_propertylist_set(uEchoPropertyList *props, uEchoProperty *prop);
   
 #define uecho_propertylist_clear(props) uecho_list_clear((uEchoList *)props, (UECHO_LIST_DESTRUCTORFUNC)uecho_property_delete)
 #define uecho_propertylist_size(props) uecho_list_size((uEchoList *)props)
 #define uecho_propertylist_gets(props) (uEchoProperty *)uecho_list_next((uEchoList *)props)
-#define uecho_propertylist_add(props,server) uecho_list_add((uEchoList *)props, (uEchoList *)server)
+#define uecho_propertylist_add(props,prop) uecho_list_add((uEchoList *)props, (uEchoList *)prop)
   
 #ifdef  __cplusplus
 } /* extern C */

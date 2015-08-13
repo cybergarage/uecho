@@ -101,9 +101,12 @@ inline byte uecho_object_getinstancecode(uEchoObject *obj) {return obj->code[2];
 uEchoObjectList *uecho_objectlist_new();
 void uecho_objectlist_delete(uEchoObjectList *objs);
 
+uEchoObject *uecho_objectlist_find(uEchoObjectList *objs, uEchoObject *obj);
+bool uecho_objectlist_set(uEchoObjectList *objs, uEchoObjectList *obj);
+
 #define uecho_objectlist_clear(objs) uecho_list_clear((uEchoList *)objs, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_delete)
 #define uecho_objectlist_size(objs) uecho_list_size((uEchoList *)objs)
 #define uecho_objectlist_gets(objs) (uEchoObject *)uecho_list_next((uEchoList *)objs)
-#define uecho_objectlist_add(objs,server) uecho_list_add((uEchoList *)objs, (uEchoList *)server)
+#define uecho_objectlist_add(objs,obj) uecho_list_add((uEchoList *)objs, (uEchoList *)obj)
 
 #endif /* _UECHO_NODE_H_ */

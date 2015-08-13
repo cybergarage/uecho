@@ -37,3 +37,6 @@ void uecho_objectlist_delete(uEchoObjectList *objs)
 
 	free(objs);
 }
+
+uEchoObject *uecho_objectlist_find(uEchoObjectList *objs, uEchoObject *obj);
+bool uecho_objectlist_set(uEchoObjectList *objs, uEchoObjectList *obj);
