@@ -57,7 +57,7 @@
 
 #if defined(WIN32)
 
-int uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
+size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
 {
 #if !defined(UECNO_USE_WIN32_GETHOSTADDRESSES) && !defined(UECNO_USE_WIN32_GETADAPTERSINFO)
 	uEchoNetworkInterface *netIf;
@@ -223,7 +223,7 @@ int uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
 
 #if defined(HAVE_IFADDRS_H) 
 
-int uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
+size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
 {
 	uEchoNetworkInterface *netIf;
 	struct ifaddrs *ifaddr;
@@ -291,7 +291,7 @@ int uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
 
 static const char *PATH_PROC_NET_DEV = "/proc/net/dev";
 
-int uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
+size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
 {
 	uEchoNetworkInterface *netIf;
 	FILE *fd;

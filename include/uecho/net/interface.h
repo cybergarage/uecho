@@ -93,7 +93,7 @@ void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList *netIfList);
 * Function
 ****************************************/
 
-int uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList);
+size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList);
 
 bool uecho_net_isipv6address(const char *addr);
 int uecho_net_getipv6scopeid(const char *addr);
