@@ -46,7 +46,8 @@ uEchoProperty *uecho_propertylist_getbycode(uEchoPropertyList *props, uEchoPrope
 {
   uEchoProperty *prop;
   
-  for (prop = uecho_propertylist_gets(props); prop; prop = uecho_property_next(prop)) {
+  for (prop = uecho_propertylist_gets(props); prop; prop = uecho_property_next(prop))
+{
     if (uecho_property_getcode(prop) == code)
       return prop;
   }
@@ -63,7 +64,8 @@ bool uecho_propertylist_set(uEchoPropertyList *props, uEchoPropertyCode code, by
   uEchoProperty *prop;
   
   prop = uecho_propertylist_getbycode(props, code);
-  if (!prop) {
+  if (!prop)
+{
     prop = uecho_property_new();
     if (!prop)
       return false;

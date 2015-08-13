@@ -104,7 +104,8 @@ int uecho_strcasecmp(const char *str1, const char *str2)
 #if !defined(WIN32)
 	return strcasecmp(str1, str2);
 #else
-	for (; toupper(*str1) == toupper(*str2); str1++, str2++) {
+	for (; toupper(*str1) == toupper(*str2); str1++, str2++)
+{
 		if (*str1 == '\0')
 			return 0;
 	}
@@ -163,8 +164,10 @@ ssize_t uecho_strchr(const char *str, const char *chars, size_t nchars)
 		return -1;
 		
 	strLen = uecho_strlen(str);
-	for (i=0; i<strLen; i++) {
-		for (j=0; j<nchars; j++) {
+	for (i=0; i<strLen; i++)
+{
+		for (j=0; j<nchars; j++)
+{
 			if (str[i] == chars[j])
 				return i;
 		}		
@@ -186,8 +189,10 @@ ssize_t uecho_strrchr(const char *str, const char *chars, size_t nchars)
 		return -1;
 		
 	strLen = uecho_strlen(str);
-	for (i=(strLen-1); 0<=i; i--) {
-		for (j=0; j<nchars; j++) {
+	for (i=(strLen-1); 0<=i; i--)
+{
+		for (j=0; j<nchars; j++)
+{
 			if (str[i] == chars[j])
 				return i;
 		}		
@@ -207,12 +212,15 @@ char *uecho_strtrimwhite(char *str)
   ssize_t i;
 	strLen = uecho_strlen(str);
 	if (strLen == 0) return str;
-	for (i=(strLen-1); 0<=i; i--) {
-		if (isspace(str[i])) {
+	for (i=(strLen-1); 0<=i; i--)
+{
+		if (isspace(str[i]))
+{
 			strLen--;
 		} 
 	}
-	for (i=0 ; i<strLen ; i++) {
+	for (i=0 ; i<strLen ; i++)
+{
 		if (!isspace(str[i])) break;
 	}
 
@@ -244,10 +252,13 @@ char *uecho_strltrim(char *str, char *delim, size_t ndelim)
   ssize_t i, j;
 	
 	strLen = uecho_strlen(str);
-	for (i=0; i<strLen; i++) {
+	for (i=0; i<strLen; i++)
+{
 		bool hasDelim = false;
-		for (j=0; j<ndelim; j++) {
-			if (str[i] == delim[j]) {
+		for (j=0; j<ndelim; j++)
+{
+			if (str[i] == delim[j])
+{
 				hasDelim = true;
 				break;
 			}
@@ -269,10 +280,13 @@ char *uecho_strrtrim(char *str, char *delim, size_t ndelim)
   ssize_t i, j;
 	
 	strLen = uecho_strlen(str);
-	for (i=(strLen-1); 0<=i; i--) {
+	for (i=(strLen-1); 0<=i; i--)
+{
 		bool hasDelim = false;
-		for (j=0; j<ndelim; j++) {
-			if (str[i] == delim[j]) {
+		for (j=0; j<ndelim; j++)
+{
+			if (str[i] == delim[j])
+{
 				hasDelim = true;
 				str[i] = '\0';
 				break;

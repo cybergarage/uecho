@@ -46,6 +46,33 @@ void uecho_server_delete(uEchoServer *server)
 }
 
 /****************************************
+ * uecho_server_setmessagelistener
+ ****************************************/
+
+void uecho_server_setmessagelistener(uEchoServer *server, uEchoServerMessageListener listener)
+{
+  server->msgListener = listener;
+}
+  
+/****************************************
+ * uecho_server_setuserdata
+ ****************************************/
+
+void uecho_server_setuserdata(uEchoServer *server, void *data)
+{
+  server->userData = data;
+}
+    
+/****************************************
+ * uecho_server_getuserdata
+ ****************************************/
+
+void *uecho_server_getuserdata(uEchoServer *server)
+{
+  return server->userData;
+}
+
+/****************************************
  * uecho_server_start
  ****************************************/
 
@@ -109,7 +136,8 @@ bool uecho_server_isrunning(uEchoServer *server)
  * uecho_server_performlistener
  ****************************************/
 
-bool uecho_server_performlistener(uEchoServer *server, uEchoMessage *msg) {
+bool uecho_server_performlistener(uEchoServer *server, uEchoMessage *msg)
+{
   if (!server->msgListener)
     return false;
   server->msgListener(server, msg);
@@ -120,7 +148,8 @@ bool uecho_server_performlistener(uEchoServer *server, uEchoMessage *msg) {
  * uecho_udp_server_msglistener
  ****************************************/
 
-void uecho_udp_server_msglistener(uEchoUdpServer *udpServer, uEchoMessage *msg) {
+void uecho_udp_server_msglistener(uEchoUdpServer *udpServer, uEchoMessage *msg)
+{
   uEchoServer *server = (uEchoServer *)uecho_udp_server_getuserdata(udpServer);
   if (!server)
     return;
@@ -131,7 +160,8 @@ void uecho_udp_server_msglistener(uEchoUdpServer *udpServer, uEchoMessage *msg) 
  * uecho_mcast_server_msglistener
  ****************************************/
 
-void uecho_mcast_server_msglistener(uEchoMcastServer *mcastServer, uEchoMessage *msg) {
+void uecho_mcast_server_msglistener(uEchoMcastServer *mcastServer, uEchoMessage *msg)
+{
   uEchoServer *server = (uEchoServer *)uecho_mcast_server_getuserdata(mcastServer);
   if (!server)
     return;

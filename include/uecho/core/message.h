@@ -82,46 +82,24 @@ uEchoTID uecho_message_gettid(uEchoMessage *msg);
 bool uecho_message_setopc(uEchoMessage *msg, byte val);
 byte uecho_message_getopc(uEchoMessage *msg);
 
+void uecho_message_setehd1(uEchoMessage *msg, byte val);
+byte uecho_message_getehd1(uEchoMessage *msg);
+  
+uEchoObject *uecho_message_getsourceobject(uEchoMessage *msg);
+uEchoObject *uecho_message_getdestinationobject(uEchoMessage *msg);
+  
+void uecho_message_setehd2(uEchoMessage *msg, byte val);
+byte uecho_message_getehd2(uEchoMessage *msg);
+  
+void uecho_message_setesv(uEchoMessage *msg, uEchoEsvType val);
+uEchoEsvType uecho_message_getesv(uEchoMessage *msg);
+
 uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n);
 
 size_t uecho_message_size(uEchoMessage *msg);
 byte *uecho_message_getbytes(uEchoMessage *msg);
 
 bool uecho_message_equals(uEchoMessage *msg1, uEchoMessage *msg2);
-
-/****************************************
- * Macro
- ****************************************/
-
-#if defined(C99)
-
-inline void uecho_message_setehd1(uEchoMessage *msg, byte val) {msg->EHD1 = val;}
-inline byte uecho_message_getehd1(uEchoMessage *msg) {return msg->EHD1;}
-    
-inline uEchoObject *uecho_message_getsourceobject(uEchoMessage *msg) {return msg->SEOJ;}
-inline uEchoObject *uecho_message_getdestinationobject(uEchoMessage *msg) {return msg->DEOJ;}
-
-inline void uecho_message_setehd2(uEchoMessage *msg, byte val) {msg->EHD2 = val;}
-inline byte uecho_message_getehd2(uEchoMessage *msg) {return msg->EHD2;}
-
-inline void uecho_message_setesv(uEchoMessage *msg, uEchoEsvType val) {msg->ESV = val;}
-inline uEchoEsvType uecho_message_getesv(uEchoMessage *msg) {return msg->ESV;}
-
-#else
-
-#define uecho_message_setehd1(msg, val) (msg->EHD1 = val)
-#define uecho_message_getehd1(msg) (msg->EHD1)
-    
-#define uecho_message_getsourceobject(msg) (msg->SEOJ)
-#define uecho_message_getdestinationobject(msg) (msg->DEOJ)
-    
-#define uecho_message_setehd2(msg, val) (msg->EHD2 = val)
-#define uecho_message_getehd2(msg) (msg->EHD2)
-    
-#define uecho_message_setesv(msg, val) (msg->ESV = val)
-#define uecho_message_getesv(msg) (msg->ESV)
-    
-#endif
 
 /****************************************
 * Function
