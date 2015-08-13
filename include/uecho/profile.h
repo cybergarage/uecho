@@ -11,6 +11,8 @@
 #ifndef _UECHO_PROFILE_H_
 #define _UECHO_PROFILE_H_
 
+#include <uecho/object.h>
+
 #ifdef  __cplusplus
 extern "C" {
 #endif
@@ -32,9 +34,24 @@ enum {
 } uEchoProfileObjectSuperClassEPC;
 
 enum {
+  uEchoProfileObjectSuperClassFaultStatusLen                            = 1,
+  uEchoProfileObjectSuperClassManufacturerCodeLen                       = 3,
+  uEchoProfileObjectSuperClassPlaceOfBusinessCodeLen                    = 3,
+  uEchoProfileObjectSuperClassProductCodeLen                            = 12,
+  uEchoProfileObjectSuperClassSerialNumberLen                           = 12,
+  uEchoProfileObjectSuperClassDateOfManufactureLen                      = 4,
+  uEchoProfileObjectSuperClassStatusChangeAnnouncementPropertyMapMaxLen = 17,
+  uEchoProfileObjectSuperClassSetPropertyMapMaxLen                      = 17,
+  uEchoProfileObjectSuperClassGetPropertyMapMaxLen                      = 17,
+} uEchoProfileObjectSuperClassEPCSize;
+  
+enum {
   uEchoProfileObjectSuperClassFaultEncountered   = 0x41,
   uEchoProfileObjectSuperClassNoFaultEncountered = 0x42
 };
+
+bool uecho_object_addsuperclassproperties(uEchoObject *obj);
+bool uecho_object_updatesuperclassproperties(uEchoObject *obj);
   
 /****************************************
  * Node Profile Class
