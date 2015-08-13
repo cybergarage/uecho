@@ -32,7 +32,8 @@ BOOST_AUTO_TEST_CASE(ControllerTID)
   BOOST_CHECK(firstTid <= uEchoTidMax);
   
   uEchoTID prevTid = firstTid;
-  for (int n=0; n<100; n++) {
+  for (int n=0; n<100; n++)
+{
     uEchoTID tid = uecho_controller_getnexttid(cp);
     BOOST_CHECK(uEchoTidMin <= tid);
     BOOST_CHECK(prevTid < tid);

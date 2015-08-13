@@ -20,7 +20,8 @@ uEchoThreadList *uecho_threadlist_new(void)
 
 	threadList = (uEchoThreadList *)malloc(sizeof(uEchoThreadList));
 
-	if ( NULL != threadList ) {
+	if ( NULL != threadList )
+{
 		uecho_list_header_init((uEchoList *)threadList);
 		threadList->runnableFlag = false;
 		threadList->action = NULL;

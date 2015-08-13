@@ -48,7 +48,8 @@ uEchoMessage *uecho_message_new(void)
 * uecho_message_delete
 ****************************************/
 
-void uecho_message_delete(uEchoMessage *msg) {
+void uecho_message_delete(uEchoMessage *msg)
+{
   uecho_message_clear(msg);
 
   uecho_object_delete(msg->SEOJ);
@@ -61,22 +62,27 @@ void uecho_message_delete(uEchoMessage *msg) {
  * uecho_message_clear
  ****************************************/
 
-void uecho_message_clear(uEchoMessage *msg) {
+void uecho_message_clear(uEchoMessage *msg)
+{
   int n;
   
-  if (0 < msg->OPC) {
-    for (n=0; n<(int)(msg->OPC); n++) {
+  if (0 < msg->OPC)
+{
+    for (n=0; n<(int)(msg->OPC); n++)
+{
       uecho_property_delete(msg->EP[n]);
       msg->EP[n] = NULL;
     }
   }
   
-  if (msg->EP) {
+  if (msg->EP)
+{
     free(msg->EP);
     msg->EP = NULL;
   }
 
-  if (msg->bytes) {
+  if (msg->bytes)
+{
     free(msg->bytes);
     msg->bytes = NULL;
   }
@@ -86,8 +92,10 @@ void uecho_message_clear(uEchoMessage *msg) {
  * uecho_message_settid
  ****************************************/
 
-bool uecho_message_settid(uEchoMessage *msg, uEchoTID val) {
-  if (uEchoTidMax < val) {
+bool uecho_message_settid(uEchoMessage *msg, uEchoTID val)
+{
+  if (uEchoTidMax < val)
+{
     val %= uEchoTidMax;
   }
   uint16_t nval = htons(val);
@@ -100,7 +108,8 @@ bool uecho_message_settid(uEchoMessage *msg, uEchoTID val) {
  * uecho_message_gettid
  ****************************************/
 
-uEchoTID uecho_message_gettid(uEchoMessage *msg) {
+uEchoTID uecho_message_gettid(uEchoMessage *msg)
+{
   uint16_t nval = (msg->TID[0] << 8) + msg->TID[1];
   return ntohs(nval);
 }
@@ -109,7 +118,8 @@ uEchoTID uecho_message_gettid(uEchoMessage *msg) {
  * uecho_message_setopc
  ****************************************/
 
-bool uecho_message_setopc(uEchoMessage *msg, byte count) {
+bool uecho_message_setopc(uEchoMessage *msg, byte count)
+{
   int n;
   
   uecho_message_clear(msg);
@@ -131,15 +141,89 @@ bool uecho_message_setopc(uEchoMessage *msg, byte count) {
  * uecho_message_getopc
  ****************************************/
 
-byte uecho_message_getopc(uEchoMessage *msg) {
+byte uecho_message_getopc(uEchoMessage *msg)
+{
     return msg->OPC;
 }
 
 /****************************************
- * uecho_message_getopc
+ * uecho_message_setehd1
  ****************************************/
 
-uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n) {
+void uecho_message_setehd1(uEchoMessage *msg, byte val)
+{
+  msg->EHD1 = val;
+}
+
+/****************************************
+ * uecho_message_getehd1
+ ****************************************/
+
+byte uecho_message_getehd1(uEchoMessage *msg)
+{
+  return msg->EHD1;
+}
+
+/****************************************
+ * uecho_message_getsourceobject
+ ****************************************/
+
+uEchoObject *uecho_message_getsourceobject(uEchoMessage *msg)
+{
+  return msg->SEOJ;
+}
+
+/****************************************
+ * uecho_message_getdestinationobject
+ ****************************************/
+
+uEchoObject *uecho_message_getdestinationobject(uEchoMessage *msg)
+{
+    return msg->DEOJ;
+}
+
+/****************************************
+ * uecho_message_setehd2
+ ****************************************/
+
+void uecho_message_setehd2(uEchoMessage *msg, byte val)
+{
+  msg->EHD2 = val;
+}
+
+/****************************************
+ * uecho_message_getehd2
+ ****************************************/
+
+byte uecho_message_getehd2(uEchoMessage *msg)
+{
+  return msg->EHD2;
+}
+
+/****************************************
+ * uecho_message_setesv
+ ****************************************/
+
+void uecho_message_setesv(uEchoMessage *msg, uEchoEsvType val)
+{
+  msg->ESV = val;
+}
+
+/****************************************
+ * uecho_message_getesv
+ ****************************************/
+
+uEchoEsvType uecho_message_getesv(uEchoMessage *msg)
+{
+  return msg->ESV;
+}
+
+/****************************************
+ * uecho_message_getproperty
+ ****************************************/
+
+uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n)
+{
   if ((msg->OPC - 1) < n)
     return NULL;
   return msg->EP[n];
@@ -149,7 +233,8 @@ uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n) {
  * uecho_message_parse
  ****************************************/
 
-bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen) {
+bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen)
+{
   uEchoProperty *prop;
   size_t n, offset, count;
   
@@ -192,7 +277,8 @@ bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen) {
   // EP
   
   offset = 12;
-  for (n = 0; n<(int)(msg->OPC); n++) {
+  for (n = 0; n<(int)(msg->OPC); n++)
+{
     prop = uecho_message_getproperty(msg, n);
     if (!prop)
       return false;
@@ -246,7 +332,8 @@ size_t uecho_message_size(uEchoMessage *msg)
   
   msgLen = uEchoMessageMinLen;
 
-  for (n = 0; n<(size_t)(msg->OPC); n++) {
+  for (n = 0; n<(size_t)(msg->OPC); n++)
+{
     prop = uecho_message_getproperty(msg, n);
     msgLen += 2;
     msgLen += uecho_property_getcount(prop);
@@ -264,7 +351,8 @@ byte *uecho_message_getbytes(uEchoMessage *msg)
   uEchoProperty *prop;
   size_t n, offset, count;
   
-  if (msg->bytes) {
+  if (msg->bytes)
+{
     free(msg->bytes);
   }
 
@@ -284,7 +372,8 @@ byte *uecho_message_getbytes(uEchoMessage *msg)
   msg->bytes[11] = msg->OPC;
 
   offset = 12;
-  for (n = 0; n<(size_t)(msg->OPC); n++) {
+  for (n = 0; n<(size_t)(msg->OPC); n++)
+{
     prop = uecho_message_getproperty(msg, n);
     count = uecho_property_getcount(prop);
     msg->bytes[offset++] = uecho_property_getcode(prop);

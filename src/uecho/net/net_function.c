@@ -27,11 +27,13 @@ static bool uecho_NET_USE_ONLY_IPV6_ADDR = false;
 
 bool uecho_net_isuseaddress(char *addr)
 {
-	if (uecho_NET_USE_ONLY_IPV6_ADDR == true) {
+	if (uecho_NET_USE_ONLY_IPV6_ADDR == true)
+{
 		if (uecho_net_isipv6address(addr) == false)
 			return false;
 	}
-	if (uecho_NET_USE_ONLY_IPV4_ADDR == true) {
+	if (uecho_NET_USE_ONLY_IPV4_ADDR == true)
+{
 		if (uecho_net_isipv6address(addr) == true)
 			return false;
 	}

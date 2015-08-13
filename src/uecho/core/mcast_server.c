@@ -43,6 +43,33 @@ void uecho_mcast_server_delete(uEchoMcastServer *server)
 }
 
 /****************************************
+ * uecho_mcast_server_setmessagelistener
+ ****************************************/
+
+void uecho_mcast_server_setmessagelistener(uEchoMcastServer *server, uEchoMcastServerMessageListener listener)
+{
+  server->msgListener = listener;
+}
+
+/****************************************
+ * uecho_mcast_server_setuserdata
+ ****************************************/
+
+void uecho_mcast_server_setuserdata(uEchoMcastServer *server, void *data)
+{
+  server->userData = data;
+}
+    
+/****************************************
+ * uecho_mcast_server_getuserdata
+ ****************************************/
+
+void *uecho_mcast_server_getuserdata(uEchoMcastServer *server)
+{
+  return server->userData;
+}
+
+/****************************************
  * uecho_mcast_server_open
  ****************************************/
 
@@ -51,12 +78,14 @@ bool uecho_mcast_server_open(uEchoMcastServer *server, const char *bindAddr)
   uecho_mcast_server_close(server);
   
   server->socket = uecho_socket_dgram_new();
-  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, false, true)) {
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, false, true))
+{
     uecho_mcast_server_close(server);
     return false;
   }
   
-  if (!uecho_socket_joingroup(server->socket, uEchoMulticastAddr, bindAddr)) {
+  if (!uecho_socket_joingroup(server->socket, uEchoMulticastAddr, bindAddr))
+{
     uecho_mcast_server_close(server);
     return false;
   }

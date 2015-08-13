@@ -46,7 +46,8 @@ uEchoObject *uecho_objectlist_getbycode(uEchoObjectList *objs, uEchoObjectCode c
 {
   uEchoObject *obj;
   
-  for (obj = uecho_objectlist_gets(objs); obj; obj = uecho_object_next(obj)) {
+  for (obj = uecho_objectlist_gets(objs); obj; obj = uecho_object_next(obj))
+{
     if (uecho_object_getcode(obj) == code)
       return obj;
   }
