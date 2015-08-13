@@ -37,3 +37,21 @@ void uecho_propertylist_delete(uEchoPropertyList *props)
 
 	free(props);
 }
+
+/****************************************
+ * uecho_propertylist_delete
+ ****************************************/
+
+uEchoProperty* uecho_propertylist_find(uEchoPropertyList *props, uEchoProperty *prop)
+{
+  return NULL;
+}
+
+/****************************************
+ * uecho_propertylist_set
+ ****************************************/
+
+bool uecho_propertylist_set(uEchoPropertyList *props, uEchoProperty *prop)
+{
+  return false;
+}
