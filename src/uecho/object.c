@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <uecho/object.h>
+#include <uecho/profile.h>
 
 /****************************************
 * uecho_object_new
@@ -29,6 +30,7 @@ uEchoObject *uecho_object_new(void) {
   uecho_object_setinstancecode(obj, 0);
 
   obj->properties = uecho_propertylist_new();
+  uecho_object_addsuperclassproperties(obj);
   
 	return obj;
 }
