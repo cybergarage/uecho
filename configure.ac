@@ -146,7 +146,11 @@ AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ build tests (default =
 AM_CONDITIONAL(UNITTESTS,test "$build_tests" = yes)
 if [ test "$build_tests" = yes ]; then
 	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,
-		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(Round for C++ needs boost::boost_unit_test_framework)])])
+		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(Round for C++ needs boost::unit_test_framework)])])
+	AC_CHECK_LIB([boost_system-mt],[main],,
+		[AC_CHECK_LIB([boost_system],[main],,[AC_MSG_ERROR(Round for C++ needs boost::system)])])
+	AC_CHECK_LIB([boost_thread-mt],[main],,
+		[AC_CHECK_LIB([boost_thread],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread)])])
 fi
 
 ##############################
