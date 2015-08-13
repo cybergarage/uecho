@@ -32,15 +32,17 @@ enum {
  * Data Type
  ****************************************/
 
+typedef byte uEchoPropertyCode;
+  
 typedef struct _uEchoProperty
 {
   bool headFlag;
   struct _uEchoProperty *prev;
   struct _uEchoProperty *next;
   
-  byte code;
-  size_t count;
+  uEchoPropertyCode code;
   byte *data;
+  size_t count;
 } uEchoProperty, uEchoPropertyList;
 
 /****************************************
@@ -60,14 +62,20 @@ bool uecho_property_cleardata(uEchoProperty *prop);
   
 #if defined(C99)
 
-inline void uecho_property_setcode(uEchoProperty *prop, byte val) {prop->code = val;}
-inline byte uecho_property_getcode(uEchoProperty *prop) {return prop->code;}
+inline uEchoProperty *uecho_property_next(uEchoProperty *prop) {return (uEchoProperty *)uecho_list_next((uEchoList *)prop);}
+inline void uecho_property_remove(uEchoProperty *prop) {uecho_list_remove((uEchoList *)prop);}
+
+inline void uecho_property_setcode(uEchoProperty *prop, uEchoPropertyCode val) {prop->code = val;}
+inline uEchoPropertyCode uecho_property_getcode(uEchoProperty *prop) {return prop->code;}
 
 inline byte uecho_property_getcount(uEchoProperty *prop) {return prop->count;}
 
 inline byte *uecho_property_getdata(uEchoProperty *prop) {return prop->data;}
   
 #else
+
+#define uecho_property_next(prop) (uEchoProperty *)uecho_list_next((uEchoList *)prop)
+#define uecho_property_remove(prop) uecho_list_remove((uEchoList *)prop)
   
 #define uecho_property_setcode(prop, val) (prop->code = val)
 #define uecho_property_getcode(prop) (prop->code)
@@ -85,8 +93,8 @@ inline byte *uecho_property_getdata(uEchoProperty *prop) {return prop->data;}
 uEchoPropertyList *uecho_propertylist_new(void);
 void uecho_propertylist_delete(uEchoPropertyList *props);
 
-uEchoProperty *uecho_propertylist_find(uEchoPropertyList *props, uEchoProperty *prop);
-bool uecho_propertylist_set(uEchoPropertyList *props, uEchoProperty *prop);
+bool uecho_propertylist_set(uEchoPropertyList *props, uEchoPropertyCode code, byte *data, size_t dataLen);
+uEchoProperty *uecho_propertylist_getbycode(uEchoPropertyList *props, uEchoPropertyCode code);
   
 #define uecho_propertylist_clear(props) uecho_list_clear((uEchoList *)props, (UECHO_LIST_DESTRUCTORFUNC)uecho_property_delete)
 #define uecho_propertylist_size(props) uecho_list_size((uEchoList *)props)
