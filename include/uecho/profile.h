@@ -34,7 +34,7 @@ enum {
 } uEchoProfileObjectSuperClassEPC;
 
 enum {
-  uEchoPropertyMapMax = 16,
+  uEchoPropertyMapMaxLen = 16,
 };
 
 enum {
@@ -44,9 +44,9 @@ enum {
   uEchoProfileObjectSuperClassProductCodeLen                            = 12,
   uEchoProfileObjectSuperClassSerialNumberLen                           = 12,
   uEchoProfileObjectSuperClassDateOfManufactureLen                      = 4,
-  uEchoProfileObjectSuperClassStatusChangeAnnouncementPropertyMapMaxLen = (uEchoPropertyMapMax + 1),
-  uEchoProfileObjectSuperClassSetPropertyMapMaxLen                      = (uEchoPropertyMapMax + 1),
-  uEchoProfileObjectSuperClassGetPropertyMapMaxLen                      = (uEchoPropertyMapMax + 1),
+  uEchoProfileObjectSuperClassStatusChangeAnnouncementPropertyMapMaxLen = (uEchoPropertyMapMaxLen + 1),
+  uEchoProfileObjectSuperClassSetPropertyMapMaxLen                      = (uEchoPropertyMapMaxLen + 1),
+  uEchoProfileObjectSuperClassGetPropertyMapMaxLen                      = (uEchoPropertyMapMaxLen + 1),
 } uEchoProfileObjectSuperClassEPCSize;
   
 enum {

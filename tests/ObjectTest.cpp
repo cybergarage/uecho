@@ -88,7 +88,6 @@ BOOST_AUTO_TEST_CASE(ObjectSetProperty)
   uecho_object_delete(obj);
 }
 
-
 BOOST_AUTO_TEST_CASE(ObjectSuperClassProperties)
 {
   uEchoObject *obj = uecho_object_new();
