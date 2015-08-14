@@ -48,13 +48,21 @@ typedef struct _uEchoProperty
   struct _uEchoProperty *next;
   
   uEchoPropertyCode code;
-  byte *data;
-  size_t count;
-  
   uEchoPropertyPerm perm;
   bool anno;
+  byte *data;
+  size_t dataSize;
 } uEchoProperty, uEchoPropertyList;
 
+typedef struct
+{
+  uEchoPropertyCode code;
+  uEchoPropertyPerm perm;
+  bool anno;
+  byte *data;
+  size_t dataSize;
+} uEchoPropertyData;
+  
 /****************************************
  * Function
  ****************************************/
@@ -72,7 +80,7 @@ void uecho_property_remove(uEchoProperty *prop);
 void uecho_property_setcode(uEchoProperty *prop, uEchoPropertyCode val);
 uEchoPropertyCode uecho_property_getcode(uEchoProperty *prop);
 
-byte uecho_property_getcount(uEchoProperty *prop);
+byte uecho_property_getdatasize(uEchoProperty *prop);
 byte *uecho_property_getdata(uEchoProperty *prop);
 
 void uecho_property_setpermission(uEchoProperty *prop, uEchoPropertyPerm val);

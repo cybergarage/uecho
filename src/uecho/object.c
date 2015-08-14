@@ -207,3 +207,18 @@ void uecho_object_clearproperties(uEchoObject *obj)
 {
   uecho_propertylist_clear(obj->properties);
 }
+
+/****************************************
+ * uecho_object_setpropertymap
+ ****************************************/
+
+void uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uEchoPropertyCode *props, size_t propsSize)
+{
+  byte propMapData[uEchoPropertyMapMax + 1];
+  uEchoPropertyCode *propMap;
+  
+  propMapData[0] = (byte)propsSize;
+  propMap = propMapData + 1;
+
+  
+}

@@ -67,8 +67,7 @@ uEchoThread *uecho_thread_new(void)
 
 	thread = (uEchoThread *)malloc(sizeof(uEchoThread));
 
-	if ( NULL != thread )
-	{
+	if ( NULL != thread ) {
 		uecho_list_node_init((uEchoList *)thread);
 		
 		thread->runnableFlag = false;
@@ -107,21 +106,18 @@ bool uecho_thread_start(uEchoThread *thread)
 	thread->hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)thread, 0, &thread->threadID);
 #else
 	pthread_attr_t thread_attr;
-	if (pthread_attr_init(&thread_attr) != 0)
-{
+	if (pthread_attr_init(&thread_attr) != 0) {
 		thread->runnableFlag = false;
     return false;
   }
 
-  if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) !=0)
-{
+  if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) !=0) {
 		thread->runnableFlag = false;
 		pthread_attr_destroy(&thread_attr);
 		return false;
   }
 
-  if (pthread_create(&thread->pThread, &thread_attr, PosixThreadProc, thread) != 0)
-{
+  if (pthread_create(&thread->pThread, &thread_attr, PosixThreadProc, thread) != 0) {
 		thread->runnableFlag = false;
 		pthread_attr_destroy(&thread_attr);
 		return false;
@@ -138,8 +134,7 @@ bool uecho_thread_start(uEchoThread *thread)
 
 bool uecho_thread_stop(uEchoThread *thread)
 {
-  if (thread->runnableFlag == true)
-{
+  if (thread->runnableFlag == true) {
 		thread->runnableFlag = false;
 #if defined(WIN32)
 		TerminateThread(thread->hThread, 0);

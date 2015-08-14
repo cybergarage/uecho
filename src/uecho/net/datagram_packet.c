@@ -76,8 +76,7 @@ bool uecho_socket_datagram_packet_setdata(uEchoDatagramPacket *dgmPkt, const byt
 
 bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket *dgmPkt)
 {
-  if (dgmPkt->data)
-{
+  if (dgmPkt->data) {
     free(dgmPkt->data);
     dgmPkt->data = NULL;
   }

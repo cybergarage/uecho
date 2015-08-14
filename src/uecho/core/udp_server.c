@@ -76,8 +76,7 @@ bool uecho_udp_server_open(uEchoUdpServer *server, const char *bindAddr)
   uecho_udp_server_close(server);
   
   server->socket = uecho_socket_dgram_new();
-  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, true, true))
-{
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, true, true)) {
     uecho_udp_server_close(server);
     return false;
   }

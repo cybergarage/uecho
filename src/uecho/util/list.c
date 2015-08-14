@@ -72,8 +72,7 @@ uEchoList *uecho_list_get(uEchoList *headList, int index)
 		return NULL;
 
 	list = uecho_list_next(headList);
-	for (n=0; n<index; n++)
-{
+	for (n=0; n<index; n++) {
 		if (!list)
 			break;
 		list = uecho_list_next(list);
@@ -239,8 +238,7 @@ bool uecho_list_clear(uEchoList *headList, UECHO_LIST_DESTRUCTORFUNC destructorF
 		return false;
 
 	list = uecho_list_next(headList);
-	while(list != NULL)
-{
+	while(list != NULL) {
 		uecho_list_remove(list);
 		if (destructorFunc != NULL){
 			destructorFunc(list);

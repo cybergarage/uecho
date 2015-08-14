@@ -49,8 +49,7 @@ void uecho_mcast_serverlist_setmessagelistener(uEchoMcastServerList *servers, uE
 {
   uEchoMcastServer *server;
 
-  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server))
-{
+  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
      uecho_mcast_server_setmessagelistener(server, listener);
   }
 }
@@ -63,8 +62,7 @@ void uecho_mcast_serverlist_setuserdata(uEchoMcastServerList *servers, void *dat
 {
   uEchoMcastServer *server;
   
-  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server))
-{
+  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
     uecho_mcast_server_setuserdata(server, data);
   }
 }
@@ -84,19 +82,16 @@ bool uecho_mcast_serverlist_open(uEchoMcastServerList *servers)
   
   netIfList = uecho_net_interfacelist_new();
   
-  if (uecho_net_gethostinterfaces(netIfList) <= 0)
-{
+  if (uecho_net_gethostinterfaces(netIfList) <= 0) {
     uecho_net_interfacelist_delete(netIfList);
     return false;
   }
   
   allActionsSucceeded = true;
 
-  for (netIf = uecho_net_interfacelist_gets(netIfList); netIf; netIf = uecho_net_interface_next(netIf))
-{
+  for (netIf = uecho_net_interfacelist_gets(netIfList); netIf; netIf = uecho_net_interface_next(netIf)) {
     server = uecho_mcast_server_new();
-    if (!server)
-{
+    if (!server) {
       allActionsSucceeded = false;
       break;
     }
@@ -108,8 +103,7 @@ bool uecho_mcast_serverlist_open(uEchoMcastServerList *servers)
 
   uecho_net_interfacelist_delete(netIfList);
 
-  if (!allActionsSucceeded)
-{
+  if (!allActionsSucceeded) {
     uecho_mcast_serverlist_close(servers);
     return false;
   }
@@ -127,8 +121,7 @@ bool uecho_mcast_serverlist_close(uEchoMcastServerList *servers)
   bool allActionsSucceeded;
 
   allActionsSucceeded = true;
-  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server))
-{
+  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
     allActionsSucceeded &= uecho_mcast_server_close(server);
   }
   
@@ -147,8 +140,7 @@ bool uecho_mcast_serverlist_start(uEchoMcastServerList *servers)
   uecho_mcast_serverlist_stop(servers);
   
   allActionsSucceeded = true;
-  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server))
-{
+  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
     allActionsSucceeded &= uecho_mcast_server_start(server);
   }
   
@@ -165,8 +157,7 @@ bool uecho_mcast_serverlist_stop(uEchoMcastServerList *servers)
   bool allActionsSucceeded;
   
   allActionsSucceeded = true;
-  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server))
-{
+  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
     allActionsSucceeded &= uecho_mcast_server_stop(server);
   }
   
@@ -184,8 +175,7 @@ bool uecho_mcast_serverlist_post(uEchoMcastServerList *servers, byte *msg, size_
   bool allActionsSucceeded;
   
   allActionsSucceeded = true;
-  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server))
-{
+  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
     allActionsSucceeded &= uecho_mcast_server_post(server, msg, msgLen);
   }
   

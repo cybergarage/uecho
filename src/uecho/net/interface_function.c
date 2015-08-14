@@ -76,8 +76,7 @@ size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
 	uecho_net_interfacelist_clear(netIfList);
 
 	sd = WSASocket(AF_INET, SOCK_DGRAM, 0, 0, 0, 0);
-	if (sd == INVALID_SOCKET)
-{
+	if (sd == INVALID_SOCKET) {
 		return 0;
 	}
 
@@ -85,8 +84,7 @@ size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
 		return 0;
 
 	nNumInterfaces = nBytesReturned / sizeof(INTERFACE_INFO);
-    for (i = 0; i < nNumInterfaces; ++i)
-{
+    for (i = 0; i < nNumInterfaces; ++i) {
 		nFlags = InterfaceList[i].iiFlags;
     if (nFlags & IFF_LOOPBACK)
       continue;
@@ -120,16 +118,13 @@ size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
 
 	ulOutBufLen = sizeof(IP_ADAPTER_INFO);
 	pAdapterInfo = (IP_ADAPTER_INFO *) malloc (ulOutBufLen);
-	if (GetAdaptersInfo( pAdapterInfo, &ulOutBufLen) == ERROR_BUFFER_OVERFLOW)
-{
+	if (GetAdaptersInfo( pAdapterInfo, &ulOutBufLen) == ERROR_BUFFER_OVERFLOW) {
 		free(pAdapterInfo);
 		pAdapterInfo = (IP_ADAPTER_INFO *) malloc (ulOutBufLen);
 	}
 
-	if ((dwRetVal = GetAdaptersInfo( pAdapterInfo, &ulOutBufLen)) == NO_ERROR)
-{
-		for (pAdapter = pAdapterInfo, nOfInterfaces = 0; pAdapter; pAdapter = pAdapter->Next, ++nOfInterfaces)
-{
+	if ((dwRetVal = GetAdaptersInfo( pAdapterInfo, &ulOutBufLen)) == NO_ERROR) {
+		for (pAdapter = pAdapterInfo, nOfInterfaces = 0; pAdapter; pAdapter = pAdapter->Next, ++nOfInterfaces) {
 			if (pAdapter->Type == MIB_IF_TYPE_LOOPBACK)
 				continue;
 			if (uecho_streq(pAdapter->IpAddressList.IpAddress.String, "0.0.0.0"))
@@ -174,34 +169,27 @@ size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
 	pAdapterAddresses = (IP_ADAPTER_ADDRESSES *) LocalAlloc(LMEM_ZEROINIT, outBufLen);
 	GetAdaptersAddresses(AF_UNSPEC, ifFlags, NULL, pAdapterAddresses, &outBufLen);
 	ai = pAdapterAddresses;
-	while (ai != NULL)
-{
-		if (ai->OperStatus != IfOperStatusUp)
-{
+	while (ai != NULL) {
+		if (ai->OperStatus != IfOperStatusUp) {
 			ai = ai->Next;
 			continue;
 		}
-		if (ai->IfType == IF_TYPE_SOFTWARE_LOOPBACK)
-{
+		if (ai->IfType == IF_TYPE_SOFTWARE_LOOPBACK) {
 			ai = ai->Next;
 			continue;
 		}
-		if (ai->IfType == IF_TYPE_TUNNEL)
-{
+		if (ai->IfType == IF_TYPE_TUNNEL) {
 			ai = ai->Next;
 			continue;
 		}
 		uai = ai->FirstUnicastAddress;
-		while (uai != NULL)
-{
+		while (uai != NULL) {
 			sockaddr = uai->Address;
 			saddr = sockaddr.lpSockaddr;
 			saddrlen = sockaddr.iSockaddrLength;
 			namInfoRet = getnameinfo(saddr, saddrlen, addr, sizeof(addr), port, sizeof(port), NI_NUMERICHOST | NI_NUMERICSERV);
-			if (namInfoRet == 0)
-{
-				//if (IsUseAddress(addr) == true)
-{
+			if (namInfoRet == 0) {
+				//if (IsUseAddress(addr) == true) {
 					ifIdx = 0;
 					if (uecho_net_isipv6address(addr) == TRUE)
 						ifIdx = uecho_net_getipv6scopeid(addr);
@@ -255,9 +243,7 @@ size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
 	if (getifaddrs(&ifaddr) != 0)
 		return 0;
 	
-	for (i = ifaddr; i != NULL; i = i->ifa_next)
-{
-
+	for (i = ifaddr; i != NULL; i = i->ifa_next){
     // Thanks for Ricardo Rivldo (04/10/12)
     //  - for some reason, vmware and virtualbox \"virtual\" interfaces does not return ifa_addr
 		if(i->ifa_addr == NULL || i->ifa_netmask == NULL)
@@ -322,8 +308,7 @@ size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList)
 	fd = fopen(PATH_PROC_NET_DEV, "r");
 	fgets(buffer, sizeof(buffer)-1, fd);
 	fgets(buffer, sizeof(buffer)-1, fd);
-	while (!feof(fd))
-{
+	while (!feof(fd)) {
 		ifname = buffer;
 		sep;
 		if (fgets(buffer, sizeof(buffer)-1, fd) == NULL)
@@ -380,8 +365,7 @@ char *uecho_net_selectaddr(struct sockaddr *remoteaddr)
 	if (!netIfList)
 		return uecho_strdup("127.0.0.1");
 
-	if (uecho_net_gethostinterfaces(netIfList) <= 0)
-{
+	if (uecho_net_gethostinterfaces(netIfList) <= 0) {
 		uecho_net_interfacelist_delete(netIfList);
 		return uecho_strdup("127.0.0.1");
 	}
@@ -392,14 +376,11 @@ char *uecho_net_selectaddr(struct sockaddr *remoteaddr)
 	hints.ai_flags= AI_NUMERICHOST | AI_PASSIVE;
 
 	selectNetIf = NULL;
-	if (1 <= uecho_net_gethostinterfaces(netIfList))
-{
-		for (netIf=uecho_net_interfacelist_gets(netIfList); netIf; netIf = uecho_net_interface_next(netIf))
-{
+	if (1 <= uecho_net_gethostinterfaces(netIfList)) {
+		for (netIf=uecho_net_interfacelist_gets(netIfList); netIf; netIf = uecho_net_interface_next(netIf)) {
 			if (getaddrinfo(uecho_net_interface_getaddress(netIf), NULL, &hints, &netIfAddrInfo) != 0) 
 				continue;
-			if (getaddrinfo(uecho_net_interface_getnetmask(netIf), NULL, &hints, &netMaskAddrInfo) != 0)
-{
+			if (getaddrinfo(uecho_net_interface_getnetmask(netIf), NULL, &hints, &netMaskAddrInfo) != 0) {
 				freeaddrinfo(netIfAddrInfo);
 				continue;
 			}
@@ -433,13 +414,11 @@ char *uecho_net_selectaddr(struct sockaddr *remoteaddr)
 
 	raddr = ntohl(((struct sockaddr_in *)remoteaddr)->sin_addr.s_addr);
 
-	if ( 0 != getifaddrs(&ifaddrs) )
-	{
+	if ( 0 != getifaddrs(&ifaddrs) ) {
 		return NULL;
 	}
 
-	for ( ifaddr = ifaddrs; NULL != ifaddr; ifaddr = ifaddr->ifa_next )
-	{
+	for ( ifaddr = ifaddrs; NULL != ifaddr; ifaddr = ifaddr->ifa_next )	{
 		if (ifaddr->ifa_addr == NULL)
 			continue;
 		if (!(ifaddr->ifa_flags & IFF_UP))
@@ -457,16 +436,14 @@ char *uecho_net_selectaddr(struct sockaddr *remoteaddr)
 		}
 
 		/* Checking if we have an exact subnet match */
-		if ( ( laddr & lmask ) == ( raddr & lmask ) )
-{
+		if ( ( laddr & lmask ) == ( raddr & lmask ) ) {
 			if ( NULL != address_candidate ) free(address_candidate);
 			address_candidate = uecho_strdup(inet_ntoa((struct in_addr)((struct sockaddr_in *)ifaddr->ifa_addr)->sin_addr));
 			break;
 		}
 
 		/* Checking if we have and auto ip address */
-		if ( ( laddr & lmask ) == UECHO_NET_SOCKET_AUTO_IP_NET )
-{
+		if ( ( laddr & lmask ) == UECHO_NET_SOCKET_AUTO_IP_NET ) {
 			if ( NULL != auto_ip_address_candidate ) free(auto_ip_address_candidate);
 			auto_ip_address_candidate = uecho_strdup(
 					inet_ntoa((struct in_addr)((struct sockaddr_in *)ifaddr->ifa_addr)->sin_addr));
@@ -481,14 +458,12 @@ char *uecho_net_selectaddr(struct sockaddr *remoteaddr)
 
 	freeifaddrs(ifaddrs);
 
-	if ( NULL != address_candidate )
-	{
+	if ( NULL != address_candidate ) {
 		if ( NULL != auto_ip_address_candidate ) free(auto_ip_address_candidate);
 		return address_candidate;
 	}
 
-	if ( NULL != auto_ip_address_candidate )
-	{
+	if ( NULL != auto_ip_address_candidate ) {
 		if ( NULL != address_candidate ) free(address_candidate);
 		return auto_ip_address_candidate;
 	}
