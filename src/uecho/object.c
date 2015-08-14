@@ -212,13 +212,31 @@ void uecho_object_clearproperties(uEchoObject *obj)
  * uecho_object_setpropertymap
  ****************************************/
 
-void uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uEchoPropertyCode *props, size_t propsSize)
+bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uEchoPropertyCode *propCodes, size_t propsCodeSize)
 {
-  byte propMapData[uEchoPropertyMapMax + 1];
+  byte propMapData[uEchoPropertyMapMaxLen + 1];
   uEchoPropertyCode *propMap;
-  
-  propMapData[0] = (byte)propsSize;
+  size_t n;
+
+  propMapData[0] = (byte)propsCodeSize;
   propMap = propMapData + 1;
 
+  // propsCodeSize <= uEchoPropertyMapMaxLen
   
+  if (propsCodeSize <= uEchoPropertyMapMaxLen) {
+    memcpy(propMap, propCodes, propsCodeSize);
+    uecho_object_setproperty(obj, mapCode, propMapData, (propsCodeSize + 1), uEchoPropertyPermRead, uEchoPropertyAnnouncementNone);
+    return true;
+  }
+  
+  // uEchoPropertyMapMaxLen < propsCodeSize
+  
+  for (n=0; n<propsCodeSize; n++) {
+    byte propCode;
+    propCode = propCodes[n];
+    if ((propCode < uEchoPropertyCodeMin) || (uEchoPropertyCodeMax < propCode))
+      continue;
+  }
+  
+  return true;
 }
