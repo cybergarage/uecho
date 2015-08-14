@@ -33,7 +33,14 @@ enum {
  ****************************************/
 
 typedef byte uEchoPropertyCode;
-  
+
+typedef enum {
+  uEchoPropertyPermNone      = 0x00,
+  uEchoPropertyPermRead      = 0x01,
+  uEchoPropertyPermWrite     = 0x10,
+  uEchoPropertyPermReadWrite = uEchoPropertyPermRead | uEchoPropertyPermWrite,
+} uEchoPropertyPerm;
+
 typedef struct _uEchoProperty
 {
   bool headFlag;
@@ -43,6 +50,9 @@ typedef struct _uEchoProperty
   uEchoPropertyCode code;
   byte *data;
   size_t count;
+  
+  uEchoPropertyPerm perm;
+  bool anno;
 } uEchoProperty, uEchoPropertyList;
 
 /****************************************
@@ -61,8 +71,19 @@ void uecho_property_remove(uEchoProperty *prop);
 
 void uecho_property_setcode(uEchoProperty *prop, uEchoPropertyCode val);
 uEchoPropertyCode uecho_property_getcode(uEchoProperty *prop);
+
 byte uecho_property_getcount(uEchoProperty *prop);
 byte *uecho_property_getdata(uEchoProperty *prop);
+
+void uecho_property_setpermission(uEchoProperty *prop, uEchoPropertyPerm val);
+uEchoPropertyPerm uecho_property_getpermission(uEchoProperty *prop);
+bool uecho_property_isreadable(uEchoProperty *prop);
+bool uecho_property_iswritable(uEchoProperty *prop);
+bool uecho_property_isreadonly(uEchoProperty *prop);
+bool uecho_property_iswriteonly(uEchoProperty *prop);
+  
+void uecho_property_setannouncement(uEchoProperty *prop, bool flag);
+bool uecho_property_isannouncement(uEchoProperty *prop);
   
 /****************************************
  * Function (Object List)
