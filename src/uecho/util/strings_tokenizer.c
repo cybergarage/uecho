@@ -70,16 +70,12 @@ char *uecho_string_tokenizer_nexttoken(uEchoStringTokenizer *strToken)
 	strToken->repToken = '\0';
 	
 	tokenCnt = 0;
-	for (i=strToken->nextStartPos; i<=strToken->lastPos; i++)
-{
+	for (i=strToken->nextStartPos; i<=strToken->lastPos; i++) {
 		bool isDelimChar = false;
-		for (j=0; j<strToken->delimCnt; j++)
-{
-			if (strToken->value[i] == strToken->delim[j])
-{
+		for (j=0; j<strToken->delimCnt; j++) {
+			if (strToken->value[i] == strToken->delim[j]) {
 				isDelimChar = true;
-				if (tokenCnt == 0)
-{
+				if (tokenCnt == 0) {
 					strToken->nextStartPos = i + 1;
 					break;
 				}
@@ -96,8 +92,7 @@ char *uecho_string_tokenizer_nexttoken(uEchoStringTokenizer *strToken)
 			tokenCnt++;
 	}
 	
-	if (strToken->hasNextTokens == false && 0 < tokenCnt)
-{
+	if (strToken->hasNextTokens == false && 0 < tokenCnt) {
 		strToken->hasNextTokens = true;
 		strToken->nextToken = strToken->value + strToken->nextStartPos;
 		strToken->nextStartPos = strToken->lastPos + 1;

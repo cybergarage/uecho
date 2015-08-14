@@ -26,8 +26,7 @@ uEchoString *uecho_string_new(void)
 
 	str = (uEchoString *)malloc(sizeof(uEchoString));
 
-	if (NULL != str)
-{
+	if (NULL != str) {
 		str->value = NULL;
 		str->memSize = 0;
 		str->valueSize = 0;
@@ -42,8 +41,7 @@ uEchoString *uecho_string_new(void)
 
 void uecho_string_delete(uEchoString *str)
 {
-	if (NULL != str)
-{
+	if (NULL != str) {
 		uecho_string_clear(str);
 		free(str);
 	}
@@ -55,10 +53,8 @@ void uecho_string_delete(uEchoString *str)
 
 void uecho_string_clear(uEchoString *str)
 {
-	if (NULL != str)
-{
-		if (str->value != NULL)
-{
+	if (NULL != str) {
+		if (str->value != NULL) {
 			free(str->value);
 			str->value = NULL;
 			str->memSize = 0;
@@ -73,8 +69,7 @@ void uecho_string_clear(uEchoString *str)
 
 void uecho_string_setvalue(uEchoString *str, const char *value)
 {
-	if (NULL != str)
-{
+	if (NULL != str) {
 		if (value != NULL)
 			uecho_string_setnvalue(str, value, uecho_strlen(value));
 	}
@@ -108,17 +103,14 @@ void uecho_string_setlongvalue(uEchoString *str, long value)
 
 void uecho_string_setnvalue(uEchoString *str, const char *value, size_t len)
 {
-	if (NULL != str)
-{
+	if (NULL != str) {
 		uecho_string_clear(str);
-		if (value != NULL)
-{
+		if (value != NULL) {
 			str->valueSize = len;
 			str->memSize = str->valueSize + 1;
 			str->value = (char *)malloc(str->memSize * sizeof(char));
 
-			if ( NULL == str->value )
-{
+			if ( NULL == str->value ) {
 				return;
 			}
 
@@ -135,8 +127,7 @@ void uecho_string_setnvalue(uEchoString *str, const char *value, size_t len)
 
 void uecho_string_setpointervalue(uEchoString *str, char *value, size_t len)
 {
-	if (NULL != str)
-{
+	if (NULL != str) {
 		uecho_string_clear(str);
 		str->value = value;
 		str->valueSize = len;
@@ -201,8 +192,7 @@ char *uecho_string_naddvalue(uEchoString *str, const char *value, size_t valueLe
 	if (NULL == str)
 		return NULL;
 
-	if (value == NULL || valueLen <= 0)
-	{
+	if (value == NULL || valueLen <= 0) {
 		/* Empty string, nothing to add */
 		return uecho_string_getvalue(str);
 	}
@@ -286,8 +276,7 @@ char *uecho_string_replace(uEchoString *str, char *fromStr[], char *toStr[], siz
 	
 	fromStrLen = (size_t *)malloc(sizeof(size_t) * fromStrCnt);
 
-	if ( NULL == fromStrLen )
-	{
+	if ( NULL == fromStrLen ) {
         uecho_string_delete(repValue);
 		return NULL;
 	}
@@ -299,13 +288,10 @@ char *uecho_string_replace(uEchoString *str, char *fromStr[], char *toStr[], siz
 	orgValueLen = uecho_string_length(str);
 	
 	copyPos = 0;
-	while (copyPos<orgValueLen)
-{
+	while (copyPos<orgValueLen) {
 		isReplaced = false;
-		for (n=0; n<fromStrCnt; n++)
-{
-			if (strncmp(fromStr[n], orgValue + copyPos,  fromStrLen[n]) == 0)
-{
+		for (n=0; n<fromStrCnt; n++) {
+			if (strncmp(fromStr[n], orgValue + copyPos,  fromStrLen[n]) == 0) {
 				uecho_string_addvalue(repValue, toStr[n]);
 				copyPos += fromStrLen[n];
 				isReplaced = true;

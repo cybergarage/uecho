@@ -89,8 +89,7 @@ bool uecho_controller_isrunning(uEchoController *cp)
 
 uEchoTID uecho_controller_getnexttid(uEchoController *cp)
 {
-  if (uEchoTidMax <= cp->lastTID)
-{
+  if (uEchoTidMax <= cp->lastTID) {
     cp->lastTID = 1;
   }
   else {

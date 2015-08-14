@@ -78,14 +78,12 @@ bool uecho_mcast_server_open(uEchoMcastServer *server, const char *bindAddr)
   uecho_mcast_server_close(server);
   
   server->socket = uecho_socket_dgram_new();
-  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, false, true))
-{
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, false, true)) {
     uecho_mcast_server_close(server);
     return false;
   }
   
-  if (!uecho_socket_joingroup(server->socket, uEchoMulticastAddr, bindAddr))
-{
+  if (!uecho_socket_joingroup(server->socket, uEchoMulticastAddr, bindAddr)) {
     uecho_mcast_server_close(server);
     return false;
   }

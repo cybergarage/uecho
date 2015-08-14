@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(PropertyListAdd)
     uEchoProperty *prop = uecho_propertylist_findbycode(props, n);
     BOOST_CHECK(prop);
     BOOST_CHECK_EQUAL(uecho_property_getcode(prop), n);
-    BOOST_CHECK_EQUAL(uecho_property_getcount(prop), n);
+    BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), n);
   }
 
   BOOST_CHECK_EQUAL(uecho_propertylist_size(props), (uEchoPropertyCodeMax - uEchoPropertyCodeMin + 1));
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(PropertyListSet)
     uEchoProperty *prop = uecho_propertylist_findbycode(props, n);
     BOOST_CHECK(prop);
     BOOST_CHECK_EQUAL(uecho_property_getcode(prop), n);
-    BOOST_CHECK_EQUAL(uecho_property_getcount(prop), n);
+    BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), n);
   }
   
   BOOST_CHECK_EQUAL(uecho_propertylist_size(props), (uEchoPropertyCodeMax - uEchoPropertyCodeMin + 1));

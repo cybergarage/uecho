@@ -49,8 +49,7 @@ void uecho_udp_serverlist_setmessagelistener(uEchoUdpServerList *servers, uEchoU
 {
   uEchoUdpServer *server;
   
-  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server))
-{
+  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
     uecho_udp_server_setmessagelistener(server, listener);
   }
 }
@@ -63,8 +62,7 @@ void uecho_udp_serverlist_setuserdata(uEchoUdpServerList *servers, void *data)
 {
   uEchoUdpServer *server;
   
-  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server))
-{
+  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
     uecho_udp_server_setuserdata(server, data);
   }
 }
@@ -84,19 +82,16 @@ bool uecho_udp_serverlist_open(uEchoUdpServerList *servers)
   
   netIfList = uecho_net_interfacelist_new();
   
-  if (uecho_net_gethostinterfaces(netIfList) <= 0)
-{
+  if (uecho_net_gethostinterfaces(netIfList) <= 0) {
     uecho_net_interfacelist_delete(netIfList);
     return false;
   }
   
   allActionsSucceeded = true;
   
-  for (netIf = uecho_net_interfacelist_gets(netIfList); netIf; netIf = uecho_net_interface_next(netIf))
-{
+  for (netIf = uecho_net_interfacelist_gets(netIfList); netIf; netIf = uecho_net_interface_next(netIf)) {
     server = uecho_udp_server_new();
-    if (!server)
-{
+    if (!server) {
       allActionsSucceeded = false;
       break;
     }
@@ -108,8 +103,7 @@ bool uecho_udp_serverlist_open(uEchoUdpServerList *servers)
   
   uecho_net_interfacelist_delete(netIfList);
   
-  if (!allActionsSucceeded)
-{
+  if (!allActionsSucceeded) {
     uecho_udp_serverlist_close(servers);
     return false;
   }
@@ -127,8 +121,7 @@ bool uecho_udp_serverlist_close(uEchoUdpServerList *servers)
   bool allActionsSucceeded;
   
   allActionsSucceeded = true;
-  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server))
-{
+  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
     allActionsSucceeded &= uecho_udp_server_close(server);
   }
   
@@ -147,8 +140,7 @@ bool uecho_udp_serverlist_start(uEchoUdpServerList *servers)
   uecho_udp_serverlist_stop(servers);
   
   allActionsSucceeded = true;
-  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server))
-{
+  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
     allActionsSucceeded &= uecho_udp_server_start(server);
   }
   
@@ -165,8 +157,7 @@ bool uecho_udp_serverlist_stop(uEchoUdpServerList *servers)
   bool allActionsSucceeded;
   
   allActionsSucceeded = true;
-  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server))
-{
+  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
     allActionsSucceeded &= uecho_udp_server_stop(server);
   }
   

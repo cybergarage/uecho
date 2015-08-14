@@ -36,8 +36,7 @@ BOOST_AUTO_TEST_CASE(MessageTid)
   BOOST_CHECK_EQUAL(uecho_message_gettid(msg), uEchoTidMax);
   
   srand((int)time(NULL));
-  for (int n=0; n<100; n++)
-{
+  for (int n=0; n<100; n++) {
     int tid = rand() % uEchoTidMax;
     BOOST_CHECK(uecho_message_settid(msg, tid));
     BOOST_CHECK_EQUAL(uecho_message_gettid(msg), tid);
@@ -50,8 +49,7 @@ BOOST_AUTO_TEST_CASE(MessageBadDataLength)
 {
   uEchoMessage *msg = uecho_message_new();
   
-  for (int n=0; n<uEchoMessageMinLen; n++)
-{
+  for (int n=0; n<uEchoMessageMinLen; n++) {
     BOOST_CHECK(!uecho_message_parse(msg, NULL, n));
   }
   
@@ -114,16 +112,14 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
   
   BOOST_CHECK_EQUAL(uecho_message_getopc(msg), 3);
   
-  for (int n=1; n<=uecho_message_getopc(msg); n++)
-{
+  for (int n=1; n<=uecho_message_getopc(msg); n++) {
     uEchoProperty *prop = uecho_message_getproperty(msg, (n-1));
     BOOST_CHECK(prop);
     BOOST_CHECK_EQUAL(uecho_property_getcode(prop), n);
-    BOOST_CHECK_EQUAL(uecho_property_getcount(prop), n);
+    BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), n);
     byte *data = uecho_property_getdata(prop);
     BOOST_CHECK(data);
-    for (int i=0; i<uecho_property_getcount(prop); i++)
-{
+    for (int i=0; i<uecho_property_getdatasize(prop); i++) {
       BOOST_CHECK_EQUAL(data[i], 'a' + (n-1) + i);
     }
   }
