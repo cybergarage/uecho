@@ -73,10 +73,14 @@ byte uecho_object_getclasscode(uEchoObject *obj);
 void uecho_object_setinstancecode(uEchoObject *obj, byte val);
 byte uecho_object_getinstancecode(uEchoObject *obj);
 
-bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen);
+bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen, uEchoPropertyPerm perm, bool annoFlag);
+bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen);
+bool uecho_object_setpropertypermission(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyPerm perm);
+bool uecho_object_setpropertyannouncement(uEchoObject *obj, uEchoPropertyCode code, bool annoFlag);
+
 uEchoProperty *uecho_object_getproperties(uEchoObject *obj);
-uEchoProperty *uecho_object_getpropertybycode(uEchoObject *obj, uEchoPropertyCode code);
-bool uecho_object_haspropertybycode(uEchoObject *obj, uEchoPropertyCode code);
+uEchoProperty *uecho_object_getproperty(uEchoObject *obj, uEchoPropertyCode code);
+bool uecho_object_hasproperty(uEchoObject *obj, uEchoPropertyCode code);
 size_t uecho_object_getpropertycount(uEchoObject *obj);
 void uecho_object_clearproperties(uEchoObject *obj);
 
