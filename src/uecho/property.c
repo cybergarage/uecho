@@ -30,6 +30,9 @@ uEchoProperty *uecho_property_new(void)
   prop->count = 0;
   prop->data = NULL;
   
+  uecho_property_setpermission(prop, uEchoPropertyPermReadWrite);
+  uecho_property_setannouncement(prop, false);
+  
 	return prop;
 }
 
@@ -150,4 +153,84 @@ byte uecho_property_getcount(uEchoProperty *prop)
 byte *uecho_property_getdata(uEchoProperty *prop)
 {
   return prop->data;
+}
+
+/****************************************
+ * uecho_property_setpermission
+ ****************************************/
+
+void uecho_property_setpermission(uEchoProperty *prop, uEchoPropertyPerm val)
+{
+  prop->perm = val;
+}
+
+/****************************************
+ * uecho_property_getpermission
+ ****************************************/
+
+uEchoPropertyPerm uecho_property_getpermission(uEchoProperty *prop)
+{
+  return prop->perm;
+}
+
+/****************************************
+ * uecho_property_isreadable
+ ****************************************/
+
+bool uecho_property_isreadable(uEchoProperty *prop)
+{
+  return (prop->perm & uEchoPropertyPermRead) ? true : false;
+}
+
+/****************************************
+ * uecho_property_iswritable
+ ****************************************/
+
+bool uecho_property_iswritable(uEchoProperty *prop)
+{
+  return (prop->perm & uEchoPropertyPermWrite) ? true : false;
+}
+
+/****************************************
+ * uecho_property_isreadonly
+ ****************************************/
+
+bool uecho_property_isreadonly(uEchoProperty *prop)
+{
+  if (!(prop->perm & uEchoPropertyPermRead))
+    return false;
+  if ((prop->perm & uEchoPropertyPermWrite))
+    return false;
+  return true;
+}
+
+/****************************************
+ * uecho_property_iswriteonly
+ ****************************************/
+
+bool uecho_property_iswriteonly(uEchoProperty *prop)
+{
+  if (!(prop->perm & uEchoPropertyPermWrite))
+    return false;
+  if ((prop->perm & uEchoPropertyPermRead))
+    return false;
+  return true;
+}
+
+/****************************************
+ * uecho_property_setannouncement
+ ****************************************/
+
+void uecho_property_setannouncement(uEchoProperty *prop, bool flag)
+{
+  prop->anno = flag;
+}
+
+/****************************************
+ * uecho_property_isannouncement
+ ****************************************/
+
+bool uecho_property_isannouncement(uEchoProperty *prop)
+{
+  return prop->anno;
 }
