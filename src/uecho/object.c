@@ -131,9 +131,36 @@ byte uecho_object_getinstancecode(uEchoObject *obj)
  * uecho_object_setproperty
  ****************************************/
 
-bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen)
+bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen, uEchoPropertyPerm perm, bool annoFlag)
 {
-  return uecho_propertylist_set(obj->properties, code, data, dataLen);
+  return uecho_propertylist_set(obj->properties, code, data, dataLen, perm, annoFlag);
+}
+
+/****************************************
+ * uecho_object_setpropertydata
+ ****************************************/
+
+bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen)
+{
+  return uecho_propertylist_setdata(obj->properties, code, data, dataLen);
+}
+
+/****************************************
+ * uecho_object_setpropertypermission
+ ****************************************/
+
+bool uecho_object_setpropertypermission(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyPerm perm)
+{
+  return uecho_propertylist_setpermission(obj->properties, code, perm);
+}
+
+/****************************************
+ * uecho_object_setpropertyannouncement
+ ****************************************/
+
+bool uecho_object_setpropertyannouncement(uEchoObject *obj, uEchoPropertyCode code, bool annoFlag)
+{
+  return uecho_propertylist_setannouncement(obj->properties, code, annoFlag);
 }
 
 /****************************************
@@ -146,21 +173,21 @@ uEchoProperty *uecho_object_getproperties(uEchoObject *obj)
 }
 
 /****************************************
- * uecho_object_haspropertybycode
+ * uecho_object_hasproperty
  ****************************************/
 
-bool uecho_object_haspropertybycode(uEchoObject *obj, uEchoPropertyCode code)
+bool uecho_object_hasproperty(uEchoObject *obj, uEchoPropertyCode code)
 {
-  return (uecho_object_getpropertybycode(obj, code) != NULL) ? true : false;
+  return (uecho_object_getproperty(obj, code) != NULL) ? true : false;
 }
 
 /****************************************
- * uecho_object_getpropertybycode
+ * uecho_object_getproperty
  ****************************************/
 
-uEchoProperty *uecho_object_getpropertybycode(uEchoObject *obj, uEchoPropertyCode code)
+uEchoProperty *uecho_object_getproperty(uEchoObject *obj, uEchoPropertyCode code)
 {
-  return uecho_propertylist_getbycode(obj->properties, code);
+  return uecho_propertylist_findbycode(obj->properties, code);
 }
 
 /****************************************
