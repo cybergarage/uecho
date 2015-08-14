@@ -24,8 +24,8 @@ extern "C" {
  ****************************************/
 
 enum {
-  uEchoPropertyCodeMin = 0,
-  uEchoPropertyCodeMax = 255,
+  uEchoPropertyCodeMin = 0x80,
+  uEchoPropertyCodeMax = 0xFF,
 };
   
 /****************************************
@@ -41,6 +41,11 @@ typedef enum {
   uEchoPropertyPermReadWrite = uEchoPropertyPermRead | uEchoPropertyPermWrite,
 } uEchoPropertyPerm;
 
+typedef enum {
+  uEchoPropertyAnnouncementNone         = false,
+  uEchoPropertyAnnouncementStateChanges = true,
+} uEchoPropertyAnnouncement;
+  
 typedef struct _uEchoProperty
 {
   bool headFlag;
