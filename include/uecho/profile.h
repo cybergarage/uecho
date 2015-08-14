@@ -34,15 +34,19 @@ enum {
 } uEchoProfileObjectSuperClassEPC;
 
 enum {
+  uEchoPropertyMapMax = 16,
+};
+
+enum {
   uEchoProfileObjectSuperClassFaultStatusLen                            = 1,
   uEchoProfileObjectSuperClassManufacturerCodeLen                       = 3,
   uEchoProfileObjectSuperClassPlaceOfBusinessCodeLen                    = 3,
   uEchoProfileObjectSuperClassProductCodeLen                            = 12,
   uEchoProfileObjectSuperClassSerialNumberLen                           = 12,
   uEchoProfileObjectSuperClassDateOfManufactureLen                      = 4,
-  uEchoProfileObjectSuperClassStatusChangeAnnouncementPropertyMapMaxLen = 17,
-  uEchoProfileObjectSuperClassSetPropertyMapMaxLen                      = 17,
-  uEchoProfileObjectSuperClassGetPropertyMapMaxLen                      = 17,
+  uEchoProfileObjectSuperClassStatusChangeAnnouncementPropertyMapMaxLen = (uEchoPropertyMapMax + 1),
+  uEchoProfileObjectSuperClassSetPropertyMapMaxLen                      = (uEchoPropertyMapMax + 1),
+  uEchoProfileObjectSuperClassGetPropertyMapMaxLen                      = (uEchoPropertyMapMax + 1),
 } uEchoProfileObjectSuperClassEPCSize;
   
 enum {
@@ -68,6 +72,19 @@ enum {
   uEchoProfileNodeProfileClassInstanceListNotification  = 0xD5,
   uEchoProfileNodeProfileClassSelfNodeInstanceListS     = 0xD6,
   uEchoProfileNodeProfileClassSelfNodeClassListS        = 0xD7,
+};
+
+enum {
+  uEchoProfileNodeProfileClassOperatingStatusLen             = 1,
+  uEchoProfileNodeProfileClassVersionInformationLen          = 4,
+  uEchoProfileNodeProfileClassIdentificationNumberLen        = 17,
+  uEchoProfileNodeProfileClassFaultContentLen                = 2,
+  uEchoProfileNodeProfileClassUniqueIdentifierDataLen        = 2,
+  uEchoProfileNodeProfileClassNumberOfSelfNodeInstancesLen   = 3,
+  uEchoProfileNodeProfileClassNumberOfSelfNodeClassesLen     = 2,
+  uEchoProfileNodeProfileClassInstanceListNotificationMaxLen = 253,
+  uEchoProfileNodeProfileClassSelfNodeInstanceListSMaxLen    = 253,
+  uEchoProfileNodeProfileClassSelfNodeClassListSMaxLen       = 17,
 };
   
 enum {

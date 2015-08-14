@@ -64,8 +64,7 @@ float uecho_random(void)
 {
 	static bool seedDone = false;
 
-	if (seedDone == false)
-{
+	if (seedDone == false) {
 		srand((int)(uecho_getcurrentsystemtime() % INT_MAX));
 		seedDone = true;
 	}

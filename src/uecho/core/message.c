@@ -66,23 +66,19 @@ void uecho_message_clear(uEchoMessage *msg)
 {
   int n;
   
-  if (0 < msg->OPC)
-{
-    for (n=0; n<(int)(msg->OPC); n++)
-{
+  if (0 < msg->OPC) {
+    for (n=0; n<(int)(msg->OPC); n++) {
       uecho_property_delete(msg->EP[n]);
       msg->EP[n] = NULL;
     }
   }
   
-  if (msg->EP)
-{
+  if (msg->EP) {
     free(msg->EP);
     msg->EP = NULL;
   }
 
-  if (msg->bytes)
-{
+  if (msg->bytes) {
     free(msg->bytes);
     msg->bytes = NULL;
   }
@@ -94,8 +90,7 @@ void uecho_message_clear(uEchoMessage *msg)
 
 bool uecho_message_settid(uEchoMessage *msg, uEchoTID val)
 {
-  if (uEchoTidMax < val)
-{
+  if (uEchoTidMax < val) {
     val %= uEchoTidMax;
   }
   uint16_t nval = htons(val);
@@ -277,8 +272,7 @@ bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen)
   // EP
   
   offset = 12;
-  for (n = 0; n<(int)(msg->OPC); n++)
-{
+  for (n = 0; n<(int)(msg->OPC); n++) {
     prop = uecho_message_getproperty(msg, n);
     if (!prop)
       return false;
@@ -315,6 +309,7 @@ bool uecho_message_parsepacket(uEchoMessage *msg, uEchoDatagramPacket *dgmPkt)
 {
   if (!msg || !dgmPkt)
     return false;
+  
   return uecho_message_parse(
         msg,
         uecho_socket_datagram_packet_getdata(dgmPkt),
@@ -332,11 +327,10 @@ size_t uecho_message_size(uEchoMessage *msg)
   
   msgLen = uEchoMessageMinLen;
 
-  for (n = 0; n<(size_t)(msg->OPC); n++)
-{
+  for (n = 0; n<(size_t)(msg->OPC); n++) {
     prop = uecho_message_getproperty(msg, n);
     msgLen += 2;
-    msgLen += uecho_property_getcount(prop);
+    msgLen += uecho_property_getdatasize(prop);
   }
   
   return msgLen;
@@ -351,8 +345,7 @@ byte *uecho_message_getbytes(uEchoMessage *msg)
   uEchoProperty *prop;
   size_t n, offset, count;
   
-  if (msg->bytes)
-{
+  if (msg->bytes) {
     free(msg->bytes);
   }
 
@@ -372,10 +365,9 @@ byte *uecho_message_getbytes(uEchoMessage *msg)
   msg->bytes[11] = msg->OPC;
 
   offset = 12;
-  for (n = 0; n<(size_t)(msg->OPC); n++)
-{
+  for (n = 0; n<(size_t)(msg->OPC); n++) {
     prop = uecho_message_getproperty(msg, n);
-    count = uecho_property_getcount(prop);
+    count = uecho_property_getdatasize(prop);
     msg->bytes[offset++] = uecho_property_getcode(prop);
     msg->bytes[offset++] = count;
     memcpy((msg->bytes + offset), uecho_property_getdata(prop), count);

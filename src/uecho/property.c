@@ -27,8 +27,8 @@ uEchoProperty *uecho_property_new(void)
 
   uecho_list_node_init((uEchoList *)prop);
   
-  prop->count = 0;
   prop->data = NULL;
+  prop->dataSize = 0;
   
   uecho_property_setpermission(prop, uEchoPropertyPermReadWrite);
   uecho_property_setannouncement(prop, false);
@@ -63,7 +63,7 @@ bool uecho_property_setcount(uEchoProperty *prop, size_t count)
   if (!prop->data)
     return false;
   
-  prop->count = count;
+  prop->dataSize = count;
   
   return true;
 }
@@ -91,7 +91,7 @@ bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count)
 
 bool uecho_property_cleardata(uEchoProperty *prop)
 {
-  prop->count = 0;
+  prop->dataSize= 0;
   
   if (prop->data) {
     free(prop->data);
@@ -138,21 +138,21 @@ uEchoPropertyCode uecho_property_getcode(uEchoProperty *prop)
 }
 
 /****************************************
- * uecho_property_getcount
- ****************************************/
-
-byte uecho_property_getcount(uEchoProperty *prop)
-{
-  return prop->count;
-}
-
-/****************************************
  * uecho_property_getdata
  ****************************************/
 
 byte *uecho_property_getdata(uEchoProperty *prop)
 {
   return prop->data;
+}
+
+/****************************************
+ * uecho_property_getdatasize
+ ****************************************/
+
+byte uecho_property_getdatasize(uEchoProperty *prop)
+{
+  return prop->dataSize;
 }
 
 /****************************************
