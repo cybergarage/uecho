@@ -11,6 +11,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include <uecho/object.h>
+#include <uecho/profile.h>
 
 BOOST_AUTO_TEST_CASE(ObjectSetCode)
 {
@@ -84,5 +85,15 @@ BOOST_AUTO_TEST_CASE(ObjectSetProperty)
   
   BOOST_CHECK_EQUAL(uecho_object_getpropertycount(obj), (uEchoPropertyCodeMax - uEchoPropertyCodeMin + 1));
   
+  uecho_object_delete(obj);
+}
+
+
+BOOST_AUTO_TEST_CASE(ObjectSuperClassProperties)
+{
+  uEchoObject *obj = uecho_object_new();
+
+  uecho_object_haspropertybycode(obj, uEchoProfileObjectSuperClassManufacturerCode);
+
   uecho_object_delete(obj);
 }

@@ -146,6 +146,15 @@ uEchoProperty *uecho_object_getproperties(uEchoObject *obj)
 }
 
 /****************************************
+ * uecho_object_haspropertybycode
+ ****************************************/
+
+bool uecho_object_haspropertybycode(uEchoObject *obj, uEchoPropertyCode code)
+{
+  return (uecho_object_getpropertybycode(obj, code) != NULL) ? true : false;
+}
+
+/****************************************
  * uecho_object_getpropertybycode
  ****************************************/
 
