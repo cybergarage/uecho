@@ -77,6 +77,7 @@ bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, byte *da
 uEchoProperty *uecho_object_getproperties(uEchoObject *obj);
 uEchoProperty *uecho_object_getpropertybycode(uEchoObject *obj, uEchoPropertyCode code);
 size_t uecho_object_getpropertycount(uEchoObject *obj);
+void uecho_object_clearproperties(uEchoObject *obj);
 
 /****************************************
  * Function (Object List)
