@@ -74,10 +74,9 @@ void uecho_object_setinstancecode(uEchoObject *obj, byte val);
 byte uecho_object_getinstancecode(uEchoObject *obj);
 
 bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen);
-bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen);
 uEchoProperty *uecho_object_getproperties(uEchoObject *obj);
-bool uecho_object_haspropertybycode(uEchoObject *obj, uEchoPropertyCode code);
 uEchoProperty *uecho_object_getpropertybycode(uEchoObject *obj, uEchoPropertyCode code);
+bool uecho_object_haspropertybycode(uEchoObject *obj, uEchoPropertyCode code);
 size_t uecho_object_getpropertycount(uEchoObject *obj);
 void uecho_object_clearproperties(uEchoObject *obj);
 
