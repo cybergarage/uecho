@@ -162,3 +162,12 @@ size_t uecho_object_getpropertycount(uEchoObject *obj)
 {
   return uecho_propertylist_size(obj->properties);
 }
+
+/****************************************
+ * uecho_object_clearproperties
+ ****************************************/
+
+void uecho_object_clearproperties(uEchoObject *obj)
+{
+  uecho_propertylist_clear(obj->properties);
+}

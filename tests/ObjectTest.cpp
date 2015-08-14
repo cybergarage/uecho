@@ -39,8 +39,8 @@ BOOST_AUTO_TEST_CASE(ObjectSetCodes)
   uEchoObject *obj = uecho_object_new();
   
   srand((int)time(NULL));
-  for (int n=0; n<10; n++)
-{
+  
+  for (int n=0; n<10; n++) {
     byte code;
     
     code = rand() % 255;
@@ -63,10 +63,11 @@ BOOST_AUTO_TEST_CASE(ObjectSetProperty)
 {
   uEchoObject *obj = uecho_object_new();
   
+  uecho_object_clearproperties(obj);
+  
   BOOST_CHECK_EQUAL(uecho_object_getpropertycount(obj), 0);
   
-  for (size_t n=uEchoPropertyCodeMin; n<=uEchoPropertyCodeMax; n++)
-{
+  for (size_t n=uEchoPropertyCodeMin; n<=uEchoPropertyCodeMax; n++) {
     byte *propData = (byte *)malloc(n);
     BOOST_CHECK(uecho_object_setproperty(obj, n, propData, n));
     free(propData);
@@ -74,8 +75,7 @@ BOOST_AUTO_TEST_CASE(ObjectSetProperty)
   
   BOOST_CHECK_EQUAL(uecho_object_getpropertycount(obj), (uEchoPropertyCodeMax - uEchoPropertyCodeMin + 1));
   
-  for (size_t n=uEchoPropertyCodeMin; n<=uEchoPropertyCodeMax; n++)
-{
+  for (size_t n=uEchoPropertyCodeMin; n<=uEchoPropertyCodeMax; n++) {
     uEchoProperty *prop = uecho_object_getpropertybycode(obj, n);
     BOOST_CHECK(prop);
     BOOST_CHECK_EQUAL(uecho_property_getcode(prop), n);
