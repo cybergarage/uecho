@@ -33,7 +33,43 @@ uEchoObject *uecho_object_new(void)
   obj->properties = uecho_propertylist_new();
   uecho_object_addsuperclassproperties(obj);
   
-	return obj;
+  // Property map caches
+  
+  obj->annoPropMapSize = 0;
+  obj->annoPropMapBytes = NULL;
+  
+  obj->setPropMapSize = 0;
+  obj->setPropMapBytes = NULL;
+  
+  obj->getPropMapSize = 0;
+  obj->getPropMapBytes = NULL;
+
+  return obj;
+}
+
+/****************************************
+ * uecho_object_clearpropertymapcaches
+ ****************************************/
+
+void uecho_object_clearpropertymapcaches(uEchoObject *obj)
+{
+  if (obj->annoPropMapBytes) {
+    free(obj->annoPropMapBytes);
+    obj->annoPropMapBytes = NULL;
+  }
+  obj->annoPropMapSize = 0;
+  
+  if (obj->setPropMapBytes) {
+    free(obj->setPropMapBytes);
+    obj->setPropMapBytes = NULL;
+  }
+  obj->setPropMapSize = 0;
+  
+  if (obj->getPropMapBytes) {
+    free(obj->getPropMapBytes);
+    obj->getPropMapBytes = NULL;
+  }
+  obj->getPropMapSize = 0;
 }
 
 /****************************************
@@ -43,7 +79,9 @@ uEchoObject *uecho_object_new(void)
 void uecho_object_delete(uEchoObject *obj)
 {
 	uecho_list_remove((uEchoList *)obj);
-    
+  
+  uecho_object_clearpropertymapcaches(obj);
+  
   uecho_propertylist_delete(obj->properties);
 	
   free(obj);
@@ -128,37 +166,37 @@ byte uecho_object_getinstancecode(uEchoObject *obj)
 }
 
 /****************************************
- * uecho_object_setproperty
+ * uecho_object_addproperty
  ****************************************/
 
-bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen, uEchoPropertyPerm perm, bool annoFlag)
+bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen, uEchoPropertyPerm perm, bool annoFlag)
 {
   return uecho_propertylist_set(obj->properties, code, data, dataLen, perm, annoFlag);
 }
 
 /****************************************
- * uecho_object_setpropertydata
+ * uecho_object_updatepropertydata
  ****************************************/
 
-bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen)
+bool uecho_object_updatepropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen)
 {
   return uecho_propertylist_setdata(obj->properties, code, data, dataLen);
 }
 
 /****************************************
- * uecho_object_setpropertypermission
+ * uecho_object_updatepropertypermission
  ****************************************/
 
-bool uecho_object_setpropertypermission(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyPerm perm)
+bool uecho_object_updatepropertypermission(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyPerm perm)
 {
   return uecho_propertylist_setpermission(obj->properties, code, perm);
 }
 
 /****************************************
- * uecho_object_setpropertyannouncement
+ * uecho_object_updatepropertyannouncement
  ****************************************/
 
-bool uecho_object_setpropertyannouncement(uEchoObject *obj, uEchoPropertyCode code, bool annoFlag)
+bool uecho_object_updatepropertyannouncement(uEchoObject *obj, uEchoPropertyCode code, bool annoFlag)
 {
   return uecho_propertylist_setannouncement(obj->properties, code, annoFlag);
 }
@@ -206,6 +244,7 @@ size_t uecho_object_getpropertycount(uEchoObject *obj)
 void uecho_object_clearproperties(uEchoObject *obj)
 {
   uecho_propertylist_clear(obj->properties);
+  uecho_object_clearpropertymapcaches(obj);
 }
 
 /****************************************
@@ -217,15 +256,15 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
   byte propMapData[uEchoPropertyMapMaxLen + 1];
   uEchoPropertyCode *propMap;
   size_t n, propByteIdx;
-
+  
   propMapData[0] = (byte)propsCodeSize;
   propMap = propMapData + 1;
-
+  
   // propsCodeSize <= uEchoPropertyMapMaxLen
   
   if (propsCodeSize <= uEchoPropertyMapMaxLen) {
     memcpy(propMap, propCodes, propsCodeSize);
-    uecho_object_setproperty(obj, mapCode, propMapData, (propsCodeSize + 1), uEchoPropertyPermRead, uEchoPropertyAnnouncementNone);
+    uecho_object_addproperty(obj, mapCode, propMapData, (propsCodeSize + 1), uEchoPropertyPermRead, uEchoPropertyAnnouncementNone);
     return true;
   }
   
@@ -242,3 +281,51 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
   
   return true;
 }
+
+/****************************************
+ * uecho_object_updatepropertymaps
+ ****************************************/
+
+void uecho_object_updatepropertymaps(uEchoObject *obj) {
+  uEchoProperty *prop;
+  
+  uecho_object_clearpropertymapcaches(obj);
+  
+  // Update property map caches
+  
+  for (prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
+    // Get property map
+    if (uecho_property_isreadable(prop)) {
+      obj->getPropMapSize++;
+      obj->getPropMapBytes = realloc(obj->getPropMapBytes, obj->getPropMapSize);
+      if (obj->getPropMapBytes) {
+        obj->getPropMapBytes[obj->getPropMapSize-1] = uecho_property_getcode(prop);
+      }
+    }
+
+    // Set property map
+    if (uecho_property_iswritable(prop)) {
+      obj->setPropMapSize++;
+      obj->setPropMapBytes = realloc(obj->setPropMapBytes, obj->setPropMapSize);
+      if (obj->setPropMapBytes) {
+        obj->setPropMapBytes[obj->setPropMapSize-1] = uecho_property_getcode(prop);
+      }
+    }
+
+    // Announcement status changes property map
+    if (uecho_property_isannouncement(prop)) {
+      obj->annoPropMapSize++;
+      obj->annoPropMapBytes = realloc(obj->annoPropMapBytes, obj->annoPropMapSize);
+      if (obj->annoPropMapBytes) {
+        obj->annoPropMapBytes[obj->annoPropMapSize-1] = uecho_property_getcode(prop);
+      }
+    }
+  }
+
+  // Update property map properties
+  
+  uecho_object_setpropertymap(obj, uEchoProfileObjectSuperClassGetPropertyMap, obj->getPropMapBytes, obj->getPropMapSize);
+  uecho_object_setpropertymap(obj, uEchoProfileObjectSuperClassSetPropertyMap, obj->setPropMapBytes, obj->setPropMapSize);
+  uecho_object_setpropertymap(obj, uEchoProfileObjectSuperClassStatusChangeAnnouncementPropertyMap, obj->annoPropMapBytes, obj->annoPropMapSize);
+}
+

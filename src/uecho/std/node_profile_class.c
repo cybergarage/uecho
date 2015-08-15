@@ -40,7 +40,7 @@ uEchoObject *uecho_object_nodeprofileclass_new(void)
     {uEchoProfileNodeProfileClassOperatingStatus,uEchoPropertyPermRead, true, "1", uEchoProfileNodeProfileClassOperatingStatusLen},
   };
   
-  //uecho_object_setproperty(obj, <#uEchoPropertyCode code#>, <#byte *data#>, <#size_t dataLen#>, <#uEchoPropertyPerm perm#>, <#bool annoFlag#>)
+  //uecho_object_addproperty(obj, <#uEchoPropertyCode code#>, <#byte *data#>, <#size_t dataLen#>, <#uEchoPropertyPerm perm#>, <#bool annoFlag#>)
 
   return obj;
 }
