@@ -35,17 +35,13 @@ enum {
 typedef byte uEchoPropertyCode;
 
 typedef enum {
-  uEchoPropertyPermNone      = 0x00,
-  uEchoPropertyPermRead      = 0x01,
-  uEchoPropertyPermWrite     = 0x10,
-  uEchoPropertyPermReadWrite = uEchoPropertyPermRead | uEchoPropertyPermWrite,
-} uEchoPropertyPerm;
+  uEchoPropertyAttrNone      = 0x00,
+  uEchoPropertyAttrRead      = 0x01,
+  uEchoPropertyAttrWrite     = 0x02,
+  uEchoPropertyAttrReadWrite = uEchoPropertyAttrRead | uEchoPropertyAttrWrite,
+  uEchoPropertyAttrAnno      = 0x10,
+} uEchoPropertyAttr;
 
-typedef enum {
-  uEchoPropertyAnnouncementNone         = false,
-  uEchoPropertyAnnouncementStateChanges = true,
-} uEchoPropertyAnnouncement;
-  
 typedef struct _uEchoProperty
 {
   bool headFlag;
@@ -53,8 +49,7 @@ typedef struct _uEchoProperty
   struct _uEchoProperty *next;
   
   uEchoPropertyCode code;
-  uEchoPropertyPerm perm;
-  bool anno;
+  uEchoPropertyAttr attr;
   byte *data;
   size_t dataSize;
 } uEchoProperty, uEchoPropertyList;
@@ -62,8 +57,7 @@ typedef struct _uEchoProperty
 typedef struct
 {
   uEchoPropertyCode code;
-  uEchoPropertyPerm perm;
-  bool anno;
+  uEchoPropertyAttr attr;
   byte *data;
   size_t dataSize;
 } uEchoPropertyData;
@@ -88,14 +82,12 @@ uEchoPropertyCode uecho_property_getcode(uEchoProperty *prop);
 byte uecho_property_getdatasize(uEchoProperty *prop);
 byte *uecho_property_getdata(uEchoProperty *prop);
 
-void uecho_property_setpermission(uEchoProperty *prop, uEchoPropertyPerm val);
-uEchoPropertyPerm uecho_property_getpermission(uEchoProperty *prop);
+void uecho_property_setattribute(uEchoProperty *prop, uEchoPropertyAttr val);
+uEchoPropertyAttr uecho_property_getattribute(uEchoProperty *prop);
 bool uecho_property_isreadable(uEchoProperty *prop);
 bool uecho_property_iswritable(uEchoProperty *prop);
 bool uecho_property_isreadonly(uEchoProperty *prop);
 bool uecho_property_iswriteonly(uEchoProperty *prop);
-  
-void uecho_property_setannouncement(uEchoProperty *prop, bool flag);
 bool uecho_property_isannouncement(uEchoProperty *prop);
   
 /****************************************
@@ -105,10 +97,9 @@ bool uecho_property_isannouncement(uEchoProperty *prop);
 uEchoPropertyList *uecho_propertylist_new(void);
 void uecho_propertylist_delete(uEchoPropertyList *props);
 
-bool uecho_propertylist_set(uEchoPropertyList *props, uEchoPropertyCode code, byte *data, size_t dataLen, uEchoPropertyPerm perm, bool annoFlag);
+bool uecho_propertylist_set(uEchoPropertyList *props, uEchoPropertyCode code, uEchoPropertyAttr attr, byte *data, size_t dataLen);
 bool uecho_propertylist_setdata(uEchoPropertyList *props, uEchoPropertyCode code, byte *data, size_t dataLen);
-bool uecho_propertylist_setpermission(uEchoPropertyList *props, uEchoPropertyCode code, uEchoPropertyPerm perm);
-bool uecho_propertylist_setannouncement(uEchoPropertyList *props, uEchoPropertyCode code, bool annoFlag);
+bool uecho_propertylist_setattribute(uEchoPropertyList *props, uEchoPropertyCode code, uEchoPropertyAttr attr);
 uEchoProperty *uecho_propertylist_findbycode(uEchoPropertyList *props, uEchoPropertyCode code);
   
 #define uecho_propertylist_clear(props) uecho_list_clear((uEchoList *)props, (UECHO_LIST_DESTRUCTORFUNC)uecho_property_delete)
