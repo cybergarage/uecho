@@ -31,7 +31,6 @@ uEchoObject *uecho_object_new(void)
   uecho_object_setinstancecode(obj, 0);
 
   obj->properties = uecho_propertylist_new();
-  uecho_object_addsuperclassproperties(obj);
   
   // Property map caches
   
@@ -43,6 +42,10 @@ uEchoObject *uecho_object_new(void)
   
   obj->getPropMapSize = 0;
   obj->getPropMapBytes = NULL;
+
+  // Added super class properties
+  
+  uecho_object_addsuperclassproperties(obj);
 
   return obj;
 }
@@ -166,12 +169,104 @@ byte uecho_object_getinstancecode(uEchoObject *obj)
 }
 
 /****************************************
+ * uecho_object_setpropertymap
+ ****************************************/
+
+bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uEchoPropertyCode *propCodes, size_t propsCodeSize)
+{
+  byte propMapData[uEchoPropertyMapMaxLen + 1];
+  uEchoPropertyCode *propMap;
+  size_t n, propByteIdx;
+  
+  propMapData[0] = (byte)propsCodeSize;
+  propMap = propMapData + 1;
+  
+  // propsCodeSize <= uEchoPropertyMapMaxLen
+  
+  if (propsCodeSize <= uEchoPropertyMapMaxLen) {
+    memcpy(propMap, propCodes, propsCodeSize);
+    uecho_object_addproperty(obj, mapCode, uEchoPropertyAttrRead, propMapData, (propsCodeSize + 1));
+    return true;
+  }
+  
+  // uEchoPropertyMapMaxLen < propsCodeSize
+  
+  for (n=0; n<propsCodeSize; n++) {
+    byte propCode;
+    propCode = propCodes[n];
+    if ((propCode < uEchoPropertyCodeMin) || (uEchoPropertyCodeMax < propCode))
+      continue;
+    propByteIdx = (propCode - uEchoPropertyCodeMin) & 0x0F;
+    propMap[propByteIdx] |= (((propCode - uEchoPropertyCodeMin) & 0xF0) >> 8) & 0x0F;
+  }
+  
+  uecho_object_addproperty(obj, mapCode, uEchoPropertyAttrRead, propMapData, (uEchoPropertyMapMaxLen + 1));
+  
+  return true;
+}
+
+/****************************************
+ * uecho_object_updatepropertymaps
+ ****************************************/
+
+bool uecho_object_updatepropertymaps(uEchoObject *obj) {
+  uEchoProperty *prop;
+  
+  uecho_object_clearpropertymapcaches(obj);
+  
+  // Update property map caches
+  
+  for (prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
+    // Get property map
+    if (uecho_property_isreadable(prop)) {
+      obj->getPropMapSize++;
+      obj->getPropMapBytes = realloc(obj->getPropMapBytes, obj->getPropMapSize);
+      if (obj->getPropMapBytes) {
+        obj->getPropMapBytes[obj->getPropMapSize-1] = uecho_property_getcode(prop);
+      }
+    }
+
+    // Set property map
+    if (uecho_property_iswritable(prop)) {
+      obj->setPropMapSize++;
+      obj->setPropMapBytes = realloc(obj->setPropMapBytes, obj->setPropMapSize);
+      if (obj->setPropMapBytes) {
+        obj->setPropMapBytes[obj->setPropMapSize-1] = uecho_property_getcode(prop);
+      }
+    }
+
+    // Announcement status changes property map
+    if (uecho_property_isannouncement(prop)) {
+      obj->annoPropMapSize++;
+      obj->annoPropMapBytes = realloc(obj->annoPropMapBytes, obj->annoPropMapSize);
+      if (obj->annoPropMapBytes) {
+        obj->annoPropMapBytes[obj->annoPropMapSize-1] = uecho_property_getcode(prop);
+      }
+    }
+  }
+
+  // Update property map properties
+  
+  if (!uecho_propertylist_set(obj->properties, uEchoProfileObjectSuperClassGetPropertyMap, uEchoPropertyAttrRead, obj->getPropMapBytes, obj->getPropMapSize))
+    return false;
+  if (!uecho_propertylist_set(obj->properties, uEchoProfileObjectSuperClassSetPropertyMap, uEchoPropertyAttrRead, obj->setPropMapBytes, obj->setPropMapSize))
+    return false;
+  if (!uecho_propertylist_set(obj->properties, uEchoProfileObjectSuperClassAnnoPropertyMap, uEchoPropertyAttrRead, obj->annoPropMapBytes, obj->annoPropMapSize))
+    return false;
+  
+  return true;
+}
+
+/****************************************
  * uecho_object_addproperty
  ****************************************/
 
 bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr, byte *data, size_t dataLen)
 {
-  return uecho_propertylist_set(obj->properties, code, attr, data, dataLen);
+  if (!uecho_propertylist_set(obj->properties, code, attr, data, dataLen))
+    return false;
+  return uecho_object_updatepropertymaps(obj);
+
 }
 
 /****************************************
@@ -236,89 +331,5 @@ void uecho_object_clearproperties(uEchoObject *obj)
 {
   uecho_propertylist_clear(obj->properties);
   uecho_object_clearpropertymapcaches(obj);
-}
-
-/****************************************
- * uecho_object_setpropertymap
- ****************************************/
-
-bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uEchoPropertyCode *propCodes, size_t propsCodeSize)
-{
-  byte propMapData[uEchoPropertyMapMaxLen + 1];
-  uEchoPropertyCode *propMap;
-  size_t n, propByteIdx;
-  
-  propMapData[0] = (byte)propsCodeSize;
-  propMap = propMapData + 1;
-  
-  // propsCodeSize <= uEchoPropertyMapMaxLen
-  
-  if (propsCodeSize <= uEchoPropertyMapMaxLen) {
-    memcpy(propMap, propCodes, propsCodeSize);
-    uecho_object_addproperty(obj, mapCode, uEchoPropertyAttrRead, propMapData, (propsCodeSize + 1));
-    return true;
-  }
-  
-  // uEchoPropertyMapMaxLen < propsCodeSize
-  
-  for (n=0; n<propsCodeSize; n++) {
-    byte propCode;
-    propCode = propCodes[n];
-    if ((propCode < uEchoPropertyCodeMin) || (uEchoPropertyCodeMax < propCode))
-      continue;
-    propByteIdx = (propCode - uEchoPropertyCodeMin) & 0x0F;
-    propMap[propByteIdx] |= (((propCode - uEchoPropertyCodeMin) & 0xF0) >> 8) & 0x0F;
-  }
-  
-  uecho_object_addproperty(obj, mapCode, uEchoPropertyAttrRead, propMapData, (uEchoPropertyMapMaxLen + 1));
-  
-  return true;
-}
-
-/****************************************
- * uecho_object_updatepropertymaps
- ****************************************/
-
-void uecho_object_updatepropertymaps(uEchoObject *obj) {
-  uEchoProperty *prop;
-  
-  uecho_object_clearpropertymapcaches(obj);
-  
-  // Update property map caches
-  
-  for (prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
-    // Get property map
-    if (uecho_property_isreadable(prop)) {
-      obj->getPropMapSize++;
-      obj->getPropMapBytes = realloc(obj->getPropMapBytes, obj->getPropMapSize);
-      if (obj->getPropMapBytes) {
-        obj->getPropMapBytes[obj->getPropMapSize-1] = uecho_property_getcode(prop);
-      }
-    }
-
-    // Set property map
-    if (uecho_property_iswritable(prop)) {
-      obj->setPropMapSize++;
-      obj->setPropMapBytes = realloc(obj->setPropMapBytes, obj->setPropMapSize);
-      if (obj->setPropMapBytes) {
-        obj->setPropMapBytes[obj->setPropMapSize-1] = uecho_property_getcode(prop);
-      }
-    }
-
-    // Announcement status changes property map
-    if (uecho_property_isannouncement(prop)) {
-      obj->annoPropMapSize++;
-      obj->annoPropMapBytes = realloc(obj->annoPropMapBytes, obj->annoPropMapSize);
-      if (obj->annoPropMapBytes) {
-        obj->annoPropMapBytes[obj->annoPropMapSize-1] = uecho_property_getcode(prop);
-      }
-    }
-  }
-
-  // Update property map properties
-  
-  uecho_object_setpropertymap(obj, uEchoProfileObjectSuperClassGetPropertyMap, obj->getPropMapBytes, obj->getPropMapSize);
-  uecho_object_setpropertymap(obj, uEchoProfileObjectSuperClassSetPropertyMap, obj->setPropMapBytes, obj->setPropMapSize);
-  uecho_object_setpropertymap(obj, uEchoProfileObjectSuperClassStatusChangeAnnouncementPropertyMap, obj->annoPropMapBytes, obj->annoPropMapSize);
 }
 
