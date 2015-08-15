@@ -216,7 +216,7 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
 {
   byte propMapData[uEchoPropertyMapMaxLen + 1];
   uEchoPropertyCode *propMap;
-  size_t n;
+  size_t n, propByteIdx;
 
   propMapData[0] = (byte)propsCodeSize;
   propMap = propMapData + 1;
@@ -236,6 +236,8 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
     propCode = propCodes[n];
     if ((propCode < uEchoPropertyCodeMin) || (uEchoPropertyCodeMax < propCode))
       continue;
+    propByteIdx = (propCode - uEchoPropertyCodeMin) & 0x0F;
+    propMap[propByteIdx] |= (((propCode - uEchoPropertyCodeMin) & 0xF0) >> 8) & 0x0F;
   }
   
   return true;
