@@ -46,6 +46,17 @@ typedef struct _uEchoObject {
 
   byte code[3];
   uEchoPropertyList *properties;
+
+  // Property map caches
+
+  size_t annoPropMapSize;
+  byte *annoPropMapBytes;
+  
+  size_t setPropMapSize;
+  byte *setPropMapBytes;
+
+  size_t getPropMapSize;
+  byte *getPropMapBytes;
 } uEchoObject, uEchoObjectList;
 
 /****************************************
@@ -73,10 +84,10 @@ byte uecho_object_getclasscode(uEchoObject *obj);
 void uecho_object_setinstancecode(uEchoObject *obj, byte val);
 byte uecho_object_getinstancecode(uEchoObject *obj);
 
-bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen, uEchoPropertyPerm perm, bool annoFlag);
-bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen);
-bool uecho_object_setpropertypermission(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyPerm perm);
-bool uecho_object_setpropertyannouncement(uEchoObject *obj, uEchoPropertyCode code, bool annoFlag);
+bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen, uEchoPropertyPerm perm, bool annoFlag);
+bool uecho_object_updatepropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen);
+bool uecho_object_updatepropertypermission(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyPerm perm);
+bool uecho_object_updatepropertyannouncement(uEchoObject *obj, uEchoPropertyCode code, bool annoFlag);
 
 uEchoProperty *uecho_object_getproperties(uEchoObject *obj);
 uEchoProperty *uecho_object_getproperty(uEchoObject *obj, uEchoPropertyCode code);
