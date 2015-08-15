@@ -169,9 +169,9 @@ byte uecho_object_getinstancecode(uEchoObject *obj)
  * uecho_object_addproperty
  ****************************************/
 
-bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen, uEchoPropertyPerm perm, bool annoFlag)
+bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr, byte *data, size_t dataLen)
 {
-  return uecho_propertylist_set(obj->properties, code, data, dataLen, perm, annoFlag);
+  return uecho_propertylist_set(obj->properties, code, attr, data, dataLen);
 }
 
 /****************************************
@@ -184,21 +184,12 @@ bool uecho_object_updatepropertydata(uEchoObject *obj, uEchoPropertyCode code, b
 }
 
 /****************************************
- * uecho_object_updatepropertypermission
+ * uecho_object_updatepropertyattribute
  ****************************************/
 
-bool uecho_object_updatepropertypermission(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyPerm perm)
+bool uecho_object_updatepropertyattribute(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)
 {
-  return uecho_propertylist_setpermission(obj->properties, code, perm);
-}
-
-/****************************************
- * uecho_object_updatepropertyannouncement
- ****************************************/
-
-bool uecho_object_updatepropertyannouncement(uEchoObject *obj, uEchoPropertyCode code, bool annoFlag)
-{
-  return uecho_propertylist_setannouncement(obj->properties, code, annoFlag);
+  return uecho_propertylist_setattribute(obj->properties, code, attr);
 }
 
 /****************************************
@@ -264,7 +255,7 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
   
   if (propsCodeSize <= uEchoPropertyMapMaxLen) {
     memcpy(propMap, propCodes, propsCodeSize);
-    uecho_object_addproperty(obj, mapCode, propMapData, (propsCodeSize + 1), uEchoPropertyPermRead, uEchoPropertyAnnouncementNone);
+    uecho_object_addproperty(obj, mapCode, uEchoPropertyAttrRead, propMapData, (propsCodeSize + 1));
     return true;
   }
   
@@ -278,6 +269,8 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
     propByteIdx = (propCode - uEchoPropertyCodeMin) & 0x0F;
     propMap[propByteIdx] |= (((propCode - uEchoPropertyCodeMin) & 0xF0) >> 8) & 0x0F;
   }
+  
+  uecho_object_addproperty(obj, mapCode, uEchoPropertyAttrRead, propMapData, (uEchoPropertyMapMaxLen + 1));
   
   return true;
 }

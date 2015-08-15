@@ -30,8 +30,7 @@ uEchoProperty *uecho_property_new(void)
   prop->data = NULL;
   prop->dataSize = 0;
   
-  uecho_property_setpermission(prop, uEchoPropertyPermReadWrite);
-  uecho_property_setannouncement(prop, false);
+  uecho_property_setattribute(prop, uEchoPropertyAttrReadWrite);
   
 	return prop;
 }
@@ -156,21 +155,21 @@ byte uecho_property_getdatasize(uEchoProperty *prop)
 }
 
 /****************************************
- * uecho_property_setpermission
+ * uecho_property_setattribute
  ****************************************/
 
-void uecho_property_setpermission(uEchoProperty *prop, uEchoPropertyPerm val)
+void uecho_property_setattribute(uEchoProperty *prop, uEchoPropertyAttr val)
 {
-  prop->perm = val;
+  prop->attr = val;
 }
 
 /****************************************
- * uecho_property_getpermission
+ * uecho_property_getattribute
  ****************************************/
 
-uEchoPropertyPerm uecho_property_getpermission(uEchoProperty *prop)
+uEchoPropertyAttr uecho_property_getattribute(uEchoProperty *prop)
 {
-  return prop->perm;
+  return prop->attr;
 }
 
 /****************************************
@@ -179,7 +178,7 @@ uEchoPropertyPerm uecho_property_getpermission(uEchoProperty *prop)
 
 bool uecho_property_isreadable(uEchoProperty *prop)
 {
-  return (prop->perm & uEchoPropertyPermRead) ? true : false;
+  return (prop->attr & uEchoPropertyAttrRead) ? true : false;
 }
 
 /****************************************
@@ -188,7 +187,7 @@ bool uecho_property_isreadable(uEchoProperty *prop)
 
 bool uecho_property_iswritable(uEchoProperty *prop)
 {
-  return (prop->perm & uEchoPropertyPermWrite) ? true : false;
+  return (prop->attr & uEchoPropertyAttrWrite) ? true : false;
 }
 
 /****************************************
@@ -197,9 +196,9 @@ bool uecho_property_iswritable(uEchoProperty *prop)
 
 bool uecho_property_isreadonly(uEchoProperty *prop)
 {
-  if (!(prop->perm & uEchoPropertyPermRead))
+  if (!(prop->attr & uEchoPropertyAttrRead))
     return false;
-  if ((prop->perm & uEchoPropertyPermWrite))
+  if ((prop->attr & uEchoPropertyAttrWrite))
     return false;
   return true;
 }
@@ -210,20 +209,11 @@ bool uecho_property_isreadonly(uEchoProperty *prop)
 
 bool uecho_property_iswriteonly(uEchoProperty *prop)
 {
-  if (!(prop->perm & uEchoPropertyPermWrite))
+  if (!(prop->attr & uEchoPropertyAttrWrite))
     return false;
-  if ((prop->perm & uEchoPropertyPermRead))
+  if ((prop->attr & uEchoPropertyAttrRead))
     return false;
   return true;
-}
-
-/****************************************
- * uecho_property_setannouncement
- ****************************************/
-
-void uecho_property_setannouncement(uEchoProperty *prop, bool flag)
-{
-  prop->anno = flag;
 }
 
 /****************************************
@@ -232,5 +222,7 @@ void uecho_property_setannouncement(uEchoProperty *prop, bool flag)
 
 bool uecho_property_isannouncement(uEchoProperty *prop)
 {
-  return prop->anno;
+  if ((prop->attr & uEchoPropertyAttrAnno))
+    return true;
+  return false;
 }

@@ -80,7 +80,7 @@ uEchoProperty *uecho_propertylist_getbycode(uEchoPropertyList *props, uEchoPrope
  * uecho_propertylist_set
  ****************************************/
 
-bool uecho_propertylist_set(uEchoPropertyList *props, uEchoPropertyCode code, byte *data, size_t dataLen, uEchoPropertyPerm perm, bool annoFlag)
+bool uecho_propertylist_set(uEchoPropertyList *props, uEchoPropertyCode code, uEchoPropertyAttr attr, byte *data, size_t dataLen)
 {
   uEchoProperty *prop;
   
@@ -89,8 +89,7 @@ bool uecho_propertylist_set(uEchoPropertyList *props, uEchoPropertyCode code, by
     return false;
   
   uecho_property_setdata(prop, data, dataLen);
-  uecho_property_setpermission(prop, perm);
-  uecho_property_setannouncement(prop, annoFlag);
+  uecho_property_setattribute(prop, attr);
 
   return true;
 }
@@ -113,10 +112,10 @@ bool uecho_propertylist_setdata(uEchoPropertyList *props, uEchoPropertyCode code
 }
 
 /****************************************
- * uecho_propertylist_setpermission
+ * uecho_propertylist_setattribute
  ****************************************/
 
-bool uecho_propertylist_setpermission(uEchoPropertyList *props, uEchoPropertyCode code, uEchoPropertyPerm perm)
+bool uecho_propertylist_setattribute(uEchoPropertyList *props, uEchoPropertyCode code, uEchoPropertyAttr attr)
 {
   uEchoProperty *prop;
   
@@ -124,24 +123,7 @@ bool uecho_propertylist_setpermission(uEchoPropertyList *props, uEchoPropertyCod
   if (!prop)
     return false;
   
-  uecho_property_setpermission(prop, perm);
-  
-  return true;
-}
-
-/****************************************
- * uecho_propertylist_setannouncement
- ****************************************/
-
-bool uecho_propertylist_setannouncement(uEchoPropertyList *props, uEchoPropertyCode code, bool annoFlag)
-{
-  uEchoProperty *prop;
-  
-  prop = uecho_propertylist_getbycode(props, code);
-  if (!prop)
-    return false;
-  
-  uecho_property_setannouncement(prop, annoFlag);
+  uecho_property_setattribute(prop, attr);
   
   return true;
 }
