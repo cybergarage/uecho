@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE(ObjectSetProperty)
   
   for (size_t n=uEchoPropertyCodeMin; n<=uEchoPropertyCodeMax; n++) {
     byte *propData = (byte *)malloc(n);
-    BOOST_CHECK(uecho_object_setpropertydata(obj, n, propData, n));
+    BOOST_CHECK(uecho_object_updatepropertydata(obj, n, propData, n));
     free(propData);
   }
   

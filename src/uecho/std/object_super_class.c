@@ -23,7 +23,7 @@ bool uecho_object_addsuperclassproperties(uEchoObject *obj)
   if (!obj)
     return false;
   
-  uecho_object_setproperty(obj, uEchoProfileObjectSuperClassManufacturerCode, manufactureCode, sizeof(manufactureCode), uEchoPropertyPermRead, uEchoPropertyAnnouncementNone);
+  uecho_object_addproperty(obj, uEchoProfileObjectSuperClassManufacturerCode, manufactureCode, sizeof(manufactureCode), uEchoPropertyPermRead, uEchoPropertyAnnouncementNone);
   
   return uecho_object_updatesuperclassproperties(obj);
 }
