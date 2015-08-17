@@ -18,12 +18,24 @@
 
 bool uecho_object_addsuperclassproperties(uEchoObject *obj)
 {
-  byte manufactureCode[uEchoProfileObjectSuperClassManufacturerCodeLen] = {0, 0, 0};
+  byte manufactureCode[] = {0, 0, 0};
+  byte zeroPropMap[] = {0};
   
   if (!obj)
     return false;
   
-  uecho_object_addproperty(obj, uEchoProfileObjectSuperClassManufacturerCode, uEchoPropertyAttrRead, manufactureCode, sizeof(manufactureCode));
+  // Manufacture Code
+  
+  uecho_object_addproperty(obj, uEchoProfileObjectSuperClassManufacturerCode, uEchoPropertyAttrRead,  manufactureCode, sizeof(manufactureCode));
+  
+  // Property map properties
+  
+  if (!uecho_object_updateproperty(obj, uEchoProfileObjectSuperClassGetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
+    return false;
+  if (!uecho_object_updateproperty(obj, uEchoProfileObjectSuperClassSetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
+    return false;
+  if (!uecho_object_updateproperty(obj, uEchoProfileObjectSuperClassAnnoPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
+    return false;
   
   return uecho_object_updatesuperclassproperties(obj);
 }
