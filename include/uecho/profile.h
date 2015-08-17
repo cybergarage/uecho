@@ -28,7 +28,7 @@ enum {
   uEchoProfileObjectSuperClassProductCode                         = 0x8C,
   uEchoProfileObjectSuperClassSerialNumber                        = 0x8D,
   uEchoProfileObjectSuperClassDateOfManufacture                   = 0x8E,
-  uEchoProfileObjectSuperClassAnnoPropertyMap = 0x9D,
+  uEchoProfileObjectSuperClassAnnoPropertyMap                     = 0x9D,
   uEchoProfileObjectSuperClassSetPropertyMap                      = 0x9E,
   uEchoProfileObjectSuperClassGetPropertyMap                      = 0x9F,
 } uEchoProfileObjectSuperClassEPC;
