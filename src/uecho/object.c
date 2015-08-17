@@ -247,11 +247,11 @@ bool uecho_object_updatepropertymaps(uEchoObject *obj) {
 
   // Update property map properties
   
-  if (!uecho_propertylist_set(obj->properties, uEchoProfileObjectSuperClassGetPropertyMap, uEchoPropertyAttrRead, obj->getPropMapBytes, obj->getPropMapSize))
+  if (!uecho_object_updateproperty(obj, uEchoProfileObjectSuperClassGetPropertyMap, uEchoPropertyAttrRead, obj->getPropMapBytes, obj->getPropMapSize))
     return false;
-  if (!uecho_propertylist_set(obj->properties, uEchoProfileObjectSuperClassSetPropertyMap, uEchoPropertyAttrRead, obj->setPropMapBytes, obj->setPropMapSize))
+  if (!uecho_object_updateproperty(obj, uEchoProfileObjectSuperClassSetPropertyMap, uEchoPropertyAttrRead, obj->setPropMapBytes, obj->setPropMapSize))
     return false;
-  if (!uecho_propertylist_set(obj->properties, uEchoProfileObjectSuperClassAnnoPropertyMap, uEchoPropertyAttrRead, obj->annoPropMapBytes, obj->annoPropMapSize))
+  if (!uecho_object_updateproperty(obj, uEchoProfileObjectSuperClassAnnoPropertyMap, uEchoPropertyAttrRead, obj->annoPropMapBytes, obj->annoPropMapSize))
     return false;
   
   return true;
@@ -267,6 +267,15 @@ bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPro
     return false;
   return uecho_object_updatepropertymaps(obj);
 
+}
+
+/****************************************
+ * uecho_object_updateproperty
+ ****************************************/
+
+bool uecho_object_updateproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr, byte *data, size_t dataLen)
+{
+  return uecho_propertylist_set(obj->properties, code, attr, data, dataLen);
 }
 
 /****************************************

@@ -93,6 +93,9 @@ BOOST_AUTO_TEST_CASE(ObjectSuperClassProperties)
   uEchoObject *obj = uecho_object_new();
 
   uecho_object_hasproperty(obj, uEchoProfileObjectSuperClassManufacturerCode);
+  uecho_object_hasproperty(obj, uEchoProfileObjectSuperClassAnnoPropertyMap);
+  uecho_object_hasproperty(obj, uEchoProfileObjectSuperClassSetPropertyMap);
+  uecho_object_hasproperty(obj, uEchoProfileObjectSuperClassGetPropertyMap);
 
   uecho_object_delete(obj);
 }
