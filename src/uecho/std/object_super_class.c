@@ -30,14 +30,14 @@ bool uecho_object_addsuperclassproperties(uEchoObject *obj)
   
   // Property map properties
   
-  if (!uecho_object_updateproperty(obj, uEchoProfileObjectSuperClassGetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
+  if (!uecho_object_addproperty(obj, uEchoProfileObjectSuperClassGetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
     return false;
-  if (!uecho_object_updateproperty(obj, uEchoProfileObjectSuperClassSetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
+  if (!uecho_object_addproperty(obj, uEchoProfileObjectSuperClassSetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
     return false;
-  if (!uecho_object_updateproperty(obj, uEchoProfileObjectSuperClassAnnoPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
+  if (!uecho_object_addproperty(obj, uEchoProfileObjectSuperClassAnnoPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
     return false;
   
-  return uecho_object_updatesuperclassproperties(obj);
+  return true;
 }
 
 /****************************************
