@@ -22,6 +22,11 @@ extern "C" {
 #define uEchoMulticastAddr "224.0.23.0"
   
 enum {
+  uEchoMajorVersion = 0x02,
+  uEchoMinorVersion = 0x0A,
+  uEchoSpecifiedMessageFormat = 0x01,
+  uEchoArbitraryMessageFormat = 0x02,
+  
   uEchoUdpPort = 3610,
   uEchoTcpPort = 3610,
 

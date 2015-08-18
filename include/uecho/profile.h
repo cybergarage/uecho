@@ -88,8 +88,9 @@ enum {
 };
   
 enum {
-  uEchoProfileNodeProfileClassBooting    = 0x30,
-  uEchoProfileNodeProfileClassNotBooting = 0x31,
+  uEchoProfileNodeProfileClassBooting      = 0x30,
+  uEchoProfileNodeProfileClassNotBooting   = 0x31,
+  uEchoLowerCommunicationLayerProtocolType = 0xFE,
 };
 
 #ifdef  __cplusplus
