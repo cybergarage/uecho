@@ -10,6 +10,7 @@
 
 #include <string.h>
 
+#include <uecho/const.h>
 #include <uecho/profile.h>
 
 /****************************************
@@ -31,18 +32,24 @@
 uEchoObject *uecho_object_nodeprofileclass_new(void)
 {
   uEchoObject *obj;
+  byte propData[32];
   
   obj = uecho_object_new();
   if (!obj)
     return NULL;
   
-  /*
-  uEchoPropertyData props[] = {
-    {uEchoProfileNodeProfileClassOperatingStatus,uEchoPropertyAttrRead, "1", uEchoProfileNodeProfileClassOperatingStatusLen},
-  };
-   */
+  // Operation Status
   
-  //uecho_object_addproperty(obj, <#uEchoPropertyCode code#>, <#byte *data#>, <#size_t dataLen#>, <#uEchoPropertyAttr attr#>, <#bool annoFlag#>)
+  propData[0] = uEchoProfileNodeProfileClassBooting;
+  uecho_object_addproperty(obj, uEchoProfileNodeProfileClassOperatingStatus, uEchoPropertyAttrRead, propData, uEchoProfileNodeProfileClassOperatingStatusLen);
 
+  // Version Information
+  
+  propData[0] = uEchoMajorVersion;
+  propData[1] = uEchoMinorVersion;
+  propData[2] = uEchoSpecifiedMessageFormat;
+  propData[3] = 0x00;
+  uecho_object_addproperty(obj, uEchoProfileNodeProfileClassVersionInformation, uEchoPropertyAttrRead, propData, uEchoProfileNodeProfileClassVersionInformationLen);
+  
   return obj;
 }
