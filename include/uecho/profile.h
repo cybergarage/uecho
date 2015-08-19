@@ -54,8 +54,10 @@ enum {
   uEchoProfileObjectSuperClassNoFaultEncountered = 0x42
 };
 
-bool uecho_object_addsuperclassproperties(uEchoObject *obj);
-bool uecho_object_updatesuperclassproperties(uEchoObject *obj);
+bool uecho_object_superclass_addmandatoryproperties(uEchoObject *obj);
+bool uecho_object_superclass_setmanufacturercode(uEchoObject *obj, byte *codes);
+bool uecho_object_superclass_updatepropertymaps(uEchoObject *obj);
+void uecho_object_superclass_clearpropertymapcaches(uEchoObject *obj);
   
 /****************************************
  * Node Profile Class
@@ -75,27 +77,31 @@ enum {
 };
 
 enum {
-  uEchoProfileNodeProfileClassOperatingStatusLen             = 1,
-  uEchoProfileNodeProfileClassVersionInformationLen          = 4,
-  uEchoProfileNodeProfileClassIdentificationNumberLen        = 17,
-  uEchoProfileNodeProfileClassFaultContentLen                = 2,
-  uEchoProfileNodeProfileClassUniqueIdentifierDataLen        = 2,
-  uEchoProfileNodeProfileClassNumberOfSelfNodeInstancesLen   = 3,
-  uEchoProfileNodeProfileClassNumberOfSelfNodeClassesLen     = 2,
-  uEchoProfileNodeProfileClassInstanceListNotificationMaxLen = 253,
-  uEchoProfileNodeProfileClassSelfNodeInstanceListSMaxLen    = 253,
-  uEchoProfileNodeProfileClassSelfNodeClassListSMaxLen       = 17,
+  uEchoProfileNodeProfileClassOperatingStatusLen                 = 1,
+  uEchoProfileNodeProfileClassVersionInformationLen              = 4,
+  uEchoProfileNodeProfileClassIdentificationManufacturerCodeLen  = 3,
+  uEchoProfileNodeProfileClassIdentificationUniqueIdLen          = 13,
+  uEchoProfileNodeProfileClassIdentificationNumberLen            = 1 + uEchoProfileNodeProfileClassIdentificationManufacturerCodeLen + uEchoProfileNodeProfileClassIdentificationUniqueIdLen,
+  uEchoProfileNodeProfileClassFaultContentLen                    = 2,
+  uEchoProfileNodeProfileClassUniqueIdentifierDataLen            = 2,
+  uEchoProfileNodeProfileClassNumberOfSelfNodeInstancesLen       = 3,
+  uEchoProfileNodeProfileClassNumberOfSelfNodeClassesLen         = 2,
+  uEchoProfileNodeProfileClassInstanceListNotificationMaxLen     = 253,
+  uEchoProfileNodeProfileClassSelfNodeInstanceListSMaxLen        = 253,
+  uEchoProfileNodeProfileClassSelfNodeClassListSMaxLen           = 17,
 };
-  
+
 enum {
   uEchoProfileNodeProfileClassBooting      = 0x30,
   uEchoProfileNodeProfileClassNotBooting   = 0x31,
   uEchoLowerCommunicationLayerProtocolType = 0xFE,
 };
 
+bool uecho_object_nodeprofileclass_setoperatingstatus(uEchoObject *obj, bool stats);
+bool uecho_object_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId);
+
 #ifdef  __cplusplus
 } /* extern C */
 #endif
 
 #endif /* _UECHO_NODE_H_ */
-
