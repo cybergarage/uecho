@@ -45,34 +45,9 @@ uEchoObject *uecho_object_new(void)
 
   // Added super class properties
   
-  uecho_object_addsuperclassproperties(obj);
+  uecho_object_superclass_addmandatoryproperties(obj);
 
   return obj;
-}
-
-/****************************************
- * uecho_object_clearpropertymapcaches
- ****************************************/
-
-void uecho_object_clearpropertymapcaches(uEchoObject *obj)
-{
-  if (obj->annoPropMapBytes) {
-    free(obj->annoPropMapBytes);
-    obj->annoPropMapBytes = NULL;
-  }
-  obj->annoPropMapSize = 0;
-  
-  if (obj->setPropMapBytes) {
-    free(obj->setPropMapBytes);
-    obj->setPropMapBytes = NULL;
-  }
-  obj->setPropMapSize = 0;
-  
-  if (obj->getPropMapBytes) {
-    free(obj->getPropMapBytes);
-    obj->getPropMapBytes = NULL;
-  }
-  obj->getPropMapSize = 0;
 }
 
 /****************************************
@@ -83,7 +58,7 @@ void uecho_object_delete(uEchoObject *obj)
 {
 	uecho_list_remove((uEchoList *)obj);
   
-  uecho_object_clearpropertymapcaches(obj);
+  uecho_object_superclass_clearpropertymapcaches(obj);
   
   uecho_propertylist_delete(obj->properties);
 	
@@ -206,58 +181,6 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
 }
 
 /****************************************
- * uecho_object_updatepropertymaps
- ****************************************/
-
-bool uecho_object_updatepropertymaps(uEchoObject *obj) {
-  uEchoProperty *prop;
-  
-  uecho_object_clearpropertymapcaches(obj);
-  
-  // Update property map caches
-  
-  for (prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
-    // Get property map
-    if (uecho_property_isreadable(prop)) {
-      obj->getPropMapSize++;
-      obj->getPropMapBytes = realloc(obj->getPropMapBytes, obj->getPropMapSize);
-      if (obj->getPropMapBytes) {
-        obj->getPropMapBytes[obj->getPropMapSize-1] = uecho_property_getcode(prop);
-      }
-    }
-
-    // Set property map
-    if (uecho_property_iswritable(prop)) {
-      obj->setPropMapSize++;
-      obj->setPropMapBytes = realloc(obj->setPropMapBytes, obj->setPropMapSize);
-      if (obj->setPropMapBytes) {
-        obj->setPropMapBytes[obj->setPropMapSize-1] = uecho_property_getcode(prop);
-      }
-    }
-
-    // Announcement status changes property map
-    if (uecho_property_isannouncement(prop)) {
-      obj->annoPropMapSize++;
-      obj->annoPropMapBytes = realloc(obj->annoPropMapBytes, obj->annoPropMapSize);
-      if (obj->annoPropMapBytes) {
-        obj->annoPropMapBytes[obj->annoPropMapSize-1] = uecho_property_getcode(prop);
-      }
-    }
-  }
-
-  // Update property map properties
-  
-  if (!uecho_object_updateproperty(obj, uEchoProfileObjectSuperClassGetPropertyMap, uEchoPropertyAttrRead, obj->getPropMapBytes, obj->getPropMapSize))
-    return false;
-  if (!uecho_object_updateproperty(obj, uEchoProfileObjectSuperClassSetPropertyMap, uEchoPropertyAttrRead, obj->setPropMapBytes, obj->setPropMapSize))
-    return false;
-  if (!uecho_object_updateproperty(obj, uEchoProfileObjectSuperClassAnnoPropertyMap, uEchoPropertyAttrRead, obj->annoPropMapBytes, obj->annoPropMapSize))
-    return false;
-  
-  return true;
-}
-
-/****************************************
  * uecho_object_addproperty
  ****************************************/
 
@@ -265,7 +188,7 @@ bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPro
 {
   if (!uecho_propertylist_set(obj->properties, code, attr, data, dataLen))
     return false;
-  return uecho_object_updatepropertymaps(obj);
+  return uecho_object_superclass_updatepropertymaps(obj);
 
 }
 
@@ -339,6 +262,6 @@ size_t uecho_object_getpropertycount(uEchoObject *obj)
 void uecho_object_clearproperties(uEchoObject *obj)
 {
   uecho_propertylist_clear(obj->properties);
-  uecho_object_clearpropertymapcaches(obj);
+  uecho_object_superclass_clearpropertymapcaches(obj);
 }
 
