@@ -90,6 +90,15 @@ uEchoObjectCode uecho_object_getcode(uEchoObject *obj)
 }
 
 /****************************************
+ * uecho_object_getcode
+ ****************************************/
+
+bool uecho_object_iscode(uEchoObject *obj, uEchoObjectCode code)
+{
+  return (uecho_object_getcode(obj) == code) ? true : false;
+}
+
+/****************************************
  * uecho_object_setclassgroupcode
  ****************************************/
 

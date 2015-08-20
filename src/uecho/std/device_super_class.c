@@ -18,15 +18,60 @@
 
 bool uecho_device_addmandatoryproperties(uEchoObject *obj)
 {
-  byte manufactureCode[] = {0, 0, 0};
-  byte zeroPropMap[] = {0};
+  byte propData[32];
   
   if (!obj)
     return false;
   
-  if (!uecho_object_addproperty(obj, uEchoObjectGetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
-    return false;
+  // Operation Status
   
+  propData[0] = uEchoDeviceOperatingStatusOn;
+  uecho_object_addproperty(obj, uEchoDeviceOperatingStatus, uEchoPropertyAttrRead, propData, uEchoDeviceOperatingStatusSize);
+  
+  // Installation Location
+  
+  propData[0] = uEchoDeviceInstallationLocationUnknown;
+  uecho_object_addproperty(obj, uEchoDeviceInstallationLocation, uEchoPropertyAttrRead, propData, uEchoDeviceInstallationLocationSize);
+  
+  return true;
+}
+
+/****************************************
+ * uecho_device_setoperatingstatus
+ ****************************************/
+
+bool uecho_device_setoperatingstatus(uEchoObject *obj, bool stats)
+{
+  byte statsByte;
+  
+  statsByte = stats ? uEchoDeviceOperatingStatusOn : uEchoDeviceOperatingStatusOff;
+  return uecho_object_updatepropertydata(obj, uEchoDeviceOperatingStatus, &statsByte, uEchoDeviceOperatingStatusSize);
+}
+
+/****************************************
+ * uecho_device_setinstallationlocation
+ ****************************************/
+
+bool uecho_device_setinstallationlocation(uEchoObject *obj, byte locByte)
+{
+  return uecho_object_updatepropertydata(obj, uEchoDeviceInstallationLocation, &locByte, uEchoDeviceInstallationLocationSize);
+}
+
+/****************************************
+ * uecho_device_setstandardversion
+ ****************************************/
+
+bool uecho_device_setstandardversion(uEchoObject *obj, char ver)
+{
+  return true;
+}
+
+/****************************************
+ * uecho_device_setfaultstatus
+ ****************************************/
+
+bool uecho_device_setfaultstatus(uEchoObject *obj, bool stats)
+{
   return true;
 }
 

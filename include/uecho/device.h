@@ -79,11 +79,11 @@ typedef enum {
   uEchoDeviceAnnoPropertyMapSize                       = uEchoObjectAnnoPropertyMapMaxLen,
   uEchoDeviceSetPropertyMapSize                        = uEchoObjectSetPropertyMapMaxLen,
   uEchoDeviceGetPropertyMapSize                        = uEchoObjectGetPropertyMapMaxLen,
-} uEchoDeviceEPCSize;
+} uEchoDevicenEPCSize;
 
 enum {
-  uEchoDeviceOn                          = 0x30,
-  uEchoDeviceOff                         = 0x31,
+  uEchoDeviceOperatingStatusOn           = 0x30,
+  uEchoDeviceOperatingStatusOff          = 0x31,
   uEchoDeviceVersionAppendixG            = 'G',
   uEchoDeviceFaultOccurred               = 0x41,
   uEchoDeviceNoFaultOccurred             = 0x42,

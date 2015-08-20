@@ -20,6 +20,10 @@ BOOST_AUTO_TEST_CASE(DeviceSuperClassMandatoryProperties)
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoDeviceAnnoPropertyMap));
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoDeviceSetPropertyMap));
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoDeviceGetPropertyMap));
+
+  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoDeviceOperatingStatus));
+  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoDeviceInstallationLocation));
+  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoDeviceVersionInformation));
   
   uecho_object_delete(obj);
 }
