@@ -16,89 +16,96 @@
 #ifdef  __cplusplus
 extern "C" {
 #endif
+
+/****************************************
+ * Profile
+ ****************************************/
+
+uEchoObject *uecho_profile_new(void);
   
 /****************************************
  * Profile Object Super Class
  ****************************************/
   
-enum {
-  uEchoProfileObjectSuperClassFaultStatus                         = 0x88,
-  uEchoProfileObjectSuperClassManufacturerCode                    = 0x8A,
-  uEchoProfileObjectSuperClassPlaceOfBusinessCode                 = 0x8B,
-  uEchoProfileObjectSuperClassProductCode                         = 0x8C,
-  uEchoProfileObjectSuperClassSerialNumber                        = 0x8D,
-  uEchoProfileObjectSuperClassDateOfManufacture                   = 0x8E,
-  uEchoProfileObjectSuperClassAnnoPropertyMap                     = 0x9D,
-  uEchoProfileObjectSuperClassSetPropertyMap                      = 0x9E,
-  uEchoProfileObjectSuperClassGetPropertyMap                      = 0x9F,
-} uEchoProfileObjectSuperClassEPC;
+typedef enum {
+  uEchoProfileSuperClassFaultStatus                         = 0x88,
+  uEchoProfileSuperClassManufacturerCode                    = 0x8A,
+  uEchoProfileSuperClassPlaceOfBusinessCode                 = 0x8B,
+  uEchoProfileSuperClassProductCode                         = 0x8C,
+  uEchoProfileSuperClassSerialNumber                        = 0x8D,
+  uEchoProfileSuperClassDateOfManufacture                   = 0x8E,
+  uEchoProfileSuperClassAnnoPropertyMap                     = 0x9D,
+  uEchoProfileSuperClassSetPropertyMap                      = 0x9E,
+  uEchoProfileSuperClassGetPropertyMap                      = 0x9F,
+} uEchoProfileSuperClassEPC;
 
 enum {
   uEchoPropertyMapMaxLen = 16,
 };
 
-enum {
-  uEchoProfileObjectSuperClassFaultStatusLen                            = 1,
-  uEchoProfileObjectSuperClassManufacturerCodeLen                       = 3,
-  uEchoProfileObjectSuperClassPlaceOfBusinessCodeLen                    = 3,
-  uEchoProfileObjectSuperClassProductCodeLen                            = 12,
-  uEchoProfileObjectSuperClassSerialNumberLen                           = 12,
-  uEchoProfileObjectSuperClassDateOfManufactureLen                      = 4,
-  uEchoProfileObjectSuperClassAnnoPropertyMapMaxLen = (uEchoPropertyMapMaxLen + 1),
-  uEchoProfileObjectSuperClassSetPropertyMapMaxLen                      = (uEchoPropertyMapMaxLen + 1),
-  uEchoProfileObjectSuperClassGetPropertyMapMaxLen                      = (uEchoPropertyMapMaxLen + 1),
-} uEchoProfileObjectSuperClassEPCSize;
+typedef enum {
+  uEchoProfileSuperClassFaultStatusLen                            = 1,
+  uEchoProfileSuperClassManufacturerCodeLen                       = 3,
+  uEchoProfileSuperClassPlaceOfBusinessCodeLen                    = 3,
+  uEchoProfileSuperClassProductCodeLen                            = 12,
+  uEchoProfileSuperClassSerialNumberLen                           = 12,
+  uEchoProfileSuperClassDateOfManufactureLen                      = 4,
+  uEchoProfileSuperClassAnnoPropertyMapMaxLen = (uEchoPropertyMapMaxLen + 1),
+  uEchoProfileSuperClassSetPropertyMapMaxLen                      = (uEchoPropertyMapMaxLen + 1),
+  uEchoProfileSuperClassGetPropertyMapMaxLen                      = (uEchoPropertyMapMaxLen + 1),
+} uEchoProfileSuperClassEPCSize;
   
 enum {
-  uEchoProfileObjectSuperClassFaultEncountered   = 0x41,
-  uEchoProfileObjectSuperClassNoFaultEncountered = 0x42
+  uEchoProfileSuperClassFaultEncountered   = 0x41,
+  uEchoProfileSuperClassNoFaultEncountered = 0x42
 };
 
-bool uecho_object_superclass_addmandatoryproperties(uEchoObject *obj);
-bool uecho_object_superclass_setmanufacturercode(uEchoObject *obj, byte *codes);
-bool uecho_object_superclass_updatepropertymaps(uEchoObject *obj);
-void uecho_object_superclass_clearpropertymapcaches(uEchoObject *obj);
+bool uecho_profile_superclass_addmandatoryproperties(uEchoObject *obj);
+bool uecho_profile_superclass_setmanufacturercode(uEchoObject *obj, byte *codes);
+bool uecho_profile_superclass_updatepropertymaps(uEchoObject *obj);
+void uecho_profile_superclass_clearpropertymapcaches(uEchoObject *obj);
   
 /****************************************
  * Node Profile Class
  ****************************************/
 
 enum {
-  uEchoProfileNodeProfileClassOperatingStatus           = 0x80,
-  uEchoProfileNodeProfileClassVersionInformation        = 0x82,
-  uEchoProfileNodeProfileClassIdentificationNumber      = 0x83,
-  uEchoProfileNodeProfileClassFaultContent              = 0x89,
-  uEchoProfileNodeProfileClassUniqueIdentifierData      = 0xBF,
-  uEchoProfileNodeProfileClassNumberOfSelfNodeInstances = 0xD3,
-  uEchoProfileNodeProfileClassNumberOfSelfNodeClasses   = 0xD4,
-  uEchoProfileNodeProfileClassInstanceListNotification  = 0xD5,
-  uEchoProfileNodeProfileClassSelfNodeInstanceListS     = 0xD6,
-  uEchoProfileNodeProfileClassSelfNodeClassListS        = 0xD7,
+  uEchoNodeProfileClassOperatingStatus           = 0x80,
+  uEchoNodeProfileClassVersionInformation        = 0x82,
+  uEchoNodeProfileClassIdentificationNumber      = 0x83,
+  uEchoNodeProfileClassFaultContent              = 0x89,
+  uEchoNodeProfileClassUniqueIdentifierData      = 0xBF,
+  uEchoNodeProfileClassNumberOfSelfNodeInstances = 0xD3,
+  uEchoNodeProfileClassNumberOfSelfNodeClasses   = 0xD4,
+  uEchoNodeProfileClassInstanceListNotification  = 0xD5,
+  uEchoNodeProfileClassSelfNodeInstanceListS     = 0xD6,
+  uEchoNodeProfileClassSelfNodeClassListS        = 0xD7,
 };
 
 enum {
-  uEchoProfileNodeProfileClassOperatingStatusLen                 = 1,
-  uEchoProfileNodeProfileClassVersionInformationLen              = 4,
-  uEchoProfileNodeProfileClassIdentificationManufacturerCodeLen  = 3,
-  uEchoProfileNodeProfileClassIdentificationUniqueIdLen          = 13,
-  uEchoProfileNodeProfileClassIdentificationNumberLen            = 1 + uEchoProfileNodeProfileClassIdentificationManufacturerCodeLen + uEchoProfileNodeProfileClassIdentificationUniqueIdLen,
-  uEchoProfileNodeProfileClassFaultContentLen                    = 2,
-  uEchoProfileNodeProfileClassUniqueIdentifierDataLen            = 2,
-  uEchoProfileNodeProfileClassNumberOfSelfNodeInstancesLen       = 3,
-  uEchoProfileNodeProfileClassNumberOfSelfNodeClassesLen         = 2,
-  uEchoProfileNodeProfileClassInstanceListNotificationMaxLen     = 253,
-  uEchoProfileNodeProfileClassSelfNodeInstanceListSMaxLen        = 253,
-  uEchoProfileNodeProfileClassSelfNodeClassListSMaxLen           = 17,
+  uEchoNodeProfileClassOperatingStatusLen                 = 1,
+  uEchoNodeProfileClassVersionInformationLen              = 4,
+  uEchoNodeProfileClassIdentificationManufacturerCodeLen  = 3,
+  uEchoNodeProfileClassIdentificationUniqueIdLen          = 13,
+  uEchoNodeProfileClassIdentificationNumberLen            = 1 + uEchoNodeProfileClassIdentificationManufacturerCodeLen + uEchoNodeProfileClassIdentificationUniqueIdLen,
+  uEchoNodeProfileClassFaultContentLen                    = 2,
+  uEchoNodeProfileClassUniqueIdentifierDataLen            = 2,
+  uEchoNodeProfileClassNumberOfSelfNodeInstancesLen       = 3,
+  uEchoNodeProfileClassNumberOfSelfNodeClassesLen         = 2,
+  uEchoNodeProfileClassInstanceListNotificationMaxLen     = 253,
+  uEchoNodeProfileClassSelfNodeInstanceListSMaxLen        = 253,
+  uEchoNodeProfileClassSelfNodeClassListSMaxLen           = 17,
 };
 
 enum {
-  uEchoProfileNodeProfileClassBooting      = 0x30,
-  uEchoProfileNodeProfileClassNotBooting   = 0x31,
+  uEchoNodeProfileClassBooting      = 0x30,
+  uEchoNodeProfileClassNotBooting   = 0x31,
   uEchoLowerCommunicationLayerProtocolType = 0xFE,
 };
 
-bool uecho_object_nodeprofileclass_setoperatingstatus(uEchoObject *obj, bool stats);
-bool uecho_object_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId);
+bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject *obj);
+bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject *obj, bool stats);
+bool uecho_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId);
 
 #ifdef  __cplusplus
 } /* extern C */
