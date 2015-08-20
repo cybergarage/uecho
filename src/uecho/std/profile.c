@@ -23,7 +23,7 @@ uEchoObject *uecho_profile_new(void)
   if (!obj)
     return NULL;
   
-  uecho_profile_superclass_addmandatoryproperties(obj);
+  uecho_profile_addmandatoryproperties(obj);
 
   return obj;
 }

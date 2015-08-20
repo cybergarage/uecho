@@ -88,16 +88,16 @@ BOOST_AUTO_TEST_CASE(ObjectSetProperty)
   uecho_object_delete(obj);
 }
 
-BOOST_AUTO_TEST_CASE(ObjectHasNoProfileProperties)
+BOOST_AUTO_TEST_CASE(ObjectMandatoryProperties)
 {
   uEchoObject *obj = uecho_object_new();
   
   // Propery mandatory properties
   
-  BOOST_CHECK(!uecho_object_hasproperty(obj, uEchoProfileSuperClassManufacturerCode));
-  BOOST_CHECK(!uecho_object_hasproperty(obj, uEchoProfileSuperClassAnnoPropertyMap));
-  BOOST_CHECK(!uecho_object_hasproperty(obj, uEchoProfileSuperClassSetPropertyMap));
-  BOOST_CHECK(!uecho_object_hasproperty(obj, uEchoProfileSuperClassGetPropertyMap));
+  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileSuperClassManufacturerCode));
+  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileSuperClassAnnoPropertyMap));
+  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileSuperClassSetPropertyMap));
+  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileSuperClassGetPropertyMap));
   
   uecho_object_delete(obj);
 }

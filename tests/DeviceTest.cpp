@@ -12,10 +12,11 @@
 
 #include <uecho/device.h>
 
-BOOST_AUTO_TEST_CASE(DeviceSuperClassProperties)
+BOOST_AUTO_TEST_CASE(DeviceSuperClassMandatoryProperties)
 {
   uEchoObject *obj = uecho_device_new();
   
+  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoDeviceSuperClassManufacturerCode));
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoDeviceSuperClassAnnoPropertyMap));
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoDeviceSuperClassSetPropertyMap));
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoDeviceSuperClassGetPropertyMap));
