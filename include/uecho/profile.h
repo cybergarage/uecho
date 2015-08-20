@@ -101,6 +101,7 @@ enum {
   uEchoLowerCommunicationLayerProtocolType = 0xFE,
 };
 
+uEchoObject *uecho_nodeprofileclass_new(void);
 bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject *obj);
 
 bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject *obj, bool stats);

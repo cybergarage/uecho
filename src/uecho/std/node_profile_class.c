@@ -41,7 +41,8 @@ bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject *obj)
 
   // Operation Status
   
-  uecho_nodeprofileclass_setoperatingstatus(obj, true);
+  propData[0] = uEchoNodeProfileClassBooting;
+  uecho_object_addproperty(obj, uEchoNodeProfileClassOperatingStatus, uEchoPropertyAttrRead, propData, uEchoNodeProfileClassOperatingStatusLen);
   
   // Version Information
   
@@ -63,7 +64,7 @@ bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject *obj, bool stats)
   byte statsByte;
   
   statsByte = stats ? uEchoNodeProfileClassBooting : uEchoNodeProfileClassNotBooting;
-  return uecho_object_addproperty(obj, uEchoNodeProfileClassOperatingStatus, uEchoPropertyAttrRead, &statsByte, uEchoNodeProfileClassOperatingStatusLen);
+  return uecho_object_updatepropertydata(obj, uEchoNodeProfileClassOperatingStatus, &statsByte, uEchoNodeProfileClassOperatingStatusLen);
 }
 
 /****************************************
