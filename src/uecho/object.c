@@ -43,6 +43,10 @@ uEchoObject *uecho_object_new(void)
   obj->getPropMapSize = 0;
   obj->getPropMapBytes = NULL;
 
+  // Mandatory Properties
+  
+  uecho_object_addmandatoryproperties(obj);
+  
   return obj;
 }
 
@@ -54,7 +58,7 @@ void uecho_object_delete(uEchoObject *obj)
 {
 	uecho_list_remove((uEchoList *)obj);
   
-  uecho_object_superclass_clearpropertymapcaches(obj);
+  uecho_object_clearpropertymapcaches(obj);
   
   uecho_propertylist_delete(obj->properties);
 	
@@ -184,7 +188,7 @@ bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPro
 {
   if (!uecho_propertylist_set(obj->properties, code, attr, data, dataLen))
     return false;
-  return uecho_object_superclass_updatepropertymaps(obj);
+  return uecho_object_updatepropertymaps(obj);
 }
 
 /****************************************
@@ -257,6 +261,6 @@ size_t uecho_object_getpropertycount(uEchoObject *obj)
 void uecho_object_clearproperties(uEchoObject *obj)
 {
   uecho_propertylist_clear(obj->properties);
-  uecho_object_superclass_clearpropertymapcaches(obj);
+  uecho_object_clearpropertymapcaches(obj);
 }
 

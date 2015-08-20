@@ -29,7 +29,7 @@ uEchoObject *uecho_profile_new(void);
   
 typedef enum {
   uEchoProfileSuperClassFaultStatus                         = 0x88,
-  uEchoProfileSuperClassManufacturerCode                    = 0x8A,
+  uEchoProfileSuperClassManufacturerCode                    = uEchoObjectSuperClassManufacturerCode,
   uEchoProfileSuperClassPlaceOfBusinessCode                 = 0x8B,
   uEchoProfileSuperClassProductCode                         = 0x8C,
   uEchoProfileSuperClassSerialNumber                        = 0x8D,
@@ -45,7 +45,7 @@ enum {
 
 typedef enum {
   uEchoProfileSuperClassFaultStatusLen          = 1,
-  uEchoProfileSuperClassManufacturerCodeLen     = 3,
+  uEchoProfileSuperClassManufacturerCodeLen     = uEchoObjectSuperClassManufacturerCodeLen,
   uEchoProfileSuperClassPlaceOfBusinessCodeLen  = 3,
   uEchoProfileSuperClassProductCodeLen          = 12,
   uEchoProfileSuperClassSerialNumberLen         = 12,
@@ -60,8 +60,8 @@ enum {
   uEchoProfileSuperClassNoFaultEncountered = 0x42
 };
 
-bool uecho_profile_superclass_addmandatoryproperties(uEchoObject *obj);
-bool uecho_profile_superclass_setmanufacturercode(uEchoObject *obj, byte *codes);
+bool uecho_profile_addmandatoryproperties(uEchoObject *obj);
+bool uecho_profile_setmanufacturercode(uEchoObject *obj, byte *codes);
   
 /****************************************
  * Node Profile Class
@@ -102,6 +102,7 @@ enum {
 };
 
 bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject *obj);
+
 bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject *obj, bool stats);
 bool uecho_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId);
 

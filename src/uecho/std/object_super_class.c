@@ -13,15 +13,20 @@
 #include <uecho/profile.h>
 
 /****************************************
- * uecho_object_superclass_addmandatoryproperties
+ * uecho_object_addmandatoryproperties
  ****************************************/
 
-bool uecho_object_superclass_addmandatoryproperties(uEchoObject *obj)
+bool uecho_object_addmandatoryproperties(uEchoObject *obj)
 {
+  byte manufactureCode[] = {0, 0, 0};
   byte zeroPropMap[] = {0};
   
   if (!obj)
     return false;
+  
+  // Manufacture Code
+  
+  uecho_object_addproperty(obj, uEchoObjectSuperClassManufacturerCode, uEchoPropertyAttrRead,  manufactureCode, sizeof(manufactureCode));
   
   // Property map properties
   
@@ -36,14 +41,23 @@ bool uecho_object_superclass_addmandatoryproperties(uEchoObject *obj)
 }
 
 /****************************************
- * uecho_object_superclass_updatepropertymaps
+ * uecho_object_setmanufacturercode
  ****************************************/
 
-bool uecho_object_superclass_updatepropertymaps(uEchoObject *obj)
+bool uecho_object_setmanufacturercode(uEchoObject *obj, byte *codes)
+{
+  return uecho_object_updatepropertydata(obj, uEchoObjectSuperClassManufacturerCode, codes, uEchoObjectSuperClassManufacturerCodeLen);
+}
+
+/****************************************
+ * uecho_object_updatepropertymaps
+ ****************************************/
+
+bool uecho_object_updatepropertymaps(uEchoObject *obj)
 {
   uEchoProperty *prop;
   
-  uecho_object_superclass_clearpropertymapcaches(obj);
+  uecho_object_clearpropertymapcaches(obj);
   
   // Update property map caches
   
@@ -89,10 +103,10 @@ bool uecho_object_superclass_updatepropertymaps(uEchoObject *obj)
 }
 
 /****************************************
- * uecho_object_superclass_clearpropertymapcaches
+ * uecho_object_clearpropertymapcaches
  ****************************************/
 
-void uecho_object_superclass_clearpropertymapcaches(uEchoObject *obj)
+void uecho_object_clearpropertymapcaches(uEchoObject *obj)
 {
   if (obj->annoPropMapBytes) {
     free(obj->annoPropMapBytes);
