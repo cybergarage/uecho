@@ -18,7 +18,13 @@
 
 bool uecho_device_addmandatoryproperties(uEchoObject *obj)
 {
+  byte manufactureCode[] = {0, 0, 0};
+  byte zeroPropMap[] = {0};
+  
   if (!obj)
+    return false;
+  
+  if (!uecho_object_addproperty(obj, uEchoObjectGetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
     return false;
   
   return true;
