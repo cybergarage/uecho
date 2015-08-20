@@ -28,36 +28,36 @@ uEchoObject *uecho_profile_new(void);
  ****************************************/
   
 typedef enum {
-  uEchoProfileSuperClassFaultStatus                         = 0x88,
-  uEchoProfileSuperClassManufacturerCode                    = uEchoObjectSuperClassManufacturerCode,
-  uEchoProfileSuperClassPlaceOfBusinessCode                 = 0x8B,
-  uEchoProfileSuperClassProductCode                         = 0x8C,
-  uEchoProfileSuperClassSerialNumber                        = 0x8D,
-  uEchoProfileSuperClassDateOfManufacture                   = 0x8E,
-  uEchoProfileSuperClassAnnoPropertyMap                     = uEchoObjectSuperClassAnnoPropertyMap,
-  uEchoProfileSuperClassSetPropertyMap                      = uEchoObjectSuperClassSetPropertyMap,
-  uEchoProfileSuperClassGetPropertyMap                      = uEchoObjectSuperClassGetPropertyMap,
-} uEchoProfileSuperClassEPC;
+  uEchoProfileFaultStatus                         = 0x88,
+  uEchoProfileManufacturerCode                    = uEchoObjectManufacturerCode,
+  uEchoProfilePlaceOfBusinessCode                 = 0x8B,
+  uEchoProfileProductCode                         = 0x8C,
+  uEchoProfileSerialNumber                        = 0x8D,
+  uEchoProfileDateOfManufacture                   = 0x8E,
+  uEchoProfileAnnoPropertyMap                     = uEchoObjectAnnoPropertyMap,
+  uEchoProfileSetPropertyMap                      = uEchoObjectSetPropertyMap,
+  uEchoProfileGetPropertyMap                      = uEchoObjectGetPropertyMap,
+} uEchoProfileEPC;
 
 enum {
   uEchoPropertyMapMaxLen = 16,
 };
 
 typedef enum {
-  uEchoProfileSuperClassFaultStatusLen          = 1,
-  uEchoProfileSuperClassManufacturerCodeLen     = uEchoObjectSuperClassManufacturerCodeLen,
-  uEchoProfileSuperClassPlaceOfBusinessCodeLen  = 3,
-  uEchoProfileSuperClassProductCodeLen          = 12,
-  uEchoProfileSuperClassSerialNumberLen         = 12,
-  uEchoProfileSuperClassDateOfManufactureLen    = 4,
-  uEchoProfileSuperClassAnnoPropertyMapMaxLen   = uEchoObjectSuperClassAnnoPropertyMapMaxLen,
-  uEchoProfileSuperClassSetPropertyMapMaxLen    = uEchoObjectSuperClassSetPropertyMap,
-  uEchoProfileSuperClassGetPropertyMapMaxLen    = uEchoObjectSuperClassGetPropertyMap,
-} uEchoProfileSuperClassEPCSize;
+  uEchoProfileFaultStatusLen          = 1,
+  uEchoProfileManufacturerCodeLen     = uEchoObjectManufacturerCodeLen,
+  uEchoProfilePlaceOfBusinessCodeLen  = 3,
+  uEchoProfileProductCodeLen          = 12,
+  uEchoProfileSerialNumberLen         = 12,
+  uEchoProfileDateOfManufactureLen    = 4,
+  uEchoProfileAnnoPropertyMapMaxLen   = uEchoObjectAnnoPropertyMapMaxLen,
+  uEchoProfileSetPropertyMapMaxLen    = uEchoObjectSetPropertyMap,
+  uEchoProfileGetPropertyMapMaxLen    = uEchoObjectGetPropertyMap,
+} uEchoProfileEPCSize;
   
 enum {
-  uEchoProfileSuperClassFaultEncountered   = 0x41,
-  uEchoProfileSuperClassNoFaultEncountered = 0x42
+  uEchoProfileFaultEncountered   = 0x41,
+  uEchoProfileNoFaultEncountered = 0x42
 };
 
 bool uecho_profile_addmandatoryproperties(uEchoObject *obj);
