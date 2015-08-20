@@ -16,40 +16,72 @@
 /****************************************
 * uecho_property_new
 ****************************************/
-/*
- uEchoProfileNodeProfileClassOperatingStatus           = 0x80,
- uEchoProfileNodeProfileClassVersionInformation        = 0x82,
- uEchoProfileNodeProfileClassIdentificationNumber      = 0x83,
- uEchoProfileNodeProfileClassFaultContent              = 0x89,
- uEchoProfileNodeProfileClassUniqueIdentifierData      = 0xBF,
- uEchoProfileNodeProfileClassNumberOfSelfNodeInstances = 0xD3,
- uEchoProfileNodeProfileClassNumberOfSelfNodeClasses   = 0xD4,
- uEchoProfileNodeProfileClassInstanceListNotification  = 0xD5,
- uEchoProfileNodeProfileClassSelfNodeInstanceListS     = 0xD6,
- uEchoProfileNodeProfileClassSelfNodeClassListS        = 0xD7,
-*/
 
-uEchoObject *uecho_object_nodeprofileclass_new(void)
+uEchoObject *uecho_nodeprofileclass_new(void)
 {
   uEchoObject *obj;
-  byte propData[32];
   
   obj = uecho_object_new();
   if (!obj)
     return NULL;
   
+  uecho_object_setcode(obj, uEchoNodeProfileObject);
+  uecho_nodeprofileclass_addmandatoryproperties(obj);
+  
+  return obj;
+}
+
+/****************************************
+ * uecho_nodeprofileclass_addmandatoryproperties
+ ****************************************/
+
+bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject *obj)
+{
+  byte propData[32];
+
   // Operation Status
   
-  propData[0] = uEchoProfileNodeProfileClassBooting;
-  uecho_object_addproperty(obj, uEchoProfileNodeProfileClassOperatingStatus, uEchoPropertyAttrRead, propData, uEchoProfileNodeProfileClassOperatingStatusLen);
-
+  uecho_nodeprofileclass_setoperatingstatus(obj, true);
+  
   // Version Information
   
   propData[0] = uEchoMajorVersion;
   propData[1] = uEchoMinorVersion;
   propData[2] = uEchoSpecifiedMessageFormat;
   propData[3] = 0x00;
-  uecho_object_addproperty(obj, uEchoProfileNodeProfileClassVersionInformation, uEchoPropertyAttrRead, propData, uEchoProfileNodeProfileClassVersionInformationLen);
+  uecho_object_addproperty(obj, uEchoNodeProfileClassVersionInformation, uEchoPropertyAttrRead, propData, uEchoNodeProfileClassVersionInformationLen);
   
-  return obj;
+  return true;
+}
+
+/****************************************
+ * uecho_nodeprofileclass_setoperatingstatus
+ ****************************************/
+
+bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject *obj, bool stats)
+{
+  byte statsByte;
+  
+  statsByte = stats ? uEchoNodeProfileClassBooting : uEchoNodeProfileClassNotBooting;
+  return uecho_object_addproperty(obj, uEchoNodeProfileClassOperatingStatus, uEchoPropertyAttrRead, &statsByte, uEchoNodeProfileClassOperatingStatusLen);
+}
+
+/****************************************
+ * uecho_nodeprofileclass_setid
+ ****************************************/
+
+bool uecho_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId)
+{
+  byte propData[uEchoNodeProfileClassIdentificationNumberLen];
+  byte *prop;
+  
+  propData[0] = uEchoLowerCommunicationLayerProtocolType;
+
+  prop = propData + 1;
+  memcpy(prop, manCode, uEchoNodeProfileClassIdentificationManufacturerCodeLen);
+  
+  prop += uEchoNodeProfileClassIdentificationManufacturerCodeLen;
+  memcpy(prop, uniqId, uEchoNodeProfileClassIdentificationUniqueIdLen);
+  
+  return uecho_object_addproperty(obj, uEchoNodeProfileClassOperatingStatus, uEchoPropertyAttrRead, propData, uEchoNodeProfileClassIdentificationNumberLen);
 }
