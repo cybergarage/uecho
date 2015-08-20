@@ -16,10 +16,10 @@ BOOST_AUTO_TEST_CASE(ProfileSuperClassMandatoryProperties)
 {
   uEchoObject *obj = uecho_profile_new();
   
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileSuperClassManufacturerCode));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileSuperClassAnnoPropertyMap));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileSuperClassSetPropertyMap));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileSuperClassGetPropertyMap));
+  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileManufacturerCode));
+  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileAnnoPropertyMap));
+  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileSetPropertyMap));
+  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileGetPropertyMap));
   
   uecho_object_delete(obj);
 }

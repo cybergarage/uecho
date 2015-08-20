@@ -115,19 +115,19 @@ uEchoObject *uecho_objectlist_getbycode(uEchoObjectList *props, uEchoObjectCode 
  ****************************************/
   
 typedef enum {
-  uEchoObjectSuperClassManufacturerCode = 0x8A,
-  uEchoObjectSuperClassAnnoPropertyMap  = 0x9D,
-  uEchoObjectSuperClassSetPropertyMap   = 0x9E,
-  uEchoObjectSuperClassGetPropertyMap   = 0x9F,
-} uEchoObjectSuperClassEPC;
+  uEchoObjectManufacturerCode = 0x8A,
+  uEchoObjectAnnoPropertyMap  = 0x9D,
+  uEchoObjectSetPropertyMap   = 0x9E,
+  uEchoObjectGetPropertyMap   = 0x9F,
+} uEchoObjectEPC;
   
 typedef enum {
-  uEchoObjectSuperClassManufacturerCodeLen   = 3,
-  uEchoObjectSuperClassPropertyMapMaxLen     = 16,
-  uEchoObjectSuperClassAnnoPropertyMapMaxLen =(uEchoObjectSuperClassPropertyMapMaxLen + 1),
-  uEchoObjectSuperClassSetPropertyMapMaxLen  = (uEchoObjectSuperClassPropertyMapMaxLen + 1),
-  uEchoObjectSuperClassGetPropertyMapMaxLen  = (uEchoObjectSuperClassPropertyMapMaxLen + 1),
-} uEchoObjectSuperClassEPCSize;
+  uEchoObjectManufacturerCodeLen   = 3,
+  uEchoObjectPropertyMapMaxLen     = 16,
+  uEchoObjectAnnoPropertyMapMaxLen =(uEchoObjectPropertyMapMaxLen + 1),
+  uEchoObjectSetPropertyMapMaxLen  = (uEchoObjectPropertyMapMaxLen + 1),
+  uEchoObjectGetPropertyMapMaxLen  = (uEchoObjectPropertyMapMaxLen + 1),
+} uEchoObjectEPCSize;
 
 bool uecho_object_addmandatoryproperties(uEchoObject *obj);
 bool uecho_object_updatepropertymaps(uEchoObject *obj);
