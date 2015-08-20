@@ -13,32 +13,24 @@
 #include <uecho/profile.h>
 
 /****************************************
- * uecho_profile_superclass_addmandatoryproperties
+ * uecho_profile_addmandatoryproperties
  ****************************************/
 
-bool uecho_profile_superclass_addmandatoryproperties(uEchoObject *obj)
+bool uecho_profile_addmandatoryproperties(uEchoObject *obj)
 {
-  byte manufactureCode[] = {0, 0, 0};
-  
   if (!obj)
     return false;
-  
-  // Manufacture Code
-  
-  uecho_object_addproperty(obj, uEchoProfileSuperClassManufacturerCode, uEchoPropertyAttrRead,  manufactureCode, sizeof(manufactureCode));
-  
-  // Property map properties
-  
-  uecho_object_superclass_addmandatoryproperties(obj);
+
+  uecho_object_addmandatoryproperties(obj);
   
   return true;
 }
 
 /****************************************
- * uecho_profile_superclass_setmanufacturercode
+ * uecho_profile_setmanufacturercode
  ****************************************/
 
-bool uecho_profile_superclass_setmanufacturercode(uEchoObject *obj, byte *codes)
+bool uecho_profile_setmanufacturercode(uEchoObject *obj, byte *codes)
 {
-  return uecho_object_updatepropertydata(obj, uEchoProfileSuperClassManufacturerCode, codes, uEchoProfileSuperClassManufacturerCodeLen);
+  return uecho_object_setmanufacturercode(obj, codes);
 }

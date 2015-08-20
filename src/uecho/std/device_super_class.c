@@ -13,17 +13,22 @@
 #include <uecho/device.h>
 
 /****************************************
- * uecho_device_superclass_addmandatoryproperties
+ * uecho_device_addmandatoryproperties
  ****************************************/
 
-bool uecho_device_superclass_addmandatoryproperties(uEchoObject *obj)
+bool uecho_device_addmandatoryproperties(uEchoObject *obj)
 {
   if (!obj)
     return false;
   
-  // Property map properties
-  
-  uecho_object_superclass_addmandatoryproperties(obj);
-  
   return true;
+}
+
+/****************************************
+ * uecho_device_setmanufacturercode
+ ****************************************/
+
+bool uecho_device_setmanufacturercode(uEchoObject *obj, byte *codes)
+{
+  return uecho_object_setmanufacturercode(obj, codes);
 }

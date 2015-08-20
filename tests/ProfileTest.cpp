@@ -12,7 +12,7 @@
 
 #include <uecho/profile.h>
 
-BOOST_AUTO_TEST_CASE(ProfileSuperClassProperties)
+BOOST_AUTO_TEST_CASE(ProfileSuperClassMandatoryProperties)
 {
   uEchoObject *obj = uecho_profile_new();
   

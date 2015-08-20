@@ -38,7 +38,7 @@ typedef enum {
   uEchoDeviceSuperClassCurrentLimitSetting                   = 0x87,
   uEchoDeviceSuperClassFaultStatus                           = 0x88,
   uEchoDeviceSuperClassFaultDescription                      = 0x89,
-  uEchoDeviceSuperClassManufacturerCode                      = 0x8A,
+  uEchoDeviceSuperClassManufacturerCode                      = uEchoObjectSuperClassManufacturerCode,
   uEchoDeviceSuperClassBusinessFacilityCode                  = 0x8B,
   uEchoDeviceSuperClassProductCode                           = 0x8C,
   uEchoDeviceSuperClassProductionNumber                      = 0x8D,
@@ -65,7 +65,7 @@ typedef enum {
   uEchoDeviceSuperClassCurrentLimitSettingSize                   = 1,
   uEchoDeviceSuperClassFaultStatusSize                           = 1,
   uEchoDeviceSuperClassFaultDescriptionSize                      = 2,
-  uEchoDeviceSuperClassManufacturerCodeSize                      = 3,
+  uEchoDeviceSuperClassManufacturerCodeSize                      = uEchoObjectSuperClassManufacturerCodeLen,
   uEchoDeviceSuperClassBusinessFacilityCodeSize                  = 3,
   uEchoDeviceSuperClassProductCodeSize                           = 12,
   uEchoDeviceSuperClassProductionNumberSize                      = 12,
@@ -82,16 +82,21 @@ typedef enum {
 } uEchoDeviceSuperClassEPCSize;
 
 enum {
-  uEchoDeviceSuperClassOn      = 0x30,
-  uEchoNDeviceSuperClassOff     = 0x31,
-  uEchoDeviceSuperClassFaultEncountered   = 0x41,
-  uEchoDeviceSuperClassNoFaultEncountered = 0x42
+  uEchoDeviceSuperClassOn                          = 0x30,
+  uEchoDeviceSuperClassOff                         = 0x31,
+  uEchoDeviceSuperClassVersionAppendixG            = 'G',
+  uEchoDeviceSuperClassFaultOccurred               = 0x41,
+  uEchoDeviceSuperClassNoFaultOccurred             = 0x42,
+  uEchoDeviceSuperClassInstallationLocationUnknown = 0x00,
 };
 
-bool uecho_device_superclass_addmandatoryproperties(uEchoObject *obj);
-bool uecho_device_superclass_setmanufacturercode(uEchoObject *obj, byte *codes);
-bool uecho_device_superclass_updatepropertymaps(uEchoObject *obj);
-void uecho_device_superclass_clearpropertymapcaches(uEchoObject *obj);
+bool uecho_device_addmandatoryproperties(uEchoObject *obj);
+
+bool uecho_device_setoperatingstatus(uEchoObject *obj, bool stats);
+bool uecho_device_setinstallationlocation(uEchoObject *obj, byte location);
+bool uecho_device_setstandardversion(uEchoObject *obj, char ver);
+bool uecho_device_setfaultstatus(uEchoObject *obj, bool stats);
+bool uecho_device_setmanufacturercode(uEchoObject *obj, byte *codes);
 
 #ifdef  __cplusplus
 } /* extern C */
