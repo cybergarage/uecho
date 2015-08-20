@@ -13,51 +13,37 @@
 #include <uecho/profile.h>
 
 /****************************************
- * uecho_profile_superclass_addmandatoryproperties
+ * uecho_object_superclass_addmandatoryproperties
  ****************************************/
 
-bool uecho_profile_superclass_addmandatoryproperties(uEchoObject *obj)
+bool uecho_object_superclass_addmandatoryproperties(uEchoObject *obj)
 {
-  byte manufactureCode[] = {0, 0, 0};
   byte zeroPropMap[] = {0};
   
   if (!obj)
     return false;
   
-  // Manufacture Code
-  
-  uecho_object_addproperty(obj, uEchoProfileSuperClassManufacturerCode, uEchoPropertyAttrRead,  manufactureCode, sizeof(manufactureCode));
-  
   // Property map properties
   
-  if (!uecho_object_addproperty(obj, uEchoProfileSuperClassGetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
+  if (!uecho_object_addproperty(obj, uEchoObjectSuperClassGetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
     return false;
-  if (!uecho_object_addproperty(obj, uEchoProfileSuperClassSetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
+  if (!uecho_object_addproperty(obj, uEchoObjectSuperClassSetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
     return false;
-  if (!uecho_object_addproperty(obj, uEchoProfileSuperClassAnnoPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
+  if (!uecho_object_addproperty(obj, uEchoObjectSuperClassAnnoPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
     return false;
   
   return true;
 }
 
 /****************************************
- * uecho_profile_superclass_setmanufacturercode
+ * uecho_object_superclass_updatepropertymaps
  ****************************************/
 
-bool uecho_profile_superclass_setmanufacturercode(uEchoObject *obj, byte *codes)
-{
-  return uecho_object_updatepropertydata(obj, uEchoProfileSuperClassManufacturerCode, codes, uEchoProfileSuperClassManufacturerCodeLen);
-}
-
-/****************************************
- * uecho_profile_superclass_updatepropertymaps
- ****************************************/
-
-bool uecho_profile_superclass_updatepropertymaps(uEchoObject *obj)
+bool uecho_object_superclass_updatepropertymaps(uEchoObject *obj)
 {
   uEchoProperty *prop;
   
-  uecho_profile_superclass_clearpropertymapcaches(obj);
+  uecho_object_superclass_clearpropertymapcaches(obj);
   
   // Update property map caches
   
@@ -103,10 +89,10 @@ bool uecho_profile_superclass_updatepropertymaps(uEchoObject *obj)
 }
 
 /****************************************
- * uecho_profile_superclass_clearpropertymapcaches
+ * uecho_object_superclass_clearpropertymapcaches
  ****************************************/
 
-void uecho_profile_superclass_clearpropertymapcaches(uEchoObject *obj)
+void uecho_object_superclass_clearpropertymapcaches(uEchoObject *obj)
 {
   if (obj->annoPropMapBytes) {
     free(obj->annoPropMapBytes);
