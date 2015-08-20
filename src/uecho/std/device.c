@@ -8,22 +8,22 @@
  *
  ******************************************************************/
 
-#include <uecho/profile.h>
+#include <uecho/device.h>
 
 /****************************************
-* uecho_profile_new
+* uecho_device_new
 ****************************************/
 
-uEchoObject *uecho_profile_new(void)
+uEchoObject *uecho_device_new(void)
 {
-  uEchoObject *obj;
+	uEchoObject *obj;
 
-  obj = uecho_object_new();
+	obj = uecho_object_new();
     
   if (!obj)
     return NULL;
   
-  uecho_profile_superclass_addmandatoryproperties(obj);
+  uecho_device_superclass_addmandatoryproperties(obj);
 
   return obj;
 }

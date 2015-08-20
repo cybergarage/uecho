@@ -34,9 +34,9 @@ typedef enum {
   uEchoProfileSuperClassProductCode                         = 0x8C,
   uEchoProfileSuperClassSerialNumber                        = 0x8D,
   uEchoProfileSuperClassDateOfManufacture                   = 0x8E,
-  uEchoProfileSuperClassAnnoPropertyMap                     = 0x9D,
-  uEchoProfileSuperClassSetPropertyMap                      = 0x9E,
-  uEchoProfileSuperClassGetPropertyMap                      = 0x9F,
+  uEchoProfileSuperClassAnnoPropertyMap                     = uEchoObjectSuperClassAnnoPropertyMap,
+  uEchoProfileSuperClassSetPropertyMap                      = uEchoObjectSuperClassSetPropertyMap,
+  uEchoProfileSuperClassGetPropertyMap                      = uEchoObjectSuperClassGetPropertyMap,
 } uEchoProfileSuperClassEPC;
 
 enum {
@@ -44,15 +44,15 @@ enum {
 };
 
 typedef enum {
-  uEchoProfileSuperClassFaultStatusLen                            = 1,
-  uEchoProfileSuperClassManufacturerCodeLen                       = 3,
-  uEchoProfileSuperClassPlaceOfBusinessCodeLen                    = 3,
-  uEchoProfileSuperClassProductCodeLen                            = 12,
-  uEchoProfileSuperClassSerialNumberLen                           = 12,
-  uEchoProfileSuperClassDateOfManufactureLen                      = 4,
-  uEchoProfileSuperClassAnnoPropertyMapMaxLen = (uEchoPropertyMapMaxLen + 1),
-  uEchoProfileSuperClassSetPropertyMapMaxLen                      = (uEchoPropertyMapMaxLen + 1),
-  uEchoProfileSuperClassGetPropertyMapMaxLen                      = (uEchoPropertyMapMaxLen + 1),
+  uEchoProfileSuperClassFaultStatusLen          = 1,
+  uEchoProfileSuperClassManufacturerCodeLen     = 3,
+  uEchoProfileSuperClassPlaceOfBusinessCodeLen  = 3,
+  uEchoProfileSuperClassProductCodeLen          = 12,
+  uEchoProfileSuperClassSerialNumberLen         = 12,
+  uEchoProfileSuperClassDateOfManufactureLen    = 4,
+  uEchoProfileSuperClassAnnoPropertyMapMaxLen   = uEchoObjectSuperClassAnnoPropertyMapMaxLen,
+  uEchoProfileSuperClassSetPropertyMapMaxLen    = uEchoObjectSuperClassSetPropertyMap,
+  uEchoProfileSuperClassGetPropertyMapMaxLen    = uEchoObjectSuperClassGetPropertyMap,
 } uEchoProfileSuperClassEPCSize;
   
 enum {
@@ -62,8 +62,6 @@ enum {
 
 bool uecho_profile_superclass_addmandatoryproperties(uEchoObject *obj);
 bool uecho_profile_superclass_setmanufacturercode(uEchoObject *obj, byte *codes);
-bool uecho_profile_superclass_updatepropertymaps(uEchoObject *obj);
-void uecho_profile_superclass_clearpropertymapcaches(uEchoObject *obj);
   
 /****************************************
  * Node Profile Class

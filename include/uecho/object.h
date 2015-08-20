@@ -110,6 +110,27 @@ uEchoObject *uecho_objectlist_getbycode(uEchoObjectList *props, uEchoObjectCode 
 #define uecho_objectlist_gets(objs) (uEchoObject *)uecho_list_next((uEchoList *)objs)
 #define uecho_objectlist_add(objs,obj) uecho_list_add((uEchoList *)objs, (uEchoList *)obj)
 
+/****************************************
+ * Object Super Class
+ ****************************************/
+  
+typedef enum {
+  uEchoObjectSuperClassAnnoPropertyMap = 0x9D,
+  uEchoObjectSuperClassSetPropertyMap  = 0x9E,
+  uEchoObjectSuperClassGetPropertyMap  = 0x9F,
+} uEchoObjectSuperClassEPC;
+  
+typedef enum {
+  uEchoObjectSuperClassPropertyMapMaxLen = 16,
+  uEchoObjectSuperClassAnnoPropertyMapMaxLen =(uEchoObjectSuperClassPropertyMapMaxLen + 1),
+  uEchoObjectSuperClassSetPropertyMapMaxLen = (uEchoObjectSuperClassPropertyMapMaxLen + 1),
+  uEchoObjectSuperClassGetPropertyMapMaxLen = (uEchoObjectSuperClassPropertyMapMaxLen + 1),
+} uEchoObjectSuperClassEPCSize;
+
+bool uecho_object_superclass_addmandatoryproperties(uEchoObject *obj);
+bool uecho_object_superclass_updatepropertymaps(uEchoObject *obj);
+void uecho_object_superclass_clearpropertymapcaches(uEchoObject *obj);
+
 #ifdef  __cplusplus
 } /* extern C */
 #endif
