@@ -30,7 +30,7 @@ uEchoObject *uecho_device_new(void);
 typedef enum {
   uEchoDeviceOperatingStatus                       = 0x80,
   uEchoDeviceInstallationLocation                  = 0x81,
-  uEchoDeviceStandardVersion                    = 0x82,
+  uEchoDeviceStandardVersion                       = 0x82,
   uEchoDeviceIdentificationNumber                  = 0x83,
   uEchoDeviceMeasuredInstantaneousPowerConsumption = 0x84,
   uEchoDeviceMeasuredCumulativePowerConsumption    = 0x85,
@@ -57,7 +57,7 @@ typedef enum {
 typedef enum {
   uEchoDeviceOperatingStatusSize                       = 1,
   uEchoDeviceInstallationLocationSize                  = 1,
-  uEchoDeviceStandardVersionSize                    = 4,
+  uEchoDeviceStandardVersionSize                       = 4,
   uEchoDeviceIdentificationNumberSize                  = 9,
   uEchoDeviceMeasuredInstantaneousPowerConsumptionSize = 2,
   uEchoDeviceMeasuredCumulativePowerConsumptionSize    = 4,
@@ -84,6 +84,12 @@ typedef enum {
 enum {
   uEchoDeviceOperatingStatusOn           = 0x30,
   uEchoDeviceOperatingStatusOff          = 0x31,
+  uEchoDeviceVersionAppendixA            = 'A',
+  uEchoDeviceVersionAppendixB            = 'B',
+  uEchoDeviceVersionAppendixC            = 'C',
+  uEchoDeviceVersionAppendixD            = 'D',
+  uEchoDeviceVersionAppendixE            = 'E',
+  uEchoDeviceVersionAppendixF            = 'F',
   uEchoDeviceVersionAppendixG            = 'G',
   uEchoDeviceFaultOccurred               = 0x41,
   uEchoDeviceNoFaultOccurred             = 0x42,
