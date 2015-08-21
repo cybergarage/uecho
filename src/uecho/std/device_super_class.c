@@ -33,6 +33,19 @@ bool uecho_device_addmandatoryproperties(uEchoObject *obj)
   propData[0] = uEchoDeviceInstallationLocationUnknown;
   uecho_object_addproperty(obj, uEchoDeviceInstallationLocation, uEchoPropertyAttrRead, propData, uEchoDeviceInstallationLocationSize);
   
+  // Standard Version Infomation
+  
+  propData[0] = 0x00;
+  propData[1] = 0x00;
+  propData[2] = uEchoDeviceVersionAppendixG;
+  propData[3] = 0x00;
+  uecho_object_addproperty(obj, uEchoDeviceStandardVersion, uEchoPropertyAttrRead, propData, uEchoDeviceStandardVersionSize);
+  
+  // Fault Status
+  
+  propData[0] = uEchoDeviceNoFaultOccurred;
+  uecho_object_addproperty(obj, uEchoDeviceFaultStatus, uEchoPropertyAttrRead, propData, uEchoDeviceFaultStatusSize);
+  
   return true;
 }
 
@@ -63,7 +76,13 @@ bool uecho_device_setinstallationlocation(uEchoObject *obj, byte locByte)
 
 bool uecho_device_setstandardversion(uEchoObject *obj, char ver)
 {
-  return true;
+  byte verBytes[uEchoDeviceStandardVersionSize];
+  
+  verBytes[0] = 0x00;
+  verBytes[1] = 0x00;
+  verBytes[2] = ver;
+  verBytes[3] = 0x00;
+  return uecho_object_updatepropertydata(obj, uEchoDeviceStandardVersion, verBytes, uEchoDeviceStandardVersionSize);
 }
 
 /****************************************
@@ -72,7 +91,10 @@ bool uecho_device_setstandardversion(uEchoObject *obj, char ver)
 
 bool uecho_device_setfaultstatus(uEchoObject *obj, bool stats)
 {
-  return true;
+  byte faultByte;
+  
+  faultByte = stats ? uEchoDeviceFaultOccurred : uEchoDeviceNoFaultOccurred;
+  return uecho_object_updatepropertydata(obj, uEchoDeviceFaultStatus, &faultByte, uEchoDeviceFaultStatusSize);
 }
 
 /****************************************
