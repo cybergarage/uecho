@@ -14,6 +14,8 @@
 		2169E2FC1B6F53F00044CD8C /* ObjectTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2169E2FB1B6F53F00044CD8C /* ObjectTest.cpp */; };
 		216F1DFA1B4A5BAA003C7B6A /* uEchoTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216F1DF91B4A5BAA003C7B6A /* uEchoTest.cpp */; };
 		216F1DFC1B4A5BB8003C7B6A /* ControllerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216F1DFB1B4A5BB8003C7B6A /* ControllerTest.cpp */; };
+		217142961B886682003ABA30 /* ClassListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217142941B886682003ABA30 /* ClassListTest.cpp */; };
+		217142971B886682003ABA30 /* ClassTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217142951B886682003ABA30 /* ClassTest.cpp */; };
 		2183CDA71B6D0E1400EE7E49 /* MessageTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2183CDA61B6D0E1400EE7E49 /* MessageTest.cpp */; };
 		21B06C151B7C5C77004E9E09 /* PropertyListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B06C141B7C5C77004E9E09 /* PropertyListTest.cpp */; };
 		21B06C171B7C8440004E9E09 /* ObjectListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B06C161B7C8440004E9E09 /* ObjectListTest.cpp */; };
@@ -60,6 +62,8 @@
 		2169E2FB1B6F53F00044CD8C /* ObjectTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectTest.cpp; path = ../../ObjectTest.cpp; sourceTree = "<group>"; };
 		216F1DF91B4A5BAA003C7B6A /* uEchoTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uEchoTest.cpp; path = ../../uEchoTest.cpp; sourceTree = "<group>"; };
 		216F1DFB1B4A5BB8003C7B6A /* ControllerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ControllerTest.cpp; path = ../../ControllerTest.cpp; sourceTree = "<group>"; };
+		217142941B886682003ABA30 /* ClassListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClassListTest.cpp; path = ../../ClassListTest.cpp; sourceTree = "<group>"; };
+		217142951B886682003ABA30 /* ClassTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClassTest.cpp; path = ../../ClassTest.cpp; sourceTree = "<group>"; };
 		2183CDA61B6D0E1400EE7E49 /* MessageTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageTest.cpp; path = ../../MessageTest.cpp; sourceTree = "<group>"; };
 		21B06C141B7C5C77004E9E09 /* PropertyListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PropertyListTest.cpp; path = ../../PropertyListTest.cpp; sourceTree = "<group>"; };
 		21B06C161B7C8440004E9E09 /* ObjectListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectListTest.cpp; path = ../../ObjectListTest.cpp; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				217142941B886682003ABA30 /* ClassListTest.cpp */,
+				217142951B886682003ABA30 /* ClassTest.cpp */,
 				215B49401B858916002B20CE /* DeviceTest.cpp */,
 				215B493E1B85851A002B20CE /* ProfileTest.cpp */,
 				21BCB1F81B7349E900999D01 /* MutexTest.cpp */,
@@ -205,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				217142971B886682003ABA30 /* ClassTest.cpp in Sources */,
 				21B06C151B7C5C77004E9E09 /* PropertyListTest.cpp in Sources */,
 				2169E2FC1B6F53F00044CD8C /* ObjectTest.cpp in Sources */,
 				21BCB1FA1B7349E900999D01 /* MutexTest.cpp in Sources */,
@@ -217,6 +224,7 @@
 				216F1DFC1B4A5BB8003C7B6A /* ControllerTest.cpp in Sources */,
 				21BCB1FB1B7349E900999D01 /* ThreadTest.cpp in Sources */,
 				215B493F1B85851A002B20CE /* ProfileTest.cpp in Sources */,
+				217142961B886682003ABA30 /* ClassListTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
