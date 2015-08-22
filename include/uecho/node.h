@@ -55,6 +55,12 @@ bool uecho_node_start(uEchoNode *node);
 bool uecho_node_stop(uEchoNode *node);
 bool uecho_node_isrunning(uEchoNode *node);
   
+/****************************************
+ * Function (Object)
+ ****************************************/
+  
+void uecho_object_setparentnode(uEchoObject *obj, uEchoNode *node);
+uEchoNode *uecho_object_getparentnode(uEchoObject *obj);
 
 #ifdef  __cplusplus
 } /* extern C */

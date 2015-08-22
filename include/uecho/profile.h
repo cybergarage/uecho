@@ -106,6 +106,7 @@ bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject *obj);
 
 bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject *obj, bool stats);
 bool uecho_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId);
+bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject *obj);
 
 #ifdef  __cplusplus
 } /* extern C */
