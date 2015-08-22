@@ -8,6 +8,7 @@
  *
  ******************************************************************/
 
+#include <uecho/node.h>
 #include <uecho/object.h>
 #include <uecho/profile.h>
 
@@ -26,6 +27,8 @@ uEchoObject *uecho_object_new(void)
 
   uecho_list_node_init((uEchoList *)obj);
 
+  uecho_object_setparentnode(obj, NULL);
+  
   uecho_object_setclassgroupcode(obj, 0);
   uecho_object_setclasscode(obj, 0);
   uecho_object_setinstancecode(obj, 0);
@@ -63,6 +66,24 @@ void uecho_object_delete(uEchoObject *obj)
   uecho_propertylist_delete(obj->properties);
 	
   free(obj);
+}
+
+/****************************************
+ * uecho_object_setparentnode
+ ****************************************/
+
+void uecho_object_setparentnode(uEchoObject *obj, uEchoNode *node)
+{
+  obj->parentNode = node;
+}
+
+/****************************************
+ * uecho_object_getparentnode
+ ****************************************/
+
+uEchoNode *uecho_object_getparentnode(uEchoObject *obj)
+{
+  return (uEchoNode *)obj->parentNode;
 }
 
 /****************************************

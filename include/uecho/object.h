@@ -47,6 +47,8 @@ typedef struct _uEchoObject {
   byte code[3];
   uEchoPropertyList *properties;
 
+  void *parentNode;
+  
   // Property map caches
 
   size_t annoPropMapSize;
