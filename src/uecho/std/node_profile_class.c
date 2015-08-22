@@ -86,3 +86,13 @@ bool uecho_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId)
   
   return uecho_object_addproperty(obj, uEchoNodeProfileClassOperatingStatus, uEchoPropertyAttrRead, propData, uEchoNodeProfileClassIdentificationNumberLen);
 }
+
+/****************************************
+ * uecho_nodeprofileclass_updateinstanceproperties
+ ****************************************/
+
+bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject *obj)
+{
+  return true;
+}
+
