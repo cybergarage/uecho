@@ -48,18 +48,30 @@ bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject *obj)
   uecho_object_addproperty(obj, uEchoNodeProfileClassVersionInformation, uEchoPropertyAttrRead);
   uecho_nodeprofileclass_setversion(obj, uEchoMajorVersion, uEchoMinorVersion, uEchoSpecifiedMessageFormat);
 
-  // Identification number
+  // Identification Number
   
   uecho_object_addproperty(obj, uEchoNodeProfileClassIdentificationNumber, uEchoPropertyAttrRead);
+  uecho_nodeprofileclass_setdefaultid(obj);
   
-  /*
+  // Number Of Self Node Instances
+
+  uecho_object_addproperty(obj, uEchoNodeProfileClassNumberOfSelfNodeInstances, uEchoPropertyAttrRead);
+
+  // Number Of Self Node Classes
   
-  uEchoNodeProfileClassNumberOfSelfNodeInstances = 0xD3,
-  uEchoNodeProfileClassNumberOfSelfNodeClasses   = 0xD4,
-  uEchoNodeProfileClassInstanceListNotification  = 0xD5,
-  uEchoNodeProfileClassSelfNodeInstanceListS     = 0xD6,
-  uEchoNodeProfileClassSelfNodeClassListS        = 0xD7,
-  */
+  uecho_object_addproperty(obj, uEchoNodeProfileClassNumberOfSelfNodeClasses, uEchoPropertyAttrRead);
+
+  // Instance List Notification
+  
+  uecho_object_addproperty(obj, uEchoNodeProfileClassInstanceListNotification, uEchoPropertyAttrAnno);
+
+  // Self Node Instance ListS
+  
+  uecho_object_addproperty(obj, uEchoNodeProfileClassSelfNodeInstanceListS, uEchoPropertyAttrRead);
+
+  // Self Node Class List S
+  
+  uecho_object_addproperty(obj, uEchoNodeProfileClassSelfNodeClassListS, uEchoPropertyAttrRead);
   
   return true;
 }
@@ -110,6 +122,21 @@ bool uecho_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId)
   memcpy(prop, uniqId, uEchoNodeProfileClassIdentificationUniqueIdLen);
   
   return uecho_object_setpropertydata(obj, uEchoNodeProfileClassOperatingStatus, propData, uEchoNodeProfileClassIdentificationNumberLen);
+}
+
+/****************************************
+ * uecho_nodeprofileclass_setdefaultid
+ ****************************************/
+
+bool uecho_nodeprofileclass_setdefaultid(uEchoObject *obj)
+{
+  byte manCode[uEchoNodeProfileClassIdentificationManufacturerCodeLen];
+  byte uniqId[uEchoNodeProfileClassIdentificationUniqueIdLen];
+  
+  memset(manCode, 0, sizeof(manCode));
+  memset(uniqId, 0, sizeof(uniqId));
+  
+  return uecho_nodeprofileclass_setid(obj, manCode, uniqId);
 }
 
 /****************************************
