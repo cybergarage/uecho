@@ -26,16 +26,19 @@ bool uecho_object_addmandatoryproperties(uEchoObject *obj)
   
   // Manufacture Code
   
-  uecho_object_addproperty(obj, uEchoObjectManufacturerCode, uEchoPropertyAttrRead,  manufactureCode, sizeof(manufactureCode));
+  uecho_object_addproperty(obj, uEchoObjectManufacturerCode, uEchoPropertyAttrRead);
+  uecho_object_setmanufacturercode(obj, manufactureCode);
   
   // Property map properties
   
-  if (!uecho_object_addproperty(obj, uEchoObjectGetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
-    return false;
-  if (!uecho_object_addproperty(obj, uEchoObjectSetPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
-    return false;
-  if (!uecho_object_addproperty(obj, uEchoObjectAnnoPropertyMap, uEchoPropertyAttrRead, zeroPropMap, sizeof(zeroPropMap)))
-    return false;
+  uecho_object_addproperty(obj, uEchoObjectGetPropertyMap, uEchoPropertyAttrRead);
+  uecho_object_setpropertydata(obj, uEchoObjectGetPropertyMap, zeroPropMap, sizeof(zeroPropMap));
+
+  uecho_object_addproperty(obj, uEchoObjectSetPropertyMap, uEchoPropertyAttrRead);
+  uecho_object_setpropertydata(obj, uEchoObjectSetPropertyMap, zeroPropMap, sizeof(zeroPropMap));
+
+  uecho_object_addproperty(obj, uEchoObjectAnnoPropertyMap, uEchoPropertyAttrRead);
+  uecho_object_setpropertydata(obj, uEchoObjectAnnoPropertyMap, zeroPropMap, sizeof(zeroPropMap));
   
   return true;
 }
@@ -46,7 +49,7 @@ bool uecho_object_addmandatoryproperties(uEchoObject *obj)
 
 bool uecho_object_setmanufacturercode(uEchoObject *obj, byte *codes)
 {
-  return uecho_object_updatepropertydata(obj, uEchoObjectManufacturerCode, codes, uEchoObjectManufacturerCodeLen);
+  return uecho_object_setpropertydata(obj, uEchoObjectManufacturerCode, codes, uEchoObjectManufacturerCodeLen);
 }
 
 /****************************************
@@ -92,12 +95,9 @@ bool uecho_object_updatepropertymaps(uEchoObject *obj)
   
   // Update property map properties
   
-  if (!uecho_object_updateproperty(obj, uEchoProfileGetPropertyMap, uEchoPropertyAttrRead, obj->getPropMapBytes, obj->getPropMapSize))
-    return false;
-  if (!uecho_object_updateproperty(obj, uEchoProfileSetPropertyMap, uEchoPropertyAttrRead, obj->setPropMapBytes, obj->setPropMapSize))
-    return false;
-  if (!uecho_object_updateproperty(obj, uEchoProfileAnnoPropertyMap, uEchoPropertyAttrRead, obj->annoPropMapBytes, obj->annoPropMapSize))
-    return false;
+  uecho_propertylist_set(obj->properties, uEchoProfileGetPropertyMap, uEchoPropertyAttrRead, obj->getPropMapBytes, obj->getPropMapSize);
+  uecho_propertylist_set(obj->properties, uEchoProfileSetPropertyMap, uEchoPropertyAttrRead, obj->setPropMapBytes, obj->setPropMapSize);
+  uecho_propertylist_set(obj->properties, uEchoProfileAnnoPropertyMap, uEchoPropertyAttrRead, obj->annoPropMapBytes, obj->annoPropMapSize);
   
   return true;
 }

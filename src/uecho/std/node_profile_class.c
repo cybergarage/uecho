@@ -38,20 +38,28 @@ uEchoObject *uecho_nodeprofileclass_new(void)
 
 bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject *obj)
 {
-  byte propData[32];
-
   // Operation Status
   
-  propData[0] = uEchoNodeProfileClassBooting;
-  uecho_object_addproperty(obj, uEchoNodeProfileClassOperatingStatus, uEchoPropertyAttrRead, propData, uEchoNodeProfileClassOperatingStatusLen);
+  uecho_object_addproperty(obj, uEchoNodeProfileClassOperatingStatus, uEchoPropertyAttrReadAnno);
+  uecho_nodeprofileclass_setoperatingstatus(obj, true);
   
   // Version Information
   
-  propData[0] = uEchoMajorVersion;
-  propData[1] = uEchoMinorVersion;
-  propData[2] = uEchoSpecifiedMessageFormat;
-  propData[3] = 0x00;
-  uecho_object_addproperty(obj, uEchoNodeProfileClassVersionInformation, uEchoPropertyAttrRead, propData, uEchoNodeProfileClassVersionInformationLen);
+  uecho_object_addproperty(obj, uEchoNodeProfileClassVersionInformation, uEchoPropertyAttrRead);
+  uecho_nodeprofileclass_setversion(obj, uEchoMajorVersion, uEchoMinorVersion, uEchoSpecifiedMessageFormat);
+
+  // Identification number
+  
+  uecho_object_addproperty(obj, uEchoNodeProfileClassIdentificationNumber, uEchoPropertyAttrRead);
+  
+  /*
+  
+  uEchoNodeProfileClassNumberOfSelfNodeInstances = 0xD3,
+  uEchoNodeProfileClassNumberOfSelfNodeClasses   = 0xD4,
+  uEchoNodeProfileClassInstanceListNotification  = 0xD5,
+  uEchoNodeProfileClassSelfNodeInstanceListS     = 0xD6,
+  uEchoNodeProfileClassSelfNodeClassListS        = 0xD7,
+  */
   
   return true;
 }
@@ -65,7 +73,23 @@ bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject *obj, bool stats)
   byte statsByte;
   
   statsByte = stats ? uEchoNodeProfileClassBooting : uEchoNodeProfileClassNotBooting;
-  return uecho_object_updatepropertydata(obj, uEchoNodeProfileClassOperatingStatus, &statsByte, uEchoNodeProfileClassOperatingStatusLen);
+  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassOperatingStatus, &statsByte, uEchoNodeProfileClassOperatingStatusLen);
+}
+
+/****************************************
+ * uecho_nodeprofileclass_setversion
+ ****************************************/
+
+bool uecho_nodeprofileclass_setversion(uEchoObject *obj, int majorVer, int minorVer, uEchoMessageFormatType msgType)
+{
+  byte verBytes[uEchoNodeProfileClassVersionInformationLen];
+  
+  verBytes[0] = uEchoMajorVersion;
+  verBytes[1] = uEchoMinorVersion;
+  verBytes[2] = uEchoSpecifiedMessageFormat;
+  verBytes[3] = 0x00;
+
+  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassVersionInformation, verBytes, uEchoNodeProfileClassVersionInformationLen);
 }
 
 /****************************************
@@ -85,7 +109,7 @@ bool uecho_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId)
   prop += uEchoNodeProfileClassIdentificationManufacturerCodeLen;
   memcpy(prop, uniqId, uEchoNodeProfileClassIdentificationUniqueIdLen);
   
-  return uecho_object_addproperty(obj, uEchoNodeProfileClassOperatingStatus, uEchoPropertyAttrRead, propData, uEchoNodeProfileClassIdentificationNumberLen);
+  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassOperatingStatus, propData, uEchoNodeProfileClassIdentificationNumberLen);
 }
 
 /****************************************
@@ -95,11 +119,18 @@ bool uecho_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId)
 bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject *obj)
 {
   uEchoNode *node;
+  uEchoObject *nodeObj;
+  size_t nodeInstanceCnt;
   
   node = uecho_object_getparentnode(obj);
   if (!node)
     return false;
   
+  nodeInstanceCnt = 0;
+  for (nodeObj = uecho_node_getobjects(node); nodeObj; nodeObj = uecho_object_next(obj)) {
+    nodeInstanceCnt++;
+  }
+
   return true;
 }
 

@@ -38,8 +38,9 @@ typedef enum {
   uEchoPropertyAttrNone      = 0x00,
   uEchoPropertyAttrRead      = 0x01,
   uEchoPropertyAttrWrite     = 0x02,
-  uEchoPropertyAttrReadWrite = uEchoPropertyAttrRead | uEchoPropertyAttrWrite,
   uEchoPropertyAttrAnno      = 0x10,
+  uEchoPropertyAttrReadWrite = uEchoPropertyAttrRead | uEchoPropertyAttrWrite,
+  uEchoPropertyAttrReadAnno  = uEchoPropertyAttrRead | uEchoPropertyAttrAnno,
 } uEchoPropertyAttr;
 
 typedef struct _uEchoProperty
