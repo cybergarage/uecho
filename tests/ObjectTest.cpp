@@ -10,8 +10,19 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include <uecho/node.h>
 #include <uecho/object.h>
 #include <uecho/profile.h>
+
+BOOST_AUTO_TEST_CASE(ObjectNew)
+{
+  uEchoObject *obj = uecho_object_new();
+  
+  BOOST_CHECK_EQUAL(uecho_object_getcode(obj), uEchoObjectCodeMin);
+  BOOST_CHECK(!uecho_object_getparentnode(obj));
+
+  uecho_object_delete(obj);
+}
 
 BOOST_AUTO_TEST_CASE(ObjectSetCode)
 {
