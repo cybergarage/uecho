@@ -33,6 +33,9 @@
 		21678F0C1A8D512000AE79AA /* strings_tokenizer.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678F011A8D512000AE79AA /* strings_tokenizer.c */; };
 		21678F0D1A8D512000AE79AA /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 21678F021A8D512000AE79AA /* timer.c */; };
 		21678F101A8D51C800AE79AA /* typedef.h in Headers */ = {isa = PBXBuildFile; fileRef = 21678F0F1A8D51C800AE79AA /* typedef.h */; };
+		2171428F1B886500003ABA30 /* class.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171428E1B886500003ABA30 /* class.h */; };
+		217142921B8865EF003ABA30 /* class_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 217142901B8865EF003ABA30 /* class_list.c */; };
+		217142931B8865EF003ABA30 /* class.c in Sources */ = {isa = PBXBuildFile; fileRef = 217142911B8865EF003ABA30 /* class.c */; };
 		21757F4B1B6A0CC600281E6F /* message.c in Sources */ = {isa = PBXBuildFile; fileRef = 21757F4A1B6A0CC600281E6F /* message.c */; };
 		21757F4D1B6A0CD600281E6F /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = 21757F4C1B6A0CD600281E6F /* message.h */; };
 		21757F501B6A0D9400281E6F /* mcast_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 21757F4E1B6A0D9400281E6F /* mcast_server.c */; };
@@ -87,6 +90,9 @@
 		21678F011A8D512000AE79AA /* strings_tokenizer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strings_tokenizer.c; sourceTree = "<group>"; };
 		21678F021A8D512000AE79AA /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
 		21678F0F1A8D51C800AE79AA /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = typedef.h; sourceTree = "<group>"; };
+		2171428E1B886500003ABA30 /* class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = class.h; sourceTree = "<group>"; };
+		217142901B8865EF003ABA30 /* class_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = class_list.c; sourceTree = "<group>"; };
+		217142911B8865EF003ABA30 /* class.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = class.c; sourceTree = "<group>"; };
 		21757F4A1B6A0CC600281E6F /* message.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message.c; path = core/message.c; sourceTree = "<group>"; };
 		21757F4C1B6A0CD600281E6F /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = core/message.h; sourceTree = "<group>"; };
 		21757F4E1B6A0D9400281E6F /* mcast_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mcast_server.c; path = core/mcast_server.c; sourceTree = "<group>"; };
@@ -161,6 +167,7 @@
 				21EFF19E1B4A9A5E002B5E57 /* controller.h */,
 				21EFF19F1B4A9A5E002B5E57 /* node.h */,
 				21678F0F1A8D51C800AE79AA /* typedef.h */,
+				2171428E1B886500003ABA30 /* class.h */,
 				21678EE31A8D510100AE79AA /* net */,
 				21678EE61A8D510100AE79AA /* util */,
 			);
@@ -208,6 +215,8 @@
 				21B06C181B7C85B0004E9E09 /* object_list.c */,
 				21EFF1A21B4A9A76002B5E57 /* controller.c */,
 				21EFF1A31B4A9A76002B5E57 /* node.c */,
+				217142901B8865EF003ABA30 /* class_list.c */,
+				217142911B8865EF003ABA30 /* class.c */,
 				21678EF71A8D512000AE79AA /* net */,
 				21678EFC1A8D512000AE79AA /* util */,
 			);
@@ -301,6 +310,7 @@
 				21678F101A8D51C800AE79AA /* typedef.h in Headers */,
 				21EFF1A01B4A9A5E002B5E57 /* controller.h in Headers */,
 				2185D9C31B68C3B500A5B0C3 /* const.h in Headers */,
+				2171428F1B886500003ABA30 /* class.h in Headers */,
 				215B49431B85895F002B20CE /* device.h in Headers */,
 				2185D9CD1B68D5BC00A5B0C3 /* object.h in Headers */,
 			);
@@ -362,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				217142921B8865EF003ABA30 /* class_list.c in Sources */,
 				21757F4B1B6A0CC600281E6F /* message.c in Sources */,
 				2159A1D21B751D2100A134D8 /* udp_server_list.c in Sources */,
 				21678F0D1A8D512000AE79AA /* timer.c in Sources */,
@@ -391,6 +402,7 @@
 				215B49491B858AEC002B20CE /* profile_super_class.c in Sources */,
 				2178B8311B7B3CC7007AA57B /* property_list.c in Sources */,
 				2159A1D11B751D2100A134D8 /* mcast_server_list.c in Sources */,
+				217142931B8865EF003ABA30 /* class.c in Sources */,
 				215B494B1B85970D002B20CE /* object_super_class.c in Sources */,
 				21678F061A8D512000AE79AA /* socket.c in Sources */,
 				21851C581B74724D00289276 /* net_function.c in Sources */,
