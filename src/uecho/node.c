@@ -140,7 +140,13 @@ size_t uecho_node_getobjectcount(uEchoNode *node)
 
 bool uecho_node_updatenodeprofileclass(uEchoNode *node)
 {
-  return true;
+  uEchoObject *obj;
+  
+  obj = uecho_node_getobjectbycode(node, uEchoNodeProfileObject);
+  if (!obj)
+    return false;
+  
+  return uecho_nodeprofileclass_updateinstanceproperties(obj);
 }
 
 /****************************************
@@ -180,10 +186,13 @@ bool uecho_node_addobject(uEchoNode *node, uEchoObject *obj)
   if (!uecho_objectlist_add(node->objects, obj))
     return false;
 
+  uecho_object_setparentnode(obj, node);
+  
   clsCode = uecho_classcode_to_classcode(objCode);
   uecho_classlist_set(node->classes, clsCode);
 
-  uecho_node_updatenodeprofileclass(node);
+  if (!uecho_node_updatenodeprofileclass(node))
+    return false;
   
   return true;
 }

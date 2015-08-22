@@ -11,10 +11,13 @@
 #include <boost/test/unit_test.hpp>
 #include <uecho/node.h>
 
-BOOST_AUTO_TEST_CASE(Node)
+BOOST_AUTO_TEST_CASE(NodeDefault)
 {
   uEchoNode *node = uecho_node_new();
   BOOST_CHECK(node);
+  
+  BOOST_CHECK_EQUAL(uecho_node_getobjectcount(node), 1);
+  BOOST_CHECK(uecho_node_hasobjectbycode(node, uEchoNodeProfileObject));
   
   uecho_node_delete(node);
 }
@@ -30,7 +33,7 @@ BOOST_AUTO_TEST_CASE(NodeSetObjects)
   BOOST_CHECK_EQUAL(uecho_node_getobjectcount(node), 0);
   
   for (size_t n=uEchoObjectCodeMin; n<=uEchoTestObjectCodeMax; n++) {
-    BOOST_CHECK(uecho_node_setobject(node, (uEchoObjectCode)n));
+    uecho_node_setobject(node, (uEchoObjectCode)n);
   }
   
   BOOST_CHECK_EQUAL(uecho_node_getobjectcount(node), (uEchoTestObjectCodeMax - uEchoObjectCodeMin + 1));
@@ -39,6 +42,7 @@ BOOST_AUTO_TEST_CASE(NodeSetObjects)
     uEchoObject *obj = uecho_node_getobjectbycode(node, (uEchoObjectCode)n);
     BOOST_CHECK(obj);
     BOOST_CHECK_EQUAL(uecho_object_getcode(obj), n);
+    BOOST_CHECK_EQUAL(uecho_object_getparentnode(obj), node);
   }
   
   BOOST_CHECK_EQUAL(uecho_node_getobjectcount(node), (uEchoTestObjectCodeMax - uEchoObjectCodeMin + 1));
