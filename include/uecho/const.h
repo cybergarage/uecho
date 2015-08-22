@@ -24,8 +24,6 @@ extern "C" {
 enum {
   uEchoMajorVersion = 0x02,
   uEchoMinorVersion = 0x0A,
-  uEchoSpecifiedMessageFormat = 0x01,
-  uEchoArbitraryMessageFormat = 0x02,
   
   uEchoUdpPort = 3610,
   uEchoTcpPort = 3610,
@@ -33,6 +31,11 @@ enum {
   uEchoTidMin = 0,
   uEchoTidMax = 65535,
 };
+
+typedef enum {
+  uEchoSpecifiedMessageFormat = 0x01,
+  uEchoArbitraryMessageFormat = 0x02,
+} uEchoMessageFormatType;
   
 #ifdef  __cplusplus
 }

@@ -18,34 +18,29 @@
 
 bool uecho_device_addmandatoryproperties(uEchoObject *obj)
 {
-  byte propData[32];
-  
   if (!obj)
     return false;
   
   // Operation Status
   
-  propData[0] = uEchoDeviceOperatingStatusOn;
-  uecho_object_addproperty(obj, uEchoDeviceOperatingStatus, uEchoPropertyAttrRead, propData, uEchoDeviceOperatingStatusSize);
+  uecho_object_addproperty(obj, uEchoDeviceOperatingStatus, uEchoPropertyAttrReadAnno);
+  uecho_device_setoperatingstatus(obj, true);
   
   // Installation Location
   
-  propData[0] = uEchoDeviceInstallationLocationUnknown;
-  uecho_object_addproperty(obj, uEchoDeviceInstallationLocation, uEchoPropertyAttrRead, propData, uEchoDeviceInstallationLocationSize);
+  uecho_object_addproperty(obj, uEchoDeviceInstallationLocation, uEchoPropertyAttrReadAnno);
+  uecho_device_setinstallationlocation(obj, uEchoDeviceInstallationLocationUnknown);
   
   // Standard Version Infomation
   
-  propData[0] = 0x00;
-  propData[1] = 0x00;
-  propData[2] = uEchoDeviceVersionAppendixG;
-  propData[3] = 0x00;
-  uecho_object_addproperty(obj, uEchoDeviceStandardVersion, uEchoPropertyAttrRead, propData, uEchoDeviceStandardVersionSize);
+  uecho_object_addproperty(obj, uEchoDeviceStandardVersion, uEchoPropertyAttrRead);
+  uecho_device_setstandardversion(obj, uEchoDeviceVersionAppendixG);
   
   // Fault Status
   
-  propData[0] = uEchoDeviceNoFaultOccurred;
-  uecho_object_addproperty(obj, uEchoDeviceFaultStatus, uEchoPropertyAttrRead, propData, uEchoDeviceFaultStatusSize);
-  
+  uecho_object_addproperty(obj, uEchoDeviceFaultStatus, uEchoPropertyAttrReadAnno);
+  uecho_device_setfaultstatus(obj, false);
+
   return true;
 }
 
@@ -58,7 +53,7 @@ bool uecho_device_setoperatingstatus(uEchoObject *obj, bool stats)
   byte statsByte;
   
   statsByte = stats ? uEchoDeviceOperatingStatusOn : uEchoDeviceOperatingStatusOff;
-  return uecho_object_updatepropertydata(obj, uEchoDeviceOperatingStatus, &statsByte, uEchoDeviceOperatingStatusSize);
+  return uecho_object_setpropertydata(obj, uEchoDeviceOperatingStatus, &statsByte, uEchoDeviceOperatingStatusSize);
 }
 
 /****************************************
@@ -67,7 +62,7 @@ bool uecho_device_setoperatingstatus(uEchoObject *obj, bool stats)
 
 bool uecho_device_setinstallationlocation(uEchoObject *obj, byte locByte)
 {
-  return uecho_object_updatepropertydata(obj, uEchoDeviceInstallationLocation, &locByte, uEchoDeviceInstallationLocationSize);
+  return uecho_object_setpropertydata(obj, uEchoDeviceInstallationLocation, &locByte, uEchoDeviceInstallationLocationSize);
 }
 
 /****************************************
@@ -82,7 +77,7 @@ bool uecho_device_setstandardversion(uEchoObject *obj, char ver)
   verBytes[1] = 0x00;
   verBytes[2] = ver;
   verBytes[3] = 0x00;
-  return uecho_object_updatepropertydata(obj, uEchoDeviceStandardVersion, verBytes, uEchoDeviceStandardVersionSize);
+  return uecho_object_setpropertydata(obj, uEchoDeviceStandardVersion, verBytes, uEchoDeviceStandardVersionSize);
 }
 
 /****************************************
@@ -94,7 +89,7 @@ bool uecho_device_setfaultstatus(uEchoObject *obj, bool stats)
   byte faultByte;
   
   faultByte = stats ? uEchoDeviceFaultOccurred : uEchoDeviceNoFaultOccurred;
-  return uecho_object_updatepropertydata(obj, uEchoDeviceFaultStatus, &faultByte, uEchoDeviceFaultStatusSize);
+  return uecho_object_setpropertydata(obj, uEchoDeviceFaultStatus, &faultByte, uEchoDeviceFaultStatusSize);
 }
 
 /****************************************

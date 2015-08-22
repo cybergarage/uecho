@@ -11,6 +11,7 @@
 #ifndef _UECHO_PROFILE_H_
 #define _UECHO_PROFILE_H_
 
+#include <uecho/const.h>
 #include <uecho/object.h>
 
 #ifdef  __cplusplus
@@ -105,9 +106,16 @@ uEchoObject *uecho_nodeprofileclass_new(void);
 bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject *obj);
 
 bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject *obj, bool stats);
+bool uecho_nodeprofileclass_setversion(uEchoObject *obj, int majorVer, int minorVer, uEchoMessageFormatType msgType);
 bool uecho_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId);
 bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject *obj);
 
+bool uecho_nodeprofileclass_setinstancecount(uEchoObject *obj);
+bool uecho_nodeprofileclass_setclasscount(uEchoObject *obj);
+bool uecho_nodeprofileclass_setnotificationlist(uEchoObject *obj);
+bool uecho_nodeprofileclass_setinstancelist(uEchoObject *obj);
+bool uecho_nodeprofileclass_setclasslist(uEchoObject *obj);
+  
 #ifdef  __cplusplus
 } /* extern C */
 #endif
