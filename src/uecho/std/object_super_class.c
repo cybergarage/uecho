@@ -126,4 +126,3 @@ void uecho_object_clearpropertymapcaches(uEchoObject *obj)
   }
   obj->getPropMapSize = 0;
 }
-

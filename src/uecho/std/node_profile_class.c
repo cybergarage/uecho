@@ -11,6 +11,7 @@
 #include <string.h>
 
 #include <uecho/const.h>
+#include <uecho/node.h>
 #include <uecho/profile.h>
 
 /****************************************
@@ -93,6 +94,12 @@ bool uecho_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId)
 
 bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject *obj)
 {
+  uEchoNode *node;
+  
+  node = uecho_object_getparentnode(obj);
+  if (!node)
+    return false;
+  
   return true;
 }
 
