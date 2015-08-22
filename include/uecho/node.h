@@ -50,13 +50,17 @@ void uecho_node_clear(uEchoNode *node);
 
 uEchoClass *uecho_node_getclasses(uEchoNode *node);
 uEchoClass *uecho_node_getclassbycode(uEchoNode *node, uEchoClassCode code);
+bool uecho_node_hasclassbycode(uEchoNode *node, uEchoClassCode code);
 size_t uecho_node_getclasscount(uEchoNode *node);
-  
-bool uecho_node_setobject(uEchoNode *node, uEchoObjectCode code);
+
 uEchoObject *uecho_node_getobjects(uEchoNode *node);
 uEchoObject *uecho_node_getobjectbycode(uEchoNode *node, uEchoObjectCode code);
+bool uecho_node_hasobjectbycode(uEchoNode *node, uEchoObjectCode code);
 size_t uecho_node_getobjectcount(uEchoNode *node);
 
+bool uecho_node_addobject(uEchoNode *node, uEchoObject *obj);
+bool uecho_node_setobject(uEchoNode *node, uEchoObjectCode code);
+  
 bool uecho_node_start(uEchoNode *node);
 bool uecho_node_stop(uEchoNode *node);
 bool uecho_node_isrunning(uEchoNode *node);
