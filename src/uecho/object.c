@@ -190,7 +190,8 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
   
   if (propsCodeSize <= uEchoPropertyMapMaxLen) {
     memcpy(propMap, propCodes, propsCodeSize);
-    uecho_object_addproperty(obj, mapCode, uEchoPropertyAttrRead, propMapData, (propsCodeSize + 1));
+    uecho_object_addproperty(obj, mapCode, uEchoPropertyAttrRead);
+    uecho_object_setpropertydata(obj, mapCode, propMapData, (propsCodeSize + 1));
     return true;
   }
   
@@ -205,7 +206,8 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
     propMap[propByteIdx] |= (((propCode - uEchoPropertyCodeMin) & 0xF0) >> 8) & 0x0F;
   }
   
-  uecho_object_addproperty(obj, mapCode, uEchoPropertyAttrRead, propMapData, (uEchoPropertyMapMaxLen + 1));
+  uecho_object_addproperty(obj, mapCode, uEchoPropertyAttrRead);
+  uecho_object_setpropertydata(obj, mapCode, propMapData, (uEchoPropertyMapMaxLen + 1));
   
   return true;
 }
@@ -214,36 +216,27 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
  * uecho_object_addproperty
  ****************************************/
 
-bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr, byte *data, size_t dataLen)
+bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)
 {
-  if (!uecho_propertylist_set(obj->properties, code, attr, data, dataLen))
+  if (!uecho_propertylist_set(obj->properties, code, attr, NULL, 0))
     return false;
   return uecho_object_updatepropertymaps(obj);
 }
 
 /****************************************
- * uecho_object_updateproperty
+ * uecho_object_setpropertydata
  ****************************************/
 
-bool uecho_object_updateproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr, byte *data, size_t dataLen)
-{
-  return uecho_propertylist_set(obj->properties, code, attr, data, dataLen);
-}
-
-/****************************************
- * uecho_object_updatepropertydata
- ****************************************/
-
-bool uecho_object_updatepropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen)
+bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen)
 {
   return uecho_propertylist_setdata(obj->properties, code, data, dataLen);
 }
 
 /****************************************
- * uecho_object_updatepropertyattribute
+ * uecho_object_setpropertyattribute
  ****************************************/
 
-bool uecho_object_updatepropertyattribute(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)
+bool uecho_object_setpropertyattribute(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)
 {
   return uecho_propertylist_setattribute(obj->properties, code, attr);
 }

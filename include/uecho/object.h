@@ -87,10 +87,9 @@ byte uecho_object_getclasscode(uEchoObject *obj);
 void uecho_object_setinstancecode(uEchoObject *obj, byte val);
 byte uecho_object_getinstancecode(uEchoObject *obj);
 
-bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr, byte *data, size_t dataLen);
-bool uecho_object_updateproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr, byte *data, size_t dataLen);
-bool uecho_object_updatepropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen);
-bool uecho_object_updatepropertyattribute(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr);
+bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr);
+bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen);
+bool uecho_object_setpropertyattribute(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr);
 
 uEchoProperty *uecho_object_getproperties(uEchoObject *obj);
 uEchoProperty *uecho_object_getproperty(uEchoObject *obj, uEchoPropertyCode code);
