@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <uecho/node.h>
+#include <uecho/profile.h>
 
 /****************************************
 * uecho_node_new
@@ -17,6 +18,7 @@
 uEchoNode *uecho_node_new(void)
 {
 	uEchoNode *node;
+  uEchoObject *obj;
 
 	node = (uEchoNode *)malloc(sizeof(uEchoNode));
 
@@ -28,6 +30,9 @@ uEchoNode *uecho_node_new(void)
   node->mutex = uecho_mutex_new();
   node->classes = uecho_classlist_new();
   node->objects = uecho_objectlist_new();
+
+  obj = uecho_nodeprofileclass_new();
+  uecho_node_addobject(node, obj);
   
 	return node;
 }
@@ -48,11 +53,13 @@ void uecho_node_delete(uEchoNode *node)
 }
 
 /****************************************
-* uecho_node_clear
-****************************************/
+ * uecho_node_clear
+ ****************************************/
 
 void uecho_node_clear(uEchoNode *node)
 {
+  uecho_classlist_clear(node->classes);
+  uecho_objectlist_clear(node->objects);
 }
 
 /****************************************
@@ -128,12 +135,33 @@ size_t uecho_node_getobjectcount(uEchoNode *node)
 }
 
 /****************************************
+ * uecho_node_addobject
+ ****************************************/
+
+bool uecho_node_updatenodeprofileclass(uEchoNode *node)
+{
+  return true;
+}
+
+/****************************************
  * uecho_node_setobject
  ****************************************/
 
 bool uecho_node_setobject(uEchoNode *node, uEchoObjectCode code)
 {
-  return uecho_objectlist_set(node->objects, code);
+  uEchoObject *obj;
+  
+  obj = uecho_objectlist_getbycode(node->objects, code);
+  if (obj)
+    return true;
+  
+  obj = uecho_object_new();
+  if (!obj)
+    return false;
+  
+  uecho_object_setcode(obj, code);
+  
+  return uecho_node_addobject(node, obj);
 }
 
 /****************************************
@@ -155,5 +183,7 @@ bool uecho_node_addobject(uEchoNode *node, uEchoObject *obj)
   clsCode = uecho_classcode_to_classcode(objCode);
   uecho_classlist_set(node->classes, clsCode);
 
+  uecho_node_updatenodeprofileclass(node);
+  
   return true;
 }

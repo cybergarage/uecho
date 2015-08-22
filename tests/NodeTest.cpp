@@ -25,7 +25,8 @@ BOOST_AUTO_TEST_CASE(NodeSetObjects)
   BOOST_CHECK(node);
   
   const int uEchoTestObjectCodeMax = uEchoObjectCodeMax % 100;
-  
+
+  uecho_node_clear(node);
   BOOST_CHECK_EQUAL(uecho_node_getobjectcount(node), 0);
   
   for (size_t n=uEchoObjectCodeMin; n<=uEchoTestObjectCodeMax; n++) {
