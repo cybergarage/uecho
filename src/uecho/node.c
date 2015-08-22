@@ -26,6 +26,7 @@ uEchoNode *uecho_node_new(void)
   uecho_list_node_init((uEchoList *)node);
   
   node->mutex = uecho_mutex_new();
+  node->classes = uecho_classlist_new();
   node->objects = uecho_objectlist_new();
   
 	return node;
@@ -40,6 +41,7 @@ void uecho_node_delete(uEchoNode *node)
 	uecho_list_remove((uEchoList *)node);
   
   uecho_mutex_delete(node->mutex);
+  uecho_classlist_delete(node->classes);
   uecho_objectlist_delete(node->objects);
   
 	free(node);
@@ -51,6 +53,33 @@ void uecho_node_delete(uEchoNode *node)
 
 void uecho_node_clear(uEchoNode *node)
 {
+}
+
+/****************************************
+ * uecho_node_getclasses
+ ****************************************/
+
+uEchoClass *uecho_node_getclasses(uEchoNode *node)
+{
+  return uecho_classlist_gets(node->classes);
+}
+
+/****************************************
+ * uecho_node_getclassbycode
+ ****************************************/
+
+uEchoClass *uecho_node_getclassbycode(uEchoNode *node, uEchoObjectCode code)
+{
+  return uecho_classlist_getbycode(node->classes, code);
+}
+
+/****************************************
+ * uecho_node_getclasscount
+ ****************************************/
+
+size_t uecho_node_getclasscount(uEchoNode *node)
+{
+  return uecho_classlist_size(node->classes);
 }
 
 /****************************************

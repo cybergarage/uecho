@@ -14,6 +14,7 @@
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
+#include <uecho/class.h>
 #include <uecho/object.h>
 
 #ifdef  __cplusplus
@@ -31,6 +32,8 @@ typedef struct _uEchoNode
   struct _uEchoNode *next;
     
   uEchoMutex *mutex;
+
+  uEchoClassList *classes;
   uEchoObjectList *objects;
   
 } uEchoNode, uEchoNodeList;
@@ -45,15 +48,20 @@ void uecho_node_clear(uEchoNode *node);
 #define uecho_node_next(node) (uEchoNode *)uecho_list_next((uEchoList *)node)
 #define uecho_node_remove(node) uecho_list_remove((uEchoList *)node)
 
+uEchoClass *uecho_node_getclasses(uEchoNode *node);
+uEchoClass *uecho_node_getclassbycode(uEchoNode *node, uEchoClassCode code);
+size_t uecho_node_getclasscount(uEchoNode *node);
+  
 bool uecho_node_setobject(uEchoNode *node, uEchoObjectCode code);
 uEchoObject *uecho_node_getobjects(uEchoNode *node);
-
 uEchoObject *uecho_node_getobjectbycode(uEchoNode *node, uEchoObjectCode code);
 size_t uecho_node_getobjectcount(uEchoNode *node);
 
 bool uecho_node_start(uEchoNode *node);
 bool uecho_node_stop(uEchoNode *node);
 bool uecho_node_isrunning(uEchoNode *node);
+
+uEchoClassCode uecho_classcode_to_classcode(uEchoObjectCode objCode);
   
 /****************************************
  * Function (Object)
