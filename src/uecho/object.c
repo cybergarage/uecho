@@ -11,6 +11,7 @@
 #include <uecho/node.h>
 #include <uecho/object.h>
 #include <uecho/profile.h>
+#include <uecho/misc.h>
 
 /****************************************
 * uecho_object_new
@@ -171,6 +172,24 @@ void uecho_object_setinstancecode(uEchoObject *obj, byte val)
 byte uecho_object_getinstancecode(uEchoObject *obj)
 {
   return obj->code[2];
+}
+
+/****************************************
+ * uecho_object_isdevice
+ ****************************************/
+
+bool uecho_object_isdevice(uEchoObject *obj)
+{
+  return uecho_isdeviceclassgroupcode(obj->code[0]);
+}
+
+/****************************************
+ * uecho_object_isprofile
+ ****************************************/
+
+bool uecho_object_isprofile(uEchoObject *obj)
+{
+  return uecho_isprofileclassgroupcode(obj->code[0]);
 }
 
 /****************************************

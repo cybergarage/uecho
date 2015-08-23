@@ -47,3 +47,13 @@ BOOST_AUTO_TEST_CASE(Byte2Integer)
   }
 }
 
+BOOST_AUTO_TEST_CASE(ClassGroupCode)
+{
+  for (int n=uEchoClassGroupDeviceMin; n<=uEchoClassGroupDeviceMax; n++) {
+    BOOST_CHECK(uecho_isdeviceclassgroupcode(n));
+    BOOST_CHECK(!uecho_isprofileclassgroupcode(n));
+  }
+
+  BOOST_CHECK(!uecho_isdeviceclassgroupcode(uEchoClassGroupProfile));
+  BOOST_CHECK(uecho_isprofileclassgroupcode(uEchoClassGroupProfile));
+}
