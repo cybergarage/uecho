@@ -71,5 +71,35 @@ BOOST_AUTO_TEST_CASE(NodeProfileClass)
   BOOST_CHECK_EQUAL(uecho_nodeprofileclass_getclasscount(obj), 3);
   BOOST_CHECK_EQUAL(uecho_nodeprofileclass_getinstancecount(obj), 3);
   
+  // Class List
+  
+  BOOST_CHECK_EQUAL(uecho_object_getpropertydatasize(obj, uEchoNodeProfileClassSelfNodeClassListS), ((2 * 2) + 1));
+  
+  byte clsList[] = {0x02, 0x00, 0x11, 0x00, 0x12};
+  byte *nodeClsList = uecho_nodeprofileclass_getclasslist(obj);
+  BOOST_CHECK(nodeClsList);
+  for (int n=0; n<sizeof(clsList); n++) {
+    BOOST_CHECK_EQUAL(clsList[n], nodeClsList[n]);
+  }
+  
+  // Instance List
+  
+  BOOST_CHECK_EQUAL(uecho_object_getpropertydatasize(obj, uEchoNodeProfileClassSelfNodeInstanceListS), ((3 * 3) + 1));
+  
+  byte insList[] = {0x03, 0x00, 0x11, 0x01, 0x00, 0x11, 0x02, 0x00, 0x12, 0x01};
+  byte *nodeInsList = uecho_nodeprofileclass_getinstancelist(obj);
+  BOOST_CHECK(nodeInsList);
+  for (int n=0; n<sizeof(insList); n++) {
+    BOOST_CHECK_EQUAL(insList[n], nodeInsList[n]);
+  }
+
+  // Notification Instance List
+  
+  nodeInsList = uecho_nodeprofileclass_getnotificationinstancelist(obj);
+  BOOST_CHECK(nodeInsList);
+  for (int n=0; n<sizeof(insList); n++) {
+    BOOST_CHECK_EQUAL(insList[n], nodeInsList[n]);
+  }
+  
   uecho_node_delete(node);
 }
