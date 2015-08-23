@@ -24,6 +24,9 @@ extern "C" {
 
 uEchoClassCode uecho_objectcode2classcode(uEchoObjectCode objCode);
 
+bool uecho_isdeviceclassgroupcode(byte code);
+bool uecho_isprofileclassgroupcode(byte code);
+
 void uecho_integer2byte(int val, byte *bytes, size_t byteSize);
 int uecho_byte2integer(byte *bytes, size_t byteSize);
 
