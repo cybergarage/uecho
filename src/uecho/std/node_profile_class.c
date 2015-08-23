@@ -13,6 +13,7 @@
 #include <uecho/const.h>
 #include <uecho/node.h>
 #include <uecho/profile.h>
+#include <uecho/misc.h>
 
 /****************************************
 * uecho_property_new
@@ -143,16 +144,19 @@ bool uecho_nodeprofileclass_setdefaultid(uEchoObject *obj)
  * uecho_nodeprofileclass_setinstancecount
  ****************************************/
 
-bool uecho_nodeprofileclass_setinstancecount(uEchoObject *obj, size_t count)
+bool uecho_nodeprofileclass_setinstancecount(uEchoObject *obj, int count)
 {
-  return true;
+  byte cntByte[uEchoNodeProfileClassNumberOfSelfNodeInstancesLen];
+  
+  uecho_integer2byte(count, cntByte, uEchoNodeProfileClassNumberOfSelfNodeInstancesLen);
+  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassNumberOfSelfNodeInstances, cntByte, uEchoNodeProfileClassNumberOfSelfNodeInstancesLen);
 }
 
 /****************************************
  * uecho_nodeprofileclass_setclasscount
  ****************************************/
 
-bool uecho_nodeprofileclass_setclasscount(uEchoObject *obj, size_t count)
+bool uecho_nodeprofileclass_setclasscount(uEchoObject *obj, int count)
 {
   return true;
 }

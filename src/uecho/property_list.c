@@ -112,6 +112,23 @@ bool uecho_propertylist_setdata(uEchoPropertyList *props, uEchoPropertyCode code
 }
 
 /****************************************
+ * uecho_propertylist_setintegerdata
+ ****************************************/
+
+bool uecho_propertylist_setintegerdata(uEchoPropertyList *props, uEchoPropertyCode code, int data, size_t dataLen)
+{
+  uEchoProperty *prop;
+  
+  prop = uecho_propertylist_getbycode(props, code);
+  if (!prop)
+    return false;
+  
+  uecho_property_setintegerdata(prop, data, dataLen);
+  
+  return true;
+}
+
+/****************************************
  * uecho_propertylist_setattribute
  ****************************************/
 
@@ -126,4 +143,19 @@ bool uecho_propertylist_setattribute(uEchoPropertyList *props, uEchoPropertyCode
   uecho_property_setattribute(prop, attr);
   
   return true;
+}
+
+/****************************************
+ * uecho_propertylist_getintegerdata
+ ****************************************/
+
+bool uecho_propertylist_getintegerdata(uEchoPropertyList *props, uEchoPropertyCode code, size_t dataLen, int *data)
+{
+  uEchoProperty *prop;
+  
+  prop = uecho_propertylist_getbycode(props, code);
+  if (!prop)
+    return false;
+  
+  return uecho_property_getintegerdata(prop, dataLen, data);
 }

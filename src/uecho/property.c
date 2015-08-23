@@ -11,6 +11,7 @@
 #include <string.h>
 
 #include <uecho/property.h>
+#include <uecho/misc.h>
 
 /****************************************
 * uecho_property_new
@@ -81,6 +82,42 @@ bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count)
   
   memcpy(prop->data, data, count);
 
+  return true;
+}
+
+/****************************************
+ * uecho_property_setintegerdata
+ ****************************************/
+
+bool uecho_property_setintegerdata(uEchoProperty *prop, int value, size_t byteSize)
+{
+  bool isSuccess;
+  byte *intByte;
+  
+  intByte = (byte *)malloc(byteSize);
+  if (!intByte)
+    return true;
+  
+  uecho_integer2byte(value, intByte, byteSize);
+  
+  isSuccess = uecho_property_setdata(prop, intByte, byteSize);
+  
+  free(intByte);
+  
+  return isSuccess;
+}
+
+/****************************************
+ * uecho_property_getintegerdata
+ ****************************************/
+
+bool uecho_property_getintegerdata(uEchoProperty *prop, size_t byteSize, int *val)
+{
+  if (prop->dataSize != byteSize)
+    return false;
+  
+  *val = uecho_byte2integer(prop->data, prop->dataSize);
+  
   return true;
 }
 
