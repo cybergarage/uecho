@@ -89,18 +89,18 @@ bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count)
  * uecho_property_setintegerdata
  ****************************************/
 
-bool uecho_property_setintegerdata(uEchoProperty *prop, int value, size_t byteSize)
+bool uecho_property_setintegerdata(uEchoProperty *prop, int data, size_t dataSize)
 {
   bool isSuccess;
   byte *intByte;
   
-  intByte = (byte *)malloc(byteSize);
+  intByte = (byte *)malloc(dataSize);
   if (!intByte)
     return true;
   
-  uecho_integer2byte(value, intByte, byteSize);
+  uecho_integer2byte(data, intByte, dataSize);
   
-  isSuccess = uecho_property_setdata(prop, intByte, byteSize);
+  isSuccess = uecho_property_setdata(prop, intByte, dataSize);
   
   free(intByte);
   
@@ -111,12 +111,35 @@ bool uecho_property_setintegerdata(uEchoProperty *prop, int value, size_t byteSi
  * uecho_property_getintegerdata
  ****************************************/
 
-bool uecho_property_getintegerdata(uEchoProperty *prop, size_t byteSize, int *val)
+bool uecho_property_getintegerdata(uEchoProperty *prop, size_t dataSize, int *data)
 {
-  if (prop->dataSize != byteSize)
+  if (prop->dataSize != dataSize)
     return false;
   
-  *val = uecho_byte2integer(prop->data, prop->dataSize);
+  *data = uecho_byte2integer(prop->data, dataSize);
+  
+  return true;
+}
+
+/****************************************
+ * uecho_property_setbytedata
+ ****************************************/
+
+bool uecho_property_setbytedata(uEchoProperty *prop, byte data)
+{
+  return uecho_property_setdata(prop, &data, 1);
+}
+
+/****************************************
+ * uecho_property_getbytedata
+ ****************************************/
+
+bool uecho_property_getbytedata(uEchoProperty *prop, byte *data)
+{
+  if (prop->dataSize != 1)
+    return false;
+  
+  *data = prop->data[0];
   
   return true;
 }

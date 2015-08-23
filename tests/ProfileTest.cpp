@@ -44,5 +44,7 @@ BOOST_AUTO_TEST_CASE(NodeProfileObjectMandatoryProperties)
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassSelfNodeInstanceListS));
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassSelfNodeClassListS));
   
+  BOOST_CHECK(uecho_nodeprofileclass_isoperatingstatus(obj));
+  
   uecho_object_delete(obj);
 }

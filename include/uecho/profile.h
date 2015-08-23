@@ -109,13 +109,18 @@ bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject *obj, bool stats);
 bool uecho_nodeprofileclass_setversion(uEchoObject *obj, int majorVer, int minorVer, uEchoMessageFormatType msgType);
 bool uecho_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId);
 bool uecho_nodeprofileclass_setdefaultid(uEchoObject *obj);
-  
-bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject *obj);
-
 bool uecho_nodeprofileclass_setinstancecount(uEchoObject *obj, int count);
 bool uecho_nodeprofileclass_setclasscount(uEchoObject *obj, int count);
 bool uecho_nodeprofileclass_setinstancelist(uEchoObject *obj, int listCnt, byte *listBytes);
 bool uecho_nodeprofileclass_setclasslist(uEchoObject *obj, int listCnt, byte *listBytes);
+
+bool uecho_nodeprofileclass_isoperatingstatus(uEchoObject *obj);
+int uecho_nodeprofileclass_getinstancecount(uEchoObject *obj);
+int uecho_nodeprofileclass_getclasscount(uEchoObject *obj);
+byte *uecho_nodeprofileclass_getinstancelist(uEchoObject *obj);
+byte *uecho_nodeprofileclass_getclasslist(uEchoObject *obj);
+  
+bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject *obj);
   
 #ifdef  __cplusplus
 } /* extern C */
