@@ -11,6 +11,7 @@
 #include <uecho/node.h>
 #include <uecho/class.h>
 #include <uecho/profile.h>
+#include <uecho/misc.h>
 
 /****************************************
 * uecho_class_new
@@ -109,4 +110,22 @@ void uecho_class_setclasscode(uEchoClass *cls, byte val)
 byte uecho_class_getclasscode(uEchoClass *cls)
 {
   return cls->code[1];
+}
+
+/****************************************
+ * uecho_class_isdevice
+ ****************************************/
+
+bool uecho_class_isdevice(uEchoClass *cls)
+{
+  return uecho_isdeviceclassgroupcode(cls->code[0]);
+}
+
+/****************************************
+ * uecho_class_isprofile
+ ****************************************/
+
+bool uecho_class_isprofile(uEchoClass *cls)
+{
+  return uecho_isprofileclassgroupcode(cls->code[0]);
 }

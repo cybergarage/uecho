@@ -22,6 +22,28 @@ uEchoClassCode uecho_objectcode2classcode(uEchoObjectCode objCode)
 }
 
 /****************************************
+ * uecho_isdeviceclassgroupcode
+ ****************************************/
+
+bool uecho_isdeviceclassgroupcode(byte code)
+{
+  if (uEchoClassGroupDeviceMax < code)
+    return false;
+  return true;
+}
+
+/****************************************
+ * uecho_isprofileclassgroupcode
+ ****************************************/
+
+bool uecho_isprofileclassgroupcode(byte code)
+{
+  if (uEchoClassGroupProfile != code)
+    return false;
+  return true;
+}
+
+/****************************************
  * uecho_integer2byte
  ****************************************/
 

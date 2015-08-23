@@ -91,9 +91,9 @@ enum {
   uEchoNodeProfileClassUniqueIdentifierDataLen            = 2,
   uEchoNodeProfileClassNumberOfSelfNodeInstancesLen       = 3,
   uEchoNodeProfileClassNumberOfSelfNodeClassesLen         = 2,
-  uEchoNodeProfileClassInstanceListNotificationMaxLen     = 253,
-  uEchoNodeProfileClassSelfNodeInstanceListSMaxLen        = 253,
-  uEchoNodeProfileClassSelfNodeClassListSMaxLen           = 17,
+  uEchoNodeProfileClassSelfNodeInstanceListSMax           = 0xFF,
+  uEchoNodeProfileClassSelfNodeClassListSMax              = 0xFF,
+  uEchoNodeProfileClassInstanceListNotificationMax        = uEchoNodeProfileClassSelfNodeInstanceListSMax,
 };
 
 enum {
@@ -114,9 +114,8 @@ bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject *obj);
 
 bool uecho_nodeprofileclass_setinstancecount(uEchoObject *obj, int count);
 bool uecho_nodeprofileclass_setclasscount(uEchoObject *obj, int count);
-bool uecho_nodeprofileclass_setnotificationlist(uEchoObject *obj);
-bool uecho_nodeprofileclass_setinstancelist(uEchoObject *obj);
-bool uecho_nodeprofileclass_setclasslist(uEchoObject *obj);
+bool uecho_nodeprofileclass_setinstancelist(uEchoObject *obj, int listCnt, byte *listBytes);
+bool uecho_nodeprofileclass_setclasslist(uEchoObject *obj, int listCnt, byte *listBytes);
   
 #ifdef  __cplusplus
 } /* extern C */
