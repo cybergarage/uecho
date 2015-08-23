@@ -140,6 +140,24 @@ bool uecho_nodeprofileclass_setdefaultid(uEchoObject *obj)
 }
 
 /****************************************
+ * uecho_nodeprofileclass_setinstancecount
+ ****************************************/
+
+bool uecho_nodeprofileclass_setinstancecount(uEchoObject *obj, size_t count)
+{
+  return true;
+}
+
+/****************************************
+ * uecho_nodeprofileclass_setclasscount
+ ****************************************/
+
+bool uecho_nodeprofileclass_setclasscount(uEchoObject *obj, size_t count)
+{
+  return true;
+}
+
+/****************************************
  * uecho_nodeprofileclass_updateinstanceproperties
  ****************************************/
 
