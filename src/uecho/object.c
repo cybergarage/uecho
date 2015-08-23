@@ -233,6 +233,15 @@ bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte
 }
 
 /****************************************
+ * uecho_object_setpropertyintegerdata
+ ****************************************/
+
+bool uecho_object_setpropertyintegerdata(uEchoObject *obj, uEchoPropertyCode code, int data, size_t dataLen)
+{
+  return uecho_propertylist_setintegerdata(obj->properties, code, data, dataLen);
+}
+
+/****************************************
  * uecho_object_setpropertyattribute
  ****************************************/
 
@@ -287,3 +296,11 @@ void uecho_object_clearproperties(uEchoObject *obj)
   uecho_object_clearpropertymapcaches(obj);
 }
 
+/****************************************
+ * uecho_object_getpropertyintegerdata
+ ****************************************/
+
+bool uecho_object_getpropertyintegerdata(uEchoObject *obj, uEchoPropertyCode code, size_t dataLen, int *data)
+{
+  return uecho_propertylist_getintegerdata(obj->properties, code, dataLen, data);
+}

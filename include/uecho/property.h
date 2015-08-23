@@ -72,6 +72,7 @@ void uecho_property_delete(uEchoProperty *prop);
 
 bool uecho_property_setcount(uEchoProperty *prop, size_t count);
 bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count);
+bool uecho_property_setintegerdata(uEchoProperty *prop, int value, size_t byteSize);
 bool uecho_property_cleardata(uEchoProperty *prop);
   
 uEchoProperty *uecho_property_next(uEchoProperty *prop);
@@ -82,6 +83,7 @@ uEchoPropertyCode uecho_property_getcode(uEchoProperty *prop);
 
 byte uecho_property_getdatasize(uEchoProperty *prop);
 byte *uecho_property_getdata(uEchoProperty *prop);
+bool uecho_property_getintegerdata(uEchoProperty *prop, size_t byteSize, int *val);
 
 void uecho_property_setattribute(uEchoProperty *prop, uEchoPropertyAttr val);
 uEchoPropertyAttr uecho_property_getattribute(uEchoProperty *prop);
@@ -100,8 +102,10 @@ void uecho_propertylist_delete(uEchoPropertyList *props);
 
 bool uecho_propertylist_set(uEchoPropertyList *props, uEchoPropertyCode code, uEchoPropertyAttr attr, byte *data, size_t dataLen);
 bool uecho_propertylist_setdata(uEchoPropertyList *props, uEchoPropertyCode code, byte *data, size_t dataLen);
+bool uecho_propertylist_setintegerdata(uEchoPropertyList *props, uEchoPropertyCode code, int data, size_t dataLen);
 bool uecho_propertylist_setattribute(uEchoPropertyList *props, uEchoPropertyCode code, uEchoPropertyAttr attr);
 uEchoProperty *uecho_propertylist_findbycode(uEchoPropertyList *props, uEchoPropertyCode code);
+bool uecho_propertylist_getintegerdata(uEchoPropertyList *props, uEchoPropertyCode code, size_t dataLen, int *data);
   
 #define uecho_propertylist_clear(props) uecho_list_clear((uEchoList *)props, (UECHO_LIST_DESTRUCTORFUNC)uecho_property_delete)
 #define uecho_propertylist_size(props) uecho_list_size((uEchoList *)props)
