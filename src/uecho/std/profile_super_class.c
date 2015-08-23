@@ -30,7 +30,16 @@ bool uecho_profile_addmandatoryproperties(uEchoObject *obj)
  * uecho_profile_setmanufacturercode
  ****************************************/
 
-bool uecho_profile_setmanufacturercode(uEchoObject *obj, byte *codes)
+bool uecho_profile_setmanufacturercode(uEchoObject *obj, uEchoObjectCode code)
 {
-  return uecho_object_setmanufacturercode(obj, codes);
+  return uecho_object_setmanufacturercode(obj, code);
+}
+
+/****************************************
+ * uecho_profile_getmanufacturercode
+ ****************************************/
+
+bool uecho_profile_getmanufacturercode(uEchoObject *obj)
+{
+  return uecho_object_getmanufacturercode(obj);
 }

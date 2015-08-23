@@ -37,7 +37,8 @@ enum {
  * Data Type
  ****************************************/
 
-typedef unsigned int uEchoObjectCode;
+typedef int uEchoManufacturerCode;
+typedef int uEchoObjectCode;
   
 typedef struct _uEchoObject {
   bool headFlag;
@@ -141,11 +142,16 @@ typedef enum {
   uEchoObjectGetPropertyMapMaxLen  = (uEchoObjectPropertyMapMaxLen + 1),
 } uEchoObjectEPCSize;
 
+enum {
+  uEchoManufactureCodeUnknown = 0x000000,
+};
+
 bool uecho_object_addmandatoryproperties(uEchoObject *obj);
 bool uecho_object_updatepropertymaps(uEchoObject *obj);
 void uecho_object_clearpropertymapcaches(uEchoObject *obj);
 
-bool uecho_object_setmanufacturercode(uEchoObject *obj, byte *codes);
+bool uecho_object_setmanufacturercode(uEchoObject *obj, uEchoManufacturerCode code);
+uEchoManufacturerCode uecho_object_getmanufacturercode(uEchoObject *obj);
   
 #ifdef  __cplusplus
 } /* extern C */

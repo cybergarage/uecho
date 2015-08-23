@@ -38,7 +38,7 @@ enum {
  * Data Type
  ****************************************/
 
-typedef unsigned int uEchoClassCode;
+typedef int uEchoClassCode;
   
 typedef struct _uEchoClass {
   bool headFlag;
