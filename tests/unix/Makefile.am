@@ -18,8 +18,8 @@ uechotest_SOURCES = \
 	..//ClassTest.cpp \
 	..//ControllerTest.cpp \
 	..//DeviceTest.cpp \
-	..//FunctionTest.cpp \
 	..//MessageTest.cpp \
+	..//MiscTest.cpp \
 	..//MutexTest.cpp \
 	..//NodeTest.cpp \
 	..//ObjectListTest.cpp \

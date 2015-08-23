@@ -10,6 +10,7 @@
 
 #include <uecho/node.h>
 #include <uecho/profile.h>
+#include <uecho/misc.h>
 
 /****************************************
 * uecho_node_new
@@ -188,7 +189,7 @@ bool uecho_node_addobject(uEchoNode *node, uEchoObject *obj)
 
   uecho_object_setparentnode(obj, node);
   
-  clsCode = uecho_classcode_to_classcode(objCode);
+  clsCode = uecho_objectcode2classcode(objCode);
   uecho_classlist_set(node->classes, clsCode);
 
   if (!uecho_node_updatenodeprofileclass(node))
