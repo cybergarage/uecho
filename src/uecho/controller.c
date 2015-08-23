@@ -25,7 +25,7 @@ uEchoController *uecho_controller_new(void)
     return NULL;
 
   cp->mutex = uecho_mutex_new();
-  cp->server = uecho_server_new();
+  cp->node = uecho_node_new();
   
   uecho_controller_setlasttid(cp, 0);
   
@@ -41,7 +41,7 @@ void uecho_controller_delete(uEchoController *cp)
 	uecho_controller_stop(cp);
 	
 	uecho_mutex_delete(cp->mutex);
-  uecho_server_delete(cp->server);
+  uecho_node_delete(cp->node);
 
   free(cp);
 }
@@ -54,7 +54,7 @@ bool uecho_controller_start(uEchoController *cp)
 {
   bool allActionsSucceeded = true;
   
-  allActionsSucceeded &= uecho_server_start(cp->server);
+  allActionsSucceeded &= uecho_node_start(cp->node);
   
   return allActionsSucceeded;
 }
@@ -67,7 +67,7 @@ bool uecho_controller_stop(uEchoController *cp)
 {
   bool allActionsSucceeded = true;
   
-  allActionsSucceeded &= uecho_server_stop(cp->server);
+  allActionsSucceeded &= uecho_node_stop(cp->node);
   
   return allActionsSucceeded;
 }
@@ -78,7 +78,7 @@ bool uecho_controller_stop(uEchoController *cp)
 
 bool uecho_controller_isrunning(uEchoController *cp)
 {
-  if (!uecho_server_isrunning(cp->server))
+  if (!uecho_node_isrunning(cp->node))
     return false;
 	return true;
 }
@@ -116,7 +116,7 @@ bool uecho_controller_postsearch(uEchoController *cp, uEchoMessage *msg)
   msgBytes = uecho_message_getbytes(msg);
   msgLen = uecho_message_size(msg);
   
-  return uecho_server_postsearch(cp->server, msgBytes, msgLen);
+  return uecho_node_postsearch(cp->node, msgBytes, msgLen);
 }
 
 /****************************************
@@ -126,9 +126,13 @@ bool uecho_controller_postsearch(uEchoController *cp, uEchoMessage *msg)
 bool uecho_controller_searchall(uEchoController *cp)
 {
   uEchoMessage *msg;
+  uEchoObject *obj;
   
   msg = uecho_message_search_new();
 
+  obj = uecho_message_getsourceobject(msg);
+  uecho_object_setcode(obj, uEchoNodeProfileObject);
+  
   return uecho_controller_postsearch(cp, msg);
 }
 
@@ -143,6 +147,9 @@ bool uecho_controller_searchobject(uEchoController *cp, byte objCode)
   uEchoProperty *prop;
   
   msg = uecho_message_search_new();
+  
+  obj = uecho_message_getsourceobject(msg);
+  uecho_object_setcode(obj, uEchoNodeProfileObject);
   
   obj = uecho_message_getdestinationobject(msg);
   uecho_object_setcode(obj, objCode);
