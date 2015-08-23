@@ -261,6 +261,15 @@ bool uecho_object_setpropertyintegerdata(uEchoObject *obj, uEchoPropertyCode cod
 }
 
 /****************************************
+ * uecho_object_setpropertybytedata
+ ****************************************/
+
+bool uecho_object_setpropertybytedata(uEchoObject *obj, uEchoPropertyCode code, byte data)
+{
+  return uecho_propertylist_setbytedata(obj->properties, code, data);
+}
+
+/****************************************
  * uecho_object_setpropertyattribute
  ****************************************/
 
@@ -323,3 +332,14 @@ bool uecho_object_getpropertyintegerdata(uEchoObject *obj, uEchoPropertyCode cod
 {
   return uecho_propertylist_getintegerdata(obj->properties, code, dataLen, data);
 }
+
+/****************************************
+ * uecho_object_getpropertybytedata
+ ****************************************/
+
+bool uecho_object_getpropertybytedata(uEchoObject *obj, uEchoPropertyCode code, byte *data)
+{
+  return uecho_propertylist_getbytedata(obj->properties, code, data);
+}
+
+

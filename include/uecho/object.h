@@ -93,11 +93,13 @@ bool uecho_object_isprofile(uEchoObject *obj);
 bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr);
 bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen);
 bool uecho_object_setpropertyintegerdata(uEchoObject *obj, uEchoPropertyCode code, int data, size_t dataLen);
+bool uecho_object_setpropertybytedata(uEchoObject *obj, uEchoPropertyCode code, byte data);
 bool uecho_object_setpropertyattribute(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr);
 
 uEchoProperty *uecho_object_getproperties(uEchoObject *obj);
 uEchoProperty *uecho_object_getproperty(uEchoObject *obj, uEchoPropertyCode code);
 bool uecho_object_getpropertyintegerdata(uEchoObject *obj, uEchoPropertyCode code, size_t dataLen, int *data);
+bool uecho_object_getpropertybytedata(uEchoObject *obj, uEchoPropertyCode code, byte *data);
 
 bool uecho_object_hasproperty(uEchoObject *obj, uEchoPropertyCode code);
 size_t uecho_object_getpropertycount(uEchoObject *obj);

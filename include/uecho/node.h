@@ -72,6 +72,12 @@ bool uecho_node_isrunning(uEchoNode *node);
 void uecho_object_setparentnode(uEchoObject *obj, uEchoNode *node);
 uEchoNode *uecho_object_getparentnode(uEchoObject *obj);
 
+/****************************************
+ * Macro
+ ****************************************/
+  
+#define uecho_node_getnodeprofileclassobject(node) uecho_node_getobjectbycode(node, uEchoNodeProfileObject)
+  
 #ifdef  __cplusplus
 } /* extern C */
 #endif

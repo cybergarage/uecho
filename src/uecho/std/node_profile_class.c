@@ -122,7 +122,7 @@ bool uecho_nodeprofileclass_setid(uEchoObject *obj, byte *manCode, byte *uniqId)
   prop += uEchoNodeProfileClassIdentificationManufacturerCodeLen;
   memcpy(prop, uniqId, uEchoNodeProfileClassIdentificationUniqueIdLen);
   
-  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassOperatingStatus, propData, uEchoNodeProfileClassIdentificationNumberLen);
+  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassIdentificationNumber, propData, uEchoNodeProfileClassIdentificationNumberLen);
 }
 
 /****************************************
@@ -150,6 +150,15 @@ bool uecho_nodeprofileclass_setclasscount(uEchoObject *obj, int count)
 }
 
 /****************************************
+ * uecho_nodeprofileclass_setinstancecount
+ ****************************************/
+
+bool uecho_nodeprofileclass_setinstancecount(uEchoObject *obj, int count)
+{
+  return uecho_object_setpropertyintegerdata(obj, uEchoNodeProfileClassNumberOfSelfNodeInstances, count, uEchoNodeProfileClassNumberOfSelfNodeInstancesLen);
+}
+
+/****************************************
  * uecho_nodeprofileclass_setclasslist
  ****************************************/
 
@@ -162,7 +171,7 @@ bool uecho_nodeprofileclass_setclasslist(uEchoObject *obj, int listCnt, byte *li
 }
 
 /****************************************
- * uecho_nodeprofileclass_setclasslist
+ * uecho_nodeprofileclass_setinstancelist
  ****************************************/
 
 bool uecho_nodeprofileclass_setinstancelist(uEchoObject *obj, int listCnt, byte *listBytes)
@@ -181,12 +190,64 @@ bool uecho_nodeprofileclass_setinstancelist(uEchoObject *obj, int listCnt, byte 
 }
 
 /****************************************
- * uecho_nodeprofileclass_setinstancecount
+ * uecho_nodeprofileclass_isoperatingstatus
  ****************************************/
 
-bool uecho_nodeprofileclass_setinstancecount(uEchoObject *obj, int count)
+bool uecho_nodeprofileclass_isoperatingstatus(uEchoObject *obj)
 {
-  return uecho_object_setpropertyintegerdata(obj, uEchoNodeProfileClassNumberOfSelfNodeInstances, count, uEchoNodeProfileClassNumberOfSelfNodeInstancesLen);
+  byte statsByte;
+  
+  if (!uecho_object_getpropertybytedata(obj, uEchoNodeProfileClassOperatingStatus, &statsByte))
+    return false;
+  
+  return (statsByte == uEchoNodeProfileClassBooting) ? true : false;
+}
+
+/****************************************
+ * uecho_nodeprofileclass_getinstancecount
+ ****************************************/
+
+int uecho_nodeprofileclass_getinstancecount(uEchoObject *obj)
+{
+  int count;
+  
+  if (!uecho_object_getpropertyintegerdata(obj, uEchoNodeProfileClassNumberOfSelfNodeInstances, uEchoNodeProfileClassNumberOfSelfNodeInstancesLen, &count))
+    return 0;
+
+  return count;
+}
+
+/****************************************
+ * uecho_nodeprofileclass_getclasscount
+ ****************************************/
+
+int uecho_nodeprofileclass_getclasscount(uEchoObject *obj)
+{
+  int count;
+  
+  if (!uecho_object_getpropertyintegerdata(obj, uEchoNodeProfileClassNumberOfSelfNodeClasses, uEchoNodeProfileClassNumberOfSelfNodeClassesLen, &count))
+    return 0;
+  
+  return count;
+}
+
+/****************************************
+ * uecho_nodeprofileclass_getinstancelist
+ ****************************************/
+
+byte *uecho_nodeprofileclass_getinstancelist(uEchoObject *obj)
+{
+  return 0;
+  
+}
+
+/****************************************
+ * uecho_nodeprofileclass_getclasslist
+ ****************************************/
+
+byte *uecho_nodeprofileclass_getclasslist(uEchoObject *obj)
+{
+  return 0;
 }
 
 /****************************************
