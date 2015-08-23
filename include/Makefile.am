@@ -15,6 +15,7 @@ uechoheaders = \
 	./uecho/core/message.h \
 	./uecho/core/server.h \
 	./uecho/device.h \
+	./uecho/misc.h \
 	./uecho/net/interface.h \
 	./uecho/net/socket.h \
 	./uecho/node.h \

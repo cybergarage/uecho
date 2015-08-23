@@ -21,7 +21,7 @@
 		21B06C171B7C8440004E9E09 /* ObjectListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B06C161B7C8440004E9E09 /* ObjectListTest.cpp */; };
 		21BCB1FA1B7349E900999D01 /* MutexTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21BCB1F81B7349E900999D01 /* MutexTest.cpp */; };
 		21BCB1FB1B7349E900999D01 /* ThreadTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21BCB1F91B7349E900999D01 /* ThreadTest.cpp */; };
-		21E7743F1B888FB0000086A0 /* FunctionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E7743E1B888FB0000086A0 /* FunctionTest.cpp */; };
+		21E7743F1B888FB0000086A0 /* MiscTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E7743E1B888FB0000086A0 /* MiscTest.cpp */; };
 		21EFF1A71B4AA06D002B5E57 /* NodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EFF1A61B4AA06D002B5E57 /* NodeTest.cpp */; };
 /* End PBXBuildFile section */
 
@@ -70,7 +70,7 @@
 		21B06C161B7C8440004E9E09 /* ObjectListTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectListTest.cpp; path = ../../ObjectListTest.cpp; sourceTree = "<group>"; };
 		21BCB1F81B7349E900999D01 /* MutexTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MutexTest.cpp; path = ../../MutexTest.cpp; sourceTree = "<group>"; };
 		21BCB1F91B7349E900999D01 /* ThreadTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ThreadTest.cpp; path = ../../ThreadTest.cpp; sourceTree = "<group>"; };
-		21E7743E1B888FB0000086A0 /* FunctionTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FunctionTest.cpp; path = ../../FunctionTest.cpp; sourceTree = "<group>"; };
+		21E7743E1B888FB0000086A0 /* MiscTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MiscTest.cpp; path = ../../MiscTest.cpp; sourceTree = "<group>"; };
 		21EFF1A61B4AA06D002B5E57 /* NodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeTest.cpp; path = ../../NodeTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,7 +122,7 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				21E7743E1B888FB0000086A0 /* FunctionTest.cpp */,
+				21E7743E1B888FB0000086A0 /* MiscTest.cpp */,
 				217142941B886682003ABA30 /* ClassListTest.cpp */,
 				217142951B886682003ABA30 /* ClassTest.cpp */,
 				215B49401B858916002B20CE /* DeviceTest.cpp */,
@@ -220,7 +220,7 @@
 				21BCB1FA1B7349E900999D01 /* MutexTest.cpp in Sources */,
 				215B49411B858916002B20CE /* DeviceTest.cpp in Sources */,
 				21EFF1A71B4AA06D002B5E57 /* NodeTest.cpp in Sources */,
-				21E7743F1B888FB0000086A0 /* FunctionTest.cpp in Sources */,
+				21E7743F1B888FB0000086A0 /* MiscTest.cpp in Sources */,
 				2183CDA71B6D0E1400EE7E49 /* MessageTest.cpp in Sources */,
 				216F1DFA1B4A5BAA003C7B6A /* uEchoTest.cpp in Sources */,
 				21B06C171B7C8440004E9E09 /* ObjectListTest.cpp in Sources */,

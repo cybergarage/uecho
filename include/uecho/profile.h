@@ -112,8 +112,8 @@ bool uecho_nodeprofileclass_setdefaultid(uEchoObject *obj);
   
 bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject *obj);
 
-bool uecho_nodeprofileclass_setinstancecount(uEchoObject *obj);
-bool uecho_nodeprofileclass_setclasscount(uEchoObject *obj);
+bool uecho_nodeprofileclass_setinstancecount(uEchoObject *obj, size_t count);
+bool uecho_nodeprofileclass_setclasscount(uEchoObject *obj, size_t count);
 bool uecho_nodeprofileclass_setnotificationlist(uEchoObject *obj);
 bool uecho_nodeprofileclass_setinstancelist(uEchoObject *obj);
 bool uecho_nodeprofileclass_setclasslist(uEchoObject *obj);

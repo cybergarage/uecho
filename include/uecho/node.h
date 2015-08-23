@@ -65,8 +65,6 @@ bool uecho_node_start(uEchoNode *node);
 bool uecho_node_stop(uEchoNode *node);
 bool uecho_node_isrunning(uEchoNode *node);
 
-uEchoClassCode uecho_classcode_to_classcode(uEchoObjectCode objCode);
-  
 /****************************************
  * Function (Object)
  ****************************************/
