@@ -16,6 +16,7 @@
 #include <uecho/util/mutex.h>
 #include <uecho/class.h>
 #include <uecho/object.h>
+#include <uecho/core/server.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -32,6 +33,7 @@ typedef struct _uEchoNode
   struct _uEchoNode *next;
     
   uEchoMutex *mutex;
+  uEchoServer *server;
 
   uEchoClassList *classes;
   uEchoObjectList *objects;
@@ -65,6 +67,8 @@ bool uecho_node_start(uEchoNode *node);
 bool uecho_node_stop(uEchoNode *node);
 bool uecho_node_isrunning(uEchoNode *node);
 
+bool uecho_node_postsearch(uEchoNode *node, byte *msg, size_t msgLen);
+  
 /****************************************
  * Function (Object)
  ****************************************/

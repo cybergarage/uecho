@@ -31,6 +31,7 @@ uEchoNode *uecho_node_new(void)
   node->mutex = uecho_mutex_new();
   node->classes = uecho_classlist_new();
   node->objects = uecho_objectlist_new();
+  node->server = uecho_server_new();
 
   obj = uecho_nodeprofileclass_new();
   uecho_node_addobject(node, obj);
@@ -49,7 +50,8 @@ void uecho_node_delete(uEchoNode *node)
   uecho_mutex_delete(node->mutex);
   uecho_classlist_delete(node->classes);
   uecho_objectlist_delete(node->objects);
-  
+  uecho_server_delete(node->server);
+
 	free(node);
 }
 
@@ -197,3 +199,51 @@ bool uecho_node_addobject(uEchoNode *node, uEchoObject *obj)
   
   return true;
 }
+
+/****************************************
+ * uecho_node_start
+ ****************************************/
+
+bool uecho_node_start(uEchoNode *node)
+{
+  bool allActionsSucceeded = true;
+  
+  allActionsSucceeded &= uecho_server_start(node->server);
+  
+  return allActionsSucceeded;
+}
+
+/****************************************
+ * uecho_node_stop
+ ****************************************/
+
+bool uecho_node_stop(uEchoNode *node)
+{
+  bool allActionsSucceeded = true;
+  
+  allActionsSucceeded &= uecho_server_stop(node->server);
+  
+  return allActionsSucceeded;
+}
+
+/****************************************
+ * uecho_node_isrunning
+ ****************************************/
+
+bool uecho_node_isrunning(uEchoNode *node)
+{
+  if (!uecho_server_isrunning(node->server))
+    return false;
+  return true;
+}
+
+/****************************************
+ * uecho_node_postsearch
+ ****************************************/
+
+bool uecho_node_postsearch(uEchoNode *node, byte *msgBytes, size_t msgLen)
+{
+  return uecho_server_postsearch(node->server, msgBytes, msgLen);
+}
+
+

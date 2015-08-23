@@ -86,7 +86,7 @@ bool uecho_server_start(uEchoServer *server);
 bool uecho_server_stop(uEchoServer *server);
 bool uecho_server_isrunning(uEchoServer *server);
 
-bool uecho_server_postsearch(uEchoServer *servers, byte *msg, size_t msgLen);
+bool uecho_server_postsearch(uEchoServer *server, byte *msg, size_t msgLen);
 
 // UDP Server
   

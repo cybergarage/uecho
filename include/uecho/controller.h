@@ -14,7 +14,7 @@
 #include <uecho/typedef.h>
 #include <uecho/const.h>
 #include <uecho/util/mutex.h>
-#include <uecho/core/server.h>
+#include <uecho/node.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -26,7 +26,7 @@ extern "C" {
 
 typedef struct _uEchoController {
 	uEchoMutex *mutex;
-  uEchoServer *server;
+  uEchoNode *node;
   uEchoTID lastTID;
 } uEchoController;
 	
@@ -36,6 +36,7 @@ typedef struct _uEchoController {
 
 uEchoController *uecho_controller_new(void);
 void uecho_controller_delete(uEchoController *cp);
+
 bool uecho_controller_start(uEchoController *cp);
 bool uecho_controller_stop(uEchoController *cp);
 bool uecho_controller_isrunning(uEchoController *cp);
