@@ -18,7 +18,6 @@
 
 bool uecho_object_addmandatoryproperties(uEchoObject *obj)
 {
-  byte manufactureCode[] = {0, 0, 0};
   byte zeroPropMap[] = {0};
   
   if (!obj)
@@ -27,7 +26,7 @@ bool uecho_object_addmandatoryproperties(uEchoObject *obj)
   // Manufacture Code
   
   uecho_object_addproperty(obj, uEchoObjectManufacturerCode, uEchoPropertyAttrRead);
-  uecho_object_setmanufacturercode(obj, manufactureCode);
+  uecho_object_setmanufacturercode(obj, uEchoManufactureCodeUnknown);
   
   // Property map properties
   
@@ -47,9 +46,21 @@ bool uecho_object_addmandatoryproperties(uEchoObject *obj)
  * uecho_object_setmanufacturercode
  ****************************************/
 
-bool uecho_object_setmanufacturercode(uEchoObject *obj, byte *codes)
+bool uecho_object_setmanufacturercode(uEchoObject *obj, uEchoManufacturerCode code)
 {
-  return uecho_object_setpropertydata(obj, uEchoObjectManufacturerCode, codes, uEchoObjectManufacturerCodeLen);
+  return uecho_object_setpropertyintegerdata(obj, uEchoObjectManufacturerCode, code, uEchoObjectManufacturerCodeLen);
+}
+
+/****************************************
+ * uecho_object_getmanufacturercode
+ ****************************************/
+
+uEchoManufacturerCode uecho_object_getmanufacturercode(uEchoObject *obj)
+{
+  uEchoManufacturerCode code;
+  if (!uecho_object_getpropertyintegerdata(obj, uEchoObjectManufacturerCode, uEchoObjectManufacturerCodeLen, &code))
+    return uEchoManufactureCodeUnknown;
+  return code;
 }
 
 /****************************************

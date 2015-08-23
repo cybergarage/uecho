@@ -34,7 +34,7 @@ bool uecho_device_addmandatoryproperties(uEchoObject *obj)
   // Standard Version Infomation
   
   uecho_object_addproperty(obj, uEchoDeviceStandardVersion, uEchoPropertyAttrRead);
-  uecho_device_setstandardversion(obj, uEchoDeviceVersionAppendixG);
+  uecho_device_setstandardversion(obj, uEchoDeviceDefaultVersionAppendix);
   
   // Fault Status
   
@@ -57,12 +57,40 @@ bool uecho_device_setoperatingstatus(uEchoObject *obj, bool stats)
 }
 
 /****************************************
+ * uecho_device_isoperatingstatus
+ ****************************************/
+
+bool uecho_device_isoperatingstatus(uEchoObject *obj)
+{
+  byte statsByte;
+  
+  if (!uecho_object_getpropertybytedata(obj, uEchoDeviceOperatingStatus, &statsByte))
+    return false;
+  
+  return (statsByte == uEchoDeviceOperatingStatusOn) ? true : false;
+}
+
+/****************************************
  * uecho_device_setinstallationlocation
  ****************************************/
 
 bool uecho_device_setinstallationlocation(uEchoObject *obj, byte locByte)
 {
   return uecho_object_setpropertydata(obj, uEchoDeviceInstallationLocation, &locByte, uEchoDeviceInstallationLocationSize);
+}
+
+/****************************************
+ * uecho_device_getinstallationlocation
+ ****************************************/
+
+byte uecho_device_getinstallationlocation(uEchoObject *obj)
+{
+  byte locByte;
+  
+  if (!uecho_object_getpropertybytedata(obj, uEchoDeviceInstallationLocation, &locByte))
+    return uEchoDeviceInstallationLocationUnknown;
+  
+  return locByte;
 }
 
 /****************************************
@@ -81,6 +109,29 @@ bool uecho_device_setstandardversion(uEchoObject *obj, char ver)
 }
 
 /****************************************
+ * uecho_device_getstandardversion
+ ****************************************/
+
+char uecho_device_getstandardversion(uEchoObject *obj)
+{
+  uEchoProperty *prop;
+  byte *verBytes;
+
+  prop = uecho_object_getproperty(obj, uEchoDeviceStandardVersion);
+  if (!prop)
+    return uEchoDeviceVersionUnknown;
+
+  if (uecho_property_getdatasize(prop) != uEchoDeviceStandardVersionSize)
+    return uEchoDeviceVersionUnknown;
+  
+  verBytes = uecho_property_getdata(prop);
+  if (!verBytes)
+    return uEchoDeviceVersionUnknown;
+  
+  return verBytes[2];
+}
+
+/****************************************
  * uecho_device_setfaultstatus
  ****************************************/
 
@@ -93,10 +144,34 @@ bool uecho_device_setfaultstatus(uEchoObject *obj, bool stats)
 }
 
 /****************************************
+ * uecho_device_isfaultstatus
+ ****************************************/
+
+bool uecho_device_isfaultstatus(uEchoObject *obj)
+{
+  byte statsByte;
+  
+  if (!uecho_object_getpropertybytedata(obj, uEchoDeviceFaultStatus, &statsByte))
+    return false;
+  
+  return (statsByte == uEchoDeviceFaultOccurred) ? true : false;
+}
+
+/****************************************
  * uecho_device_setmanufacturercode
  ****************************************/
 
-bool uecho_device_setmanufacturercode(uEchoObject *obj, byte *codes)
+bool uecho_device_setmanufacturercode(uEchoObject *obj, uEchoManufacturerCode code)
 {
-  return uecho_object_setmanufacturercode(obj, codes);
+  return uecho_object_setmanufacturercode(obj, code);
 }
+
+/****************************************
+ * uecho_device_getmanufacturercode
+ ****************************************/
+
+uEchoManufacturerCode uecho_device_getmanufacturercode(uEchoObject *obj)
+{
+  return uecho_object_getmanufacturercode(obj);
+}
+

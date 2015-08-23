@@ -62,7 +62,9 @@ enum {
 };
 
 bool uecho_profile_addmandatoryproperties(uEchoObject *obj);
-bool uecho_profile_setmanufacturercode(uEchoObject *obj, byte *codes);
+
+bool uecho_profile_setmanufacturercode(uEchoObject *obj, uEchoObjectCode code);
+bool uecho_profile_getmanufacturercode(uEchoObject *obj);
   
 /****************************************
  * Node Profile Class
