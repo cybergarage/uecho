@@ -29,6 +29,9 @@ uEchoMessage *uecho_message_search_new(void)
   uecho_message_setesv(msg, uEchoEsvReadRequest);
   uecho_message_setopc(msg, 1);
   
+  obj = uecho_message_getsourceobject(msg);
+  uecho_object_setcode(obj, uEchoNodeProfileObject);
+  
   obj = uecho_message_getdestinationobject(msg);
   uecho_object_setcode(obj, uEchoNodeProfileObject);
   
