@@ -28,3 +28,16 @@ BOOST_AUTO_TEST_CASE(DeviceSuperClassMandatoryProperties)
   
   uecho_object_delete(obj);
 }
+
+BOOST_AUTO_TEST_CASE(DeviceDefaultProperties)
+{
+  uEchoObject *obj = uecho_device_new();
+  
+  BOOST_CHECK_EQUAL(uecho_device_isoperatingstatus(obj), true);
+  BOOST_CHECK_EQUAL(uecho_device_isfaultstatus(obj), false);
+  BOOST_CHECK_EQUAL(uecho_device_getinstallationlocation(obj), uEchoDeviceInstallationLocationUnknown);
+  BOOST_CHECK_EQUAL(uecho_device_getstandardversion(obj), uEchoDeviceDefaultVersionAppendix);
+  BOOST_CHECK_EQUAL(uecho_device_getmanufacturercode(obj), uEchoManufactureCodeUnknown);
+  
+  uecho_object_delete(obj);
+}
