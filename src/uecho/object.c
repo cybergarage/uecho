@@ -325,6 +325,24 @@ void uecho_object_clearproperties(uEchoObject *obj)
 }
 
 /****************************************
+ * uecho_object_getpropertydatasize
+ ****************************************/
+
+int uecho_object_getpropertydatasize(uEchoObject *obj, uEchoPropertyCode code)
+{
+  return uecho_propertylist_getdatasize(obj->properties, code);
+}
+
+/****************************************
+ * uecho_object_getpropertydata
+ ****************************************/
+
+byte *uecho_object_getpropertydata(uEchoObject *obj, uEchoPropertyCode code)
+{
+  return uecho_propertylist_getdata(obj->properties, code);
+}
+
+/****************************************
  * uecho_object_getpropertyintegerdata
  ****************************************/
 

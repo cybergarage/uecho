@@ -109,6 +109,8 @@ bool uecho_propertylist_setbytedata(uEchoPropertyList *props, uEchoPropertyCode 
 bool uecho_propertylist_setattribute(uEchoPropertyList *props, uEchoPropertyCode code, uEchoPropertyAttr attr);
 uEchoProperty *uecho_propertylist_findbycode(uEchoPropertyList *props, uEchoPropertyCode code);
   
+byte uecho_propertylist_getdatasize(uEchoPropertyList *props, uEchoPropertyCode code);
+byte *uecho_propertylist_getdata(uEchoPropertyList *props, uEchoPropertyCode code);
 bool uecho_propertylist_getintegerdata(uEchoPropertyList *props, uEchoPropertyCode code, size_t dataLen, int *data);
 bool uecho_propertylist_getbytedata(uEchoPropertyList *props, uEchoPropertyCode code, byte *data);
   

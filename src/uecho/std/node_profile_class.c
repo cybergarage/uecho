@@ -167,6 +167,7 @@ bool uecho_nodeprofileclass_setclasslist(uEchoObject *obj, int listCnt, byte *li
   if (uEchoNodeProfileClassSelfNodeClassListSMax < listCnt) {
     listCnt = uEchoNodeProfileClassSelfNodeClassListSMax;
   }
+  listBytes[0] = listCnt;
   return uecho_object_setpropertydata(obj, uEchoNodeProfileClassSelfNodeClassListS, listBytes, ((listCnt * 2) + 1));
 }
 
@@ -181,6 +182,7 @@ bool uecho_nodeprofileclass_setinstancelist(uEchoObject *obj, int listCnt, byte 
   if (uEchoNodeProfileClassSelfNodeInstanceListSMax < listCnt) {
     listCnt = uEchoNodeProfileClassSelfNodeInstanceListSMax;
   }
+  listBytes[0] = listCnt;
   
   isSuccess = true;
   isSuccess &= uecho_object_setpropertydata(obj, uEchoNodeProfileClassSelfNodeInstanceListS, listBytes, ((listCnt * 3) + 1));
@@ -232,13 +234,21 @@ int uecho_nodeprofileclass_getclasscount(uEchoObject *obj)
 }
 
 /****************************************
+ * uecho_nodeprofileclass_getnotificationinstancelist
+ ****************************************/
+
+byte *uecho_nodeprofileclass_getnotificationinstancelist(uEchoObject *obj)
+{
+  return uecho_object_getpropertydata(obj, uEchoNodeProfileClassInstanceListNotification);
+}
+
+/****************************************
  * uecho_nodeprofileclass_getinstancelist
  ****************************************/
 
 byte *uecho_nodeprofileclass_getinstancelist(uEchoObject *obj)
 {
-  return 0;
-  
+  return uecho_object_getpropertydata(obj, uEchoNodeProfileClassSelfNodeInstanceListS);
 }
 
 /****************************************
@@ -247,7 +257,7 @@ byte *uecho_nodeprofileclass_getinstancelist(uEchoObject *obj)
 
 byte *uecho_nodeprofileclass_getclasslist(uEchoObject *obj)
 {
-  return 0;
+  return uecho_object_getpropertydata(obj, uEchoNodeProfileClassSelfNodeClassListS);
 }
 
 /****************************************

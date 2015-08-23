@@ -159,6 +159,36 @@ bool uecho_propertylist_setattribute(uEchoPropertyList *props, uEchoPropertyCode
 }
 
 /****************************************
+ * uecho_propertylist_getdatasize
+ ****************************************/
+
+byte uecho_propertylist_getdatasize(uEchoPropertyList *props, uEchoPropertyCode code)
+{
+  uEchoProperty *prop;
+  
+  prop = uecho_propertylist_getbycode(props, code);
+  if (!prop)
+    return false;
+  
+  return uecho_property_getdatasize(prop);
+}
+
+/****************************************
+ * uecho_propertylist_getdata
+ ****************************************/
+
+byte *uecho_propertylist_getdata(uEchoPropertyList *props, uEchoPropertyCode code)
+{
+  uEchoProperty *prop;
+  
+  prop = uecho_propertylist_getbycode(props, code);
+  if (!prop)
+    return false;
+  
+  return uecho_property_getdata(prop);
+}
+
+/****************************************
  * uecho_propertylist_getintegerdata
  ****************************************/
 

@@ -117,6 +117,7 @@ bool uecho_nodeprofileclass_setclasslist(uEchoObject *obj, int listCnt, byte *li
 bool uecho_nodeprofileclass_isoperatingstatus(uEchoObject *obj);
 int uecho_nodeprofileclass_getinstancecount(uEchoObject *obj);
 int uecho_nodeprofileclass_getclasscount(uEchoObject *obj);
+byte *uecho_nodeprofileclass_getnotificationinstancelist(uEchoObject *obj);
 byte *uecho_nodeprofileclass_getinstancelist(uEchoObject *obj);
 byte *uecho_nodeprofileclass_getclasslist(uEchoObject *obj);
   
