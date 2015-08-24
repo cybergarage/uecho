@@ -25,8 +25,9 @@ extern "C" {
  ****************************************/
 
 enum {
-  uEchoObjectCodeMin = 0x000000,
-  uEchoObjectCodeMax = 0xFFFFFF,
+  uEchoObjectCodeMin     = 0x000000,
+  uEchoObjectCodeMax     = 0xFFFFFF,
+  uEchoObjectCodeUnknown = uEchoObjectCodeMin,
 };
   
 enum {
@@ -60,7 +61,20 @@ typedef struct _uEchoObject {
 
   size_t getPropMapSize;
   byte *getPropMapBytes;
+
+  // Listener
+  void (*allMsgListener)(struct _uEchoObject *, byte, byte, size_t, byte *); /* uEchoObjectMessageListener */
 } uEchoObject, uEchoObjectList;
+
+typedef void (*uEchoObjectMessageListener)(uEchoObject *, byte esv, byte propCode, size_t propSize, byte *propData);
+
+typedef struct _uEchoObjectMessageListenerList {
+  bool headFlag;
+  struct _uEchoObject *prev;
+  struct _uEchoObject *next;
+    
+  uEchoObjectMessageListener listner;
+} uEchoObjectMessageListenerList;
 
 /****************************************
  * Function
