@@ -37,6 +37,7 @@ uEchoObject *uecho_object_new(void)
   obj->properties = uecho_propertylist_new();
 
   uecho_object_setmessagerequeslistener(obj, NULL);
+  obj->propMsgObservers = uecho_object_property_observer_manager_new();
   
   // Property map caches
   
@@ -67,6 +68,7 @@ void uecho_object_delete(uEchoObject *obj)
   uecho_object_clearpropertymapcaches(obj);
   
   uecho_propertylist_delete(obj->properties);
+  uecho_object_property_observer_manager_delete(obj->propMsgObservers);
 	
   free(obj);
 }
