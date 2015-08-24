@@ -63,21 +63,24 @@ typedef struct _uEchoObject {
   byte *getPropMapBytes;
 
   // Listener
+  
   void (*allMsgListener)(struct _uEchoObject *, byte, byte, size_t, byte *); /* uEchoObjectMessageListener */
+  void *propMsgListeners;
 } uEchoObject, uEchoObjectList;
 
-typedef void (*uEchoObjectMessageListener)(uEchoObject *, byte esv, byte propCode, size_t propSize, byte *propData);
+typedef void (*uEchoObjectMessageListener)(uEchoObject *, byte esv, uEchoPropertyCode propCode, size_t propSize, byte *propData);
 
-typedef struct _uEchoObjectMessageListenerList {
+typedef struct _uEchoObjectPropertyObserver {
   bool headFlag;
-  struct _uEchoObject *prev;
-  struct _uEchoObject *next;
-    
+  struct _uEchoObjectPropertyObserver *prev;
+  struct _uEchoObjectPropertyObserver *next;
+  
+  uEchoPropertyCode propCode;
   uEchoObjectMessageListener listner;
-} uEchoObjectMessageListenerList;
+} uEchoObjectPropertyObserver, uEchoObjectPropertyObserverManager;
 
 /****************************************
- * Function
+ * Function (Object)
  ****************************************/
 
 uEchoObject *uecho_object_new(void);
@@ -166,6 +169,31 @@ void uecho_object_clearpropertymapcaches(uEchoObject *obj);
 
 bool uecho_object_setmanufacturercode(uEchoObject *obj, uEchoManufacturerCode code);
 uEchoManufacturerCode uecho_object_getmanufacturercode(uEchoObject *obj);
+
+/****************************************
+ * Function (Property Observer)
+ ****************************************/
+  
+uEchoObjectPropertyObserver *uecho_object_property_observer_new(void);
+void uecho_object_property_observer_delete(uEchoObjectPropertyObserver *obs);
+#define uecho_object_property_observer_next(obs) (uEchoObjectPropertyObserver *)uecho_list_next((uEchoList *)obs)
+#define uecho_object_property_observer_remove(obs) uecho_list_remove((uEchoList *)obs)
+  
+void uecho_object_property_observer_setpropetycode(uEchoObjectPropertyObserver *obs, uEchoPropertyCode code);
+uEchoPropertyCode uecho_object_property_observer_getpropetycode(uEchoObjectPropertyObserver *obs);
+
+/****************************************
+ * Function (Thread List)
+ ****************************************/
+  
+uEchoObjectPropertyObserverManager *uecho_object_property_observer_manager_new();
+void uecho_object_property_observer_manager_delete(uEchoObjectPropertyObserverManager *obsMgr);
+  
+#define uecho_object_property_observer_manager_clear(obsMgr) uecho_list_clear((uEchoList *)obsMgr, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_property_observer_delete)
+#define uecho_object_property_observer_manager_size(obsMgr) uecho_list_size((uEchoList *)obsMgr)
+#define uecho_object_property_observer_manager_gets(obsMgr) (uEchoObjectPropertyObserver *)uecho_list_next((uEchoList *)obsMgr)
+#define uecho_object_property_observer_manager_add(obsMgr, thread) uecho_list_add((uEchoList *)obsMgr, (uEchoList *)thread)
+#define uecho_object_property_observer_manager_remove(thread) uecho_list_remove((uEchoList *)thread)
   
 #ifdef  __cplusplus
 } /* extern C */
