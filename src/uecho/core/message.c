@@ -111,7 +111,7 @@ uEchoTID uecho_message_gettid(uEchoMessage *msg)
  * uecho_message_setsourceobjectcode
  ****************************************/
 
-bool uecho_message_setsourceobjectcode(uEchoMessage *msg, uEchoObjectCode code)
+bool uecho_message_setsourceobjectcode(uEchoMessage *msg, int code)
 {
   return uecho_integer2byte(code, msg->SEOJ, uEchoEOJSize);
 }
@@ -120,7 +120,7 @@ bool uecho_message_setsourceobjectcode(uEchoMessage *msg, uEchoObjectCode code)
  * uecho_message_setdestinationobjectcode
  ****************************************/
 
-bool uecho_message_setdestinationobjectcode(uEchoMessage *msg, uEchoObjectCode code)
+bool uecho_message_setdestinationobjectcode(uEchoMessage *msg, int code)
 {
   return uecho_integer2byte(code, msg->DEOJ, uEchoEOJSize);
 }
@@ -129,7 +129,7 @@ bool uecho_message_setdestinationobjectcode(uEchoMessage *msg, uEchoObjectCode c
  * uecho_message_getsourceobjectcode
  ****************************************/
 
-uEchoObjectCode uecho_message_getsourceobjectcode(uEchoMessage *msg)
+int uecho_message_getsourceobjectcode(uEchoMessage *msg)
 {
   return uecho_byte2integer(msg->SEOJ, uEchoEOJSize);
 }
@@ -138,7 +138,7 @@ uEchoObjectCode uecho_message_getsourceobjectcode(uEchoMessage *msg)
  * uecho_message_getdestinationobjectcode
  ****************************************/
 
-uEchoObjectCode uecho_message_getdestinationobjectcode(uEchoMessage *msg)
+int uecho_message_getdestinationobjectcode(uEchoMessage *msg)
 {
   return uecho_byte2integer(msg->DEOJ, uEchoEOJSize);
 }

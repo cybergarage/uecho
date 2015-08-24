@@ -13,9 +13,8 @@
 
 #include <uecho/typedef.h>
 #include <uecho/const.h>
-#include <uecho/object.h>
-#include <uecho/property.h>
 #include <uecho/net/socket.h>
+#include <uecho/property.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -87,11 +86,11 @@ byte uecho_message_getopc(uEchoMessage *msg);
 void uecho_message_setehd1(uEchoMessage *msg, byte val);
 byte uecho_message_getehd1(uEchoMessage *msg);
 
-bool uecho_message_setsourceobjectcode(uEchoMessage *msg, uEchoObjectCode code);
-bool uecho_message_setdestinationobjectcode(uEchoMessage *msg, uEchoObjectCode code);
+bool uecho_message_setsourceobjectcode(uEchoMessage *msg, int code);
+bool uecho_message_setdestinationobjectcode(uEchoMessage *msg, int code);
 
-uEchoObjectCode uecho_message_getsourceobjectcode(uEchoMessage *msg);
-uEchoObjectCode uecho_message_getdestinationobjectcode(uEchoMessage *msg);
+int uecho_message_getsourceobjectcode(uEchoMessage *msg);
+int uecho_message_getdestinationobjectcode(uEchoMessage *msg);
   
 void uecho_message_setehd2(uEchoMessage *msg, byte val);
 byte uecho_message_getehd2(uEchoMessage *msg);

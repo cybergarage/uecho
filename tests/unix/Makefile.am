@@ -23,6 +23,7 @@ uechotest_SOURCES = \
 	..//MutexTest.cpp \
 	..//NodeTest.cpp \
 	..//ObjectListTest.cpp \
+	..//ObjectPropObsMgr.cpp \
 	..//ObjectTest.cpp \
 	..//ProfileTest.cpp \
 	..//PropertyListTest.cpp \
