@@ -47,7 +47,7 @@ bool uecho_isprofileclassgroupcode(byte code)
  * uecho_integer2byte
  ****************************************/
 
-void uecho_integer2byte(int val, byte *bytes, size_t byteSize)
+bool uecho_integer2byte(int val, byte *bytes, size_t byteSize)
 {
   size_t n, idx;
   
@@ -55,6 +55,8 @@ void uecho_integer2byte(int val, byte *bytes, size_t byteSize)
     idx = ((byteSize-1)-n);
     bytes[idx] = (val >> (n * 8)) & 0xFF;
   }
+  
+  return true;
 }
 
 /****************************************

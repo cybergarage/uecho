@@ -19,9 +19,6 @@ BOOST_AUTO_TEST_CASE(ObjCode2ClsCode)
   BOOST_CHECK_EQUAL(uecho_objectcode2classcode(0x001102), 0x0011);
 }
 
-void uecho_integer2byte(int val, byte *bytes, size_t byteSize);
-int uecho_byte2integer(byte *bytes, size_t byteSize);
-
 BOOST_AUTO_TEST_CASE(Byte2Integer)
 {
   byte intBytes[4];

@@ -104,14 +104,11 @@ uEchoTID uecho_controller_getnexttid(uEchoController *cp)
 
 bool uecho_controller_postsearch(uEchoController *cp, uEchoMessage *msg)
 {
-  uEchoObject *obj;
   byte *msgBytes;
   size_t msgLen;
   
   uecho_message_settid(msg, uecho_controller_getnexttid(cp));
-
-  obj = uecho_message_getsourceobject(msg);
-  uecho_object_setcode(obj, uEchoNodeProfileObject);
+  uecho_message_setsourceobjectcode(msg, uEchoNodeProfileObject);
   
   msgBytes = uecho_message_getbytes(msg);
   msgLen = uecho_message_size(msg);
@@ -126,13 +123,9 @@ bool uecho_controller_postsearch(uEchoController *cp, uEchoMessage *msg)
 bool uecho_controller_searchall(uEchoController *cp)
 {
   uEchoMessage *msg;
-  uEchoObject *obj;
   
   msg = uecho_message_search_new();
 
-  obj = uecho_message_getsourceobject(msg);
-  uecho_object_setcode(obj, uEchoNodeProfileObject);
-  
   return uecho_controller_postsearch(cp, msg);
 }
 
@@ -143,16 +136,11 @@ bool uecho_controller_searchall(uEchoController *cp)
 bool uecho_controller_searchobject(uEchoController *cp, byte objCode)
 {
   uEchoMessage *msg;
-  uEchoObject *obj;
   uEchoProperty *prop;
   
   msg = uecho_message_search_new();
   
-  obj = uecho_message_getsourceobject(msg);
-  uecho_object_setcode(obj, uEchoNodeProfileObject);
-  
-  obj = uecho_message_getdestinationobject(msg);
-  uecho_object_setcode(obj, objCode);
+  uecho_message_setdestinationobjectcode(msg, objCode);
   
   prop = uecho_message_getproperty(msg, 0);
   uecho_property_setcode(prop, uEchoNodeProfileClassOperatingStatus);
