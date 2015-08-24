@@ -35,6 +35,8 @@ uEchoObject *uecho_object_new(void)
   uecho_object_setinstancecode(obj, 0);
 
   obj->properties = uecho_propertylist_new();
+
+  uecho_object_setmessagerequeslistener(obj, NULL);
   
   // Property map caches
   
@@ -360,4 +362,62 @@ bool uecho_object_getpropertybytedata(uEchoObject *obj, uEchoPropertyCode code, 
   return uecho_propertylist_getbytedata(obj->properties, code, data);
 }
 
+/****************************************
+ * uecho_object_setmessagerequeslistener
+ ****************************************/
 
+void uecho_object_setmessagerequeslistener(uEchoObject *obj, uEchoObjectMessageListener listener)
+{
+  obj->allMsgObserver = listener;
+}
+
+/****************************************
+ * uecho_object_getmessagerequeslistener
+ ****************************************/
+
+uEchoObjectMessageListener uecho_object_getmessagerequeslistener(uEchoObject *obj)
+{
+  return obj->allMsgObserver;
+}
+
+/****************************************
+ * uecho_object_hasmessagerequeslistener
+ ****************************************/
+
+bool uecho_object_hasmessagerequeslistener(uEchoObject *obj)
+{
+  return obj->allMsgObserver ? true : false;
+}
+
+/****************************************
+ * uecho_object_setpropertyrequeslistener
+ ****************************************/
+
+bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code, uEchoObjectMessageListener listener)
+{
+  return uecho_object_property_observer_manager_setobserver(obj->propMsgObservers, code, listener);
+}
+
+/****************************************
+ * uecho_object_getpropertyrequeslistener
+ ****************************************/
+
+uEchoObjectMessageListener uecho_object_getpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code)
+{
+  uEchoObjectPropertyObserver *obs;
+  
+  obs = uecho_object_property_observer_manager_getobserver(obj->propMsgObservers, code);
+  if (!obs)
+    return NULL;
+  
+  return obs->listener;
+}
+
+/****************************************
+ * uecho_object_haspropertyrequeslistener
+ ****************************************/
+
+bool uecho_object_haspropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code)
+{
+  return (uecho_object_getpropertyrequeslistener(obj, code) != NULL) ? true : false;
+}

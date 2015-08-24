@@ -37,3 +37,43 @@ void uecho_object_property_observer_manager_delete(uEchoObjectPropertyObserverMa
 
 	free(obsMgr);
 }
+
+/****************************************
+ * uecho_object_property_observer_manager_setobserver
+ ****************************************/
+
+bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoPropertyCode code, uEchoObjectMessageListener listener)
+{
+  uEchoObjectPropertyObserver *obs;
+  
+  obs = uecho_object_property_observer_manager_getobserver(obsMgr, code);
+  if (obs) {
+    uecho_object_property_observer_remove(obs);
+    uecho_object_property_observer_delete(obs);
+  }
+  
+  obs = uecho_object_property_observer_new();
+  if (!obs)
+    return false;
+  
+  uecho_object_property_observer_setpropetycode(obs, code);
+  uecho_object_property_observer_setlistener(obs, listener);
+  
+  return uecho_object_property_observer_manager_addobserver(obsMgr, obs);
+}
+
+/****************************************
+ * uecho_object_property_observer_manager_getobserver
+ ****************************************/
+
+uEchoObjectPropertyObserver *uecho_object_property_observer_manager_getobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoPropertyCode code)
+{
+  uEchoObjectPropertyObserver *obs;
+  
+  for (obs = uecho_object_property_observer_manager_getobservers(obsMgr); obs; obs = uecho_object_property_observer_next(obs)) {
+    if (code == uecho_object_property_observer_getpropetycode(obs))
+      return obs;
+  }
+
+  return NULL;
+}
