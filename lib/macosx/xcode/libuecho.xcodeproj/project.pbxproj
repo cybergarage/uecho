@@ -56,6 +56,8 @@
 		21B06C191B7C85B0004E9E09 /* object_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B06C181B7C85B0004E9E09 /* object_list.c */; };
 		21D68B0F1B7C1DA60032552C /* node_profile_class.c in Sources */ = {isa = PBXBuildFile; fileRef = 21D68B0D1B7C1DA60032552C /* node_profile_class.c */; };
 		21E280621B7BA82C004956BA /* profile.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E280611B7BA82C004956BA /* profile.h */; };
+		21E703C11B8B3218000F6CD1 /* object_property_observer_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 21E703BF1B8B3218000F6CD1 /* object_property_observer_manager.c */; };
+		21E703C21B8B3218000F6CD1 /* object_property_observer.c in Sources */ = {isa = PBXBuildFile; fileRef = 21E703C01B8B3218000F6CD1 /* object_property_observer.c */; };
 		21EEC8581B7204D80012AB57 /* thread_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EEC8561B7204D80012AB57 /* thread_list.c */; };
 		21EEC8591B7204D80012AB57 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EEC8571B7204D80012AB57 /* thread.c */; };
 		21EFF1A01B4A9A5E002B5E57 /* controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EFF19E1B4A9A5E002B5E57 /* controller.h */; };
@@ -115,6 +117,8 @@
 		21B06C181B7C85B0004E9E09 /* object_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = object_list.c; sourceTree = "<group>"; };
 		21D68B0D1B7C1DA60032552C /* node_profile_class.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = node_profile_class.c; path = std/node_profile_class.c; sourceTree = "<group>"; };
 		21E280611B7BA82C004956BA /* profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profile.h; sourceTree = "<group>"; };
+		21E703BF1B8B3218000F6CD1 /* object_property_observer_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = object_property_observer_manager.c; sourceTree = "<group>"; };
+		21E703C01B8B3218000F6CD1 /* object_property_observer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = object_property_observer.c; sourceTree = "<group>"; };
 		21EEC8561B7204D80012AB57 /* thread_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread_list.c; sourceTree = "<group>"; };
 		21EEC8571B7204D80012AB57 /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread.c; sourceTree = "<group>"; };
 		21EFF19E1B4A9A5E002B5E57 /* controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controller.h; sourceTree = "<group>"; };
@@ -223,6 +227,8 @@
 				217142901B8865EF003ABA30 /* class_list.c */,
 				217142911B8865EF003ABA30 /* class.c */,
 				21976AB21B897C1F00A154CE /* misc.c */,
+				21E703BF1B8B3218000F6CD1 /* object_property_observer_manager.c */,
+				21E703C01B8B3218000F6CD1 /* object_property_observer.c */,
 				21678EF71A8D512000AE79AA /* net */,
 				21678EFC1A8D512000AE79AA /* util */,
 			);
@@ -382,6 +388,7 @@
 				217142921B8865EF003ABA30 /* class_list.c in Sources */,
 				21757F4B1B6A0CC600281E6F /* message.c in Sources */,
 				2159A1D21B751D2100A134D8 /* udp_server_list.c in Sources */,
+				21E703C11B8B3218000F6CD1 /* object_property_observer_manager.c in Sources */,
 				21976AB31B897C1F00A154CE /* misc.c in Sources */,
 				21678F0D1A8D512000AE79AA /* timer.c in Sources */,
 				21678F081A8D512000AE79AA /* list.c in Sources */,
@@ -389,6 +396,7 @@
 				21757F551B6A0E3200281E6F /* server.c in Sources */,
 				21678F041A8D512000AE79AA /* interface.c in Sources */,
 				21EFF1A41B4A9A76002B5E57 /* controller.c in Sources */,
+				21E703C21B8B3218000F6CD1 /* object_property_observer.c in Sources */,
 				21678F051A8D512000AE79AA /* interface_list.c in Sources */,
 				21678F0C1A8D512000AE79AA /* strings_tokenizer.c in Sources */,
 				21678F091A8D512000AE79AA /* mutex.c in Sources */,
