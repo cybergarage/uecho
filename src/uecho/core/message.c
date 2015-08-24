@@ -10,8 +10,9 @@
 
 #include <arpa/inet.h>
 
-#include <uecho/core/message.h>
 #include <uecho/net/socket.h>
+#include <uecho/core/message.h>
+#include <uecho/misc.h>
 
 /****************************************
 * uecho_message_new
@@ -30,10 +31,10 @@ uEchoMessage *uecho_message_new(void)
   uecho_message_setehd2(msg, uEchoEhd2);
 
   uecho_message_settid(msg, 0);
-    
-  msg->SEOJ = uecho_object_new();
-  msg->DEOJ = uecho_object_new();
-    
+  
+  uecho_message_setsourceobjectcode(msg, uEchoObjectCodeUnknown);
+  uecho_message_setdestinationobjectcode(msg, uEchoObjectCodeUnknown);
+  
   uecho_message_setesv(msg, 0);
 
   msg->EP = NULL;
@@ -52,9 +53,6 @@ void uecho_message_delete(uEchoMessage *msg)
 {
   uecho_message_clear(msg);
 
-  uecho_object_delete(msg->SEOJ);
-  uecho_object_delete(msg->DEOJ);
-  
 	free(msg);
 }
 
@@ -110,6 +108,42 @@ uEchoTID uecho_message_gettid(uEchoMessage *msg)
 }
 
 /****************************************
+ * uecho_message_setsourceobjectcode
+ ****************************************/
+
+bool uecho_message_setsourceobjectcode(uEchoMessage *msg, uEchoObjectCode code)
+{
+  return uecho_integer2byte(code, msg->SEOJ, uEchoEOJSize);
+}
+
+/****************************************
+ * uecho_message_setdestinationobjectcode
+ ****************************************/
+
+bool uecho_message_setdestinationobjectcode(uEchoMessage *msg, uEchoObjectCode code)
+{
+  return uecho_integer2byte(code, msg->DEOJ, uEchoEOJSize);
+}
+
+/****************************************
+ * uecho_message_getsourceobjectcode
+ ****************************************/
+
+uEchoObjectCode uecho_message_getsourceobjectcode(uEchoMessage *msg)
+{
+  return uecho_byte2integer(msg->SEOJ, uEchoEOJSize);
+}
+
+/****************************************
+ * uecho_message_getdestinationobjectcode
+ ****************************************/
+
+uEchoObjectCode uecho_message_getdestinationobjectcode(uEchoMessage *msg)
+{
+  return uecho_byte2integer(msg->DEOJ, uEchoEOJSize);
+}
+
+/****************************************
  * uecho_message_setopc
  ****************************************/
 
@@ -157,24 +191,6 @@ void uecho_message_setehd1(uEchoMessage *msg, byte val)
 byte uecho_message_getehd1(uEchoMessage *msg)
 {
   return msg->EHD1;
-}
-
-/****************************************
- * uecho_message_getsourceobject
- ****************************************/
-
-uEchoObject *uecho_message_getsourceobject(uEchoMessage *msg)
-{
-  return msg->SEOJ;
-}
-
-/****************************************
- * uecho_message_getdestinationobject
- ****************************************/
-
-uEchoObject *uecho_message_getdestinationobject(uEchoMessage *msg)
-{
-    return msg->DEOJ;
 }
 
 /****************************************
@@ -251,15 +267,15 @@ bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen)
   
   // SEOJ
   
-  uecho_object_setclassgroupcode(msg->SEOJ, data[4]);
-  uecho_object_setclasscode(msg->SEOJ, data[5]);
-  uecho_object_setinstancecode(msg->SEOJ, data[6]);
+  msg->SEOJ[0] = data[4];
+  msg->SEOJ[1] = data[5];
+  msg->SEOJ[2] = data[6];
   
   // DEOJ
   
-  uecho_object_setclassgroupcode(msg->DEOJ, data[7]);
-  uecho_object_setclasscode(msg->DEOJ, data[8]);
-  uecho_object_setinstancecode(msg->DEOJ, data[9]);
+  msg->DEOJ[0] = data[7];
+  msg->DEOJ[1] = data[8];
+  msg->DEOJ[2] = data[9];
   
   // ESV
   
@@ -355,12 +371,12 @@ byte *uecho_message_getbytes(uEchoMessage *msg)
   msg->bytes[1] = msg->EHD2;
   msg->bytes[2] = msg->TID[0];
   msg->bytes[3] = msg->TID[1];
-  msg->bytes[4] = msg->SEOJ->code[0];
-  msg->bytes[5] = msg->SEOJ->code[1];
-  msg->bytes[6] = msg->SEOJ->code[2];
-  msg->bytes[7] = msg->DEOJ->code[0];
-  msg->bytes[8] = msg->DEOJ->code[1];
-  msg->bytes[9] = msg->DEOJ->code[2];
+  msg->bytes[4] = msg->SEOJ[0];
+  msg->bytes[5] = msg->SEOJ[1];
+  msg->bytes[6] = msg->SEOJ[2];
+  msg->bytes[7] = msg->DEOJ[0];
+  msg->bytes[8] = msg->DEOJ[1];
+  msg->bytes[9] = msg->DEOJ[2];
   msg->bytes[10] = msg->ESV;
   msg->bytes[11] = msg->OPC;
 

@@ -96,17 +96,8 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
 
   BOOST_CHECK_EQUAL(uecho_message_gettid(msg), 0);
 
-  uEchoObject *SEOJ = uecho_message_getsourceobject(msg);
-  BOOST_CHECK_EQUAL(uecho_object_getcode(SEOJ), 0xA0B0C0);
-  BOOST_CHECK_EQUAL(uecho_object_getclassgroupcode(SEOJ), 0xA0);
-  BOOST_CHECK_EQUAL(uecho_object_getclasscode(SEOJ), 0xB0);
-  BOOST_CHECK_EQUAL(uecho_object_getinstancecode(SEOJ), 0xC0);
-  
-  uEchoObject *DEOJ = uecho_message_getdestinationobject(msg);
-  BOOST_CHECK_EQUAL(uecho_object_getcode(DEOJ), 0xD0E0F0);
-  BOOST_CHECK_EQUAL(uecho_object_getclassgroupcode(DEOJ), 0xD0);
-  BOOST_CHECK_EQUAL(uecho_object_getclasscode(DEOJ), 0xE0);
-  BOOST_CHECK_EQUAL(uecho_object_getinstancecode(DEOJ), 0xF0);
+  BOOST_CHECK_EQUAL(uecho_message_getsourceobjectcode(msg), 0xA0B0C0);
+  BOOST_CHECK_EQUAL(uecho_message_getdestinationobjectcode(msg), 0xD0E0F0);
   
   BOOST_CHECK_EQUAL(uecho_message_getesv(msg), uEchoEsvReadRequest);
   

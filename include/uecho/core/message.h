@@ -31,6 +31,8 @@ enum {
   uEchoMessageMinLen = (uEchoMessageHeaderLen + 3 + 3 + 1 + 1),
   uEchoEhd1 = 0x10,
   uEchoEhd2 = 0x81,
+  uEchoTIDSize = 2,
+  uEchoEOJSize = 3,
 };
 
 typedef enum {
@@ -56,9 +58,9 @@ typedef struct _uEchoMessage
 {
   byte EHD1;
   byte EHD2;
-  byte TID[2];
-  uEchoObject *SEOJ;
-  uEchoObject *DEOJ;
+  byte TID[uEchoTIDSize];
+  byte SEOJ[uEchoEOJSize];
+  byte DEOJ[uEchoEOJSize];
   uEchoEsvType ESV;
   byte OPC;
   uEchoProperty **EP;
@@ -84,9 +86,12 @@ byte uecho_message_getopc(uEchoMessage *msg);
 
 void uecho_message_setehd1(uEchoMessage *msg, byte val);
 byte uecho_message_getehd1(uEchoMessage *msg);
-  
-uEchoObject *uecho_message_getsourceobject(uEchoMessage *msg);
-uEchoObject *uecho_message_getdestinationobject(uEchoMessage *msg);
+
+bool uecho_message_setsourceobjectcode(uEchoMessage *msg, uEchoObjectCode code);
+bool uecho_message_setdestinationobjectcode(uEchoMessage *msg, uEchoObjectCode code);
+
+uEchoObjectCode uecho_message_getsourceobjectcode(uEchoMessage *msg);
+uEchoObjectCode uecho_message_getdestinationobjectcode(uEchoMessage *msg);
   
 void uecho_message_setehd2(uEchoMessage *msg, byte val);
 byte uecho_message_getehd2(uEchoMessage *msg);
