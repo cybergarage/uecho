@@ -47,7 +47,7 @@ typedef enum {
   uEchoEsvNotificationResponseRequired = 0x74,
   uEchoEsvNotificationResponse = 0x7A,
   uEchoEsvWriteReadResponse = 0x7E,
-} uEchoEsvType;
+} uEchoEsv;
 
 /****************************************
  * Data Type
@@ -60,7 +60,7 @@ typedef struct _uEchoMessage
   byte TID[uEchoTIDSize];
   byte SEOJ[uEchoEOJSize];
   byte DEOJ[uEchoEOJSize];
-  uEchoEsvType ESV;
+  uEchoEsv ESV;
   byte OPC;
   uEchoProperty **EP;
   byte *bytes;
@@ -95,9 +95,14 @@ int uecho_message_getdestinationobjectcode(uEchoMessage *msg);
 void uecho_message_setehd2(uEchoMessage *msg, byte val);
 byte uecho_message_getehd2(uEchoMessage *msg);
   
-void uecho_message_setesv(uEchoMessage *msg, uEchoEsvType val);
-uEchoEsvType uecho_message_getesv(uEchoMessage *msg);
+void uecho_message_setesv(uEchoMessage *msg, uEchoEsv val);
+uEchoEsv uecho_message_getesv(uEchoMessage *msg);
 
+bool uecho_message_iswriterequest(uEchoMessage *msg);
+bool uecho_message_isreaderequest(uEchoMessage *msg);
+bool uecho_message_isnotifyrequest(uEchoMessage *msg);
+
+bool uecho_message_addproperty(uEchoMessage *msg, uEchoProperty *prop);
 uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n);
 
 size_t uecho_message_size(uEchoMessage *msg);
@@ -110,6 +115,7 @@ bool uecho_message_equals(uEchoMessage *msg1, uEchoMessage *msg2);
 ****************************************/
 
 uEchoMessage *uecho_message_search_new(void);
+bool uecho_message_issearchrequest(uEchoMessage *msg);
 
 #ifdef  __cplusplus
 } /* extern C */

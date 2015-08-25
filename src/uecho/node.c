@@ -12,6 +12,8 @@
 #include <uecho/profile.h>
 #include <uecho/misc.h>
 
+void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg);
+
 /****************************************
 * uecho_node_new
 ****************************************/
@@ -31,8 +33,11 @@ uEchoNode *uecho_node_new(void)
   node->mutex = uecho_mutex_new();
   node->classes = uecho_classlist_new();
   node->objects = uecho_objectlist_new();
-  node->server = uecho_server_new();
 
+  node->server = uecho_server_new();
+  uecho_server_setuserdata(node->server, node);
+  uecho_server_setmessagelistener(node->server, uecho_node_servermessagelistener);
+  
   obj = uecho_nodeprofileclass_new();
   uecho_node_addobject(node, obj);
   
@@ -63,6 +68,15 @@ void uecho_node_clear(uEchoNode *node)
 {
   uecho_classlist_clear(node->classes);
   uecho_objectlist_clear(node->objects);
+}
+
+/****************************************
+ * uecho_node_getserver
+ ****************************************/
+
+uEchoServer *uecho_node_getserver(uEchoNode *node)
+{
+  return node->server;
 }
 
 /****************************************

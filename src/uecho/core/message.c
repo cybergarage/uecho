@@ -215,7 +215,7 @@ byte uecho_message_getehd2(uEchoMessage *msg)
  * uecho_message_setesv
  ****************************************/
 
-void uecho_message_setesv(uEchoMessage *msg, uEchoEsvType val)
+void uecho_message_setesv(uEchoMessage *msg, uEchoEsv val)
 {
   msg->ESV = val;
 }
@@ -224,9 +224,56 @@ void uecho_message_setesv(uEchoMessage *msg, uEchoEsvType val)
  * uecho_message_getesv
  ****************************************/
 
-uEchoEsvType uecho_message_getesv(uEchoMessage *msg)
+uEchoEsv uecho_message_getesv(uEchoMessage *msg)
 {
   return msg->ESV;
+}
+
+/****************************************
+ * uecho_message_iswriterequest
+ ****************************************/
+
+bool uecho_message_iswriterequest(uEchoMessage *msg)
+{
+  if ((msg->ESV == uEchoEsvWriteRequest) || (msg->ESV == uEchoEsvWriteRequestResponseRequired) || (msg->ESV == uEchoEsvWriteReadRequest))
+    return true;
+  return false;
+}
+
+/****************************************
+ * uecho_message_isreaderequest
+ ****************************************/
+
+bool uecho_message_isreaderequest(uEchoMessage *msg)
+{
+  if (msg->ESV == uEchoEsvReadRequest)
+    return true;
+  return false;
+}
+
+/****************************************
+ * uecho_message_isnotifyrequest
+ ****************************************/
+
+bool uecho_message_isnotifyrequest(uEchoMessage *msg)
+{
+  if (msg->ESV == uEchoEsvNotificationRequest)
+    return true;
+  return false;
+}
+
+/****************************************
+ * uecho_message_addproperty
+ ****************************************/
+
+bool uecho_message_addproperty(uEchoMessage *msg, uEchoProperty *prop)
+{
+  msg->OPC++;
+  
+  msg->EP = (uEchoProperty**)realloc(msg->EP, sizeof(uEchoProperty*) * msg->OPC);
+  msg->EP[(msg->OPC - 1)] = prop;
+  
+  return true;
 }
 
 /****************************************
