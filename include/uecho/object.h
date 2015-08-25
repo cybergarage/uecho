@@ -202,6 +202,7 @@ uEchoObjectPropertyObserverManager *uecho_object_property_observer_manager_new()
 void uecho_object_property_observer_manager_delete(uEchoObjectPropertyObserverManager *obsMgr);
 bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoPropertyCode code, uEchoObjectMessageListener listener);
 uEchoObjectPropertyObserver *uecho_object_property_observer_manager_getobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoPropertyCode code);
+void uecho_object_property_observer_manager_notifyrequestproperty(uEchoObjectPropertyObserverManager *mgr, uEchoEsv esv, uEchoProperty *msgProp);
   
 #define uecho_object_property_observer_manager_clear(obsMgr) uecho_list_clear((uEchoList *)obsMgr, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_property_observer_delete)
 #define uecho_object_property_observer_manager_getobservercount(obsMgr) uecho_list_size((uEchoList *)obsMgr)

@@ -77,3 +77,19 @@ uEchoObjectPropertyObserver *uecho_object_property_observer_manager_getobserver(
 
   return NULL;
 }
+
+/****************************************
+ * uecho_object_property_observer_manager_notifyrequestproperty
+ ****************************************/
+
+void uecho_object_property_observer_manager_notifyrequestproperty(uEchoObjectPropertyObserverManager *obsMgr, uEchoEsv esv, uEchoProperty *msgProp)
+{
+  uEchoObjectPropertyObserver *obs;
+  
+  for (obs = uecho_object_property_observer_manager_getobservers(obsMgr); obs; obs = uecho_object_property_observer_next(obs)) {
+    if (uecho_property_getcode(msgProp) != uecho_object_property_observer_getpropetycode(obs))
+      continue;
+    obs->listener(esv, msgProp);
+  }
+  
+}

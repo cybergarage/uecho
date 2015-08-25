@@ -423,3 +423,4 @@ bool uecho_object_haspropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode 
 {
   return (uecho_object_getpropertyrequeslistener(obj, code) != NULL) ? true : false;
 }
+
