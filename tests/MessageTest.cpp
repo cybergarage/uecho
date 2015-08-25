@@ -121,7 +121,8 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
 BOOST_AUTO_TEST_CASE(MessageSearch)
 {
   uEchoMessage *msg = uecho_message_search_new();
-  
+
+  BOOST_CHECK(uecho_message_issearchrequest(msg));
   BOOST_CHECK_EQUAL(uecho_message_size(msg), 14);
   
   uecho_message_delete(msg);

@@ -50,6 +50,8 @@ void uecho_node_clear(uEchoNode *node);
 #define uecho_node_next(node) (uEchoNode *)uecho_list_next((uEchoList *)node)
 #define uecho_node_remove(node) uecho_list_remove((uEchoList *)node)
 
+uEchoServer *uecho_node_getserver(uEchoNode *node);
+
 uEchoClass *uecho_node_getclasses(uEchoNode *node);
 uEchoClass *uecho_node_getclassbycode(uEchoNode *node, uEchoClassCode code);
 bool uecho_node_hasclassbycode(uEchoNode *node, uEchoClassCode code);
