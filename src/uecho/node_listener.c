@@ -12,11 +12,16 @@
 #include <uecho/core/server.h>
 
 /****************************************
- * uecho_object_notifymessage
+ * uecho_object_notifyrequestproperty
  ****************************************/
 
-void uecho_object_notifymessageproperty(uEchoObject *obj, uEchoProperty *msgProp)
+void uecho_object_notifyrequestproperty(uEchoObject *obj, uEchoEsv esv, uEchoProperty *msgProp)
 {
+  if (obj->allMsgObserver) {
+    obj->allMsgObserver(obj, esv, msgProp);
+  }
+  
+  uecho_object_property_observer_manager_notifyrequestproperty(obj->propMsgObservers, esv, msgProp);
 }
 
 /****************************************
@@ -67,7 +72,7 @@ void uecho_object_notifymessage(uEchoObject *obj, uEchoMessage *msg)
     msgProp = uecho_message_getproperty(msg, n);
     if (!msgProp)
       continue;
-    uecho_object_notifymessageproperty(obj, msgProp);
+    uecho_object_notifyrequestproperty(obj, msgEsv, msgProp);
   }
 }
 
