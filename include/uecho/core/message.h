@@ -64,6 +64,8 @@ typedef struct _uEchoMessage
   byte OPC;
   uEchoProperty **EP;
   byte *bytes;
+
+  char *srcAddr;
 } uEchoMessage;
 
 /****************************************
@@ -107,6 +109,9 @@ uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n);
 
 size_t uecho_message_size(uEchoMessage *msg);
 byte *uecho_message_getbytes(uEchoMessage *msg);
+
+void uecho_message_setsourceaddress(uEchoMessage *msg, const char *addr);
+const char *uecho_message_getsourceaddress(uEchoMessage *msg);
 
 uEchoMessage *uecho_message_copy(uEchoMessage *msg);
 bool uecho_message_equals(uEchoMessage *msg1, uEchoMessage *msg2);
