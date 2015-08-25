@@ -10,6 +10,7 @@
 
 #include <arpa/inet.h>
 
+#include <uecho/util/strings.h>
 #include <uecho/net/socket.h>
 #include <uecho/core/message.h>
 #include <uecho/misc.h>
@@ -229,6 +230,27 @@ uEchoEsv uecho_message_getesv(uEchoMessage *msg)
  * uecho_message_iswriterequest
  ****************************************/
 
+void uecho_message_setsourceaddress(uEchoMessage *msg, const char *addr)
+{
+  if (msg->srcAddr) {
+    free(msg->srcAddr);
+  }
+  msg->srcAddr = uecho_strdup(addr);
+}
+
+/****************************************
+ * uecho_message_iswriterequest
+ ****************************************/
+
+const char *uecho_message_getsourceaddress(uEchoMessage *msg)
+{
+  return msg->srcAddr;
+}
+
+/****************************************
+ * uecho_message_iswriterequest
+ ****************************************/
+
 bool uecho_message_iswriterequest(uEchoMessage *msg)
 {
   if ((msg->ESV == uEchoEsvWriteRequest) || (msg->ESV == uEchoEsvWriteRequestResponseRequired) || (msg->ESV == uEchoEsvWriteReadRequest))
@@ -369,10 +391,12 @@ bool uecho_message_parsepacket(uEchoMessage *msg, uEchoDatagramPacket *dgmPkt)
   if (!msg || !dgmPkt)
     return false;
   
-  return uecho_message_parse(
-        msg,
-        uecho_socket_datagram_packet_getdata(dgmPkt),
-        uecho_socket_datagram_packet_getlength(dgmPkt));
+  if (!uecho_message_parse(msg, uecho_socket_datagram_packet_getdata(dgmPkt), uecho_socket_datagram_packet_getlength(dgmPkt)))
+    return false;
+  
+  uecho_message_setsourceaddress(msg, uecho_socket_datagram_packet_getremoteaddress(dgmPkt));
+  
+  return true;
 }
 
 /****************************************
@@ -456,6 +480,7 @@ uEchoMessage *uecho_message_copy(uEchoMessage *srcMsg)
   uecho_message_setsourceobjectcode(newMsg, uecho_message_getsourceobjectcode(srcMsg));
   uecho_message_setdestinationobjectcode(newMsg, uecho_message_getdestinationobjectcode(srcMsg));
   uecho_message_setesv(newMsg, uecho_message_getesv(srcMsg));
+  uecho_message_setsourceaddress(newMsg, uecho_message_getsourceaddress(srcMsg));
   
   srcMsgOpc = uecho_message_getopc(srcMsg);
   for (n=0; n<srcMsgOpc; n++) {
