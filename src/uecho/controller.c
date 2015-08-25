@@ -11,6 +11,8 @@
 #include <uecho/controller.h>
 #include <uecho/profile.h>
 
+void uecho_controller_servermessagelistener(uEchoServer *server, uEchoMessage *msg);
+
 /****************************************
  * uecho_controller_new
  ****************************************/
@@ -18,6 +20,7 @@
 uEchoController *uecho_controller_new(void)
 {
 	uEchoController *cp;
+  uEchoServer *server;
 
   cp = (uEchoController *)malloc(sizeof(uEchoController));
 
@@ -26,6 +29,10 @@ uEchoController *uecho_controller_new(void)
 
   cp->mutex = uecho_mutex_new();
   cp->node = uecho_node_new();
+  
+  server = uecho_node_getserver(cp->node);
+  uecho_server_setuserdata(server, cp);
+  uecho_server_setmessagelistener(server, uecho_controller_servermessagelistener);
   
   uecho_controller_setlasttid(cp, 0);
   

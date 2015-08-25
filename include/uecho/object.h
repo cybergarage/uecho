@@ -15,6 +15,7 @@
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
 #include <uecho/property.h>
+#include <uecho/core/message.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -64,11 +65,11 @@ typedef struct _uEchoObject {
 
   // Listener
   
-  void (*allMsgObserver)(struct _uEchoObject *, byte, byte, size_t, byte *); /* uEchoObjectMessageListener */
+  void (*allMsgObserver)(struct _uEchoObject *, uEchoEsv, uEchoProperty *prop); /* uEchoObjectMessageListener */
   void *propMsgObservers;
 } uEchoObject, uEchoObjectList;
 
-typedef void (*uEchoObjectMessageListener)(uEchoObject *, byte esv, uEchoPropertyCode propCode, size_t propSize, byte *propData);
+typedef void (*uEchoObjectMessageListener)(uEchoObject *, uEchoEsv, uEchoProperty *);
 
 typedef struct _uEchoObjectPropertyObserver {
   bool headFlag;
