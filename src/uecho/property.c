@@ -286,3 +286,46 @@ bool uecho_property_isannouncement(uEchoProperty *prop)
     return true;
   return false;
 }
+
+/****************************************
+ * uecho_property_copy
+ ****************************************/
+
+uEchoProperty *uecho_property_copy(uEchoProperty *srcProp)
+{
+  uEchoProperty *newProp;
+  
+  newProp = uecho_property_new();
+  
+  if (!newProp)
+    return NULL;
+  
+  uecho_property_setcode(newProp, uecho_property_getcode(srcProp));
+  uecho_property_setattribute(newProp, uecho_property_getattribute(srcProp));
+  uecho_property_setdata(newProp, uecho_property_getdata(srcProp), uecho_property_getdatasize(srcProp));
+  
+  return newProp;
+}
+
+/****************************************
+ * uecho_property_equals
+ ****************************************/
+
+bool uecho_property_equals(uEchoProperty *prop1, uEchoProperty *prop2)
+{
+  if (uecho_property_getcode(prop1) != uecho_property_getcode(prop2))
+    return false;
+
+  if (uecho_property_getattribute(prop1) != uecho_property_getattribute(prop2))
+    return false;
+
+  if (uecho_property_getdatasize(prop1) != uecho_property_getdatasize(prop2))
+    return false;
+
+  if (memcmp(uecho_property_getdata(prop1), uecho_property_getdata(prop2), uecho_property_getdatasize(prop1)) != 0)
+    return false;
+
+  return true;
+}
+
+
