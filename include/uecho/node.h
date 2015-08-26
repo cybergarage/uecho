@@ -70,6 +70,20 @@ bool uecho_node_stop(uEchoNode *node);
 bool uecho_node_isrunning(uEchoNode *node);
 
 bool uecho_node_postsearch(uEchoNode *node, byte *msg, size_t msgLen);
+
+/****************************************
+ * Function (Node List)
+ ****************************************/
+  
+uEchoNodeList *uecho_nodelist_new(void);
+void uecho_nodelist_delete(uEchoNodeList *nodes);
+  
+uEchoNode *uecho_nodelist_getbyaddress(uEchoNodeList *nodes, const char addr);
+  
+#define uecho_nodelist_clear(nodes) uecho_list_clear((uEchoList *)nodes, (UECHO_LIST_DESTRUCTORFUNC)uecho_node_delete)
+#define uecho_nodelist_size(nodes) uecho_list_size((uEchoList *)nodes)
+#define uecho_nodelist_gets(nodes) (uEchoNode *)uecho_list_next((uEchoList *)nodes)
+#define uecho_nodelist_add(nodes,node) uecho_list_add((uEchoList *)nodes, (uEchoList *)node)nodelist
   
 /****************************************
  * Function (Object)

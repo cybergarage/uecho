@@ -106,6 +106,7 @@ bool uecho_message_isnotifyrequest(uEchoMessage *msg);
 
 bool uecho_message_addproperty(uEchoMessage *msg, uEchoProperty *prop);
 uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n);
+uEchoProperty *uecho_message_getpropertybycode(uEchoMessage *msg, uEchoPropertyCode code);
 
 size_t uecho_message_size(uEchoMessage *msg);
 byte *uecho_message_getbytes(uEchoMessage *msg);

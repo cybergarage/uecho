@@ -10,6 +10,8 @@
 
 #include <uecho/node.h>
 #include <uecho/controller.h>
+#include <uecho/profile.h>
+#include <uecho/misc.h>
 
 /****************************************
  * uecho_controller_handlesearchmessage
@@ -17,6 +19,27 @@
 
 void uecho_controller_handlesearchmessage(uEchoController *ctrl, uEchoMessage *msg)
 {
+  uEchoProperty *prop;
+  uEchoObjectCode objCode;
+  byte *propData;
+  size_t propSize, instanceSize;
+  size_t idx;
+  
+  prop = uecho_message_getpropertybycode(msg, uEchoNodeProfileClassSelfNodeInstanceListS);
+  if (!prop)
+    return;
+  
+  propSize = uecho_property_getdatasize(prop);
+  if (propSize < 1)
+    return;
+
+  propData = uecho_property_getdata(prop);
+
+  instanceSize = propData[0];
+  
+  for (idx=1; (idx+2)<propSize; idx+=3) {
+    objCode = uecho_byte2integer((propData + idx), 3);
+  }
 }
 
 /****************************************

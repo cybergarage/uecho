@@ -51,6 +51,7 @@
 		2185D9CF1B68D5C600A5B0C3 /* object.c in Sources */ = {isa = PBXBuildFile; fileRef = 2185D9CE1B68D5C600A5B0C3 /* object.c */; };
 		2185D9D11B68DEED00A5B0C3 /* property.h in Headers */ = {isa = PBXBuildFile; fileRef = 2185D9D01B68DEED00A5B0C3 /* property.h */; };
 		2185D9D31B68DF1E00A5B0C3 /* property.c in Sources */ = {isa = PBXBuildFile; fileRef = 2185D9D21B68DF1E00A5B0C3 /* property.c */; };
+		218688EE1B8D676B00B10494 /* node_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 218688ED1B8D676B00B10494 /* node_list.c */; };
 		218F56911B8C09E100C03219 /* node_listener.c in Sources */ = {isa = PBXBuildFile; fileRef = 218F56901B8C09E100C03219 /* node_listener.c */; };
 		218F56931B8C425D00C03219 /* controller_listener.c in Sources */ = {isa = PBXBuildFile; fileRef = 218F56921B8C425D00C03219 /* controller_listener.c */; };
 		21976AB31B897C1F00A154CE /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 21976AB21B897C1F00A154CE /* misc.c */; };
@@ -114,6 +115,7 @@
 		2185D9CE1B68D5C600A5B0C3 /* object.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = object.c; sourceTree = "<group>"; };
 		2185D9D01B68DEED00A5B0C3 /* property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property.h; sourceTree = "<group>"; };
 		2185D9D21B68DF1E00A5B0C3 /* property.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = property.c; sourceTree = "<group>"; };
+		218688ED1B8D676B00B10494 /* node_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = node_list.c; sourceTree = "<group>"; };
 		218F56901B8C09E100C03219 /* node_listener.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = node_listener.c; sourceTree = "<group>"; };
 		218F56921B8C425D00C03219 /* controller_listener.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = controller_listener.c; sourceTree = "<group>"; };
 		21976AB21B897C1F00A154CE /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = misc.c; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				21EFF1A21B4A9A76002B5E57 /* controller.c */,
 				218F56921B8C425D00C03219 /* controller_listener.c */,
 				21EFF1A31B4A9A76002B5E57 /* node.c */,
+				218688ED1B8D676B00B10494 /* node_list.c */,
 				218F56901B8C09E100C03219 /* node_listener.c */,
 				217142901B8865EF003ABA30 /* class_list.c */,
 				217142911B8865EF003ABA30 /* class.c */,
@@ -411,6 +414,7 @@
 				215B49481B858AEC002B20CE /* device_super_class.c in Sources */,
 				21B06C191B7C85B0004E9E09 /* object_list.c in Sources */,
 				21D68B0F1B7C1DA60032552C /* node_profile_class.c in Sources */,
+				218688EE1B8D676B00B10494 /* node_list.c in Sources */,
 				21EEC8591B7204D80012AB57 /* thread.c in Sources */,
 				21851C5C1B74804400289276 /* datagram_packet.c in Sources */,
 				214186CB1B6B47F20086EEC0 /* message_search.c in Sources */,
