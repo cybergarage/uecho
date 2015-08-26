@@ -10,6 +10,7 @@
 
 #include <uecho/node.h>
 #include <uecho/core/server.h>
+#include <uecho/core/observer.h>
 
 /****************************************
  * uecho_object_notifyrequestproperty
@@ -17,11 +18,17 @@
 
 void uecho_object_notifyrequestproperty(uEchoObject *obj, uEchoEsv esv, uEchoProperty *msgProp)
 {
+  uEchoObjectPropertyObserver *obs;
+  
   if (obj->allMsgObserver) {
     obj->allMsgObserver(obj, esv, msgProp);
   }
   
-  uecho_object_property_observer_manager_notifyrequestproperty(obj->propMsgObservers, esv, msgProp);
+  for (obs = uecho_object_property_observer_manager_getobservers(obj->propObserverMgr); obs; obs = uecho_object_property_observer_next(obs)) {
+    if (uecho_property_getcode(msgProp) != uecho_object_property_observer_getpropetycode(obs))
+      continue;
+    obs->listener(obj, esv, msgProp);
+  }
 }
 
 /****************************************
