@@ -75,6 +75,7 @@ bool uecho_node_stop(uEchoNode *node);
 bool uecho_node_isrunning(uEchoNode *node);
 
 bool uecho_node_postsearch(uEchoNode *node, byte *msg, size_t msgLen);
+bool uecho_node_postmessage(uEchoNode *node, const char *addr, byte *msg, size_t msgLen);
 
 /****************************************
  * Function (Node List)

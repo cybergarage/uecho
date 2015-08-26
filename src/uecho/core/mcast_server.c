@@ -223,7 +223,7 @@ bool uecho_mcast_server_isrunning(uEchoMcastServer *server)
  * uecho_mcast_server_post
  ****************************************/
 
-bool uecho_mcast_server_post(uEchoMcastServer *server, byte *msg, size_t msgLen)
+bool uecho_mcast_server_post(uEchoMcastServer *server, const byte *msg, size_t msgLen)
 {
   size_t sentLen = 0;
   
