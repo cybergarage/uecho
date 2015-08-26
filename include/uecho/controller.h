@@ -28,6 +28,7 @@ typedef struct _uEchoController {
 	uEchoMutex *mutex;
   uEchoNode *node;
   uEchoTID lastTID;
+  uEchoNodeList *nodes;
 } uEchoController;
 	
 /****************************************
@@ -37,13 +38,17 @@ typedef struct _uEchoController {
 uEchoController *uecho_controller_new(void);
 void uecho_controller_delete(uEchoController *cp);
 
+bool uecho_controller_addnode(uEchoController *cp, uEchoNode *node);
+uEchoNode *uecho_controller_getnodebyaddress(uEchoController *cp, const char *addr);
+uEchoNode *uecho_controller_getnodes(uEchoController *cp);
+
+void uecho_controller_setlasttid(uEchoController *cp, uEchoTID tid);
+uEchoTID uecho_controller_getlasttid(uEchoController *cp);
+uEchoTID uecho_controller_getnexttid(uEchoController *cp);
+
 bool uecho_controller_start(uEchoController *cp);
 bool uecho_controller_stop(uEchoController *cp);
 bool uecho_controller_isrunning(uEchoController *cp);
-
-#define uecho_controller_setlasttid(cp, value) (cp->lastTID = value)
-#define uecho_controller_getlasttid(cp, value) (cp->lastTID)
-uEchoTID uecho_controller_getnexttid(uEchoController *cp);
   
 bool uecho_controller_searchall(uEchoController *cp);
 bool uecho_controller_searchobject(uEchoController *cp, byte objCode);

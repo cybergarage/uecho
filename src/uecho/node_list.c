@@ -42,7 +42,7 @@ void uecho_nodelist_delete(uEchoNodeList *nodes)
  * uecho_nodelist_getbyaddress
  ****************************************/
 
-uEchoNode *uecho_nodelist_getbyaddress(uEchoNodeList *nodes, const char addr)
+uEchoNode *uecho_nodelist_getbyaddress(uEchoNodeList *nodes, const char *addr)
 {
   uEchoNode *node;
   
