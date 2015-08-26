@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <uecho/object.h>
+#include <uecho/core/observer.h>
 
 BOOST_AUTO_TEST_CASE(ObjectPropetyObserverManagerNew)
 {
