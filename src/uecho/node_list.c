@@ -39,16 +39,14 @@ void uecho_nodelist_delete(uEchoNodeList *nodes)
 }
 
 /****************************************
- * uecho_nodelist_getbycode
+ * uecho_nodelist_getbyaddress
  ****************************************/
 
-uEchoNode *uecho_nodelist_getbycode(uEchoNodeList *nodes, const  code)
+uEchoNode *uecho_nodelist_getbyaddress(uEchoNodeList *nodes, const char addr)
 {
-  uEchoNode *obj;
+  uEchoNode *node;
   
-  for (obj = uecho_nodelist_gets(nodes); obj; obj = uecho_class_next(obj)) {
-    if (uecho_class_getcode(obj) == code)
-      return obj;
+  for (node = uecho_nodelist_gets(nodes); node; node = uecho_node_next(node)) {
   }
   
   return NULL;
