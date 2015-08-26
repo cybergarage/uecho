@@ -86,7 +86,8 @@ bool uecho_server_start(uEchoServer *server);
 bool uecho_server_stop(uEchoServer *server);
 bool uecho_server_isrunning(uEchoServer *server);
 
-bool uecho_server_postsearch(uEchoServer *server, byte *msg, size_t msgLen);
+bool uecho_server_postsearch(uEchoServer *server, const byte *msg, size_t msgLen);
+bool uecho_server_postmessage(uEchoServer *server, const char *addr, byte *msg, size_t msgLen);
 
 // UDP Server
   
@@ -131,7 +132,7 @@ bool uecho_mcast_server_start(uEchoMcastServer *server);
 bool uecho_mcast_server_stop(uEchoMcastServer *server);
 bool uecho_mcast_server_isrunning(uEchoMcastServer *server);
 
-bool uecho_mcast_server_post(uEchoMcastServer *server, byte *msg, size_t msgLen);
+bool uecho_mcast_server_post(uEchoMcastServer *server, const byte *msg, size_t msgLen);
 
 /****************************************
  * Function (ServerList)
@@ -163,7 +164,7 @@ bool uecho_mcast_serverlist_start(uEchoMcastServerList *servers);
 bool uecho_mcast_serverlist_stop(uEchoMcastServerList *servers);
 void uecho_mcast_serverlist_setmessagelistener(uEchoMcastServerList *servers, uEchoMcastServerMessageListener listener);
 void uecho_mcast_serverlist_setuserdata(uEchoMcastServerList *servers, void *data);
-bool uecho_mcast_serverlist_post(uEchoMcastServerList *servers, byte *msg, size_t msgLen);
+bool uecho_mcast_serverlist_post(uEchoMcastServerList *servers, const byte *msg, size_t msgLen);
 
 #define uecho_mcast_serverlist_clear(servers) uecho_list_clear((uEchoList *)servers, (UECHO_LIST_DESTRUCTORFUNC)uecho_mcast_server_delete)
 #define uecho_mcast_serverlist_size(servers) uecho_list_size((uEchoList *)servers)

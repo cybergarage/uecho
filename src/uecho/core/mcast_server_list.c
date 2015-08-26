@@ -168,7 +168,7 @@ bool uecho_mcast_serverlist_stop(uEchoMcastServerList *servers)
  * uecho_mcast_serverlist_post
  ****************************************/
 
-bool uecho_mcast_serverlist_post(uEchoMcastServerList *servers, byte *msg, size_t msgLen)
+bool uecho_mcast_serverlist_post(uEchoMcastServerList *servers, const byte *msg, size_t msgLen)
 {
   uEchoMcastServer *server;
 
