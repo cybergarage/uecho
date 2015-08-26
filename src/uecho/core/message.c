@@ -234,7 +234,12 @@ void uecho_message_setsourceaddress(uEchoMessage *msg, const char *addr)
 {
   if (msg->srcAddr) {
     free(msg->srcAddr);
+    msg->srcAddr = NULL;
   }
+  
+  if (!addr)
+    return;
+  
   msg->srcAddr = uecho_strdup(addr);
 }
 
