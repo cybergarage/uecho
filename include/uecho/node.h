@@ -38,6 +38,7 @@ typedef struct _uEchoNode
   uEchoClassList *classes;
   uEchoObjectList *objects;
   
+  char *address;
 } uEchoNode, uEchoNodeList;
 
 /****************************************
@@ -52,6 +53,9 @@ void uecho_node_clear(uEchoNode *node);
 
 uEchoServer *uecho_node_getserver(uEchoNode *node);
 
+void uecho_node_setaddress(uEchoNode *node, const char *addr);
+const char *uecho_node_getaddress(uEchoNode *node);
+  
 uEchoClass *uecho_node_getclasses(uEchoNode *node);
 uEchoClass *uecho_node_getclassbycode(uEchoNode *node, uEchoClassCode code);
 bool uecho_node_hasclassbycode(uEchoNode *node, uEchoClassCode code);
