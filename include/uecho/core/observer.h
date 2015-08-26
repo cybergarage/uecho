@@ -60,7 +60,7 @@ bool uecho_object_property_observerlist_setobserver(uEchoObjectPropertyObserverL
 uEchoObjectPropertyObserver *uecho_object_property_observerlist_getobserver(uEchoObjectPropertyObserverList *obsMgr, uEchoPropertyCode code);
   
 #define uecho_object_property_observerlist_clear(obsMgr) uecho_list_clear((uEchoList *)obsMgr, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_property_observer_delete)
-#define uecho_object_property_observerlist_getcount(obsMgr) uecho_list_size((uEchoList *)obsMgr)
+#define uecho_object_property_observerlist_size(obsMgr) uecho_list_size((uEchoList *)obsMgr)
 #define uecho_object_property_observerlist_gets(obsMgr) (uEchoObjectPropertyObserver *)uecho_list_next((uEchoList *)obsMgr)
 #define uecho_object_property_observerlist_add(obsMgr, obs) uecho_list_add((uEchoList *)obsMgr, (uEchoList *)obs)
 #define uecho_object_property_observerlist_remove(obs) uecho_list_remove((uEchoList *)obs)

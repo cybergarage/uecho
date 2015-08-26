@@ -83,7 +83,7 @@ uEchoNode *uecho_nodelist_getbyaddress(uEchoNodeList *nodes, const char addr);
 #define uecho_nodelist_clear(nodes) uecho_list_clear((uEchoList *)nodes, (UECHO_LIST_DESTRUCTORFUNC)uecho_node_delete)
 #define uecho_nodelist_size(nodes) uecho_list_size((uEchoList *)nodes)
 #define uecho_nodelist_gets(nodes) (uEchoNode *)uecho_list_next((uEchoList *)nodes)
-#define uecho_nodelist_add(nodes,node) uecho_list_add((uEchoList *)nodes, (uEchoList *)node)nodelist
+#define uecho_nodelist_add(nodes,node) uecho_list_add((uEchoList *)nodes, (uEchoList *)node)
   
 /****************************************
  * Function (Object)
