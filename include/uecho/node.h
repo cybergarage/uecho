@@ -55,6 +55,7 @@ uEchoServer *uecho_node_getserver(uEchoNode *node);
 
 void uecho_node_setaddress(uEchoNode *node, const char *addr);
 const char *uecho_node_getaddress(uEchoNode *node);
+bool uecho_node_isaddress(uEchoNode *node, const char *addr);
   
 uEchoClass *uecho_node_getclasses(uEchoNode *node);
 uEchoClass *uecho_node_getclassbycode(uEchoNode *node, uEchoClassCode code);
@@ -82,7 +83,7 @@ bool uecho_node_postsearch(uEchoNode *node, byte *msg, size_t msgLen);
 uEchoNodeList *uecho_nodelist_new(void);
 void uecho_nodelist_delete(uEchoNodeList *nodes);
   
-uEchoNode *uecho_nodelist_getbyaddress(uEchoNodeList *nodes, const char addr);
+uEchoNode *uecho_nodelist_getbyaddress(uEchoNodeList *nodes, const char *addr);
   
 #define uecho_nodelist_clear(nodes) uecho_list_clear((uEchoList *)nodes, (UECHO_LIST_DESTRUCTORFUNC)uecho_node_delete)
 #define uecho_nodelist_size(nodes) uecho_list_size((uEchoList *)nodes)

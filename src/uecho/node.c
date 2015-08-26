@@ -97,6 +97,15 @@ const char *uecho_node_getaddress(uEchoNode *node)
 }
 
 /****************************************
+ * uecho_node_isaddress
+ ****************************************/
+
+bool uecho_node_isaddress(uEchoNode *node, const char *addr)
+{
+  return uecho_streq(node->address, addr);
+}
+
+/****************************************
  * uecho_node_getserver
  ****************************************/
 
