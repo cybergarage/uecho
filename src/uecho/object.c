@@ -12,6 +12,7 @@
 #include <uecho/object.h>
 #include <uecho/profile.h>
 #include <uecho/misc.h>
+#include <uecho/core/observer.h>
 
 /****************************************
 * uecho_object_new
@@ -37,7 +38,7 @@ uEchoObject *uecho_object_new(void)
   obj->properties = uecho_propertylist_new();
 
   uecho_object_setmessagerequeslistener(obj, NULL);
-  obj->propMsgObservers = uecho_object_property_observer_manager_new();
+  obj->propObserverMgr = uecho_object_property_observer_manager_new();
   
   // Property map caches
   
@@ -68,7 +69,7 @@ void uecho_object_delete(uEchoObject *obj)
   uecho_object_clearpropertymapcaches(obj);
   
   uecho_propertylist_delete(obj->properties);
-  uecho_object_property_observer_manager_delete(obj->propMsgObservers);
+  uecho_object_property_observer_manager_delete(obj->propObserverMgr);
 	
   free(obj);
 }
@@ -397,7 +398,7 @@ bool uecho_object_hasmessagerequeslistener(uEchoObject *obj)
 
 bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code, uEchoObjectMessageListener listener)
 {
-  return uecho_object_property_observer_manager_setobserver(obj->propMsgObservers, code, listener);
+  return uecho_object_property_observer_manager_setobserver(obj->propObserverMgr, code, listener);
 }
 
 /****************************************
@@ -408,7 +409,7 @@ uEchoObjectMessageListener uecho_object_getpropertyrequeslistener(uEchoObject *o
 {
   uEchoObjectPropertyObserver *obs;
   
-  obs = uecho_object_property_observer_manager_getobserver(obj->propMsgObservers, code);
+  obs = uecho_object_property_observer_manager_getobserverbycode(obj->propObserverMgr, code);
   if (!obs)
     return NULL;
   
