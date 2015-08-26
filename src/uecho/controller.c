@@ -29,6 +29,7 @@ uEchoController *uecho_controller_new(void)
 
   cp->mutex = uecho_mutex_new();
   cp->node = uecho_node_new();
+  cp->nodes = uecho_nodelist_new();
   
   server = uecho_node_getserver(cp->node);
   uecho_server_setuserdata(server, cp);
@@ -49,6 +50,7 @@ void uecho_controller_delete(uEchoController *cp)
 	
 	uecho_mutex_delete(cp->mutex);
   uecho_node_delete(cp->node);
+  uecho_nodelist_delete(cp->nodes);
 
   free(cp);
 }
@@ -61,6 +63,7 @@ bool uecho_controller_start(uEchoController *cp)
 {
   bool allActionsSucceeded = true;
   
+  allActionsSucceeded &= uecho_nodelist_clear(cp->nodes);
   allActionsSucceeded &= uecho_node_start(cp->node);
   
   return allActionsSucceeded;
@@ -88,6 +91,58 @@ bool uecho_controller_isrunning(uEchoController *cp)
   if (!uecho_node_isrunning(cp->node))
     return false;
 	return true;
+}
+
+/****************************************
+ * uecho_controller_addnode
+ ****************************************/
+
+bool uecho_controller_addnode(uEchoController *cp, uEchoNode *node)
+{
+  return uecho_nodelist_add(cp->nodes, node);
+}
+
+/****************************************
+ * uecho_controller_getnexttid
+ ****************************************/
+
+uEchoNode *uecho_controller_getnodebyaddress(uEchoController *cp, const char *addr)
+{
+  uEchoNode *node;
+  
+  for (node = uecho_controller_getnodes(cp); node; node = uecho_node_next(node)) {
+    if (uecho_node_isaddress(node, addr))
+      return node;
+  }
+
+  return NULL;
+}
+
+/****************************************
+ * uecho_controller_getnodes
+ ****************************************/
+
+uEchoNode *uecho_controller_getnodes(uEchoController *cp)
+{
+  return uecho_nodelist_gets(cp->nodes);
+}
+
+/****************************************
+ * uecho_controller_setlasttid
+ ****************************************/
+
+void uecho_controller_setlasttid(uEchoController *cp, uEchoTID tid)
+{
+  cp->lastTID = tid;
+}
+
+/****************************************
+ * uecho_controller_gettid
+ ****************************************/
+
+uEchoTID uecho_controller_getlasttid(uEchoController *cp)
+{
+  return cp->lastTID;
 }
 
 /****************************************

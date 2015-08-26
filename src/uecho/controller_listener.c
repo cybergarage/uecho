@@ -19,11 +19,15 @@
 
 void uecho_controller_handlesearchmessage(uEchoController *ctrl, uEchoMessage *msg)
 {
+  uEchoNode *node;
   uEchoProperty *prop;
   uEchoObjectCode objCode;
   byte *propData;
   size_t propSize, instanceSize;
   size_t idx;
+  const char *msgAddr;
+
+  // Check message
   
   prop = uecho_message_getpropertybycode(msg, uEchoNodeProfileClassSelfNodeInstanceListS);
   if (!prop)
@@ -33,12 +37,29 @@ void uecho_controller_handlesearchmessage(uEchoController *ctrl, uEchoMessage *m
   if (propSize < 1)
     return;
 
+  // Get or create node
+  
+  msgAddr = uecho_message_getsourceaddress(msg);
+  if (!msgAddr)
+    return;
+  
+  node = uecho_controller_getnodebyaddress(ctrl, msgAddr);
+  if (!node) {
+    node = uecho_node_new();
+    if (!node)
+      return;
+    uecho_controller_addnode(ctrl, node);
+  }
+  
+  // Updated node
+  
   propData = uecho_property_getdata(prop);
 
   instanceSize = propData[0];
   
   for (idx=1; (idx+2)<propSize; idx+=3) {
     objCode = uecho_byte2integer((propData + idx), 3);
+    uecho_node_setobject(node, objCode);
   }
 }
 
