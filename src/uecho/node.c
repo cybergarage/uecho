@@ -71,6 +71,32 @@ void uecho_node_clear(uEchoNode *node)
 }
 
 /****************************************
+ * uecho_node_setaddress
+ ****************************************/
+
+void uecho_node_setaddress(uEchoNode *node, const char *addr)
+{
+  if (node->address) {
+    free(node->address);
+    node->address = NULL;
+  }
+  
+  if (!addr)
+    return;
+  
+  node->address = uecho_strdup(addr);
+}
+
+/****************************************
+ * uecho_node_getaddress
+ ****************************************/
+
+const char *uecho_node_getaddress(uEchoNode *node)
+{
+  return node->address;
+}
+
+/****************************************
  * uecho_node_getserver
  ****************************************/
 
