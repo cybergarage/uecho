@@ -295,4 +295,13 @@ bool uecho_node_postsearch(uEchoNode *node, byte *msgBytes, size_t msgLen)
   return uecho_server_postsearch(node->server, msgBytes, msgLen);
 }
 
+/****************************************
+ * uecho_node_postmessage
+ ****************************************/
+
+bool uecho_node_postmessage(uEchoNode *node, const char *addr, byte *msg, size_t msgLen)
+{
+  return uecho_server_postmessage(node->server, addr, msg, msgLen);
+}
+
 

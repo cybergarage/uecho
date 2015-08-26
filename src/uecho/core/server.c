@@ -172,7 +172,27 @@ void uecho_mcast_server_msglistener(uEchoMcastServer *mcastServer, uEchoMessage 
  * uecho_server_postsearch
  ****************************************/
 
-bool uecho_server_postsearch(uEchoServer *server, byte *msg, size_t msgLen)
+bool uecho_server_postsearch(uEchoServer *server, const byte *msg, size_t msgLen)
 {
   return uecho_mcast_serverlist_post(server->mcastServers, msg, msgLen);
+}
+
+/****************************************
+ * uecho_server_postmessage
+ ****************************************/
+
+bool uecho_server_postmessage(uEchoServer *server, const char *addr, byte *msg, size_t msgLen)
+{
+  uEchoSocket *sock;
+  size_t sentByteCnt;
+  
+  sock = uecho_socket_dgram_new();
+  if (!sock)
+    return false;
+
+  sentByteCnt = uecho_socket_sendto(sock, addr, uEchoUdpPort, msg, msgLen);
+
+  uecho_socket_delete(sock);
+
+  return (msgLen == sentByteCnt) ? true : false;
 }
