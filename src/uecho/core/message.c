@@ -306,6 +306,26 @@ uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n)
 }
 
 /****************************************
+ * uecho_message_getpropertybycode
+ ****************************************/
+
+uEchoProperty *uecho_message_getpropertybycode(uEchoMessage *msg, uEchoPropertyCode code)
+{
+  uEchoProperty *prop;
+  size_t n;
+  
+  for (n = 0; n<(size_t)(msg->OPC); n++) {
+    prop = uecho_message_getproperty(msg, n);
+    if (!prop)
+      continue;
+    if (uecho_property_getcode(prop) == code)
+      return prop;
+  }
+
+  return NULL;
+}
+
+/****************************************
  * uecho_message_parse
  ****************************************/
 
@@ -412,6 +432,8 @@ size_t uecho_message_size(uEchoMessage *msg)
 
   for (n = 0; n<(size_t)(msg->OPC); n++) {
     prop = uecho_message_getproperty(msg, n);
+    if (!prop)
+      continue;
     msgLen += 2;
     msgLen += uecho_property_getdatasize(prop);
   }
@@ -450,6 +472,8 @@ byte *uecho_message_getbytes(uEchoMessage *msg)
   offset = 12;
   for (n = 0; n<(size_t)(msg->OPC); n++) {
     prop = uecho_message_getproperty(msg, n);
+    if (!prop)
+      continue;
     count = uecho_property_getdatasize(prop);
     msg->bytes[offset++] = uecho_property_getcode(prop);
     msg->bytes[offset++] = count;
