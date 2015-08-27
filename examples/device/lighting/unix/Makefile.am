@@ -10,13 +10,14 @@
 
 AM_CFLAGS = -I$(top_srcdir)/include -I$(top_builddir)/include -I../ -I../../common
 
-noinst_PROGRAMS = nodesearch 
+noinst_PROGRAMS = uecho_lighting_dev 
 
-nodesearch_SOURCES = \
-	../nodesearch.c
+uecho_lighting_dev_SOURCES = \
+	../main.c \
+	../ligting_dev.c
 
 #if HAVE_LIBTOOL
-#nodesearch_LDADD = ../../../lib/unix/libuecho.la
+#uecho_lighting_dev_LDADD = ../../../../lib/unix/libuecho.la
 #else
-nodesearch_LDADD = ../../../lib/unix/libuecho.a
+uecho_lighting_dev_LDADD = ../../../../lib/unix/libuecho.a
 #endif
