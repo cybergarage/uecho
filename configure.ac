@@ -165,8 +165,10 @@ lib/unix/Makefile
 tests/Makefile
 tests/unix/Makefile
 examples/Makefile
-examples/nodesearch/Makefile
-examples/nodesearch/unix/Makefile
-examples/switchnode/Makefile
-examples/switchnode/unix/Makefile
+examples/controller/Makefile
+examples/controller/uecho_search/Makefile
+examples/controller/uecho_search/unix/Makefile
+examples/device/Makefile
+examples/device/lighting/Makefile
+examples/device/lighting/unix/Makefile
 ])
