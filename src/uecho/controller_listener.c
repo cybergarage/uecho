@@ -48,6 +48,7 @@ void uecho_controller_handlesearchmessage(uEchoController *ctrl, uEchoMessage *m
     node = uecho_node_new();
     if (!node)
       return;
+    uecho_node_setaddress(node, uecho_message_getsourceaddress(msg));
     uecho_controller_addnode(ctrl, node);
   }
   

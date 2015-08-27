@@ -28,7 +28,7 @@ void uecho_search_printdevices(uEchoController *ctrl)
     printf("Node[%d] : %s\n", (nodeNo++), uecho_node_getaddress(node));
     objNo = 0;
     for (obj = uecho_node_getobjects(node); obj; obj = uecho_object_next(obj)) {
-      printf("Object[%d] : %X\n", (objNo++), uecho_object_getcode(obj));
+      printf("  Object[%d] : %X\n", (objNo++), uecho_object_getcode(obj));
     }
   }
 }
@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
   if (!uecho_controller_start(ctrl))
     return EXIT_FAILURE;
   
+  uecho_controller_searchallobjects(ctrl);
   uecho_sleep(UECHO_TEST_SEARCH_WAIT_MTIME);
   
   uecho_search_printdevices(ctrl);

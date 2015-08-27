@@ -38,6 +38,7 @@ uEchoNode *uecho_node_new(void)
   uecho_server_setuserdata(node->server, node);
   uecho_server_setmessagelistener(node->server, uecho_node_servermessagelistener);
   
+  node->address = NULL;
   uecho_node_setmessagerequeslistener(node, NULL);
   
   obj = uecho_nodeprofileclass_new();
