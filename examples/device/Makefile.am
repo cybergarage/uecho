@@ -8,4 +8,4 @@
 #
 ##################################################################
 
-SUBDIRS = controller device
+SUBDIRS = lighting
