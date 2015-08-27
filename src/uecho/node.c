@@ -332,21 +332,37 @@ bool uecho_node_isrunning(uEchoNode *node)
 }
 
 /****************************************
- * uecho_node_postannounce
+ * uecho_node_announcemessagebytes
  ****************************************/
 
-bool uecho_node_postannounce(uEchoNode *node, byte *msgBytes, size_t msgLen)
+bool uecho_node_announcemessagebytes(uEchoNode *node, byte *msgBytes, size_t msgLen)
 {
   return uecho_server_postannounce(node->server, msgBytes, msgLen);
 }
 
 /****************************************
- * uecho_node_postresponse
+ * uecho_node_sendmessagebytes
  ****************************************/
 
-bool uecho_node_postresponse(uEchoNode *node, const char *addr, byte *msg, size_t msgLen)
+bool uecho_node_sendmessagebytes(uEchoNode *node, const char *addr, byte *msg, size_t msgLen)
 {
   return uecho_server_postresponse(node->server, addr, msg, msgLen);
 }
 
+/****************************************
+ * uecho_node_announcemessage
+ ****************************************/
 
+bool uecho_node_announcemessage(uEchoNode *node, uEchoMessage *msg)
+{
+  return uecho_node_announcemessagebytes(node, uecho_message_getbytes(msg), uecho_message_size(msg));
+}
+
+/****************************************
+ * uecho_node_sendmessage
+ ****************************************/
+
+bool uecho_node_sendmessage(uEchoNode *node, uEchoMessage *msg)
+{
+  return uecho_node_sendmessagebytes(node, uecho_node_getaddress(node), uecho_message_getbytes(msg), uecho_message_size(msg));
+}
