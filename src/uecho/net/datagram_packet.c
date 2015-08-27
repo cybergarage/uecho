@@ -62,11 +62,12 @@ bool uecho_socket_datagram_packet_setdata(uEchoDatagramPacket *dgmPkt, const byt
     return true;
   
   dgmPkt->data = malloc(dataLen);
-  if (dgmPkt->dataLen)
+  if (!dgmPkt->data)
     return false;
   
   memcpy(dgmPkt->data, data, dataLen);
-
+  dgmPkt->dataLen = dataLen;
+  
   return true;
 }
 
