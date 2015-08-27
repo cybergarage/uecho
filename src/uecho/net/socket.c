@@ -573,8 +573,8 @@ ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt)
   fromLen = sizeof(from);
 	recvLen = recvfrom(sock->id, recvBuf, sizeof(recvBuf)-1, 0, (struct sockaddr *)&from, &fromLen);
 
-	if (recvLen <= 0)
-		return 0;
+  if (recvLen <= 0)
+    return recvLen;
 
 	uecho_socket_datagram_packet_setdata(dgmPkt, recvBuf, recvLen);
 
