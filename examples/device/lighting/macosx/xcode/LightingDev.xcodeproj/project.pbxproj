@@ -7,8 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		215CB3481B8F189C000BA7FF /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 215CB3471B8F189C000BA7FF /* main.c */; };
+		21B1B2F31B8F1C8700873DBA /* lighting_dev.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B1B2F11B8F1C8700873DBA /* lighting_dev.c */; };
+		21B1B2F41B8F1C8700873DBA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B1B2F21B8F1C8700873DBA /* main.c */; };
+		21B1B2F81B8F1DD200873DBA /* liblibuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 217B79BB1B8F1B7300FF2797 /* liblibuecho.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		217B79BF1B8F1B9400FF2797 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXContainerItemProxy section */
+		217B79BA1B8F1B7300FF2797 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 217B79B61B8F1B7300FF2797 /* libuecho.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 212ADD881A8D4F000054EC0F;
+			remoteInfo = libuecho;
+		};
+		21B1B2F61B8F1DCE00873DBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 217B79B61B8F1B7300FF2797 /* libuecho.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 212ADD871A8D4F000054EC0F;
+			remoteInfo = libuecho;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		215CB3421B8F189C000BA7FF /* CopyFiles */ = {
@@ -24,7 +55,10 @@
 
 /* Begin PBXFileReference section */
 		215CB3441B8F189C000BA7FF /* LightingDev */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LightingDev; sourceTree = BUILT_PRODUCTS_DIR; };
-		215CB3471B8F189C000BA7FF /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		217B79B61B8F1B7300FF2797 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
+		21B1B2F01B8F1C8700873DBA /* lighting_dev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lighting_dev.h; path = ../../lighting_dev.h; sourceTree = "<group>"; };
+		21B1B2F11B8F1C8700873DBA /* lighting_dev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lighting_dev.c; path = ../../lighting_dev.c; sourceTree = "<group>"; };
+		21B1B2F21B8F1C8700873DBA /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = ../../main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21B1B2F81B8F1DD200873DBA /* liblibuecho.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,7 +76,8 @@
 		215CB33B1B8F189B000BA7FF = {
 			isa = PBXGroup;
 			children = (
-				215CB3461B8F189C000BA7FF /* LightingDev */,
+				217B79AF1B8F1B4800FF2797 /* Sources */,
+				217B79AC1B8F1B1E00FF2797 /* Frameworks */,
 				215CB3451B8F189C000BA7FF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +90,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		215CB3461B8F189C000BA7FF /* LightingDev */ = {
+		217B79AC1B8F1B1E00FF2797 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				215CB3471B8F189C000BA7FF /* main.c */,
+				217B79B61B8F1B7300FF2797 /* libuecho.xcodeproj */,
 			);
-			path = LightingDev;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		217B79AF1B8F1B4800FF2797 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				21B1B2F01B8F1C8700873DBA /* lighting_dev.h */,
+				21B1B2F11B8F1C8700873DBA /* lighting_dev.c */,
+				21B1B2F21B8F1C8700873DBA /* main.c */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		217B79B71B8F1B7300FF2797 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				217B79BB1B8F1B7300FF2797 /* liblibuecho.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,8 +128,10 @@
 				215CB3421B8F189C000BA7FF /* CopyFiles */,
 			);
 			buildRules = (
+				217B79BF1B8F1B9400FF2797 /* PBXBuildRule */,
 			);
 			dependencies = (
+				21B1B2F71B8F1DCE00873DBA /* PBXTargetDependency */,
 			);
 			name = LightingDev;
 			productName = LightingDev;
@@ -106,6 +162,12 @@
 			mainGroup = 215CB33B1B8F189B000BA7FF;
 			productRefGroup = 215CB3451B8F189C000BA7FF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 217B79B71B8F1B7300FF2797 /* Products */;
+					ProjectRef = 217B79B61B8F1B7300FF2797 /* libuecho.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				215CB3431B8F189C000BA7FF /* LightingDev */,
@@ -113,16 +175,35 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		217B79BB1B8F1B7300FF2797 /* liblibuecho.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblibuecho.a;
+			remoteRef = 217B79BA1B8F1B7300FF2797 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXSourcesBuildPhase section */
 		215CB3401B8F189C000BA7FF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215CB3481B8F189C000BA7FF /* main.c in Sources */,
+				21B1B2F41B8F1C8700873DBA /* main.c in Sources */,
+				21B1B2F31B8F1C8700873DBA /* lighting_dev.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		21B1B2F71B8F1DCE00873DBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libuecho;
+			targetProxy = 21B1B2F61B8F1DCE00873DBA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		215CB3491B8F189C000BA7FF /* Debug */ = {
@@ -160,6 +241,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../../../include/,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -196,6 +282,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../../../include/,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
@@ -235,6 +326,7 @@
 				215CB34D1B8F189C000BA7FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

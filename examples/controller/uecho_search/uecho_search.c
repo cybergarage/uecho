@@ -12,6 +12,12 @@
 
 int main(int argc, char *argv[])
 {
+  uEchoController *ctrl;
+  
+  ctrl = uecho_controller_new();
+  
+  uecho_controller_delete(ctrl);
+  
   return EXIT_SUCCESS;
 }
 

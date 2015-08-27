@@ -8,10 +8,15 @@
  *
  ******************************************************************/
 
-#include <uecho/node.h>
+#include "lighting_dev.h"
 
 int main(int argc, char *argv[])
 {
+  uEchoNode *node;
+  
+  node = uecho_create_lighting_node();
+  uecho_node_delete(node);
+  
   return EXIT_SUCCESS;
 }
 
