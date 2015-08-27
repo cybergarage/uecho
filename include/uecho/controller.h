@@ -39,28 +39,28 @@ typedef void (*uEchoControllerMessageListener)(uEchoController *, uEchoMessage *
 ****************************************/
 
 uEchoController *uecho_controller_new(void);
-void uecho_controller_delete(uEchoController *cp);
+void uecho_controller_delete(uEchoController *ctrl);
 
-bool uecho_controller_addnode(uEchoController *cp, uEchoNode *node);
-uEchoNode *uecho_controller_getnodebyaddress(uEchoController *cp, const char *addr);
-uEchoNode *uecho_controller_getnodes(uEchoController *cp);
+bool uecho_controller_addnode(uEchoController *ctrl, uEchoNode *node);
+uEchoNode *uecho_controller_getnodebyaddress(uEchoController *ctrl, const char *addr);
+uEchoNode *uecho_controller_getnodes(uEchoController *ctrl);
 
-uEchoObject *uecho_controller_getobjectbycode(uEchoController *cp, uEchoObjectCode code);
+uEchoObject *uecho_controller_getobjectbycode(uEchoController *ctrl, uEchoObjectCode code);
   
-void uecho_controller_setlasttid(uEchoController *cp, uEchoTID tid);
-uEchoTID uecho_controller_getlasttid(uEchoController *cp);
-uEchoTID uecho_controller_getnexttid(uEchoController *cp);
+void uecho_controller_setlasttid(uEchoController *ctrl, uEchoTID tid);
+uEchoTID uecho_controller_getlasttid(uEchoController *ctrl);
+uEchoTID uecho_controller_getnexttid(uEchoController *ctrl);
 
-void uecho_controller_setmessagerequeslistener(uEchoController *cp, uEchoControllerMessageListener listener);
-uEchoControllerMessageListener uecho_controller_getmessagerequeslistener(uEchoController *cp);
-bool uecho_controller_hasmessagerequeslistener(uEchoController *cp);
+void uecho_controller_setmessagerequeslistener(uEchoController *ctrl, uEchoControllerMessageListener listener);
+uEchoControllerMessageListener uecho_controller_getmessagerequeslistener(uEchoController *ctrl);
+bool uecho_controller_hasmessagerequeslistener(uEchoController *ctrl);
 
-bool uecho_controller_searchallobjects(uEchoController *cp);
-bool uecho_controller_searchobject(uEchoController *cp, byte objCode);
+bool uecho_controller_searchallobjects(uEchoController *ctrl);
+bool uecho_controller_searchobject(uEchoController *ctrl, byte objCode);
 
-bool uecho_controller_start(uEchoController *cp);
-bool uecho_controller_stop(uEchoController *cp);
-bool uecho_controller_isrunning(uEchoController *cp);
+bool uecho_controller_start(uEchoController *ctrl);
+bool uecho_controller_stop(uEchoController *ctrl);
+bool uecho_controller_isrunning(uEchoController *ctrl);
 
 #ifdef  __cplusplus
 }
