@@ -29,8 +29,11 @@ typedef struct _uEchoController {
   uEchoNode *node;
   uEchoTID lastTID;
   uEchoNodeList *nodes;
+  void (*msgListener)(struct _uEchoController *, uEchoMessage *); /* uEchoControllerMessageListener */
 } uEchoController;
-	
+
+typedef void (*uEchoControllerMessageListener)(uEchoController *, uEchoMessage *);
+
 /****************************************
  * Function
 ****************************************/
@@ -48,12 +51,16 @@ void uecho_controller_setlasttid(uEchoController *cp, uEchoTID tid);
 uEchoTID uecho_controller_getlasttid(uEchoController *cp);
 uEchoTID uecho_controller_getnexttid(uEchoController *cp);
 
+void uecho_controller_setmessagerequeslistener(uEchoController *cp, uEchoControllerMessageListener listener);
+uEchoControllerMessageListener uecho_controller_getmessagerequeslistener(uEchoController *cp);
+bool uecho_controller_hasmessagerequeslistener(uEchoController *cp);
+
+bool uecho_controller_searchallobjects(uEchoController *cp);
+bool uecho_controller_searchobject(uEchoController *cp, byte objCode);
+
 bool uecho_controller_start(uEchoController *cp);
 bool uecho_controller_stop(uEchoController *cp);
 bool uecho_controller_isrunning(uEchoController *cp);
-  
-bool uecho_controller_searchallobjects(uEchoController *cp);
-bool uecho_controller_searchobject(uEchoController *cp, byte objCode);
 
 #ifdef  __cplusplus
 }

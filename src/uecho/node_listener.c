@@ -20,11 +20,11 @@ void uecho_object_notifyrequestproperty(uEchoObject *obj, uEchoEsv esv, uEchoPro
 {
   uEchoObjectPropertyObserver *obs;
   
-  if (obj->allMsgObserver) {
-    obj->allMsgObserver(obj, esv, msgProp);
+  if (obj->allMsgListener) {
+    obj->allMsgListener(obj, esv, msgProp);
   }
   
-  for (obs = uecho_object_property_observer_manager_getobservers(obj->propObserverMgr); obs; obs = uecho_object_property_observer_next(obs)) {
+  for (obs = uecho_object_property_observer_manager_getobservers(obj->propListenerMgr); obs; obs = uecho_object_property_observer_next(obs)) {
     if (uecho_property_getcode(msgProp) != uecho_object_property_observer_getpropetycode(obs))
       continue;
     obs->listener(obj, esv, msgProp);
@@ -208,6 +208,10 @@ void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg)
   if (!node)
     return;
   
+  if (node->msgListener) {
+    node->msgListener(node, msg);
+  }
+
   esv = uecho_message_getesv(msg);
   destObjCode = uecho_message_getdestinationobjectcode(msg);
   nodeDestObj = uecho_node_getobjectbycode(node, destObjCode);

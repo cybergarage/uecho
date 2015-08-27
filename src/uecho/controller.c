@@ -36,6 +36,7 @@ uEchoController *uecho_controller_new(void)
   uecho_server_setmessagelistener(server, uecho_controller_servermessagelistener);
   
   uecho_controller_setlasttid(cp, 0);
+  uecho_controller_setmessagerequeslistener(cp, NULL);
   
 	return cp;
 }
@@ -53,6 +54,33 @@ void uecho_controller_delete(uEchoController *cp)
   uecho_nodelist_delete(cp->nodes);
 
   free(cp);
+}
+
+/****************************************
+ * uecho_controller_setmessagerequeslistener
+ ****************************************/
+
+void uecho_controller_setmessagerequeslistener(uEchoController *cp, uEchoControllerMessageListener listener)
+{
+  cp->msgListener = listener;
+}
+
+/****************************************
+ * uecho_controller_getmessagerequeslistener
+ ****************************************/
+
+uEchoControllerMessageListener uecho_controller_getmessagerequeslistener(uEchoController *cp)
+{
+  return cp->msgListener;
+}
+
+/****************************************
+ * uecho_controller_hasmessagerequeslistener
+ ****************************************/
+
+bool uecho_controller_hasmessagerequeslistener(uEchoController *cp)
+{
+  return cp->msgListener ? true : false;
 }
 
 /****************************************
