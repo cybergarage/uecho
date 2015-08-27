@@ -42,6 +42,8 @@ bool uecho_controller_addnode(uEchoController *cp, uEchoNode *node);
 uEchoNode *uecho_controller_getnodebyaddress(uEchoController *cp, const char *addr);
 uEchoNode *uecho_controller_getnodes(uEchoController *cp);
 
+uEchoObject *uecho_controller_getobjectbycode(uEchoController *cp, uEchoObjectCode code);
+  
 void uecho_controller_setlasttid(uEchoController *cp, uEchoTID tid);
 uEchoTID uecho_controller_getlasttid(uEchoController *cp);
 uEchoTID uecho_controller_getnexttid(uEchoController *cp);

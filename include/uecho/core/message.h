@@ -123,6 +123,7 @@ bool uecho_message_equals(uEchoMessage *msg1, uEchoMessage *msg2);
 
 uEchoMessage *uecho_message_search_new(void);
 bool uecho_message_issearchrequest(uEchoMessage *msg);
+  bool uecho_message_issearchresponse(uEchoMessage *msg);
 
 #ifdef  __cplusplus
 } /* extern C */

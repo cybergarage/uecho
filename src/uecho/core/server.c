@@ -169,19 +169,19 @@ void uecho_mcast_server_msglistener(uEchoMcastServer *mcastServer, uEchoMessage 
 }
 
 /****************************************
- * uecho_server_postsearch
+ * uecho_server_postannounce
  ****************************************/
 
-bool uecho_server_postsearch(uEchoServer *server, const byte *msg, size_t msgLen)
+bool uecho_server_postannounce(uEchoServer *server, const byte *msg, size_t msgLen)
 {
   return uecho_mcast_serverlist_post(server->mcastServers, msg, msgLen);
 }
 
 /****************************************
- * uecho_server_postmessage
+ * uecho_server_postresponse
  ****************************************/
 
-bool uecho_server_postmessage(uEchoServer *server, const char *addr, byte *msg, size_t msgLen)
+bool uecho_server_postresponse(uEchoServer *server, const char *addr, byte *msg, size_t msgLen)
 {
   uEchoSocket *sock;
   size_t sentByteCnt;

@@ -11,7 +11,7 @@ noinst_PROGRAMS = uechotest
 
 AM_CPPFLAGS = -I$(top_srcdir)/include -I../
 
-
+	..//TestDevice.h
 
 uechotest_SOURCES = \
 	..//ClassListTest.cpp \
@@ -21,13 +21,15 @@ uechotest_SOURCES = \
 	..//MessageTest.cpp \
 	..//MiscTest.cpp \
 	..//MutexTest.cpp \
+	..//NodeListTest.cpp \
 	..//NodeTest.cpp \
 	..//ObjectListTest.cpp \
-	..//ObjectPropObsMgr.cpp \
 	..//ObjectTest.cpp \
+	..//ObserverTest.cpp \
 	..//ProfileTest.cpp \
 	..//PropertyListTest.cpp \
 	..//PropertyTest.cpp \
+	..//TestDevice.cpp \
 	..//ThreadTest.cpp \
 	..//uEchoTest.cpp
 #if HAVE_LIBTOOL
