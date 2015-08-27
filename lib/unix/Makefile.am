@@ -19,10 +19,14 @@ uecho_sources = \
 	../../src/uecho/class.c \
 	../../src/uecho/class_list.c \
 	../../src/uecho/controller.c \
+	../../src/uecho/controller_listener.c \
 	../../src/uecho/core/mcast_server.c \
 	../../src/uecho/core/mcast_server_list.c \
 	../../src/uecho/core/message.c \
-	../../src/uecho/core/messages.c \
+	../../src/uecho/core/message_search.c \
+	../../src/uecho/core/object_property_observer.c \
+	../../src/uecho/core/object_property_observer_list.c \
+	../../src/uecho/core/object_property_observer_manager.c \
 	../../src/uecho/core/server.c \
 	../../src/uecho/core/udp_server.c \
 	../../src/uecho/core/udp_server_list.c \
@@ -34,10 +38,10 @@ uecho_sources = \
 	../../src/uecho/net/net_function.c \
 	../../src/uecho/net/socket.c \
 	../../src/uecho/node.c \
+	../../src/uecho/node_list.c \
+	../../src/uecho/node_listener.c \
 	../../src/uecho/object.c \
 	../../src/uecho/object_list.c \
-	../../src/uecho/object_property_observer.c \
-	../../src/uecho/object_property_observer_manager.c \
 	../../src/uecho/property.c \
 	../../src/uecho/property_list.c \
 	../../src/uecho/std/device.c \

@@ -69,7 +69,7 @@ void uecho_controller_handlesearchmessage(uEchoController *ctrl, uEchoMessage *m
 
 void uecho_controller_handlerequestmessage(uEchoController *ctrl, uEchoMessage *msg)
 {
-  if (uecho_message_issearchrequest(msg)) {
+  if (uecho_message_issearchresponse(msg)) {
     uecho_controller_handlesearchmessage(ctrl, msg);
     return;
   }
