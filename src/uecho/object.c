@@ -38,7 +38,7 @@ uEchoObject *uecho_object_new(void)
   obj->properties = uecho_propertylist_new();
 
   uecho_object_setmessagerequeslistener(obj, NULL);
-  obj->propObserverMgr = uecho_object_property_observer_manager_new();
+  obj->propListenerMgr = uecho_object_property_observer_manager_new();
   
   // Property map caches
   
@@ -69,7 +69,7 @@ void uecho_object_delete(uEchoObject *obj)
   uecho_object_clearpropertymapcaches(obj);
   
   uecho_propertylist_delete(obj->properties);
-  uecho_object_property_observer_manager_delete(obj->propObserverMgr);
+  uecho_object_property_observer_manager_delete(obj->propListenerMgr);
 	
   free(obj);
 }
@@ -371,7 +371,7 @@ bool uecho_object_getpropertybytedata(uEchoObject *obj, uEchoPropertyCode code, 
 
 void uecho_object_setmessagerequeslistener(uEchoObject *obj, uEchoObjectMessageListener listener)
 {
-  obj->allMsgObserver = listener;
+  obj->allMsgListener = listener;
 }
 
 /****************************************
@@ -380,7 +380,7 @@ void uecho_object_setmessagerequeslistener(uEchoObject *obj, uEchoObjectMessageL
 
 uEchoObjectMessageListener uecho_object_getmessagerequeslistener(uEchoObject *obj)
 {
-  return obj->allMsgObserver;
+  return obj->allMsgListener;
 }
 
 /****************************************
@@ -389,7 +389,7 @@ uEchoObjectMessageListener uecho_object_getmessagerequeslistener(uEchoObject *ob
 
 bool uecho_object_hasmessagerequeslistener(uEchoObject *obj)
 {
-  return obj->allMsgObserver ? true : false;
+  return obj->allMsgListener ? true : false;
 }
 
 /****************************************
@@ -398,7 +398,7 @@ bool uecho_object_hasmessagerequeslistener(uEchoObject *obj)
 
 bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code, uEchoObjectMessageListener listener)
 {
-  return uecho_object_property_observer_manager_setobserver(obj->propObserverMgr, code, listener);
+  return uecho_object_property_observer_manager_setobserver(obj->propListenerMgr, code, listener);
 }
 
 /****************************************
@@ -409,7 +409,7 @@ uEchoObjectMessageListener uecho_object_getpropertyrequeslistener(uEchoObject *o
 {
   uEchoObjectPropertyObserver *obs;
   
-  obs = uecho_object_property_observer_manager_getobserverbycode(obj->propObserverMgr, code);
+  obs = uecho_object_property_observer_manager_getobserverbycode(obj->propListenerMgr, code);
   if (!obs)
     return NULL;
   

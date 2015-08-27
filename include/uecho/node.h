@@ -38,8 +38,11 @@ typedef struct _uEchoNode
   uEchoClassList *classes;
   uEchoObjectList *objects;
   
+  void (*msgListener)(struct _uEchoNode *, uEchoMessage *); /* uEchoNodeMessageListener */
   char *address;
 } uEchoNode, uEchoNodeList;
+
+typedef void (*uEchoNodeMessageListener)(uEchoNode *, uEchoMessage *);
 
 /****************************************
  * Function
@@ -79,6 +82,10 @@ bool uecho_node_setmanufacturercode(uEchoNode *node, uEchoManufacturerCode code)
 bool uecho_node_postannounce(uEchoNode *node, byte *msg, size_t msgLen);
 bool uecho_node_postresponse(uEchoNode *node, const char *addr, byte *msg, size_t msgLen);
 
+void uecho_node_setmessagerequeslistener(uEchoNode *node, uEchoNodeMessageListener listener);
+uEchoNodeMessageListener uecho_node_getmessagerequeslistener(uEchoNode *node);
+bool uecho_node_hasmessagerequeslistener(uEchoNode *node);
+  
 /****************************************
  * Function (Node List)
  ****************************************/

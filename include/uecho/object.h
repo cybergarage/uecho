@@ -65,8 +65,8 @@ typedef struct _uEchoObject {
 
   // Listener
   
-  void (*allMsgObserver)(struct _uEchoObject *, uEchoEsv, uEchoProperty *prop); /* uEchoObjectMessageListener */
-  void *propObserverMgr;
+  void (*allMsgListener)(struct _uEchoObject *, uEchoEsv, uEchoProperty *prop); /* uEchoObjectMessageListener */
+  void *propListenerMgr;
 } uEchoObject, uEchoObjectList;
 
 typedef void (*uEchoObjectMessageListener)(uEchoObject *, uEchoEsv, uEchoProperty *);

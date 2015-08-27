@@ -87,6 +87,10 @@ void uecho_controller_servermessagelistener(uEchoServer *server, uEchoMessage *m
   ctrl = (uEchoController *)uecho_server_getuserdata(server);
   if (!ctrl)
     return;
+  
+  if (ctrl->msgListener) {
+    ctrl->msgListener(ctrl, msg);
+  }
 
   destObjCode = uecho_message_getdestinationobjectcode(msg);
   
