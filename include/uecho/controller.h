@@ -50,7 +50,7 @@ bool uecho_controller_start(uEchoController *cp);
 bool uecho_controller_stop(uEchoController *cp);
 bool uecho_controller_isrunning(uEchoController *cp);
   
-bool uecho_controller_searchall(uEchoController *cp);
+bool uecho_controller_searchallobjects(uEchoController *cp);
 bool uecho_controller_searchobject(uEchoController *cp, byte objCode);
 
 #ifdef  __cplusplus

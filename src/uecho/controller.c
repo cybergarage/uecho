@@ -161,7 +161,7 @@ uEchoTID uecho_controller_getnexttid(uEchoController *cp)
 }
 
 /****************************************
- * uecho_controller_searchall
+ * uecho_controller_searchallobjects
  ****************************************/
 
 bool uecho_controller_postsearch(uEchoController *cp, uEchoMessage *msg)
@@ -179,10 +179,10 @@ bool uecho_controller_postsearch(uEchoController *cp, uEchoMessage *msg)
 }
 
 /****************************************
- * uecho_controller_searchall
+ * uecho_controller_searchallobjects
  ****************************************/
 
-bool uecho_controller_searchall(uEchoController *cp)
+bool uecho_controller_searchallobjects(uEchoController *cp)
 {
   uEchoMessage *msg;
   
