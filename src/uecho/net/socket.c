@@ -520,7 +520,7 @@ size_t uecho_socket_skip(uEchoSocket *sock, size_t skipLen)
 * uecho_socket_sendto
 ****************************************/
 
-size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, byte *data, size_t dataLen)
+size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const byte *data, size_t dataLen)
 {
 	struct addrinfo *addrInfo;
 	ssize_t sentLen;
