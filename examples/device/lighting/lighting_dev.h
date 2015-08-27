@@ -10,3 +10,4 @@
 
 #include <uecho/node.h>
 
+uEchoNode *uecho_create_lighting_node(void);
