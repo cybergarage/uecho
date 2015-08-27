@@ -106,6 +106,21 @@ bool uecho_node_isaddress(uEchoNode *node, const char *addr)
 }
 
 /****************************************
+ * uecho_node_setmanufacturercode
+ ****************************************/
+
+bool uecho_node_setmanufacturercode(uEchoNode *node, uEchoManufacturerCode code)
+{
+  uEchoObject *obj;
+  
+  for (obj = uecho_node_getobjects(node); obj; obj = uecho_object_next(obj)) {
+    uecho_object_setmanufacturercode(obj, code);
+  }
+  
+  return true;
+}
+
+/****************************************
  * uecho_node_getserver
  ****************************************/
 
@@ -287,21 +302,21 @@ bool uecho_node_isrunning(uEchoNode *node)
 }
 
 /****************************************
- * uecho_node_postsearch
+ * uecho_node_postannounce
  ****************************************/
 
-bool uecho_node_postsearch(uEchoNode *node, byte *msgBytes, size_t msgLen)
+bool uecho_node_postannounce(uEchoNode *node, byte *msgBytes, size_t msgLen)
 {
-  return uecho_server_postsearch(node->server, msgBytes, msgLen);
+  return uecho_server_postannounce(node->server, msgBytes, msgLen);
 }
 
 /****************************************
- * uecho_node_postmessage
+ * uecho_node_postresponse
  ****************************************/
 
-bool uecho_node_postmessage(uEchoNode *node, const char *addr, byte *msg, size_t msgLen)
+bool uecho_node_postresponse(uEchoNode *node, const char *addr, byte *msg, size_t msgLen)
 {
-  return uecho_server_postmessage(node->server, addr, msg, msgLen);
+  return uecho_server_postresponse(node->server, addr, msg, msgLen);
 }
 
 

@@ -57,3 +57,23 @@ bool uecho_message_issearchrequest(uEchoMessage *msg) {
   
   return true;
 }
+
+/****************************************
+ * uecho_message_issearchresponse
+ ****************************************/
+
+bool uecho_message_issearchresponse(uEchoMessage *msg) {
+  uEchoProperty *prop;
+  
+  if (uecho_message_getesv(msg) != uEchoEsvReadResponse)
+    return false;
+  
+  if (uecho_message_getopc(msg) != 1)
+    return false;
+  
+  prop = uecho_message_getproperty(msg, 0);
+  if (uecho_property_getcode(prop) != uEchoNodeProfileClassSelfNodeInstanceListS)
+    return false;
+  
+  return true;
+}

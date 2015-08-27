@@ -103,7 +103,16 @@ bool uecho_controller_addnode(uEchoController *cp, uEchoNode *node)
 }
 
 /****************************************
- * uecho_controller_getnexttid
+ * uecho_controller_getnodes
+ ****************************************/
+
+uEchoNode *uecho_controller_getnodes(uEchoController *cp)
+{
+  return uecho_nodelist_gets(cp->nodes);
+}
+
+/****************************************
+ * uecho_controller_getnodebyaddress
  ****************************************/
 
 uEchoNode *uecho_controller_getnodebyaddress(uEchoController *cp, const char *addr)
@@ -114,17 +123,26 @@ uEchoNode *uecho_controller_getnodebyaddress(uEchoController *cp, const char *ad
     if (uecho_node_isaddress(node, addr))
       return node;
   }
-
+  
   return NULL;
 }
 
 /****************************************
- * uecho_controller_getnodes
+ * uecho_controller_getobjectbycode
  ****************************************/
 
-uEchoNode *uecho_controller_getnodes(uEchoController *cp)
+uEchoObject *uecho_controller_getobjectbycode(uEchoController *cp, uEchoObjectCode code)
 {
-  return uecho_nodelist_gets(cp->nodes);
+  uEchoNode *node;
+  uEchoObject *obj;
+  
+  for (node = uecho_controller_getnodes(cp); node; node = uecho_node_next(node)) {
+    obj = uecho_node_getobjectbycode(node, code);
+    if (obj)
+      return obj;
+  }
+  
+  return NULL;
 }
 
 /****************************************
@@ -175,7 +193,7 @@ bool uecho_controller_postsearch(uEchoController *cp, uEchoMessage *msg)
   msgBytes = uecho_message_getbytes(msg);
   msgLen = uecho_message_size(msg);
   
-  return uecho_node_postsearch(cp->node, msgBytes, msgLen);
+  return uecho_node_postannounce(cp->node, msgBytes, msgLen);
 }
 
 /****************************************

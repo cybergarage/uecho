@@ -38,7 +38,8 @@ uEchoMessage *uecho_message_new(void)
   msg->EP = NULL;
   msg->OPC = 0;
   msg->bytes = NULL;
-  
+  msg->srcAddr = NULL;
+ 
   return msg;
 }
 
@@ -76,6 +77,11 @@ void uecho_message_clear(uEchoMessage *msg)
   if (msg->bytes) {
     free(msg->bytes);
     msg->bytes = NULL;
+  }
+
+  if (msg->srcAddr) {
+    free(msg->srcAddr);
+    msg->srcAddr = NULL;
   }
 }
 

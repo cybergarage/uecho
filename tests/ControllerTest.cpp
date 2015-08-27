@@ -11,8 +11,12 @@
 #include <boost/test/unit_test.hpp>
 
 #include <uecho/controller.h>
+#include <uecho/util/timer.h>
 
 #include "TestDevice.h"
+
+const int UECHO_TEST_SEARCH_WAIT_MAX_MTIME = 10000;
+const int UECHO_TEST_SEARCH_WAIT_RETLY_CNT = 100;
 
 BOOST_AUTO_TEST_CASE(ControllerRun)
 {
@@ -23,7 +27,6 @@ BOOST_AUTO_TEST_CASE(ControllerRun)
 
   uecho_controller_delete(cp);
 }
-
 
 BOOST_AUTO_TEST_CASE(ControllerTID)
 {
@@ -44,8 +47,7 @@ BOOST_AUTO_TEST_CASE(ControllerTID)
   uecho_controller_delete(cp);
 }
 
-
-BOOST_AUTO_TEST_CASE(ControllerSearch)
+BOOST_AUTO_TEST_CASE(ControllerSearchAll)
 {
   uEchoNode *node = uecho_test_createtestnode();
   BOOST_CHECK(uecho_node_start(node));
@@ -54,6 +56,16 @@ BOOST_AUTO_TEST_CASE(ControllerSearch)
   
   BOOST_CHECK(uecho_controller_start(cp));
   BOOST_CHECK(uecho_controller_searchallobjects(cp));
+
+  uEchoObject *foundObj;
+  for (int n=0; n<UECHO_TEST_SEARCH_WAIT_RETLY_CNT; n++) {
+    uecho_sleep(UECHO_TEST_SEARCH_WAIT_MAX_MTIME / UECHO_TEST_SEARCH_WAIT_RETLY_CNT);
+    foundObj = uecho_controller_getobjectbycode(cp, UECHO_TEST_OBJECTCODE);
+    if (foundObj)
+      break;
+  }
+
+  BOOST_CHECK(foundObj);
   
   BOOST_CHECK(uecho_controller_stop(cp));
   uecho_controller_delete(cp);

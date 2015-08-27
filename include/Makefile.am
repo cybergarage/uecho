@@ -13,6 +13,7 @@ uechoheaders = \
 	./uecho/const.h \
 	./uecho/controller.h \
 	./uecho/core/message.h \
+	./uecho/core/observer.h \
 	./uecho/core/server.h \
 	./uecho/device.h \
 	./uecho/misc.h \

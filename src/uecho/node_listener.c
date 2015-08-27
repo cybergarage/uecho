@@ -30,22 +30,24 @@ void uecho_object_notifyrequestproperty(uEchoObject *obj, uEchoEsv esv, uEchoPro
     obs->listener(obj, esv, msgProp);
   }
 }
-/*
-typedef enum {
-  uEchoEsvWriteRequest = 0x60,
-  uEchoEsvWriteRequestResponseRequired = 0x61,
-  uEchoEsvReadRequest = 0x62,
-  uEchoEsvNotificationRequest = 0x63,
-  uEchoEsvWriteReadRequest = 0x6E,
+
+/****************************************
+ * uecho_message_isrequestesv
+ ****************************************/
+
+bool uecho_message_isrequestesv(uEchoEsv esv)
+{
+  if ((uEchoEsvWriteRequest <= esv) && (esv <= uEchoEsvNotificationRequest))
+    return true;
   
-  uEchoEsvWriteResponse = 0x71,
-  uEchoEsvReadResponse = 0x72,
-  uEchoEsvNotification = 0x73,
-  uEchoEsvNotificationResponseRequired = 0x74,
-  uEchoEsvNotificationResponse = 0x7A,
-  uEchoEsvWriteReadResponse = 0x7E,
-} uEchoEsv;
-*/
+  if (esv == uEchoEsvWriteReadRequest)
+    return true;
+  
+  if (esv == uEchoEsvNotificationResponseRequired)
+    return true;
+  
+  return false;
+}
 
 /****************************************
  * uecho_message_requestesv2responseesv
@@ -67,6 +69,9 @@ bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv *resEsv)
       return true;
     case uEchoEsvWriteReadRequest:
       *resEsv = uEchoEsvWriteReadResponse;
+      return true;
+    case uEchoEsvNotificationResponseRequired:
+      *resEsv = uEchoEsvNotificationResponse;
       return true;
     default:
       return false;
@@ -158,15 +163,14 @@ void uecho_object_notifymessage(uEchoObject *obj, uEchoMessage *msg)
     if (!uecho_property_isreadable(nodeProp))
       continue;
     
-    nodePropSize = uecho_property_getdatasize(nodeProp);
-    nodePropData = uecho_property_getdata(nodeProp);
-  
     resProp = uecho_property_new();
     if (!resProp)
       continue;
 
+    nodePropSize = uecho_property_getdatasize(nodeProp);
+    nodePropData = uecho_property_getdata(nodeProp);
     uecho_property_setcode(resProp, msgPropCode);
-    uecho_property_setdata(nodeProp, nodePropData, nodePropSize);
+    uecho_property_setdata(resProp, nodePropData, nodePropSize);
     
     uecho_message_addproperty(resMsg, resProp);
   }
@@ -177,11 +181,15 @@ void uecho_object_notifymessage(uEchoObject *obj, uEchoMessage *msg)
   if (!parentNode)
     return;
   
-  resMsgBytes = uecho_message_getbytes(msg);
-  resMsgLen = uecho_message_size(msg);
+  resMsgBytes = uecho_message_getbytes(resMsg);
+  resMsgLen = uecho_message_size(resMsg);
+  if (resEsv == uEchoEsvNotification) {
+    uecho_node_postannounce(parentNode, resMsgBytes, resMsgLen);
+  }
+  else {
+    uecho_node_postresponse(parentNode, uecho_message_getsourceaddress(msg), resMsgBytes, resMsgLen);
+  }
   
-  uecho_node_postmessage(parentNode, uecho_message_getsourceaddress(msg), resMsgBytes, resMsgLen);
-
   uecho_message_delete(resMsg);
 }
 
@@ -191,17 +199,24 @@ void uecho_object_notifymessage(uEchoObject *obj, uEchoMessage *msg)
 
 void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg)
 {
+  uEchoEsv esv;
   uEchoNode *node;
   uEchoObjectCode destObjCode;
   uEchoObject *nodeDestObj;
-  
+
   node = (uEchoNode *)uecho_server_getuserdata(server);
   if (!node)
     return;
   
+  esv = uecho_message_getesv(msg);
   destObjCode = uecho_message_getdestinationobjectcode(msg);
   nodeDestObj = uecho_node_getobjectbycode(node, destObjCode);
 
+  // Processing when the controlled object exists, except when ESV = 0x60-0x63, 0x6E and 0x74
+  if (!uecho_message_isrequestesv(esv))
+    return;
+  
+  // Processing when the controlled object does not exist
   if (!nodeDestObj)
     return;
 
