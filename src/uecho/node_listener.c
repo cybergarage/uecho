@@ -184,10 +184,10 @@ void uecho_object_notifymessage(uEchoObject *obj, uEchoMessage *msg)
   resMsgBytes = uecho_message_getbytes(resMsg);
   resMsgLen = uecho_message_size(resMsg);
   if (resEsv == uEchoEsvNotification) {
-    uecho_node_postannounce(parentNode, resMsgBytes, resMsgLen);
+    uecho_node_announcemessagebytes(parentNode, resMsgBytes, resMsgLen);
   }
   else {
-    uecho_node_postresponse(parentNode, uecho_message_getsourceaddress(msg), resMsgBytes, resMsgLen);
+    uecho_node_sendmessagebytes(parentNode, uecho_message_getsourceaddress(msg), resMsgBytes, resMsgLen);
   }
   
   uecho_message_delete(resMsg);

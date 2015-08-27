@@ -36,7 +36,7 @@ uEchoController *uecho_controller_new(void)
   uecho_server_setmessagelistener(server, uecho_controller_servermessagelistener);
   
   uecho_controller_setlasttid(ctrl, 0);
-  uecho_controller_setmessagerequeslistener(ctrl, NULL);
+  uecho_controller_setmessageresponselistener(ctrl, NULL);
   
 	return ctrl;
 }
@@ -57,28 +57,28 @@ void uecho_controller_delete(uEchoController *ctrl)
 }
 
 /****************************************
- * uecho_controller_setmessagerequeslistener
+ * uecho_controller_setmessageresponselistener
  ****************************************/
 
-void uecho_controller_setmessagerequeslistener(uEchoController *ctrl, uEchoControllerMessageListener listener)
+void uecho_controller_setmessageresponselistener(uEchoController *ctrl, uEchoControllerMessageListener listener)
 {
   ctrl->msgListener = listener;
 }
 
 /****************************************
- * uecho_controller_getmessagerequeslistener
+ * uecho_controller_getmessageresponselistener
  ****************************************/
 
-uEchoControllerMessageListener uecho_controller_getmessagerequeslistener(uEchoController *ctrl)
+uEchoControllerMessageListener uecho_controller_getmessageresponselistener(uEchoController *ctrl)
 {
   return ctrl->msgListener;
 }
 
 /****************************************
- * uecho_controller_hasmessagerequeslistener
+ * uecho_controller_hasmessageresponselistener
  ****************************************/
 
-bool uecho_controller_hasmessagerequeslistener(uEchoController *ctrl)
+bool uecho_controller_hasmessageresponselistener(uEchoController *ctrl)
 {
   return ctrl->msgListener ? true : false;
 }
@@ -128,6 +128,15 @@ bool uecho_controller_isrunning(uEchoController *ctrl)
 bool uecho_controller_addnode(uEchoController *ctrl, uEchoNode *node)
 {
   return uecho_nodelist_add(ctrl->nodes, node);
+}
+
+/****************************************
+ * uecho_controller_getnodecount
+ ****************************************/
+
+size_t uecho_controller_getnodecount(uEchoController *ctrl)
+{
+  return uecho_nodelist_size(ctrl->nodes);
 }
 
 /****************************************
@@ -221,7 +230,7 @@ bool uecho_controller_postsearch(uEchoController *ctrl, uEchoMessage *msg)
   msgBytes = uecho_message_getbytes(msg);
   msgLen = uecho_message_size(msg);
   
-  return uecho_node_postannounce(ctrl->node, msgBytes, msgLen);
+  return uecho_node_announcemessagebytes(ctrl->node, msgBytes, msgLen);
 }
 
 /****************************************
