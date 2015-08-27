@@ -38,6 +38,8 @@ uEchoNode *uecho_node_new(void)
   uecho_server_setuserdata(node->server, node);
   uecho_server_setmessagelistener(node->server, uecho_node_servermessagelistener);
   
+  uecho_node_setmessagerequeslistener(node, NULL);
+  
   obj = uecho_nodeprofileclass_new();
   uecho_node_addobject(node, obj);
   
@@ -68,6 +70,33 @@ void uecho_node_clear(uEchoNode *node)
 {
   uecho_classlist_clear(node->classes);
   uecho_objectlist_clear(node->objects);
+}
+
+/****************************************
+ * uecho_node_setmessagerequeslistener
+ ****************************************/
+
+void uecho_node_setmessagerequeslistener(uEchoNode *node, uEchoNodeMessageListener listener)
+{
+  node->msgListener = listener;
+}
+
+/****************************************
+ * uecho_node_getmessagerequeslistener
+ ****************************************/
+
+uEchoNodeMessageListener uecho_node_getmessagerequeslistener(uEchoNode *node)
+{
+  return node->msgListener;
+}
+
+/****************************************
+ * uecho_node_hasmessagerequeslistener
+ ****************************************/
+
+bool uecho_node_hasmessagerequeslistener(uEchoNode *node)
+{
+  return node->msgListener ? true : false;
 }
 
 /****************************************
