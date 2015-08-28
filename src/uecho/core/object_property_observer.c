@@ -43,6 +43,24 @@ void uecho_object_property_observer_delete(uEchoObjectPropertyObserver *obs)
 }
 
 /****************************************
+ * uecho_object_property_observer_setesv
+ ****************************************/
+
+void uecho_object_property_observer_setesv(uEchoObjectPropertyObserver *obs, uEchoEsv esv)
+{
+  obs->esv = esv;
+}
+
+/****************************************
+ * uecho_object_property_observer_getesv
+ ****************************************/
+
+uEchoEsv uecho_object_property_observer_getesv(uEchoObjectPropertyObserver *obs)
+{
+  return obs->esv;
+}
+
+/****************************************
  * uecho_object_property_observer_setpropetycode
  ****************************************/
 

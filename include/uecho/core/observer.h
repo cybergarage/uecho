@@ -27,6 +27,7 @@ typedef struct _uEchoObjectPropertyObserver {
   struct _uEchoObjectPropertyObserver *prev;
   struct _uEchoObjectPropertyObserver *next;
   
+  uEchoEsv esv;
   uEchoPropertyCode propCode;
   uEchoPropertyRequestListener listener;
 } uEchoObjectPropertyObserver, uEchoObjectPropertyObserverList;
@@ -45,9 +46,11 @@ void uecho_object_property_observer_delete(uEchoObjectPropertyObserver *obs);
 #define uecho_object_property_observer_remove(obs) uecho_list_remove((uEchoList *)obs)
   
 void uecho_object_property_observer_setpropetycode(uEchoObjectPropertyObserver *obs, uEchoPropertyCode code);
+void uecho_object_property_observer_setesv(uEchoObjectPropertyObserver *obs, uEchoEsv esv);
 void uecho_object_property_observer_setlistener(uEchoObjectPropertyObserver *obs, uEchoPropertyRequestListener listener);
 
 uEchoPropertyCode uecho_object_property_observer_getpropetycode(uEchoObjectPropertyObserver *obs);
+uEchoEsv uecho_object_property_observer_getesv(uEchoObjectPropertyObserver *obs);
 uEchoPropertyRequestListener uecho_object_property_observer_getlistener(uEchoObjectPropertyObserver *obs);
 
 /****************************************
