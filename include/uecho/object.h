@@ -65,11 +65,12 @@ typedef struct _uEchoObject {
 
   // Listener
   
-  void (*allMsgListener)(struct _uEchoObject *, uEchoEsv, uEchoProperty *prop); /* uEchoObjectMessageListener */
+  void (*allMsgListener)(struct _uEchoObject *, uEchoMessage *); /* uEchoObjectMessageListener */
   void *propListenerMgr;
 } uEchoObject, uEchoObjectList;
 
-typedef void (*uEchoObjectMessageListener)(uEchoObject *, uEchoEsv, uEchoProperty *);
+typedef void (*uEchoObjectMessageListener)(uEchoObject *, uEchoMessage *);
+typedef void (*uEchoPropertyRequestListener)(uEchoObject *, uEchoEsv, uEchoProperty *);
 
 /****************************************
  * Function (Object)
@@ -100,7 +101,7 @@ byte uecho_object_getinstancecode(uEchoObject *obj);
 bool uecho_object_isdevice(uEchoObject *obj);
 bool uecho_object_isprofile(uEchoObject *obj);
 
-bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr);
+bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr);
 bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen);
 bool uecho_object_setpropertyintegerdata(uEchoObject *obj, uEchoPropertyCode code, int data, size_t dataLen);
 bool uecho_object_setpropertybytedata(uEchoObject *obj, uEchoPropertyCode code, byte data);
@@ -117,12 +118,12 @@ bool uecho_object_hasproperty(uEchoObject *obj, uEchoPropertyCode code);
 size_t uecho_object_getpropertycount(uEchoObject *obj);
 void uecho_object_clearproperties(uEchoObject *obj);
 
-void uecho_object_setmessagerequeslistener(uEchoObject *obj, uEchoObjectMessageListener listener);
-uEchoObjectMessageListener uecho_object_getmessagerequeslistener(uEchoObject *obj);
-bool uecho_object_hasmessagerequeslistener(uEchoObject *obj);
+void uecho_object_setmessagelistener(uEchoObject *obj, uEchoObjectMessageListener listener);
+uEchoObjectMessageListener uecho_object_getmessagelistener(uEchoObject *obj);
+bool uecho_object_hasmessagelistener(uEchoObject *obj);
 
-bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code, uEchoObjectMessageListener listener);
-uEchoObjectMessageListener uecho_object_getpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code);
+bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
+uEchoPropertyRequestListener uecho_object_getpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code);
 bool uecho_object_haspropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code);
   
 /****************************************
