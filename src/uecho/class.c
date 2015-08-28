@@ -22,7 +22,7 @@ uEchoClass *uecho_class_new(void)
 	uEchoClass *cls;
 
 	cls = (uEchoClass *)malloc(sizeof(uEchoClass));
-    
+
   if (!cls)
     return NULL;
 
@@ -30,7 +30,7 @@ uEchoClass *uecho_class_new(void)
 
   uecho_class_setclassgroupcode(cls, 0);
   uecho_class_setclasscode(cls, 0);
-  
+
   return cls;
 }
 
@@ -41,7 +41,7 @@ uEchoClass *uecho_class_new(void)
 void uecho_class_delete(uEchoClass *cls)
 {
 	uecho_list_remove((uEchoList *)cls);
-  
+
   free(cls);
 }
 
@@ -84,7 +84,7 @@ void uecho_class_setclassgroupcode(uEchoClass *cls, byte val)
 {
   cls->code[0] = val;
 }
-  
+
 /****************************************
  * uecho_class_getclassgroupcode
  ****************************************/
@@ -102,7 +102,7 @@ void uecho_class_setclasscode(uEchoClass *cls, byte val)
 {
   cls->code[1] = val;
 }
-      
+
 /****************************************
  * uecho_class_getclasscode
  ****************************************/

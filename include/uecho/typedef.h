@@ -24,7 +24,7 @@
 #if defined(__APPLE_CPP__) || defined(__APPLE_CC__)
 #include <TargetConditionals.h>
 #endif
-	
+
 #ifdef HAVE_CONFIG_H
 #  include "config.h"
 #endif
@@ -33,7 +33,6 @@
 extern "C" {
 #endif
 
-  
 /****************************************
  * Compiler
 ****************************************/
@@ -46,7 +45,7 @@ extern "C" {
 * Data Type
 ****************************************/
 
-#if defined(C99)
+#if defined(C99) || defined(HAVE_STDBOOL_H)
 #include <stdbool.h>
 #else
 #if !defined(bool)
