@@ -122,9 +122,9 @@ void uecho_object_setmessagelistener(uEchoObject *obj, uEchoObjectMessageListene
 uEchoObjectMessageListener uecho_object_getmessagelistener(uEchoObject *obj);
 bool uecho_object_hasmessagelistener(uEchoObject *obj);
 
-bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
-uEchoPropertyRequestListener uecho_object_getpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code);
-bool uecho_object_haspropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code);
+bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
+uEchoPropertyRequestListener uecho_object_getpropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
+bool uecho_object_haspropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
   
 /****************************************
  * Function (Object List)

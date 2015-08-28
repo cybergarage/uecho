@@ -75,10 +75,10 @@ uEchoObjectPropertyObserver *uecho_object_property_observerlist_getobserver(uEch
 uEchoObjectPropertyObserverManager *uecho_object_property_observer_manager_new();
 void uecho_object_property_observer_manager_delete(uEchoObjectPropertyObserverManager *obsMgr);
 
-bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
+bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
 
 uEchoObjectPropertyObserver *uecho_object_property_observer_manager_getobservers(uEchoObjectPropertyObserverManager *obsMgr);
-uEchoObjectPropertyObserver *uecho_object_property_observer_manager_getobserverbycode(uEchoObjectPropertyObserverManager *obsMgr, uEchoPropertyCode code);
+uEchoObjectPropertyObserver *uecho_object_property_observer_manager_getobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoEsv esv, uEchoPropertyCode code);
   
 #ifdef  __cplusplus
 } /* extern C */
