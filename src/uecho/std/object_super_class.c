@@ -25,18 +25,18 @@ bool uecho_object_addmandatoryproperties(uEchoObject *obj)
   
   // Manufacture Code
   
-  uecho_object_addproperty(obj, uEchoObjectManufacturerCode, uEchoPropertyAttrRead);
+  uecho_object_setproperty(obj, uEchoObjectManufacturerCode, uEchoPropertyAttrRead);
   uecho_object_setmanufacturercode(obj, uEchoManufactureCodeUnknown);
   
   // Property map properties
   
-  uecho_object_addproperty(obj, uEchoObjectGetPropertyMap, uEchoPropertyAttrRead);
+  uecho_object_setproperty(obj, uEchoObjectGetPropertyMap, uEchoPropertyAttrRead);
   uecho_object_setpropertydata(obj, uEchoObjectGetPropertyMap, zeroPropMap, sizeof(zeroPropMap));
 
-  uecho_object_addproperty(obj, uEchoObjectSetPropertyMap, uEchoPropertyAttrRead);
+  uecho_object_setproperty(obj, uEchoObjectSetPropertyMap, uEchoPropertyAttrRead);
   uecho_object_setpropertydata(obj, uEchoObjectSetPropertyMap, zeroPropMap, sizeof(zeroPropMap));
 
-  uecho_object_addproperty(obj, uEchoObjectAnnoPropertyMap, uEchoPropertyAttrRead);
+  uecho_object_setproperty(obj, uEchoObjectAnnoPropertyMap, uEchoPropertyAttrRead);
   uecho_object_setpropertydata(obj, uEchoObjectAnnoPropertyMap, zeroPropMap, sizeof(zeroPropMap));
   
   return true;

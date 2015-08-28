@@ -85,9 +85,9 @@ bool uecho_node_sendmessage(uEchoNode *node, uEchoMessage *msg);
 bool uecho_node_announcemessagebytes(uEchoNode *node, byte *msg, size_t msgLen);
 bool uecho_node_sendmessagebytes(uEchoNode *node, const char *addr, byte *msg, size_t msgLen);
 
-void uecho_node_setmessagerequeslistener(uEchoNode *node, uEchoNodeMessageListener listener);
-uEchoNodeMessageListener uecho_node_getmessagerequeslistener(uEchoNode *node);
-bool uecho_node_hasmessagerequeslistener(uEchoNode *node);
+void uecho_node_setmessagelistener(uEchoNode *node, uEchoNodeMessageListener listener);
+uEchoNodeMessageListener uecho_node_getmessagelistener(uEchoNode *node);
+bool uecho_node_hasmessagelistener(uEchoNode *node);
   
 /****************************************
  * Function (Node List)

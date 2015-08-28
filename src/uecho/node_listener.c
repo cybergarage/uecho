@@ -20,10 +20,6 @@ void uecho_object_notifyrequestproperty(uEchoObject *obj, uEchoEsv esv, uEchoPro
 {
   uEchoObjectPropertyObserver *obs;
   
-  if (obj->allMsgListener) {
-    obj->allMsgListener(obj, esv, msgProp);
-  }
-  
   for (obs = uecho_object_property_observer_manager_getobservers(obj->propListenerMgr); obs; obs = uecho_object_property_observer_next(obs)) {
     if (uecho_property_getcode(msgProp) != uecho_object_property_observer_getpropetycode(obs))
       continue;
@@ -128,6 +124,10 @@ void uecho_object_notifymessage(uEchoObject *obj, uEchoMessage *msg)
   }
   
   // Notify observers
+  
+  if (obj->allMsgListener) {
+    obj->allMsgListener(obj, msg);
+  }
   
   for (n=0; n<msgOpc; n++) {
     msgProp = uecho_message_getproperty(msg, n);

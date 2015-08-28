@@ -36,8 +36,8 @@ uEchoController *uecho_controller_new(void)
   uecho_server_setmessagelistener(server, uecho_controller_servermessagelistener);
   
   uecho_controller_setlasttid(ctrl, 0);
-  uecho_controller_setmessageresponselistener(ctrl, NULL);
-  
+  uecho_controller_setmessagelistener(ctrl, NULL);
+
 	return ctrl;
 }
 
@@ -57,19 +57,19 @@ void uecho_controller_delete(uEchoController *ctrl)
 }
 
 /****************************************
- * uecho_controller_setmessageresponselistener
+ * uecho_controller_setmessagelistener
  ****************************************/
 
-void uecho_controller_setmessageresponselistener(uEchoController *ctrl, uEchoControllerMessageListener listener)
+void uecho_controller_setmessagelistener(uEchoController *ctrl, uEchoControllerMessageListener listener)
 {
   ctrl->msgListener = listener;
 }
 
 /****************************************
- * uecho_controller_getmessageresponselistener
+ * uecho_controller_getmessagelistener
  ****************************************/
 
-uEchoControllerMessageListener uecho_controller_getmessageresponselistener(uEchoController *ctrl)
+uEchoControllerMessageListener uecho_controller_getmessagelistener(uEchoController *ctrl)
 {
   return ctrl->msgListener;
 }
@@ -78,7 +78,7 @@ uEchoControllerMessageListener uecho_controller_getmessageresponselistener(uEcho
  * uecho_controller_hasmessageresponselistener
  ****************************************/
 
-bool uecho_controller_hasmessageresponselistener(uEchoController *ctrl)
+bool uecho_controller_hasmessagelistener(uEchoController *ctrl)
 {
   return ctrl->msgListener ? true : false;
 }

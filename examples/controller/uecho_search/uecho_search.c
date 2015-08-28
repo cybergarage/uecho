@@ -23,7 +23,8 @@ void uecho_search_messagelistener(uEchoController *ctrl, uEchoMessage *msg)
     uecho_message_getsourceaddress(msg),
     uecho_message_getesv(msg),
     opc);
-  
+  printf("%02X", uecho_property_getcode(prop));
+
 
   for (n=0; n<opc; n++) {
     prop = uecho_message_getproperty(msg, n);
@@ -58,7 +59,7 @@ int main(int argc, char *argv[])
   if (!ctrl)
     return EXIT_FAILURE;
   
-  uecho_controller_setmessageresponselistener(ctrl, uecho_search_messagelistener);
+  uecho_controller_setmessagelistener(ctrl, uecho_search_messagelistener);
   
   if (!uecho_controller_start(ctrl))
     return EXIT_FAILURE;
