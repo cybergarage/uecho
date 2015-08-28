@@ -27,8 +27,9 @@ typedef struct _uEchoObjectPropertyObserver {
   struct _uEchoObjectPropertyObserver *prev;
   struct _uEchoObjectPropertyObserver *next;
   
+  uEchoEsv esv;
   uEchoPropertyCode propCode;
-  uEchoObjectMessageListener listener;
+  uEchoPropertyRequestListener listener;
 } uEchoObjectPropertyObserver, uEchoObjectPropertyObserverList;
 
 typedef struct _uEchoObjectPropertyObserverManager {
@@ -45,10 +46,12 @@ void uecho_object_property_observer_delete(uEchoObjectPropertyObserver *obs);
 #define uecho_object_property_observer_remove(obs) uecho_list_remove((uEchoList *)obs)
   
 void uecho_object_property_observer_setpropetycode(uEchoObjectPropertyObserver *obs, uEchoPropertyCode code);
-void uecho_object_property_observer_setlistener(uEchoObjectPropertyObserver *obs, uEchoObjectMessageListener listener);
+void uecho_object_property_observer_setesv(uEchoObjectPropertyObserver *obs, uEchoEsv esv);
+void uecho_object_property_observer_setlistener(uEchoObjectPropertyObserver *obs, uEchoPropertyRequestListener listener);
 
 uEchoPropertyCode uecho_object_property_observer_getpropetycode(uEchoObjectPropertyObserver *obs);
-uEchoObjectMessageListener uecho_object_property_observer_getlistener(uEchoObjectPropertyObserver *obs);
+uEchoEsv uecho_object_property_observer_getesv(uEchoObjectPropertyObserver *obs);
+uEchoPropertyRequestListener uecho_object_property_observer_getlistener(uEchoObjectPropertyObserver *obs);
 
 /****************************************
  * Function (Property Observer List)
@@ -56,7 +59,7 @@ uEchoObjectMessageListener uecho_object_property_observer_getlistener(uEchoObjec
   
 uEchoObjectPropertyObserverList *uecho_object_property_observerlist_new();
 void uecho_object_property_observerlist_delete(uEchoObjectPropertyObserverList *obsMgr);
-bool uecho_object_property_observerlist_setobserver(uEchoObjectPropertyObserverList *obsMgr, uEchoPropertyCode code, uEchoObjectMessageListener listener);
+bool uecho_object_property_observerlist_setobserver(uEchoObjectPropertyObserverList *obsMgr, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
 uEchoObjectPropertyObserver *uecho_object_property_observerlist_getobserver(uEchoObjectPropertyObserverList *obsMgr, uEchoPropertyCode code);
   
 #define uecho_object_property_observerlist_clear(obsMgr) uecho_list_clear((uEchoList *)obsMgr, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_property_observer_delete)
@@ -72,10 +75,10 @@ uEchoObjectPropertyObserver *uecho_object_property_observerlist_getobserver(uEch
 uEchoObjectPropertyObserverManager *uecho_object_property_observer_manager_new();
 void uecho_object_property_observer_manager_delete(uEchoObjectPropertyObserverManager *obsMgr);
 
-bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoPropertyCode code, uEchoObjectMessageListener listener);
+bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
 
 uEchoObjectPropertyObserver *uecho_object_property_observer_manager_getobservers(uEchoObjectPropertyObserverManager *obsMgr);
-uEchoObjectPropertyObserver *uecho_object_property_observer_manager_getobserverbycode(uEchoObjectPropertyObserverManager *obsMgr, uEchoPropertyCode code);
+uEchoObjectPropertyObserver *uecho_object_property_observer_manager_getobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoEsv esv, uEchoPropertyCode code);
   
 #ifdef  __cplusplus
 } /* extern C */
