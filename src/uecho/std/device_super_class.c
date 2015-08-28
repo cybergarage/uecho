@@ -23,22 +23,22 @@ bool uecho_device_addmandatoryproperties(uEchoObject *obj)
   
   // Operation Status
   
-  uecho_object_addproperty(obj, uEchoDeviceOperatingStatus, uEchoPropertyAttrReadAnno);
+  uecho_object_setproperty(obj, uEchoDeviceOperatingStatus, uEchoPropertyAttrReadAnno);
   uecho_device_setoperatingstatus(obj, true);
   
   // Installation Location
   
-  uecho_object_addproperty(obj, uEchoDeviceInstallationLocation, uEchoPropertyAttrReadAnno);
+  uecho_object_setproperty(obj, uEchoDeviceInstallationLocation, uEchoPropertyAttrReadAnno);
   uecho_device_setinstallationlocation(obj, uEchoDeviceInstallationLocationUnknown);
   
   // Standard Version Infomation
   
-  uecho_object_addproperty(obj, uEchoDeviceStandardVersion, uEchoPropertyAttrRead);
+  uecho_object_setproperty(obj, uEchoDeviceStandardVersion, uEchoPropertyAttrRead);
   uecho_device_setstandardversion(obj, uEchoDeviceDefaultVersionAppendix);
   
   // Fault Status
   
-  uecho_object_addproperty(obj, uEchoDeviceFaultStatus, uEchoPropertyAttrReadAnno);
+  uecho_object_setproperty(obj, uEchoDeviceFaultStatus, uEchoPropertyAttrReadAnno);
   uecho_device_setfaultstatus(obj, false);
 
   return true;

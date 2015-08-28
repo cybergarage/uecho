@@ -42,7 +42,7 @@ void uecho_object_property_observer_manager_delete(uEchoObjectPropertyObserverMa
  * uecho_object_property_observer_manager_setobserver
  ****************************************/
 
-bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoPropertyCode code, uEchoObjectMessageListener listener)
+bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoPropertyCode code, uEchoPropertyRequestListener listener)
 {
   uEchoObjectPropertyObserver *obs;
   
