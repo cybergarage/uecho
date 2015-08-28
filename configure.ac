@@ -16,13 +16,6 @@ AC_CONFIG_SRCDIR([include/uecho/typedef.h])
 AM_INIT_AUTOMAKE([subdir-objects])
 
 ##############################
-# Constants
-##############################
-
-#CppUnit version
-CPPUNIT_VERSION=1.6.0
-
-##############################
 # Checks for programs.
 ##############################
 
@@ -32,6 +25,19 @@ AC_PROG_INSTALL
 AC_PROG_AWK
 #AC_PROG_LIBTOOL
 AC_PROG_RANLIB
+
+##############################
+# Checks for header files.
+##############################
+
+AC_CHECK_HEADERS([stdbool.h])
+
+##############################
+# Checks for pthread
+##############################
+
+AC_CHECK_HEADERS([pthread.h],,[AC_MSG_ERROR(mUPnP needs POSIX thread library)])
+AC_CHECK_LIB([pthread],[main])
 
 ##############################
 # Checks for Network functions
