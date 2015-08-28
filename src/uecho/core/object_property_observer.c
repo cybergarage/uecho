@@ -43,6 +43,24 @@ void uecho_object_property_observer_delete(uEchoObjectPropertyObserver *obs)
 }
 
 /****************************************
+ * uecho_object_property_observer_setesv
+ ****************************************/
+
+void uecho_object_property_observer_setesv(uEchoObjectPropertyObserver *obs, uEchoEsv esv)
+{
+  obs->esv = esv;
+}
+
+/****************************************
+ * uecho_object_property_observer_getesv
+ ****************************************/
+
+uEchoEsv uecho_object_property_observer_getesv(uEchoObjectPropertyObserver *obs)
+{
+  return obs->esv;
+}
+
+/****************************************
  * uecho_object_property_observer_setpropetycode
  ****************************************/
 
@@ -64,7 +82,7 @@ uEchoPropertyCode uecho_object_property_observer_getpropetycode(uEchoObjectPrope
  * uecho_object_property_observer_setlistener
  ****************************************/
 
-void uecho_object_property_observer_setlistener(uEchoObjectPropertyObserver *obs, uEchoObjectMessageListener listener)
+void uecho_object_property_observer_setlistener(uEchoObjectPropertyObserver *obs, uEchoPropertyRequestListener listener)
 {
   obs->listener = listener;
 }
@@ -73,7 +91,7 @@ void uecho_object_property_observer_setlistener(uEchoObjectPropertyObserver *obs
  * uecho_object_property_observer_getlistener
  ****************************************/
 
-uEchoObjectMessageListener uecho_object_property_observer_getlistener(uEchoObjectPropertyObserver *obs)
+uEchoPropertyRequestListener uecho_object_property_observer_getlistener(uEchoObjectPropertyObserver *obs)
 {
   return obs->listener;
 }

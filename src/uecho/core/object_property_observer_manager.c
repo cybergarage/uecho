@@ -42,11 +42,11 @@ void uecho_object_property_observer_manager_delete(uEchoObjectPropertyObserverMa
  * uecho_object_property_observer_manager_setobserver
  ****************************************/
 
-bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoPropertyCode code, uEchoObjectMessageListener listener)
+bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener)
 {
   uEchoObjectPropertyObserver *obs;
   
-  obs = uecho_object_property_observer_manager_getobserverbycode(obsMgr, code);
+  obs = uecho_object_property_observer_manager_getobserver(obsMgr, esv, code);
   if (obs) {
     uecho_object_property_observer_remove(obs);
     uecho_object_property_observer_delete(obs);
@@ -72,14 +72,16 @@ uEchoObjectPropertyObserver *uecho_object_property_observer_manager_getobservers
 }
 
 /****************************************
- * uecho_object_property_observer_manager_getobserverbycode
+ * uecho_object_property_observer_manager_getobserver
  ****************************************/
 
-uEchoObjectPropertyObserver *uecho_object_property_observer_manager_getobserverbycode(uEchoObjectPropertyObserverManager *obsMgr, uEchoPropertyCode code)
+uEchoObjectPropertyObserver *uecho_object_property_observer_manager_getobserver(uEchoObjectPropertyObserverManager *obsMgr, uEchoEsv esv, uEchoPropertyCode code)
 {
   uEchoObjectPropertyObserver *obs;
   
   for (obs = uecho_object_property_observer_manager_getobservers(obsMgr); obs; obs = uecho_object_property_observer_next(obs)) {
+    if (esv != uecho_object_property_observer_getesv(obs))
+      continue;
     if (code == uecho_object_property_observer_getpropetycode(obs))
       return obs;
   }
