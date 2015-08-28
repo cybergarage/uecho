@@ -396,20 +396,20 @@ bool uecho_object_hasmessagelistener(uEchoObject *obj)
  * uecho_object_setpropertyrequeslistener
  ****************************************/
 
-bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyRequestListener listener)
+bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener)
 {
-  return uecho_object_property_observer_manager_setobserver(obj->propListenerMgr, code, listener);
+  return uecho_object_property_observer_manager_setobserver(obj->propListenerMgr, esv, code, listener);
 }
 
 /****************************************
  * uecho_object_getpropertyrequeslistener
  ****************************************/
 
-uEchoPropertyRequestListener uecho_object_getpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code)
+uEchoPropertyRequestListener uecho_object_getpropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code)
 {
   uEchoObjectPropertyObserver *obs;
   
-  obs = uecho_object_property_observer_manager_getobserverbycode(obj->propListenerMgr, code);
+  obs = uecho_object_property_observer_manager_getobserver(obj->propListenerMgr, esv, code);
   if (!obs)
     return NULL;
   
@@ -420,8 +420,8 @@ uEchoPropertyRequestListener uecho_object_getpropertyrequeslistener(uEchoObject 
  * uecho_object_haspropertyrequeslistener
  ****************************************/
 
-bool uecho_object_haspropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code)
+bool uecho_object_haspropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code)
 {
-  return (uecho_object_getpropertyrequeslistener(obj, code) != NULL) ? true : false;
+  return (uecho_object_getpropertyrequeslistener(obj, esv, code) != NULL) ? true : false;
 }
 
