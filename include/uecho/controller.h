@@ -51,9 +51,9 @@ void uecho_controller_setlasttid(uEchoController *ctrl, uEchoTID tid);
 uEchoTID uecho_controller_getlasttid(uEchoController *ctrl);
 uEchoTID uecho_controller_getnexttid(uEchoController *ctrl);
 
-void uecho_controller_setmessagerequeslistener(uEchoController *ctrl, uEchoControllerMessageListener listener);
-uEchoControllerMessageListener uecho_controller_getmessagerequeslistener(uEchoController *ctrl);
-bool uecho_controller_hasmessagerequeslistener(uEchoController *ctrl);
+void uecho_controller_setmessagelistener(uEchoController *ctrl, uEchoControllerMessageListener listener);
+uEchoControllerMessageListener uecho_controller_getmessagelistener(uEchoController *ctrl);
+bool uecho_controller_hasmessagelistener(uEchoController *ctrl);
 
 bool uecho_controller_searchallobjects(uEchoController *ctrl);
 bool uecho_controller_searchobject(uEchoController *ctrl, byte objCode);

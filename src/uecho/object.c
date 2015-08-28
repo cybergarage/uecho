@@ -37,7 +37,7 @@ uEchoObject *uecho_object_new(void)
 
   obj->properties = uecho_propertylist_new();
 
-  uecho_object_setmessagerequeslistener(obj, NULL);
+  uecho_object_setmessagelistener(obj, NULL);
   obj->propListenerMgr = uecho_object_property_observer_manager_new();
   
   // Property map caches
@@ -214,7 +214,7 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
   
   if (propsCodeSize <= uEchoPropertyMapMaxLen) {
     memcpy(propMap, propCodes, propsCodeSize);
-    uecho_object_addproperty(obj, mapCode, uEchoPropertyAttrRead);
+    uecho_object_setproperty(obj, mapCode, uEchoPropertyAttrRead);
     uecho_object_setpropertydata(obj, mapCode, propMapData, (propsCodeSize + 1));
     return true;
   }
@@ -230,7 +230,7 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
     propMap[propByteIdx] |= (((propCode - uEchoPropertyCodeMin) & 0xF0) >> 8) & 0x0F;
   }
   
-  uecho_object_addproperty(obj, mapCode, uEchoPropertyAttrRead);
+  uecho_object_setproperty(obj, mapCode, uEchoPropertyAttrRead);
   uecho_object_setpropertydata(obj, mapCode, propMapData, (uEchoPropertyMapMaxLen + 1));
   
   return true;
@@ -240,7 +240,7 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
  * uecho_object_addproperty
  ****************************************/
 
-bool uecho_object_addproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)
+bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)
 {
   if (!uecho_propertylist_set(obj->properties, code, attr, NULL, 0))
     return false;
@@ -366,28 +366,28 @@ bool uecho_object_getpropertybytedata(uEchoObject *obj, uEchoPropertyCode code, 
 }
 
 /****************************************
- * uecho_object_setmessagerequeslistener
+ * uecho_object_setmessagelistener
  ****************************************/
 
-void uecho_object_setmessagerequeslistener(uEchoObject *obj, uEchoObjectMessageListener listener)
+void uecho_object_setmessagelistener(uEchoObject *obj, uEchoObjectMessageListener listener)
 {
   obj->allMsgListener = listener;
 }
 
 /****************************************
- * uecho_object_getmessagerequeslistener
+ * uecho_object_getmessagelistener
  ****************************************/
 
-uEchoObjectMessageListener uecho_object_getmessagerequeslistener(uEchoObject *obj)
+uEchoObjectMessageListener uecho_object_getmessagelistener(uEchoObject *obj)
 {
   return obj->allMsgListener;
 }
 
 /****************************************
- * uecho_object_hasmessagerequeslistener
+ * uecho_object_hasmessagelistener
  ****************************************/
 
-bool uecho_object_hasmessagerequeslistener(uEchoObject *obj)
+bool uecho_object_hasmessagelistener(uEchoObject *obj)
 {
   return obj->allMsgListener ? true : false;
 }
@@ -396,7 +396,7 @@ bool uecho_object_hasmessagerequeslistener(uEchoObject *obj)
  * uecho_object_setpropertyrequeslistener
  ****************************************/
 
-bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code, uEchoObjectMessageListener listener)
+bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyRequestListener listener)
 {
   return uecho_object_property_observer_manager_setobserver(obj->propListenerMgr, code, listener);
 }
@@ -405,7 +405,7 @@ bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode 
  * uecho_object_getpropertyrequeslistener
  ****************************************/
 
-uEchoObjectMessageListener uecho_object_getpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code)
+uEchoPropertyRequestListener uecho_object_getpropertyrequeslistener(uEchoObject *obj, uEchoPropertyCode code)
 {
   uEchoObjectPropertyObserver *obs;
   

@@ -41,38 +41,38 @@ bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject *obj)
 {
   // Operation Status
   
-  uecho_object_addproperty(obj, uEchoNodeProfileClassOperatingStatus, uEchoPropertyAttrReadAnno);
+  uecho_object_setproperty(obj, uEchoNodeProfileClassOperatingStatus, uEchoPropertyAttrReadAnno);
   uecho_nodeprofileclass_setoperatingstatus(obj, true);
   
   // Version Information
   
-  uecho_object_addproperty(obj, uEchoNodeProfileClassVersionInformation, uEchoPropertyAttrRead);
+  uecho_object_setproperty(obj, uEchoNodeProfileClassVersionInformation, uEchoPropertyAttrRead);
   uecho_nodeprofileclass_setversion(obj, uEchoMajorVersion, uEchoMinorVersion, uEchoSpecifiedMessageFormat);
 
   // Identification Number
   
-  uecho_object_addproperty(obj, uEchoNodeProfileClassIdentificationNumber, uEchoPropertyAttrRead);
+  uecho_object_setproperty(obj, uEchoNodeProfileClassIdentificationNumber, uEchoPropertyAttrRead);
   uecho_nodeprofileclass_setdefaultid(obj);
   
   // Number Of Self Node Instances
 
-  uecho_object_addproperty(obj, uEchoNodeProfileClassNumberOfSelfNodeInstances, uEchoPropertyAttrRead);
+  uecho_object_setproperty(obj, uEchoNodeProfileClassNumberOfSelfNodeInstances, uEchoPropertyAttrRead);
 
   // Number Of Self Node Classes
   
-  uecho_object_addproperty(obj, uEchoNodeProfileClassNumberOfSelfNodeClasses, uEchoPropertyAttrRead);
+  uecho_object_setproperty(obj, uEchoNodeProfileClassNumberOfSelfNodeClasses, uEchoPropertyAttrRead);
 
   // Instance List Notification
   
-  uecho_object_addproperty(obj, uEchoNodeProfileClassInstanceListNotification, uEchoPropertyAttrAnno);
+  uecho_object_setproperty(obj, uEchoNodeProfileClassInstanceListNotification, uEchoPropertyAttrAnno);
 
   // Self Node Instance ListS
   
-  uecho_object_addproperty(obj, uEchoNodeProfileClassSelfNodeInstanceListS, uEchoPropertyAttrRead);
+  uecho_object_setproperty(obj, uEchoNodeProfileClassSelfNodeInstanceListS, uEchoPropertyAttrRead);
 
   // Self Node Class List S
   
-  uecho_object_addproperty(obj, uEchoNodeProfileClassSelfNodeClassListS, uEchoPropertyAttrRead);
+  uecho_object_setproperty(obj, uEchoNodeProfileClassSelfNodeClassListS, uEchoPropertyAttrRead);
   
   return true;
 }

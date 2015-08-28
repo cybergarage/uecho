@@ -296,14 +296,14 @@
 		215CB34C1B8F189C000BA7FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LightingDev;
 			};
 			name = Debug;
 		};
 		215CB34D1B8F189C000BA7FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LightingDev;
 			};
 			name = Release;
 		};
