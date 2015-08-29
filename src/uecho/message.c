@@ -405,6 +405,10 @@ bool uecho_message_setproperty(uEchoMessage *msg, uEchoPropertyCode propCode, si
     if (!prop)
       return false;
     uecho_property_setcode(prop, propCode);
+    if (!uecho_message_addproperty(msg, prop)) {
+      uecho_property_delete(prop);
+      return false;
+    }
   }
 
   return uecho_property_setdata(prop, propData, propDataSize);
@@ -593,6 +597,8 @@ byte *uecho_message_getbytes(uEchoMessage *msg)
     count = uecho_property_getdatasize(prop);
     msg->bytes[offset++] = uecho_property_getcode(prop);
     msg->bytes[offset++] = count;
+    if (count <= 0)
+      continue;
     memcpy((msg->bytes + offset), uecho_property_getdata(prop), count);
     offset += count;
   }
