@@ -224,6 +224,7 @@ bool uecho_message_setesv(uEchoMessage *msg, uEchoEsv val)
     return false;
   
   msg->ESV = val;
+
   return true;
 }
 
@@ -233,7 +234,55 @@ bool uecho_message_setesv(uEchoMessage *msg, uEchoEsv val)
 
 uEchoEsv uecho_message_getesv(uEchoMessage *msg)
 {
+  if (!msg)
+    return 0;
+  
   return msg->ESV;
+}
+
+/****************************************
+ * uecho_message_requestesv2responseesv
+ ****************************************/
+
+bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv *resEsv)
+{
+  *resEsv = 0;
+  
+  switch (reqEsv) {
+    case uEchoEsvWriteRequestResponseRequired:
+      *resEsv = uEchoEsvWriteResponse;
+      return true;
+    case uEchoEsvReadRequest:
+      *resEsv = uEchoEsvReadResponse;
+      return true;
+    case uEchoEsvNotificationRequest:
+      *resEsv = uEchoEsvNotification;
+      return true;
+    case uEchoEsvWriteReadRequest:
+      *resEsv = uEchoEsvWriteReadResponse;
+      return true;
+    case uEchoEsvNotificationResponseRequired:
+      *resEsv = uEchoEsvNotificationResponse;
+      return true;
+    default:
+      return false;
+  }
+  
+  return false;
+}
+
+/****************************************
+ * uecho_message_isresponserequired
+ ****************************************/
+
+bool uecho_message_isresponserequired(uEchoMessage *msg)
+{
+  uEchoEsv resEsv;
+  
+  if (!msg)
+    return false;
+  
+  return uecho_message_requestesv2responseesv(msg->ESV, &resEsv);
 }
 
 /****************************************
