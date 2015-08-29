@@ -40,6 +40,9 @@ uEchoClass *uecho_class_new(void)
 
 void uecho_class_delete(uEchoClass *cls)
 {
+  if (!cls)
+    return;
+  
 	uecho_list_remove((uEchoList *)cls);
 
   free(cls);
@@ -51,6 +54,9 @@ void uecho_class_delete(uEchoClass *cls)
 
 void uecho_class_setcode(uEchoClass *cls, uEchoClassCode val)
 {
+  if (!cls)
+    return;
+
   cls->code[0] = (val & 0xFF00) >> 8;
   cls->code[1] = (val & 0x00FF);
 }
@@ -61,7 +67,12 @@ void uecho_class_setcode(uEchoClass *cls, uEchoClassCode val)
 
 uEchoClassCode uecho_class_getcode(uEchoClass *cls)
 {
-  int code = 0;
+  int code;
+  
+  if (!cls)
+    return 0;
+  
+  code = 0;
   code |= (cls->code[0] << 8) & 0xFF00;
   code |= (cls->code[1]     ) & 0x00FF;
   return code;
@@ -73,6 +84,9 @@ uEchoClassCode uecho_class_getcode(uEchoClass *cls)
 
 bool uecho_class_iscode(uEchoClass *cls, uEchoClassCode code)
 {
+  if (!cls)
+    return false;
+
   return (uecho_class_getcode(cls) == code) ? true : false;
 }
 
@@ -82,6 +96,9 @@ bool uecho_class_iscode(uEchoClass *cls, uEchoClassCode code)
 
 void uecho_class_setclassgroupcode(uEchoClass *cls, byte val)
 {
+  if (!cls)
+    return;
+  
   cls->code[0] = val;
 }
 
@@ -91,6 +108,9 @@ void uecho_class_setclassgroupcode(uEchoClass *cls, byte val)
 
 byte uecho_class_getclassgroupcode(uEchoClass *cls)
 {
+  if (!cls)
+    return 0;
+  
   return cls->code[0];
 }
 
@@ -100,6 +120,9 @@ byte uecho_class_getclassgroupcode(uEchoClass *cls)
 
 void uecho_class_setclasscode(uEchoClass *cls, byte val)
 {
+  if (!cls)
+    return;
+
   cls->code[1] = val;
 }
 
@@ -109,6 +132,9 @@ void uecho_class_setclasscode(uEchoClass *cls, byte val)
 
 byte uecho_class_getclasscode(uEchoClass *cls)
 {
+  if (!cls)
+    return 0;
+
   return cls->code[1];
 }
 
@@ -118,6 +144,9 @@ byte uecho_class_getclasscode(uEchoClass *cls)
 
 bool uecho_class_isdevice(uEchoClass *cls)
 {
+  if (!cls)
+    return false;
+  
   return uecho_isdeviceclassgroupcode(cls->code[0]);
 }
 
@@ -127,5 +156,8 @@ bool uecho_class_isdevice(uEchoClass *cls)
 
 bool uecho_class_isprofile(uEchoClass *cls)
 {
+  if (!cls)
+    return false;
+  
   return uecho_isprofileclassgroupcode(cls->code[0]);
 }

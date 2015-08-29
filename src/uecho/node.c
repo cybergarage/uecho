@@ -53,6 +53,9 @@ uEchoNode *uecho_node_new(void)
 
 void uecho_node_delete(uEchoNode *node)
 {
+  if (!node)
+    return;
+  
 	uecho_list_remove((uEchoList *)node);
   
   uecho_mutex_delete(node->mutex);
@@ -69,6 +72,9 @@ void uecho_node_delete(uEchoNode *node)
 
 void uecho_node_clear(uEchoNode *node)
 {
+  if (!node)
+    return;
+  
   uecho_classlist_clear(node->classes);
   uecho_objectlist_clear(node->objects);
 }
@@ -79,6 +85,9 @@ void uecho_node_clear(uEchoNode *node)
 
 void uecho_node_setmessagelistener(uEchoNode *node, uEchoNodeMessageListener listener)
 {
+  if (!node)
+    return;
+
   node->msgListener = listener;
 }
 
@@ -88,6 +97,9 @@ void uecho_node_setmessagelistener(uEchoNode *node, uEchoNodeMessageListener lis
 
 uEchoNodeMessageListener uecho_node_getmessagelistener(uEchoNode *node)
 {
+  if (!node)
+    return NULL;
+  
   return node->msgListener;
 }
 
@@ -97,6 +109,9 @@ uEchoNodeMessageListener uecho_node_getmessagelistener(uEchoNode *node)
 
 bool uecho_node_hasmessagelistener(uEchoNode *node)
 {
+  if (!node)
+    return false;
+  
   return node->msgListener ? true : false;
 }
 
@@ -106,6 +121,9 @@ bool uecho_node_hasmessagelistener(uEchoNode *node)
 
 void uecho_node_setaddress(uEchoNode *node, const char *addr)
 {
+  if (!node)
+    return;
+  
   if (node->address) {
     free(node->address);
     node->address = NULL;
@@ -123,6 +141,9 @@ void uecho_node_setaddress(uEchoNode *node, const char *addr)
 
 const char *uecho_node_getaddress(uEchoNode *node)
 {
+  if (!node)
+    return NULL;
+  
   return node->address;
 }
 
@@ -132,6 +153,9 @@ const char *uecho_node_getaddress(uEchoNode *node)
 
 bool uecho_node_isaddress(uEchoNode *node, const char *addr)
 {
+  if (!node)
+    return false;
+
   return uecho_streq(node->address, addr);
 }
 
@@ -142,6 +166,9 @@ bool uecho_node_isaddress(uEchoNode *node, const char *addr)
 bool uecho_node_setmanufacturercode(uEchoNode *node, uEchoManufacturerCode code)
 {
   uEchoObject *obj;
+  
+  if (!node)
+    return false;
   
   for (obj = uecho_node_getobjects(node); obj; obj = uecho_object_next(obj)) {
     uecho_object_setmanufacturercode(obj, code);
@@ -156,6 +183,9 @@ bool uecho_node_setmanufacturercode(uEchoNode *node, uEchoManufacturerCode code)
 
 uEchoServer *uecho_node_getserver(uEchoNode *node)
 {
+  if (!node)
+    return NULL;
+  
   return node->server;
 }
 
@@ -165,6 +195,9 @@ uEchoServer *uecho_node_getserver(uEchoNode *node)
 
 uEchoClass *uecho_node_getclasses(uEchoNode *node)
 {
+  if (!node)
+    return 0;
+
   return uecho_classlist_gets(node->classes);
 }
 
@@ -239,6 +272,9 @@ bool uecho_node_updatenodeprofileclass(uEchoNode *node)
 {
   uEchoObject *obj;
   
+  if (!node)
+    return false;
+  
   obj = uecho_node_getobjectbycode(node, uEchoNodeProfileObject);
   if (!obj)
     return false;
@@ -253,6 +289,9 @@ bool uecho_node_updatenodeprofileclass(uEchoNode *node)
 bool uecho_node_setobject(uEchoNode *node, uEchoObjectCode code)
 {
   uEchoObject *obj;
+  
+  if (!node)
+    return false;
   
   obj = uecho_objectlist_getbycode(node->objects, code);
   if (obj)
@@ -275,6 +314,9 @@ bool uecho_node_addobject(uEchoNode *node, uEchoObject *obj)
 {
   uEchoObjectCode objCode;
   uEchoClassCode clsCode;
+  
+  if (!node || !obj)
+    return false;
   
   objCode = uecho_object_getcode(obj);
   if (uecho_node_getobjectbycode(node, objCode))
@@ -315,6 +357,9 @@ bool uecho_node_stop(uEchoNode *node)
 {
   bool allActionsSucceeded = true;
   
+  if (!node)
+    return false;
+  
   allActionsSucceeded &= uecho_server_stop(node->server);
   
   return allActionsSucceeded;
@@ -326,8 +371,12 @@ bool uecho_node_stop(uEchoNode *node)
 
 bool uecho_node_isrunning(uEchoNode *node)
 {
+  if (!node)
+    return false;
+
   if (!uecho_server_isrunning(node->server))
     return false;
+  
   return true;
 }
 

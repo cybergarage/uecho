@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <uecho/node.h>
+#include <uecho/util/strings.h>
 
 /****************************************
 * uecho_nodelist_new
@@ -33,6 +34,9 @@ uEchoNodeList *uecho_nodelist_new(void)
 
 void uecho_nodelist_delete(uEchoNodeList *nodes)
 {
+  if (!nodes)
+    return;
+  
 	uecho_nodelist_clear(nodes);
 
 	free(nodes);
@@ -45,8 +49,13 @@ void uecho_nodelist_delete(uEchoNodeList *nodes)
 uEchoNode *uecho_nodelist_getbyaddress(uEchoNodeList *nodes, const char *addr)
 {
   uEchoNode *node;
+
+  if (!nodes || !addr)
+    return NULL;
   
   for (node = uecho_nodelist_gets(nodes); node; node = uecho_node_next(node)) {
+    if (uecho_streq(uecho_node_getaddress(node), addr))
+      return node;
   }
   
   return NULL;

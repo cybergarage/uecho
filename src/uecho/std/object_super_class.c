@@ -71,6 +71,9 @@ bool uecho_object_updatepropertymaps(uEchoObject *obj)
 {
   uEchoProperty *prop;
   
+  if (!obj)
+    return false;
+  
   uecho_object_clearpropertymapcaches(obj);
   
   // Update property map caches
@@ -119,6 +122,9 @@ bool uecho_object_updatepropertymaps(uEchoObject *obj)
 
 void uecho_object_clearpropertymapcaches(uEchoObject *obj)
 {
+  if (!obj)
+    return;
+    
   if (obj->annoPropMapBytes) {
     free(obj->annoPropMapBytes);
     obj->annoPropMapBytes = NULL;

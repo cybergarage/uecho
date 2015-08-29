@@ -159,7 +159,7 @@ bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket *dgmPkt);
 #define uecho_socket_datagram_packet_setremoteport(dgmPkt, port) (dgmPkt->remotePort = port)
 #define uecho_socket_datagram_packet_getremoteport(dgmPkt) (dgmPkt->remotePort)
 
-void uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoDatagramPacket *srcDgmPkt);
+bool uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoDatagramPacket *srcDgmPkt);
 
 /****************************************
 * Function (SSLSocket)

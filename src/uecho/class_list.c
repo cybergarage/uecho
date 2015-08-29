@@ -33,6 +33,9 @@ uEchoClassList *uecho_classlist_new(void)
 
 void uecho_classlist_delete(uEchoClassList *clsses)
 {
+  if (!clsses)
+    return;
+  
 	uecho_classlist_clear(clsses);
 
 	free(clsses);
@@ -45,6 +48,9 @@ void uecho_classlist_delete(uEchoClassList *clsses)
 uEchoClass *uecho_classlist_getbycode(uEchoClassList *clsses, uEchoClassCode code)
 {
   uEchoClass *obj;
+  
+  if (!clsses)
+    return NULL;
   
   for (obj = uecho_classlist_gets(clsses); obj; obj = uecho_class_next(obj)) {
     if (uecho_class_getcode(obj) == code)
@@ -61,6 +67,9 @@ uEchoClass *uecho_classlist_getbycode(uEchoClassList *clsses, uEchoClassCode cod
 bool uecho_classlist_set(uEchoClassList *clsses, uEchoClassCode code)
 {
   uEchoClass *obj;
+  
+  if (!clsses)
+    return false;
   
   obj = uecho_classlist_getbycode(clsses, code);
   if (obj)

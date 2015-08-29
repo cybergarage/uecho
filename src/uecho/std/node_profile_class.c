@@ -39,6 +39,9 @@ uEchoObject *uecho_nodeprofileclass_new(void)
 
 bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject *obj)
 {
+  if (!obj)
+    return false;
+  
   // Operation Status
   
   uecho_object_setproperty(obj, uEchoNodeProfileClassOperatingStatus, uEchoPropertyAttrReadAnno);
@@ -273,6 +276,9 @@ bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject *obj)
   int nodeClassListCnt, nodeInstanceListCnt;
   int nodeClassCnt, nodeInstanceCnt;
   int idx;
+
+  if(!obj)
+    return false;
   
   node = uecho_object_getparentnode(obj);
   if (!node)
