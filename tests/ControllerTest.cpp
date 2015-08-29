@@ -76,7 +76,9 @@ BOOST_AUTO_TEST_CASE(ControllerSearchAll)
   // Send Message
   
   uEchoMessage *msg = uecho_message_new();
-  
+  uecho_message_setesv(msg, uEchoEsvReadRequest);
+  uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL);
+  BOOST_CHECK(uecho_controller_sendmessage(cp, foundObj, msg));
   uecho_message_delete(msg);
 
   // Teminate

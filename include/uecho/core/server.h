@@ -16,7 +16,7 @@
 #include <uecho/util/thread.h>
 #include <uecho/util/list.h>
 #include <uecho/object.h>
-#include <uecho/core/message.h>
+#include <uecho/message.h>
 
 #ifdef  __cplusplus
 extern "C" {
