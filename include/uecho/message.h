@@ -99,7 +99,7 @@ int uecho_message_getdestinationobjectcode(uEchoMessage *msg);
 void uecho_message_setehd2(uEchoMessage *msg, byte val);
 byte uecho_message_getehd2(uEchoMessage *msg);
 
-void uecho_message_setesv(uEchoMessage *msg, uEchoEsv val);
+bool uecho_message_setesv(uEchoMessage *msg, uEchoEsv val);
 uEchoEsv uecho_message_getesv(uEchoMessage *msg);
 
 bool uecho_message_addproperty(uEchoMessage *msg, uEchoProperty *prop);
@@ -123,11 +123,11 @@ bool uecho_message_equals(uEchoMessage *msg1, uEchoMessage *msg2);
 uEchoMessage *uecho_message_search_new(void);
 
 bool uecho_message_iswriterequest(uEchoMessage *msg);
-bool uecho_message_isreaderequest(uEchoMessage *msg);
+bool uecho_message_isreadrequest(uEchoMessage *msg);
 bool uecho_message_isnotifyrequest(uEchoMessage *msg);
 
 bool uecho_message_iswriteresponse(uEchoMessage *msg);
-bool uecho_message_isreaderesponse(uEchoMessage *msg);
+bool uecho_message_isreadresponse(uEchoMessage *msg);
 bool uecho_message_isnotifyresponse(uEchoMessage *msg);
 
 bool uecho_message_issearchrequest(uEchoMessage *msg);
