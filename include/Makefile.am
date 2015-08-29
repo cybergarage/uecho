@@ -9,27 +9,27 @@
 ##################################################################
 
 uechoheaders = \
-	./uecho/node.h \
-	./uecho/uecho.h \
+	./uecho/class.h \
 	./uecho/const.h \
-	./uecho/core/server.h \
+	./uecho/controller.h \
 	./uecho/core/message.h \
 	./uecho/core/observer.h \
-	./uecho/property.h \
+	./uecho/core/server.h \
 	./uecho/device.h \
 	./uecho/misc.h \
-	./uecho/util/thread.h \
-	./uecho/util/strings.h \
-	./uecho/util/mutex.h \
-	./uecho/util/timer.h \
-	./uecho/util/list.h \
-	./uecho/typedef.h \
-	./uecho/controller.h \
-	./uecho/net/socket.h \
 	./uecho/net/interface.h \
+	./uecho/net/socket.h \
+	./uecho/node.h \
 	./uecho/object.h \
 	./uecho/profile.h \
-	./uecho/class.h
+	./uecho/property.h \
+	./uecho/typedef.h \
+	./uecho/uecho.h \
+	./uecho/util/list.h \
+	./uecho/util/mutex.h \
+	./uecho/util/strings.h \
+	./uecho/util/thread.h \
+	./uecho/util/timer.h
 
 nobase_include_HEADERS = \
 	$(uechoheaders)
