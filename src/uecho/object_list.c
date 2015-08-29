@@ -33,6 +33,9 @@ uEchoObjectList *uecho_objectlist_new(void)
 
 void uecho_objectlist_delete(uEchoObjectList *objs)
 {
+  if (!objs)
+    return;
+  
 	uecho_objectlist_clear(objs);
 
 	free(objs);
@@ -45,6 +48,9 @@ void uecho_objectlist_delete(uEchoObjectList *objs)
 uEchoObject *uecho_objectlist_getbycode(uEchoObjectList *objs, uEchoObjectCode code)
 {
   uEchoObject *obj;
+  
+  if (!objs)
+    return NULL;
   
   for (obj = uecho_objectlist_gets(objs); obj; obj = uecho_object_next(obj)) {
     if (uecho_object_getcode(obj) == code)
@@ -61,6 +67,9 @@ uEchoObject *uecho_objectlist_getbycode(uEchoObjectList *objs, uEchoObjectCode c
 bool uecho_objectlist_set(uEchoObjectList *objs, uEchoObjectCode code)
 {
   uEchoObject *obj;
+  
+  if (!objs)
+    return false;
   
   obj = uecho_objectlist_getbycode(objs, code);
   if (obj)
