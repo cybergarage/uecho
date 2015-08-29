@@ -218,9 +218,13 @@ byte uecho_message_getehd2(uEchoMessage *msg)
  * uecho_message_setesv
  ****************************************/
 
-void uecho_message_setesv(uEchoMessage *msg, uEchoEsv val)
+bool uecho_message_setesv(uEchoMessage *msg, uEchoEsv val)
 {
+  if (!msg)
+    return false;
+  
   msg->ESV = val;
+  return true;
 }
 
 /****************************************
@@ -270,10 +274,10 @@ bool uecho_message_iswriterequest(uEchoMessage *msg)
 }
 
 /****************************************
- * uecho_message_isreaderequest
+ * uecho_message_isreadrequest
  ****************************************/
 
-bool uecho_message_isreaderequest(uEchoMessage *msg)
+bool uecho_message_isreadrequest(uEchoMessage *msg)
 {
   if ((msg->ESV == uEchoEsvReadRequest) || (msg->ESV == uEchoEsvWriteReadRequest))
     return true;
@@ -303,10 +307,10 @@ bool uecho_message_iswriteresponse(uEchoMessage *msg)
 }
 
 /****************************************
- * uecho_message_isreaderesponse
+ * uecho_message_isreadresponse
  ****************************************/
 
-bool uecho_message_isreaderesponse(uEchoMessage *msg)
+bool uecho_message_isreadresponse(uEchoMessage *msg)
 {
   if ((msg->ESV == uEchoEsvReadResponse) || (msg->ESV == uEchoEsvWriteReadResponse))
     return true;
