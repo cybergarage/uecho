@@ -64,7 +64,10 @@ uEchoObject *uecho_object_new(void)
 
 void uecho_object_delete(uEchoObject *obj)
 {
-	uecho_list_remove((uEchoList *)obj);
+  if (!obj)
+    return;
+
+  uecho_list_remove((uEchoList *)obj);
   
   uecho_object_clearpropertymapcaches(obj);
   
@@ -80,6 +83,9 @@ void uecho_object_delete(uEchoObject *obj)
 
 void uecho_object_setparentnode(uEchoObject *obj, uEchoNode *node)
 {
+  if (!obj)
+    return;
+  
   obj->parentNode = node;
 }
 
@@ -89,6 +95,9 @@ void uecho_object_setparentnode(uEchoObject *obj, uEchoNode *node)
 
 uEchoNode *uecho_object_getparentnode(uEchoObject *obj)
 {
+  if (!obj)
+    return NULL;
+  
   return (uEchoNode *)obj->parentNode;
 }
 
@@ -98,6 +107,9 @@ uEchoNode *uecho_object_getparentnode(uEchoObject *obj)
 
 void uecho_object_setcode(uEchoObject *obj, uEchoObjectCode val)
 {
+  if (!obj)
+    return;
+  
   obj->code[0] = (val & 0xFF0000) >> 16;
   obj->code[1] = (val & 0x00FF00) >>  8;
   obj->code[2] = (val & 0x0000FF);
@@ -109,10 +121,16 @@ void uecho_object_setcode(uEchoObject *obj, uEchoObjectCode val)
 
 uEchoObjectCode uecho_object_getcode(uEchoObject *obj)
 {
-  int code = 0;
+  int code;
+  
+  if (!obj)
+    return 0;
+
+  code = 0;
   code |= (obj->code[0] << 16) & 0xFF0000;
   code |= (obj->code[1] <<  8) & 0x00FF00;
   code |= (obj->code[2]      ) & 0x0000FF;
+  
   return code;
 }
 
@@ -131,6 +149,9 @@ bool uecho_object_iscode(uEchoObject *obj, uEchoObjectCode code)
 
 void uecho_object_setclassgroupcode(uEchoObject *obj, byte val)
 {
+  if (!obj)
+    return;
+  
   obj->code[0] = val;
 }
   
@@ -140,6 +161,9 @@ void uecho_object_setclassgroupcode(uEchoObject *obj, byte val)
 
 byte uecho_object_getclassgroupcode(uEchoObject *obj)
 {
+  if (!obj)
+    return 0;
+  
   return obj->code[0];
 }
 
@@ -149,6 +173,9 @@ byte uecho_object_getclassgroupcode(uEchoObject *obj)
 
 void uecho_object_setclasscode(uEchoObject *obj, byte val)
 {
+  if (!obj)
+    return;
+  
   obj->code[1] = val;
 }
       
@@ -158,6 +185,9 @@ void uecho_object_setclasscode(uEchoObject *obj, byte val)
 
 byte uecho_object_getclasscode(uEchoObject *obj)
 {
+  if (!obj)
+    return 0;
+  
   return obj->code[1];
 }
 
@@ -167,6 +197,9 @@ byte uecho_object_getclasscode(uEchoObject *obj)
 
 void uecho_object_setinstancecode(uEchoObject *obj, byte val)
 {
+  if (!obj)
+    return;
+  
   obj->code[2] = val;
 }
           
@@ -176,6 +209,9 @@ void uecho_object_setinstancecode(uEchoObject *obj, byte val)
 
 byte uecho_object_getinstancecode(uEchoObject *obj)
 {
+  if (!obj)
+    return 0;
+  
   return obj->code[2];
 }
 
@@ -185,6 +221,9 @@ byte uecho_object_getinstancecode(uEchoObject *obj)
 
 bool uecho_object_isdevice(uEchoObject *obj)
 {
+  if (!obj)
+    return false;
+  
   return uecho_isdeviceclassgroupcode(obj->code[0]);
 }
 
@@ -194,6 +233,9 @@ bool uecho_object_isdevice(uEchoObject *obj)
 
 bool uecho_object_isprofile(uEchoObject *obj)
 {
+  if (!obj)
+    return false;
+  
   return uecho_isprofileclassgroupcode(obj->code[0]);
 }
 
@@ -206,6 +248,9 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
   byte propMapData[uEchoPropertyMapMaxLen + 1];
   uEchoPropertyCode *propMap;
   size_t n, propByteIdx;
+  
+  if (!obj)
+    return false;
   
   propMapData[0] = (byte)propsCodeSize;
   propMap = propMapData + 1;
@@ -242,8 +287,12 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
 
 bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)
 {
+  if (!obj)
+    return false;
+
   if (!uecho_propertylist_set(obj->properties, code, attr, NULL, 0))
     return false;
+  
   return uecho_object_updatepropertymaps(obj);
 }
 
@@ -325,6 +374,9 @@ size_t uecho_object_getpropertycount(uEchoObject *obj)
 
 void uecho_object_clearproperties(uEchoObject *obj)
 {
+  if (!obj)
+    return;
+  
   uecho_propertylist_clear(obj->properties);
   uecho_object_clearpropertymapcaches(obj);
 }
@@ -408,6 +460,9 @@ bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEch
 uEchoPropertyRequestListener uecho_object_getpropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code)
 {
   uEchoObjectPropertyObserver *obs;
+  
+  if (!obj)
+    return NULL;
   
   obs = uecho_object_property_observer_manager_getobserver(obj->propListenerMgr, esv, code);
   if (!obs)

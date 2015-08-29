@@ -51,6 +51,9 @@ bool uecho_integer2byte(int val, byte *bytes, size_t byteSize)
 {
   size_t n, idx;
   
+  if (!bytes)
+    return false;
+  
   for (n=0; n<byteSize; n++) {
     idx = ((byteSize-1)-n);
     bytes[idx] = (val >> (n * 8)) & 0xFF;
@@ -68,6 +71,9 @@ int uecho_byte2integer(byte *bytes, size_t byteSize)
   int val = 0;
   size_t n, idx;
 
+  if (!bytes)
+    return 0;
+  
   for (n=0; n<byteSize; n++) {
     idx = ((byteSize-1)-n);
     val += (bytes[idx] << (n * 8));
