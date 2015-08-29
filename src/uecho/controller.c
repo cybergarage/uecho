@@ -47,6 +47,9 @@ uEchoController *uecho_controller_new(void)
 
 void uecho_controller_delete(uEchoController *ctrl)
 {
+  if (!ctrl)
+    return;
+  
 	uecho_controller_stop(ctrl);
 	
 	uecho_mutex_delete(ctrl->mutex);
@@ -62,6 +65,9 @@ void uecho_controller_delete(uEchoController *ctrl)
 
 void uecho_controller_setmessagelistener(uEchoController *ctrl, uEchoControllerMessageListener listener)
 {
+  if (!ctrl)
+    return;
+
   ctrl->msgListener = listener;
 }
 
@@ -71,6 +77,9 @@ void uecho_controller_setmessagelistener(uEchoController *ctrl, uEchoControllerM
 
 uEchoControllerMessageListener uecho_controller_getmessagelistener(uEchoController *ctrl)
 {
+  if (!ctrl)
+    return NULL;
+  
   return ctrl->msgListener;
 }
 
@@ -80,6 +89,9 @@ uEchoControllerMessageListener uecho_controller_getmessagelistener(uEchoControll
 
 bool uecho_controller_hasmessagelistener(uEchoController *ctrl)
 {
+  if (!ctrl)
+    return false;
+  
   return ctrl->msgListener ? true : false;
 }
 
@@ -90,6 +102,9 @@ bool uecho_controller_hasmessagelistener(uEchoController *ctrl)
 bool uecho_controller_start(uEchoController *ctrl)
 {
   bool allActionsSucceeded = true;
+  
+  if (!ctrl)
+    return false;
   
   allActionsSucceeded &= uecho_nodelist_clear(ctrl->nodes);
   allActionsSucceeded &= uecho_node_start(ctrl->node);
@@ -105,6 +120,9 @@ bool uecho_controller_stop(uEchoController *ctrl)
 {
   bool allActionsSucceeded = true;
   
+  if (!ctrl)
+    return false;
+
   allActionsSucceeded &= uecho_node_stop(ctrl->node);
   
   return allActionsSucceeded;
@@ -116,9 +134,13 @@ bool uecho_controller_stop(uEchoController *ctrl)
 
 bool uecho_controller_isrunning(uEchoController *ctrl)
 {
+  if (!ctrl)
+    return false;
+
   if (!uecho_node_isrunning(ctrl->node))
     return false;
-	return true;
+	
+  return true;
 }
 
 /****************************************
@@ -156,6 +178,9 @@ uEchoNode *uecho_controller_getnodebyaddress(uEchoController *ctrl, const char *
 {
   uEchoNode *node;
   
+  if (!ctrl)
+    return NULL;
+
   for (node = uecho_controller_getnodes(ctrl); node; node = uecho_node_next(node)) {
     if (uecho_node_isaddress(node, addr))
       return node;
@@ -173,6 +198,9 @@ uEchoObject *uecho_controller_getobjectbycode(uEchoController *ctrl, uEchoObject
   uEchoNode *node;
   uEchoObject *obj;
   
+  if (!ctrl)
+    return  NULL;
+  
   for (node = uecho_controller_getnodes(ctrl); node; node = uecho_node_next(node)) {
     obj = uecho_node_getobjectbycode(node, code);
     if (obj)
@@ -188,6 +216,9 @@ uEchoObject *uecho_controller_getobjectbycode(uEchoController *ctrl, uEchoObject
 
 void uecho_controller_setlasttid(uEchoController *ctrl, uEchoTID tid)
 {
+  if (!ctrl)
+    return;
+  
   ctrl->lastTID = tid;
 }
 
@@ -197,6 +228,9 @@ void uecho_controller_setlasttid(uEchoController *ctrl, uEchoTID tid)
 
 uEchoTID uecho_controller_getlasttid(uEchoController *ctrl)
 {
+  if (!ctrl)
+    return 0;
+
   return ctrl->lastTID;
 }
 
@@ -206,6 +240,9 @@ uEchoTID uecho_controller_getlasttid(uEchoController *ctrl)
 
 uEchoTID uecho_controller_getnexttid(uEchoController *ctrl)
 {
+  if (!ctrl)
+    return 0;
+  
   if (uEchoTidMax <= ctrl->lastTID) {
     ctrl->lastTID = 1;
   }
@@ -223,6 +260,9 @@ bool uecho_controller_postsearch(uEchoController *ctrl, uEchoMessage *msg)
 {
   byte *msgBytes;
   size_t msgLen;
+  
+  if (!ctrl || !msg)
+    return false;
   
   uecho_message_settid(msg, uecho_controller_getnexttid(ctrl));
   uecho_message_setsourceobjectcode(msg, uEchoNodeProfileObject);
@@ -255,6 +295,9 @@ bool uecho_controller_searchobject(uEchoController *ctrl, byte objCode)
   uEchoMessage *msg;
   uEchoProperty *prop;
   
+  if (!ctrl)
+    return false;
+
   msg = uecho_message_search_new();
   
   uecho_message_setdestinationobjectcode(msg, objCode);

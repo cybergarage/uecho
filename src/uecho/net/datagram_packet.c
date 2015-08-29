@@ -42,6 +42,9 @@ uEchoDatagramPacket *uecho_socket_datagram_packet_new(void)
 
 void uecho_socket_datagram_packet_delete(uEchoDatagramPacket *dgmPkt)
 {
+  if (!dgmPkt)
+    return;
+  
   uecho_socket_datagram_packet_clear(dgmPkt);
 
   uecho_string_delete(dgmPkt->localAddress);
@@ -56,9 +59,12 @@ void uecho_socket_datagram_packet_delete(uEchoDatagramPacket *dgmPkt)
 
 bool uecho_socket_datagram_packet_setdata(uEchoDatagramPacket *dgmPkt, const byte *data, size_t dataLen)
 {
+  if (!dgmPkt)
+    return false;
+  
   uecho_socket_datagram_packet_clear(dgmPkt);
 
-  if (dataLen <= 0)
+  if (!data || (dataLen <= 0))
     return true;
   
   dgmPkt->data = malloc(dataLen);
@@ -77,6 +83,9 @@ bool uecho_socket_datagram_packet_setdata(uEchoDatagramPacket *dgmPkt, const byt
 
 bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket *dgmPkt)
 {
+  if (!dgmPkt)
+    return false;
+  
   if (dgmPkt->data) {
     free(dgmPkt->data);
     dgmPkt->data = NULL;
@@ -90,12 +99,16 @@ bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket *dgmPkt)
 * uecho_socket_datagram_packet_copy
 ****************************************/
 
-void uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoDatagramPacket *srcDgmPkt)
+bool uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoDatagramPacket *srcDgmPkt)
 {
+  if (!dstDgmPkt || !srcDgmPkt)
+    return false;
+  
 	uecho_socket_datagram_packet_setdata(dstDgmPkt, uecho_socket_datagram_packet_getdata(srcDgmPkt), uecho_socket_datagram_packet_getlength(srcDgmPkt));
 	uecho_socket_datagram_packet_setlocaladdress(dstDgmPkt, uecho_socket_datagram_packet_getlocaladdress(srcDgmPkt));
 	uecho_socket_datagram_packet_setlocalport(dstDgmPkt, uecho_socket_datagram_packet_getlocalport(srcDgmPkt));
 	uecho_socket_datagram_packet_setremoteaddress(dstDgmPkt, uecho_socket_datagram_packet_getremoteaddress(srcDgmPkt));
 	uecho_socket_datagram_packet_setremoteport(dstDgmPkt, uecho_socket_datagram_packet_getremoteport(srcDgmPkt));
-}
 
+  return true;
+}

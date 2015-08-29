@@ -42,6 +42,9 @@ uEchoProperty *uecho_property_new(void)
 
 void uecho_property_delete(uEchoProperty *prop)
 {
+  if (!prop)
+    return;
+  
   uecho_property_cleardata(prop);
   uecho_property_remove(prop);
 
@@ -55,6 +58,9 @@ void uecho_property_delete(uEchoProperty *prop)
 bool uecho_property_setcount(uEchoProperty *prop, size_t count)
 {
   uecho_property_cleardata(prop);
+  
+  if (!prop)
+    return false;
   
   if (count == 0)
     return true;
@@ -74,6 +80,9 @@ bool uecho_property_setcount(uEchoProperty *prop, size_t count)
 
 bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count)
 {
+  if (!prop)
+    return false;
+  
   if (!uecho_property_setcount(prop, count))
     return false;
   
@@ -94,6 +103,9 @@ bool uecho_property_setintegerdata(uEchoProperty *prop, int data, size_t dataSiz
   bool isSuccess;
   byte *intByte;
   
+  if (!prop)
+    return false;
+
   intByte = (byte *)malloc(dataSize);
   if (!intByte)
     return true;
@@ -113,6 +125,9 @@ bool uecho_property_setintegerdata(uEchoProperty *prop, int data, size_t dataSiz
 
 bool uecho_property_getintegerdata(uEchoProperty *prop, size_t dataSize, int *data)
 {
+  if (!prop)
+    return false;
+  
   if (prop->dataSize != dataSize)
     return false;
   
@@ -127,6 +142,9 @@ bool uecho_property_getintegerdata(uEchoProperty *prop, size_t dataSize, int *da
 
 bool uecho_property_setbytedata(uEchoProperty *prop, byte data)
 {
+  if (!prop)
+    return false;
+
   return uecho_property_setdata(prop, &data, 1);
 }
 
@@ -136,6 +154,9 @@ bool uecho_property_setbytedata(uEchoProperty *prop, byte data)
 
 bool uecho_property_getbytedata(uEchoProperty *prop, byte *data)
 {
+  if (!prop)
+    return false;
+  
   if (prop->dataSize != 1)
     return false;
   
@@ -150,6 +171,9 @@ bool uecho_property_getbytedata(uEchoProperty *prop, byte *data)
 
 bool uecho_property_cleardata(uEchoProperty *prop)
 {
+  if (!prop)
+    return false;
+
   prop->dataSize= 0;
   
   if (prop->data) {
@@ -256,10 +280,14 @@ bool uecho_property_iswritable(uEchoProperty *prop)
 
 bool uecho_property_isreadonly(uEchoProperty *prop)
 {
+  if (!prop)
+    return false;
+
   if (!(prop->attr & uEchoPropertyAttrRead))
     return false;
   if ((prop->attr & uEchoPropertyAttrWrite))
     return false;
+  
   return true;
 }
 
@@ -269,10 +297,14 @@ bool uecho_property_isreadonly(uEchoProperty *prop)
 
 bool uecho_property_iswriteonly(uEchoProperty *prop)
 {
+  if (!prop)
+    return false;
+  
   if (!(prop->attr & uEchoPropertyAttrWrite))
     return false;
   if ((prop->attr & uEchoPropertyAttrRead))
     return false;
+
   return true;
 }
 
@@ -282,8 +314,12 @@ bool uecho_property_iswriteonly(uEchoProperty *prop)
 
 bool uecho_property_isannouncement(uEchoProperty *prop)
 {
+  if (!prop)
+    return false;
+  
   if ((prop->attr & uEchoPropertyAttrAnno))
     return true;
+  
   return false;
 }
 
@@ -294,6 +330,9 @@ bool uecho_property_isannouncement(uEchoProperty *prop)
 uEchoProperty *uecho_property_copy(uEchoProperty *srcProp)
 {
   uEchoProperty *newProp;
+  
+  if (!srcProp)
+    return NULL;
   
   newProp = uecho_property_new();
   
@@ -313,6 +352,9 @@ uEchoProperty *uecho_property_copy(uEchoProperty *srcProp)
 
 bool uecho_property_equals(uEchoProperty *prop1, uEchoProperty *prop2)
 {
+  if (!prop1 || !prop2)
+    return false;
+  
   if (uecho_property_getcode(prop1) != uecho_property_getcode(prop2))
     return false;
 

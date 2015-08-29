@@ -85,6 +85,9 @@ void uecho_controller_servermessagelistener(uEchoServer *server, uEchoMessage *m
   uEchoController *ctrl;
   uEchoObjectCode destObjCode;
   
+  if (!server || !msg)
+    return;
+  
   ctrl = (uEchoController *)uecho_server_getuserdata(server);
   if (!ctrl)
     return;
