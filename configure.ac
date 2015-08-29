@@ -172,8 +172,8 @@ tests/Makefile
 tests/unix/Makefile
 examples/Makefile
 examples/controller/Makefile
-examples/controller/uecho_search/Makefile
-examples/controller/uecho_search/unix/Makefile
+examples/controller/uechosearch/Makefile
+examples/controller/uechosearch/unix/Makefile
 examples/device/Makefile
 examples/device/lighting/Makefile
 examples/device/lighting/unix/Makefile
