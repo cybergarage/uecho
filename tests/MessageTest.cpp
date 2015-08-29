@@ -117,6 +117,100 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
   
   uecho_message_delete(msg);
 }
+BOOST_AUTO_TEST_CASE(MessageEsvType)
+{
+  uEchoMessage *msg = uecho_message_new();
+  
+  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvWriteRequest));
+  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), true);
+  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), false);
+  
+  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvWriteRequestResponseRequired));
+  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), true);
+  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), false);
+  
+  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvReadRequest));
+  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), true);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), false);
+  
+  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvNotificationRequest));
+  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), true);
+  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), false);
+  
+  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvWriteReadRequest));
+  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), true);
+  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), true);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), false);
+  
+  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvWriteResponse));
+  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), true);
+  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), false);
+  
+  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvReadResponse));
+  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), true);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), false);
+  
+  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvNotification));
+  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), true);
+  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), false);
+  
+  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvNotificationResponseRequired));
+  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), true);
+
+  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvNotificationResponse));
+  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), true);
+
+  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvWriteReadResponse));
+  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), true);
+  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), true);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), false);
+
+  uecho_message_delete(msg);
+}
 
 BOOST_AUTO_TEST_CASE(MessageSearch)
 {
