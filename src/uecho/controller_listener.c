@@ -65,6 +65,39 @@ void uecho_controller_handlesearchmessage(uEchoController *ctrl, uEchoMessage *m
 }
 
 /****************************************
+ * uecho_controller_handlereadresponse
+ ****************************************/
+
+void uecho_controller_handlereadresponse(uEchoController *ctrl, uEchoMessage *msg)
+{
+  uEchoNode *srcNode;
+  uEchoObject *srcObj;
+  uEchoProperty *msgProp;
+  uEchoPropertyCode msgPropCode;
+  size_t msgOpc, n;
+  
+  srcNode = uecho_controller_getnodebyaddress(ctrl, uecho_message_getsourceaddress(msg));
+  if (!srcNode)
+    return;
+
+  srcObj = uecho_node_getobjectbycode(srcNode, uecho_message_getsourceobjectcode(msg));
+  if (!srcObj)
+    return;
+  
+  msgOpc = uecho_message_getopc(msg);
+  for (n=0; n<msgOpc; n++) {
+    msgProp = uecho_message_getproperty(msg, n);
+    if (!msgProp)
+      continue;
+    msgPropCode = uecho_property_getcode(msgProp);
+    if (!uecho_object_hasproperty(srcObj, msgPropCode)) {
+      uecho_object_setproperty(srcObj, msgPropCode, uEchoPropertyAttrNone);
+    }
+    uecho_object_setpropertydata(srcObj, msgPropCode, uecho_property_getdata(msgProp), uecho_property_getdatasize(msgProp));
+  }
+}
+
+/****************************************
  * uecho_controller_handlerequestmessage
  ****************************************/
 
@@ -72,6 +105,11 @@ void uecho_controller_handlerequestmessage(uEchoController *ctrl, uEchoMessage *
 {
   if (uecho_message_issearchresponse(msg)) {
     uecho_controller_handlesearchmessage(ctrl, msg);
+    return;
+  }
+
+  if (uecho_message_isreadresponse(msg)) {
+    uecho_controller_handlereadresponse(ctrl, msg);
     return;
   }
 }
@@ -83,7 +121,6 @@ void uecho_controller_handlerequestmessage(uEchoController *ctrl, uEchoMessage *
 void uecho_controller_servermessagelistener(uEchoServer *server, uEchoMessage *msg)
 {
   uEchoController *ctrl;
-  uEchoObjectCode destObjCode;
   
   if (!server || !msg)
     return;
@@ -92,11 +129,16 @@ void uecho_controller_servermessagelistener(uEchoServer *server, uEchoMessage *m
   if (!ctrl)
     return;
   
+  if (!uecho_node_hasobjectbycode(ctrl->node, uecho_message_getdestinationobjectcode(msg))) {
+    if (ctrl->msgListener) {
+      ctrl->msgListener(ctrl, msg);
+    }
+    return;
+  }
+  
+  uecho_controller_handlerequestmessage(ctrl, msg);
+
   if (ctrl->msgListener) {
     ctrl->msgListener(ctrl, msg);
   }
-
-  destObjCode = uecho_message_getdestinationobjectcode(msg);
-  
-  uecho_controller_handlerequestmessage(ctrl, msg);
 }
