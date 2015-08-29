@@ -15,7 +15,7 @@
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
 #include <uecho/property.h>
-#include <uecho/core/message.h>
+#include <uecho/message.h>
 
 #ifdef  __cplusplus
 extern "C" {

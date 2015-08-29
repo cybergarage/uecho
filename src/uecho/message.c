@@ -12,7 +12,7 @@
 
 #include <uecho/util/strings.h>
 #include <uecho/net/socket.h>
-#include <uecho/core/message.h>
+#include <uecho/message.h>
 #include <uecho/misc.h>
 
 /****************************************
@@ -275,7 +275,7 @@ bool uecho_message_iswriterequest(uEchoMessage *msg)
 
 bool uecho_message_isreaderequest(uEchoMessage *msg)
 {
-  if (msg->ESV == uEchoEsvReadRequest)
+  if ((msg->ESV == uEchoEsvReadRequest) || (msg->ESV == uEchoEsvWriteReadRequest))
     return true;
   return false;
 }
@@ -286,7 +286,40 @@ bool uecho_message_isreaderequest(uEchoMessage *msg)
 
 bool uecho_message_isnotifyrequest(uEchoMessage *msg)
 {
-  if (msg->ESV == uEchoEsvNotificationRequest)
+  if ((msg->ESV == uEchoEsvNotificationRequest) || (msg->ESV == uEchoEsvNotification))
+    return true;
+  return false;
+}
+
+/****************************************
+ * uecho_message_iswriteresponse
+ ****************************************/
+
+bool uecho_message_iswriteresponse(uEchoMessage *msg)
+{
+  if ((msg->ESV == uEchoEsvWriteResponse) || (msg->ESV == uEchoEsvWriteReadResponse))
+    return true;
+  return false;
+}
+
+/****************************************
+ * uecho_message_isreaderesponse
+ ****************************************/
+
+bool uecho_message_isreaderesponse(uEchoMessage *msg)
+{
+  if ((msg->ESV == uEchoEsvReadResponse) || (msg->ESV == uEchoEsvWriteReadResponse))
+    return true;
+  return false;
+}
+
+/****************************************
+ * uecho_message_isnotifyresponse
+ ****************************************/
+
+bool uecho_message_isnotifyresponse(uEchoMessage *msg)
+{
+  if ((msg->ESV == uEchoEsvNotificationResponseRequired) || (msg->ESV == uEchoEsvNotificationResponse))
     return true;
   return false;
 }
@@ -303,6 +336,25 @@ bool uecho_message_addproperty(uEchoMessage *msg, uEchoProperty *prop)
   msg->EP[(msg->OPC - 1)] = prop;
   
   return true;
+}
+
+/****************************************
+ * uecho_message_addproperty
+ ****************************************/
+
+bool uecho_message_setproperty(uEchoMessage *msg, uEchoPropertyCode propCode, size_t propDataSize, const byte *propData)
+{
+  uEchoProperty *prop;
+  
+  prop = uecho_message_getpropertybycode(msg, propCode);
+  if (!prop) {
+    prop = uecho_property_new();
+    if (!prop)
+      return false;
+    uecho_property_setcode(prop, propCode);
+  }
+
+  return uecho_property_setdata(prop, propData, propDataSize);
 }
 
 /****************************************
