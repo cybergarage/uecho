@@ -253,24 +253,43 @@ uEchoTID uecho_controller_getnexttid(uEchoController *ctrl)
 }
 
 /****************************************
- * uecho_controller_searchallobjects
+ * uecho_controller_sendmessage
  ****************************************/
 
-bool uecho_controller_postsearch(uEchoController *ctrl, uEchoMessage *msg)
+bool uecho_controller_announcemessage(uEchoController *ctrl, uEchoMessage *msg)
 {
-  byte *msgBytes;
-  size_t msgLen;
+  uEchoObject *nodeProfObj;
   
   if (!ctrl || !msg)
     return false;
   
+  nodeProfObj = uecho_node_getnodeprofileclassobject(ctrl->node);
+  if (!nodeProfObj)
+    return false;
+  
   uecho_message_settid(msg, uecho_controller_getnexttid(ctrl));
-  uecho_message_setsourceobjectcode(msg, uEchoNodeProfileObject);
   
-  msgBytes = uecho_message_getbytes(msg);
-  msgLen = uecho_message_size(msg);
+  return uecho_object_announcemessage(nodeProfObj, msg);
+}
+
+/****************************************
+ * uecho_controller_sendmessage
+ ****************************************/
+
+bool uecho_controller_sendmessage(uEchoController *ctrl, uEchoObject *obj, uEchoMessage *msg)
+{
+  uEchoObject *nodeProfObj;
   
-  return uecho_node_announcemessagebytes(ctrl->node, msgBytes, msgLen);
+  if (!ctrl || !obj || !msg)
+    return false;
+
+  nodeProfObj = uecho_node_getnodeprofileclassobject(ctrl->node);
+  if (!nodeProfObj)
+    return false;
+
+  uecho_message_settid(msg, uecho_controller_getnexttid(ctrl));
+  
+  return uecho_object_sendmessage(nodeProfObj, obj, msg);
 }
 
 /****************************************
@@ -283,7 +302,7 @@ bool uecho_controller_searchallobjects(uEchoController *ctrl)
   
   msg = uecho_message_search_new();
 
-  return uecho_controller_postsearch(ctrl, msg);
+  return uecho_controller_announcemessage(ctrl, msg);
 }
 
 /****************************************
@@ -306,5 +325,5 @@ bool uecho_controller_searchobject(uEchoController *ctrl, byte objCode)
   uecho_property_setcode(prop, uEchoNodeProfileClassOperatingStatus);
   uecho_property_setdata(prop, NULL, 0);
   
-  return uecho_controller_postsearch(ctrl, msg);
+  return uecho_controller_announcemessage(ctrl, msg);
 }

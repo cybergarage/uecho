@@ -80,9 +80,9 @@ bool uecho_node_isrunning(uEchoNode *node);
 bool uecho_node_setmanufacturercode(uEchoNode *node, uEchoManufacturerCode code);
 
 bool uecho_node_announcemessage(uEchoNode *node, uEchoMessage *msg);
-bool uecho_node_sendmessage(uEchoNode *node, uEchoMessage *msg);
-  
 bool uecho_node_announcemessagebytes(uEchoNode *node, byte *msg, size_t msgLen);
+
+bool uecho_node_sendmessage(uEchoNode *node, uEchoNode *destNode, uEchoMessage *msg);
 bool uecho_node_sendmessagebytes(uEchoNode *node, const char *addr, byte *msg, size_t msgLen);
 
 void uecho_node_setmessagelistener(uEchoNode *node, uEchoNodeMessageListener listener);

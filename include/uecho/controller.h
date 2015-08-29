@@ -59,6 +59,9 @@ bool uecho_controller_hasmessagelistener(uEchoController *ctrl);
 bool uecho_controller_searchallobjects(uEchoController *ctrl);
 bool uecho_controller_searchobject(uEchoController *ctrl, byte objCode);
 
+bool uecho_controller_announcemessage(uEchoController *ctrl, uEchoMessage *msg);
+bool uecho_controller_sendmessage(uEchoController *ctrl, uEchoObject *obj, uEchoMessage *msg);
+
 bool uecho_controller_start(uEchoController *ctrl);
 bool uecho_controller_stop(uEchoController *ctrl);
 bool uecho_controller_isrunning(uEchoController *ctrl);

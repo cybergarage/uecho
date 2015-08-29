@@ -125,7 +125,10 @@ bool uecho_object_hasmessagelistener(uEchoObject *obj);
 bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
 uEchoPropertyRequestListener uecho_object_getpropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
 bool uecho_object_haspropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
-  
+
+bool uecho_object_announcemessage(uEchoObject *obj, uEchoMessage *msg);
+bool uecho_object_sendmessage(uEchoObject *obj, uEchoObject *destObj, uEchoMessage *msg);
+
 /****************************************
  * Function (Object List)
  ****************************************/
@@ -144,7 +147,7 @@ uEchoObject *uecho_objectlist_getbycode(uEchoObjectList *props, uEchoObjectCode 
 /****************************************
  * Object Super Class
  ****************************************/
-  
+
 typedef enum {
   uEchoObjectManufacturerCode = 0x8A,
   uEchoObjectAnnoPropertyMap  = 0x9D,

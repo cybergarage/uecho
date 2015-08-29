@@ -480,3 +480,44 @@ bool uecho_object_haspropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEch
   return (uecho_object_getpropertyrequeslistener(obj, esv, code) != NULL) ? true : false;
 }
 
+/****************************************
+ * uecho_object_announcemessage
+ ****************************************/
+
+bool uecho_object_announcemessage(uEchoObject *obj, uEchoMessage *msg)
+{
+  uEchoNode *parentNode;
+  
+  if (!obj)
+    return false;
+  
+  parentNode = uecho_object_getparentnode(obj);
+  if (!parentNode)
+    return false;
+  
+  uecho_message_setsourceobjectcode(msg, uecho_object_getcode(obj));
+  
+  return uecho_node_announcemessage(parentNode, msg);
+}
+
+/****************************************
+ * uecho_object_sendmessage
+ ****************************************/
+
+bool uecho_object_sendmessage(uEchoObject *obj, uEchoObject *destObj, uEchoMessage *msg)
+{
+  uEchoNode *parentNode, *destParentNode;
+  
+  if (!obj || !destObj)
+    return false;
+  
+  parentNode = uecho_object_getparentnode(obj);
+  destParentNode = uecho_object_getparentnode(destObj);
+  if (!parentNode || !destParentNode)
+    return false;
+
+  uecho_message_setsourceobjectcode(msg, uecho_object_getcode(obj));
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(destObj));
+  
+  return uecho_node_sendmessage(parentNode, destParentNode, msg);
+}
