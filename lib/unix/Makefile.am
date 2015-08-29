@@ -22,14 +22,14 @@ uecho_sources = \
 	../../src/uecho/controller_listener.c \
 	../../src/uecho/core/mcast_server.c \
 	../../src/uecho/core/mcast_server_list.c \
-	../../src/uecho/core/message.c \
-	../../src/uecho/core/message_search.c \
 	../../src/uecho/core/object_property_observer.c \
 	../../src/uecho/core/object_property_observer_list.c \
 	../../src/uecho/core/object_property_observer_manager.c \
 	../../src/uecho/core/server.c \
 	../../src/uecho/core/udp_server.c \
 	../../src/uecho/core/udp_server_list.c \
+	../../src/uecho/message.c \
+	../../src/uecho/message_search.c \
 	../../src/uecho/misc.c \
 	../../src/uecho/net/datagram_packet.c \
 	../../src/uecho/net/interface.c \
