@@ -22,12 +22,15 @@ void uecho_print_multicastmessages(uEchoController *ctrl, uEchoMessage *msg)
   size_t opc, n;
 
   opc = uecho_message_getopc(msg);
-  printf("Message Received : from = %s, esv = %X, opc = %ld, epc = ",
+  printf("%s %1X %1X %02X %03X %03X %02X %ld ",
     uecho_message_getsourceaddress(msg),
+    uecho_message_getehd1(msg),
+    uecho_message_getehd2(msg),
+    uecho_message_gettid(msg),
+    uecho_message_getsourceobjectcode(msg),
+    uecho_message_getdestinationobjectcode(msg),
     uecho_message_getesv(msg),
     opc);
-  printf("%02X", uecho_property_getcode(prop));
-
 
   for (n=0; n<opc; n++) {
     prop = uecho_message_getproperty(msg, n);
@@ -62,7 +65,9 @@ int main(int argc, char *argv[])
     key = getch();
     key = tolower(key);
     switch (key) {
-      case 'S':
+      case 's':
+        uecho_controller_searchallobjects(ctrl);
+        break;
       default:
         uecho_print_help();
     }
