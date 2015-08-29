@@ -151,6 +151,8 @@ void uecho_object_notifymessage(uEchoObject *obj, uEchoMessage *msg)
     return;
   
   uecho_message_setesv(resMsg, resEsv);
+  uecho_message_setsourceobjectcode(resMsg, uecho_message_getdestinationobjectcode(msg));
+  uecho_message_setdestinationobjectcode(resMsg, uecho_message_getsourceobjectcode(msg));
 
   for (n=0; n<msgOpc; n++) {
     msgProp = uecho_message_getproperty(msg, n);
