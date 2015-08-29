@@ -14,7 +14,7 @@ noinst_PROGRAMS = uecho_lighting_dev
 
 uecho_lighting_dev_SOURCES = \
 	../main.c \
-	../ligting_dev.c
+	../lighting_dev.c
 
 #if HAVE_LIBTOOL
 #uecho_lighting_dev_LDADD = ../../../../lib/unix/libuecho.la
