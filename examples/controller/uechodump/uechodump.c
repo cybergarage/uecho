@@ -9,11 +9,14 @@
  ******************************************************************/
 
 #include <stdio.h>
+#include <curses.h>
+ #include <ctype.h>
+
 #include <uecho/uecho.h>
 
 const int UECHO_TEST_SEARCH_WAIT_MTIME = 5000;
 
-void uecho_search_messagelistener(uEchoController *ctrl, uEchoMessage *msg)
+void uecho_print_multicastmessages(uEchoController *ctrl, uEchoMessage *msg)
 {
   uEchoProperty *prop;
   size_t opc, n;
@@ -34,53 +37,36 @@ void uecho_search_messagelistener(uEchoController *ctrl, uEchoMessage *msg)
   printf("\n");
 }
 
-void uecho_search_printdevices(uEchoController *ctrl)
+void uecho_print_help()
 {
-  uEchoNode *node;
-  uEchoObject *obj;
-  int nodeNo, objNo;
-  
-  nodeNo = 0;
-  for (node = uecho_controller_getnodes(ctrl); node; node = uecho_node_next(node)) {
-    printf("Node[%d] : %s\n", (nodeNo++), uecho_node_getaddress(node));
-    objNo = 0;
-    for (obj = uecho_node_getobjects(node); obj; obj = uecho_object_next(obj)) {
-      printf(" - Object[%d] : %X\n", (objNo++), uecho_object_getcode(obj));
-    }
-  }
+  printf("'s' : Search\n");
+  printf("'q' : Quit\n");
 }
 
 int main(int argc, char *argv[])
 {
   uEchoController *ctrl;
-  size_t foundNodeCnt;
+  int key;
   
   ctrl = uecho_controller_new();
   if (!ctrl)
     return EXIT_FAILURE;
   
-  uecho_controller_setmessagelistener(ctrl, uecho_search_messagelistener);
+  uecho_controller_setmessagelistener(ctrl, uecho_print_multicastmessages);
   
   if (!uecho_controller_start(ctrl))
     return EXIT_FAILURE;
-  
-  uecho_controller_searchallobjects(ctrl);
-  uecho_sleep(UECHO_TEST_SEARCH_WAIT_MTIME);
-  
-  foundNodeCnt = uecho_controller_getnodecount(ctrl);
-  if (0 < foundNodeCnt) {
-    if (foundNodeCnt == 1) {
-      printf("==== Found a node !! ====\n");
+  key = 0;
+  do
+  {
+    key = getch();
+    key = tolower(key);
+    switch (key) {
+      case 'S':
+      default:
+        uecho_print_help();
     }
-    else {
-      printf("====  Found %ld nodes !! ====\n", foundNodeCnt);
-    }
-    uecho_search_printdevices(ctrl);
-    
-  }
-  else {
-    printf(" ==== Not found any nodes !! ====\n");
-  }
+  } while( key != 'q');
   
   uecho_controller_stop(ctrl);
   uecho_controller_delete(ctrl);
