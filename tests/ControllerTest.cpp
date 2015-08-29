@@ -15,8 +15,8 @@
 
 #include "TestDevice.h"
 
-const int UECHO_TEST_SEARCH_WAIT_MAX_MTIME = 10000;
-const int UECHO_TEST_SEARCH_WAIT_RETLY_CNT = 100;
+const int UECHO_TEST_RESPONSE_WAIT_MAX_MTIME = 5000;
+const int UECHO_TEST_RESPONSE_WAIT_RETLY_CNT = 100;
 
 BOOST_AUTO_TEST_CASE(ControllerRun)
 {
@@ -49,23 +49,23 @@ BOOST_AUTO_TEST_CASE(ControllerTID)
 
 BOOST_AUTO_TEST_CASE(ControllerSearchAll)
 {
-  // Start Device
-
-  uEchoNode *node = uecho_test_createtestnode();
-  BOOST_CHECK(uecho_node_start(node));
-
   // Start Controller
 
   uEchoController *cp = uecho_controller_new();
   BOOST_CHECK(uecho_controller_start(cp));
 
+  // Start Device
+  
+  uEchoNode *node = uecho_test_createtestnode();
+  BOOST_CHECK(uecho_node_start(node));
+  
   // Find device
 
   BOOST_CHECK(uecho_controller_searchallobjects(cp));
   
   uEchoObject *foundObj;
-  for (int n=0; n<UECHO_TEST_SEARCH_WAIT_RETLY_CNT; n++) {
-    uecho_sleep(UECHO_TEST_SEARCH_WAIT_MAX_MTIME / UECHO_TEST_SEARCH_WAIT_RETLY_CNT);
+  for (int n=0; n<UECHO_TEST_RESPONSE_WAIT_RETLY_CNT; n++) {
+    uecho_sleep(UECHO_TEST_RESPONSE_WAIT_MAX_MTIME / UECHO_TEST_RESPONSE_WAIT_RETLY_CNT);
     foundObj = uecho_controller_getobjectbycode(cp, UECHO_TEST_OBJECTCODE);
     if (foundObj)
       break;
@@ -77,10 +77,22 @@ BOOST_AUTO_TEST_CASE(ControllerSearchAll)
   
   uEchoMessage *msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvReadRequest);
-  uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL);
+  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
   BOOST_CHECK(uecho_controller_sendmessage(cp, foundObj, msg));
   uecho_message_delete(msg);
 
+  // Check Response
+  
+  uEchoProperty *foundProp;
+  for (int n=0; n<UECHO_TEST_RESPONSE_WAIT_RETLY_CNT; n++) {
+    uecho_sleep(UECHO_TEST_RESPONSE_WAIT_MAX_MTIME / UECHO_TEST_RESPONSE_WAIT_RETLY_CNT);
+    foundProp = uecho_object_getproperty(foundObj, UECHO_TEST_PROPERTY_SWITCHCODE);
+    if (foundProp)
+      break;
+  }
+  
+  BOOST_CHECK(foundProp);
+  
   // Teminate
   
   BOOST_CHECK(uecho_controller_stop(cp));
