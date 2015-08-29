@@ -36,7 +36,7 @@ AC_CHECK_HEADERS([stdbool.h])
 # Checks for pthread
 ##############################
 
-AC_CHECK_HEADERS([pthread.h],,[AC_MSG_ERROR(mUPnP needs POSIX thread library)])
+AC_CHECK_HEADERS([pthread.h],,[AC_MSG_ERROR(uEcho needs POSIX thread library)])
 AC_CHECK_LIB([pthread],[main])
 
 ##############################
@@ -158,6 +158,13 @@ if [ test "$build_tests" = yes ]; then
 	AC_CHECK_LIB([boost_thread-mt],[main],,
 		[AC_CHECK_LIB([boost_thread],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread)])])
 fi
+
+##############################
+# Examples
+##############################
+
+AC_CHECK_HEADERS([curses.h],,[AC_MSG_ERROR(uEcho needs POSIX thread library)])
+AC_CHECK_LIB([curses],[main])
 
 ##############################
 # Makefiles

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		217B79BE1B8F1B8800FF2797 /* liblibuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 217B79B51B8F1B6800FF2797 /* liblibuecho.a */; };
-		217B79C11B8F1BB200FF2797 /* uecho_search.c in Sources */ = {isa = PBXBuildFile; fileRef = 217B79C01B8F1BB200FF2797 /* uecho_search.c */; };
+		217B79C11B8F1BB200FF2797 /* uechopost.c in Sources */ = {isa = PBXBuildFile; fileRef = 217B79C01B8F1BB200FF2797 /* uechopost.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,9 +41,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2153A5ED1B8F14C000FAE69A /* uEchoSearch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uEchoSearch; sourceTree = BUILT_PRODUCTS_DIR; };
+		2153A5ED1B8F14C000FAE69A /* uEchoPost */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uEchoPost; sourceTree = BUILT_PRODUCTS_DIR; };
 		217B79B01B8F1B6800FF2797 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
-		217B79C01B8F1BB200FF2797 /* uecho_search.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = uecho_search.c; path = ../../uecho_search.c; sourceTree = "<group>"; };
+		217B79C01B8F1BB200FF2797 /* uechopost.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = uechopost.c; path = ../../uechopost.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +70,7 @@
 		2153A5EE1B8F14C000FAE69A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2153A5ED1B8F14C000FAE69A /* uEchoSearch */,
+				2153A5ED1B8F14C000FAE69A /* uEchoPost */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,7 +86,7 @@
 		217B79AE1B8F1B4100FF2797 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				217B79C01B8F1BB200FF2797 /* uecho_search.c */,
+				217B79C01B8F1BB200FF2797 /* uechopost.c */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -102,9 +102,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2153A5EC1B8F14C000FAE69A /* uEchoSearch */ = {
+		2153A5EC1B8F14C000FAE69A /* uEchoPost */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2153A5F41B8F14C000FAE69A /* Build configuration list for PBXNativeTarget "uEchoSearch" */;
+			buildConfigurationList = 2153A5F41B8F14C000FAE69A /* Build configuration list for PBXNativeTarget "uEchoPost" */;
 			buildPhases = (
 				2153A5E91B8F14C000FAE69A /* Sources */,
 				2153A5EA1B8F14C000FAE69A /* Frameworks */,
@@ -115,9 +115,9 @@
 			dependencies = (
 				217B79BD1B8F1B8300FF2797 /* PBXTargetDependency */,
 			);
-			name = uEchoSearch;
+			name = uEchoPost;
 			productName = uEchoSearch;
-			productReference = 2153A5ED1B8F14C000FAE69A /* uEchoSearch */;
+			productReference = 2153A5ED1B8F14C000FAE69A /* uEchoPost */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -134,7 +134,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2153A5E81B8F14C000FAE69A /* Build configuration list for PBXProject "uEchoSearch" */;
+			buildConfigurationList = 2153A5E81B8F14C000FAE69A /* Build configuration list for PBXProject "uEchoPost" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -152,7 +152,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				2153A5EC1B8F14C000FAE69A /* uEchoSearch */,
+				2153A5EC1B8F14C000FAE69A /* uEchoPost */,
 			);
 		};
 /* End PBXProject section */
@@ -172,7 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				217B79C11B8F1BB200FF2797 /* uecho_search.c in Sources */,
+				217B79C11B8F1BB200FF2797 /* uechopost.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,21 +277,21 @@
 		2153A5F51B8F14C000FAE69A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = uEchoPost;
 			};
 			name = Debug;
 		};
 		2153A5F61B8F14C000FAE69A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = uEchoPost;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2153A5E81B8F14C000FAE69A /* Build configuration list for PBXProject "uEchoSearch" */ = {
+		2153A5E81B8F14C000FAE69A /* Build configuration list for PBXProject "uEchoPost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2153A5F21B8F14C000FAE69A /* Debug */,
@@ -300,7 +300,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2153A5F41B8F14C000FAE69A /* Build configuration list for PBXNativeTarget "uEchoSearch" */ = {
+		2153A5F41B8F14C000FAE69A /* Build configuration list for PBXNativeTarget "uEchoPost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2153A5F51B8F14C000FAE69A /* Debug */,

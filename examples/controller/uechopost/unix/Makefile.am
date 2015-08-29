@@ -1,4 +1,4 @@
-##################################################################
+uechopost##################################################################
 #
 # uEcho for C
 #
@@ -10,13 +10,13 @@
 
 AM_CFLAGS = -I$(top_srcdir)/include -I$(top_builddir)/include -I../ -I../../common
 
-noinst_PROGRAMS = uecho_search 
+noinst_PROGRAMS = uechopost 
 
-uecho_search_SOURCES = \
-	../uecho_search.c
+uechopost_SOURCES = \
+	../uechopost.c
 
 #if HAVE_LIBTOOL
-#uecho_search_LDADD = ../../../../lib/unix/libuecho.la
+#uechopost_LDADD = ../../../../lib/unix/libuecho.la
 #else
-uecho_search_LDADD = ../../../../lib/unix/libuecho.a
+uechopost_LDADD = ../../../../lib/unix/libuecho.a
 #endif
