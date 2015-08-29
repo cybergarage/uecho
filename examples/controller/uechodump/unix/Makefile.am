@@ -10,13 +10,13 @@
 
 AM_CFLAGS = -I$(top_srcdir)/include -I$(top_builddir)/include -I../ -I../../common
 
-noinst_PROGRAMS = uecho_search 
+noinst_PROGRAMS = uechodump 
 
-uecho_search_SOURCES = \
-	../uecho_search.c
+uechodump_SOURCES = \
+	../uechodump.c
 
 #if HAVE_LIBTOOL
-#uecho_search_LDADD = ../../../../lib/unix/libuecho.la
+#uechodump_LDADD = ../../../../lib/unix/libuecho.la
 #else
-uecho_search_LDADD = ../../../../lib/unix/libuecho.a
+uechodump_LDADD = ../../../../lib/unix/libuecho.a
 #endif

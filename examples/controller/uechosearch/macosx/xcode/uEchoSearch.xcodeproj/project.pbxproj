@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		217B79BE1B8F1B8800FF2797 /* liblibuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 217B79B51B8F1B6800FF2797 /* liblibuecho.a */; };
-		217B79C11B8F1BB200FF2797 /* uecho_search.c in Sources */ = {isa = PBXBuildFile; fileRef = 217B79C01B8F1BB200FF2797 /* uecho_search.c */; };
+		217B79C11B8F1BB200FF2797 /* uechosearch.c in Sources */ = {isa = PBXBuildFile; fileRef = 217B79C01B8F1BB200FF2797 /* uechosearch.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +43,7 @@
 /* Begin PBXFileReference section */
 		2153A5ED1B8F14C000FAE69A /* uEchoSearch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uEchoSearch; sourceTree = BUILT_PRODUCTS_DIR; };
 		217B79B01B8F1B6800FF2797 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
-		217B79C01B8F1BB200FF2797 /* uecho_search.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = uecho_search.c; path = ../../uecho_search.c; sourceTree = "<group>"; };
+		217B79C01B8F1BB200FF2797 /* uechosearch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = uechosearch.c; path = ../../uechosearch.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 		217B79AE1B8F1B4100FF2797 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				217B79C01B8F1BB200FF2797 /* uecho_search.c */,
+				217B79C01B8F1BB200FF2797 /* uechosearch.c */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -172,7 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				217B79C11B8F1BB200FF2797 /* uecho_search.c in Sources */,
+				217B79C11B8F1BB200FF2797 /* uechosearch.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
