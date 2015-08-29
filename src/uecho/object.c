@@ -302,6 +302,9 @@ bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPro
 
 bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen)
 {
+  if (!obj)
+    return false;
+
   return uecho_propertylist_setdata(obj->properties, code, data, dataLen);
 }
 
@@ -311,6 +314,9 @@ bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte
 
 bool uecho_object_setpropertyintegerdata(uEchoObject *obj, uEchoPropertyCode code, int data, size_t dataLen)
 {
+  if (!obj)
+    return false;
+
   return uecho_propertylist_setintegerdata(obj->properties, code, data, dataLen);
 }
 
@@ -320,6 +326,9 @@ bool uecho_object_setpropertyintegerdata(uEchoObject *obj, uEchoPropertyCode cod
 
 bool uecho_object_setpropertybytedata(uEchoObject *obj, uEchoPropertyCode code, byte data)
 {
+  if (!obj)
+    return false;
+  
   return uecho_propertylist_setbytedata(obj->properties, code, data);
 }
 
@@ -329,6 +338,9 @@ bool uecho_object_setpropertybytedata(uEchoObject *obj, uEchoPropertyCode code, 
 
 bool uecho_object_setpropertyattribute(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)
 {
+  if (!obj)
+    return false;
+
   return uecho_propertylist_setattribute(obj->properties, code, attr);
 }
 
@@ -338,6 +350,9 @@ bool uecho_object_setpropertyattribute(uEchoObject *obj, uEchoPropertyCode code,
 
 uEchoProperty *uecho_object_getproperties(uEchoObject *obj)
 {
+  if (!obj)
+    return NULL;
+  
   return uecho_propertylist_gets(obj->properties);
 }
 
@@ -347,6 +362,9 @@ uEchoProperty *uecho_object_getproperties(uEchoObject *obj)
 
 bool uecho_object_hasproperty(uEchoObject *obj, uEchoPropertyCode code)
 {
+  if (!obj)
+    return false;
+  
   return (uecho_object_getproperty(obj, code) != NULL) ? true : false;
 }
 
@@ -356,6 +374,9 @@ bool uecho_object_hasproperty(uEchoObject *obj, uEchoPropertyCode code)
 
 uEchoProperty *uecho_object_getproperty(uEchoObject *obj, uEchoPropertyCode code)
 {
+  if (!obj)
+    return NULL;
+
   return uecho_propertylist_findbycode(obj->properties, code);
 }
 
@@ -365,6 +386,9 @@ uEchoProperty *uecho_object_getproperty(uEchoObject *obj, uEchoPropertyCode code
 
 size_t uecho_object_getpropertycount(uEchoObject *obj)
 {
+  if (!obj)
+    return 0;
+  
   return uecho_propertylist_size(obj->properties);
 }
 
@@ -387,6 +411,9 @@ void uecho_object_clearproperties(uEchoObject *obj)
 
 int uecho_object_getpropertydatasize(uEchoObject *obj, uEchoPropertyCode code)
 {
+  if (!obj)
+    return 0;
+  
   return uecho_propertylist_getdatasize(obj->properties, code);
 }
 
@@ -396,6 +423,9 @@ int uecho_object_getpropertydatasize(uEchoObject *obj, uEchoPropertyCode code)
 
 byte *uecho_object_getpropertydata(uEchoObject *obj, uEchoPropertyCode code)
 {
+  if (!obj)
+    return NULL;
+  
   return uecho_propertylist_getdata(obj->properties, code);
 }
 
@@ -405,6 +435,9 @@ byte *uecho_object_getpropertydata(uEchoObject *obj, uEchoPropertyCode code)
 
 bool uecho_object_getpropertyintegerdata(uEchoObject *obj, uEchoPropertyCode code, size_t dataLen, int *data)
 {
+  if (!obj)
+    return false;
+
   return uecho_propertylist_getintegerdata(obj->properties, code, dataLen, data);
 }
 
@@ -414,6 +447,9 @@ bool uecho_object_getpropertyintegerdata(uEchoObject *obj, uEchoPropertyCode cod
 
 bool uecho_object_getpropertybytedata(uEchoObject *obj, uEchoPropertyCode code, byte *data)
 {
+  if (!obj)
+    return false;
+  
   return uecho_propertylist_getbytedata(obj->properties, code, data);
 }
 
@@ -423,6 +459,9 @@ bool uecho_object_getpropertybytedata(uEchoObject *obj, uEchoPropertyCode code, 
 
 void uecho_object_setmessagelistener(uEchoObject *obj, uEchoObjectMessageListener listener)
 {
+  if (!obj)
+    return;
+  
   obj->allMsgListener = listener;
 }
 
@@ -432,6 +471,9 @@ void uecho_object_setmessagelistener(uEchoObject *obj, uEchoObjectMessageListene
 
 uEchoObjectMessageListener uecho_object_getmessagelistener(uEchoObject *obj)
 {
+  if (!obj)
+    return NULL;
+  
   return obj->allMsgListener;
 }
 
@@ -441,6 +483,9 @@ uEchoObjectMessageListener uecho_object_getmessagelistener(uEchoObject *obj)
 
 bool uecho_object_hasmessagelistener(uEchoObject *obj)
 {
+  if (!obj)
+    return false;
+  
   return obj->allMsgListener ? true : false;
 }
 
@@ -450,6 +495,9 @@ bool uecho_object_hasmessagelistener(uEchoObject *obj)
 
 bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener)
 {
+  if (!obj)
+    return false;
+  
   return uecho_object_property_observer_manager_setobserver(obj->propListenerMgr, esv, code, listener);
 }
 
