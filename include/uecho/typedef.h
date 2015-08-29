@@ -60,7 +60,6 @@ extern "C" {
 #endif
 
 typedef unsigned char byte;
-typedef unsigned int uEchoTID;
 
 #ifdef  __cplusplus
 }

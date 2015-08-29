@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/core/message.h>
+#include <uecho/message.h>
 #include <uecho/profile.h>
 
 /****************************************

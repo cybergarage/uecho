@@ -12,10 +12,19 @@
 
 uEchoObject *uecho_test_createtestdevice()
 {
-  uEchoObject *dev = uecho_device_new();
-  uecho_object_setmanufacturercode(dev, UECHO_TEST_MANCODE);
-  uecho_object_setcode(dev, UECHO_TEST_OBJECTCODE);
-  return dev;
+  uEchoObject *obj = uecho_device_new();
+  
+  uecho_object_setmanufacturercode(obj, UECHO_TEST_MANCODE);
+  uecho_object_setcode(obj, UECHO_TEST_OBJECTCODE);
+
+  byte prop[32];
+
+  // Operation status property
+  uecho_object_setproperty(obj, UECHO_TEST_PROPERTY_SWITCHCODE, uEchoPropertyAttrReadWrite);
+  prop[0] = UECHO_TEST_PROPERTY_SWITCH_ON;
+  uecho_object_setpropertydata(obj, UECHO_TEST_PROPERTY_SWITCHCODE, prop, 1);
+  
+  return obj;
 }
 
 uEchoNode *uecho_test_createtestnode() {

@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <uecho/core/message.h>
+#include <uecho/message.h>
 
 BOOST_AUTO_TEST_CASE(MessageBasicFunctions)
 {

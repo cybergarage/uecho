@@ -53,6 +53,8 @@ typedef enum {
  * Data Type
  ****************************************/
 
+typedef unsigned int uEchoTID;
+
 typedef struct _uEchoMessage
 {
   byte EHD1;
@@ -96,15 +98,12 @@ int uecho_message_getdestinationobjectcode(uEchoMessage *msg);
   
 void uecho_message_setehd2(uEchoMessage *msg, byte val);
 byte uecho_message_getehd2(uEchoMessage *msg);
-  
+
 void uecho_message_setesv(uEchoMessage *msg, uEchoEsv val);
 uEchoEsv uecho_message_getesv(uEchoMessage *msg);
 
-bool uecho_message_iswriterequest(uEchoMessage *msg);
-bool uecho_message_isreaderequest(uEchoMessage *msg);
-bool uecho_message_isnotifyrequest(uEchoMessage *msg);
-
 bool uecho_message_addproperty(uEchoMessage *msg, uEchoProperty *prop);
+bool uecho_message_setproperty(uEchoMessage *msg, uEchoPropertyCode propCode, size_t propDataSize, const byte *propData);
 uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n);
 uEchoProperty *uecho_message_getpropertybycode(uEchoMessage *msg, uEchoPropertyCode code);
 
@@ -122,8 +121,17 @@ bool uecho_message_equals(uEchoMessage *msg1, uEchoMessage *msg2);
 ****************************************/
 
 uEchoMessage *uecho_message_search_new(void);
+
+bool uecho_message_iswriterequest(uEchoMessage *msg);
+bool uecho_message_isreaderequest(uEchoMessage *msg);
+bool uecho_message_isnotifyrequest(uEchoMessage *msg);
+
+bool uecho_message_iswriteresponse(uEchoMessage *msg);
+bool uecho_message_isreaderesponse(uEchoMessage *msg);
+bool uecho_message_isnotifyresponse(uEchoMessage *msg);
+
 bool uecho_message_issearchrequest(uEchoMessage *msg);
-  bool uecho_message_issearchresponse(uEchoMessage *msg);
+bool uecho_message_issearchresponse(uEchoMessage *msg);
 
 #ifdef  __cplusplus
 } /* extern C */

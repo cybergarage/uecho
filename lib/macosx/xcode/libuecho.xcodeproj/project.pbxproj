@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		214186CB1B6B47F20086EEC0 /* message_search.c in Sources */ = {isa = PBXBuildFile; fileRef = 214186CA1B6B47F20086EEC0 /* message_search.c */; };
 		2159A1D11B751D2100A134D8 /* mcast_server_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159A1CF1B751D2100A134D8 /* mcast_server_list.c */; };
 		2159A1D21B751D2100A134D8 /* udp_server_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159A1D01B751D2100A134D8 /* udp_server_list.c */; };
 		215B493D1B85831E002B20CE /* profile.c in Sources */ = {isa = PBXBuildFile; fileRef = 215B493C1B85831E002B20CE /* profile.c */; };
@@ -36,8 +35,6 @@
 		2171428F1B886500003ABA30 /* class.h in Headers */ = {isa = PBXBuildFile; fileRef = 2171428E1B886500003ABA30 /* class.h */; };
 		217142921B8865EF003ABA30 /* class_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 217142901B8865EF003ABA30 /* class_list.c */; };
 		217142931B8865EF003ABA30 /* class.c in Sources */ = {isa = PBXBuildFile; fileRef = 217142911B8865EF003ABA30 /* class.c */; };
-		21757F4B1B6A0CC600281E6F /* message.c in Sources */ = {isa = PBXBuildFile; fileRef = 21757F4A1B6A0CC600281E6F /* message.c */; };
-		21757F4D1B6A0CD600281E6F /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = 21757F4C1B6A0CD600281E6F /* message.h */; };
 		21757F501B6A0D9400281E6F /* mcast_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 21757F4E1B6A0D9400281E6F /* mcast_server.c */; };
 		21757F511B6A0D9400281E6F /* udp_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 21757F4F1B6A0D9400281E6F /* udp_server.c */; };
 		21757F531B6A0DC300281E6F /* server.h in Headers */ = {isa = PBXBuildFile; fileRef = 21757F521B6A0DC300281E6F /* server.h */; };
@@ -62,6 +59,9 @@
 		21976AB31B897C1F00A154CE /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 21976AB21B897C1F00A154CE /* misc.c */; };
 		21976AB51B897C4F00A154CE /* misc.h in Headers */ = {isa = PBXBuildFile; fileRef = 21976AB41B897C4F00A154CE /* misc.h */; };
 		21B06C191B7C85B0004E9E09 /* object_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B06C181B7C85B0004E9E09 /* object_list.c */; };
+		21CF27551B917B03004A5AAD /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CF27541B917B03004A5AAD /* message.h */; };
+		21CF27581B917B25004A5AAD /* message_search.c in Sources */ = {isa = PBXBuildFile; fileRef = 21CF27561B917B25004A5AAD /* message_search.c */; };
+		21CF27591B917B25004A5AAD /* message.c in Sources */ = {isa = PBXBuildFile; fileRef = 21CF27571B917B25004A5AAD /* message.c */; };
 		21D68B0F1B7C1DA60032552C /* node_profile_class.c in Sources */ = {isa = PBXBuildFile; fileRef = 21D68B0D1B7C1DA60032552C /* node_profile_class.c */; };
 		21E280621B7BA82C004956BA /* profile.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E280611B7BA82C004956BA /* profile.h */; };
 		21EEC8581B7204D80012AB57 /* thread_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EEC8561B7204D80012AB57 /* thread_list.c */; };
@@ -74,7 +74,6 @@
 
 /* Begin PBXFileReference section */
 		212ADD881A8D4F000054EC0F /* liblibuecho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibuecho.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		214186CA1B6B47F20086EEC0 /* message_search.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message_search.c; path = core/message_search.c; sourceTree = "<group>"; };
 		2159A1CF1B751D2100A134D8 /* mcast_server_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mcast_server_list.c; path = core/mcast_server_list.c; sourceTree = "<group>"; };
 		2159A1D01B751D2100A134D8 /* udp_server_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udp_server_list.c; path = core/udp_server_list.c; sourceTree = "<group>"; };
 		215B493C1B85831E002B20CE /* profile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = profile.c; path = std/profile.c; sourceTree = "<group>"; };
@@ -103,8 +102,6 @@
 		2171428E1B886500003ABA30 /* class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = class.h; sourceTree = "<group>"; };
 		217142901B8865EF003ABA30 /* class_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = class_list.c; sourceTree = "<group>"; };
 		217142911B8865EF003ABA30 /* class.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = class.c; sourceTree = "<group>"; };
-		21757F4A1B6A0CC600281E6F /* message.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message.c; path = core/message.c; sourceTree = "<group>"; };
-		21757F4C1B6A0CD600281E6F /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = core/message.h; sourceTree = "<group>"; };
 		21757F4E1B6A0D9400281E6F /* mcast_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mcast_server.c; path = core/mcast_server.c; sourceTree = "<group>"; };
 		21757F4F1B6A0D9400281E6F /* udp_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udp_server.c; path = core/udp_server.c; sourceTree = "<group>"; };
 		21757F521B6A0DC300281E6F /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = server.h; path = core/server.h; sourceTree = "<group>"; };
@@ -129,6 +126,9 @@
 		21976AB21B897C1F00A154CE /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = misc.c; sourceTree = "<group>"; };
 		21976AB41B897C4F00A154CE /* misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misc.h; sourceTree = "<group>"; };
 		21B06C181B7C85B0004E9E09 /* object_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = object_list.c; sourceTree = "<group>"; };
+		21CF27541B917B03004A5AAD /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message.h; sourceTree = "<group>"; };
+		21CF27561B917B25004A5AAD /* message_search.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = message_search.c; sourceTree = "<group>"; };
+		21CF27571B917B25004A5AAD /* message.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = message.c; sourceTree = "<group>"; };
 		21D68B0D1B7C1DA60032552C /* node_profile_class.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = node_profile_class.c; path = std/node_profile_class.c; sourceTree = "<group>"; };
 		21E280611B7BA82C004956BA /* profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profile.h; sourceTree = "<group>"; };
 		21EEC8561B7204D80012AB57 /* thread_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread_list.c; sourceTree = "<group>"; };
@@ -179,7 +179,9 @@
 			isa = PBXGroup;
 			children = (
 				21757F491B6A0CAF00281E6F /* core */,
+				217866E71B8F3F7C003AEB9B /* uecho.h */,
 				2185D9D01B68DEED00A5B0C3 /* property.h */,
+				21CF27541B917B03004A5AAD /* message.h */,
 				21E280611B7BA82C004956BA /* profile.h */,
 				2185D9CC1B68D5BC00A5B0C3 /* object.h */,
 				215B49421B85895F002B20CE /* device.h */,
@@ -230,6 +232,8 @@
 			children = (
 				21D68B0C1B7C1D700032552C /* std */,
 				21757F481B6A0CA500281E6F /* core */,
+				21CF27561B917B25004A5AAD /* message_search.c */,
+				21CF27571B917B25004A5AAD /* message.c */,
 				2185D9D21B68DF1E00A5B0C3 /* property.c */,
 				2178B8301B7B3CC7007AA57B /* property_list.c */,
 				2185D9CE1B68D5C600A5B0C3 /* object.c */,
@@ -285,11 +289,9 @@
 				218C820D1B8D6DA000E262C3 /* object_property_observer.c */,
 				2159A1CF1B751D2100A134D8 /* mcast_server_list.c */,
 				2159A1D01B751D2100A134D8 /* udp_server_list.c */,
-				214186CA1B6B47F20086EEC0 /* message_search.c */,
 				21757F541B6A0E3200281E6F /* server.c */,
 				21757F4E1B6A0D9400281E6F /* mcast_server.c */,
 				21757F4F1B6A0D9400281E6F /* udp_server.c */,
-				21757F4A1B6A0CC600281E6F /* message.c */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -297,10 +299,8 @@
 		21757F491B6A0CAF00281E6F /* core */ = {
 			isa = PBXGroup;
 			children = (
-				217866E71B8F3F7C003AEB9B /* uecho.h */,
 				218C82091B8D6D5F00E262C3 /* observer.h */,
 				21757F521B6A0DC300281E6F /* server.h */,
-				21757F4C1B6A0CD600281E6F /* message.h */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -331,7 +331,6 @@
 				21EFF1A11B4A9A5E002B5E57 /* node.h in Headers */,
 				218C820A1B8D6D5F00E262C3 /* observer.h in Headers */,
 				21678EF21A8D510100AE79AA /* strings.h in Headers */,
-				21757F4D1B6A0CD600281E6F /* message.h in Headers */,
 				21678EF41A8D510100AE79AA /* timer.h in Headers */,
 				21678EED1A8D510100AE79AA /* interface.h in Headers */,
 				2185D9D11B68DEED00A5B0C3 /* property.h in Headers */,
@@ -344,6 +343,7 @@
 				2185D9C31B68C3B500A5B0C3 /* const.h in Headers */,
 				2171428F1B886500003ABA30 /* class.h in Headers */,
 				215B49431B85895F002B20CE /* device.h in Headers */,
+				21CF27551B917B03004A5AAD /* message.h in Headers */,
 				21976AB51B897C4F00A154CE /* misc.h in Headers */,
 				2185D9CD1B68D5BC00A5B0C3 /* object.h in Headers */,
 			);
@@ -406,7 +406,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				217142921B8865EF003ABA30 /* class_list.c in Sources */,
-				21757F4B1B6A0CC600281E6F /* message.c in Sources */,
 				2159A1D21B751D2100A134D8 /* udp_server_list.c in Sources */,
 				21976AB31B897C1F00A154CE /* misc.c in Sources */,
 				21678F0D1A8D512000AE79AA /* timer.c in Sources */,
@@ -421,13 +420,14 @@
 				21678F091A8D512000AE79AA /* mutex.c in Sources */,
 				2185D9CF1B68D5C600A5B0C3 /* object.c in Sources */,
 				215B49481B858AEC002B20CE /* device_super_class.c in Sources */,
+				21CF27591B917B25004A5AAD /* message.c in Sources */,
 				21B06C191B7C85B0004E9E09 /* object_list.c in Sources */,
 				21D68B0F1B7C1DA60032552C /* node_profile_class.c in Sources */,
 				218688EE1B8D676B00B10494 /* node_list.c in Sources */,
 				21EEC8591B7204D80012AB57 /* thread.c in Sources */,
 				21851C5C1B74804400289276 /* datagram_packet.c in Sources */,
+				21CF27581B917B25004A5AAD /* message_search.c in Sources */,
 				218C82101B8D6DA000E262C3 /* object_property_observer.c in Sources */,
-				214186CB1B6B47F20086EEC0 /* message_search.c in Sources */,
 				21851C5A1B74738400289276 /* interface_function.c in Sources */,
 				21EEC8581B7204D80012AB57 /* thread_list.c in Sources */,
 				21EFF1A51B4A9A76002B5E57 /* node.c in Sources */,
