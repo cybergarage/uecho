@@ -8,4 +8,4 @@
 #
 ##################################################################
 
-SUBDIRS = uechosearch uechodump uechopost
+SUBDIRS = unix 

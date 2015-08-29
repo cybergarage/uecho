@@ -174,6 +174,10 @@ examples/Makefile
 examples/controller/Makefile
 examples/controller/uechosearch/Makefile
 examples/controller/uechosearch/unix/Makefile
+examples/controller/uechodump/Makefile
+examples/controller/uechodump/unix/Makefile
+examples/controller/uechopost/Makefile
+examples/controller/uechopost/unix/Makefile
 examples/device/Makefile
 examples/device/lighting/Makefile
 examples/device/lighting/unix/Makefile
