@@ -20,12 +20,13 @@ uEchoThreadList *uecho_threadlist_new(void)
 
 	threadList = (uEchoThreadList *)malloc(sizeof(uEchoThreadList));
 
-	if ( NULL != threadList ) {
-		uecho_list_header_init((uEchoList *)threadList);
-		threadList->runnableFlag = false;
-		threadList->action = NULL;
-		threadList->userData = NULL;
-	}
+  if (!threadList)
+    return NULL;
+
+  uecho_list_header_init((uEchoList *)threadList);
+  threadList->runnableFlag = false;
+  threadList->action = NULL;
+  threadList->userData = NULL;
 
 	return threadList;
 }
@@ -36,6 +37,9 @@ uEchoThreadList *uecho_threadlist_new(void)
 
 void uecho_threadlist_delete(uEchoThreadList *threadList)
 {
+  if (!threadList)
+    return;
+  
 	uecho_threadlist_clear(threadList);
 	free(threadList);
 }
@@ -48,6 +52,9 @@ bool uecho_threadlist_start(uEchoThreadList *threadList)
 {
 	uEchoThreadList *thread;
 
+  if (!threadList)
+    return false;
+  
   for (thread = uecho_threadlist_gets(threadList); thread != NULL; thread = uecho_thread_next(thread)) {
 		uecho_thread_start(thread);
   }
@@ -63,6 +70,9 @@ bool uecho_threadlist_stop(uEchoThreadList *threadList)
 {
 	uEchoThreadList *thread;
 	
+  if (!threadList)
+    return false;
+  
 	for (thread = uecho_threadlist_gets(threadList); thread != NULL; thread = uecho_thread_next(thread))
 		uecho_thread_stop(thread);
 

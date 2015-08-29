@@ -33,6 +33,9 @@ uEchoPropertyList *uecho_propertylist_new(void)
 
 void uecho_propertylist_delete(uEchoPropertyList *props)
 {
+  if (!props)
+    return;
+  
 	uecho_propertylist_clear(props);
 
 	free(props);
@@ -45,6 +48,9 @@ void uecho_propertylist_delete(uEchoPropertyList *props)
 uEchoProperty *uecho_propertylist_findbycode(uEchoPropertyList *props, uEchoPropertyCode code)
 {
   uEchoProperty *prop;
+  
+  if (!props)
+    return NULL;
   
   for (prop = uecho_propertylist_gets(props); prop; prop = uecho_property_next(prop)) {
     if (uecho_property_getcode(prop) == code)
@@ -61,6 +67,9 @@ uEchoProperty *uecho_propertylist_findbycode(uEchoPropertyList *props, uEchoProp
 uEchoProperty *uecho_propertylist_getbycode(uEchoPropertyList *props, uEchoPropertyCode code)
 {
   uEchoProperty *prop;
+  
+  if (!props)
+    return NULL;
   
   prop = uecho_propertylist_findbycode(props, code);
   if (prop)
@@ -84,6 +93,9 @@ bool uecho_propertylist_set(uEchoPropertyList *props, uEchoPropertyCode code, uE
 {
   uEchoProperty *prop;
   
+  if (!props)
+    return false;
+  
   prop = uecho_propertylist_getbycode(props, code);
   if (!prop)
     return false;
@@ -102,6 +114,9 @@ bool uecho_propertylist_setdata(uEchoPropertyList *props, uEchoPropertyCode code
 {
   uEchoProperty *prop;
   
+  if (!props)
+    return false;
+  
   prop = uecho_propertylist_getbycode(props, code);
   if (!prop)
     return false;
@@ -119,6 +134,9 @@ bool uecho_propertylist_setintegerdata(uEchoPropertyList *props, uEchoPropertyCo
 {
   uEchoProperty *prop;
   
+  if (!props)
+    return false;
+  
   prop = uecho_propertylist_getbycode(props, code);
   if (!prop)
     return false;
@@ -134,6 +152,9 @@ bool uecho_propertylist_setbytedata(uEchoPropertyList *props, uEchoPropertyCode 
 {
   uEchoProperty *prop;
   
+  if (!props)
+    return false;
+  
   prop = uecho_propertylist_getbycode(props, code);
   if (!prop)
     return false;
@@ -148,6 +169,9 @@ bool uecho_propertylist_setbytedata(uEchoPropertyList *props, uEchoPropertyCode 
 bool uecho_propertylist_setattribute(uEchoPropertyList *props, uEchoPropertyCode code, uEchoPropertyAttr attr)
 {
   uEchoProperty *prop;
+  
+  if (!props)
+    return false;
   
   prop = uecho_propertylist_getbycode(props, code);
   if (!prop)
@@ -166,6 +190,9 @@ byte uecho_propertylist_getdatasize(uEchoPropertyList *props, uEchoPropertyCode 
 {
   uEchoProperty *prop;
   
+  if (!props)
+    return 0;
+  
   prop = uecho_propertylist_getbycode(props, code);
   if (!prop)
     return false;
@@ -180,6 +207,9 @@ byte uecho_propertylist_getdatasize(uEchoPropertyList *props, uEchoPropertyCode 
 byte *uecho_propertylist_getdata(uEchoPropertyList *props, uEchoPropertyCode code)
 {
   uEchoProperty *prop;
+  
+  if (!props)
+    return NULL;
   
   prop = uecho_propertylist_getbycode(props, code);
   if (!prop)
@@ -196,6 +226,9 @@ bool uecho_propertylist_getintegerdata(uEchoPropertyList *props, uEchoPropertyCo
 {
   uEchoProperty *prop;
   
+  if (!props)
+    return false;
+  
   prop = uecho_propertylist_getbycode(props, code);
   if (!prop)
     return false;
@@ -210,6 +243,9 @@ bool uecho_propertylist_getintegerdata(uEchoPropertyList *props, uEchoPropertyCo
 bool uecho_propertylist_getbytedata(uEchoPropertyList *props, uEchoPropertyCode code, byte *data)
 {
   uEchoProperty *prop;
+  
+  if (!props)
+    return false;
   
   prop = uecho_propertylist_getbycode(props, code);
   if (!prop)

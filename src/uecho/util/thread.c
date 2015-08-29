@@ -67,13 +67,14 @@ uEchoThread *uecho_thread_new(void)
 
 	thread = (uEchoThread *)malloc(sizeof(uEchoThread));
 
-	if ( NULL != thread ) {
-		uecho_list_node_init((uEchoList *)thread);
+  if (!thread)
+    return NULL;
+  
+  uecho_list_node_init((uEchoList *)thread);
 		
-		thread->runnableFlag = false;
-		thread->action = NULL;
-		thread->userData = NULL;
-	}
+  thread->runnableFlag = false;
+  thread->action = NULL;
+  thread->userData = NULL;
 
 	return thread;
 }
@@ -84,8 +85,12 @@ uEchoThread *uecho_thread_new(void)
 
 bool uecho_thread_delete(uEchoThread *thread)
 {
-	if (thread->runnableFlag == true)
+  if (!thread)
+    return false;
+  
+  if (thread->runnableFlag == true) {
 		uecho_thread_stop(thread);
+  }
 
 	uecho_thread_remove(thread);
 	
@@ -100,6 +105,9 @@ bool uecho_thread_delete(uEchoThread *thread)
 
 bool uecho_thread_start(uEchoThread *thread)
 {
+  if (!thread)
+    return false;
+  
 	thread->runnableFlag = true;
 
 #if defined(WIN32)
@@ -134,6 +142,9 @@ bool uecho_thread_start(uEchoThread *thread)
 
 bool uecho_thread_stop(uEchoThread *thread)
 {
+  if (!thread)
+    return false;
+  
   if (thread->runnableFlag == true) {
 		thread->runnableFlag = false;
 #if defined(WIN32)
@@ -158,8 +169,7 @@ bool uecho_thread_stop(uEchoThread *thread)
 bool uecho_thread_restart(uEchoThread *thread)
 {
 	uecho_thread_stop(thread);
-	uecho_thread_start(thread);
-	return true;
+	return uecho_thread_start(thread);
 }
 
 /****************************************
@@ -168,6 +178,9 @@ bool uecho_thread_restart(uEchoThread *thread)
 
 bool uecho_thread_isrunnable(uEchoThread *thread)
 {
+  if (!thread)
+    return false;
+  
 #if !defined(WIN32)
   pthread_testcancel();
 #endif
@@ -181,6 +194,9 @@ bool uecho_thread_isrunnable(uEchoThread *thread)
 
 bool uecho_thread_isrunning(uEchoThread *thread)
 {
+  if (!thread)
+    return false;
+  
   return thread->runnableFlag;
 }
 
@@ -190,6 +206,9 @@ bool uecho_thread_isrunning(uEchoThread *thread)
 
 void uecho_thread_setaction(uEchoThread *thread, uEchoThreadFunc func)
 {
+  if (!thread)
+    return;
+  
 	thread->action = func;
 }
 
@@ -199,7 +218,10 @@ void uecho_thread_setaction(uEchoThread *thread, uEchoThreadFunc func)
 
 void uecho_thread_setuserdata(uEchoThread *thread, void *value)
 {
-	thread->userData = value;
+  if (!thread)
+    return;
+
+  thread->userData = value;
 }
 
 /****************************************
@@ -208,7 +230,10 @@ void uecho_thread_setuserdata(uEchoThread *thread, void *value)
 
 void *uecho_thread_getuserdata(uEchoThread *thread)
 {
-	return thread->userData;
+  if (!thread)
+    return NULL;
+
+  return thread->userData;
 }
 
 /****************************************
@@ -217,5 +242,4 @@ void *uecho_thread_getuserdata(uEchoThread *thread)
 
 static void uecho_sig_handler(int sign)
 {
-	return;
 }
