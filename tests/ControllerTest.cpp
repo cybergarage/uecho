@@ -49,14 +49,20 @@ BOOST_AUTO_TEST_CASE(ControllerTID)
 
 BOOST_AUTO_TEST_CASE(ControllerSearchAll)
 {
+  // Start Device
+
   uEchoNode *node = uecho_test_createtestnode();
   BOOST_CHECK(uecho_node_start(node));
-  
-  uEchoController *cp = uecho_controller_new();
-  
-  BOOST_CHECK(uecho_controller_start(cp));
-  BOOST_CHECK(uecho_controller_searchallobjects(cp));
 
+  // Start Controller
+
+  uEchoController *cp = uecho_controller_new();
+  BOOST_CHECK(uecho_controller_start(cp));
+
+  // Find device
+
+  BOOST_CHECK(uecho_controller_searchallobjects(cp));
+  
   uEchoObject *foundObj;
   for (int n=0; n<UECHO_TEST_SEARCH_WAIT_RETLY_CNT; n++) {
     uecho_sleep(UECHO_TEST_SEARCH_WAIT_MAX_MTIME / UECHO_TEST_SEARCH_WAIT_RETLY_CNT);
@@ -66,6 +72,14 @@ BOOST_AUTO_TEST_CASE(ControllerSearchAll)
   }
 
   BOOST_CHECK(foundObj);
+  
+  // Send Message
+  
+  uEchoMessage *msg = uecho_message_new();
+  
+  uecho_message_delete(msg);
+
+  // Teminate
   
   BOOST_CHECK(uecho_controller_stop(cp));
   uecho_controller_delete(cp);

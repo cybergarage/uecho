@@ -411,7 +411,7 @@ bool uecho_node_announcemessage(uEchoNode *node, uEchoMessage *msg)
  * uecho_node_sendmessage
  ****************************************/
 
-bool uecho_node_sendmessage(uEchoNode *node, uEchoMessage *msg)
+bool uecho_node_sendmessage(uEchoNode *node, uEchoNode *destNode, uEchoMessage *msg)
 {
-  return uecho_node_sendmessagebytes(node, uecho_node_getaddress(node), uecho_message_getbytes(msg), uecho_message_size(msg));
+  return uecho_node_sendmessagebytes(node, uecho_node_getaddress(destNode), uecho_message_getbytes(msg), uecho_message_size(msg));
 }
