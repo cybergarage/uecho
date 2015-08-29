@@ -49,34 +49,84 @@ bool uecho_message_isrequestesv(uEchoEsv esv)
 }
 
 /****************************************
- * uecho_message_requestesv2responseesv
+ * uecho_object_responsemessage
  ****************************************/
 
-bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv *resEsv)
+bool uecho_object_responsemessage(uEchoObject *obj, uEchoMessage *msg)
 {
-  *resEsv = 0;
+  uEchoNode *parentNode;
+  uEchoProperty *msgProp, *nodeProp, *resProp;
+  uEchoPropertyCode msgPropCode;
+  int nodePropSize;
+  byte *nodePropData;
+  uEchoEsv msgEsv, resEsv;
+  int msgOpc, n;
+  uEchoMessage *resMsg;
+  byte *resMsgBytes;
+  size_t resMsgLen;
   
-  switch (reqEsv) {
-    case uEchoEsvWriteRequestResponseRequired:
-      *resEsv = uEchoEsvWriteResponse;
-      return true;
-    case uEchoEsvReadRequest:
-      *resEsv = uEchoEsvReadResponse;
-      return true;
-    case uEchoEsvNotificationRequest:
-      *resEsv = uEchoEsvNotification;
-      return true;
-    case uEchoEsvWriteReadRequest:
-      *resEsv = uEchoEsvWriteReadResponse;
-      return true;
-    case uEchoEsvNotificationResponseRequired:
-      *resEsv = uEchoEsvNotificationResponse;
-      return true;
-    default:
-      return false;
-  }
+  if (!obj || !msg)
+    return false;
+  
+  msgEsv = uecho_message_getesv(msg);
+  if (!uecho_message_requestesv2responseesv(msgEsv, &resEsv))
+    return false;
 
-  return false;
+  parentNode = uecho_object_getparentnode(obj);
+  if (!parentNode)
+    return false;
+  
+  // Create response message
+  
+  resMsg = uecho_message_new();
+  if (!resMsg)
+    return false;
+  
+  uecho_message_setesv(resMsg, resEsv);
+  uecho_message_setsourceobjectcode(resMsg, uecho_message_getdestinationobjectcode(msg));
+  uecho_message_setdestinationobjectcode(resMsg, uecho_message_getsourceobjectcode(msg));
+  
+  msgOpc = uecho_message_getopc(msg);
+  for (n=0; n<msgOpc; n++) {
+    msgProp = uecho_message_getproperty(msg, n);
+    if (!msgProp)
+      continue;
+    
+    msgPropCode = uecho_property_getcode(msgProp);
+    
+    nodeProp = uecho_object_getproperty(obj, msgPropCode);
+    if (!nodeProp)
+      continue;
+    
+    if (!uecho_property_isreadable(nodeProp))
+      continue;
+    
+    resProp = uecho_property_new();
+    if (!resProp)
+      continue;
+    
+    nodePropSize = uecho_property_getdatasize(nodeProp);
+    nodePropData = uecho_property_getdata(nodeProp);
+    uecho_property_setcode(resProp, msgPropCode);
+    uecho_property_setdata(resProp, nodePropData, nodePropSize);
+    
+    uecho_message_addproperty(resMsg, resProp);
+  }
+  
+  // Send response message
+  
+  resMsgBytes = uecho_message_getbytes(resMsg);
+  resMsgLen = uecho_message_size(resMsg);
+  if (resEsv == uEchoEsvNotification) {
+    uecho_node_announcemessagebytes(parentNode, resMsgBytes, resMsgLen);
+  }
+  else {
+    uecho_node_sendmessagebytes(parentNode, uecho_message_getsourceaddress(msg), resMsgBytes, resMsgLen);
+  }
+  
+  uecho_message_delete(resMsg);
+
+  return true;
 }
 
 /****************************************
@@ -85,16 +135,12 @@ bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv *resEsv)
 
 void uecho_object_notifymessage(uEchoObject *obj, uEchoMessage *msg)
 {
-  uEchoNode *parentNode;
-  uEchoProperty *msgProp, *nodeProp, *resProp;
+  uEchoProperty *msgProp, *nodeProp;
   uEchoPropertyCode msgPropCode;
-  int msgPropSize, nodePropSize;
-  byte *msgPropData, *nodePropData;
-  uEchoEsv msgEsv, resEsv;
+  int msgPropSize;
+  byte *msgPropData;
+  uEchoEsv msgEsv;
   int msgOpc, n;
-  uEchoMessage *resMsg;
-  byte *resMsgBytes;
-  size_t resMsgLen;
   
   if (!obj || !msg)
     return;
@@ -140,62 +186,10 @@ void uecho_object_notifymessage(uEchoObject *obj, uEchoMessage *msg)
   }
 
   // Response required ?
-  
-  if (!uecho_message_requestesv2responseesv(msgEsv, &resEsv))
-    return;
-
-  // Create response message
-
-  resMsg = uecho_message_new();
-  if (!resMsg)
-    return;
-  
-  uecho_message_setesv(resMsg, resEsv);
-  uecho_message_setsourceobjectcode(resMsg, uecho_message_getdestinationobjectcode(msg));
-  uecho_message_setdestinationobjectcode(resMsg, uecho_message_getsourceobjectcode(msg));
-
-  for (n=0; n<msgOpc; n++) {
-    msgProp = uecho_message_getproperty(msg, n);
-    if (!msgProp)
-      continue;
-    
-    msgPropCode = uecho_property_getcode(msgProp);
-    
-    nodeProp = uecho_object_getproperty(obj, msgPropCode);
-    if (!nodeProp)
-      continue;
-
-    if (!uecho_property_isreadable(nodeProp))
-      continue;
-    
-    resProp = uecho_property_new();
-    if (!resProp)
-      continue;
-
-    nodePropSize = uecho_property_getdatasize(nodeProp);
-    nodePropData = uecho_property_getdata(nodeProp);
-    uecho_property_setcode(resProp, msgPropCode);
-    uecho_property_setdata(resProp, nodePropData, nodePropSize);
-    
-    uecho_message_addproperty(resMsg, resProp);
+ 
+  if (uecho_message_isresponserequired(msg)) {
+    uecho_object_responsemessage(obj, msg);
   }
-  
-  // Send response message
-
-  parentNode = uecho_object_getparentnode(obj);
-  if (!parentNode)
-    return;
-  
-  resMsgBytes = uecho_message_getbytes(resMsg);
-  resMsgLen = uecho_message_size(resMsg);
-  if (resEsv == uEchoEsvNotification) {
-    uecho_node_announcemessagebytes(parentNode, resMsgBytes, resMsgLen);
-  }
-  else {
-    uecho_node_sendmessagebytes(parentNode, uecho_message_getsourceaddress(msg), resMsgBytes, resMsgLen);
-  }
-  
-  uecho_message_delete(resMsg);
 }
 
 /****************************************
