@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include <curses.h>
- #include <ctype.h>
+#include <ctype.h>
 
 #include <uecho/uecho.h>
 
@@ -59,12 +59,17 @@ int main(int argc, char *argv[])
   
   if (!uecho_controller_start(ctrl))
     return EXIT_FAILURE;
-  key = 0;
+
   do
   {
-    key = getch();
-    key = tolower(key);
-    switch (key) {
+    key = getchar();
+    
+    if (key < 0) {
+      uecho_sleep(100);
+      continue;
+    }
+    
+    switch (tolower(key)) {
       case 's':
         uecho_controller_searchallobjects(ctrl);
         break;
