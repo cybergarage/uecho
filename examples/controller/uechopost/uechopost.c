@@ -19,11 +19,18 @@ void uecho_post_print_usage()
 int main(int argc, char *argv[])
 {
   uEchoController *ctrl;
+  const char *dstNodeAddr;
+  uEchoObjectCode dstObjCode;
+  uEchoEsv esv;
   
   if (argc < 5) {
     uecho_post_print_usage();
     return EXIT_FAILURE;
   }
+
+  dstNodeAddr = argv[1];
+  scanf(argv[2], "%X", &dstObjCode);
+  scanf(argv[2], "%c", &esv);
   
   ctrl = uecho_controller_new();
   if (!ctrl)
