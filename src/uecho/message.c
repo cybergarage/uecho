@@ -120,15 +120,6 @@ bool uecho_message_setsourceobjectcode(uEchoMessage *msg, int code)
 }
 
 /****************************************
- * uecho_message_setdestinationobjectcode
- ****************************************/
-
-bool uecho_message_setdestinationobjectcode(uEchoMessage *msg, int code)
-{
-  return uecho_integer2byte(code, msg->DEOJ, uEchoEOJSize);
-}
-
-/****************************************
  * uecho_message_getsourceobjectcode
  ****************************************/
 
@@ -138,12 +129,39 @@ int uecho_message_getsourceobjectcode(uEchoMessage *msg)
 }
 
 /****************************************
+ * uecho_message_issourceobjectcode
+ ****************************************/
+
+bool uecho_message_issourceobjectcode(uEchoMessage *msg, int code)
+{
+  return (uecho_message_getsourceobjectcode(msg) == code);
+}
+
+/****************************************
+ * uecho_message_setdestinationobjectcode
+ ****************************************/
+
+bool uecho_message_setdestinationobjectcode(uEchoMessage *msg, int code)
+{
+  return uecho_integer2byte(code, msg->DEOJ, uEchoEOJSize);
+}
+
+/****************************************
  * uecho_message_getdestinationobjectcode
  ****************************************/
 
 int uecho_message_getdestinationobjectcode(uEchoMessage *msg)
 {
   return uecho_byte2integer(msg->DEOJ, uEchoEOJSize);
+}
+
+/****************************************
+ * uecho_message_issourceobjectcode
+ ****************************************/
+
+bool uecho_message_isdestinationobjectcode(uEchoMessage *msg, int code)
+{
+  return (uecho_message_getdestinationobjectcode(msg) == code);
 }
 
 /****************************************
@@ -286,7 +304,7 @@ bool uecho_message_isresponserequired(uEchoMessage *msg)
 }
 
 /****************************************
- * uecho_message_iswriterequest
+ * uecho_message_setsourceaddress
  ****************************************/
 
 void uecho_message_setsourceaddress(uEchoMessage *msg, const char *addr)
@@ -303,12 +321,21 @@ void uecho_message_setsourceaddress(uEchoMessage *msg, const char *addr)
 }
 
 /****************************************
- * uecho_message_iswriterequest
+ * uecho_message_getsourceaddress
  ****************************************/
 
 const char *uecho_message_getsourceaddress(uEchoMessage *msg)
 {
   return msg->srcAddr;
+}
+
+/****************************************
+ * uecho_message_issourceaddress
+ ****************************************/
+
+bool uecho_message_issourceaddress(uEchoMessage *msg, const char *addr)
+{
+  return uecho_streq(msg->srcAddr, addr);
 }
 
 /****************************************

@@ -91,10 +91,12 @@ void uecho_message_setehd1(uEchoMessage *msg, byte val);
 byte uecho_message_getehd1(uEchoMessage *msg);
 
 bool uecho_message_setsourceobjectcode(uEchoMessage *msg, int code);
-bool uecho_message_setdestinationobjectcode(uEchoMessage *msg, int code);
-
 int uecho_message_getsourceobjectcode(uEchoMessage *msg);
+bool uecho_message_issourceobjectcode(uEchoMessage *msg, int code);
+
+bool uecho_message_setdestinationobjectcode(uEchoMessage *msg, int code);
 int uecho_message_getdestinationobjectcode(uEchoMessage *msg);
+bool uecho_message_isdestinationobjectcode(uEchoMessage *msg, int code);
   
 void uecho_message_setehd2(uEchoMessage *msg, byte val);
 byte uecho_message_getehd2(uEchoMessage *msg);
@@ -112,6 +114,7 @@ byte *uecho_message_getbytes(uEchoMessage *msg);
 
 void uecho_message_setsourceaddress(uEchoMessage *msg, const char *addr);
 const char *uecho_message_getsourceaddress(uEchoMessage *msg);
+bool uecho_message_issourceaddress(uEchoMessage *msg, const char *addr);
 
 uEchoMessage *uecho_message_copy(uEchoMessage *msg);
 bool uecho_message_equals(uEchoMessage *msg1, uEchoMessage *msg2);
