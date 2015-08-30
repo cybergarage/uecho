@@ -200,7 +200,7 @@ void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg)
 {
   uEchoEsv esv;
   uEchoNode *node;
-  uEchoObjectCode destObjCode;
+  uEchoObjectCode dstObjCode;
   uEchoObject *nodeDestObj;
 
   if (!server || !msg)
@@ -215,8 +215,8 @@ void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg)
   }
 
   esv = uecho_message_getesv(msg);
-  destObjCode = uecho_message_getdestinationobjectcode(msg);
-  nodeDestObj = uecho_node_getobjectbycode(node, destObjCode);
+  dstObjCode = uecho_message_getdestinationobjectcode(msg);
+  nodeDestObj = uecho_node_getobjectbycode(node, dstObjCode);
 
   // Processing when the controlled object exists, except when ESV = 0x60-0x63, 0x6E and 0x74
   if (!uecho_message_isrequestesv(esv))

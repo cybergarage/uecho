@@ -53,18 +53,18 @@ size_t uecho_strlen(const char *str)
 * uecho_strcpy
 ****************************************/
 
-char *uecho_strcpy(char *dest, const char *src)
+char *uecho_strcpy(char *dst, const char *src)
 {
- return strcpy(dest, src);
+ return strcpy(dst, src);
 }
 
 /****************************************
 * uecho_strcat
 ****************************************/
 
-char *uecho_strcat(char *dest, const char *src)
+char *uecho_strcat(char *dst, const char *src)
 {
- return strcat(dest, src);
+ return strcat(dst, src);
 }
 
 /****************************************

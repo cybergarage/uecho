@@ -127,7 +127,7 @@ uEchoPropertyRequestListener uecho_object_getpropertyrequeslistener(uEchoObject 
 bool uecho_object_haspropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
 
 bool uecho_object_announcemessage(uEchoObject *obj, uEchoMessage *msg);
-bool uecho_object_sendmessage(uEchoObject *obj, uEchoObject *destObj, uEchoMessage *msg);
+bool uecho_object_sendmessage(uEchoObject *obj, uEchoObject *dstObj, uEchoMessage *msg);
 
 /****************************************
  * Function (Object List)

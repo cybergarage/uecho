@@ -552,20 +552,20 @@ bool uecho_object_announcemessage(uEchoObject *obj, uEchoMessage *msg)
  * uecho_object_sendmessage
  ****************************************/
 
-bool uecho_object_sendmessage(uEchoObject *obj, uEchoObject *destObj, uEchoMessage *msg)
+bool uecho_object_sendmessage(uEchoObject *obj, uEchoObject *dstObj, uEchoMessage *msg)
 {
-  uEchoNode *parentNode, *destParentNode;
+  uEchoNode *parentNode, *dstParentNode;
   
-  if (!obj || !destObj)
+  if (!obj || !dstObj)
     return false;
   
   parentNode = uecho_object_getparentnode(obj);
-  destParentNode = uecho_object_getparentnode(destObj);
-  if (!parentNode || !destParentNode)
+  dstParentNode = uecho_object_getparentnode(dstObj);
+  if (!parentNode || !dstParentNode)
     return false;
 
   uecho_message_setsourceobjectcode(msg, uecho_object_getcode(obj));
-  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(destObj));
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(dstObj));
   
-  return uecho_node_sendmessage(parentNode, destParentNode, msg);
+  return uecho_node_sendmessage(parentNode, dstParentNode, msg);
 }
