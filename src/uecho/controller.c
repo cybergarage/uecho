@@ -11,7 +11,11 @@
 #include <uecho/controller.h>
 #include <uecho/profile.h>
 
+#define uEchoControllerPostResponseLoopCount 50
+
 void uecho_controller_servermessagelistener(uEchoServer *server, uEchoMessage *msg);
+void uecho_controller_setpostresponsemessage(uEchoController *ctrl, uEchoMessage *msg);
+void uecho_controller_setpostrequestmessage(uEchoController *ctrl, uEchoMessage *msg);
 
 /****************************************
  * uecho_controller_new
@@ -37,7 +41,10 @@ uEchoController *uecho_controller_new(void)
   
   uecho_controller_setlasttid(ctrl, 0);
   uecho_controller_setmessagelistener(ctrl, NULL);
-
+  uecho_controller_setpostrequestmessage(ctrl, NULL);
+  uecho_controller_setpostresponsemessage(ctrl, NULL);
+  uecho_controller_setpostwaitemilitime(ctrl, uEchoControllerPostResponseMaxMiliTime);
+  
 	return ctrl;
 }
 
@@ -253,7 +260,7 @@ uEchoTID uecho_controller_getnexttid(uEchoController *ctrl)
 }
 
 /****************************************
- * uecho_controller_sendmessage
+ * uecho_controller_announcemessage
  ****************************************/
 
 bool uecho_controller_announcemessage(uEchoController *ctrl, uEchoMessage *msg)
@@ -290,6 +297,163 @@ bool uecho_controller_sendmessage(uEchoController *ctrl, uEchoObject *obj, uEcho
   uecho_message_settid(msg, uecho_controller_getnexttid(ctrl));
   
   return uecho_object_sendmessage(nodeProfObj, obj, msg);
+}
+
+/****************************************
+ * uecho_controller_setpostrequestmessage
+ ****************************************/
+
+void uecho_controller_setpostrequestmessage(uEchoController *ctrl, uEchoMessage *msg)
+{
+  ctrl->postReqMsg = msg;
+}
+
+/****************************************
+ * uecho_controller_getpostresponsemessage
+ ****************************************/
+
+uEchoMessage *uecho_controller_getpostrequestmessage(uEchoController *ctrl)
+{
+  return ctrl->postReqMsg;
+}
+
+/****************************************
+ * uecho_controller_haspostresponsemessage
+ ****************************************/
+
+bool uecho_controller_haspostrequestmessage(uEchoController *ctrl)
+{
+  return ctrl->postReqMsg ? true : false;
+}
+
+/****************************************
+ * uecho_controller_setpostresponsemessage
+ ****************************************/
+
+void uecho_controller_setpostresponsemessage(uEchoController *ctrl, uEchoMessage *msg)
+{
+  ctrl->postResMsg = msg;
+}
+
+/****************************************
+ * uecho_controller_getpostresponsemessage
+ ****************************************/
+
+uEchoMessage *uecho_controller_getpostresponsemessage(uEchoController *ctrl)
+{
+  return ctrl->postResMsg;
+}
+
+/****************************************
+ * uecho_controller_haspostresponsemessage
+ ****************************************/
+
+bool uecho_controller_haspostresponsemessage(uEchoController *ctrl)
+{
+  return ctrl->postResMsg ? true : false;
+}
+
+/****************************************
+ * uecho_controller_haspostresponsemessage
+ ****************************************/
+
+bool uecho_controller_ispostresponsemessage(uEchoController *ctrl, uEchoMessage *msg)
+{
+  if (!ctrl)
+    return false;
+  
+  if (!uecho_controller_haspostrequestmessage(ctrl))
+    return false;
+  
+  return uecho_message_isresponsemessage(ctrl->postReqMsg, msg);
+}
+
+/****************************************
+ * uecho_controller_ispostresponsereceived
+ ****************************************/
+
+bool uecho_controller_ispostresponsereceived(uEchoController *ctrl)
+{
+  if (!ctrl)
+    return false;
+  
+  if (!uecho_controller_haspostrequestmessage(ctrl) || !uecho_controller_haspostresponsemessage(ctrl))
+    return false;
+  
+  return uecho_message_isresponsemessage(ctrl->postReqMsg, ctrl->postResMsg);
+}
+
+/****************************************
+ * uecho_controller_ispostresponsewaiting
+ ****************************************/
+
+bool uecho_controller_ispostresponsewaiting(uEchoController *ctrl)
+{
+  if (!uecho_controller_haspostrequestmessage(ctrl) || !uecho_controller_haspostresponsemessage(ctrl))
+    return false;
+  
+  return true;
+}
+
+/****************************************
+ * uecho_controller_setpostwaitemilitime
+ ****************************************/
+
+void uecho_controller_setpostwaitemilitime(uEchoController *ctrl, clock_t mtime)
+{
+  if (!ctrl)
+    return;
+  
+  ctrl->postResWaitMiliTime = mtime;
+}
+
+/****************************************
+ * uecho_controller_getpostwaitemilitime
+ ****************************************/
+
+clock_t uecho_controller_getpostwaitemilitime(uEchoController *ctrl)
+{
+  if (!ctrl)
+    return 0;
+  
+  return ctrl->postResWaitMiliTime;
+}
+
+/****************************************
+ * uecho_controller_postmessage
+ ****************************************/
+
+bool uecho_controller_postmessage(uEchoController *ctrl, uEchoObject *obj, uEchoMessage *reqMsg, uEchoMessage *resMsg)
+{
+  bool isResponceReceived;
+  int n;
+  
+  if (!ctrl)
+    return false;
+  
+  uecho_mutex_lock(ctrl->mutex);
+  
+  uecho_controller_setpostrequestmessage(ctrl, reqMsg);
+  uecho_controller_setpostresponsemessage(ctrl, resMsg);
+  
+  if (!uecho_controller_sendmessage(ctrl, obj, reqMsg))
+    return false;
+
+  isResponceReceived = false;
+  for (n=0; n<uEchoControllerPostResponseLoopCount; n++) {
+    uecho_sleep(ctrl->postResWaitMiliTime / uEchoControllerPostResponseLoopCount);
+    if (uecho_controller_ispostresponsereceived(ctrl)) {
+      isResponceReceived = true;
+      break;
+    }
+  }
+  
+  uecho_controller_setpostrequestmessage(ctrl, NULL);
+  uecho_controller_setpostresponsemessage(ctrl, NULL);
+  
+  uecho_mutex_unlock(ctrl->mutex);
+  
+  return isResponceReceived;
 }
 
 /****************************************

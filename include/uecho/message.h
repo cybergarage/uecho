@@ -116,10 +116,13 @@ void uecho_message_setsourceaddress(uEchoMessage *msg, const char *addr);
 const char *uecho_message_getsourceaddress(uEchoMessage *msg);
 bool uecho_message_issourceaddress(uEchoMessage *msg, const char *addr);
 
+
+void uecho_message_set(uEchoMessage *msg, uEchoMessage *srcMsg);
 uEchoMessage *uecho_message_copy(uEchoMessage *msg);
 bool uecho_message_equals(uEchoMessage *msg1, uEchoMessage *msg2);
 
 bool uecho_message_isresponserequired(uEchoMessage *msg);
+bool uecho_message_isresponsemessage(uEchoMessage *msg, uEchoMessage *resMeg);
 bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv *resEsv);
   
 /****************************************
