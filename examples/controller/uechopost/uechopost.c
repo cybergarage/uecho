@@ -20,7 +20,7 @@ void uechopost_print_messages(uEchoController *ctrl, uEchoMessage *msg)
   size_t opc, n;
   
   opc = uecho_message_getopc(msg);
-  printf("%s %1X %1X %02X %03X %03X %02X %ld ",
+  printf("%s %2X %2X %04X %06X %06X %02X %ld ",
          uecho_message_getsourceaddress(msg),
          uecho_message_getehd1(msg),
          uecho_message_getehd2(msg),
@@ -45,9 +45,9 @@ void uechopost_print_objectresponse(uEchoController *ctrl, uEchoMessage *msg)
   byte *propData;
   
   opc = uecho_message_getopc(msg);
-  printf("%s %03X %02X ",
+  printf("%s %06X %02X ",
          uecho_message_getsourceaddress(msg),
-         uecho_message_getdestinationobjectcode(msg),
+         uecho_message_getsourceobjectcode(msg),
          uecho_message_getesv(msg));
   
   for (n=0; n<opc; n++) {
