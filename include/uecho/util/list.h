@@ -54,7 +54,7 @@ uEchoList *uecho_list_prev(uEchoList *list);
 uEchoList *uecho_list_next_circular(uEchoList *list);
 uEchoList *uecho_list_next(uEchoList *list);
 
-bool uecho_list_clear(uEchoList *headList, UECHO_LIST_DESTRUCTORFUNC destructorFunc);
+bool uecho_list_clear(uEchoList *headList, UECHO_LIST_DESTRUCTORFUNC dstructorFunc);
 
 #ifdef  __cplusplus
 } /* extern "C" */

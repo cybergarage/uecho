@@ -230,7 +230,7 @@ uEchoList *uecho_list_next(uEchoList *list)
 * uecho_list_clear
 ****************************************/
 
-bool uecho_list_clear(uEchoList *headList, UECHO_LIST_DESTRUCTORFUNC destructorFunc)
+bool uecho_list_clear(uEchoList *headList, UECHO_LIST_DESTRUCTORFUNC dstructorFunc)
 {
 	uEchoList *list;
 
@@ -240,8 +240,8 @@ bool uecho_list_clear(uEchoList *headList, UECHO_LIST_DESTRUCTORFUNC destructorF
 	list = uecho_list_next(headList);
 	while(list != NULL) {
 		uecho_list_remove(list);
-		if (destructorFunc != NULL){
-			destructorFunc(list);
+		if (dstructorFunc != NULL){
+			dstructorFunc(list);
 		} else {
 			free(list);
 		}
