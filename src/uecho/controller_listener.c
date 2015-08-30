@@ -13,6 +13,10 @@
 #include <uecho/profile.h>
 #include <uecho/misc.h>
 
+bool uecho_controller_ispostresponsewaiting(uEchoController *ctrl);
+bool uecho_controller_ispostresponsemessage(uEchoController *ctrl, uEchoMessage *msg);
+uEchoMessage *uecho_controller_getpostresponsemessage(uEchoController *ctrl);
+
 /****************************************
  * uecho_controller_handlesearchmessage
  ****************************************/
@@ -98,11 +102,27 @@ void uecho_controller_handlereadresponse(uEchoController *ctrl, uEchoMessage *ms
 }
 
 /****************************************
+ * uecho_controller_handlepostresponse
+ ****************************************/
+
+void uecho_controller_handlepostresponse(uEchoController *ctrl, uEchoMessage *msg)
+{
+  if (!uecho_controller_ispostresponsemessage(ctrl, msg))
+    return;
+
+  uecho_message_set(uecho_controller_getpostresponsemessage(ctrl), msg);
+}
+
+/****************************************
  * uecho_controller_handlerequestmessage
  ****************************************/
 
 void uecho_controller_handlerequestmessage(uEchoController *ctrl, uEchoMessage *msg)
 {
+  if (uecho_controller_ispostresponsewaiting(ctrl)) {
+    uecho_controller_handlepostresponse(ctrl, msg);
+  }
+
   if (uecho_message_issearchresponse(msg)) {
     uecho_controller_handlesearchmessage(ctrl, msg);
     return;

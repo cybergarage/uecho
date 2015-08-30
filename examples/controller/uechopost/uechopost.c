@@ -14,10 +14,6 @@
 const int UECHOPOST_MAX_RESPONSE_MTIME = 5000;
 const int UECHOPOST_RESPONSE_RETRY_COUNT = 100;
 
-char *gDstNodeAddr;
-uEchoObjectCode gDstObjCode;
-bool gDstMsgReceived;
-
 void uechopost_print_messages(uEchoController *ctrl, uEchoMessage *msg)
 {
   uEchoProperty *prop;
@@ -83,25 +79,23 @@ void uechopost_controlprint_listener(uEchoController *ctrl, uEchoMessage *msg)
 #if defined(DEBUG)
   uechopost_print_messages(ctrl, msg);
 #endif
-  
-  if (uecho_message_issourceaddress(msg, gDstNodeAddr) && uecho_message_issourceobjectcode(msg, gDstObjCode)) {
-    uechopost_print_objectresponse(ctrl, msg);
-    gDstMsgReceived = true;
-  }
 }
 
 int main(int argc, char *argv[])
 {
   uEchoController *ctrl;
   uEchoNode *dstNode;
+  char *dstNodeAddr;
+  uEchoObjectCode dstObjCode;
   uEchoObject *dstObj;
-  uEchoMessage *msg;
+  uEchoMessage *msg, *resMsg;
   uEchoEsv esv;
   char *edata, *edt;
   size_t edtSize;
   int epc, pdc, edtByte;
   int n;
   byte *propData;
+  bool isResponseRequired;
   
   if (argc < 5) {
     uechopost_print_usage();
@@ -123,30 +117,30 @@ int main(int argc, char *argv[])
   
   uecho_controller_searchallobjects(ctrl);
   
-  gDstNodeAddr = argv[1];
+  dstNodeAddr = argv[1];
 
   dstNode = NULL;
   for (int n=0; n<UECHOPOST_RESPONSE_RETRY_COUNT; n++) {
     uecho_sleep(UECHOPOST_MAX_RESPONSE_MTIME / UECHOPOST_RESPONSE_RETRY_COUNT);
-    dstNode = uecho_controller_getnodebyaddress(ctrl, gDstNodeAddr);
+    dstNode = uecho_controller_getnodebyaddress(ctrl, dstNodeAddr);
     if (dstNode)
       break;
   }
 
   if (!dstNode) {
-    printf("Node (%s) is not found\n", gDstNodeAddr);
+    printf("Node (%s) is not found\n", dstNodeAddr);
     uecho_controller_delete(ctrl);
     return EXIT_FAILURE;
   }
 
   // Find destination object
   
-  sscanf(argv[2], "%x", &gDstObjCode);
+  sscanf(argv[2], "%x", &dstObjCode);
   
-  dstObj = uecho_node_getobjectbycode(dstNode, gDstObjCode);
+  dstObj = uecho_node_getobjectbycode(dstNode, dstObjCode);
   
   if (!dstNode) {
-    printf("Node (%s) doesn't has the specified object (%06X)\n", gDstNodeAddr, gDstObjCode);
+    printf("Node (%s) doesn't has the specified object (%06X)\n", dstNodeAddr, dstObjCode);
     uecho_controller_delete(ctrl);
     return EXIT_FAILURE;
   }
@@ -154,12 +148,12 @@ int main(int argc, char *argv[])
   // Create Message
   
   msg = uecho_message_new();
-  uecho_message_setdestinationobjectcode(msg, gDstObjCode);
+  uecho_message_setdestinationobjectcode(msg, dstObjCode);
   sscanf(argv[3], "%x", &esv);
   uecho_message_setesv(msg, esv);
 
 #if defined(DEBUG)
-  printf("%s %06X %01X\n", gDstNodeAddr, gDstObjCode, esv);
+  printf("%s %06X %01X\n", dstNodeAddr, dstObjCode, esv);
 #endif
   
   edata = edt = argv[4];
@@ -198,19 +192,20 @@ int main(int argc, char *argv[])
 
   // Send message
   
-  gDstMsgReceived = false;
-  uecho_controller_sendmessage(ctrl, dstObj, msg);
+  isResponseRequired = uecho_message_isresponserequired(msg);
+  if (isResponseRequired) {
+    resMsg = uecho_message_new();
+    if (uecho_controller_postmessage(ctrl, dstObj, msg, resMsg)) {
+      uechopost_print_objectresponse(ctrl, resMsg);
+    }
+    uecho_message_delete(resMsg);
+  }
+  else {
+    uecho_controller_sendmessage(ctrl, dstObj, msg);
+  }
   
   uecho_message_delete(msg);
   
-  // Wait response message
-  
-  for (int n=0; n<UECHOPOST_RESPONSE_RETRY_COUNT; n++) {
-    uecho_sleep(UECHOPOST_MAX_RESPONSE_MTIME / UECHOPOST_RESPONSE_RETRY_COUNT);
-    if (gDstMsgReceived)
-      break;
-  }
-
   // Stop controller
   
   uecho_controller_stop(ctrl);
