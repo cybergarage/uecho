@@ -24,7 +24,7 @@
 * uecho_time_wait
 ****************************************/
 
-void uecho_wait(size_t mtime)
+void uecho_wait(clock_t mtime)
 {
 #if defined(WIN32)
 	Sleep(mtime);
@@ -37,7 +37,7 @@ void uecho_wait(size_t mtime)
 * uecho_time_wait
 ****************************************/
 
-void uecho_waitrandom(size_t mtime)
+void uecho_waitrandom(clock_t mtime)
 {
 	double factor;
 	long waitTime;
@@ -51,7 +51,7 @@ void uecho_waitrandom(size_t mtime)
 * uecho_time_wait
 ****************************************/
 
-size_t uecho_getcurrentsystemtime(void)
+clock_t uecho_getcurrentsystemtime(void)
 {
   return (size_t)(time((time_t *)NULL));
 }

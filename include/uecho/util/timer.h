@@ -23,13 +23,13 @@ extern "C" {
 
 float uecho_random(void);
 
-void uecho_wait(size_t mtime);
-void uecho_waitrandom(size_t mtime);
+void uecho_wait(clock_t mtime);
+void uecho_waitrandom(clock_t mtime);
 
 #define uecho_sleep(val) uecho_wait(val)
 #define uecho_sleeprandom(val) uecho_waitrandom(val)
 
-size_t uecho_getcurrentsystemtime(void);
+clock_t uecho_getcurrentsystemtime(void);
 
 #ifdef  __cplusplus
 }
