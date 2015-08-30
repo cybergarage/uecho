@@ -42,8 +42,8 @@ extern "C" {
 	
 char *uecho_strdup(const char *str);
 size_t uecho_strlen(const char *str);
-char *uecho_strcpy(char *dest, const char *src);
-char *uecho_strcat(char *dest, const char *src);
+char *uecho_strcpy(char *dst, const char *src);
+char *uecho_strcat(char *dst, const char *src);
 int uecho_strcmp(const char *str1, const char *str2);
 int uecho_strncmp(const char *str1, const char *str2, int nchars);
 int uecho_strcasecmp(const char *str1, const char *str2);
