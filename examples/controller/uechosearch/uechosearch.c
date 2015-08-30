@@ -20,7 +20,7 @@ void uecho_search_printdevices(uEchoController *ctrl)
   
   for (node = uecho_controller_getnodes(ctrl); node; node = uecho_node_next(node)) {
     for (obj = uecho_node_getobjects(node); obj; obj = uecho_object_next(obj)) {
-      printf("%s %X\n", uecho_node_getaddress(node), uecho_object_getcode(obj));
+      printf("%s %06X\n", uecho_node_getaddress(node), uecho_object_getcode(obj));
     }
   }
 }
