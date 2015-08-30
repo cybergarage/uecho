@@ -29,8 +29,10 @@ int main(int argc, char *argv[])
   }
 
   dstNodeAddr = argv[1];
-  scanf(argv[2], "%X", &dstObjCode);
-  scanf(argv[2], "%c", &esv);
+  sscanf(argv[2], "%X", &dstObjCode);
+  sscanf(argv[3], "%X", &esv);
+  
+  printf("%s %02X %01X\n", dstNodeAddr, dstObjCode, esv);
   
   ctrl = uecho_controller_new();
   if (!ctrl)
