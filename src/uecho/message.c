@@ -304,6 +304,24 @@ bool uecho_message_isresponserequired(uEchoMessage *msg)
 }
 
 /****************************************
+ * uecho_message_isresponsemessage
+ ****************************************/
+
+bool uecho_message_isresponsemessage(uEchoMessage *msg, uEchoMessage *resMeg)
+{
+  if (!msg || !resMeg)
+    return false;
+  
+  if (uecho_message_gettid(msg) != uecho_message_gettid(resMeg))
+    return false;
+  
+  if (uecho_message_getesv(msg) == uecho_message_getesv(resMeg))
+    return false;
+
+  return true;
+}
+
+/****************************************
  * uecho_message_setsourceaddress
  ****************************************/
 
@@ -634,37 +652,49 @@ byte *uecho_message_getbytes(uEchoMessage *msg)
 }
 
 /****************************************
- * uecho_message_copy
+ * uecho_message_set
  ****************************************/
 
-uEchoMessage *uecho_message_copy(uEchoMessage *srcMsg)
+void uecho_message_set(uEchoMessage *msg, uEchoMessage *srcMsg)
 {
-  uEchoMessage *newMsg;
-  uEchoProperty *newProp, *srcProp;
+  uEchoProperty *prop, *srcProp;
   size_t srcMsgOpc, n;
   
-  newMsg = uecho_message_new();
-  if (!newMsg)
-    return NULL;
+  uecho_message_clear(msg);
   
-  uecho_message_setehd1(newMsg, uecho_message_getehd1(srcMsg));
-  uecho_message_setehd2(newMsg, uecho_message_getehd2(srcMsg));
-  uecho_message_settid(newMsg, 0);
-  uecho_message_setsourceobjectcode(newMsg, uecho_message_getsourceobjectcode(srcMsg));
-  uecho_message_setdestinationobjectcode(newMsg, uecho_message_getdestinationobjectcode(srcMsg));
-  uecho_message_setesv(newMsg, uecho_message_getesv(srcMsg));
-  uecho_message_setsourceaddress(newMsg, uecho_message_getsourceaddress(srcMsg));
+  uecho_message_setehd1(msg, uecho_message_getehd1(srcMsg));
+  uecho_message_setehd2(msg, uecho_message_getehd2(srcMsg));
+  uecho_message_settid(msg, uecho_message_gettid(srcMsg));
+  uecho_message_setsourceobjectcode(msg, uecho_message_getsourceobjectcode(srcMsg));
+  uecho_message_setdestinationobjectcode(msg, uecho_message_getdestinationobjectcode(srcMsg));
+  uecho_message_setesv(msg, uecho_message_getesv(srcMsg));
+  uecho_message_setsourceaddress(msg, uecho_message_getsourceaddress(srcMsg));
   
   srcMsgOpc = uecho_message_getopc(srcMsg);
   for (n=0; n<srcMsgOpc; n++) {
     srcProp = uecho_message_getproperty(srcMsg, n);
     if (!srcProp)
       continue;
-    newProp = uecho_property_copy(srcProp);
+    prop = uecho_property_copy(srcProp);
     if (!srcProp)
       continue;
-    uecho_message_addproperty(newMsg, newProp);
+    uecho_message_addproperty(msg, prop);
   }
+}
+
+/****************************************
+ * uecho_message_copy
+ ****************************************/
+
+uEchoMessage *uecho_message_copy(uEchoMessage *srcMsg)
+{
+  uEchoMessage *newMsg;
+  
+  newMsg = uecho_message_new();
+  if (!newMsg)
+    return NULL;
+  
+  uecho_message_set(newMsg, srcMsg);
   
   return newMsg;
 }
