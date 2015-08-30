@@ -13,7 +13,7 @@
 
 void uecho_post_print_usage()
 {
-  printf("echopost <address> <obj> <esv> <property ...>\n");
+  printf("echopost <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
 }
 
 int main(int argc, char *argv[])
@@ -22,6 +22,10 @@ int main(int argc, char *argv[])
   const char *dstNodeAddr;
   uEchoObjectCode dstObjCode;
   uEchoEsv esv;
+  char *edata, *edt;
+  size_t edtSize;
+  int epc, pdc, edtByte;
+  int n;
   
   if (argc < 5) {
     uecho_post_print_usage();
@@ -29,10 +33,26 @@ int main(int argc, char *argv[])
   }
 
   dstNodeAddr = argv[1];
-  sscanf(argv[2], "%X", &dstObjCode);
-  sscanf(argv[3], "%X", &esv);
+  sscanf(argv[2], "%x", &dstObjCode);
+  sscanf(argv[3], "%x", &esv);
+
+  printf("%s %06X %01X\n", dstNodeAddr, dstObjCode, esv);
   
-  printf("%s %02X %01X\n", dstNodeAddr, dstObjCode, esv);
+  edata = edt = argv[4];
+  edtSize = strlen(argv[4]);
+  while ((edt - edata + (2 + 2)) <= edtSize) {
+    sscanf(edt, "%02x%02x", &epc, &pdc);
+    edt += (2 + 2);
+    printf("[%02X] = %02X ", epc, pdc);
+    if (edtSize < (edt - edata + (pdc * 2)))
+      break;
+    for (n=0; n<pdc; n++) {
+      sscanf(edt, "%02x", &edtByte);
+      printf("%02X", edtByte);
+      edt += 2;
+    }
+  }
+  printf("\n");
   
   ctrl = uecho_controller_new();
   if (!ctrl)
