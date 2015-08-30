@@ -41,29 +41,28 @@ void uechopost_print_messages(uEchoController *ctrl, uEchoMessage *msg)
 void uechopost_print_objectresponse(uEchoController *ctrl, uEchoMessage *msg)
 {
   uEchoProperty *prop;
-  size_t opc, n, propDataSize, np;
+  int opc, n, propDataSize, np;
   byte *propData;
   
   opc = uecho_message_getopc(msg);
-  printf("Response (%s:%03X) : ESV = %02X, OPC = %ld, ",
+  printf("%s %03X %02X ",
          uecho_message_getsourceaddress(msg),
          uecho_message_getdestinationobjectcode(msg),
-         uecho_message_getesv(msg),
-         opc);
+         uecho_message_getesv(msg));
   
   for (n=0; n<opc; n++) {
     prop = uecho_message_getproperty(msg, n);
     propDataSize = uecho_property_getdatasize(prop);
     if (propDataSize == 0) {
-      printf("%02X(%ld) ", uecho_property_getcode(prop), propDataSize);
+      printf("%02X%02X ", uecho_property_getcode(prop), propDataSize);
       continue;
     }
     propData = uecho_property_getdata(prop);
-    printf("%02X(%ld:", uecho_property_getcode(prop), propDataSize);
+    printf("%02X%02X", uecho_property_getcode(prop), propDataSize);
     for (np=0; np<propDataSize; np++) {
       printf("%02X", propData[np]);
     }
-    printf(") ");
+    printf(" ");
   }
   
   printf("\n");
