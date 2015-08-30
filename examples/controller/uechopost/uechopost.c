@@ -14,16 +14,85 @@
 const int UECHOPOST_MAX_RESPONSE_MTIME = 5000;
 const int UECHOPOST_RESPONSE_RETRY_COUNT = 100;
 
-void uecho_post_print_usage()
+char *gDstNodeAddr;
+uEchoObjectCode gDstObjCode;
+bool gDstMsgReceived;
+
+void uechopost_print_messages(uEchoController *ctrl, uEchoMessage *msg)
+{
+  uEchoProperty *prop;
+  size_t opc, n;
+  
+  opc = uecho_message_getopc(msg);
+  printf("%s %1X %1X %02X %03X %03X %02X %ld ",
+         uecho_message_getsourceaddress(msg),
+         uecho_message_getehd1(msg),
+         uecho_message_getehd2(msg),
+         uecho_message_gettid(msg),
+         uecho_message_getsourceobjectcode(msg),
+         uecho_message_getdestinationobjectcode(msg),
+         uecho_message_getesv(msg),
+         opc);
+  
+  for (n=0; n<opc; n++) {
+    prop = uecho_message_getproperty(msg, n);
+    printf("%02X(%d)", uecho_property_getcode(prop), uecho_property_getdatasize(prop));
+  }
+  
+  printf("\n");
+}
+
+void uechopost_print_objectresponse(uEchoController *ctrl, uEchoMessage *msg)
+{
+  uEchoProperty *prop;
+  size_t opc, n, propDataSize, np;
+  byte *propData;
+  
+  opc = uecho_message_getopc(msg);
+  printf("Response (%s:%03X) : ESV = %02X, OPC = %ld, ",
+         uecho_message_getsourceaddress(msg),
+         uecho_message_getdestinationobjectcode(msg),
+         uecho_message_getesv(msg),
+         opc);
+  
+  for (n=0; n<opc; n++) {
+    prop = uecho_message_getproperty(msg, n);
+    propDataSize = uecho_property_getdatasize(prop);
+    if (propDataSize == 0) {
+      printf("%02X(%ld) ", uecho_property_getcode(prop), propDataSize);
+      continue;
+    }
+    propData = uecho_property_getdata(prop);
+    printf("%02X(%ld:", uecho_property_getcode(prop), propDataSize);
+    for (np=0; np<propDataSize; np++) {
+      printf("%02X", propData[np]);
+    }
+    printf(") ");
+  }
+  
+  printf("\n");
+}
+
+void uechopost_print_usage()
 {
   printf("echopost <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
+}
+
+void uechopost_controlprint_listener(uEchoController *ctrl, uEchoMessage *msg)
+{
+#if defined(DEBUG)
+  uechopost_print_messages(ctrl, msg);
+#endif
+  
+  if (uecho_message_issourceaddress(msg, gDstNodeAddr) && uecho_message_issourceobjectcode(msg, gDstObjCode)) {
+    uechopost_print_objectresponse(ctrl, msg);
+    gDstMsgReceived = true;
+  }
 }
 
 int main(int argc, char *argv[])
 {
   uEchoController *ctrl;
-  const char *dstNodeAddr;
-  uEchoObjectCode dstObjCode;
   uEchoNode *dstNode;
   uEchoObject *dstObj;
   uEchoMessage *msg;
@@ -35,7 +104,7 @@ int main(int argc, char *argv[])
   byte *propData;
   
   if (argc < 5) {
-    uecho_post_print_usage();
+    uechopost_print_usage();
     return EXIT_FAILURE;
   }
 
@@ -45,6 +114,8 @@ int main(int argc, char *argv[])
   if (!ctrl)
     return EXIT_FAILURE;
   
+  uecho_controller_setmessagelistener(ctrl, uechopost_controlprint_listener);
+
   if (!uecho_controller_start(ctrl))
     return EXIT_FAILURE;
   
@@ -52,30 +123,30 @@ int main(int argc, char *argv[])
   
   uecho_controller_searchallobjects(ctrl);
   
-  dstNodeAddr = argv[1];
+  gDstNodeAddr = argv[1];
 
   dstNode = NULL;
   for (int n=0; n<UECHOPOST_RESPONSE_RETRY_COUNT; n++) {
     uecho_sleep(UECHOPOST_MAX_RESPONSE_MTIME / UECHOPOST_RESPONSE_RETRY_COUNT);
-    dstNode = uecho_controller_getnodebyaddress(ctrl, dstNodeAddr);
+    dstNode = uecho_controller_getnodebyaddress(ctrl, gDstNodeAddr);
     if (dstNode)
       break;
   }
 
   if (!dstNode) {
-    printf("Node (%s) is not found\n", dstNodeAddr);
+    printf("Node (%s) is not found\n", gDstNodeAddr);
     uecho_controller_delete(ctrl);
     return EXIT_FAILURE;
   }
 
   // Find destination object
   
-  sscanf(argv[2], "%x", &dstObjCode);
+  sscanf(argv[2], "%x", &gDstObjCode);
   
-  dstObj = uecho_node_getobjectbycode(dstNode, dstObjCode);
+  dstObj = uecho_node_getobjectbycode(dstNode, gDstObjCode);
   
   if (!dstNode) {
-    printf("Node (%s) doesn't has the specified object (%06X)\n", dstNodeAddr, dstObjCode);
+    printf("Node (%s) doesn't has the specified object (%06X)\n", gDstNodeAddr, gDstObjCode);
     uecho_controller_delete(ctrl);
     return EXIT_FAILURE;
   }
@@ -83,12 +154,12 @@ int main(int argc, char *argv[])
   // Create Message
   
   msg = uecho_message_new();
-  uecho_message_setdestinationobjectcode(msg, dstObjCode);
+  uecho_message_setdestinationobjectcode(msg, gDstObjCode);
   sscanf(argv[3], "%x", &esv);
   uecho_message_setesv(msg, esv);
 
 #if defined(DEBUG)
-  printf("%s %06X %01X\n", dstNodeAddr, dstObjCode, esv);
+  printf("%s %06X %01X\n", gDstNodeAddr, gDstObjCode, esv);
 #endif
   
   edata = edt = argv[4];
@@ -127,10 +198,19 @@ int main(int argc, char *argv[])
 
   // Send message
   
+  gDstMsgReceived = false;
   uecho_controller_sendmessage(ctrl, dstObj, msg);
   
   uecho_message_delete(msg);
   
+  // Wait response message
+  
+  for (int n=0; n<UECHOPOST_RESPONSE_RETRY_COUNT; n++) {
+    uecho_sleep(UECHOPOST_MAX_RESPONSE_MTIME / UECHOPOST_RESPONSE_RETRY_COUNT);
+    if (gDstMsgReceived)
+      break;
+  }
+
   // Stop controller
   
   uecho_controller_stop(ctrl);
