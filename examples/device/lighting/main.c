@@ -12,6 +12,11 @@
 
 #include "lighting_dev.h"
 
+void uecho_lighting_node_messagelitener(uEchoNode *obj, uEchoMessage *msg)
+{
+  uecho_lighting_printrequest(msg);
+}
+
 int main(int argc, char *argv[])
 {
   uEchoNode *node;
@@ -20,6 +25,10 @@ int main(int argc, char *argv[])
   node = uecho_node_new();
   if (!node)
     return EXIT_FAILURE;
+  
+#if defined(DEBUG)
+  uecho_node_setmessagelistener(node, uecho_lighting_node_messagelitener);
+#endif
   
   obj = uecho_create_lighting_deviceobject();
   if (!obj) {
