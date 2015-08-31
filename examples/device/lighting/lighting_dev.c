@@ -62,23 +62,3 @@ uEchoObject *uecho_create_lighting_deviceobject(void)
   
   return obj;
 }
-
-uEchoNode *uecho_create_lighting_node(void)
-{
-  uEchoNode *node;
-  uEchoObject *obj;
-
-  node = uecho_node_new();
-  if (!node)
-    return NULL;
-  
-  obj = uecho_create_lighting_deviceobject();
-  if (!obj) {
-    uecho_node_delete(node);
-    return NULL;
-  }
-  
-  uecho_node_addobject(node, obj);
-
-  return node;
-}
