@@ -61,6 +61,8 @@ bool uecho_controller_ispostresponsemessage(uEchoController *ctrl, uEchoMessage 
 bool uecho_controller_ispostresponsereceived(uEchoController *ctrl);
 bool uecho_controller_ispostresponsewaiting(uEchoController *ctrl);
 
+void uecho_controller_servermessagelistener(uEchoServer *server, uEchoMessage *msg);
+
 #ifdef  __cplusplus
 }
 #endif

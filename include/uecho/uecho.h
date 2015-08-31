@@ -11,9 +11,15 @@
 #ifndef _UECHO_UECHO_H_
 #define _UECHO_UECHO_H_
 
-#include <uecho/node.h>
-#include <uecho/object.h>
 #include <uecho/controller.h>
+#include <uecho/node.h>
+#include <uecho/class.h>
+#include <uecho/object.h>
+#include <uecho/property.h>
+#include <uecho/message.h>
+
+#include <uecho/profile.h>
+#include <uecho/device.h>
 
 #include <uecho/util/timer.h>
 

@@ -13,10 +13,6 @@
 
 #define uEchoControllerPostResponseLoopCount 50
 
-void uecho_controller_servermessagelistener(uEchoServer *server, uEchoMessage *msg);
-void uecho_controller_setpostresponsemessage(uEchoController *ctrl, uEchoMessage *msg);
-void uecho_controller_setpostrequestmessage(uEchoController *ctrl, uEchoMessage *msg);
-
 /****************************************
  * uecho_controller_new
  ****************************************/

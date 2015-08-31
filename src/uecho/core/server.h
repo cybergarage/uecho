@@ -134,6 +134,13 @@ bool uecho_mcast_server_isrunning(uEchoMcastServer *server);
 bool uecho_mcast_server_post(uEchoMcastServer *server, const byte *msg, size_t msgLen);
 
 /****************************************
+ * Listener
+ ****************************************/
+
+void uecho_udp_server_msglistener(uEchoUdpServer *server, uEchoMessage *msg);
+void uecho_mcast_server_msglistener(uEchoMcastServer *server, uEchoMessage *msg);
+
+/****************************************
  * Function (ServerList)
  ****************************************/
 
@@ -169,7 +176,7 @@ bool uecho_mcast_serverlist_post(uEchoMcastServerList *servers, const byte *msg,
 #define uecho_mcast_serverlist_size(servers) uecho_list_size((uEchoList *)servers)
 #define uecho_mcast_serverlist_gets(servers) (uEchoMcastServer *)uecho_list_next((uEchoList *)servers)
 #define uecho_mcast_serverlist_add(servers,server) uecho_list_add((uEchoList *)servers, (uEchoList *)server)
-
+  
 #ifdef  __cplusplus
 } /* extern C */
 #endif

@@ -56,6 +56,8 @@ typedef struct _uEchoNode
     
 uEchoServer *uecho_node_getserver(uEchoNode *node);
 
+void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg);
+
 /****************************************
  * Function (Node List)
  ****************************************/
