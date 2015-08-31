@@ -12,8 +12,6 @@
 #define _UECHO_OBJECT_H_
 
 #include <uecho/typedef.h>
-#include <uecho/util/list.h>
-#include <uecho/util/mutex.h>
 #include <uecho/property.h>
 #include <uecho/message.h>
 
@@ -55,8 +53,7 @@ typedef void (*uEchoPropertyRequestListener)(uEchoObject *, uEchoEsv, uEchoPrope
 
 uEchoObject *uecho_object_new(void);
 void uecho_object_delete(uEchoObject *obj);
-#define uecho_object_next(obj) (uEchoObject *)uecho_list_next((uEchoList *)obj)
-#define uecho_object_remove(obj) uecho_list_remove((uEchoList *)obj)
+uEchoObject *uecho_object_next(uEchoObject *obj);
 
 void uecho_object_setcode(uEchoObject *obj, uEchoObjectCode code);
 uEchoObjectCode uecho_object_getcode(uEchoObject *obj);

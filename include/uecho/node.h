@@ -12,8 +12,6 @@
 #define _UECHO_NODE_H_
 
 #include <uecho/typedef.h>
-#include <uecho/util/list.h>
-#include <uecho/util/mutex.h>
 #include <uecho/class.h>
 #include <uecho/object.h>
 
@@ -27,7 +25,6 @@ extern "C" {
 
 #if !defined(_UECHO_NODE_INTERNAL_H_)
 typedef void uEchoNode;
-typedef void uEchoNodeList;
 #endif
 
 typedef void (*uEchoNodeMessageListener)(uEchoNode *, uEchoMessage *);
@@ -39,9 +36,8 @@ typedef void (*uEchoNodeMessageListener)(uEchoNode *, uEchoMessage *);
 uEchoNode *uecho_node_new(void);
 void uecho_node_delete(uEchoNode *node);
 void uecho_node_clear(uEchoNode *node);
-#define uecho_node_next(node) (uEchoNode *)uecho_list_next((uEchoList *)node)
-#define uecho_node_remove(node) uecho_list_remove((uEchoList *)node)
-
+uEchoNode *uecho_node_next(uEchoNode *node);
+  
 void uecho_node_setaddress(uEchoNode *node, const char *addr);
 const char *uecho_node_getaddress(uEchoNode *node);
 bool uecho_node_isaddress(uEchoNode *node, const char *addr);

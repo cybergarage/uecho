@@ -13,7 +13,6 @@
 
 #include <uecho/typedef.h>
 #include <uecho/const.h>
-#include <uecho/util/mutex.h>
 #include <uecho/node.h>
 
 #ifdef  __cplusplus

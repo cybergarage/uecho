@@ -78,6 +78,15 @@ void uecho_object_delete(uEchoObject *obj)
 }
 
 /****************************************
+ * uecho_object_next
+ ****************************************/
+
+uEchoObject *uecho_object_next(uEchoObject *obj)
+{
+  return (uEchoObject *)uecho_list_next((uEchoList *)obj);
+}
+
+/****************************************
  * uecho_object_setparentnode
  ****************************************/
 

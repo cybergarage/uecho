@@ -62,6 +62,8 @@ typedef struct _uEchoObject {
  * Function
  ****************************************/
 
+#define uecho_object_remove(obj) uecho_list_remove((uEchoList *)obj)
+
 bool uecho_object_addmandatoryproperties(uEchoObject *obj);
 bool uecho_object_updatepropertymaps(uEchoObject *obj);
 void uecho_object_clearpropertymapcaches(uEchoObject *obj);

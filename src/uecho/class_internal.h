@@ -37,6 +37,12 @@ typedef struct _uEchoClass {
 #include <uecho/class.h>
   
 /****************************************
+ * Function
+ ****************************************/
+
+#define uecho_class_remove(cls) uecho_list_remove((uEchoList *)cls)
+
+/****************************************
  * Function (Class List)
  ****************************************/
   
