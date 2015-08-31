@@ -12,7 +12,6 @@
 #define _UECHO_CLASS_H_
 
 #include <uecho/typedef.h>
-#include <uecho/util/list.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -50,8 +49,7 @@ typedef void uEchoClass;
 
 uEchoClass *uecho_class_new(void);
 void uecho_class_delete(uEchoClass *cls);
-#define uecho_class_next(cls) (uEchoClass *)uecho_list_next((uEchoList *)cls)
-#define uecho_class_remove(cls) uecho_list_remove((uEchoList *)cls)
+uEchoClass *uecho_class_next(uEchoClass *cls);
 
 void uecho_class_setcode(uEchoClass *cls, uEchoClassCode code);
 uEchoClassCode uecho_class_getcode(uEchoClass *cls);

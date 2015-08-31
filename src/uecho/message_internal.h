@@ -58,7 +58,13 @@ typedef struct _uEchoMessage
  ****************************************/
   
 #include <uecho/message.h>
+
+/****************************************
+ * Function
+ ****************************************/
   
+bool uecho_message_parsepacket(uEchoMessage *msg, uEchoDatagramPacket *dgmPkt);
+
 #ifdef  __cplusplus
 } /* extern C */
 #endif

@@ -47,6 +47,15 @@ void uecho_class_delete(uEchoClass *cls)
 }
 
 /****************************************
+ * uecho_class_next
+ ****************************************/
+
+uEchoClass *uecho_class_next(uEchoClass *cls)
+{
+  return (uEchoClass *)uecho_list_next((uEchoList *)cls);
+}
+
+/****************************************
  * uecho_class_setcode
  ****************************************/
 
