@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/controller.h>
+#include <uecho/controller_internal.h>
 #include <uecho/profile.h>
 
 #define uEchoControllerPostResponseLoopCount 50

@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
+#include <uecho/object_internal.h>
 #include <uecho/node.h>
-#include <uecho/object.h>
 #include <uecho/profile.h>
 #include <uecho/misc.h>
 #include <uecho/core/observer.h>

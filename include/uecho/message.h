@@ -20,19 +20,9 @@
 extern "C" {
 #endif
 
-
 /****************************************
  * Constant
 ****************************************/
-
-enum {
-  uEchoMessageHeaderLen = (1 + 1 + 2),
-  uEchoMessageMinLen = (uEchoMessageHeaderLen + 3 + 3 + 1 + 1),
-  uEchoEhd1 = 0x10,
-  uEchoEhd2 = 0x81,
-  uEchoTIDSize = 2,
-  uEchoEOJSize = 3,
-};
 
 typedef enum {
   uEchoEsvWriteRequest = 0x60,
@@ -55,21 +45,10 @@ typedef enum {
 
 typedef unsigned int uEchoTID;
 
-typedef struct _uEchoMessage
-{
-  byte EHD1;
-  byte EHD2;
-  byte TID[uEchoTIDSize];
-  byte SEOJ[uEchoEOJSize];
-  byte DEOJ[uEchoEOJSize];
-  uEchoEsv ESV;
-  byte OPC;
-  uEchoProperty **EP;
-  byte *bytes;
-
-  char *srcAddr;
-} uEchoMessage;
-
+#if !defined(_UECHO_MESSAGE_INTERNAL_H_)
+typedef void uEchoMessage;
+#endif
+  
 /****************************************
  * Function
  ****************************************/
@@ -146,4 +125,4 @@ bool uecho_message_issearchresponse(uEchoMessage *msg);
 } /* extern C */
 #endif
 
-#endif /* _UECHO_NODE_H_ */
+#endif /* _UECHO_MESSAGE_H_ */

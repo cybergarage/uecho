@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-#include <uecho/class.h>
+#include <uecho/class_internal.h>
 
 const int uEchoTestClassCodeMax = uEchoClassCodeMax % 100;
 
