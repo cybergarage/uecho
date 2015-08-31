@@ -10,9 +10,6 @@
 
 #include <uecho/core/server.h>
 
-void uecho_udp_server_msglistener(uEchoUdpServer *server, uEchoMessage *msg);
-void uecho_mcast_server_msglistener(uEchoMcastServer *server, uEchoMessage *msg);
-
 /****************************************
 * uecho_server_new
 ****************************************/

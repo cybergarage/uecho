@@ -12,8 +12,6 @@
 #include <uecho/profile.h>
 #include <uecho/misc.h>
 
-void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg);
-
 /****************************************
 * uecho_node_new
 ****************************************/
