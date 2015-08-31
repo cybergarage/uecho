@@ -73,7 +73,7 @@ void uechopost_print_usage()
   printf("echopost <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
 }
 
-void uechopost_controlprint_listener(uEchoController *ctrl, uEchoMessage *msg)
+void uechopost_controlpoint_listener(uEchoController *ctrl, uEchoMessage *msg)
 {
 #if defined(DEBUG)
   uechopost_print_messages(ctrl, msg);
@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
   if (!ctrl)
     return EXIT_FAILURE;
   
-  uecho_controller_setmessagelistener(ctrl, uechopost_controlprint_listener);
+  uecho_controller_setmessagelistener(ctrl, uechopost_controlpoint_listener);
 
   if (!uecho_controller_start(ctrl))
     return EXIT_FAILURE;
