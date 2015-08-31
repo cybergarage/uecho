@@ -12,7 +12,7 @@
 #include <vector>
 #include <string>
 
-#include <uecho/property.h>
+#include <uecho/property_internal.h>
 
 BOOST_AUTO_TEST_CASE(PropertyBasicFunctions)
 {

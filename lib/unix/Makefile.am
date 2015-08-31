@@ -13,7 +13,7 @@
 lib_LIBRARIES = libuecho.a
 #endif
 
-AM_CFLAGS = -I$(top_srcdir)/include -I$(top_builddir)/include
+AM_CFLAGS = -I$(top_builddir)/include -I$(top_builddir)/src
 
 uecho_sources = \
 	../../src/uecho/class.c \

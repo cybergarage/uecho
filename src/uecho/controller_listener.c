@@ -8,14 +8,9 @@
  *
  ******************************************************************/
 
-#include <uecho/node.h>
-#include <uecho/controller.h>
+#include <uecho/controller_internal.h>
 #include <uecho/profile.h>
 #include <uecho/misc.h>
-
-bool uecho_controller_ispostresponsewaiting(uEchoController *ctrl);
-bool uecho_controller_ispostresponsemessage(uEchoController *ctrl, uEchoMessage *msg);
-uEchoMessage *uecho_controller_getpostresponsemessage(uEchoController *ctrl);
 
 /****************************************
  * uecho_controller_handlesearchmessage

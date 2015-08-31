@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-#include <uecho/object.h>
+#include <uecho/object_internal.h>
 
 const int uEchoTestObjectCodeMax = uEchoObjectCodeMax % 100;
 

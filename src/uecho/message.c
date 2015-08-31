@@ -12,7 +12,7 @@
 
 #include <uecho/util/strings.h>
 #include <uecho/net/socket.h>
-#include <uecho/message.h>
+#include <uecho/message_internal.h>
 #include <uecho/misc.h>
 
 /****************************************

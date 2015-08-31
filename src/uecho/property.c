@@ -10,7 +10,7 @@
 
 #include <string.h>
 
-#include <uecho/property.h>
+#include <uecho/property_internal.h>
 #include <uecho/misc.h>
 
 /****************************************

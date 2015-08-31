@@ -41,34 +41,11 @@ enum {
 
 typedef int uEchoManufacturerCode;
 typedef int uEchoObjectCode;
+
+#if !defined(_UECHO_OBJECT_INTERNAL_H_)
+typedef void uEchoObject;
+#endif
   
-typedef struct _uEchoObject {
-  bool headFlag;
-  struct _uEchoObject *prev;
-  struct _uEchoObject *next;
-
-  byte code[3];
-  uEchoPropertyList *properties;
-
-  void *parentNode;
-  
-  // Property map caches
-
-  size_t annoPropMapSize;
-  byte *annoPropMapBytes;
-  
-  size_t setPropMapSize;
-  byte *setPropMapBytes;
-
-  size_t getPropMapSize;
-  byte *getPropMapBytes;
-
-  // Listener
-  
-  void (*allMsgListener)(struct _uEchoObject *, uEchoMessage *); /* uEchoObjectMessageListener */
-  void *propListenerMgr;
-} uEchoObject, uEchoObjectList;
-
 typedef void (*uEchoObjectMessageListener)(uEchoObject *, uEchoMessage *);
 typedef void (*uEchoPropertyRequestListener)(uEchoObject *, uEchoEsv, uEchoProperty *);
 
@@ -130,21 +107,6 @@ bool uecho_object_announcemessage(uEchoObject *obj, uEchoMessage *msg);
 bool uecho_object_sendmessage(uEchoObject *obj, uEchoObject *dstObj, uEchoMessage *msg);
 
 /****************************************
- * Function (Object List)
- ****************************************/
-  
-uEchoObjectList *uecho_objectlist_new(void);
-void uecho_objectlist_delete(uEchoObjectList *objs);
-  
-bool uecho_objectlist_set(uEchoObjectList *props, uEchoObjectCode code);
-uEchoObject *uecho_objectlist_getbycode(uEchoObjectList *props, uEchoObjectCode code);
-  
-#define uecho_objectlist_clear(objs) uecho_list_clear((uEchoList *)objs, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_delete)
-#define uecho_objectlist_size(objs) uecho_list_size((uEchoList *)objs)
-#define uecho_objectlist_gets(objs) (uEchoObject *)uecho_list_next((uEchoList *)objs)
-#define uecho_objectlist_add(objs,obj) uecho_list_add((uEchoList *)objs, (uEchoList *)obj)
-
-/****************************************
  * Object Super Class
  ****************************************/
 
@@ -167,10 +129,6 @@ enum {
   uEchoManufactureCodeUnknown = 0x000000,
 };
 
-bool uecho_object_addmandatoryproperties(uEchoObject *obj);
-bool uecho_object_updatepropertymaps(uEchoObject *obj);
-void uecho_object_clearpropertymapcaches(uEchoObject *obj);
-
 bool uecho_object_setmanufacturercode(uEchoObject *obj, uEchoManufacturerCode code);
 uEchoManufacturerCode uecho_object_getmanufacturercode(uEchoObject *obj);
   
@@ -178,4 +136,4 @@ uEchoManufacturerCode uecho_object_getmanufacturercode(uEchoObject *obj);
 } /* extern C */
 #endif
 
-#endif /* _UECHO_NODE_H_ */
+#endif /* _UECHO_OBJECT_H_ */

@@ -42,27 +42,11 @@ typedef enum {
   uEchoPropertyAttrReadWrite = uEchoPropertyAttrRead | uEchoPropertyAttrWrite,
   uEchoPropertyAttrReadAnno  = uEchoPropertyAttrRead | uEchoPropertyAttrAnno,
 } uEchoPropertyAttr;
-
-typedef struct _uEchoProperty
-{
-  bool headFlag;
-  struct _uEchoProperty *prev;
-  struct _uEchoProperty *next;
   
-  uEchoPropertyCode code;
-  uEchoPropertyAttr attr;
-  byte *data;
-  size_t dataSize;
-} uEchoProperty, uEchoPropertyList;
+#if !defined(_UECHO_PROPERTY_INTERNAL_H_)
+typedef void uEchoProperty;
+#endif
 
-typedef struct
-{
-  uEchoPropertyCode code;
-  uEchoPropertyAttr attr;
-  byte *data;
-  size_t dataSize;
-} uEchoPropertyData;
-  
 /****************************************
  * Function
  ****************************************/
@@ -97,30 +81,6 @@ bool uecho_property_isannouncement(uEchoProperty *prop);
   
 uEchoProperty *uecho_property_copy(uEchoProperty *prop);
 bool uecho_property_equals(uEchoProperty *prop1, uEchoProperty *prop2);
-  
-/****************************************
- * Function (Object List)
- ****************************************/
-  
-uEchoPropertyList *uecho_propertylist_new(void);
-void uecho_propertylist_delete(uEchoPropertyList *props);
-
-bool uecho_propertylist_set(uEchoPropertyList *props, uEchoPropertyCode code, uEchoPropertyAttr attr, byte *data, size_t dataLen);
-bool uecho_propertylist_setdata(uEchoPropertyList *props, uEchoPropertyCode code, byte *data, size_t dataLen);
-bool uecho_propertylist_setintegerdata(uEchoPropertyList *props, uEchoPropertyCode code, int data, size_t dataLen);
-bool uecho_propertylist_setbytedata(uEchoPropertyList *props, uEchoPropertyCode code, byte data);
-bool uecho_propertylist_setattribute(uEchoPropertyList *props, uEchoPropertyCode code, uEchoPropertyAttr attr);
-uEchoProperty *uecho_propertylist_findbycode(uEchoPropertyList *props, uEchoPropertyCode code);
-  
-byte uecho_propertylist_getdatasize(uEchoPropertyList *props, uEchoPropertyCode code);
-byte *uecho_propertylist_getdata(uEchoPropertyList *props, uEchoPropertyCode code);
-bool uecho_propertylist_getintegerdata(uEchoPropertyList *props, uEchoPropertyCode code, size_t dataLen, int *data);
-bool uecho_propertylist_getbytedata(uEchoPropertyList *props, uEchoPropertyCode code, byte *data);
-  
-#define uecho_propertylist_clear(props) uecho_list_clear((uEchoList *)props, (UECHO_LIST_DESTRUCTORFUNC)uecho_property_delete)
-#define uecho_propertylist_size(props) uecho_list_size((uEchoList *)props)
-#define uecho_propertylist_gets(props) (uEchoProperty *)uecho_list_next((uEchoList *)props)
-#define uecho_propertylist_add(props,prop) uecho_list_add((uEchoList *)props, (uEchoList *)prop)
   
 #ifdef  __cplusplus
 } /* extern C */

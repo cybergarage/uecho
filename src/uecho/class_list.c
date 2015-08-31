@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/class.h>
+#include <uecho/class_internal.h>
 
 /****************************************
 * uecho_classlist_new
