@@ -11,3 +11,4 @@
 #include <uecho/node.h>
 
 uEchoObject *uecho_create_lighting_deviceobject(void);
+void uecho_lighting_printrequest(uEchoMessage *msg);
