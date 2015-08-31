@@ -122,9 +122,9 @@ void uecho_object_setmessagelistener(uEchoObject *obj, uEchoObjectMessageListene
 uEchoObjectMessageListener uecho_object_getmessagelistener(uEchoObject *obj);
 bool uecho_object_hasmessagelistener(uEchoObject *obj);
 
-bool uecho_object_setpropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
-uEchoPropertyRequestListener uecho_object_getpropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
-bool uecho_object_haspropertyrequeslistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
+bool uecho_object_setpropertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
+uEchoPropertyRequestListener uecho_object_getpropertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
+bool uecho_object_haspropertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
 
 bool uecho_object_announcemessage(uEchoObject *obj, uEchoMessage *msg);
 bool uecho_object_sendmessage(uEchoObject *obj, uEchoObject *dstObj, uEchoMessage *msg);
