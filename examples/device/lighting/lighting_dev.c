@@ -21,6 +21,22 @@
 
 void uecho_lighting_propertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoProperty *prop)
 {
+  byte status;
+  
+  if (uecho_property_getdatasize(prop) != 1)
+    return;
+  
+  if (uecho_property_getbytedata(prop, &status))
+    return;
+
+  // TODO : Set the status to hardware
+  
+  switch (status) {
+    case LIGHT_PROPERTY_SWITCH_ON:
+      break;
+    case LIGHT_PROPERTY_SWITCH_OFF:
+      break;
+  }
 }
 
 uEchoObject *uecho_create_lighting_deviceobject(void)
