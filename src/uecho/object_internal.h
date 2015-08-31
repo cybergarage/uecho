@@ -64,6 +64,12 @@ typedef struct _uEchoObject {
 
 #define uecho_object_remove(obj) uecho_list_remove((uEchoList *)obj)
 
+uEchoObjectMessageListener uecho_object_getmessagelistener(uEchoObject *obj);
+bool uecho_object_hasmessagelistener(uEchoObject *obj);
+  
+uEchoPropertyRequestListener uecho_object_getpropertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
+bool uecho_object_haspropertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
+  
 bool uecho_object_addmandatoryproperties(uEchoObject *obj);
 bool uecho_object_updatepropertymaps(uEchoObject *obj);
 void uecho_object_clearpropertymapcaches(uEchoObject *obj);
