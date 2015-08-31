@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2111B1851B93E8FC005FDBD6 /* controller_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B1841B93E8FC005FDBD6 /* controller_internal.h */; };
+		2111B1891B93EE4D005FDBD6 /* object_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B1881B93EE4D005FDBD6 /* object_internal.h */; };
+		2111B18B1B93F2BB005FDBD6 /* property_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B18A1B93F2BB005FDBD6 /* property_internal.h */; };
+		2111B18D1B93F607005FDBD6 /* message_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B18C1B93F607005FDBD6 /* message_internal.h */; };
+		2111B18F1B93F757005FDBD6 /* node_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B18E1B93F757005FDBD6 /* node_internal.h */; };
+		2111B1911B93F78F005FDBD6 /* class_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B1901B93F78F005FDBD6 /* class_internal.h */; };
+		2111B1981B93FCB7005FDBD6 /* observer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B1961B93FCB7005FDBD6 /* observer.h */; };
+		2111B1991B93FCB7005FDBD6 /* server.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B1971B93FCB7005FDBD6 /* server.h */; };
 		2159A1D11B751D2100A134D8 /* mcast_server_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159A1CF1B751D2100A134D8 /* mcast_server_list.c */; };
 		2159A1D21B751D2100A134D8 /* udp_server_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159A1D01B751D2100A134D8 /* udp_server_list.c */; };
 		215B493D1B85831E002B20CE /* profile.c in Sources */ = {isa = PBXBuildFile; fileRef = 215B493C1B85831E002B20CE /* profile.c */; };
@@ -37,7 +45,6 @@
 		217142931B8865EF003ABA30 /* class.c in Sources */ = {isa = PBXBuildFile; fileRef = 217142911B8865EF003ABA30 /* class.c */; };
 		21757F501B6A0D9400281E6F /* mcast_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 21757F4E1B6A0D9400281E6F /* mcast_server.c */; };
 		21757F511B6A0D9400281E6F /* udp_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 21757F4F1B6A0D9400281E6F /* udp_server.c */; };
-		21757F531B6A0DC300281E6F /* server.h in Headers */ = {isa = PBXBuildFile; fileRef = 21757F521B6A0DC300281E6F /* server.h */; };
 		21757F551B6A0E3200281E6F /* server.c in Sources */ = {isa = PBXBuildFile; fileRef = 21757F541B6A0E3200281E6F /* server.c */; };
 		217866E81B8F3F7C003AEB9B /* uecho.h in Headers */ = {isa = PBXBuildFile; fileRef = 217866E71B8F3F7C003AEB9B /* uecho.h */; };
 		2178B8311B7B3CC7007AA57B /* property_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2178B8301B7B3CC7007AA57B /* property_list.c */; };
@@ -50,7 +57,6 @@
 		2185D9D11B68DEED00A5B0C3 /* property.h in Headers */ = {isa = PBXBuildFile; fileRef = 2185D9D01B68DEED00A5B0C3 /* property.h */; };
 		2185D9D31B68DF1E00A5B0C3 /* property.c in Sources */ = {isa = PBXBuildFile; fileRef = 2185D9D21B68DF1E00A5B0C3 /* property.c */; };
 		218688EE1B8D676B00B10494 /* node_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 218688ED1B8D676B00B10494 /* node_list.c */; };
-		218C820A1B8D6D5F00E262C3 /* observer.h in Headers */ = {isa = PBXBuildFile; fileRef = 218C82091B8D6D5F00E262C3 /* observer.h */; };
 		218C820E1B8D6DA000E262C3 /* object_property_observer_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 218C820B1B8D6DA000E262C3 /* object_property_observer_list.c */; };
 		218C820F1B8D6DA000E262C3 /* object_property_observer_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 218C820C1B8D6DA000E262C3 /* object_property_observer_manager.c */; };
 		218C82101B8D6DA000E262C3 /* object_property_observer.c in Sources */ = {isa = PBXBuildFile; fileRef = 218C820D1B8D6DA000E262C3 /* object_property_observer.c */; };
@@ -73,6 +79,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2111B1841B93E8FC005FDBD6 /* controller_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controller_internal.h; sourceTree = "<group>"; };
+		2111B1881B93EE4D005FDBD6 /* object_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object_internal.h; sourceTree = "<group>"; };
+		2111B18A1B93F2BB005FDBD6 /* property_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property_internal.h; sourceTree = "<group>"; };
+		2111B18C1B93F607005FDBD6 /* message_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message_internal.h; sourceTree = "<group>"; };
+		2111B18E1B93F757005FDBD6 /* node_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node_internal.h; sourceTree = "<group>"; };
+		2111B1901B93F78F005FDBD6 /* class_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = class_internal.h; sourceTree = "<group>"; };
+		2111B1961B93FCB7005FDBD6 /* observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = observer.h; path = core/observer.h; sourceTree = "<group>"; };
+		2111B1971B93FCB7005FDBD6 /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = server.h; path = core/server.h; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* liblibuecho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibuecho.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2159A1CF1B751D2100A134D8 /* mcast_server_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mcast_server_list.c; path = core/mcast_server_list.c; sourceTree = "<group>"; };
 		2159A1D01B751D2100A134D8 /* udp_server_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udp_server_list.c; path = core/udp_server_list.c; sourceTree = "<group>"; };
@@ -104,7 +118,6 @@
 		217142911B8865EF003ABA30 /* class.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = class.c; sourceTree = "<group>"; };
 		21757F4E1B6A0D9400281E6F /* mcast_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mcast_server.c; path = core/mcast_server.c; sourceTree = "<group>"; };
 		21757F4F1B6A0D9400281E6F /* udp_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udp_server.c; path = core/udp_server.c; sourceTree = "<group>"; };
-		21757F521B6A0DC300281E6F /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = server.h; path = core/server.h; sourceTree = "<group>"; };
 		21757F541B6A0E3200281E6F /* server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = server.c; path = core/server.c; sourceTree = "<group>"; };
 		217866E71B8F3F7C003AEB9B /* uecho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uecho.h; sourceTree = "<group>"; };
 		2178B8301B7B3CC7007AA57B /* property_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = property_list.c; sourceTree = "<group>"; };
@@ -117,7 +130,6 @@
 		2185D9D01B68DEED00A5B0C3 /* property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property.h; sourceTree = "<group>"; };
 		2185D9D21B68DF1E00A5B0C3 /* property.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = property.c; sourceTree = "<group>"; };
 		218688ED1B8D676B00B10494 /* node_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = node_list.c; sourceTree = "<group>"; };
-		218C82091B8D6D5F00E262C3 /* observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = observer.h; path = core/observer.h; sourceTree = "<group>"; };
 		218C820B1B8D6DA000E262C3 /* object_property_observer_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = object_property_observer_list.c; path = core/object_property_observer_list.c; sourceTree = "<group>"; };
 		218C820C1B8D6DA000E262C3 /* object_property_observer_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = object_property_observer_manager.c; path = core/object_property_observer_manager.c; sourceTree = "<group>"; };
 		218C820D1B8D6DA000E262C3 /* object_property_observer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = object_property_observer.c; path = core/object_property_observer.c; sourceTree = "<group>"; };
@@ -178,7 +190,6 @@
 		21678EE21A8D510100AE79AA /* uecho */ = {
 			isa = PBXGroup;
 			children = (
-				21757F491B6A0CAF00281E6F /* core */,
 				217866E71B8F3F7C003AEB9B /* uecho.h */,
 				2185D9D01B68DEED00A5B0C3 /* property.h */,
 				21CF27541B917B03004A5AAD /* message.h */,
@@ -232,17 +243,23 @@
 			children = (
 				21D68B0C1B7C1D700032552C /* std */,
 				21757F481B6A0CA500281E6F /* core */,
+				2111B18C1B93F607005FDBD6 /* message_internal.h */,
 				21CF27561B917B25004A5AAD /* message_search.c */,
 				21CF27571B917B25004A5AAD /* message.c */,
+				2111B18A1B93F2BB005FDBD6 /* property_internal.h */,
 				2185D9D21B68DF1E00A5B0C3 /* property.c */,
 				2178B8301B7B3CC7007AA57B /* property_list.c */,
+				2111B1881B93EE4D005FDBD6 /* object_internal.h */,
 				2185D9CE1B68D5C600A5B0C3 /* object.c */,
 				21B06C181B7C85B0004E9E09 /* object_list.c */,
+				2111B1841B93E8FC005FDBD6 /* controller_internal.h */,
 				21EFF1A21B4A9A76002B5E57 /* controller.c */,
 				218F56921B8C425D00C03219 /* controller_listener.c */,
+				2111B18E1B93F757005FDBD6 /* node_internal.h */,
 				21EFF1A31B4A9A76002B5E57 /* node.c */,
 				218688ED1B8D676B00B10494 /* node_list.c */,
 				218F56901B8C09E100C03219 /* node_listener.c */,
+				2111B1901B93F78F005FDBD6 /* class_internal.h */,
 				217142901B8865EF003ABA30 /* class_list.c */,
 				217142911B8865EF003ABA30 /* class.c */,
 				21976AB21B897C1F00A154CE /* misc.c */,
@@ -284,6 +301,8 @@
 		21757F481B6A0CA500281E6F /* core */ = {
 			isa = PBXGroup;
 			children = (
+				2111B1961B93FCB7005FDBD6 /* observer.h */,
+				2111B1971B93FCB7005FDBD6 /* server.h */,
 				218C820B1B8D6DA000E262C3 /* object_property_observer_list.c */,
 				218C820C1B8D6DA000E262C3 /* object_property_observer_manager.c */,
 				218C820D1B8D6DA000E262C3 /* object_property_observer.c */,
@@ -292,15 +311,6 @@
 				21757F541B6A0E3200281E6F /* server.c */,
 				21757F4E1B6A0D9400281E6F /* mcast_server.c */,
 				21757F4F1B6A0D9400281E6F /* udp_server.c */,
-			);
-			name = core;
-			sourceTree = "<group>";
-		};
-		21757F491B6A0CAF00281E6F /* core */ = {
-			isa = PBXGroup;
-			children = (
-				218C82091B8D6D5F00E262C3 /* observer.h */,
-				21757F521B6A0DC300281E6F /* server.h */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -327,23 +337,29 @@
 			files = (
 				21E280621B7BA82C004956BA /* profile.h in Headers */,
 				21678EF11A8D510100AE79AA /* mutex.h in Headers */,
+				2111B1991B93FCB7005FDBD6 /* server.h in Headers */,
 				21678EF31A8D510100AE79AA /* thread.h in Headers */,
 				21EFF1A11B4A9A5E002B5E57 /* node.h in Headers */,
-				218C820A1B8D6D5F00E262C3 /* observer.h in Headers */,
 				21678EF21A8D510100AE79AA /* strings.h in Headers */,
 				21678EF41A8D510100AE79AA /* timer.h in Headers */,
 				21678EED1A8D510100AE79AA /* interface.h in Headers */,
 				2185D9D11B68DEED00A5B0C3 /* property.h in Headers */,
-				21757F531B6A0DC300281E6F /* server.h in Headers */,
+				2111B18F1B93F757005FDBD6 /* node_internal.h in Headers */,
+				2111B18B1B93F2BB005FDBD6 /* property_internal.h in Headers */,
+				2111B18D1B93F607005FDBD6 /* message_internal.h in Headers */,
 				21678EEF1A8D510100AE79AA /* list.h in Headers */,
+				2111B1891B93EE4D005FDBD6 /* object_internal.h in Headers */,
 				217866E81B8F3F7C003AEB9B /* uecho.h in Headers */,
+				2111B1981B93FCB7005FDBD6 /* observer.h in Headers */,
 				21678EEE1A8D510100AE79AA /* socket.h in Headers */,
+				2111B1911B93F78F005FDBD6 /* class_internal.h in Headers */,
 				21678F101A8D51C800AE79AA /* typedef.h in Headers */,
 				21EFF1A01B4A9A5E002B5E57 /* controller.h in Headers */,
 				2185D9C31B68C3B500A5B0C3 /* const.h in Headers */,
 				2171428F1B886500003ABA30 /* class.h in Headers */,
 				215B49431B85895F002B20CE /* device.h in Headers */,
 				21CF27551B917B03004A5AAD /* message.h in Headers */,
+				2111B1851B93E8FC005FDBD6 /* controller_internal.h in Headers */,
 				21976AB51B897C4F00A154CE /* misc.h in Headers */,
 				2185D9CD1B68D5BC00A5B0C3 /* object.h in Headers */,
 			);
@@ -490,6 +506,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../../../include,
+					../../../src,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -530,6 +547,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../../../include,
+					../../../src,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;

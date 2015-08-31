@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/object.h>
+#include <uecho/object_internal.h>
 
 /****************************************
 * uecho_objectlist_new

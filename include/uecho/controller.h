@@ -30,17 +30,10 @@ extern "C" {
 * Data Type
 ****************************************/
 
-typedef struct _uEchoController {
-	uEchoMutex *mutex;
-  uEchoNode *node;
-  uEchoTID lastTID;
-  uEchoNodeList *nodes;
-  void (*msgListener)(struct _uEchoController *, uEchoMessage *); /* uEchoControllerMessageListener */
-  clock_t postResWaitMiliTime;
-  uEchoMessage *postReqMsg;
-  uEchoMessage *postResMsg;
-} uEchoController;
-
+#if !defined(_UECHO_CONTROLLER_INTERNAL_H_)
+typedef void uEchoController;
+#endif
+  
 typedef void (*uEchoControllerMessageListener)(uEchoController *, uEchoMessage *);
 
 /****************************************
@@ -57,10 +50,6 @@ size_t uecho_controller_getnodecount(uEchoController *ctrl);
 
 uEchoObject *uecho_controller_getobjectbycode(uEchoController *ctrl, uEchoObjectCode code);
   
-void uecho_controller_setlasttid(uEchoController *ctrl, uEchoTID tid);
-uEchoTID uecho_controller_getlasttid(uEchoController *ctrl);
-uEchoTID uecho_controller_getnexttid(uEchoController *ctrl);
-
 void uecho_controller_setmessagelistener(uEchoController *ctrl, uEchoControllerMessageListener listener);
 uEchoControllerMessageListener uecho_controller_getmessagelistener(uEchoController *ctrl);
 bool uecho_controller_hasmessagelistener(uEchoController *ctrl);

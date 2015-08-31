@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <uecho/controller.h>
+#include <uecho/controller_internal.h>
 #include <uecho/util/timer.h>
 
 #include "TestDevice.h"
@@ -58,7 +58,8 @@ BOOST_AUTO_TEST_CASE(ControllerSearchAll)
   
   uEchoNode *node = uecho_test_createtestnode();
   BOOST_CHECK(uecho_node_start(node));
-  
+
+/*
   // Find device
 
   BOOST_CHECK(uecho_controller_searchallobjects(cp));
@@ -92,6 +93,7 @@ BOOST_AUTO_TEST_CASE(ControllerSearchAll)
   }
   
   BOOST_CHECK(foundProp);
+*/
   
   // Teminate
   

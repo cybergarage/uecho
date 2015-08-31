@@ -42,7 +42,7 @@ uEchoObject *uecho_create_lighting_deviceobject(void)
   uecho_object_setpropertydata(obj, LIGHT_PROPERTY_SWITCH_CODE, prop, 1);
   
   // Set property observer
-  uecho_object_setpropertyrequeslistener(obj, 0x0A, LIGHT_PROPERTY_SWITCH_CODE, uecho_lighting_propertyrequestlistener);
+  uecho_object_setpropertyrequestlistener(obj, 0x0A, LIGHT_PROPERTY_SWITCH_CODE, uecho_lighting_propertyrequestlistener);
   
   return obj;
 }
