@@ -70,7 +70,7 @@ void uechopost_print_objectresponse(uEchoController *ctrl, uEchoMessage *msg)
 
 void uechopost_print_usage()
 {
-  printf("echopost <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
+  printf("Usage : echopost <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
 }
 
 void uechopost_controlpoint_listener(uEchoController *ctrl, uEchoMessage *msg)
