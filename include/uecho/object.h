@@ -93,12 +93,9 @@ size_t uecho_object_getpropertycount(uEchoObject *obj);
 void uecho_object_clearproperties(uEchoObject *obj);
 
 void uecho_object_setmessagelistener(uEchoObject *obj, uEchoObjectMessageListener listener);
-uEchoObjectMessageListener uecho_object_getmessagelistener(uEchoObject *obj);
-bool uecho_object_hasmessagelistener(uEchoObject *obj);
-
 bool uecho_object_setpropertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
-uEchoPropertyRequestListener uecho_object_getpropertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
-bool uecho_object_haspropertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPropertyCode code);
+bool uecho_object_setpropertywriterequestlistener(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
+bool uecho_object_setpropertyreadlistener(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
 
 bool uecho_object_announcemessage(uEchoObject *obj, uEchoMessage *msg);
 bool uecho_object_sendmessage(uEchoObject *obj, uEchoObject *dstObj, uEchoMessage *msg);

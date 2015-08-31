@@ -538,6 +538,36 @@ bool uecho_object_haspropertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEc
 }
 
 /****************************************
+ * uecho_object_setpropertywriterequestlistener
+ ****************************************/
+
+bool uecho_object_setpropertywriterequestlistener(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyRequestListener listener)
+{
+  bool isSeccess = true;
+  
+  isSeccess &= uecho_object_setpropertyrequestlistener(obj, uEchoEsvWriteRequest, code, listener);
+  isSeccess &= uecho_object_setpropertyrequestlistener(obj, uEchoEsvWriteRequestResponseRequired, code, listener);
+  isSeccess &= uecho_object_setpropertyrequestlistener(obj, uEchoEsvWriteReadRequest, code, listener);
+  
+  return isSeccess;
+}
+
+/****************************************
+ * uecho_object_setpropertyreadlistener
+ ****************************************/
+
+bool uecho_object_setpropertyreadlistener(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyRequestListener listener)
+{
+  bool isSeccess = true;
+  
+  isSeccess &= uecho_object_setpropertyrequestlistener(obj, uEchoEsvReadRequest, code, listener);
+  isSeccess &= uecho_object_setpropertyrequestlistener(obj, uEchoEsvWriteReadRequest, code, listener);
+  
+  return isSeccess;
+  
+}
+
+/****************************************
  * uecho_object_announcemessage
  ****************************************/
 
