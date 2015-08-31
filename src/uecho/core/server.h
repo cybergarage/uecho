@@ -15,8 +15,7 @@
 #include <uecho/net/socket.h>
 #include <uecho/util/thread.h>
 #include <uecho/util/list.h>
-#include <uecho/object.h>
-#include <uecho/message.h>
+#include <uecho/object_internal.h>
 
 #ifdef  __cplusplus
 extern "C" {

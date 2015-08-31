@@ -12,6 +12,7 @@
 #define _UECHO_OBSERVER_H_
 
 #include <uecho/typedef.h>
+#include <uecho/util/list.h>
 #include <uecho/object.h>
 
 #ifdef  __cplusplus

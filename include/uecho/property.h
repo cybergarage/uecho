@@ -11,9 +11,7 @@
 #ifndef _UECHO_PROPERTY_H_
 #define _UECHO_PROPERTY_H_
 
-#include <stdbool.h>
-#include <uecho/util/list.h>
-#include <uecho/util/mutex.h>
+#include <uecho/typedef.h>
 
 #ifdef  __cplusplus
 extern "C" {

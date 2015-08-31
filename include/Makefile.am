@@ -23,10 +23,6 @@ uechoheaders = \
 	./uecho/property.h \
 	./uecho/typedef.h \
 	./uecho/uecho.h \
-	./uecho/util/list.h \
-	./uecho/util/mutex.h \
-	./uecho/util/strings.h \
-	./uecho/util/thread.h \
 	./uecho/util/timer.h
 
 nobase_include_HEADERS = \

@@ -51,7 +51,9 @@ typedef struct _uEchoNode
 /****************************************
  * Function
  ****************************************/
-  
+
+#define uecho_node_remove(node) uecho_list_remove((uEchoList *)node)
+    
 uEchoServer *uecho_node_getserver(uEchoNode *node);
 
 /****************************************

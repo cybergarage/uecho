@@ -80,6 +80,15 @@ void uecho_node_clear(uEchoNode *node)
 }
 
 /****************************************
+ * uecho_node_next
+ ****************************************/
+
+uEchoNode *uecho_node_next(uEchoNode *node)
+{
+  return (uEchoNode *)uecho_list_next((uEchoList *)node);
+}
+
+/****************************************
  * uecho_node_setmessagelistener
  ****************************************/
 
