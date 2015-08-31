@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
   dstNodeAddr = argv[1];
 
   dstNode = NULL;
-  for (int n=0; n<UECHOPOST_RESPONSE_RETRY_COUNT; n++) {
+  for (n=0; n<UECHOPOST_RESPONSE_RETRY_COUNT; n++) {
     uecho_sleep(UECHOPOST_MAX_RESPONSE_MTIME / UECHOPOST_RESPONSE_RETRY_COUNT);
     dstNode = uecho_controller_getnodebyaddress(ctrl, dstNodeAddr);
     if (dstNode)
