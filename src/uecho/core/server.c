@@ -71,6 +71,21 @@ void *uecho_server_getuserdata(uEchoServer *server)
 }
 
 /****************************************
+ * uecho_server_isboundaddress
+ ****************************************/
+
+bool uecho_server_isboundaddress(uEchoServer *server, const char *addr)
+{
+  if (uecho_udp_serverlist_isboundaddress(server->udpServers, addr))
+    return true;
+  
+  if (uecho_mcast_serverlist_isboundaddress(server->mcastServers, addr))
+    return true;
+
+  return false;
+}
+
+/****************************************
  * uecho_server_start
  ****************************************/
 

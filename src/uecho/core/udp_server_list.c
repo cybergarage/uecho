@@ -163,3 +163,24 @@ bool uecho_udp_serverlist_stop(uEchoUdpServerList *servers)
   
   return allActionsSucceeded;
 }
+
+/****************************************
+ * uecho_udp_serverlist_stop
+ ****************************************/
+
+bool uecho_udp_serverlist_isboundaddress(uEchoUdpServerList *servers, const char *addr)
+{
+  uEchoUdpServer *server;
+  uEchoSocket *sock;
+
+  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
+    sock = uecho_udp_getsocket(server);
+    if (!sock)
+      continue;
+    if (uecho_socket_isboundaddress(sock, addr))
+      return true;
+  }
+  
+  return false;
+}
+

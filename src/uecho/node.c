@@ -181,6 +181,9 @@ bool uecho_node_isaddress(uEchoNode *node, const char *addr)
       return true;
   }
   
+  if (uecho_server_isboundaddress(node->server, addr))
+    return true;
+
   return false;
 }
 
