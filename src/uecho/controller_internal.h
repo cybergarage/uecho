@@ -25,23 +25,20 @@ extern "C" {
  ****************************************/
 
 enum {
-  uEchoControllerParamNone             = 0x00,
-  uEchoControllerParamDisableUdpServer = 0x01,
+  uEchoControllerOptionDisableUdpServer = uEchoServerOptionDisableUdpServer,
 };
   
 /****************************************
 * Data Type
 ****************************************/
 
-typedef int uEchoControllerParam;
-  
 typedef struct _uEchoController {
 	uEchoMutex *mutex;
   uEchoNode *node;
   uEchoTID lastTID;
   uEchoNodeList *nodes;
   void (*msgListener)(struct _uEchoController *, uEchoMessage *); /* uEchoControllerMessageListener */
-  uEchoControllerParam param;
+  uEchoOption option;
   
   clock_t postResWaitMiliTime;
   uEchoMessage *postReqMsg;
@@ -58,10 +55,14 @@ typedef struct _uEchoController {
  * Function
 ****************************************/
 
-void uecho_controller_enableparameter(uEchoController *ctrl, uEchoControllerParam param);
-void uecho_controller_disableparameter(uEchoController *ctrl, uEchoControllerParam param);
-bool uecho_controller_isparameterenabled(uEchoController *ctrl, uEchoControllerParam param);
-  
+void uecho_controller_enableoption(uEchoController *ctrl, uEchoOption param);
+void uecho_controller_disableoption(uEchoController *ctrl, uEchoOption param);
+bool uecho_controller_isoptionenabled(uEchoController *ctrl, uEchoOption param);
+
+#define uecho_controller_disableudpserver(ctrl) uecho_controller_enableoption(ctrl, uEchoControllerOptionDisableUdpServer)
+#define uecho_controller_enableudpserver(ctrl) uecho_controller_disableoption(ctrl, uEchoControllerOptionDisableUdpServer)
+#define uecho_controller_isudpserverenabled(ctrl) (!uecho_controller_isoptionenabled(ctrl, uEchoControllerOptionDisableUdpServer))
+
 void uecho_controller_setlasttid(uEchoController *ctrl, uEchoTID tid);
 uEchoTID uecho_controller_getlasttid(uEchoController *ctrl);
 uEchoTID uecho_controller_getnexttid(uEchoController *ctrl);  
@@ -79,7 +80,7 @@ bool uecho_controller_ispostresponsereceived(uEchoController *ctrl);
 bool uecho_controller_ispostresponsewaiting(uEchoController *ctrl);
 
 void uecho_controller_servermessagelistener(uEchoServer *server, uEchoMessage *msg);
-
+  
 #ifdef  __cplusplus
 }
 #endif

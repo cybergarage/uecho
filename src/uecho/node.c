@@ -87,6 +87,19 @@ uEchoNode *uecho_node_next(uEchoNode *node)
 }
 
 /****************************************
+ * uecho_node_setoption
+ ****************************************/
+
+void uecho_node_setoption(uEchoNode *node, uEchoOption value)
+{
+  if (!node)
+    return;
+
+  node->option = value;
+  uecho_server_setoption(node->server, value);
+}
+
+/****************************************
  * uecho_node_setmessagelistener
  ****************************************/
 
@@ -163,7 +176,12 @@ bool uecho_node_isaddress(uEchoNode *node, const char *addr)
   if (!node)
     return false;
 
-  return uecho_streq(node->address, addr);
+  if (node->address) {
+    if (uecho_streq(node->address, addr))
+      return true;
+  }
+  
+  return false;
 }
 
 /****************************************

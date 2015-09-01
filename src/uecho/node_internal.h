@@ -40,6 +40,7 @@ typedef struct _uEchoNode
   
   void (*msgListener)(struct _uEchoNode *, uEchoMessage *); /* uEchoNodeMessageListener */
   char *address;
+  uEchoOption option;
 } uEchoNode, uEchoNodeList;
 
 /****************************************
@@ -56,6 +57,9 @@ typedef struct _uEchoNode
     
 uEchoServer *uecho_node_getserver(uEchoNode *node);
 
+void uecho_node_setoption(uEchoNode *node, uEchoOption value);
+#define uecho_node_isoptionenabled(node, value) (node->option & value)
+  
 void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg);
 
 /****************************************

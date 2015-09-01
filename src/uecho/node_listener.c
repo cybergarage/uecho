@@ -193,6 +193,21 @@ void uecho_object_notifymessage(uEchoObject *obj, uEchoMessage *msg)
 }
 
 /****************************************
+ * uecho_node_servermessagelistener
+ ****************************************/
+
+bool uecho_node_ismyobjectmessage(uEchoNode *node, uEchoMessage *msg)
+{
+  if (!uecho_node_isaddress(node, uecho_message_getsourceaddress(msg)))
+    return false;
+      
+  if (uecho_message_getsourceobjectcode(msg) != uecho_message_getdestinationobjectcode(msg))
+    return false;
+  
+  return true;
+}
+
+/****************************************
 * uecho_node_servermessagelistener
 ****************************************/
 
@@ -218,6 +233,8 @@ void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg)
   dstObjCode = uecho_message_getdestinationobjectcode(msg);
   nodeDestObj = uecho_node_getobjectbycode(node, dstObjCode);
 
+  //
+  
   // Processing when the controlled object exists, except when ESV = 0x60-0x63, 0x6E and 0x74
   if (!uecho_message_isrequestesv(esv))
     return;
