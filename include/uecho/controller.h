@@ -47,8 +47,6 @@ uEchoNode *uecho_controller_getnodebyaddress(uEchoController *ctrl, const char *
 uEchoNode *uecho_controller_getnodes(uEchoController *ctrl);
 size_t uecho_controller_getnodecount(uEchoController *ctrl);
 
-uEchoObject *uecho_controller_getobjectbycode(uEchoController *ctrl, uEchoObjectCode code);
-  
 void uecho_controller_setmessagelistener(uEchoController *ctrl, uEchoControllerMessageListener listener);
 uEchoControllerMessageListener uecho_controller_getmessagelistener(uEchoController *ctrl);
 bool uecho_controller_hasmessagelistener(uEchoController *ctrl);
