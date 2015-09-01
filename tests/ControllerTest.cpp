@@ -93,11 +93,7 @@ BOOST_AUTO_TEST_CASE(ControllerSearchAll)
 
   // Find device
 
-  //BOOST_CHECK(uecho_controller_searchallobjects(ctrl));
-  
-  uEchoMessage *msg = uecho_message_search_new();
-  uecho_message_setesv(msg, uEchoEsvNotificationRequest);
-  BOOST_CHECK(uecho_controller_announcemessage(ctrl, msg));
+  BOOST_CHECK(uecho_controller_searchallobjectswithesv(ctrl, uEchoEsvNotificationRequest));
   
   uEchoObject *foundObj;
   for (int n=0; n<UECHO_TEST_RESPONSE_WAIT_RETLY_CNT; n++) {

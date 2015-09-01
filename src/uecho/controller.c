@@ -492,15 +492,54 @@ bool uecho_controller_postmessage(uEchoController *ctrl, uEchoObject *obj, uEcho
 }
 
 /****************************************
+ * uecho_controller_searchallobjectswithesv
+ ****************************************/
+
+bool uecho_controller_searchallobjectswithesv(uEchoController *ctrl, uEchoEsv esv)
+{
+  uEchoMessage *msg;
+  
+  msg = uecho_message_search_new();
+  if (!msg)
+    return false;
+  
+  uecho_message_setesv(msg, esv);
+  return uecho_controller_announcemessage(ctrl, msg);
+}
+
+/****************************************
  * uecho_controller_searchallobjects
  ****************************************/
 
 bool uecho_controller_searchallobjects(uEchoController *ctrl)
 {
+  return uecho_controller_searchallobjectswithesv(ctrl, uEchoEsvReadResponse);
+}
+
+/****************************************
+ * uecho_controller_searchobjectwithesv
+ ****************************************/
+
+bool uecho_controller_searchobjectwithesv(uEchoController *ctrl, byte objCode, uEchoEsv esv)
+{
   uEchoMessage *msg;
+  uEchoProperty *prop;
+  
+  if (!ctrl)
+    return false;
   
   msg = uecho_message_search_new();
-
+  
+  if (!msg)
+    return false;
+  
+  uecho_message_setesv(msg, esv);
+  uecho_message_setdestinationobjectcode(msg, objCode);
+  
+  prop = uecho_message_getproperty(msg, 0);
+  uecho_property_setcode(prop, uEchoNodeProfileClassOperatingStatus);
+  uecho_property_setdata(prop, NULL, 0);
+  
   return uecho_controller_announcemessage(ctrl, msg);
 }
 
@@ -510,19 +549,5 @@ bool uecho_controller_searchallobjects(uEchoController *ctrl)
 
 bool uecho_controller_searchobject(uEchoController *ctrl, byte objCode)
 {
-  uEchoMessage *msg;
-  uEchoProperty *prop;
-  
-  if (!ctrl)
-    return false;
-
-  msg = uecho_message_search_new();
-  
-  uecho_message_setdestinationobjectcode(msg, objCode);
-  
-  prop = uecho_message_getproperty(msg, 0);
-  uecho_property_setcode(prop, uEchoNodeProfileClassOperatingStatus);
-  uecho_property_setdata(prop, NULL, 0);
-  
-  return uecho_controller_announcemessage(ctrl, msg);
+  return uecho_controller_searchobjectwithesv(ctrl, objCode, uEchoEsvReadResponse);
 }
