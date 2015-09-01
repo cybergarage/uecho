@@ -37,21 +37,21 @@ extern "C" {
  ****************************************/
 
 typedef struct _uEchoThread {
-	bool headFlag;
-	struct _uEchoThread *prev;
-	struct _uEchoThread *next;
-		
-	bool runnableFlag;
+  bool headFlag;
+  struct _uEchoThread *prev;
+  struct _uEchoThread *next;
+    
+  bool runnableFlag;
 
 #if defined(WIN32)
-	HANDLE hThread;
-	DWORD threadID;
+  HANDLE hThread;
+  DWORD threadID;
 #else
-	pthread_t pThread;
+  pthread_t pThread;
 #endif
 
-	void (*action)(struct _uEchoThread *);
-	void *userData;
+  void (*action)(struct _uEchoThread *);
+  void *userData;
 } uEchoThread, uEchoThreadList;
 
 typedef void (*uEchoThreadFunc)(uEchoThread *);

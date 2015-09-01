@@ -16,15 +16,15 @@
 
 uEchoClassList *uecho_classlist_new(void)
 {
-	uEchoClassList *clsses;
+  uEchoClassList *clsses;
 
-	clsses = (uEchoClassList *)malloc(sizeof(uEchoClassList));
+  clsses = (uEchoClassList *)malloc(sizeof(uEchoClassList));
   if (!clsses)
     return NULL;
 
   uecho_list_header_init((uEchoList *)clsses);
 
-	return clsses;
+  return clsses;
 }
 
 /****************************************
@@ -36,9 +36,9 @@ void uecho_classlist_delete(uEchoClassList *clsses)
   if (!clsses)
     return;
   
-	uecho_classlist_clear(clsses);
+  uecho_classlist_clear(clsses);
 
-	free(clsses);
+  free(clsses);
 }
 
 /****************************************

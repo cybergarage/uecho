@@ -21,9 +21,9 @@
 
 uEchoMessage *uecho_message_new(void)
 {
-	uEchoMessage *msg;
+  uEchoMessage *msg;
 
-	msg = (uEchoMessage *)malloc(sizeof(uEchoMessage));
+  msg = (uEchoMessage *)malloc(sizeof(uEchoMessage));
 
   if (!msg)
     return NULL;
@@ -51,7 +51,7 @@ void uecho_message_delete(uEchoMessage *msg)
 {
   uecho_message_clear(msg);
 
-	free(msg);
+  free(msg);
 }
 
 /****************************************

@@ -20,7 +20,7 @@ uEchoMessage *uecho_message_search_new(void)
   uEchoMessage *msg;
   uEchoProperty *prop;
   
-	msg = uecho_message_new();
+  msg = uecho_message_new();
 
   if (!msg)
     return NULL;
@@ -35,7 +35,7 @@ uEchoMessage *uecho_message_search_new(void)
   uecho_property_setdata(prop, NULL, 0);
   uecho_message_addproperty(msg, prop);
   
-	return msg;
+  return msg;
 }
 
 /****************************************

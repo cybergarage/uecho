@@ -17,17 +17,17 @@
 
 uEchoMcastServer *uecho_mcast_server_new(void)
 {
-	uEchoMcastServer *server;
+  uEchoMcastServer *server;
 
-	server = (uEchoMcastServer *)malloc(sizeof(uEchoMcastServer));
+  server = (uEchoMcastServer *)malloc(sizeof(uEchoMcastServer));
 
   if (!server)
     return NULL;
-	
+  
   server->socket = NULL;
   server->thread = NULL;
   
-	return server;
+  return server;
 }
 
 /****************************************
@@ -39,7 +39,7 @@ void uecho_mcast_server_delete(uEchoMcastServer *server)
   uecho_mcast_server_stop(server);
   uecho_mcast_server_remove(server);
   
-	free(server);
+  free(server);
 }
 
 /****************************************

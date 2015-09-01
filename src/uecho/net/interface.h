@@ -41,15 +41,15 @@ extern "C" {
 ****************************************/
 
 typedef struct _uEchoNetworkInterface {
-	bool headFlag;
-	struct _uEchoNetworkInterface *prev;
-	struct _uEchoNetworkInterface *next;
+  bool headFlag;
+  struct _uEchoNetworkInterface *prev;
+  struct _uEchoNetworkInterface *next;
   
-	uEchoString *name;
-	uEchoString *ipaddr;
-	uEchoString *netmask;
-	byte macaddr[UECHO_NET_MACADDR_SIZE];
-	int index;
+  uEchoString *name;
+  uEchoString *ipaddr;
+  uEchoString *netmask;
+  byte macaddr[UECHO_NET_MACADDR_SIZE];
+  int index;
 } uEchoNetworkInterface, uEchoNetworkInterfaceList;
 
 /****************************************

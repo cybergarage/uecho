@@ -25,35 +25,35 @@ static void uecho_sig_handler(int sign);
 #if defined(WIN32)
 static DWORD WINAPI Win32ThreadProc(LPVOID lpParam)
 {
-	uEchoThread *thread;
+  uEchoThread *thread;
 
-	thread = (uEchoThread *)lpParam;
-	if (thread->action != NULL)
-		thread->action(thread);
-	
-	return 0;
+  thread = (uEchoThread *)lpParam;
+  if (thread->action != NULL)
+    thread->action(thread);
+  
+  return 0;
 }
 #else
 static void *PosixThreadProc(void *param)
 {
-	sigset_t set;
-	struct sigaction actions;
-	uEchoThread *thread = (uEchoThread *)param;
+  sigset_t set;
+  struct sigaction actions;
+  uEchoThread *thread = (uEchoThread *)param;
 
-	sigfillset(&set);
-	sigdelset(&set, SIGQUIT);
-	pthread_sigmask(SIG_SETMASK, &set, NULL);
-	
-	memset(&actions, 0, sizeof(actions));
-	sigemptyset(&actions.sa_mask);
-	actions.sa_flags = 0;
-	actions.sa_handler = uecho_sig_handler;
-	sigaction(SIGQUIT, &actions, NULL);
+  sigfillset(&set);
+  sigdelset(&set, SIGQUIT);
+  pthread_sigmask(SIG_SETMASK, &set, NULL);
+  
+  memset(&actions, 0, sizeof(actions));
+  sigemptyset(&actions.sa_mask);
+  actions.sa_flags = 0;
+  actions.sa_handler = uecho_sig_handler;
+  sigaction(SIGQUIT, &actions, NULL);
 
-	if (thread->action != NULL)
-		thread->action(thread);
-	
-	return 0;
+  if (thread->action != NULL)
+    thread->action(thread);
+  
+  return 0;
 }
 #endif
 
@@ -63,20 +63,20 @@ static void *PosixThreadProc(void *param)
 
 uEchoThread *uecho_thread_new(void)
 {
-	uEchoThread *thread;
+  uEchoThread *thread;
 
-	thread = (uEchoThread *)malloc(sizeof(uEchoThread));
+  thread = (uEchoThread *)malloc(sizeof(uEchoThread));
 
   if (!thread)
     return NULL;
   
   uecho_list_node_init((uEchoList *)thread);
-		
+    
   thread->runnableFlag = false;
   thread->action = NULL;
   thread->userData = NULL;
 
-	return thread;
+  return thread;
 }
 
 /****************************************
@@ -89,14 +89,14 @@ bool uecho_thread_delete(uEchoThread *thread)
     return false;
   
   if (thread->runnableFlag == true) {
-		uecho_thread_stop(thread);
+    uecho_thread_stop(thread);
   }
 
-	uecho_thread_remove(thread);
-	
-	free(thread);
+  uecho_thread_remove(thread);
+  
+  free(thread);
 
-	return true;
+  return true;
 }
 
 /****************************************
@@ -108,32 +108,32 @@ bool uecho_thread_start(uEchoThread *thread)
   if (!thread)
     return false;
   
-	thread->runnableFlag = true;
+  thread->runnableFlag = true;
 
 #if defined(WIN32)
-	thread->hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)thread, 0, &thread->threadID);
+  thread->hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)thread, 0, &thread->threadID);
 #else
-	pthread_attr_t thread_attr;
-	if (pthread_attr_init(&thread_attr) != 0) {
-		thread->runnableFlag = false;
+  pthread_attr_t thread_attr;
+  if (pthread_attr_init(&thread_attr) != 0) {
+    thread->runnableFlag = false;
     return false;
   }
 
   if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) !=0) {
-		thread->runnableFlag = false;
-		pthread_attr_destroy(&thread_attr);
-		return false;
+    thread->runnableFlag = false;
+    pthread_attr_destroy(&thread_attr);
+    return false;
   }
 
   if (pthread_create(&thread->pThread, &thread_attr, PosixThreadProc, thread) != 0) {
-		thread->runnableFlag = false;
-		pthread_attr_destroy(&thread_attr);
-		return false;
-	}
-	pthread_attr_destroy(&thread_attr);
+    thread->runnableFlag = false;
+    pthread_attr_destroy(&thread_attr);
+    return false;
+  }
+  pthread_attr_destroy(&thread_attr);
 #endif
-	
-	return true;
+  
+  return true;
 }
 
 /****************************************
@@ -146,20 +146,20 @@ bool uecho_thread_stop(uEchoThread *thread)
     return false;
   
   if (thread->runnableFlag == true) {
-		thread->runnableFlag = false;
+    thread->runnableFlag = false;
 #if defined(WIN32)
-		TerminateThread(thread->hThread, 0);
-		WaitForSingleObject(thread->hThread, INFINITE);
+    TerminateThread(thread->hThread, 0);
+    WaitForSingleObject(thread->hThread, INFINITE);
 #else
-		#if  defined(TARGET_OS_MAC) || defined(TARGET_OS_IPHONE)
-		pthread_kill(thread->pThread, 0);
-		#else
+    #if  defined(TARGET_OS_MAC) || defined(TARGET_OS_IPHONE)
+    pthread_kill(thread->pThread, 0);
+    #else
     pthread_kill(thread->pThread, SIGQUIT);
-		#endif
+    #endif
 #endif
-	}
+  }
 
-	return true;
+  return true;
 }
 
 /****************************************
@@ -168,8 +168,8 @@ bool uecho_thread_stop(uEchoThread *thread)
 
 bool uecho_thread_restart(uEchoThread *thread)
 {
-	uecho_thread_stop(thread);
-	return uecho_thread_start(thread);
+  uecho_thread_stop(thread);
+  return uecho_thread_start(thread);
 }
 
 /****************************************
@@ -185,7 +185,7 @@ bool uecho_thread_isrunnable(uEchoThread *thread)
   pthread_testcancel();
 #endif
   
-	return thread->runnableFlag;
+  return thread->runnableFlag;
 }
 
 /****************************************
@@ -209,7 +209,7 @@ void uecho_thread_setaction(uEchoThread *thread, uEchoThreadFunc func)
   if (!thread)
     return;
   
-	thread->action = func;
+  thread->action = func;
 }
 
 /****************************************

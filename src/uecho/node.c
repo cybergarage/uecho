@@ -18,10 +18,10 @@
 
 uEchoNode *uecho_node_new(void)
 {
-	uEchoNode *node;
+  uEchoNode *node;
   uEchoObject *obj;
 
-	node = (uEchoNode *)malloc(sizeof(uEchoNode));
+  node = (uEchoNode *)malloc(sizeof(uEchoNode));
 
   if (!node)
     return NULL;
@@ -42,7 +42,7 @@ uEchoNode *uecho_node_new(void)
   obj = uecho_nodeprofileclass_new();
   uecho_node_addobject(node, obj);
   
-	return node;
+  return node;
 }
 
 /****************************************
@@ -54,14 +54,14 @@ void uecho_node_delete(uEchoNode *node)
   if (!node)
     return;
   
-	uecho_list_remove((uEchoList *)node);
+  uecho_list_remove((uEchoList *)node);
   
   uecho_mutex_delete(node->mutex);
   uecho_classlist_delete(node->classes);
   uecho_objectlist_delete(node->objects);
   uecho_server_delete(node->server);
 
-	free(node);
+  free(node);
 }
 
 /****************************************

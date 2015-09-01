@@ -17,9 +17,9 @@
 
 uEchoClass *uecho_class_new(void)
 {
-	uEchoClass *cls;
+  uEchoClass *cls;
 
-	cls = (uEchoClass *)malloc(sizeof(uEchoClass));
+  cls = (uEchoClass *)malloc(sizeof(uEchoClass));
 
   if (!cls)
     return NULL;
@@ -41,7 +41,7 @@ void uecho_class_delete(uEchoClass *cls)
   if (!cls)
     return;
   
-	uecho_list_remove((uEchoList *)cls);
+  uecho_list_remove((uEchoList *)cls);
 
   free(cls);
 }

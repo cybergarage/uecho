@@ -16,9 +16,9 @@
 
 uEchoObjectPropertyObserver *uecho_object_property_observer_new(void)
 {
-	uEchoObjectPropertyObserver *obs;
+  uEchoObjectPropertyObserver *obs;
 
-	obs = (uEchoObjectPropertyObserver *)malloc(sizeof(uEchoObjectPropertyObserver));
+  obs = (uEchoObjectPropertyObserver *)malloc(sizeof(uEchoObjectPropertyObserver));
     
   if (!obs)
     return NULL;
@@ -37,7 +37,7 @@ uEchoObjectPropertyObserver *uecho_object_property_observer_new(void)
 
 void uecho_object_property_observer_delete(uEchoObjectPropertyObserver *obs)
 {
-	uecho_list_remove((uEchoList *)obs);
+  uecho_list_remove((uEchoList *)obs);
   
   free(obs);
 }

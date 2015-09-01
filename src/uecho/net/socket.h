@@ -57,13 +57,13 @@ typedef int SOCKET;
 
 typedef struct _uEchoSocket {
   SOCKET id;
-	int type;
-	int direction;
-	uEchoString *ipaddr;
-	int port;
+  int type;
+  int direction;
+  uEchoString *ipaddr;
+  int port;
 #if defined(UECHO_USE_OPENSSL)
-	SSL_CTX* ctx;
-	SSL* ssl;
+  SSL_CTX* ctx;
+  SSL* ssl;
 #endif
 } uEchoSocket;
 
@@ -71,11 +71,11 @@ typedef struct _uEchoDatagramPacket {
   byte *data;
   size_t dataLen;
   
-	uEchoString *localAddress;
-	int localPort;
-	
+  uEchoString *localAddress;
+  int localPort;
+  
   uEchoString *remoteAddress;
-	int remotePort;
+  int remotePort;
 } uEchoDatagramPacket;
 
 /****************************************

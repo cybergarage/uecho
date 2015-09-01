@@ -29,9 +29,9 @@ extern "C" {
 
 typedef struct _uEchoMutex {
 #if defined(WIN32)
-	HANDLE	mutexID;
+  HANDLE  mutexID;
 #else
-	pthread_mutex_t mutexID;
+  pthread_mutex_t mutexID;
 #endif
 } uEchoMutex;
 

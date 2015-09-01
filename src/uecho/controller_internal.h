@@ -33,7 +33,7 @@ enum {
 ****************************************/
 
 typedef struct _uEchoController {
-	uEchoMutex *mutex;
+  uEchoMutex *mutex;
   uEchoNode *node;
   uEchoTID lastTID;
   uEchoNodeList *nodes;

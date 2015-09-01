@@ -16,15 +16,15 @@
 
 uEchoPropertyList *uecho_propertylist_new(void)
 {
-	uEchoPropertyList *props;
+  uEchoPropertyList *props;
 
-	props = (uEchoPropertyList *)malloc(sizeof(uEchoPropertyList));
+  props = (uEchoPropertyList *)malloc(sizeof(uEchoPropertyList));
   if (!props)
     return NULL;
 
   uecho_list_header_init((uEchoList *)props);
 
-	return props;
+  return props;
 }
 
 /****************************************
@@ -36,9 +36,9 @@ void uecho_propertylist_delete(uEchoPropertyList *props)
   if (!props)
     return;
   
-	uecho_propertylist_clear(props);
+  uecho_propertylist_clear(props);
 
-	free(props);
+  free(props);
 }
 
 /****************************************

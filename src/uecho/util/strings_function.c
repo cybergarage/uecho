@@ -27,16 +27,16 @@ char *uecho_strdup(const char *str)
  char *cpStrBuf;
 #endif
 
-	if (str == NULL)
-		return NULL;
+  if (str == NULL)
+    return NULL;
 
 #if defined(HAVE_STRDUP)
-	return strdup(str);
+  return strdup(str);
 #else
-	cpStrBuf = (char *)malloc(strlen(str)+1);
-	if ( NULL != cpStrBuf )
-		strcpy(cpStrBuf, str);
-	return cpStrBuf;
+  cpStrBuf = (char *)malloc(strlen(str)+1);
+  if ( NULL != cpStrBuf )
+    strcpy(cpStrBuf, str);
+  return cpStrBuf;
 #endif
 }
 
@@ -100,15 +100,15 @@ int uecho_strncmp(const char *str1, const char *str2, int nchars)
 
 int uecho_strcasecmp(const char *str1, const char *str2)
 {
-	if (str1 == NULL || str2 == NULL) return -1;
+  if (str1 == NULL || str2 == NULL) return -1;
 #if !defined(WIN32)
-	return strcasecmp(str1, str2);
+  return strcasecmp(str1, str2);
 #else
-	for (; toupper(*str1) == toupper(*str2); str1++, str2++) {
-		if (*str1 == '\0')
-			return 0;
-	}
-	return *str1 - *str2;
+  for (; toupper(*str1) == toupper(*str2); str1++, str2++) {
+    if (*str1 == '\0')
+      return 0;
+  }
+  return *str1 - *str2;
 #endif
 }
 
@@ -118,10 +118,10 @@ int uecho_strcasecmp(const char *str1, const char *str2)
 
 bool uecho_streq(const char *str1, const char *str2)
 {
-	if (str1 == NULL || str2 == NULL)
+  if (str1 == NULL || str2 == NULL)
     return false;
-	
-	return ((uecho_strcmp(str1, str2) == 0) ? true : false);
+  
+  return ((uecho_strcmp(str1, str2) == 0) ? true : false);
 }
 
 /****************************************
@@ -130,10 +130,10 @@ bool uecho_streq(const char *str1, const char *str2)
 
 bool uecho_strcaseeq(const char *str1, const char *str2)
 {
-	if (str1 == NULL || str2 == NULL)
+  if (str1 == NULL || str2 == NULL)
     return false;
-	
-	return ((uecho_strcasecmp(str1, str2) == 0) ? true : false);
+  
+  return ((uecho_strcasecmp(str1, str2) == 0) ? true : false);
 }
 
 /****************************************
@@ -142,14 +142,14 @@ bool uecho_strcaseeq(const char *str1, const char *str2)
 
 ssize_t uecho_strstr(const char *haystack, const char *needle)
 {
-	char *strPos;
+  char *strPos;
 
-	if (haystack == NULL || needle == NULL)
-		return -1;
-	strPos = strstr(haystack, needle);
-	if (strPos == NULL)
-		return -1;
-	return (strPos - haystack);
+  if (haystack == NULL || needle == NULL)
+    return -1;
+  strPos = strstr(haystack, needle);
+  if (strPos == NULL)
+    return -1;
+  return (strPos - haystack);
 }
 
 /****************************************
@@ -158,21 +158,21 @@ ssize_t uecho_strstr(const char *haystack, const char *needle)
 
 ssize_t uecho_strchr(const char *str, const char *chars, size_t nchars)
 {
-	size_t strLen;
-	ssize_t i, j;
+  size_t strLen;
+  ssize_t i, j;
 
-	if (str == NULL || chars == NULL)
-		return -1;
-		
-	strLen = uecho_strlen(str);
-	for (i=0; i<strLen; i++) {
-		for (j=0; j<nchars; j++) {
-			if (str[i] == chars[j])
-				return i;
-		}		
-	}
-	
-	return -1;
+  if (str == NULL || chars == NULL)
+    return -1;
+    
+  strLen = uecho_strlen(str);
+  for (i=0; i<strLen; i++) {
+    for (j=0; j<nchars; j++) {
+      if (str[i] == chars[j])
+        return i;
+    }    
+  }
+  
+  return -1;
 }
 
 /****************************************
@@ -181,21 +181,21 @@ ssize_t uecho_strchr(const char *str, const char *chars, size_t nchars)
 
 ssize_t uecho_strrchr(const char *str, const char *chars, size_t nchars)
 {
-	size_t strLen;
-	ssize_t i, j;
-	
-	if (str == NULL || chars == NULL)
-		return -1;
-		
-	strLen = uecho_strlen(str);
-	for (i=(strLen-1); 0<=i; i--) {
-		for (j=0; j<nchars; j++) {
-			if (str[i] == chars[j])
-				return i;
-		}		
-	}
-	
-	return -1;
+  size_t strLen;
+  ssize_t i, j;
+  
+  if (str == NULL || chars == NULL)
+    return -1;
+    
+  strLen = uecho_strlen(str);
+  for (i=(strLen-1); 0<=i; i--) {
+    for (j=0; j<nchars; j++) {
+      if (str[i] == chars[j])
+        return i;
+    }    
+  }
+  
+  return -1;
 
 }
 
@@ -205,23 +205,23 @@ ssize_t uecho_strrchr(const char *str, const char *chars, size_t nchars)
 
 char *uecho_strtrimwhite(char *str)
 {
-	size_t strLen;
+  size_t strLen;
   ssize_t i;
-	strLen = uecho_strlen(str);
-	if (strLen == 0) return str;
-	for (i=(strLen-1); 0<=i; i--) {
-		if (isspace(str[i])) {
-			strLen--;
-		} 
-	}
-	for (i=0 ; i<strLen ; i++) {
-		if (!isspace(str[i])) break;
-	}
+  strLen = uecho_strlen(str);
+  if (strLen == 0) return str;
+  for (i=(strLen-1); 0<=i; i--) {
+    if (isspace(str[i])) {
+      strLen--;
+    } 
+  }
+  for (i=0 ; i<strLen ; i++) {
+    if (!isspace(str[i])) break;
+  }
 
-	if (i>0) memmove(str,str+i,strLen-i);
+  if (i>0) memmove(str,str+i,strLen-i);
 
-	str[strLen] = 0;
-	return str;
+  str[strLen] = 0;
+  return str;
 }
 
 /****************************************
@@ -230,10 +230,10 @@ char *uecho_strtrimwhite(char *str)
 
 char *uecho_strtrim(char *str, char *delim, size_t ndelim)
 {
-	if (str == NULL || delim == NULL) return NULL;
+  if (str == NULL || delim == NULL) return NULL;
 
-	uecho_strrtrim(str, delim, ndelim);
-	return uecho_strltrim(str, delim, ndelim);
+  uecho_strrtrim(str, delim, ndelim);
+  return uecho_strltrim(str, delim, ndelim);
 }
 
 /****************************************
@@ -242,23 +242,23 @@ char *uecho_strtrim(char *str, char *delim, size_t ndelim)
 
 char *uecho_strltrim(char *str, char *delim, size_t ndelim)
 {
-	size_t strLen;
+  size_t strLen;
   ssize_t i, j;
-	
-	strLen = uecho_strlen(str);
-	for (i=0; i<strLen; i++) {
-		bool hasDelim = false;
-		for (j=0; j<ndelim; j++) {
-			if (str[i] == delim[j]) {
-				hasDelim = true;
-				break;
-			}
-		}
-		if (hasDelim == false)
-			return (str + i);
-	}
-	
-	return (str + strLen);
+  
+  strLen = uecho_strlen(str);
+  for (i=0; i<strLen; i++) {
+    bool hasDelim = false;
+    for (j=0; j<ndelim; j++) {
+      if (str[i] == delim[j]) {
+        hasDelim = true;
+        break;
+      }
+    }
+    if (hasDelim == false)
+      return (str + i);
+  }
+  
+  return (str + strLen);
 }
 
 /****************************************
@@ -267,24 +267,24 @@ char *uecho_strltrim(char *str, char *delim, size_t ndelim)
 
 char *uecho_strrtrim(char *str, char *delim, size_t ndelim)
 {
-	size_t strLen;
+  size_t strLen;
   ssize_t i, j;
-	
-	strLen = uecho_strlen(str);
-	for (i=(strLen-1); 0<=i; i--) {
-		bool hasDelim = false;
-		for (j=0; j<ndelim; j++) {
-			if (str[i] == delim[j]) {
-				hasDelim = true;
-				str[i] = '\0';
-				break;
-			}
-		}
-		if (hasDelim == false)
-			break;
-	}
-	
-	return str;
+  
+  strLen = uecho_strlen(str);
+  for (i=(strLen-1); 0<=i; i--) {
+    bool hasDelim = false;
+    for (j=0; j<ndelim; j++) {
+      if (str[i] == delim[j]) {
+        hasDelim = true;
+        str[i] = '\0';
+        break;
+      }
+    }
+    if (hasDelim == false)
+      break;
+  }
+  
+  return str;
 }
 
 /****************************************
@@ -293,8 +293,8 @@ char *uecho_strrtrim(char *str, char *delim, size_t ndelim)
 
 char *uecho_strncpy(char *str1, const char *str2, size_t cnt)
 {
-	strncpy(str1, str2, cnt);
-	return str1;
+  strncpy(str1, str2, cnt);
+  return str1;
 }
 
 /****************************************
@@ -303,9 +303,9 @@ char *uecho_strncpy(char *str1, const char *str2, size_t cnt)
 
 char *uecho_strncat(char *str1, const char *str2, size_t cnt)
 {
-	size_t str1Len;
-	str1Len = uecho_strlen(str1);
-	return uecho_strncpy((str1 + str1Len), str2, cnt);
+  size_t str1Len;
+  str1Len = uecho_strlen(str1);
+  return uecho_strncpy((str1 + str1Len), str2, cnt);
 }
 
 /****************************************

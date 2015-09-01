@@ -16,15 +16,15 @@
 
 uEchoObjectList *uecho_objectlist_new(void)
 {
-	uEchoObjectList *objs;
+  uEchoObjectList *objs;
 
-	objs = (uEchoObjectList *)malloc(sizeof(uEchoObjectList));
+  objs = (uEchoObjectList *)malloc(sizeof(uEchoObjectList));
   if (!objs)
     return NULL;
 
   uecho_list_header_init((uEchoList *)objs);
 
-	return objs;
+  return objs;
 }
 
 /****************************************
@@ -36,9 +36,9 @@ void uecho_objectlist_delete(uEchoObjectList *objs)
   if (!objs)
     return;
   
-	uecho_objectlist_clear(objs);
+  uecho_objectlist_clear(objs);
 
-	free(objs);
+  free(objs);
 }
 
 /****************************************
