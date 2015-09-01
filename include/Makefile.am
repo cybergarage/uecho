@@ -18,8 +18,6 @@ uechoheaders = \
 	./uecho/util/timer.h \
 	./uecho/typedef.h \
 	./uecho/controller.h \
-	./uecho/net/socket.h \
-	./uecho/net/interface.h \
 	./uecho/message.h \
 	./uecho/object.h \
 	./uecho/profile.h \

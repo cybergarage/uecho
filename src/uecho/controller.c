@@ -222,8 +222,9 @@ uEchoObject *uecho_controller_getobjectbycodewithwait(uEchoController *ctrl, uEc
 {
   const int waitRetlyCnt = 10;
   uEchoObject *obj;
+  int n;
   
-  for (int n=0; n<waitRetlyCnt; n++) {
+  for (n=0; n<waitRetlyCnt; n++) {
     uecho_sleep(waitMiliTime / waitRetlyCnt);
     obj = uecho_controller_getobjectbycode(ctrl, code);
     if (obj)
