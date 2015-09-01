@@ -169,6 +169,18 @@ bool uecho_socket_isbound(uEchoSocket *sock)
 }
 
 /****************************************
+ * uecho_socket_isboundaddress
+ ****************************************/
+
+bool uecho_socket_isboundaddress(uEchoSocket *sock, const char *addr)
+{
+  if (!sock)
+    return false;
+
+  return uecho_streq(uecho_socket_getaddress(sock), addr);
+}
+
+/****************************************
 * uecho_socket_setid
 ****************************************/
 
