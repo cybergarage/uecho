@@ -93,7 +93,6 @@ bool uecho_object_responsemessage(uEchoObject *obj, uEchoMessage *msg)
       continue;
     
     msgPropCode = uecho_property_getcode(msgProp);
-    
     nodeProp = uecho_object_getproperty(obj, msgPropCode);
     if (!nodeProp)
       continue;
@@ -130,10 +129,10 @@ bool uecho_object_responsemessage(uEchoObject *obj, uEchoMessage *msg)
 }
 
 /****************************************
- * uecho_object_notifymessage
+ * uecho_object_handlemessage
  ****************************************/
 
-void uecho_object_notifymessage(uEchoObject *obj, uEchoMessage *msg)
+void uecho_object_handlemessage(uEchoObject *obj, uEchoMessage *msg)
 {
   uEchoProperty *msgProp, *nodeProp;
   uEchoPropertyCode msgPropCode;
@@ -248,5 +247,5 @@ void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg)
   if (!nodeDestObj)
     return;
 
-  uecho_object_notifymessage(nodeDestObj, msg);
+    uecho_object_handlemessage(nodeDestObj, msg);
 }
