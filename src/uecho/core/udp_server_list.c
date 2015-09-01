@@ -96,7 +96,11 @@ bool uecho_udp_serverlist_open(uEchoUdpServerList *servers)
       break;
     }
     
-    allActionsSucceeded &= uecho_udp_server_open(server, uecho_net_interface_getaddress(netIf));
+    if (!uecho_udp_server_open(server, uecho_net_interface_getaddress(netIf))) {
+      allActionsSucceeded = false;
+      uecho_udp_server_delete(server);
+      break;
+    }
     
     uecho_udp_serverlist_add(servers, server);
   }
