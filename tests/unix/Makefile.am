@@ -28,9 +28,11 @@ uechotest_SOURCES = \
 	../NodeTest.cpp \
 	../MessageTest.cpp \
 	../MutexTest.cpp \
+	../InterfaceTest.cpp \
 	../PropertyTest.cpp \
 	../DeviceTest.cpp \
 	../ObjectTest.cpp \
+	../ServerTest.cpp \
 	../MiscTest.cpp
 #if HAVE_LIBTOOL
 #uechotest_LDADD = ../../lib/unix/libuecho.la
