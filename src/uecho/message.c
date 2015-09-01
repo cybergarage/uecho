@@ -384,7 +384,7 @@ bool uecho_message_isreadrequest(uEchoMessage *msg)
 
 bool uecho_message_isnotifyrequest(uEchoMessage *msg)
 {
-  if ((msg->ESV == uEchoEsvNotificationRequest) || (msg->ESV == uEchoEsvNotification))
+  if ((msg->ESV == uEchoEsvNotificationRequest) || (msg->ESV == uEchoEsvNotificationResponseRequired))
     return true;
   return false;
 }
@@ -417,7 +417,7 @@ bool uecho_message_isreadresponse(uEchoMessage *msg)
 
 bool uecho_message_isnotifyresponse(uEchoMessage *msg)
 {
-  if ((msg->ESV == uEchoEsvNotificationResponseRequired) || (msg->ESV == uEchoEsvNotificationResponse))
+  if ((msg->ESV == uEchoEsvNotification) || (msg->ESV == uEchoEsvNotificationResponse))
     return true;
   return false;
 }

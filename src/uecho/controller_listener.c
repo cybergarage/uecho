@@ -64,10 +64,10 @@ void uecho_controller_handlesearchmessage(uEchoController *ctrl, uEchoMessage *m
 }
 
 /****************************************
- * uecho_controller_handlereadresponse
+ * uecho_controller_updatepropertydata
  ****************************************/
 
-void uecho_controller_handlereadresponse(uEchoController *ctrl, uEchoMessage *msg)
+void uecho_controller_updatepropertydata(uEchoController *ctrl, uEchoMessage *msg)
 {
   uEchoNode *srcNode;
   uEchoObject *srcObj;
@@ -123,8 +123,8 @@ void uecho_controller_handlerequestmessage(uEchoController *ctrl, uEchoMessage *
     return;
   }
 
-  if (uecho_message_isreadresponse(msg)) {
-    uecho_controller_handlereadresponse(ctrl, msg);
+  if (uecho_message_isreadresponse(msg) || uecho_message_isnotifyresponse(msg)) {
+    uecho_controller_updatepropertydata(ctrl, msg);
     return;
   }
 }

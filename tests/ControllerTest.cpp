@@ -91,35 +91,15 @@ BOOST_AUTO_TEST_CASE(ControllerSearchAll)
   uEchoNode *node = uecho_test_createtestnode();
   BOOST_CHECK(uecho_node_start(node));
 
-  // Find device
+  // Search (NotificationRequest instead of ReadRequest)
 
   BOOST_CHECK(uecho_controller_searchallobjectswithesv(ctrl, uEchoEsvNotificationRequest));
   
+  // Find device
+
   uEchoObject *foundObj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
   BOOST_CHECK(foundObj);
-  
-/*
-  // Send Message
-  
-  uEchoMessage *msg = uecho_message_new();
-  uecho_message_setesv(msg, uEchoEsvReadRequest);
-  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
-  BOOST_CHECK(uecho_controller_sendmessage(ctrl, foundObj, msg));
-  uecho_message_delete(msg);
 
-  // Check Response
-  
-  uEchoProperty *foundProp;
-  for (int n=0; n<UECHO_TEST_RESPONSE_WAIT_RETLY_CNT; n++) {
-    uecho_sleep(UECHO_TEST_RESPONSE_WAIT_MAX_MTIME / UECHO_TEST_RESPONSE_WAIT_RETLY_CNT);
-    foundProp = uecho_object_getproperty(foundObj, UECHO_TEST_PROPERTY_SWITCHCODE);
-    if (foundProp)
-      break;
-  }
-  
-  BOOST_CHECK(foundProp);
-*/
-  
   // Teminate
   
   BOOST_CHECK(uecho_controller_stop(ctrl));

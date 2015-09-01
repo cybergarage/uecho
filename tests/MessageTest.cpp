@@ -180,18 +180,18 @@ BOOST_AUTO_TEST_CASE(MessageEsvType)
   BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvNotification));
   BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), false);
   BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), false);
-  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), true);
-  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), false);
-  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), false);
-  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), false);
-  
-  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvNotificationResponseRequired));
-  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), false);
-  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), false);
   BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), false);
   BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), false);
   BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), false);
   BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), true);
+  
+  BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvNotificationResponseRequired));
+  BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadrequest(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyrequest(msg), true);
+  BOOST_CHECK_EQUAL(uecho_message_iswriteresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isreadresponse(msg), false);
+  BOOST_CHECK_EQUAL(uecho_message_isnotifyresponse(msg), false);
 
   BOOST_CHECK(uecho_message_setesv(msg, uEchoEsvNotificationResponse));
   BOOST_CHECK_EQUAL(uecho_message_iswriterequest(msg), false);
