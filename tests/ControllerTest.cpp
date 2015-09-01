@@ -95,14 +95,7 @@ BOOST_AUTO_TEST_CASE(ControllerSearchAll)
 
   BOOST_CHECK(uecho_controller_searchallobjectswithesv(ctrl, uEchoEsvNotificationRequest));
   
-  uEchoObject *foundObj;
-  for (int n=0; n<UECHO_TEST_RESPONSE_WAIT_RETLY_CNT; n++) {
-    uecho_sleep(UECHO_TEST_RESPONSE_WAIT_MAX_MTIME / UECHO_TEST_RESPONSE_WAIT_RETLY_CNT);
-    foundObj = uecho_controller_getobjectbycode(ctrl, UECHO_TEST_OBJECTCODE);
-    if (foundObj)
-      break;
-  }
-
+  uEchoObject *foundObj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
   BOOST_CHECK(foundObj);
   
 /*
