@@ -22,7 +22,7 @@ uEchoObject *uecho_test_createtestdevice()
   // Operation status property
   uecho_object_setproperty(obj, UECHO_TEST_PROPERTY_SWITCHCODE, uEchoPropertyAttrReadWrite);
   prop[0] = UECHO_TEST_PROPERTY_SWITCH_ON;
-  uecho_object_setpropertydata(obj, UECHO_TEST_PROPERTY_SWITCHCODE, prop, 1);
+  uecho_object_setpropertydata(obj, UECHO_TEST_PROPERTY_SWITCH_DEFAULT, prop, 1);
   
   return obj;
 }
