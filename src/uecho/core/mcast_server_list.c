@@ -165,6 +165,15 @@ bool uecho_mcast_serverlist_stop(uEchoMcastServerList *servers)
 }
 
 /****************************************
+ * uecho_mcast_serverlist_isrunning
+ ****************************************/
+
+bool uecho_mcast_serverlist_isrunning(uEchoMcastServerList *servers)
+{
+  return (0 < uecho_mcast_serverlist_size(servers)) ? true : false;
+}
+
+/****************************************
  * uecho_mcast_serverlist_post
  ****************************************/
 

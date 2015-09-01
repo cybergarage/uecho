@@ -141,10 +141,10 @@ bool uecho_server_isrunning(uEchoServer *server)
 {
   bool allActionsSucceeded = true;
   
-  allActionsSucceeded &= (0 < uecho_mcast_serverlist_size(server->mcastServers)) ? true : false;
+  allActionsSucceeded &= uecho_mcast_serverlist_isrunning(server->mcastServers);
   
   if (uecho_server_isudpserverenabled(server)) {
-    allActionsSucceeded &= (0 < uecho_udp_serverlist_size(server->udpServers)) ? true : false;
+    allActionsSucceeded &= uecho_udp_serverlist_isrunning(server->udpServers);
   }
   
   return allActionsSucceeded;
