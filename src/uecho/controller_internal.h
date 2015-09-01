@@ -21,15 +21,28 @@ extern "C" {
 #endif
 
 /****************************************
+ * Constant
+ ****************************************/
+
+enum {
+  uEchoControllerParamNone             = 0x00,
+  uEchoControllerParamDisableUdpServer = 0x01,
+};
+  
+/****************************************
 * Data Type
 ****************************************/
 
+typedef int uEchoControllerParam;
+  
 typedef struct _uEchoController {
 	uEchoMutex *mutex;
   uEchoNode *node;
   uEchoTID lastTID;
   uEchoNodeList *nodes;
   void (*msgListener)(struct _uEchoController *, uEchoMessage *); /* uEchoControllerMessageListener */
+  uEchoControllerParam param;
+  
   clock_t postResWaitMiliTime;
   uEchoMessage *postReqMsg;
   uEchoMessage *postResMsg;
@@ -45,6 +58,10 @@ typedef struct _uEchoController {
  * Function
 ****************************************/
 
+void uecho_controller_enableparameter(uEchoController *ctrl, uEchoControllerParam param);
+void uecho_controller_disableparameter(uEchoController *ctrl, uEchoControllerParam param);
+bool uecho_controller_isparameterenabled(uEchoController *ctrl, uEchoControllerParam param);
+  
 void uecho_controller_setlasttid(uEchoController *ctrl, uEchoTID tid);
 uEchoTID uecho_controller_getlasttid(uEchoController *ctrl);
 uEchoTID uecho_controller_getnexttid(uEchoController *ctrl);  
