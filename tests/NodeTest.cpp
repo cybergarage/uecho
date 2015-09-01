@@ -23,6 +23,21 @@ BOOST_AUTO_TEST_CASE(NodeDefault)
   uecho_node_delete(node);
 }
 
+BOOST_AUTO_TEST_CASE(NodeAddress)
+{
+  const char *TEST_ADDR = "192.168.0.1";
+  
+  uEchoNode *node = uecho_node_new();
+  BOOST_CHECK(node);
+  
+  BOOST_CHECK_EQUAL(uecho_node_isaddress(node, TEST_ADDR), false);
+
+  uecho_node_setaddress(node, TEST_ADDR);
+  BOOST_CHECK_EQUAL(uecho_node_isaddress(node, TEST_ADDR), true);
+  
+  uecho_node_delete(node);
+}
+
 BOOST_AUTO_TEST_CASE(NodeSetObjects)
 {
   uEchoNode *node = uecho_node_new();
