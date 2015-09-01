@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21205A121B95EEEC008A941C /* InterfaceTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21205A111B95EEEC008A941C /* InterfaceTest.cpp */; };
+		21205A141B95FACC008A941C /* ServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21205A131B95FACC008A941C /* ServerTest.cpp */; };
 		213C5BFD1B4A548B0013DDD9 /* liblibuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 213C5BFA1B4A54630013DDD9 /* liblibuecho.a */; };
 		214376311B705EAE003F2E5E /* PropertyTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214376301B705EAE003F2E5E /* PropertyTest.cpp */; };
 		2153A5E31B8EB40D00FAE69A /* TestDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2153A5E21B8EB40D00FAE69A /* TestDevice.cpp */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		210363311B4A51B300DB3025 /* uEchoTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uEchoTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21205A111B95EEEC008A941C /* InterfaceTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InterfaceTest.cpp; path = ../../InterfaceTest.cpp; sourceTree = "<group>"; };
+		21205A131B95FACC008A941C /* ServerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ServerTest.cpp; path = ../../ServerTest.cpp; sourceTree = "<group>"; };
 		213C5BF51B4A54630013DDD9 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
 		214376301B705EAE003F2E5E /* PropertyTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PropertyTest.cpp; path = ../../PropertyTest.cpp; sourceTree = "<group>"; };
 		2153A5E11B8EB40D00FAE69A /* TestDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestDevice.h; path = ../../TestDevice.h; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		217993091B4A5A6B00A158CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				21205A131B95FACC008A941C /* ServerTest.cpp */,
 				21205A111B95EEEC008A941C /* InterfaceTest.cpp */,
 				2153A5E11B8EB40D00FAE69A /* TestDevice.h */,
 				2153A5E21B8EB40D00FAE69A /* TestDevice.cpp */,
@@ -242,6 +245,7 @@
 				21B06C171B7C8440004E9E09 /* ObjectListTest.cpp in Sources */,
 				218688F01B8D67E000B10494 /* NodeListTest.cpp in Sources */,
 				214376311B705EAE003F2E5E /* PropertyTest.cpp in Sources */,
+				21205A141B95FACC008A941C /* ServerTest.cpp in Sources */,
 				216F1DFC1B4A5BB8003C7B6A /* ControllerTest.cpp in Sources */,
 				21BCB1FB1B7349E900999D01 /* ThreadTest.cpp in Sources */,
 				2153A5E31B8EB40D00FAE69A /* TestDevice.cpp in Sources */,

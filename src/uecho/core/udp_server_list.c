@@ -165,7 +165,16 @@ bool uecho_udp_serverlist_stop(uEchoUdpServerList *servers)
 }
 
 /****************************************
- * uecho_udp_serverlist_stop
+ * uecho_udp_serverlist_isrunning
+ ****************************************/
+
+bool uecho_udp_serverlist_isrunning(uEchoUdpServerList *servers)
+{
+  return  (0 < uecho_udp_serverlist_size(servers)) ? true : false;
+}
+
+/****************************************
+ * uecho_udp_serverlist_isboundaddress
  ****************************************/
 
 bool uecho_udp_serverlist_isboundaddress(uEchoUdpServerList *servers, const char *addr)
