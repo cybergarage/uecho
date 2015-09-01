@@ -220,12 +220,11 @@ uEchoObject *uecho_controller_getobjectbycode(uEchoController *ctrl, uEchoObject
 
 uEchoObject *uecho_controller_getobjectbycodewithwait(uEchoController *ctrl, uEchoObjectCode code, clock_t waitMiliTime)
 {
-  const int waitRetlyCnt = 10;
   uEchoObject *obj;
   int n;
   
-  for (n=0; n<waitRetlyCnt; n++) {
-    uecho_sleep(waitMiliTime / waitRetlyCnt);
+  for (n=0; n<uEchoWaitRetryCount; n++) {
+    uecho_sleep(waitMiliTime / uEchoWaitRetryCount);
     obj = uecho_controller_getobjectbycode(ctrl, code);
     if (obj)
       return obj;

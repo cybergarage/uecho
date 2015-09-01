@@ -20,6 +20,7 @@
 		2111B1A01B940DAB005FDBD6 /* strings.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B19C1B940DAB005FDBD6 /* strings.h */; };
 		2111B1A11B940DAB005FDBD6 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B19D1B940DAB005FDBD6 /* thread.h */; };
 		2111B1A51B941660005FDBD6 /* uecho_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B1A41B941660005FDBD6 /* uecho_internal.h */; };
+		21205A101B95DC4E008A941C /* const_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21205A0F1B95DC4E008A941C /* const_internal.h */; };
 		2142A5E81B953B19008B1AF0 /* option.h in Headers */ = {isa = PBXBuildFile; fileRef = 2142A5E71B953B19008B1AF0 /* option.h */; };
 		2142A5EB1B9572A2008B1AF0 /* interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 2142A5E91B9572A2008B1AF0 /* interface.h */; };
 		2142A5EC1B9572A2008B1AF0 /* socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 2142A5EA1B9572A2008B1AF0 /* socket.h */; };
@@ -94,6 +95,7 @@
 		2111B19C1B940DAB005FDBD6 /* strings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strings.h; sourceTree = "<group>"; };
 		2111B19D1B940DAB005FDBD6 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
 		2111B1A41B941660005FDBD6 /* uecho_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uecho_internal.h; sourceTree = "<group>"; };
+		21205A0F1B95DC4E008A941C /* const_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = const_internal.h; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* liblibuecho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibuecho.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2142A5E71B953B19008B1AF0 /* option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = option.h; path = core/option.h; sourceTree = "<group>"; };
 		2142A5E91B9572A2008B1AF0 /* interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interface.h; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			children = (
 				21D68B0C1B7C1D700032552C /* std */,
 				21757F481B6A0CA500281E6F /* core */,
+				21205A0F1B95DC4E008A941C /* const_internal.h */,
 				2111B1A41B941660005FDBD6 /* uecho_internal.h */,
 				2111B18C1B93F607005FDBD6 /* message_internal.h */,
 				21CF27561B917B25004A5AAD /* message_search.c */,
@@ -348,6 +351,7 @@
 				217866E81B8F3F7C003AEB9B /* uecho.h in Headers */,
 				2111B1981B93FCB7005FDBD6 /* observer.h in Headers */,
 				2142A5E81B953B19008B1AF0 /* option.h in Headers */,
+				21205A101B95DC4E008A941C /* const_internal.h in Headers */,
 				2111B1911B93F78F005FDBD6 /* class_internal.h in Headers */,
 				21678F101A8D51C800AE79AA /* typedef.h in Headers */,
 				21EFF1A01B4A9A5E002B5E57 /* controller.h in Headers */,
