@@ -30,6 +30,7 @@ uEchoController *uecho_controller_new(void)
   ctrl->mutex = uecho_mutex_new();
   ctrl->node = uecho_node_new();
   ctrl->nodes = uecho_nodelist_new();
+  ctrl->param = uEchoControllerParamNone;
   
   server = uecho_node_getserver(ctrl->node);
   uecho_server_setuserdata(server, ctrl);
@@ -211,6 +212,42 @@ uEchoObject *uecho_controller_getobjectbycode(uEchoController *ctrl, uEchoObject
   }
   
   return NULL;
+}
+
+/****************************************
+ * uecho_controller_setlasttid
+ ****************************************/
+
+void uecho_controller_enableparameter(uEchoController *ctrl, uEchoControllerParam param)
+{
+  if (!ctrl)
+    return;
+  
+  ctrl->param |= param;
+}
+
+/****************************************
+ * uecho_controller_setlasttid
+ ****************************************/
+
+void uecho_controller_disableparameter(uEchoController *ctrl, uEchoControllerParam param)
+{
+  if (!ctrl)
+    return;
+  
+  ctrl->param ^= param;
+}
+
+/****************************************
+ * uecho_controller_setlasttid
+ ****************************************/
+
+bool uecho_controller_isparameterenabled(uEchoController *ctrl, uEchoControllerParam param)
+{
+  if (!ctrl)
+    return false;
+  
+  return (ctrl->param & param) ? true : false;
 }
 
 /****************************************
