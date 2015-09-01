@@ -14,6 +14,7 @@
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
+#include <uecho/const_internal.h>
 #include <uecho/property_internal.h>
 #include <uecho/message_internal.h>
 
