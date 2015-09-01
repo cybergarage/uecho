@@ -96,7 +96,11 @@ bool uecho_mcast_serverlist_open(uEchoMcastServerList *servers)
       break;
     }
 
-    allActionsSucceeded &= uecho_mcast_server_open(server, uecho_net_interface_getaddress(netIf));
+    if (!uecho_mcast_server_open(server, uecho_net_interface_getaddress(netIf))) {
+      allActionsSucceeded = false;
+      uecho_mcast_server_delete(server);
+      break;
+    }
 
     uecho_mcast_serverlist_add(servers, server);
   }
