@@ -196,7 +196,7 @@ void uecho_object_notifymessage(uEchoObject *obj, uEchoMessage *msg)
  * uecho_node_servermessagelistener
  ****************************************/
 
-bool uecho_node_ismyobjectmessage(uEchoNode *node, uEchoMessage *msg)
+bool uecho_node_isselfobjectmessage(uEchoNode *node, uEchoMessage *msg)
 {
   if (!uecho_node_isaddress(node, uecho_message_getsourceaddress(msg)))
     return false;
@@ -229,17 +229,22 @@ void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg)
     node->msgListener(node, msg);
   }
 
-  esv = uecho_message_getesv(msg);
-  dstObjCode = uecho_message_getdestinationobjectcode(msg);
-  nodeDestObj = uecho_node_getobjectbycode(node, dstObjCode);
-
-  //
+  // Ignore when the sounrce object equals the destination object
+  
+  // Disable for testing
+  // if (uecho_node_isselfobjectmessage(node, msg))
+  //   return;
   
   // Processing when the controlled object exists, except when ESV = 0x60-0x63, 0x6E and 0x74
+
+  esv = uecho_message_getesv(msg);
   if (!uecho_message_isrequestesv(esv))
     return;
   
   // Processing when the controlled object does not exist
+  
+  dstObjCode = uecho_message_getdestinationobjectcode(msg);
+  nodeDestObj = uecho_node_getobjectbycode(node, dstObjCode);
   if (!nodeDestObj)
     return;
 

@@ -182,3 +182,23 @@ bool uecho_mcast_serverlist_post(uEchoMcastServerList *servers, const byte *msg,
   return allActionsSucceeded;
 }
 
+/****************************************
+ * uecho_mcast_serverlist_isboundaddress
+ ****************************************/
+
+bool uecho_mcast_serverlist_isboundaddress(uEchoMcastServerList *servers, const char *addr)
+{
+  uEchoMcastServer *server;
+  uEchoSocket *sock;
+  
+  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
+    sock = uecho_mcast_getsocket(server);
+    if (!sock)
+      continue;
+    if (uecho_socket_isboundaddress(sock, addr))
+      return true;
+  }
+  
+  return false;
+}
+
