@@ -16,9 +16,9 @@
 
 uEchoObject *uecho_device_new(void)
 {
-	uEchoObject *obj;
+  uEchoObject *obj;
 
-	obj = uecho_object_new();
+  obj = uecho_object_new();
     
   if (!obj)
     return NULL;

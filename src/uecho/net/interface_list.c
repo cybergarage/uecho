@@ -17,9 +17,9 @@
 
 uEchoNetworkInterfaceList *uecho_net_interfacelist_new(void)
 {
-	uEchoNetworkInterfaceList *netIfList;
+  uEchoNetworkInterfaceList *netIfList;
 
-	netIfList = (uEchoNetworkInterfaceList *)malloc(sizeof(uEchoNetworkInterfaceList));
+  netIfList = (uEchoNetworkInterfaceList *)malloc(sizeof(uEchoNetworkInterfaceList));
   if (!netIfList)
     return NULL;
 
@@ -27,7 +27,7 @@ uEchoNetworkInterfaceList *uecho_net_interfacelist_new(void)
   netIfList->name = NULL;
   netIfList->ipaddr = NULL;
 
-	return netIfList;
+  return netIfList;
 }
 
 /****************************************
@@ -36,6 +36,6 @@ uEchoNetworkInterfaceList *uecho_net_interfacelist_new(void)
 
 void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList *netIfList)
 {
-	uecho_net_interfacelist_clear(netIfList);
-	free(netIfList);
+  uecho_net_interfacelist_clear(netIfList);
+  free(netIfList);
 }

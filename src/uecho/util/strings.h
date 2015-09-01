@@ -35,11 +35,11 @@ extern "C" {
 
 #define UECHO_STRING_FLOAT_BUFLEN 64
 #define UECHO_STRING_DOUBLE_BUFLEN 64
-	
+  
 /****************************************
 * Function 
 ****************************************/
-	
+  
 char *uecho_strdup(const char *str);
 size_t uecho_strlen(const char *str);
 char *uecho_strcpy(char *dst, const char *src);
@@ -58,7 +58,7 @@ char *uecho_strltrim(char *str, char *delim, size_t ndelim);
 char *uecho_strrtrim(char *str, char *delim, size_t ndelim);
 char *uecho_strncpy(char *str1, const char *str2, size_t cnt);
 char *uecho_strncat(char *str1, const char *str2, size_t cnt);
-	
+  
 const char *uecho_int2str(int value, char *buf, size_t bufSize);
 const char *uecho_long2str(long value, char *buf, size_t bufSize);
 const char *uecho_float2str(float value, char *buf, size_t bufSize);
@@ -78,35 +78,35 @@ const char *uecho_ssizet2str(ssize_t value, char *buf, size_t bufSize);
 /****************************************
 * Data Type
 ****************************************/
-	
+  
 typedef struct _uEchoString {
-	char *value;
-	size_t memSize;
-	size_t valueSize;
+  char *value;
+  size_t memSize;
+  size_t valueSize;
 } uEchoString;
-	
+  
 typedef struct _uEchoStringTokenizer {
-	char *value;
-	char *delim;
-	size_t delimCnt;
-	size_t nextStartPos;
-	size_t lastPos;
-	char *currToken;
-	char *nextToken;
-	char repToken;
-	bool hasNextTokens;
+  char *value;
+  char *delim;
+  size_t delimCnt;
+  size_t nextStartPos;
+  size_t lastPos;
+  char *currToken;
+  char *nextToken;
+  char repToken;
+  bool hasNextTokens;
 } uEchoStringTokenizer;
-	
+  
 /****************************************
 * Function (StringTokenizer)
 ****************************************/
-	
+  
 uEchoStringTokenizer *uecho_string_tokenizer_new(const char *str, const char *delim);
 void uecho_string_tokenizer_delete(uEchoStringTokenizer *strToken);
 bool uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer *strToken);
 char *uecho_string_tokenizer_nexttoken(uEchoStringTokenizer *strToken);
 char *uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer *strToken);
-	
+  
 /****************************************
 * Function (String)
 ****************************************/
@@ -128,7 +128,7 @@ char *uecho_string_getvalue(uEchoString *str);
 #define uecho_string_getlongvalue(str) uecho_str2long(uecho_string_getvalue(str))
 #define uecho_string_getfloatvalue(str) uecho_str2float(uecho_string_getvalue(str))
 #define uecho_string_getdoublevalue(str) uecho_str2double(uecho_string_getvalue(str))
-	
+  
 size_t uecho_string_length(uEchoString *str);
 
 char *uecho_string_addvalue(uEchoString *str, const char *value);

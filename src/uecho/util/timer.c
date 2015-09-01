@@ -27,9 +27,9 @@
 void uecho_wait(clock_t mtime)
 {
 #if defined(WIN32)
-	Sleep(mtime);
+  Sleep(mtime);
 #else
-	usleep(((useconds_t)(mtime * 1000)));
+  usleep(((useconds_t)(mtime * 1000)));
 #endif
 }
 
@@ -39,12 +39,12 @@ void uecho_wait(clock_t mtime)
 
 void uecho_waitrandom(clock_t mtime)
 {
-	double factor;
-	long waitTime;
+  double factor;
+  long waitTime;
 
-	factor = (double)rand() / (double)RAND_MAX;
-	waitTime = (long)((double)mtime * factor);
-	uecho_wait(waitTime);
+  factor = (double)rand() / (double)RAND_MAX;
+  waitTime = (long)((double)mtime * factor);
+  uecho_wait(waitTime);
 }
 
 /****************************************
@@ -62,12 +62,12 @@ clock_t uecho_getcurrentsystemtime(void)
 
 float uecho_random(void)
 {
-	static bool seedDone = false;
+  static bool seedDone = false;
 
-	if (seedDone == false) {
-		srand((int)(uecho_getcurrentsystemtime() % INT_MAX));
-		seedDone = true;
-	}
+  if (seedDone == false) {
+    srand((int)(uecho_getcurrentsystemtime() % INT_MAX));
+    seedDone = true;
+  }
   
-	return (float)rand() / (float)RAND_MAX;
+  return (float)rand() / (float)RAND_MAX;
 }

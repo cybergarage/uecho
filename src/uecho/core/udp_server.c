@@ -16,17 +16,17 @@
 
 uEchoUdpServer *uecho_udp_server_new(void)
 {
-	uEchoUdpServer *server;
+  uEchoUdpServer *server;
 
-	server = (uEchoUdpServer *)malloc(sizeof(uEchoUdpServer));
+  server = (uEchoUdpServer *)malloc(sizeof(uEchoUdpServer));
 
   if (!server)
     return NULL;
-	
+  
   server->socket = NULL;
   server->thread = NULL;
   
-	return server;
+  return server;
 }
 
 /****************************************

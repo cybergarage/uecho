@@ -16,19 +16,19 @@
 
 uEchoServer *uecho_server_new(void)
 {
-	uEchoServer *server;
+  uEchoServer *server;
 
-	server = (uEchoServer *)malloc(sizeof(uEchoServer));
+  server = (uEchoServer *)malloc(sizeof(uEchoServer));
 
   if (!server)
     return NULL;
-	
+  
   server->udpServers = uecho_udp_serverlist_new();
   server->mcastServers = uecho_mcast_serverlist_new();
   
   uecho_server_setoption(server, uEchoOptionNone);
   
-	return server;
+  return server;
 }
 
 /****************************************
@@ -40,7 +40,7 @@ void uecho_server_delete(uEchoServer *server)
   uecho_udp_serverlist_delete(server->udpServers);
   uecho_mcast_serverlist_delete(server->mcastServers);
   
-	free(server);
+  free(server);
 }
 
 /****************************************
