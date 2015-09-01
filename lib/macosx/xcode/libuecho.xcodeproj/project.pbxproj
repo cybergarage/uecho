@@ -20,6 +20,7 @@
 		2111B1A01B940DAB005FDBD6 /* strings.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B19C1B940DAB005FDBD6 /* strings.h */; };
 		2111B1A11B940DAB005FDBD6 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B19D1B940DAB005FDBD6 /* thread.h */; };
 		2111B1A51B941660005FDBD6 /* uecho_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B1A41B941660005FDBD6 /* uecho_internal.h */; };
+		2142A5E81B953B19008B1AF0 /* option.h in Headers */ = {isa = PBXBuildFile; fileRef = 2142A5E71B953B19008B1AF0 /* option.h */; };
 		2159A1D11B751D2100A134D8 /* mcast_server_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159A1CF1B751D2100A134D8 /* mcast_server_list.c */; };
 		2159A1D21B751D2100A134D8 /* udp_server_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2159A1D01B751D2100A134D8 /* udp_server_list.c */; };
 		215B493D1B85831E002B20CE /* profile.c in Sources */ = {isa = PBXBuildFile; fileRef = 215B493C1B85831E002B20CE /* profile.c */; };
@@ -94,6 +95,7 @@
 		2111B19D1B940DAB005FDBD6 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
 		2111B1A41B941660005FDBD6 /* uecho_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uecho_internal.h; sourceTree = "<group>"; };
 		212ADD881A8D4F000054EC0F /* liblibuecho.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibuecho.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2142A5E71B953B19008B1AF0 /* option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = option.h; path = core/option.h; sourceTree = "<group>"; };
 		2159A1CF1B751D2100A134D8 /* mcast_server_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mcast_server_list.c; path = core/mcast_server_list.c; sourceTree = "<group>"; };
 		2159A1D01B751D2100A134D8 /* udp_server_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udp_server_list.c; path = core/udp_server_list.c; sourceTree = "<group>"; };
 		215B493C1B85831E002B20CE /* profile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = profile.c; path = std/profile.c; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 		21757F481B6A0CA500281E6F /* core */ = {
 			isa = PBXGroup;
 			children = (
+				2142A5E71B953B19008B1AF0 /* option.h */,
 				2111B1961B93FCB7005FDBD6 /* observer.h */,
 				2111B1971B93FCB7005FDBD6 /* server.h */,
 				218C820B1B8D6DA000E262C3 /* object_property_observer_list.c */,
@@ -353,6 +356,7 @@
 				2111B1891B93EE4D005FDBD6 /* object_internal.h in Headers */,
 				217866E81B8F3F7C003AEB9B /* uecho.h in Headers */,
 				2111B1981B93FCB7005FDBD6 /* observer.h in Headers */,
+				2142A5E81B953B19008B1AF0 /* option.h in Headers */,
 				21678EEE1A8D510100AE79AA /* socket.h in Headers */,
 				2111B1911B93F78F005FDBD6 /* class_internal.h in Headers */,
 				21678F101A8D51C800AE79AA /* typedef.h in Headers */,
