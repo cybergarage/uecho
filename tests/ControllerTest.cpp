@@ -85,6 +85,7 @@ BOOST_AUTO_TEST_CASE(ControllerSearchAll)
   uEchoController *ctrl = uecho_controller_new();
   uecho_controller_disableudpserver(ctrl);
   BOOST_CHECK(uecho_controller_start(ctrl));
+  BOOST_CHECK(uecho_controller_isrunning(ctrl));
   
   // Start Device
   

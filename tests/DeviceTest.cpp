@@ -51,11 +51,13 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   uEchoController *ctrl = uecho_controller_new();
   uecho_controller_disableudpserver(ctrl);
   BOOST_CHECK(uecho_controller_start(ctrl));
+  BOOST_CHECK(uecho_controller_isrunning(ctrl));
   
   // Start Device
   
   uEchoNode *node = uecho_test_createtestnode();
   BOOST_CHECK(uecho_node_start(node));
+  BOOST_CHECK(uecho_node_isrunning(node));
   
   // Search (NotificationRequest instead of ReadRequest)
   
