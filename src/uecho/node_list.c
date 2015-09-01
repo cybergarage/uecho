@@ -17,15 +17,15 @@
 
 uEchoNodeList *uecho_nodelist_new(void)
 {
-	uEchoNodeList *nodes;
+  uEchoNodeList *nodes;
 
-	nodes = (uEchoNodeList *)malloc(sizeof(uEchoNodeList));
+  nodes = (uEchoNodeList *)malloc(sizeof(uEchoNodeList));
   if (!nodes)
     return NULL;
 
   uecho_list_header_init((uEchoList *)nodes);
 
-	return nodes;
+  return nodes;
 }
 
 /****************************************
@@ -37,9 +37,9 @@ void uecho_nodelist_delete(uEchoNodeList *nodes)
   if (!nodes)
     return;
   
-	uecho_nodelist_clear(nodes);
+  uecho_nodelist_clear(nodes);
 
-	free(nodes);
+  free(nodes);
 }
 
 /****************************************

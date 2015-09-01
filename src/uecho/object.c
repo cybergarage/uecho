@@ -21,9 +21,9 @@
 
 uEchoObject *uecho_object_new(void)
 {
-	uEchoObject *obj;
+  uEchoObject *obj;
 
-	obj = (uEchoObject *)malloc(sizeof(uEchoObject));
+  obj = (uEchoObject *)malloc(sizeof(uEchoObject));
     
   if (!obj)
     return NULL;
@@ -74,7 +74,7 @@ void uecho_object_delete(uEchoObject *obj)
   
   uecho_propertylist_delete(obj->properties);
   uecho_object_property_observer_manager_delete(obj->propListenerMgr);
-	
+  
   free(obj);
 }
 

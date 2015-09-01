@@ -19,9 +19,9 @@
 
 uEchoProperty *uecho_property_new(void)
 {
-	uEchoProperty *prop;
+  uEchoProperty *prop;
 
-	prop = (uEchoProperty *)malloc(sizeof(uEchoProperty));
+  prop = (uEchoProperty *)malloc(sizeof(uEchoProperty));
     
   if (!prop)
     return NULL;
@@ -33,7 +33,7 @@ uEchoProperty *uecho_property_new(void)
   
   uecho_property_setattribute(prop, uEchoPropertyAttrReadWrite);
   
-	return prop;
+  return prop;
 }
 
 /****************************************
@@ -48,7 +48,7 @@ void uecho_property_delete(uEchoProperty *prop)
   uecho_property_cleardata(prop);
   uecho_property_remove(prop);
 
-	free(prop);
+  free(prop);
 }
 
 /****************************************

@@ -17,15 +17,15 @@
 
 uEchoMcastServerList *uecho_mcast_serverlist_new(void)
 {
-	uEchoMcastServerList *servers;
+  uEchoMcastServerList *servers;
 
-	servers = (uEchoMcastServerList *)malloc(sizeof(uEchoMcastServerList));
+  servers = (uEchoMcastServerList *)malloc(sizeof(uEchoMcastServerList));
   if (!servers)
     return NULL;
 
   uecho_list_header_init((uEchoList *)servers);
 
-	return servers;
+  return servers;
 }
 
 /****************************************
@@ -36,9 +36,9 @@ void uecho_mcast_serverlist_delete(uEchoMcastServerList *servers)
 {
   uecho_mcast_serverlist_close(servers);
   uecho_mcast_serverlist_stop(servers);
-	uecho_mcast_serverlist_clear(servers);
+  uecho_mcast_serverlist_clear(servers);
 
-	free(servers);
+  free(servers);
 }
 
 /****************************************

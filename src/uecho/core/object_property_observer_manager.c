@@ -16,15 +16,15 @@
 
 uEchoObjectPropertyObserverManager *uecho_object_property_observer_manager_new(void)
 {
-	uEchoObjectPropertyObserverManager *obsMgr;
+  uEchoObjectPropertyObserverManager *obsMgr;
 
-	obsMgr = (uEchoObjectPropertyObserverManager *)malloc(sizeof(uEchoObjectPropertyObserverManager));
+  obsMgr = (uEchoObjectPropertyObserverManager *)malloc(sizeof(uEchoObjectPropertyObserverManager));
   if (!obsMgr)
     return NULL;
 
   obsMgr->observers = uecho_object_property_observerlist_new();
   
-	return obsMgr;
+  return obsMgr;
 }
 
 /****************************************
@@ -35,7 +35,7 @@ void uecho_object_property_observer_manager_delete(uEchoObjectPropertyObserverMa
 {
   uecho_object_property_observerlist_delete(obsMgr->observers);
 
-	free(obsMgr);
+  free(obsMgr);
 }
 
 /****************************************

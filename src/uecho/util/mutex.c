@@ -18,7 +18,7 @@
 
 uEchoMutex *uecho_mutex_new(void)
 {
-	uEchoMutex *mutex;
+  uEchoMutex *mutex;
 
   mutex = (uEchoMutex *)malloc(sizeof(uEchoMutex));
 
@@ -31,7 +31,7 @@ uEchoMutex *uecho_mutex_new(void)
   pthread_mutex_init(&mutex->mutexID, NULL);
 #endif
 
-	return mutex;
+  return mutex;
 }
 
 /****************************************
@@ -40,17 +40,17 @@ uEchoMutex *uecho_mutex_new(void)
 
 bool uecho_mutex_delete(uEchoMutex *mutex)
 {
-	if (!mutex)
-		return false;
+  if (!mutex)
+    return false;
 
 #if defined(WIN32)
-	CloseHandle(mutex->mutexID);
+  CloseHandle(mutex->mutexID);
 #else
-	pthread_mutex_destroy(&mutex->mutexID);
+  pthread_mutex_destroy(&mutex->mutexID);
 #endif
-	free(mutex);
+  free(mutex);
 
-	return true;
+  return true;
 }
 
 /****************************************
@@ -59,16 +59,16 @@ bool uecho_mutex_delete(uEchoMutex *mutex)
 
 bool uecho_mutex_lock(uEchoMutex *mutex)
 {
-	if (!mutex)
-		return false;
+  if (!mutex)
+    return false;
 
 #if defined(WIN32)
-	WaitForSingleObject(mutex->mutexID, INFINITE);
+  WaitForSingleObject(mutex->mutexID, INFINITE);
 #else
-	pthread_mutex_lock(&mutex->mutexID);
+  pthread_mutex_lock(&mutex->mutexID);
 #endif
 
-	return true;
+  return true;
 }
 
 /****************************************
@@ -77,13 +77,13 @@ bool uecho_mutex_lock(uEchoMutex *mutex)
 
 bool uecho_mutex_unlock(uEchoMutex *mutex)
 {
-	if (!mutex)
-		return false;
+  if (!mutex)
+    return false;
 
 #if defined(WIN32)
-	ReleaseMutex(mutex->mutexID);
+  ReleaseMutex(mutex->mutexID);
 #else
-	pthread_mutex_unlock(&mutex->mutexID);
+  pthread_mutex_unlock(&mutex->mutexID);
 #endif
-	return true;
+  return true;
 }
