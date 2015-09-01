@@ -67,7 +67,7 @@ bool uecho_message_issearchresponse(uEchoMessage *msg) {
   uEchoEsv esv;
   
   esv = uecho_message_getesv(msg);
-  if ((esv != uEchoEsvReadResponse) && (esv != uEchoEsvReadResponse))
+  if ((esv != uEchoEsvReadResponse) && (esv != uEchoEsvNotification) && (esv != uEchoEsvNotificationResponse))
     return false;
   
   if (uecho_message_getopc(msg) != 1)
