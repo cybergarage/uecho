@@ -13,6 +13,7 @@
 #include <uecho/profile.h>
 #include <uecho/misc.h>
 #include <uecho/core/observer.h>
+#include <uecho/util/timer.h>
 
 /****************************************
 * uecho_object_new
@@ -387,6 +388,25 @@ uEchoProperty *uecho_object_getproperty(uEchoObject *obj, uEchoPropertyCode code
     return NULL;
 
   return uecho_propertylist_findbycode(obj->properties, code);
+}
+
+/****************************************
+ * uecho_object_getpropertywait
+ ****************************************/
+
+uEchoProperty *uecho_object_getpropertywait(uEchoObject *obj, uEchoPropertyCode code, clock_t waitMiliTime)
+{
+  uEchoProperty *prop;
+  int n;
+  
+  for (n=0; n<uEchoWaitRetryCount; n++) {
+    uecho_sleep(waitMiliTime / uEchoWaitRetryCount);
+    prop = uecho_object_getproperty(obj, code);
+    if (prop)
+      return prop;
+  }
+  
+  return NULL;
 }
 
 /****************************************

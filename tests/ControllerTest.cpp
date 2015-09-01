@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE(ControllerUdpOption)
 
 BOOST_AUTO_TEST_CASE(ControllerSearchAll)
 {
-  // Create Controller
+  // Create Controller (Disable UDP Server)
 
   uEchoController *ctrl = uecho_controller_new();
   uecho_controller_disableudpserver(ctrl);

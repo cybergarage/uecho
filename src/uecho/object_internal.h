@@ -75,6 +75,8 @@ bool uecho_object_addmandatoryproperties(uEchoObject *obj);
 bool uecho_object_updatepropertymaps(uEchoObject *obj);
 void uecho_object_clearpropertymapcaches(uEchoObject *obj);
 
+uEchoProperty *uecho_object_getpropertywait(uEchoObject *obj, uEchoPropertyCode code, clock_t waitMiliTime);
+
 /****************************************
  * Function (Object List)
  ****************************************/
