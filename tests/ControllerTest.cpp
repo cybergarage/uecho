@@ -47,6 +47,22 @@ BOOST_AUTO_TEST_CASE(ControllerTID)
   uecho_controller_delete(cp);
 }
 
+BOOST_AUTO_TEST_CASE(ControllerParam)
+{
+  uEchoController *cp = uecho_controller_new();
+  
+  BOOST_CHECK_EQUAL(uecho_controller_isparameterenabled(cp, uEchoControllerParamNone), false);
+  BOOST_CHECK_EQUAL(uecho_controller_isparameterenabled(cp, uEchoControllerParamDisableUdpServer), false);
+  
+  uecho_controller_enableparameter(cp, uEchoControllerParamDisableUdpServer);
+  BOOST_CHECK_EQUAL(uecho_controller_isparameterenabled(cp, uEchoControllerParamDisableUdpServer), true);
+
+  uecho_controller_disableparameter(cp, uEchoControllerParamDisableUdpServer);
+  BOOST_CHECK_EQUAL(uecho_controller_isparameterenabled(cp, uEchoControllerParamDisableUdpServer), false);
+  
+  uecho_controller_delete(cp);
+}
+
 BOOST_AUTO_TEST_CASE(ControllerSearchAll)
 {
   // Start Controller
