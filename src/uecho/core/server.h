@@ -15,6 +15,7 @@
 #include <uecho/net/socket.h>
 #include <uecho/util/thread.h>
 #include <uecho/util/list.h>
+#include <uecho/core/option.h>
 #include <uecho/object_internal.h>
 
 #ifdef  __cplusplus
@@ -22,9 +23,17 @@ extern "C" {
 #endif
 
 /****************************************
- * Server
+ * Constant
  ****************************************/
-
+  
+enum {
+  uEchoServerOptionDisableUdpServer = 0x01,
+};
+  
+/****************************************
+ * Data Type
+ ****************************************/
+  
 // UDP Server
 
 typedef struct _uEchoUdpServer {
@@ -62,6 +71,7 @@ typedef struct _uEchoServer {
   uEchoMcastServerList *mcastServers;
   void (*msgListener)(struct _uEchoServer *, uEchoMessage *); /* uEchoServerMessageListener */
   void *userData;
+  uEchoOption option;
 } uEchoServer;
 
 typedef void (*uEchoServerMessageListener)(uEchoServer *, uEchoMessage *);
@@ -88,6 +98,10 @@ bool uecho_server_isrunning(uEchoServer *server);
 bool uecho_server_postannounce(uEchoServer *server, const byte *msg, size_t msgLen);
 bool uecho_server_postresponse(uEchoServer *server, const char *addr, byte *msg, size_t msgLen);
 
+#define uecho_server_setoption(server, value) (server->option = value)
+#define uecho_server_isoptionenabled(server, value) (server->option & value)
+#define uecho_server_isudpserverenabled(ctrl) (!uecho_server_isoptionenabled(ctrl, uEchoServerOptionDisableUdpServer))
+  
 // UDP Server
   
 uEchoUdpServer *uecho_udp_server_new(void);

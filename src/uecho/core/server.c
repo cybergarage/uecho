@@ -21,11 +21,12 @@ uEchoServer *uecho_server_new(void)
 	server = (uEchoServer *)malloc(sizeof(uEchoServer));
 
   if (!server)
-  return NULL;
+    return NULL;
 	
   server->udpServers = uecho_udp_serverlist_new();
-  
   server->mcastServers = uecho_mcast_serverlist_new();
+  
+  uecho_server_setoption(server, uEchoOptionNone);
   
 	return server;
 }
@@ -79,16 +80,18 @@ bool uecho_server_start(uEchoServer *server)
   
   uecho_server_stop(server);
   
-  allActionsSucceeded &= uecho_udp_serverlist_open(server->udpServers);
-  allActionsSucceeded &= uecho_udp_serverlist_start(server->udpServers);
-  uecho_udp_serverlist_setuserdata(server->udpServers, server);
-  uecho_udp_serverlist_setmessagelistener(server->udpServers, uecho_udp_server_msglistener);
-  
   allActionsSucceeded &= uecho_mcast_serverlist_open(server->mcastServers);
   allActionsSucceeded &= uecho_mcast_serverlist_start(server->mcastServers);
   uecho_mcast_serverlist_setuserdata(server->mcastServers, server);
   uecho_mcast_serverlist_setmessagelistener(server->mcastServers, uecho_mcast_server_msglistener);
 
+  if (uecho_server_isudpserverenabled(server)) {
+    allActionsSucceeded &= uecho_udp_serverlist_open(server->udpServers);
+    allActionsSucceeded &= uecho_udp_serverlist_start(server->udpServers);
+    uecho_udp_serverlist_setuserdata(server->udpServers, server);
+    uecho_udp_serverlist_setmessagelistener(server->udpServers, uecho_udp_server_msglistener);
+  }
+  
   if (!allActionsSucceeded) {
     uecho_server_stop(server);
   }
@@ -104,13 +107,13 @@ bool uecho_server_stop(uEchoServer *server)
 {
   bool allActionsSucceeded = true;
   
-  allActionsSucceeded &= uecho_udp_serverlist_close(server->udpServers);
-  allActionsSucceeded &= uecho_udp_serverlist_stop(server->udpServers);
-  uecho_udp_serverlist_clear(server->udpServers);
-  
   allActionsSucceeded &= uecho_mcast_serverlist_close(server->mcastServers);
   allActionsSucceeded &= uecho_mcast_serverlist_stop(server->mcastServers);
   uecho_udp_serverlist_clear(server->mcastServers);
+  
+  allActionsSucceeded &= uecho_udp_serverlist_close(server->udpServers);
+  allActionsSucceeded &= uecho_udp_serverlist_stop(server->udpServers);
+  uecho_udp_serverlist_clear(server->udpServers);
   
   return allActionsSucceeded;
 }
@@ -123,8 +126,11 @@ bool uecho_server_isrunning(uEchoServer *server)
 {
   bool allActionsSucceeded = true;
   
-  allActionsSucceeded &= (0 < uecho_udp_serverlist_size(server->udpServers)) ? true : false;
-  allActionsSucceeded &= (0 < uecho_udp_serverlist_size(server->mcastServers)) ? true : false;
+  allActionsSucceeded &= (0 < uecho_mcast_serverlist_size(server->mcastServers)) ? true : false;
+  
+  if (uecho_server_isudpserverenabled(server)) {
+    allActionsSucceeded &= (0 < uecho_udp_serverlist_size(server->udpServers)) ? true : false;
+  }
   
   return allActionsSucceeded;
 }
