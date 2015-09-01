@@ -215,6 +215,25 @@ uEchoObject *uecho_controller_getobjectbycode(uEchoController *ctrl, uEchoObject
 }
 
 /****************************************
+ * uecho_controller_getobjectbycodewithwait
+ ****************************************/
+
+uEchoObject *uecho_controller_getobjectbycodewithwait(uEchoController *ctrl, uEchoObjectCode code, clock_t waitMiliTime)
+{
+  const int waitRetlyCnt = 10;
+  uEchoObject *obj;
+  
+  for (int n=0; n<waitRetlyCnt; n++) {
+    uecho_sleep(waitMiliTime / waitRetlyCnt);
+    obj = uecho_controller_getobjectbycode(ctrl, code);
+    if (obj)
+      return obj;
+  }
+  
+  return NULL;
+}
+
+/****************************************
  * uecho_controller_enableoption
  ****************************************/
 

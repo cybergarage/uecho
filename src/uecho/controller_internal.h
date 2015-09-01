@@ -57,6 +57,9 @@ typedef struct _uEchoController {
 
 bool uecho_controller_searchallobjectswithesv(uEchoController *ctrl, uEchoEsv esv);
 bool uecho_controller_searchobjectwithesv(uEchoController *ctrl, byte objCode, uEchoEsv esv);
+
+uEchoObject *uecho_controller_getobjectbycode(uEchoController *ctrl, uEchoObjectCode code);
+uEchoObject *uecho_controller_getobjectbycodewithwait(uEchoController *ctrl, uEchoObjectCode code, clock_t waitMiliTime);
   
 void uecho_controller_enableoption(uEchoController *ctrl, uEchoOption param);
 void uecho_controller_disableoption(uEchoController *ctrl, uEchoOption param);
