@@ -120,7 +120,7 @@ typedef enum {
 } uEchoObjectEPCSize;
 
 enum {
-  uEchoManufactureCodeUnknown = 0x000000,
+  uEchoManufactureCodeDefault = uEchoManufacturerCodeTestMin,
 };
 
 bool uecho_object_setmanufacturercode(uEchoObject *obj, uEchoManufacturerCode code);

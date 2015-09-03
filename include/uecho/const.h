@@ -32,6 +32,11 @@ typedef enum {
   uEchoSpecifiedMessageFormat = 0x01,
   uEchoArbitraryMessageFormat = 0x02,
 } uEchoMessageFormatType;
+
+enum {
+  uEchoManufacturerCodeTestMin = 0xFFFFF0,
+  uEchoManufacturerCodeTestMax = 0xFFFFFF,
+};
   
 #ifdef  __cplusplus
 }
