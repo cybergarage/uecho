@@ -10,6 +10,59 @@
 
 #include "TestDevice.h"
 
+void uecho_test_printrequest(uEchoMessage *msg)
+{
+  uEchoProperty *prop;
+  size_t opc, n;
+  
+  opc = uecho_message_getopc(msg);
+  printf("%s %2X %2X %04X %06X %06X %02X %ld ",
+         uecho_message_getsourceaddress(msg),
+         uecho_message_getehd1(msg),
+         uecho_message_getehd2(msg),
+         uecho_message_gettid(msg),
+         uecho_message_getsourceobjectcode(msg),
+         uecho_message_getdestinationobjectcode(msg),
+         uecho_message_getesv(msg),
+         opc);
+  
+  for (n=0; n<opc; n++) {
+    prop = uecho_message_getproperty(msg, n);
+    printf("%02X(%d)", uecho_property_getcode(prop), uecho_property_getdatasize(prop));
+  }
+  
+  printf("\n");
+}
+
+void uecho_test_object_messagelitener(uEchoObject *obj, uEchoMessage *msg)
+{
+#if defined(DEBUG)
+  uecho_test_printrequest(msg);
+#endif
+}
+
+void uecho_test_property_requestlistener(uEchoObject *obj, uEchoEsv esv, uEchoProperty *prop)
+{
+  byte status;
+  
+  if (uecho_property_getdatasize(prop) != 1)
+    return;
+  
+  if (uecho_property_getbytedata(prop, &status))
+    return;
+  
+#if defined(DEBUG)
+  switch (status) {
+    case UECHO_TEST_PROPERTY_SWITCH_ON:
+      printf("POWER = %02X\n", status);
+      break;
+    case UECHO_TEST_PROPERTY_SWITCH_OFF:
+      printf("POWER = %02X\n", status);
+      break;
+  }
+#endif
+}
+
 uEchoObject *uecho_test_createtestdevice()
 {
   uEchoObject *obj = uecho_device_new();
@@ -24,6 +77,14 @@ uEchoObject *uecho_test_createtestdevice()
   prop[0] = UECHO_TEST_PROPERTY_SWITCH_ON;
   uecho_object_setpropertydata(obj, UECHO_TEST_PROPERTY_SWITCH_DEFAULT, prop, 1);
   
+  // Set object listner
+
+  uecho_object_setmessagelistener(obj, uecho_test_object_messagelitener);
+
+  // Set property observer
+  
+  uecho_object_setpropertywriterequestlistener(obj, UECHO_TEST_PROPERTY_SWITCHCODE, uecho_test_property_requestlistener);
+
   return obj;
 }
 
