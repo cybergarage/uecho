@@ -27,7 +27,7 @@ bool uecho_object_addmandatoryproperties(uEchoObject *obj)
   // Manufacture Code
   
   uecho_object_setproperty(obj, uEchoObjectManufacturerCode, uEchoPropertyAttrRead);
-  uecho_object_setmanufacturercode(obj, uEchoManufactureCodeUnknown);
+  uecho_object_setmanufacturercode(obj, uEchoManufactureCodeDefault);
   
   // Property map properties
   
@@ -60,7 +60,7 @@ uEchoManufacturerCode uecho_object_getmanufacturercode(uEchoObject *obj)
 {
   uEchoManufacturerCode code;
   if (!uecho_object_getpropertyintegerdata(obj, uEchoObjectManufacturerCode, uEchoObjectManufacturerCodeLen, &code))
-    return uEchoManufactureCodeUnknown;
+    return uEchoManufactureCodeDefault;
   return code;
 }
 
