@@ -58,6 +58,7 @@ char *uecho_strltrim(char *str, char *delim, size_t ndelim);
 char *uecho_strrtrim(char *str, char *delim, size_t ndelim);
 char *uecho_strncpy(char *str1, const char *str2, size_t cnt);
 char *uecho_strncat(char *str1, const char *str2, size_t cnt);
+bool uecho_strloc(const char *str, char **buf);
   
 const char *uecho_int2str(int value, char *buf, size_t bufSize);
 const char *uecho_long2str(long value, char *buf, size_t bufSize);
