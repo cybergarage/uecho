@@ -26,12 +26,9 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct _uEchoNode
-{
-  bool headFlag;
-  struct _uEchoNode *prev;
-  struct _uEchoNode *next;
-    
+typedef struct _uEchoNode {
+  UECHO_LIST_MEMBERS
+  
   uEchoMutex *mutex;
   uEchoServer *server;
 

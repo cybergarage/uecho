@@ -37,9 +37,7 @@ extern "C" {
  ****************************************/
 
 typedef struct _uEchoThread {
-  bool headFlag;
-  struct _uEchoThread *prev;
-  struct _uEchoThread *next;
+  UECHO_LIST_MEMBERS
     
   bool runnableFlag;
 
