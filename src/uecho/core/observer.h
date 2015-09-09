@@ -23,10 +23,8 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct _uEchoObjectPropertyObserver {
-  bool headFlag;
-  struct _uEchoObjectPropertyObserver *prev;
-  struct _uEchoObjectPropertyObserver *next;
+typedef struct {
+  UECHO_LIST_MEMBERS
   
   uEchoEsv esv;
   uEchoPropertyCode propCode;

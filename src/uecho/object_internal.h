@@ -27,9 +27,7 @@ extern "C" {
  ****************************************/
 
 typedef struct _uEchoObject {
-  bool headFlag;
-  struct _uEchoObject *prev;
-  struct _uEchoObject *next;
+  UECHO_LIST_MEMBERS
 
   byte code[3];
   uEchoPropertyList *properties;

@@ -22,10 +22,8 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct _uEchoClass {
-  bool headFlag;
-  struct _uEchoClass *prev;
-  struct _uEchoClass *next;
+typedef struct {
+  UECHO_LIST_MEMBERS
 
   byte code[2];
 } uEchoClass, uEchoClassList;

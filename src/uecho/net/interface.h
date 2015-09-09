@@ -40,10 +40,8 @@ extern "C" {
 * Data Type
 ****************************************/
 
-typedef struct _uEchoNetworkInterface {
-  bool headFlag;
-  struct _uEchoNetworkInterface *prev;
-  struct _uEchoNetworkInterface *next;
+typedef struct {
+  UECHO_LIST_MEMBERS
   
   uEchoString *name;
   uEchoString *ipaddr;
