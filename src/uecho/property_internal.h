@@ -23,20 +23,16 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct _uEchoProperty
-{
-  bool headFlag;
-  struct _uEchoProperty *prev;
-  struct _uEchoProperty *next;
-  
+typedef struct {
+  UECHO_LIST_MEMBERS
+
   byte code;
   int attr;
   byte *data;
   size_t dataSize;
 } uEchoProperty, uEchoPropertyList;
 
-typedef struct
-{
+typedef struct {
   byte code;
   int attr;
   byte *data;

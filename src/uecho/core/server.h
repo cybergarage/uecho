@@ -37,10 +37,8 @@ enum {
 // UDP Server
 
 typedef struct _uEchoUdpServer {
-  bool headFlag;
-  struct _uEchoUdpServer *prev;
-  struct _uEchoUdpServer *next;
-  
+  UECHO_LIST_MEMBERS
+
   uEchoSocket *socket;
   uEchoThread *thread;
   void (*msgListener)(struct _uEchoUdpServer *, uEchoMessage *); /* uEchoUdpServerMessageListener */
@@ -52,9 +50,7 @@ typedef void (*uEchoUdpServerMessageListener)(uEchoUdpServer *, uEchoMessage *);
 // Multicast Server
 
 typedef struct _uEchoMcastServer {
-  bool headFlag;
-  struct _uEchoMcastServer *prev;
-  struct _uEchoMcastServer *next;
+  UECHO_LIST_MEMBERS
   
   uEchoSocket *socket;
   uEchoThread *thread;
