@@ -41,6 +41,28 @@ char *uecho_strdup(const char *str)
 }
 
 /****************************************
+ * uecho_strloc
+ ****************************************/
+
+bool uecho_strloc(const char *str, char **buf)
+{
+  if (!str || !buf)
+    return false;
+    
+  if (*buf) {
+    free(*buf);
+    *buf = NULL;
+  }
+  
+  if (!str)
+    return true;
+  
+  *buf = uecho_strdup(str);
+
+  return true;
+}
+
+/****************************************
 * uecho_strlen
 ****************************************/
 

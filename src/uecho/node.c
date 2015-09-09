@@ -143,16 +143,7 @@ void uecho_node_setaddress(uEchoNode *node, const char *addr)
 {
   if (!node)
     return;
-  
-  if (node->address) {
-    free(node->address);
-    node->address = NULL;
-  }
-  
-  if (!addr)
-    return;
-  
-  node->address = uecho_strdup(addr);
+  uecho_strloc(addr, &node->address);
 }
 
 /****************************************
