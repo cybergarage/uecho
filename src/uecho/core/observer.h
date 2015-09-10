@@ -24,7 +24,7 @@ extern "C" {
  ****************************************/
 
 typedef struct {
-  UECHO_LIST_MEMBERS
+  UECHO_LIST_STRUCT_MEMBERS
   
   uEchoEsv esv;
   uEchoPropertyCode propCode;

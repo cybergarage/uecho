@@ -27,7 +27,7 @@ extern "C" {
  ****************************************/
 
 typedef struct _uEchoObject {
-  UECHO_LIST_MEMBERS
+  UECHO_LIST_STRUCT_MEMBERS
 
   byte code[3];
   uEchoPropertyList *properties;
