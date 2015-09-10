@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210E7BA61BA191DB00343445 /* SocketTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E7BA51BA191DB00343445 /* SocketTest.cpp */; };
 		21205A121B95EEEC008A941C /* InterfaceTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21205A111B95EEEC008A941C /* InterfaceTest.cpp */; };
 		21205A141B95FACC008A941C /* ServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21205A131B95FACC008A941C /* ServerTest.cpp */; };
 		213C5BFD1B4A548B0013DDD9 /* liblibuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 213C5BFA1B4A54630013DDD9 /* liblibuecho.a */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		210363311B4A51B300DB3025 /* uEchoTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uEchoTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		210E7BA51BA191DB00343445 /* SocketTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SocketTest.cpp; path = ../../SocketTest.cpp; sourceTree = "<group>"; };
 		21205A111B95EEEC008A941C /* InterfaceTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InterfaceTest.cpp; path = ../../InterfaceTest.cpp; sourceTree = "<group>"; };
 		21205A131B95FACC008A941C /* ServerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ServerTest.cpp; path = ../../ServerTest.cpp; sourceTree = "<group>"; };
 		213C5BF51B4A54630013DDD9 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				21205A131B95FACC008A941C /* ServerTest.cpp */,
 				21205A111B95EEEC008A941C /* InterfaceTest.cpp */,
+				210E7BA51BA191DB00343445 /* SocketTest.cpp */,
 				2153A5E11B8EB40D00FAE69A /* TestDevice.h */,
 				2153A5E21B8EB40D00FAE69A /* TestDevice.cpp */,
 				218688EF1B8D67E000B10494 /* NodeListTest.cpp */,
@@ -238,6 +241,7 @@
 				215B49411B858916002B20CE /* DeviceTest.cpp in Sources */,
 				21EFF1A71B4AA06D002B5E57 /* NodeTest.cpp in Sources */,
 				21E7743F1B888FB0000086A0 /* MiscTest.cpp in Sources */,
+				210E7BA61BA191DB00343445 /* SocketTest.cpp in Sources */,
 				21E703C41B8B32D5000F6CD1 /* ObserverTest.cpp in Sources */,
 				2183CDA71B6D0E1400EE7E49 /* MessageTest.cpp in Sources */,
 				216F1DFA1B4A5BAA003C7B6A /* uEchoTest.cpp in Sources */,
