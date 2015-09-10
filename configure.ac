@@ -163,9 +163,6 @@ fi
 # Examples
 ##############################
 
-AC_CHECK_HEADERS([curses.h],,[AC_MSG_ERROR(uEcho needs POSIX thread library)])
-AC_CHECK_LIB([curses],[main])
-
 ##############################
 # Makefiles
 ##############################
