@@ -8,12 +8,20 @@
  *
  ******************************************************************/
 
+#include <unistd.h>
 #include <stdio.h>
 #include <ctype.h>
 
 #include <uecho/uecho.h>
 
 const int UECHO_TEST_SEARCH_WAIT_MTIME = 5000;
+
+void usage()
+{
+  printf("Usage : echopost <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
+  printf(" -n : Disable unicast server\n");
+  printf(" -h : Print this message\n");
+}
 
 void uecho_print_multicastmessages(uEchoController *ctrl, uEchoMessage *msg)
 {
@@ -39,17 +47,41 @@ void uecho_print_multicastmessages(uEchoController *ctrl, uEchoMessage *msg)
   printf("\n");
 }
 
-void uecho_print_help()
-{
-  printf("'s' : Search\n");
-  printf("'q' : Quit\n");
-}
-
 int main(int argc, char *argv[])
 {
+  bool nobindMode;
   uEchoController *ctrl;
-  int key;
+  int c, key;
   
+  // Parse options
+  
+  nobindMode = false;
+  
+  while ((c = getopt(argc, argv, "nh")) != -1) {
+    switch (c) {
+      case 'n':
+      {
+        nobindMode = true;
+      }
+        break;
+      case 'h':
+      {
+        usage();
+        return EXIT_SUCCESS;
+      }
+      default:
+      {
+        usage();
+        return EXIT_FAILURE;
+      }
+    }
+  }
+  
+  argc -= optind;
+  argv += optind;
+
+  // Start controller
+
   ctrl = uecho_controller_new();
   if (!ctrl)
     return EXIT_FAILURE;
@@ -73,7 +105,7 @@ int main(int argc, char *argv[])
         uecho_controller_searchallobjects(ctrl);
         break;
       default:
-        uecho_print_help();
+        usage();
     }
   } while( key != 'q');
   

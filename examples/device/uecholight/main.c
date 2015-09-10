@@ -13,17 +13,17 @@
 
 #include "lighting_dev.h"
 
-void uecho_lighting_node_messagelitener(uEchoNode *obj, uEchoMessage *msg)
-{
-  uecho_lighting_printrequest(msg);
-}
-
 void usage()
 {
   printf("Usage : uecholight\n");
   printf(" -v        : Enable verbose output\n");
   printf(" -m XXXXXX : Set Manifacture code\n");
   printf(" -h        : Print this message\n");
+}
+
+void uecho_lighting_node_messagelitener(uEchoNode *obj, uEchoMessage *msg)
+{
+  uecho_lighting_printrequest(msg);
 }
 
 int main(int argc, char *argv[])
