@@ -11,7 +11,7 @@
 AC_CONFIG_AUX_DIR(config)
 AM_CONFIG_HEADER(config.h)
 
-AC_INIT([uecho], [0.6])
+AC_INIT([uecho], [0.9])
 AC_CONFIG_SRCDIR([include/uecho/typedef.h])
 AM_INIT_AUTOMAKE([subdir-objects])
 
@@ -152,11 +152,11 @@ AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ build tests (default =
 AM_CONDITIONAL(UNITTESTS,test "$build_tests" = yes)
 if [ test "$build_tests" = yes ]; then
 	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,
-		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(Round for C++ needs boost::unit_test_framework)])])
+		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(uEcho needs boost::unit_test_framework)])])
 	AC_CHECK_LIB([boost_system-mt],[main],,
-		[AC_CHECK_LIB([boost_system],[main],,[AC_MSG_ERROR(Round for C++ needs boost::system)])])
+		[AC_CHECK_LIB([boost_system],[main],,[AC_MSG_ERROR(uEcho needs boost::system)])])
 	AC_CHECK_LIB([boost_thread-mt],[main],,
-		[AC_CHECK_LIB([boost_thread],[main],,[AC_MSG_ERROR(Round for C++ needs boost::thread)])])
+		[AC_CHECK_LIB([boost_thread],[main],,[AC_MSG_ERROR(uEcho needs boost::thread)])])
 fi
 
 ##############################
@@ -183,6 +183,6 @@ examples/controller/uechodump/unix/Makefile
 examples/controller/uechopost/Makefile
 examples/controller/uechopost/unix/Makefile
 examples/device/Makefile
-examples/device/lighting/Makefile
-examples/device/lighting/unix/Makefile
+examples/device/uecholight/Makefile
+examples/device/uecholight/unix/Makefile
 ])

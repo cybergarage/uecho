@@ -10,14 +10,14 @@
 
 AM_CFLAGS = -I$(top_srcdir)/include -I$(top_builddir)/include -I../ -I../../common
 
-noinst_PROGRAMS = uecho_lighting_dev 
+noinst_PROGRAMS = uecholight 
 
-uecho_lighting_dev_SOURCES = \
+uecholight_SOURCES = \
 	../main.c \
 	../lighting_dev.c
 
 #if HAVE_LIBTOOL
-#uecho_lighting_dev_LDADD = ../../../../lib/unix/libuecho.la
+#uecholight_LDADD = ../../../../lib/unix/libuecho.la
 #else
-uecho_lighting_dev_LDADD = ../../../../lib/unix/libuecho.a
+uecholight_LDADD = ../../../../lib/unix/libuecho.a
 #endif
