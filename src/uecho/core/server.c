@@ -96,15 +96,15 @@ bool uecho_server_start(uEchoServer *server)
   uecho_server_stop(server);
   
   allActionsSucceeded &= uecho_mcast_serverlist_open(server->mcastServers);
-  allActionsSucceeded &= uecho_mcast_serverlist_start(server->mcastServers);
   uecho_mcast_serverlist_setuserdata(server->mcastServers, server);
   uecho_mcast_serverlist_setmessagelistener(server->mcastServers, uecho_mcast_server_msglistener);
+  allActionsSucceeded &= uecho_mcast_serverlist_start(server->mcastServers);
 
   if (uecho_server_isudpserverenabled(server)) {
     allActionsSucceeded &= uecho_udp_serverlist_open(server->udpServers);
-    allActionsSucceeded &= uecho_udp_serverlist_start(server->udpServers);
     uecho_udp_serverlist_setuserdata(server->udpServers, server);
     uecho_udp_serverlist_setmessagelistener(server->udpServers, uecho_udp_server_msglistener);
+    allActionsSucceeded &= uecho_udp_serverlist_start(server->udpServers);
   }
   
   if (!allActionsSucceeded) {
