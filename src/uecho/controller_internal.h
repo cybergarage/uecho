@@ -65,7 +65,8 @@ void uecho_controller_enableoption(uEchoController *ctrl, uEchoOption param);
 void uecho_controller_disableoption(uEchoController *ctrl, uEchoOption param);
 bool uecho_controller_isoptionenabled(uEchoController *ctrl, uEchoOption param);
 
-#define uecho_controller_disableudpserver(ctrl) uecho_controller_enableoption(ctrl, uEchoControllerOptionDisableUdpServer)
+void uecho_controller_disableudpserver(uEchoController *ctrl);
+
 #define uecho_controller_enableudpserver(ctrl) uecho_controller_disableoption(ctrl, uEchoControllerOptionDisableUdpServer)
 #define uecho_controller_isudpserverenabled(ctrl) (!uecho_controller_isoptionenabled(ctrl, uEchoControllerOptionDisableUdpServer))
 
