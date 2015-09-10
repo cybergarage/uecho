@@ -41,7 +41,7 @@ extern "C" {
 ****************************************/
 
 typedef struct {
-  UECHO_LIST_MEMBERS
+  UECHO_LIST_STRUCT_MEMBERS
   
   uEchoString *name;
   uEchoString *ipaddr;

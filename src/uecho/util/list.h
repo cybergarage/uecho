@@ -23,7 +23,7 @@ extern "C" {
 
 typedef void (*UECHO_LIST_DESTRUCTORFUNC)(void *);
 
-#define UECHO_LIST_MEMBERS \
+#define UECHO_LIST_STRUCT_MEMBERS \
   bool headFlag; \
   struct _uEchoList *prev; \
   struct _uEchoList *next;
@@ -33,7 +33,7 @@ typedef void (*UECHO_LIST_DESTRUCTORFUNC)(void *);
  ****************************************/
 
 typedef struct _uEchoList {
-  UECHO_LIST_MEMBERS
+  UECHO_LIST_STRUCT_MEMBERS
 } uEchoList;
 
 /****************************************

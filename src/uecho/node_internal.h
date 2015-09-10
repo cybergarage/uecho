@@ -27,7 +27,7 @@ extern "C" {
  ****************************************/
 
 typedef struct _uEchoNode {
-  UECHO_LIST_MEMBERS
+  UECHO_LIST_STRUCT_MEMBERS
   
   uEchoMutex *mutex;
   uEchoServer *server;

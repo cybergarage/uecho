@@ -23,7 +23,7 @@ extern "C" {
  ****************************************/
 
 typedef struct {
-  UECHO_LIST_MEMBERS
+  UECHO_LIST_STRUCT_MEMBERS
 
   byte code[2];
 } uEchoClass, uEchoClassList;
