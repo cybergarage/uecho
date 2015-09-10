@@ -16,7 +16,7 @@ const int UECHO_TEST_SEARCH_WAIT_MTIME = 5000;
 
 void usage()
 {
-  printf("Usage : uechosearch\n");
+  printf("Usage : uechosearch [options]\n");
   printf(" -v : Enable verbose output\n");
   printf(" -h : Print this message\n");
 }

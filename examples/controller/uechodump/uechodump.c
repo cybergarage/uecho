@@ -18,9 +18,15 @@ const int UECHO_TEST_SEARCH_WAIT_MTIME = 5000;
 
 void usage()
 {
-  printf("Usage : echopost <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
+  printf("Usage : uechodump [options]\n");
   printf(" -n : Disable unicast server\n");
   printf(" -h : Print this message\n");
+}
+
+void keyUsage()
+{
+  printf("s : search\n");
+  printf("q : quit\n");
 }
 
 void uecho_print_multicastmessages(uEchoController *ctrl, uEchoMessage *msg)
@@ -105,7 +111,7 @@ int main(int argc, char *argv[])
         uecho_controller_searchallobjects(ctrl);
         break;
       default:
-        usage();
+        keyUsage();
     }
   } while( key != 'q');
   

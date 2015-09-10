@@ -17,7 +17,7 @@ const int UECHOPOST_RESPONSE_RETRY_COUNT = 100;
 
 void usage()
 {
-  printf("Usage : echopost <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
+  printf("Usage : echopost [options] <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
   printf(" -v : Enable verbose output\n");
   printf(" -n : Disable unicast server\n");
   printf(" -h : Print this message\n");
