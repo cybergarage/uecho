@@ -30,7 +30,8 @@ enum {
 };
   
 enum {
-  uEchoNodeProfileObject = 0x0EF001,
+  uEchoNodeProfileObject         = 0x0EF001,
+  uEchoNodeProfileObjectReadOnly = 0x0EF002,
 };
   
 /****************************************
