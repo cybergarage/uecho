@@ -356,6 +356,43 @@ bool uecho_node_addobject(uEchoNode *node, uEchoObject *obj)
 }
 
 /****************************************
+ * uecho_node_announce
+ ****************************************/
+
+bool uecho_node_announce(uEchoNode *node)
+{
+  uEchoMessage *msg;
+  uEchoObject *nodeObj;
+  uEchoProperty *nodeProp;
+  bool isSuccess;
+  
+  nodeObj = uecho_node_getnodeprofileclassobject(node);
+  if (!nodeObj)
+    return false;
+  
+  nodeProp = uecho_object_getproperty(nodeObj, uEchoNodeProfileClassInstanceListNotification);
+  if (!nodeProp)
+    return false;
+  
+  // 4.3.1 Basic Sequence for ECHONET Lite Node Startup
+
+  msg = uecho_message_new();
+  if (!msg)
+    return false;
+
+  uecho_message_setesv(msg, uEchoEsvNotification);
+  uecho_message_setsourceobjectcode(msg, uEchoNodeProfileObject);
+  uecho_message_setdestinationobjectcode(msg, uEchoNodeProfileObject);
+  uecho_message_addproperty(msg, uecho_property_copy(nodeProp));
+
+  isSuccess = uecho_node_announcemessage(node, msg);
+  
+  uecho_message_delete(msg);
+  
+  return isSuccess;
+}
+
+/****************************************
  * uecho_node_start
  ****************************************/
 
@@ -364,6 +401,7 @@ bool uecho_node_start(uEchoNode *node)
   bool allActionsSucceeded = true;
   
   allActionsSucceeded &= uecho_server_start(node->server);
+  allActionsSucceeded &= uecho_node_announce(node);
   
   return allActionsSucceeded;
 }
