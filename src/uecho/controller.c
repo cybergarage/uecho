@@ -272,6 +272,15 @@ bool uecho_controller_isoptionenabled(uEchoController *ctrl, uEchoOption param)
 }
 
 /****************************************
+ * uecho_controller_disableudpserver
+ ****************************************/
+
+void uecho_controller_disableudpserver(uEchoController *ctrl)
+{
+  uecho_controller_enableoption(ctrl, uEchoControllerOptionDisableUdpServer);
+}
+
+/****************************************
  * uecho_controller_setlasttid
  ****************************************/
 

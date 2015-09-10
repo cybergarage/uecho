@@ -42,6 +42,8 @@ typedef void (*uEchoControllerMessageListener)(uEchoController *, uEchoMessage *
 uEchoController *uecho_controller_new(void);
 void uecho_controller_delete(uEchoController *ctrl);
 
+void uecho_controller_disableudpserver(uEchoController *ctrl);
+
 bool uecho_controller_addnode(uEchoController *ctrl, uEchoNode *node);
 uEchoNode *uecho_controller_getnodebyaddress(uEchoController *ctrl, const char *addr);
 uEchoNode *uecho_controller_getnodes(uEchoController *ctrl);
