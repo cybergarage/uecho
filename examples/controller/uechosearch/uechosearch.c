@@ -8,10 +8,18 @@
  *
  ******************************************************************/
 
+#include <unistd.h>
 #include <stdio.h>
 #include <uecho/uecho.h>
 
 const int UECHO_TEST_SEARCH_WAIT_MTIME = 5000;
+
+void usage()
+{
+  printf("Usage : uechosearch\n");
+  printf(" -v : Enable verbose output\n");
+  printf(" -h : Print this message\n");
+}
 
 void uecho_search_print_messages(uEchoController *ctrl, uEchoMessage *msg)
 {
@@ -55,17 +63,48 @@ void uecho_search_printdevices(uEchoController *ctrl)
 
 int main(int argc, char *argv[])
 {
+  bool verboseMode;
   uEchoController *ctrl;
   size_t foundNodeCnt;
+  int c;
+  
+  // Parse options
+  
+  verboseMode = false;
+  
+  while ((c = getopt(argc, argv, "vh")) != -1) {
+    switch (c) {
+      case 'v':
+      {
+        verboseMode = true;
+      }
+        break;
+      case 'h':
+      {
+        usage();
+        return EXIT_SUCCESS;
+      }
+      default:
+      {
+        usage();
+        return EXIT_FAILURE;
+      }
+    }
+  }
+  
+  argc -= optind;
+  argv += optind;
+
+  // Start controller
   
   ctrl = uecho_controller_new();
   if (!ctrl)
     return EXIT_FAILURE;
   
-#if defined(DEBUG)
-  uecho_controller_setmessagelistener(ctrl, uecho_search_print_messages);
-#endif
-
+  if (verboseMode) {
+    uecho_controller_setmessagelistener(ctrl, uecho_search_print_messages);
+  }
+  
   if (!uecho_controller_start(ctrl))
     return EXIT_FAILURE;
   
