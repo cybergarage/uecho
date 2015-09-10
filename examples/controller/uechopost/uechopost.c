@@ -9,10 +9,19 @@
  ******************************************************************/
 
 #include <stdio.h>
+#include <unistd.h>
 #include <uecho/uecho.h>
 
 const int UECHOPOST_MAX_RESPONSE_MTIME = 5000;
 const int UECHOPOST_RESPONSE_RETRY_COUNT = 100;
+
+void usage()
+{
+  printf("Usage : echopost <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
+  printf(" -v : Enable verbose output\n");
+  printf(" -n : Disable unicast server\n");
+  printf(" -h : Print this message\n");
+}
 
 void uechopost_print_messages(uEchoController *ctrl, uEchoMessage *msg)
 {
@@ -68,20 +77,15 @@ void uechopost_print_objectresponse(uEchoController *ctrl, uEchoMessage *msg)
   printf("\n");
 }
 
-void uechopost_print_usage()
-{
-  printf("Usage : echopost <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
-}
-
 void uechopost_controlpoint_listener(uEchoController *ctrl, uEchoMessage *msg)
 {
-#if defined(DEBUG)
   uechopost_print_messages(ctrl, msg);
-#endif
 }
 
 int main(int argc, char *argv[])
 {
+  bool verboseMode;
+  bool nobindMode;
   uEchoController *ctrl;
   uEchoNode *dstNode;
   char *dstNodeAddr;
@@ -93,21 +97,62 @@ int main(int argc, char *argv[])
   size_t edtSize;
   int epc, pdc, edtByte;
   int n;
+
   byte *propData;
   bool isResponseRequired;
+  int c;
+  
+  // Parse options
+  
+  verboseMode = false;
+  nobindMode = false;
+  
+  while ((c = getopt(argc, argv, "vnh")) != -1) {
+    switch (c) {
+      case 'v':
+        {
+          verboseMode = true;
+        }
+        break;
+      case 'n':
+        {
+          nobindMode = true;
+        }
+        break;
+      case 'h':
+        {
+          usage();
+          return EXIT_SUCCESS;
+        }
+      default:
+        {
+          usage();
+          return EXIT_FAILURE;
+        }
+    }
+  }
+  
+  argc -= optind;
+  argv += optind;
   
   if (argc < 5) {
-    uechopost_print_usage();
+    usage();
     return EXIT_FAILURE;
   }
-
+  
   // Start controller
   
   ctrl = uecho_controller_new();
   if (!ctrl)
     return EXIT_FAILURE;
   
-  uecho_controller_setmessagelistener(ctrl, uechopost_controlpoint_listener);
+  if (verboseMode) {
+    uecho_controller_setmessagelistener(ctrl, uechopost_controlpoint_listener);
+  }
+  
+  if (nobindMode) {
+    uecho_controller_disableudpserver(ctrl);
+  }
 
   if (!uecho_controller_start(ctrl))
     return EXIT_FAILURE;
