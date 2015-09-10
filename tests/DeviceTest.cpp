@@ -78,11 +78,18 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
   BOOST_CHECK(uecho_controller_sendmessage(ctrl, foundObj, msg));
   uecho_message_delete(msg);
-   
+  
   // Check Property (Defult:ON)
    
   uEchoProperty *foundProp = uecho_object_getpropertywait(foundObj, UECHO_TEST_PROPERTY_SWITCHCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
   BOOST_CHECK(foundProp);
+  for (int n=0; n<uEchoWaitRetryCount; n++) {
+    uecho_sleep(UECHO_TEST_RESPONSE_WAIT_MAX_MTIME / uEchoWaitRetryCount);
+    if (!uecho_property_getbytedata(foundProp, &propByte))
+      continue;
+    if (propByte == UECHO_TEST_PROPERTY_SWITCH_DEFAULT)
+      break;
+  }
   BOOST_CHECK(uecho_property_getbytedata(foundProp, &propByte));
   BOOST_CHECK_EQUAL(propByte, UECHO_TEST_PROPERTY_SWITCH_DEFAULT);
   
@@ -95,6 +102,14 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   BOOST_CHECK(uecho_controller_sendmessage(ctrl, foundObj, msg));
   uecho_message_delete(msg);
   
+  
+  // Send Message (NotificationRequest instead of ReadRequest)
+  
+  msg = uecho_message_new();
+  uecho_message_setesv(msg, uEchoEsvNotificationRequest);
+  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
+  BOOST_CHECK(uecho_controller_sendmessage(ctrl, foundObj, msg));
+  uecho_message_delete(msg);
   
   // Check Property Update (OFF)
   
@@ -119,6 +134,14 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   BOOST_CHECK(uecho_controller_sendmessage(ctrl, foundObj, msg));
   uecho_message_delete(msg);
   
+  // Send Message (NotificationRequest instead of ReadRequest)
+  
+  msg = uecho_message_new();
+  uecho_message_setesv(msg, uEchoEsvNotificationRequest);
+  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
+  BOOST_CHECK(uecho_controller_sendmessage(ctrl, foundObj, msg));
+  uecho_message_delete(msg);
+
   // Check Property Update (ON)
   
   propChanged = false;

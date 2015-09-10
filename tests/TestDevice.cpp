@@ -44,11 +44,18 @@ void uecho_test_object_messagelitener(uEchoObject *obj, uEchoMessage *msg)
 void uecho_test_property_requestlistener(uEchoObject *obj, uEchoEsv esv, uEchoProperty *prop)
 {
   byte status;
-  
+
+#if defined(DEBUG)
+  printf("%02X %02X (%d)\n",
+         esv,
+         uecho_property_getcode(prop),
+         uecho_property_getdatasize(prop));
+#endif
+
   if (uecho_property_getdatasize(prop) != 1)
     return;
   
-  if (uecho_property_getbytedata(prop, &status))
+  if (!uecho_property_getbytedata(prop, &status))
     return;
   
 #if defined(DEBUG)
@@ -75,7 +82,7 @@ uEchoObject *uecho_test_createtestdevice()
   // Operation status property
   uecho_object_setproperty(obj, UECHO_TEST_PROPERTY_SWITCHCODE, uEchoPropertyAttrReadWrite);
   prop[0] = UECHO_TEST_PROPERTY_SWITCH_ON;
-  uecho_object_setpropertydata(obj, UECHO_TEST_PROPERTY_SWITCH_DEFAULT, prop, 1);
+  uecho_object_setpropertydata(obj, UECHO_TEST_PROPERTY_SWITCHCODE, prop, 1);
   
   // Set object listner
 

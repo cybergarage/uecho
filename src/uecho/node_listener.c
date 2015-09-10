@@ -24,6 +24,8 @@ void uecho_object_notifyrequestproperty(uEchoObject *obj, uEchoEsv esv, uEchoPro
     return;
   
   for (obs = uecho_object_property_observer_manager_getobservers(obj->propListenerMgr); obs; obs = uecho_object_property_observer_next(obs)) {
+    if (esv != uecho_object_property_observer_getesv(obs))
+      continue;
     if (uecho_property_getcode(msgProp) != uecho_object_property_observer_getpropetycode(obs))
       continue;
     obs->listener(obj, esv, msgProp);
