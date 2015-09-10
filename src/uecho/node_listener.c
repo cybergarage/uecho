@@ -134,12 +134,37 @@ bool uecho_object_responsemessage(uEchoObject *obj, uEchoMessage *msg)
  * uecho_object_handlemessage
  ****************************************/
 
+bool uecho_object_iswritablepropertyrequest(uEchoObject *obj, uEchoProperty *reqProp)
+{
+  uEchoProperty *nodeProp;
+  
+  nodeProp = uecho_object_getproperty(obj, uecho_property_getcode(reqProp));
+  if (!nodeProp)
+    return false;
+  
+  if (!uecho_property_iswritable(nodeProp))
+    return false;
+
+  if (uecho_property_getdatasize(reqProp) != uecho_property_getdatasize(nodeProp))
+    return false;
+  
+  return true;
+}
+
+bool uecho_object_setpropertyrequest(uEchoObject *obj, uEchoProperty *reqProp)
+{
+  uEchoProperty *nodeProp;
+  
+  nodeProp = uecho_object_getproperty(obj, uecho_property_getcode(reqProp));
+  if (!nodeProp)
+    return false;
+  
+  return uecho_property_setdata(nodeProp, uecho_property_getdata(reqProp), uecho_property_getdatasize(reqProp));
+}
+
 void uecho_object_handlemessage(uEchoObject *obj, uEchoMessage *msg)
 {
-  uEchoProperty *msgProp, *nodeProp;
-  uEchoPropertyCode msgPropCode;
-  int msgPropSize;
-  byte *msgPropData;
+  uEchoProperty *msgProp;
   uEchoEsv msgEsv;
   int msgOpc, n;
   
@@ -157,19 +182,10 @@ void uecho_object_handlemessage(uEchoObject *obj, uEchoMessage *msg)
       if (!msgProp)
         continue;
       
-      msgPropCode = uecho_property_getcode(msgProp);
-      
-      nodeProp = uecho_object_getproperty(obj, msgPropCode);
-      if (!nodeProp)
+      if (!uecho_object_iswritablepropertyrequest(obj, msgProp))
         continue;
       
-      if (!uecho_property_iswritable(nodeProp))
-        continue;
-      
-      msgPropSize = uecho_property_getdatasize(msgProp);
-      msgPropData = uecho_property_getdata(msgProp);
-      
-      uecho_property_setdata(nodeProp, msgPropData, msgPropSize);
+      uecho_object_setpropertyrequest(obj, msgProp);
     }
   }
   
