@@ -20,7 +20,7 @@ void uecho_lighting_node_messagelitener(uEchoNode *obj, uEchoMessage *msg)
 
 void usage()
 {
-  printf("Usage : lightdev\n");
+  printf("Usage : uecholight\n");
   printf(" -v        : Enable verbose output\n");
   printf(" -m XXXXXX : Set Manifacture code\n");
   printf(" -h        : Print this message\n");

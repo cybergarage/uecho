@@ -31,6 +31,7 @@ uechotest_SOURCES = \
 	..//PropertyListTest.cpp \
 	..//PropertyTest.cpp \
 	..//ServerTest.cpp \
+	..//SocketTest.cpp \
 	..//TestDevice.cpp \
 	..//ThreadTest.cpp \
 	..//uEchoTest.cpp

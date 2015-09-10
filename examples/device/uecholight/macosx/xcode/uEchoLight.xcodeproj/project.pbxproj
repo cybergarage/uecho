@@ -54,7 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		215CB3441B8F189C000BA7FF /* LightingDev */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LightingDev; sourceTree = BUILT_PRODUCTS_DIR; };
+		215CB3441B8F189C000BA7FF /* uEchoLight */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uEchoLight; sourceTree = BUILT_PRODUCTS_DIR; };
 		217B79B61B8F1B7300FF2797 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
 		21B1B2F01B8F1C8700873DBA /* lighting_dev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lighting_dev.h; path = ../../lighting_dev.h; sourceTree = "<group>"; };
 		21B1B2F11B8F1C8700873DBA /* lighting_dev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lighting_dev.c; path = ../../lighting_dev.c; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		215CB3451B8F189C000BA7FF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				215CB3441B8F189C000BA7FF /* LightingDev */,
+				215CB3441B8F189C000BA7FF /* uEchoLight */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,9 +119,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		215CB3431B8F189C000BA7FF /* LightingDev */ = {
+		215CB3431B8F189C000BA7FF /* uEchoLight */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 215CB34B1B8F189C000BA7FF /* Build configuration list for PBXNativeTarget "LightingDev" */;
+			buildConfigurationList = 215CB34B1B8F189C000BA7FF /* Build configuration list for PBXNativeTarget "uEchoLight" */;
 			buildPhases = (
 				215CB3401B8F189C000BA7FF /* Sources */,
 				215CB3411B8F189C000BA7FF /* Frameworks */,
@@ -133,9 +133,9 @@
 			dependencies = (
 				21B1B2F71B8F1DCE00873DBA /* PBXTargetDependency */,
 			);
-			name = LightingDev;
+			name = uEchoLight;
 			productName = LightingDev;
-			productReference = 215CB3441B8F189C000BA7FF /* LightingDev */;
+			productReference = 215CB3441B8F189C000BA7FF /* uEchoLight */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -152,7 +152,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 215CB33F1B8F189B000BA7FF /* Build configuration list for PBXProject "LightingDev" */;
+			buildConfigurationList = 215CB33F1B8F189B000BA7FF /* Build configuration list for PBXProject "uEchoLight" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -170,7 +170,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				215CB3431B8F189C000BA7FF /* LightingDev */,
+				215CB3431B8F189C000BA7FF /* uEchoLight */,
 			);
 		};
 /* End PBXProject section */
@@ -296,21 +296,21 @@
 		215CB34C1B8F189C000BA7FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = LightingDev;
+				PRODUCT_NAME = uEchoLight;
 			};
 			name = Debug;
 		};
 		215CB34D1B8F189C000BA7FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = LightingDev;
+				PRODUCT_NAME = uEchoLight;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		215CB33F1B8F189B000BA7FF /* Build configuration list for PBXProject "LightingDev" */ = {
+		215CB33F1B8F189B000BA7FF /* Build configuration list for PBXProject "uEchoLight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				215CB3491B8F189C000BA7FF /* Debug */,
@@ -319,7 +319,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		215CB34B1B8F189C000BA7FF /* Build configuration list for PBXNativeTarget "LightingDev" */ = {
+		215CB34B1B8F189C000BA7FF /* Build configuration list for PBXNativeTarget "uEchoLight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				215CB34C1B8F189C000BA7FF /* Debug */,
