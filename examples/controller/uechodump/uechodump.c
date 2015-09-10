@@ -9,7 +9,6 @@
  ******************************************************************/
 
 #include <stdio.h>
-#include <curses.h>
 #include <ctype.h>
 
 #include <uecho/uecho.h>
