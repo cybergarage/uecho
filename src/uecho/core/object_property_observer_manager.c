@@ -56,6 +56,7 @@ bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObser
   if (!obs)
     return false;
   
+  uecho_object_property_observer_setesv(obs, esv);
   uecho_object_property_observer_setpropetycode(obs, code);
   uecho_object_property_observer_setlistener(obs, listener);
   
