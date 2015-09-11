@@ -29,8 +29,9 @@
 *.hex
 
 # Automake files
-#config/
+config/
 config.*
+Makefile.in
 aclocal.m4
 autom4te.cache/
 *.dirstamp
