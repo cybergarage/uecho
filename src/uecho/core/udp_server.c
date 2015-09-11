@@ -33,12 +33,14 @@ uEchoUdpServer *uecho_udp_server_new(void)
  * uecho_udp_server_delete
  ****************************************/
 
-void uecho_udp_server_delete(uEchoUdpServer *server)
+bool uecho_udp_server_delete(uEchoUdpServer *server)
 {
   uecho_socket_delete(server->socket);
   uecho_udp_server_remove(server);
   
   free(server);
+
+  return true;
 }
 
 /****************************************

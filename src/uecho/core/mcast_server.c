@@ -34,12 +34,14 @@ uEchoMcastServer *uecho_mcast_server_new(void)
 * uecho_mcast_server_delete
 ****************************************/
 
-void uecho_mcast_server_delete(uEchoMcastServer *server)
+bool uecho_mcast_server_delete(uEchoMcastServer *server)
 {
   uecho_mcast_server_stop(server);
   uecho_mcast_server_remove(server);
   
   free(server);
+
+  return true;
 }
 
 /****************************************

@@ -13,7 +13,6 @@
 #include <uecho/uecho.h>
 #include <uecho/net/socket.h>
 #include <uecho/net/interface.h>
-#include <uecho/net/interface.h>
 
 BOOST_AUTO_TEST_CASE(BindAddr)
 {
