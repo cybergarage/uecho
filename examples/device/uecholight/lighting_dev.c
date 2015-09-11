@@ -24,7 +24,11 @@
 #define ROUND_PLATFORM_RASPBIAN 1
 #define RASPBERRY_PI_LIGHT_GPIO_NO 3
 
-void uecho_lighting_printrequest(uEchoMessage *msg)
+/****************************************
+ * uecho_light_printrequest
+ ****************************************/
+
+void uecho_light_printrequest(uEchoMessage *msg)
 {
   uEchoProperty *prop;
   size_t opc, n;
@@ -48,10 +52,18 @@ void uecho_lighting_printrequest(uEchoMessage *msg)
   printf("\n");
 }
 
+/****************************************
+ * uecho_lighting_object_messagelitener
+ ****************************************/
+
 void uecho_lighting_object_messagelitener(uEchoObject *obj, uEchoMessage *msg)
 {
-  uecho_lighting_printrequest(msg);
+  uecho_light_printrequest(msg);
 }
+
+/****************************************
+ * uecho_lighting_propertyrequestlistener
+ ****************************************/
 
 void uecho_lighting_propertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoProperty *prop)
 {
@@ -69,9 +81,15 @@ void uecho_lighting_propertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEch
   switch (status) {
     case LIGHT_PROPERTY_POWER_ON:
       printf("POWER = ON\n");
+#if defined(ROUND_PLATFORM_RASPBIAN)
+      system("echo \"1\" > /sys/class/gpio/gpioRASPBERRY_PI_LIGHT_GPIO_NO/value");
+#endif
       break;
     case LIGHT_PROPERTY_POWER_OFF:
       printf("POWER = OFF\n");
+#if defined(ROUND_PLATFORM_RASPBIAN)
+      system("echo \"0\" > /sys/class/gpio/gpioRASPBERRY_PI_LIGHT_GPIO_NO/value");
+#endif
       break;
     default:
       printf("POWER = %02X\n", status);
@@ -79,7 +97,11 @@ void uecho_lighting_propertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEch
   }
 }
 
-uEchoObject *uecho_create_lighting_deviceobject(void)
+/****************************************
+ * uecho_light_new
+ ****************************************/
+
+uEchoObject *uecho_light_new(void)
 {
   uEchoObject *obj;
   byte prop[32];
@@ -107,8 +129,23 @@ uEchoObject *uecho_create_lighting_deviceobject(void)
   // Set Raspbian GPIO
 
 #if defined(ROUND_PLATFORM_RASPBIAN)
-  system("echo ¥"RASPBERRY_PI_LIGHT_GPIO_NO¥" > /sys/class/gpio/export");
+  system("echo \"RASPBERRY_PI_LIGHT_GPIO_NO\" > /sys/class/gpio/export");
+  system("echo \"out\" > /sys/class/gpio/gpioRASPBERRY_PI_LIGHT_GPIO_NO/direction");
 #endif
   
   return obj;
 }
+
+/****************************************
+ * uecho_light_delete
+ ****************************************/
+
+bool uecho_light_delete(uEchoObject *obj)
+{
+#if defined(ROUND_PLATFORM_RASPBIAN)
+  system("echo \"RASPBERRY_PI_LIGHT_GPIO_NO\" > /sys/class/gpio/unexport");
+#endif
+
+  return uecho_object_delete(obj);
+}
+
