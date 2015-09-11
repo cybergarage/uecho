@@ -52,7 +52,7 @@ void uecho_lighting_propertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEch
 {
   byte status;
   
-  printf("ESV = %02X : %02X\n", esv, uecho_property_getcode(prop));
+  printf("ESV = %02X : %02X(%d)\n", esv, uecho_property_getcode(prop), uecho_property_getdatasize(prop));
   
   if (uecho_property_getdatasize(prop) != 1)
     return;
