@@ -52,21 +52,23 @@ void uecho_lighting_propertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEch
 {
   byte status;
   
-  printf("ESV = %02X : %02X(%d)\n", esv, uecho_property_getcode(prop), uecho_property_getdatasize(prop));
+  printf("ESV = %02X : %02X(%d), ", esv, uecho_property_getcode(prop), uecho_property_getdatasize(prop));
   
-  if (uecho_property_getdatasize(prop) != 1)
+  if ((uecho_property_getdatasize(prop) != 1) || !uecho_property_getbytedata(prop, &status)) {
+    printf("Bad Request\n");
     return;
-  
-  if (!uecho_property_getbytedata(prop, &status))
-    return;
+  }
 
   // TODO : Set the status to hardware
   
   switch (status) {
     case LIGHT_PROPERTY_POWER_ON:
-      printf("POWER = %02X\n", status);
+      printf("POWER = ON\n");
       break;
     case LIGHT_PROPERTY_POWER_OFF:
+      printf("POWER = OFF\n");
+      break;
+    default:
       printf("POWER = %02X\n", status);
       break;
   }
