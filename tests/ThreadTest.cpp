@@ -12,6 +12,7 @@
 #include <boost/thread.hpp>
 
 #include <uecho/util/thread.h>
+#include <uecho/util/timer.h>
 
 const int THREAD_TEST_LOOP_NUM = 10;
 
@@ -33,7 +34,7 @@ BOOST_AUTO_TEST_CASE(ThreadTest)
   
   BOOST_CHECK_EQUAL (uecho_thread_start(thread), true);
   while (testCounter != THREAD_TEST_LOOP_NUM) {
-    boost::this_thread::sleep(boost::posix_time::milliseconds(100));
+    uecho_sleep(100);
   }
   BOOST_CHECK_EQUAL(testCounter, THREAD_TEST_LOOP_NUM);
   BOOST_CHECK_EQUAL(uecho_thread_stop(thread), true);
