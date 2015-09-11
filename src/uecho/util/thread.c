@@ -151,11 +151,7 @@ bool uecho_thread_stop(uEchoThread *thread)
     TerminateThread(thread->hThread, 0);
     WaitForSingleObject(thread->hThread, INFINITE);
 #else
-    #if  defined(TARGET_OS_MAC) || defined(TARGET_OS_IPHONE)
     pthread_kill(thread->pThread, 0);
-    #else
-    pthread_kill(thread->pThread, SIGQUIT);
-    #endif
 #endif
   }
 
