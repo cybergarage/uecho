@@ -166,7 +166,7 @@ static void uecho_mcast_server_action(uEchoThread *thread)
   server = (uEchoMcastServer *)uecho_thread_getuserdata(thread);
 
   if (!server)
-    return false;
+    return;
 
   if (!uecho_socket_isbound(server->socket))
     return;
