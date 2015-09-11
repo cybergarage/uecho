@@ -35,6 +35,9 @@ uEchoUdpServer *uecho_udp_server_new(void)
 
 bool uecho_udp_server_delete(uEchoUdpServer *server)
 {
+  if (!server)
+    return false;
+    
   uecho_socket_delete(server->socket);
   uecho_udp_server_remove(server);
   
@@ -65,7 +68,8 @@ void uecho_udp_server_setuserdata(uEchoUdpServer *server, void *data)
  * uecho_udp_server_getuserdata
  ****************************************/
 
-void *uecho_udp_server_getuserdata(uEchoUdpServer *server) {
+void *uecho_udp_server_getuserdata(uEchoUdpServer *server) 
+{
   return server->userData;
 }
 
@@ -75,6 +79,9 @@ void *uecho_udp_server_getuserdata(uEchoUdpServer *server) {
 
 bool uecho_udp_server_open(uEchoUdpServer *server, const char *bindAddr)
 {
+  if (!server)
+    return false;
+    
   uecho_udp_server_close(server);
   
   server->socket = uecho_socket_dgram_new();
@@ -92,6 +99,9 @@ bool uecho_udp_server_open(uEchoUdpServer *server, const char *bindAddr)
 
 bool uecho_udp_server_close(uEchoUdpServer *server)
 {
+  if (!server)
+    return false;
+    
   if (!server->socket)
     return true;
   
@@ -108,8 +118,12 @@ bool uecho_udp_server_close(uEchoUdpServer *server)
 
 bool uecho_udp_server_isopened(uEchoUdpServer *server)
 {
+  if (!server)
+    return false;
+
   if (!server->socket)
     return false;
+    
   return true;
 }
 
@@ -119,9 +133,14 @@ bool uecho_udp_server_isopened(uEchoUdpServer *server)
 
 bool uecho_udp_server_performlistener(uEchoUdpServer *server, uEchoMessage *msg)
 {
+  if (!server)
+    return false;
+    
   if (!server->msgListener)
     return false;
+
   server->msgListener(server, msg);
+
   return true;
 }
 
@@ -138,6 +157,9 @@ static void uecho_udp_server_action(uEchoThread *thread)
   
   server = (uEchoUdpServer *)uecho_thread_getuserdata(thread);
   
+  if (!server)
+    return;
+    
   if (!uecho_socket_isbound(server->socket))
     return;
   
@@ -168,6 +190,9 @@ static void uecho_udp_server_action(uEchoThread *thread)
 
 bool uecho_udp_server_start(uEchoUdpServer *server)
 {
+  if (!server)
+    return false;
+    
   uecho_udp_server_stop(server);
   
   if (!uecho_udp_server_isopened(server))
@@ -190,6 +215,9 @@ bool uecho_udp_server_start(uEchoUdpServer *server)
 
 bool uecho_udp_server_stop(uEchoUdpServer *server)
 {
+  if (!server)
+    return false;
+    
   if (!server->thread)
     return true;
   
@@ -206,6 +234,9 @@ bool uecho_udp_server_stop(uEchoUdpServer *server)
 
 bool uecho_udp_server_isrunning(uEchoUdpServer *server)
 {
+  if (!server)
+    return false;
+    
   if (!server->thread)
     return false;
 

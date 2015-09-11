@@ -79,7 +79,7 @@ typedef void (*uEchoServerMessageListener)(uEchoServer *, uEchoMessage *);
 // Server
 
 uEchoServer *uecho_server_new(void);
-void uecho_server_delete(uEchoServer *server);
+bool uecho_server_delete(uEchoServer *server);
 
 void uecho_server_setmessagelistener(uEchoServer *server, uEchoServerMessageListener listener);
 void uecho_server_setuserdata(uEchoServer *server, void *data);

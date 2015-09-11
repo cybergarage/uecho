@@ -36,6 +36,9 @@ uEchoMcastServer *uecho_mcast_server_new(void)
 
 bool uecho_mcast_server_delete(uEchoMcastServer *server)
 {
+  if (!server)
+    return false;
+ 
   uecho_mcast_server_stop(server);
   uecho_mcast_server_remove(server);
   
@@ -77,6 +80,9 @@ void *uecho_mcast_server_getuserdata(uEchoMcastServer *server)
 
 bool uecho_mcast_server_open(uEchoMcastServer *server, const char *bindAddr)
 {
+  if (!server)
+    return false;
+ 
   uecho_mcast_server_close(server);
   
   server->socket = uecho_socket_dgram_new();
@@ -99,6 +105,9 @@ bool uecho_mcast_server_open(uEchoMcastServer *server, const char *bindAddr)
 
 bool uecho_mcast_server_close(uEchoMcastServer *server)
 {
+  if (!server)
+    return false;
+    
   if (!server->socket)
     return true;
   
@@ -115,8 +124,12 @@ bool uecho_mcast_server_close(uEchoMcastServer *server)
 
 bool uecho_mcast_server_isopened(uEchoMcastServer *server)
 {
+  if (!server)
+    return false;
+    
   if (!server->socket)
     return false;
+
   return true;
 }
 
@@ -126,6 +139,9 @@ bool uecho_mcast_server_isopened(uEchoMcastServer *server)
 
 bool uecho_mcast_server_performlistener(uEchoMcastServer *server, uEchoMessage *msg)
 {
+  if (!server)
+    return false;
+    
   if (!server->msgListener)
     return false;
   
@@ -146,6 +162,9 @@ static void uecho_mcast_server_action(uEchoThread *thread)
   uEchoMessage *msg;
   
   server = (uEchoMcastServer *)uecho_thread_getuserdata(thread);
+
+  if (!server)
+    return false;
 
   if (!uecho_socket_isbound(server->socket))
     return;
@@ -177,6 +196,9 @@ static void uecho_mcast_server_action(uEchoThread *thread)
 
 bool uecho_mcast_server_start(uEchoMcastServer *server)
 {
+  if (!server)
+    return false;
+ 
   uecho_mcast_server_stop(server);
 
   if (!uecho_mcast_server_isopened(server))
@@ -199,6 +221,9 @@ bool uecho_mcast_server_start(uEchoMcastServer *server)
 
 bool uecho_mcast_server_stop(uEchoMcastServer *server)
 {
+  if (!server)
+    return false;
+    
   if (!server->thread)
     return true;
   
@@ -215,6 +240,9 @@ bool uecho_mcast_server_stop(uEchoMcastServer *server)
 
 bool uecho_mcast_server_isrunning(uEchoMcastServer *server)
 {
+  if (!server)
+    return false;
+    
   if (!server->thread)
     return false;
 
@@ -229,6 +257,9 @@ bool uecho_mcast_server_post(uEchoMcastServer *server, const byte *msg, size_t m
 {
   size_t sentLen = 0;
   
+  if (!server)
+    return false;
+
   if (!server->socket)
     return false;
   
