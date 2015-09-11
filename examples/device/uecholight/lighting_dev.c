@@ -8,6 +8,8 @@
  *
  ******************************************************************/
 
+#include <stdlib.h>
+
 #include <uecho/node.h>
 #include <uecho/device.h>
 
@@ -18,6 +20,9 @@
 #define LIGHT_PROPERTY_POWER_CODE 0x80
 #define LIGHT_PROPERTY_POWER_ON 0x30
 #define LIGHT_PROPERTY_POWER_OFF 0x31
+
+#define ROUND_PLATFORM_RASPBIAN 1
+#define RASPBERRY_PI_LIGHT_GPIO_NO 3
 
 void uecho_lighting_printrequest(uEchoMessage *msg)
 {
@@ -98,6 +103,12 @@ uEchoObject *uecho_create_lighting_deviceobject(void)
   // Set property observer
   
   uecho_object_setpropertywriterequestlistener(obj, LIGHT_PROPERTY_POWER_CODE, uecho_lighting_propertyrequestlistener);
+  
+  // Set Raspbian GPIO
+
+#if defined(ROUND_PLATFORM_RASPBIAN)
+  system("echo ¥"RASPBERRY_PI_LIGHT_GPIO_NO¥" > /sys/class/gpio/export");
+#endif
   
   return obj;
 }
