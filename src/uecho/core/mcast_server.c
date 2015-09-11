@@ -232,6 +232,7 @@ bool uecho_mcast_server_stop(uEchoMcastServer *server)
   if (!server->thread)
     return true;
   
+  uecho_mcast_server_close(server);
   uecho_thread_stop(server->thread);
   uecho_thread_delete(server->thread);
   server->thread = NULL;

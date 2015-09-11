@@ -226,6 +226,7 @@ bool uecho_udp_server_stop(uEchoUdpServer *server)
   if (!server->thread)
     return true;
   
+  uecho_udp_server_close(server);
   uecho_thread_stop(server->thread);
   uecho_thread_delete(server->thread);
   server->thread = NULL;
