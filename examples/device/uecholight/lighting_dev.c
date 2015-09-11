@@ -43,9 +43,16 @@ void uecho_lighting_printrequest(uEchoMessage *msg)
   printf("\n");
 }
 
+void uecho_lighting_object_messagelitener(uEchoObject *obj, uEchoMessage *msg)
+{
+  uecho_lighting_printrequest(msg);
+}
+
 void uecho_lighting_propertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoProperty *prop)
 {
   byte status;
+  
+  printf("ESV = %02X : %02X\n", esv, uecho_property_getcode(prop));
   
   if (uecho_property_getdatasize(prop) != 1)
     return;
