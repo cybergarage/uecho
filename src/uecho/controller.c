@@ -541,7 +541,7 @@ bool uecho_controller_searchallobjectswithesv(uEchoController *ctrl, uEchoEsv es
 
 bool uecho_controller_searchallobjects(uEchoController *ctrl)
 {
-  return uecho_controller_searchallobjectswithesv(ctrl, uEchoEsvReadResponse);
+  return uecho_controller_searchallobjectswithesv(ctrl, uEchoEsvReadRequest);
 }
 
 /****************************************
@@ -577,5 +577,5 @@ bool uecho_controller_searchobjectwithesv(uEchoController *ctrl, byte objCode, u
 
 bool uecho_controller_searchobject(uEchoController *ctrl, byte objCode)
 {
-  return uecho_controller_searchobjectwithesv(ctrl, objCode, uEchoEsvReadResponse);
+  return uecho_controller_searchobjectwithesv(ctrl, objCode, uEchoEsvReadRequest);
 }
