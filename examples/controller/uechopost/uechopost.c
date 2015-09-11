@@ -17,7 +17,7 @@ const int UECHOPOST_RESPONSE_RETRY_COUNT = 100;
 
 void usage()
 {
-  printf("Usage : echopost [options] <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
+  printf("Usage : uechopost [options] <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
   printf(" -v : Enable verbose output\n");
   printf(" -n : Disable unicast server\n");
   printf(" -h : Print this message\n");
@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
   argc -= optind;
   argv += optind;
   
-  if (argc < 5) {
+  if (argc < 4) {
     usage();
     return EXIT_FAILURE;
   }
@@ -154,14 +154,16 @@ int main(int argc, char *argv[])
     uecho_controller_disableudpserver(ctrl);
   }
 
+  // Start controller and search objects
+  
   if (!uecho_controller_start(ctrl))
     return EXIT_FAILURE;
   
-  // Find destination node
-  
   uecho_controller_searchallobjects(ctrl);
   
-  dstNodeAddr = argv[1];
+  // Find destination node
+  
+  dstNodeAddr = argv[0];
 
   dstNode = NULL;
   for (n=0; n<UECHOPOST_RESPONSE_RETRY_COUNT; n++) {
@@ -179,7 +181,7 @@ int main(int argc, char *argv[])
 
   // Find destination object
   
-  sscanf(argv[2], "%x", &dstObjCode);
+  sscanf(argv[1], "%x", &dstObjCode);
   
   dstObj = uecho_node_getobjectbycode(dstNode, dstObjCode);
   
@@ -193,15 +195,15 @@ int main(int argc, char *argv[])
   
   msg = uecho_message_new();
   uecho_message_setdestinationobjectcode(msg, dstObjCode);
-  sscanf(argv[3], "%x", &esv);
+  sscanf(argv[2], "%x", &esv);
   uecho_message_setesv(msg, esv);
 
 #if defined(DEBUG)
   printf("%s %06X %01X\n", dstNodeAddr, dstObjCode, esv);
 #endif
   
-  edata = edt = argv[4];
-  edtSize = strlen(argv[4]);
+  edata = edt = argv[3];
+  edtSize = strlen(argv[3]);
   while ((edt - edata + (2 + 2)) <= edtSize) {
     sscanf(edt, "%02x%02x", &epc, &pdc);
     edt += (2 + 2);
