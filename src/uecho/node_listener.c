@@ -85,6 +85,7 @@ bool uecho_object_responsemessage(uEchoObject *obj, uEchoMessage *msg)
     return false;
   
   uecho_message_setesv(resMsg, resEsv);
+  uecho_message_settid(resMsg, uecho_message_gettid(msg));
   uecho_message_setsourceobjectcode(resMsg, uecho_message_getdestinationobjectcode(msg));
   uecho_message_setdestinationobjectcode(resMsg, uecho_message_getsourceobjectcode(msg));
   
