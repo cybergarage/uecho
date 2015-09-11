@@ -14,27 +14,27 @@ AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 	../TestDevice.h
 
 uechotest_SOURCES = \
-	../ProfileTest.cpp \
 	../ClassListTest.cpp \
-	../NodeListTest.cpp \
-	../ObjectListTest.cpp \
-	../uEchoTest.cpp \
-	../SocketTest.cpp \
-	../ThreadTest.cpp \
-	../ControllerTest.cpp \
-	../ClassTest.cpp \
 	../TestDevice.cpp \
-	../ObserverTest.cpp \
-	../PropertyListTest.cpp \
+	../ProfileTest.cpp \
 	../NodeTest.cpp \
+	../ObjectListTest.cpp \
+	../ThreadTest.cpp \
+	../ObserverTest.cpp \
+	../MiscTest.cpp \
 	../MessageTest.cpp \
-	../MutexTest.cpp \
+	../SocketTest.cpp \
+	../ControllerTest.cpp \
+	../uEchoTest.cpp \
+	../NodeListTest.cpp \
+	../ObjectTest.cpp \
 	../InterfaceTest.cpp \
 	../PropertyTest.cpp \
 	../DeviceTest.cpp \
-	../ObjectTest.cpp \
+	../ClassTest.cpp \
 	../ServerTest.cpp \
-	../MiscTest.cpp
+	../PropertyListTest.cpp \
+	../MutexTest.cpp
 #if HAVE_LIBTOOL
 #uechotest_LDADD = ../../lib/unix/libuecho.la
 #else
