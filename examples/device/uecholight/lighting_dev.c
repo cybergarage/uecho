@@ -57,7 +57,7 @@ void uecho_lighting_propertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEch
   if (uecho_property_getdatasize(prop) != 1)
     return;
   
-  if (uecho_property_getbytedata(prop, &status))
+  if (!uecho_property_getbytedata(prop, &status))
     return;
 
   // TODO : Set the status to hardware
