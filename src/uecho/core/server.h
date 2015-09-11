@@ -103,7 +103,7 @@ bool uecho_server_isboundaddress(uEchoServer *server, const char *addr);
 // UDP Server
   
 uEchoUdpServer *uecho_udp_server_new(void);
-void uecho_udp_server_delete(uEchoUdpServer *server);
+bool uecho_udp_server_delete(uEchoUdpServer *server);
 
 #define uecho_udp_getsocket(server) (server->socket)
 
@@ -126,7 +126,7 @@ bool uecho_udp_server_isrunning(uEchoUdpServer *server);
 // Multicast Server
   
 uEchoMcastServer *uecho_mcast_server_new(void);
-void uecho_mcast_server_delete(uEchoMcastServer *server);
+bool uecho_mcast_server_delete(uEchoMcastServer *server);
 
 #define uecho_mcast_getsocket(server) (server->socket)
   
