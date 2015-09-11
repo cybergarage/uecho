@@ -48,7 +48,7 @@ typedef void uEchoClass;
  ****************************************/
 
 uEchoClass *uecho_class_new(void);
-void uecho_class_delete(uEchoClass *cls);
+bool uecho_class_delete(uEchoClass *cls);
 uEchoClass *uecho_class_next(uEchoClass *cls);
 
 void uecho_class_setcode(uEchoClass *cls, uEchoClassCode code);

@@ -40,15 +40,17 @@ uEchoProperty *uecho_property_new(void)
 * uecho_property_delete
 ****************************************/
 
-void uecho_property_delete(uEchoProperty *prop)
+bool uecho_property_delete(uEchoProperty *prop)
 {
   if (!prop)
-    return;
+    return false;
   
   uecho_property_cleardata(prop);
   uecho_property_remove(prop);
 
   free(prop);
+  
+  return true;
 }
 
 /****************************************

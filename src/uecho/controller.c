@@ -46,13 +46,13 @@ uEchoController *uecho_controller_new(void)
 }
 
 /****************************************
- * uecho_object_delete
+ * uecho_controller_delete
  ****************************************/
 
-void uecho_controller_delete(uEchoController *ctrl)
+bool uecho_controller_delete(uEchoController *ctrl)
 {
   if (!ctrl)
-    return;
+    return false;
   
   uecho_controller_stop(ctrl);
   
@@ -61,6 +61,8 @@ void uecho_controller_delete(uEchoController *ctrl)
   uecho_nodelist_delete(ctrl->nodes);
 
   free(ctrl);
+
+  return true;
 }
 
 /****************************************

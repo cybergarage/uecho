@@ -63,10 +63,10 @@ uEchoObject *uecho_object_new(void)
 * uecho_object_delete
 ****************************************/
 
-void uecho_object_delete(uEchoObject *obj)
+bool uecho_object_delete(uEchoObject *obj)
 {
   if (!obj)
-    return;
+    return false;
 
   uecho_list_remove((uEchoList *)obj);
   
@@ -76,6 +76,8 @@ void uecho_object_delete(uEchoObject *obj)
   uecho_object_property_observer_manager_delete(obj->propListenerMgr);
   
   free(obj);
+  
+  return true;
 }
 
 /****************************************
