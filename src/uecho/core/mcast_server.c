@@ -24,6 +24,8 @@ uEchoMcastServer *uecho_mcast_server_new(void)
   if (!server)
     return NULL;
   
+  uecho_list_node_init((uEchoList *)server);
+  
   server->socket = NULL;
   server->thread = NULL;
   
