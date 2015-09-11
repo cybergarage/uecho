@@ -152,6 +152,8 @@ bool uecho_thread_stop(uEchoThread *thread)
     WaitForSingleObject(thread->hThread, INFINITE);
 #else
     pthread_kill(thread->pThread, 0);
+		/* Now we wait one second for thread termination instead of using pthread_join */
+		uecho_sleep(UECHO_THREAD_MIN_SLEEP);
 #endif
   }
 
