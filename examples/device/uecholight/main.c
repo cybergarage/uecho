@@ -23,7 +23,7 @@ void usage()
 
 void uecho_lighting_node_messagelitener(uEchoNode *obj, uEchoMessage *msg)
 {
-  uecho_lighting_printrequest(msg);
+  uecho_light_printrequest(msg);
 }
 
 int main(int argc, char *argv[])
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
     uecho_node_setmessagelistener(node, uecho_lighting_node_messagelitener);
   }
   
-  obj = uecho_create_lighting_deviceobject();
+  obj = uecho_light_new();
   if (!obj) {
     uecho_node_delete(node);
     return EXIT_FAILURE;

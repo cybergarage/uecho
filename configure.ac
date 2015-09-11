@@ -153,6 +153,8 @@ AM_CONDITIONAL(UNITTESTS,test "$build_tests" = yes)
 if [ test "$build_tests" = yes ]; then
 	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,
 		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(uEcho needs boost::unit_test_framework)])])
+	AC_CHECK_LIB([boost_system-mt],[main],,
+		[AC_CHECK_LIB([boost_system_framework],[main],,[AC_MSG_ERROR(uEcho needs boost::system)])])
 fi
 
 ##############################
