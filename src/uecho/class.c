@@ -36,14 +36,16 @@ uEchoClass *uecho_class_new(void)
 * uecho_class_delete
 ****************************************/
 
-void uecho_class_delete(uEchoClass *cls)
+bool uecho_class_delete(uEchoClass *cls)
 {
   if (!cls)
-    return;
+    return false;
   
   uecho_list_remove((uEchoList *)cls);
 
   free(cls);
+  
+  return true;
 }
 
 /****************************************

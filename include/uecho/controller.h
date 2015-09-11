@@ -40,7 +40,7 @@ typedef void (*uEchoControllerMessageListener)(uEchoController *, uEchoMessage *
 ****************************************/
 
 uEchoController *uecho_controller_new(void);
-void uecho_controller_delete(uEchoController *ctrl);
+bool uecho_controller_delete(uEchoController *ctrl);
 
 void uecho_controller_disableudpserver(uEchoController *ctrl);
 

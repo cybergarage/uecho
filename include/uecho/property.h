@@ -50,7 +50,7 @@ typedef void uEchoProperty;
  ****************************************/
 
 uEchoProperty *uecho_property_new(void);
-void uecho_property_delete(uEchoProperty *prop);
+bool uecho_property_delete(uEchoProperty *prop);
 
 bool uecho_property_setcount(uEchoProperty *prop, size_t count);
 bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count);

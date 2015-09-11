@@ -53,8 +53,8 @@ typedef void uEchoMessage;
  ****************************************/
 
 uEchoMessage *uecho_message_new(void);
-void uecho_message_delete(uEchoMessage *msg);
-void uecho_message_clear(uEchoMessage *msg);
+bool uecho_message_delete(uEchoMessage *msg);
+bool uecho_message_clear(uEchoMessage *msg);
 
 bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen);
 
@@ -94,7 +94,7 @@ const char *uecho_message_getsourceaddress(uEchoMessage *msg);
 bool uecho_message_issourceaddress(uEchoMessage *msg, const char *addr);
 
 
-void uecho_message_set(uEchoMessage *msg, uEchoMessage *srcMsg);
+bool uecho_message_set(uEchoMessage *msg, uEchoMessage *srcMsg);
 uEchoMessage *uecho_message_copy(uEchoMessage *msg);
 bool uecho_message_equals(uEchoMessage *msg1, uEchoMessage *msg2);
 

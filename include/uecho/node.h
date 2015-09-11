@@ -34,8 +34,8 @@ typedef void (*uEchoNodeMessageListener)(uEchoNode *, uEchoMessage *);
  ****************************************/
 
 uEchoNode *uecho_node_new(void);
-void uecho_node_delete(uEchoNode *node);
-void uecho_node_clear(uEchoNode *node);
+bool uecho_node_delete(uEchoNode *node);
+bool uecho_node_clear(uEchoNode *node);
 uEchoNode *uecho_node_next(uEchoNode *node);
   
 void uecho_node_setaddress(uEchoNode *node, const char *addr);

@@ -53,7 +53,7 @@ typedef void (*uEchoPropertyRequestListener)(uEchoObject *, uEchoEsv, uEchoPrope
  ****************************************/
 
 uEchoObject *uecho_object_new(void);
-void uecho_object_delete(uEchoObject *obj);
+bool uecho_object_delete(uEchoObject *obj);
 uEchoObject *uecho_object_next(uEchoObject *obj);
 
 void uecho_object_setcode(uEchoObject *obj, uEchoObjectCode code);

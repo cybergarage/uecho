@@ -47,21 +47,29 @@ uEchoMessage *uecho_message_new(void)
 * uecho_message_delete
 ****************************************/
 
-void uecho_message_delete(uEchoMessage *msg)
+bool uecho_message_delete(uEchoMessage *msg)
 {
+  if (!msg)
+    return false;
+  
   uecho_message_clear(msg);
 
   free(msg);
+  
+  return true;
 }
 
 /****************************************
  * uecho_message_clear
  ****************************************/
 
-void uecho_message_clear(uEchoMessage *msg)
+bool uecho_message_clear(uEchoMessage *msg)
 {
   int n;
   
+  if (!msg)
+    return false;
+
   if (0 < msg->OPC) {
     for (n=0; n<(int)(msg->OPC); n++) {
       uecho_property_delete(msg->EP[n]);
@@ -83,6 +91,8 @@ void uecho_message_clear(uEchoMessage *msg)
     free(msg->srcAddr);
     msg->srcAddr = NULL;
   }
+  
+  return true;
 }
 
 /****************************************
@@ -91,6 +101,9 @@ void uecho_message_clear(uEchoMessage *msg)
 
 bool uecho_message_settid(uEchoMessage *msg, uEchoTID val)
 {
+  if (!msg)
+    return false;
+  
   if (uEchoTidMax < val) {
     val %= uEchoTidMax;
   }
@@ -171,6 +184,9 @@ bool uecho_message_isdestinationobjectcode(uEchoMessage *msg, int code)
 bool uecho_message_setopc(uEchoMessage *msg, byte count)
 {
   int n;
+  
+  if (!msg)
+    return false;
   
   uecho_message_clear(msg);
   
@@ -354,6 +370,8 @@ bool uecho_message_issourceaddress(uEchoMessage *msg, const char *addr)
 
 bool uecho_message_iswriterequest(uEchoMessage *msg)
 {
+  if (!msg)
+    return false;
   if ((msg->ESV == uEchoEsvWriteRequest) || (msg->ESV == uEchoEsvWriteRequestResponseRequired) || (msg->ESV == uEchoEsvWriteReadRequest))
     return true;
   return false;
@@ -365,6 +383,8 @@ bool uecho_message_iswriterequest(uEchoMessage *msg)
 
 bool uecho_message_isreadrequest(uEchoMessage *msg)
 {
+  if (!msg)
+    return false;
   if ((msg->ESV == uEchoEsvReadRequest) || (msg->ESV == uEchoEsvWriteReadRequest))
     return true;
   return false;
@@ -376,6 +396,8 @@ bool uecho_message_isreadrequest(uEchoMessage *msg)
 
 bool uecho_message_isnotifyrequest(uEchoMessage *msg)
 {
+  if (!msg)
+    return false;
   if ((msg->ESV == uEchoEsvNotificationRequest) || (msg->ESV == uEchoEsvNotificationResponseRequired))
     return true;
   return false;
@@ -387,6 +409,8 @@ bool uecho_message_isnotifyrequest(uEchoMessage *msg)
 
 bool uecho_message_iswriteresponse(uEchoMessage *msg)
 {
+  if (!msg)
+    return false;
   if ((msg->ESV == uEchoEsvWriteResponse) || (msg->ESV == uEchoEsvWriteReadResponse))
     return true;
   return false;
@@ -398,6 +422,8 @@ bool uecho_message_iswriteresponse(uEchoMessage *msg)
 
 bool uecho_message_isreadresponse(uEchoMessage *msg)
 {
+  if (!msg)
+    return false;
   if ((msg->ESV == uEchoEsvReadResponse) || (msg->ESV == uEchoEsvWriteReadResponse))
     return true;
   return false;
@@ -409,6 +435,8 @@ bool uecho_message_isreadresponse(uEchoMessage *msg)
 
 bool uecho_message_isnotifyresponse(uEchoMessage *msg)
 {
+  if (!msg)
+    return false;
   if ((msg->ESV == uEchoEsvNotification) || (msg->ESV == uEchoEsvNotificationResponse))
     return true;
   return false;
@@ -420,6 +448,9 @@ bool uecho_message_isnotifyresponse(uEchoMessage *msg)
 
 bool uecho_message_addproperty(uEchoMessage *msg, uEchoProperty *prop)
 {
+  if (!msg)
+    return false;
+  
   msg->OPC++;
   
   msg->EP = (uEchoProperty**)realloc(msg->EP, sizeof(uEchoProperty*) * msg->OPC);
@@ -435,6 +466,9 @@ bool uecho_message_addproperty(uEchoMessage *msg, uEchoProperty *prop)
 bool uecho_message_setproperty(uEchoMessage *msg, uEchoPropertyCode propCode, size_t propDataSize, const byte *propData)
 {
   uEchoProperty *prop;
+  
+  if (!msg)
+    return false;
   
   prop = uecho_message_getpropertybycode(msg, propCode);
   if (!prop) {
@@ -457,6 +491,8 @@ bool uecho_message_setproperty(uEchoMessage *msg, uEchoPropertyCode propCode, si
 
 uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n)
 {
+  if (!msg)
+    return false;
   if ((msg->OPC - 1) < n)
     return NULL;
   return msg->EP[n];
@@ -471,6 +507,9 @@ uEchoProperty *uecho_message_getpropertybycode(uEchoMessage *msg, uEchoPropertyC
   uEchoProperty *prop;
   size_t n;
   
+  if (!msg)
+    return NULL;
+
   for (n = 0; n<(size_t)(msg->OPC); n++) {
     prop = uecho_message_getproperty(msg, n);
     if (!prop)
@@ -490,6 +529,9 @@ bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen)
 {
   uEchoProperty *prop;
   size_t n, offset, count;
+  
+  if (!msg)
+    return false;
   
   if (dataLen < uEchoMessageMinLen)
     return false;
@@ -585,6 +627,9 @@ size_t uecho_message_size(uEchoMessage *msg)
   uEchoProperty *prop;
   size_t msgLen, n;
   
+  if (!msg)
+    return 0;
+  
   msgLen = uEchoMessageMinLen;
 
   for (n = 0; n<(size_t)(msg->OPC); n++) {
@@ -647,11 +692,14 @@ byte *uecho_message_getbytes(uEchoMessage *msg)
  * uecho_message_set
  ****************************************/
 
-void uecho_message_set(uEchoMessage *msg, uEchoMessage *srcMsg)
+bool uecho_message_set(uEchoMessage *msg, uEchoMessage *srcMsg)
 {
   uEchoProperty *prop, *srcProp;
   size_t srcMsgOpc, n;
   
+  if (!msg || !srcMsg)
+    return false;
+
   uecho_message_clear(msg);
   
   uecho_message_setehd1(msg, uecho_message_getehd1(srcMsg));
@@ -672,6 +720,8 @@ void uecho_message_set(uEchoMessage *msg, uEchoMessage *srcMsg)
       continue;
     uecho_message_addproperty(msg, prop);
   }
+  
+  return true;
 }
 
 /****************************************
