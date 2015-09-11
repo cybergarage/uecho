@@ -180,6 +180,9 @@ static void uecho_mcast_server_action(uEchoThread *thread)
     if (dgmPktLen < 0)
       break;
     
+    if (!uecho_thread_isrunnable(thread) || !uecho_socket_isbound(server->socket))
+      break;
+      
     msg = uecho_message_new();
     if (!msg)
       continue;
