@@ -43,11 +43,6 @@ void uecho_lighting_printrequest(uEchoMessage *msg)
   printf("\n");
 }
 
-void uecho_lighting_object_messagelitener(uEchoObject *obj, uEchoMessage *msg)
-{
-  uecho_lighting_printrequest(msg);
-}
-
 void uecho_lighting_propertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoProperty *prop)
 {
   byte status;
@@ -76,10 +71,6 @@ uEchoObject *uecho_create_lighting_deviceobject(void)
   byte prop[32];
   
   obj = uecho_device_new();
-  
-#if defined(DEBUG)
-  uecho_object_setmessagelistener(obj, uecho_lighting_object_messagelitener);
-#endif
   
   // TODO : Set your manufacture code
   
