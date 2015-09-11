@@ -30,7 +30,7 @@ extern "C" {
  * Define
  ****************************************/
 
-#define UECHO_THREAD_MIN_SLEEP 500
+#define UECHO_THREAD_MIN_SLEEP 200
 
 /****************************************
  * Data Type
