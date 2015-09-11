@@ -10,6 +10,8 @@
 
 #include "TestDevice.h"
 
+#undef UECHO_TEST_VERBOSE
+
 void uecho_test_printrequest(uEchoMessage *msg)
 {
   uEchoProperty *prop;
@@ -36,7 +38,7 @@ void uecho_test_printrequest(uEchoMessage *msg)
 
 void uecho_test_object_messagelitener(uEchoObject *obj, uEchoMessage *msg)
 {
-#if defined(DEBUG)
+#if defined(UECHO_TEST_VERBOSE)
   uecho_test_printrequest(msg);
 #endif
 }
@@ -45,7 +47,7 @@ void uecho_test_property_requestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPr
 {
   byte status;
 
-#if defined(DEBUG)
+#if defined(UECHO_TEST_VERBOSE)
   printf("%02X %02X (%d)\n",
          esv,
          uecho_property_getcode(prop),
@@ -57,8 +59,8 @@ void uecho_test_property_requestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPr
   
   if (!uecho_property_getbytedata(prop, &status))
     return;
-  
-#if defined(DEBUG)
+
+#if defined(UECHO_TEST_VERBOSE)
   switch (status) {
     case UECHO_TEST_PROPERTY_SWITCH_ON:
       printf("POWER = %02X\n", status);
