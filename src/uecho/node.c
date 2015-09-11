@@ -49,10 +49,10 @@ uEchoNode *uecho_node_new(void)
 * uecho_node_delete
 ****************************************/
 
-void uecho_node_delete(uEchoNode *node)
+bool uecho_node_delete(uEchoNode *node)
 {
   if (!node)
-    return;
+    return false;
   
   uecho_list_remove((uEchoList *)node);
   
@@ -62,19 +62,23 @@ void uecho_node_delete(uEchoNode *node)
   uecho_server_delete(node->server);
 
   free(node);
+  
+  return true;
 }
 
 /****************************************
  * uecho_node_clear
  ****************************************/
 
-void uecho_node_clear(uEchoNode *node)
+bool uecho_node_clear(uEchoNode *node)
 {
   if (!node)
-    return;
+    return false;
   
   uecho_classlist_clear(node->classes);
   uecho_objectlist_clear(node->objects);
+
+  return true;
 }
 
 /****************************************
