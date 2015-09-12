@@ -1,4 +1,4 @@
-# uEcho for C
+# Overview of uEcho Controller 
 
 The controller is a special node to control other nodes, it can find the nodes in the local area network and send any messages into the found devices.
 
