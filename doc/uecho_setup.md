@@ -20,4 +20,5 @@ To install on MacOSX using [Homebrew](http://brew.sh), run the following in a te
 ```
 brew tap cybergarage/brew
 brew install uecho
+brew untap cybergarage/brew
 ```

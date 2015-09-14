@@ -5,9 +5,10 @@ uEcho for C is a new open source framework for [ECHONETLite][enet] developers. [
 - [What is uEcho ?](doc/uecho_overview.md)
 - [Setup](doc/uecho_setup.md)
 - Controller
-  - [Overview of Controller](doc/uecho_controller.md)
+  - [Overview of Controller](doc/uecho_controller_overview.md)
 - Device
-  - [Overview of Device](doc/uecho_device.md)
+  - [Overview of Device](doc/uecho_device_overview.md)
+  - [Inside of Device](doc/uecho_device_inside.md)
 - [Examples](doc/uecho_examples.md)
 
 [enet]:http://echonet.jp/english/
