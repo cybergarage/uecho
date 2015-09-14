@@ -1,6 +1,6 @@
-# Overview of uEcho Controller 
+# Overview of uEcho Controller
 
-The controller is a special node to control other nodes, it can find the nodes in the local area network and send any messages into the found devices.
+The controller is a special node of [ECHONETLite][enet] to control other nodes, it can find the nodes in the local area network and send any messages into the found devices.
 
 ## Creating Controller
 
@@ -94,3 +94,5 @@ if (uecho_controller_postmessage(ctrl, dstObj, msg, resMsg)) {
 }
 uecho_message_delete(resMsg);
 ```
+
+[enet]:http://echonet.jp/english/
