@@ -218,16 +218,6 @@
        transform="matrix(2.1647418,0,0,2.1647418,409.71206,150.78806)" />
     <path
        sodipodi:type="arc"
-       style="fill:none;stroke:#000000;stroke-width:29.42024994;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="path4114"
-       sodipodi:cx="-195.00958"
-       sodipodi:cy="-194"
-       sodipodi:rx="30"
-       sodipodi:ry="30"
-       d="m -165.00958,-194 c 0,16.56854 -13.43146,30 -30,30 -16.56855,0 -30,-13.43146 -30,-30 0,-16.56854 13.43145,-30 30,-30 16.56854,0 30,13.43146 30,30 z"
-       transform="matrix(0.5098529,0,0,0.5098529,-131.58339,38.615907)" />
-    <path
-       sodipodi:type="arc"
        style="fill:none;stroke:#000000;stroke-width:11.89881229;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="path4138"
        sodipodi:cx="-287.50958"
