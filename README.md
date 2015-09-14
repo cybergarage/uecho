@@ -1,8 +1,13 @@
-# uEcho for C
+![logo](img/uecho_logo.png)
 
-uEcho for C is a new open source framework for [ECHONETLite](http://www.echonet.gr.jp/english/index.htm) developers. [ECHONETLite](http://www.echonet.gr.jp/english/index.htm) is an open standard specification for IoT devices in Japan, it specifies more than 100 IoT devices such as crime prevention sensor, air conditioner and refrigerator.
+uEcho for C is a new open source framework for [ECHONETLite][enet] developers. [ECHONETLite][enet] is an open standard specification for IoT devices in Japan, it specifies more than 100 IoT devices such as crime prevention sensor, air conditioner and refrigerator.
 
-- [Overview](doc/uecho_overview.md)
-- [Controller](doc/uecho_controller.md)
-- [Device](doc/uecho_device.md)
+- [What is uEcho ?](doc/uecho_overview.md)
+- [Setup](doc/uecho_setup.md)
+- Controller
+  - [Overview of Controller](doc/uecho_controller.md)
+- Device
+  - [Overview of Device](doc/uecho_device.md)
 - [Examples](doc/uecho_examples.md)
+
+[enet]:http://echonet.jp/english/

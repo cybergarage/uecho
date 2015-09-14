@@ -8,12 +8,12 @@ The uEcho supports to control standard devices and create the standard devices o
 
 ![framwork](img/uecho_framework.png)
 
-To implement IoT controller or devices of [ECHONET Lite][enet], developer had to understand and write many communication specification [ECHONET Lite][enet] such as the message format and base sequences.
+To implement IoT controller or devices of [ECHONET Lite][enet], developer had to understand and implement the communication middleware specification such as the message format and base sequences.
 
 Using the uEcho, developer must only to prepare listeners the write request because uEcho handle other requests such as request and notification requests automatically.
 
 ![listener](img/uecho_framework_listener.png)
 
-[enet]:http://echonet.jp/english/
-
 To use the uEcho, developer can implement IoT controller or devices of [ECHONET Lite][enet] very easily :-)
+
+[enet]:http://echonet.jp/english/
