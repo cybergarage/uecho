@@ -73,7 +73,7 @@ uecho_node_start(node);
 
 ## Next Steps
 
-Let's check the following documentations to know device functions of uEcho in more detail.
+Let's check the following documentations to know the device functions of uEcho in more detail.
 
 - [uEcho Examples](./uecho_examples.md)
 - [Inside of uEcho Device](./uecho_device_inside.md)
