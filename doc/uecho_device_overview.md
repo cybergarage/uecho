@@ -2,13 +2,13 @@
 
 ## Making Devices
 
-uEcho supports your original standard devices of ECHONET Lite specification easily.
+uEcho supports your original standard devices of [ECHONET Lite][enet] specification easily. This document explains to create your original  [ECHONET Lite][enet] device step by step.
 
 ## Creating Devices
 
 ### 1. Creating Node
 
-To create your original device, use `uecho_node_new` as the following at first.
+To create your original device, use `uecho_node_new()` as the following at first.
 
 ```
 uEchoNode *node = uecho_node_new();
@@ -18,9 +18,10 @@ The new node has only a node profile class object, and it has no device object. 
 
 ### 2. Creating Device Object
 
-The new node has no device object. To add your device objects, create a new device object using `uecho_object_new` or `uecho_device_new`. `uecho_object_new` create a null object, but `uecho_device_new` create a object which added some mandatory properties of ECHONET device object super class requirements.
+The new node has no device object. To add your device objects, create a new device object using `uecho_object_new()` or `uecho_device_new()`. `uecho_object_new()` create a null object, but `uecho_device_new()` create a object which added some mandatory properties of ECHONET device object super class requirements.
 
-Next, set the manufacturer code, the object code and other properties code into the created device object and add the device object into the node using `uecho_node_addobject()` as the following:
+
+Next, according to ECHONET standard device specification [\[1\]][enet-spec], set the manufacturer code, the object code and other standard properties code into the created device object. Then, add the device object into the node using `uecho_node_addobject()` as the following:
 
 ```
 uEchoObject *obj;
@@ -36,7 +37,7 @@ uecho_node_addobject(node, obj);
 
 ### 3. Setting Observers
 
-To implement the device, developer has only to handle write requests from other nodes because eEcho handles other read and notification requests automatically. To handle the write requests, use `uecho_object_setpropertywriterequestlistener` as the following:
+To implement the device, developer has only to handle write requests from other nodes because eEcho handles other read and notification requests automatically. To handle the write requests, use `uecho_object_setpropertywriterequestlistener()` as the following:
 
 ```
 void object_propertywriterequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoProperty *prop)
@@ -58,7 +59,7 @@ void object_propertywriterequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPr
 }
 ```
 
-`uecho_object_setpropertywriterequestlistener` sets the handler for all write request ESV types, Write (0x60) , Write Response Required (0x61) and Write & read Request (0x6E). To set handlers for each ESV, use `uecho_object_setpropertyrequeslistener`.
+`uecho_object_setpropertywriterequestlistener()` sets the handler for all write request ESV types, Write (0x60) , Write Response Required (0x61) and Write & read Request (0x6E). To set handlers for each ESV, use `uecho_object_setpropertyrequeslistener()`.
 
 ### 4. Start Node
 
@@ -72,8 +73,14 @@ uecho_node_start(node);
 
 ## Next Steps
 
-Let's try the following tour to know functions of Round in more detail.
+Let's check the following documentations to know device functions of uEcho in more detail.
 
-- [Tour of Round](./round_tour.md)
+- [uEcho Examples](./uecho_examples.md)
+- [Inside of uEcho Device](./uecho_device_inside.md)
+
+## References
+
+- \[1\] [Detailed Requirements for ECHONET Device objects][enet-spec]
 
 [enet]:http://echonet.jp/english/
+[enet-spec]:http://www.echonet.gr.jp/english/spec/index.htm

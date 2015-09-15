@@ -806,7 +806,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="4.25"
-     inkscape:cx="-58.301626"
+     inkscape:cx="62.281584"
      inkscape:cy="75.827512"
      inkscape:document-units="px"
      inkscape:current-layer="layer3"
@@ -851,14 +851,14 @@
      transform="translate(52.000019,-27.823515)"
      style="display:inline">
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none"
        id="rect3073"
        width="170.00002"
        height="29.999975"
        x="-51.000019"
        y="84.000015" />
     <rect
-       style="fill:#dcdcdc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#dcdcdc;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none"
        id="rect4089"
        width="169.99998"
        height="24.999994"
@@ -870,9 +870,9 @@
        height="30.1765"
        width="85"
        id="rect3109"
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none" />
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none"
        id="rect3119"
        width="85"
        height="30.00001"
@@ -884,7 +884,7 @@
        height="24.999994"
        width="170"
        id="rect3129"
-       style="fill:#dcdcdc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none" />
+       style="fill:#dcdcdc;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none" />
   </g>
   <g
      inkscape:label="Text"
@@ -893,7 +893,7 @@
      transform="translate(-133.99998,-226.18568)"
      style="display:inline">
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:2.15384626;stroke-dasharray:none"
        id="rect3110"
        width="60"
        height="19.999996"
@@ -904,7 +904,7 @@
        id="text4091"
        y="327.36215"
        x="215"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold;stroke-width:1;stroke-miterlimit:2.15384626;stroke-dasharray:none"
        xml:space="preserve"><tspan
          sodipodi:role="line"
          id="tspan3203"
@@ -912,7 +912,7 @@
          y="327.36215">Operating System</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold;stroke-width:1;stroke-miterlimit:2.15384626;stroke-dasharray:none"
        x="220"
        y="302.36215"
        id="text3075"
@@ -923,7 +923,7 @@
          id="tspan3105">Core</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold;stroke-width:1;stroke-miterlimit:2.15384626;stroke-dasharray:none"
        x="179"
        y="270.36218"
        id="text3115"
@@ -937,7 +937,7 @@
        id="text3125"
        y="269.5387"
        x="262.35294"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold;stroke-width:1;stroke-miterlimit:2.15384626;stroke-dasharray:none"
        xml:space="preserve"><tspan
          id="tspan3127"
          y="269.5387"
@@ -945,7 +945,7 @@
          sodipodi:role="line">Device</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:1;stroke-miterlimit:2.15384626;stroke-dasharray:none"
        x="218.35294"
        y="242.36218"
        id="text3131"
@@ -954,7 +954,7 @@
          x="218.35294"
          id="tspan3133"
          sodipodi:role="line"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold">ECHONET Lite Application</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold;stroke-width:1;stroke-miterlimit:2.15384626;stroke-dasharray:none">ECHONET Lite Application</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -963,25 +963,27 @@
      transform="translate(7.3486326e-8,-39.795202)">
     <g
        id="g3275"
-       transform="matrix(0.06860009,0,0,0.06860009,60.980738,89.974492)">
+       transform="matrix(0.06860009,0,0,0.06860009,60.980738,89.974492)"
+       style="stroke-width:14.57724035;stroke-miterlimit:2.15384626;stroke-dasharray:none">
       <g
          transform="translate(-137.69364,48.407942)"
          id="layer1-6"
-         inkscape:label="Layer 1">
+         inkscape:label="Layer 1"
+         style="stroke-width:14.57724035;stroke-miterlimit:2.15384626;stroke-dasharray:none">
         <text
            sodipodi:linespacing="125%"
            id="text3013"
            y="107.97291"
            x="334.39694"
-           style="font-size:200px;font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Heavy"
+           style="font-size:200px;font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Heavy;stroke-width:14.57724035;stroke-miterlimit:2.15384626;stroke-dasharray:none"
            xml:space="preserve"><tspan
-             style="font-size:180px"
+             style="font-size:180px;stroke-width:14.57724035;stroke-miterlimit:2.15384626;stroke-dasharray:none"
              y="107.97291"
              x="334.39694"
              id="tspan3021"
              sodipodi:role="line">uEcho</tspan></text>
         <flowRoot
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;stroke-width:14.57724035;stroke-miterlimit:2.15384626;stroke-dasharray:none"
            id="flowRoot3817"
            xml:space="preserve"><flowRegion
              id="flowRegion3819"><rect
@@ -989,12 +991,14 @@
                x="-38.55352"
                height="290.06937"
                width="287.31552"
-               id="rect3821" /></flowRegion><flowPara
+               id="rect3821"
+               style="stroke-width:14.57724035;stroke-miterlimit:2.15384626;stroke-dasharray:none" /></flowRegion><flowPara
              id="flowPara3823" /></flowRoot>      </g>
       <g
          transform="translate(277.31595,199.77013)"
          inkscape:label="Node"
-         id="layer2-5">
+         id="layer2-5"
+         style="stroke-width:14.57724035;stroke-miterlimit:2.15384626;stroke-dasharray:none">
         <path
            transform="matrix(2.1647418,0,0,2.1647418,409.71206,150.78806)"
            d="m -255.00958,-111.5 c 0,15.187831 -12.31217,27.5 -27.5,27.5 -15.18783,0 -27.5,-12.312169 -27.5,-27.5 0,-15.18783 12.31217,-27.5 27.5,-27.5 15.18783,0 27.5,12.31217 27.5,27.5 z"
@@ -1003,7 +1007,7 @@
            sodipodi:cy="-111.5"
            sodipodi:cx="-282.50958"
            id="path4090"
-           style="fill:none;stroke:#000000;stroke-width:6.92923307;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           style="fill:none;stroke:#000000;stroke-width:6.73393952;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none"
            sodipodi:type="arc" />
         <path
            transform="matrix(1.26063,0,0,1.26063,142.76629,65.560277)"
@@ -1013,7 +1017,7 @@
            sodipodi:cy="-111.5"
            sodipodi:cx="-287.50958"
            id="path4138"
-           style="fill:none;stroke:#000000;stroke-width:11.89881229;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           style="fill:none;stroke:#000000;stroke-width:11.56345665;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none"
            sodipodi:type="arc" />
         <path
            transform="matrix(3.0643694,0,0,3.0643694,680.16793,233.67722)"
@@ -1023,7 +1027,7 @@
            sodipodi:cy="-111.5"
            sodipodi:cx="-282.50958"
            id="path3815"
-           style="fill:none;stroke:#000000;stroke-width:4.89497137;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           style="fill:none;stroke:#000000;stroke-width:4.75701146;stroke-miterlimit:2.15384626;stroke-opacity:1;stroke-dasharray:none"
            sodipodi:type="arc" />
       </g>
     </g>
