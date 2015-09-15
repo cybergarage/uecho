@@ -21,7 +21,7 @@
 #define LIGHT_PROPERTY_POWER_ON 0x30
 #define LIGHT_PROPERTY_POWER_OFF 0x31
 
-#define ROUND_PLATFORM_RASPBIAN 1
+#undef ROUND_PLATFORM_RASPBIAN
 #define RASPBERRY_PI_LIGHT_GPIO_NO "3"
 
 /****************************************
@@ -110,7 +110,7 @@ uEchoObject *uecho_light_new(void)
   
   // TODO : Set your manufacture code
   
-  uecho_object_setmanufacturercode(obj, 0x000000);
+  uecho_object_setmanufacturercode(obj, 0xFFFFF0);
 
   // Mono functional lighting class
   
