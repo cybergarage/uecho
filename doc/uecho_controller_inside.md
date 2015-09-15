@@ -12,6 +12,20 @@ The uEcho added the node profile class objects automatically when the controller
 
 ![Controller Objects](img/uecho_controller_object.png)
 
+## Controller Message Listeners
+
+Basically uEcho handles all messages from other nodes automatically. However, developer can set more detail user listeners into the node, objects and properties.
+
+![Controller Listeners](img/uecho_controller_listeners.png)
+
+To set the listeners, use `uecho_controller_setmessagelistener`.
+
+### Message Listener Sequences
+
+After a node is received a message from other nodes, the node's listeners are called as the following sequences:
+
+![Controller Observers](img/uecho_controller_msg_listener.png)
+
 ## References
 
 - \[1\] [Part II ECHONET Lite Communication Middleware Specification][enet-spec]
