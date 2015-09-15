@@ -149,7 +149,7 @@ AC_DEFINE([HAVE_SO_NOSIGPIPE],1,[SO_NOSIGPIPES])],
 ##############################
 
 AC_ARG_ENABLE([tests], AC_HELP_STRING([--enable-tests], [ build tests (default = no) ]), [build_tests="yes"], [])
-AM_CONDITIONAL(UNITTESTS,test "$build_tests" = yes)
+AM_CONDITIONAL(UECHO_ENABLE_TESTS,test "$build_tests" = yes)
 if [ test "$build_tests" = yes ]; then
 	AC_CHECK_LIB([boost_unit_test_framework-mt],[main],,
 		[AC_CHECK_LIB([boost_unit_test_framework],[main],,[AC_MSG_ERROR(uEcho needs boost::unit_test_framework)])])
@@ -160,6 +160,17 @@ fi
 ##############################
 # Examples
 ##############################
+
+AC_ARG_ENABLE(
+  [examples],
+  AC_HELP_STRING([--enable-examples],
+  [ build examples (default = yes) ]),
+  [case "${enableval}" in
+    yes | no ) build_examples="${enableval}" ;;
+  esac],
+  [build_examples="yes"]
+)
+AM_CONDITIONAL(UECHO_ENABLE_EXAMPLES,test "$build_examples" = yes)
 
 ##############################
 # Makefiles

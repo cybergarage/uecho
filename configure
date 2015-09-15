@@ -623,8 +623,10 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
-UNITTESTS_FALSE
-UNITTESTS_TRUE
+UECHO_ENABLE_EXAMPLES_FALSE
+UECHO_ENABLE_EXAMPLES_TRUE
+UECHO_ENABLE_TESTS_FALSE
+UECHO_ENABLE_TESTS_TRUE
 EGREP
 GREP
 CPP
@@ -723,6 +725,7 @@ enable_option_checking
 enable_silent_rules
 enable_dependency_tracking
 enable_tests
+enable_examples
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1357,6 +1360,7 @@ Optional Features:
   --disable-dependency-tracking
                           speeds up one-time build
   --enable-tests          build tests (default = no)
+  --enable-examples       build examples (default = yes)
 
 Some influential environment variables:
   CC          C compiler command
@@ -5052,11 +5056,11 @@ if test "${enable_tests+set}" = set; then :
 fi
 
  if test "$build_tests" = yes; then
-  UNITTESTS_TRUE=
-  UNITTESTS_FALSE='#'
+  UECHO_ENABLE_TESTS_TRUE=
+  UECHO_ENABLE_TESTS_FALSE='#'
 else
-  UNITTESTS_TRUE='#'
-  UNITTESTS_FALSE=
+  UECHO_ENABLE_TESTS_TRUE='#'
+  UECHO_ENABLE_TESTS_FALSE=
 fi
 
 if  test "$build_tests" = yes ; then
@@ -5228,6 +5232,25 @@ fi
 # Examples
 ##############################
 
+# Check whether --enable-examples was given.
+if test "${enable_examples+set}" = set; then :
+  enableval=$enable_examples; case "${enableval}" in
+    yes | no ) build_examples="${enableval}" ;;
+  esac
+else
+  build_examples="yes"
+
+fi
+
+ if test "$build_examples" = yes; then
+  UECHO_ENABLE_EXAMPLES_TRUE=
+  UECHO_ENABLE_EXAMPLES_FALSE='#'
+else
+  UECHO_ENABLE_EXAMPLES_TRUE='#'
+  UECHO_ENABLE_EXAMPLES_FALSE=
+fi
+
+
 ##############################
 # Makefiles
 ##############################
@@ -5370,8 +5393,12 @@ if test -z "${am__fastdepCXX_TRUE}" && test -z "${am__fastdepCXX_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCXX\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
-if test -z "${UNITTESTS_TRUE}" && test -z "${UNITTESTS_FALSE}"; then
-  as_fn_error $? "conditional \"UNITTESTS\" was never defined.
+if test -z "${UECHO_ENABLE_TESTS_TRUE}" && test -z "${UECHO_ENABLE_TESTS_FALSE}"; then
+  as_fn_error $? "conditional \"UECHO_ENABLE_TESTS\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${UECHO_ENABLE_EXAMPLES_TRUE}" && test -z "${UECHO_ENABLE_EXAMPLES_FALSE}"; then
+  as_fn_error $? "conditional \"UECHO_ENABLE_EXAMPLES\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 
