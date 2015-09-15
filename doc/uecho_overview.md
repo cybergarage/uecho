@@ -14,6 +14,4 @@ Using the uEcho, developer must only to prepare listeners the write request beca
 
 ![listener](img/uecho_framework_listener.png)
 
-To use the uEcho, developer can implement IoT controller or devices of [ECHONET Lite][enet] very easily :-)
-
 [enet]:http://echonet.jp/english/
