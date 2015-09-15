@@ -2,7 +2,7 @@
 
 ## Node Profile Object
 
-[ECHONETLite][enet] device node must have a following special node profile class object which has all children objects of the node [\[1\]][enet-spec].
+[ECHONET Lite][enet] device node must have a following special node profile class object which has all children objects of the node [\[1\]][enet-spec].
 
 - Class group code: 0x0E
 - Class code: 0xF0
