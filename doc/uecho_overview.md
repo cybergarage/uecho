@@ -10,7 +10,7 @@ The uEcho supports to control devices [ECHONET Lite][enet] and create the standa
 
 To implement IoT controller or devices of [ECHONET Lite][enet], developer had to understand and implement the communication middleware specification such as the message format and base sequences.
 
-The uEcho is inspired by reactive programming too. Using the uEcho, developer must only to set basic listeners to implement the devices and controllers because uEcho handle other requests such as request and notification requests automatically.
+The uEcho is inspired by reactive programming too. Using the uEcho, developer must only to set basic listeners to implement the devices and controllers because uEcho handles other requests such as request and notification requests automatically.
 
 ![listener](img/uecho_framework_listener.png)
 
