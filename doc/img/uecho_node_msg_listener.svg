@@ -16,8 +16,8 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="node_msg_observer.svg"
-   inkscape:export-filename="/Users/skonno/Src/uecho/doc/img/node_msg_observer.png"
+   sodipodi:docname="uecho_node_msg_listener.svg"
+   inkscape:export-filename="/Users/skonno/Src/uecho/doc/img/uecho_node_msg_listener.png"
    inkscape:export-xdpi="75.790001"
    inkscape:export-ydpi="75.790001">
   <defs
@@ -164,7 +164,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
      inkscape:cx="434.44397"
-     inkscape:cy="563.93677"
+     inkscape:cy="778.28705"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -352,15 +352,15 @@
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold"
-       x="118"
+       x="112"
        y="662.36218"
        id="text5222"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5224"
-         x="118"
+         x="112"
          y="662.36218"
-         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold">(ESV = 0x6[1|2|E] | 0x74)</tspan></text>
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold">(ESV = 0x6[1|2|E]|0x74)</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Bold"
@@ -729,7 +729,7 @@
          sodipodi:role="line">Request Property</tspan></text>
     <g
        id="g3205"
-       transform="matrix(0.27440035,0,0,0.27440035,536.02455,-70.548777)">
+       transform="matrix(0.20580026,0,0,0.20580026,536.02455,-57.957895)">
       <g
          transform="translate(-137.69364,48.407942)"
          id="layer1-3"
