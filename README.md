@@ -2,7 +2,7 @@
 
 uEcho for C is a portable and cross platform development framework for [ECHONETLite][enet] developers. [ECHONETLite][enet] is an open standard specification for IoT devices in Japan, it specifies more than 100 IoT devices such as crime prevention sensor, air conditioner and refrigerator.
 
-![RaspberyPi](img/uecholight_raspberry_pi.jpg)
+![RaspberyPi](doc/img/uecholight_raspberry_pi.jpg)
 
 The uEcho supports to control devices ECHONET Lite and create the standard devices of the specification easily. The uEcho is designed in object-oriented programming and inspired by reactive programming too.
 
