@@ -8,8 +8,10 @@
 #
 ##################################################################
 
-if UNITTESTS
-SUBDIRS = include lib tests examples
-else
-SUBDIRS = include lib examples
+SUBDIRS = include lib
+if UECHO_ENABLE_EXAMPLES
+SUBDIRS += examples
+endif
+if UECHO_ENABLE_TESTS
+SUBDIRS += tests
 endif
