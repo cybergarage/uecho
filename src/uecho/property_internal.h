@@ -30,6 +30,8 @@ typedef struct {
   int attr;
   byte *data;
   size_t dataSize;
+
+  void *parentObj;
 } uEchoProperty, uEchoPropertyList;
 
 typedef struct {

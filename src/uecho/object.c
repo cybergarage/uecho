@@ -294,7 +294,7 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
 }
 
 /****************************************
- * uecho_object_addproperty
+ * uecho_object_setproperty
  ****************************************/
 
 bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)
