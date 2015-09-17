@@ -29,5 +29,17 @@ public class uEchoController {
       uecho_controller_searchallobjects(self.cobj!)
     }
   }
-}
 
+  public func getNodes() -> [uEchoNode] {
+    var nodes = [uEchoNode]()
+    if self.cobj != nil {
+      return nodes
+    }
+    for var cnode = uecho_controller_getnodes(self.cobj!); cnode != nil; cnode = uecho_node_next(cnode) {
+      let node = uEchoNode()
+      node.cobj = cnode
+      nodes.append(node)
+    }
+    return nodes
+  }
+}
