@@ -131,7 +131,7 @@ uEchoManufacturerCode uecho_object_getmanufacturercode(uEchoObject *obj);
  * Function (Property)
  ****************************************/
   
-void uecho_property_setparentobject(uEchoProperty *prop, uEchoObject *obj);
+bool uecho_property_setparentobject(uEchoProperty *prop, uEchoObject *obj);
 uEchoObject *uecho_property_getparentobject(uEchoProperty *prop);
 
 #ifdef  __cplusplus
