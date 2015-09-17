@@ -299,11 +299,19 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
 
 bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)
 {
+  uEchoProperty *prop;
+  
   if (!obj)
     return false;
 
   if (!uecho_propertylist_set(obj->properties, code, attr, NULL, 0))
     return false;
+  
+  prop = uecho_object_getproperty(obj, code);
+  if (!prop)
+    return false;
+  
+  uecho_property_setparentobject(prop, obj);
   
   return uecho_object_updatepropertymaps(obj);
 }
