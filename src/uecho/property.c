@@ -31,6 +31,7 @@ uEchoProperty *uecho_property_new(void)
   prop->data = NULL;
   prop->dataSize = 0;
   
+  uecho_property_setparentobject(prop, NULL);
   uecho_property_setattribute(prop, uEchoPropertyAttrReadWrite);
   
   return prop;
@@ -51,6 +52,30 @@ bool uecho_property_delete(uEchoProperty *prop)
   free(prop);
   
   return true;
+}
+
+/****************************************
+ * uecho_property_setparentobject
+ ****************************************/
+
+void uecho_property_setparentobject(uEchoProperty *prop, uEchoObject *obj)
+{
+  if (!prop)
+    return;
+  
+  prop->parentObj = obj;
+}
+
+/****************************************
+ * uecho_property_getparentobject
+ ****************************************/
+
+uEchoObject *uecho_property_getparentobject(uEchoProperty *prop)
+{
+  if (!prop)
+    return NULL;
+  
+  return prop->parentObj;
 }
 
 /****************************************
