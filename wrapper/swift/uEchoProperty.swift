@@ -11,8 +11,6 @@
 import uEchoC
 
 public class uEchoProperty {
-  
-  var cobj: UnsafeMutablePointer<Void>? = nil
-  
+  var cobj: UnsafeMutablePointer<Void>? = nil  
 }
 
