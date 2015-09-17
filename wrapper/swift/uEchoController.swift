@@ -14,7 +14,7 @@ public class uEchoController {
   
   var cobj: UnsafeMutablePointer<Void>? = nil
   
-  init() {
+  public init() {
     self.cobj = uecho_controller_new()
   }
 
