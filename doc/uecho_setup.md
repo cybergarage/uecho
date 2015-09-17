@@ -9,8 +9,9 @@ The uEcho is a framework which consist of the header and library files. Currentl
 To install on your platform from the Github repository, run the following in a terminal:
 
 ```
-$ git clone https://github.com/cybergarage/uecho.git
-$ ./boostrap && ./configure && make && sudo make install
+git clone https://github.com/cybergarage/uecho.git
+cd uecho
+./boostrap && ./configure && make && sudo make install
 ```
 
 ## MacOSX
