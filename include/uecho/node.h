@@ -75,7 +75,7 @@ bool uecho_node_hasmessagelistener(uEchoNode *node);
  * Function (Object)
  ****************************************/
   
-void uecho_object_setparentnode(uEchoObject *obj, uEchoNode *node);
+bool uecho_object_setparentnode(uEchoObject *obj, uEchoNode *node);
 uEchoNode *uecho_object_getparentnode(uEchoObject *obj);
 
 /****************************************

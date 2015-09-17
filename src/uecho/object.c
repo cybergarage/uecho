@@ -93,12 +93,14 @@ uEchoObject *uecho_object_next(uEchoObject *obj)
  * uecho_object_setparentnode
  ****************************************/
 
-void uecho_object_setparentnode(uEchoObject *obj, uEchoNode *node)
+bool uecho_object_setparentnode(uEchoObject *obj, uEchoNode *node)
 {
   if (!obj)
-    return;
+    return false;
   
   obj->parentNode = node;
+
+  return true;
 }
 
 /****************************************
@@ -311,7 +313,8 @@ bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPro
   if (!prop)
     return false;
   
-  uecho_property_setparentobject(prop, obj);
+  if (!uecho_property_setparentobject(prop, obj))
+    return false;
   
   return uecho_object_updatepropertymaps(obj);
 }

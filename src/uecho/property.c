@@ -58,12 +58,14 @@ bool uecho_property_delete(uEchoProperty *prop)
  * uecho_property_setparentobject
  ****************************************/
 
-void uecho_property_setparentobject(uEchoProperty *prop, uEchoObject *obj)
+bool uecho_property_setparentobject(uEchoProperty *prop, uEchoObject *obj)
 {
   if (!prop)
-    return;
+    return false;
   
   prop->parentObj = obj;
+
+  return true;
 }
 
 /****************************************
