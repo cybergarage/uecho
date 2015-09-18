@@ -13,6 +13,10 @@ import uEchoC
 public class uEchoProperty {
   var cobj: UnsafeMutablePointer<Void>? = nil  
 
+  init(cobj: UnsafeMutablePointer<Void>?) {
+    self.cobj = cobj
+  }
+
   public func getCode() -> Int {
     if self.cobj != nil {
       return 0
