@@ -17,6 +17,13 @@ public class uEchoObject {
   public init() {
   }
   
+  public func getCode() -> Int {
+    if self.cobj != nil {
+      return 0
+    }
+    return Int(uecho_object_getcode(self.cobj!))
+  }
+  
   public func getProperties() -> [uEchoProperty] {
     var props = [uEchoProperty]()
     if self.cobj != nil {
@@ -30,4 +37,3 @@ public class uEchoObject {
     return props
   }
 }
-
