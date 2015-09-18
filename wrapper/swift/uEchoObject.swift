@@ -12,28 +12,22 @@ import uEchoC
 
 public class uEchoObject {
   
-  var cobj: UnsafeMutablePointer<Void>? = nil
+  var cobj: UnsafeMutablePointer<Void>! = nil
 
-  init(cobj: UnsafeMutablePointer<Void>?) {
+  init(cobj: UnsafeMutablePointer<Void>) {
     self.cobj = cobj
   }
   
-  var code : Int {
+  public var code : Int {
     get {
-      if self.cobj != nil {
-        return 0
-      }
-      return Int(uecho_object_getcode(self.cobj!))
+      return Int(uecho_object_getcode(self.cobj))
     }
     set {
-      if self.cobj != nil {
-        return
-      }
-      uecho_object_setcode(self.cobj!, Int32(newValue))
+      uecho_object_setcode(self.cobj, Int32(newValue))
     }
   }
   
-  public func getProperties() -> [uEchoProperty] {
+  public var properties : [uEchoProperty] {
     var props = [uEchoProperty]()
     if self.cobj != nil {
       return props

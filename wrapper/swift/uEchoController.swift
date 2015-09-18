@@ -12,30 +12,23 @@ import uEchoC
 
 public class uEchoController {
   
-  var cobj: UnsafeMutablePointer<Void>? = nil
+  var cobj: UnsafeMutablePointer<Void>! = nil
   
   public init() {
     self.cobj = uecho_controller_new()
   }
 
   deinit {
-    if self.cobj != nil {
-      uecho_controller_delete(self.cobj!)
-    }
+    uecho_controller_delete(self.cobj)
   }
   
   public func search() {
-    if self.cobj != nil {
-      uecho_controller_searchallobjects(self.cobj!)
-    }
+    uecho_controller_searchallobjects(self.cobj)
   }
 
-  public func getNodes() -> [uEchoNode] {
+  public var nodes : [uEchoNode] {
     var nodes = [uEchoNode]()
-    if self.cobj != nil {
-      return nodes
-    }
-    for var cnode = uecho_controller_getnodes(self.cobj!); cnode != nil; cnode = uecho_node_next(cnode) {
+    for var cnode = uecho_controller_getnodes(self.cobj); cnode != nil; cnode = uecho_node_next(cnode) {
       let node = uEchoNode(cobj: cnode)
       nodes.append(node)
     }

@@ -11,24 +11,18 @@
 import uEchoC
 
 public class uEchoProperty {
-  var cobj: UnsafeMutablePointer<Void>? = nil  
+  var cobj: UnsafeMutablePointer<Void>! = nil
 
-  init(cobj: UnsafeMutablePointer<Void>?) {
+  init(cobj: UnsafeMutablePointer<Void>) {
     self.cobj = cobj
   }
 
-  var code : UInt8 {
+  public var code : UInt8 {
     get {
-      if self.cobj != nil {
-        return 0
-      }
-      return uecho_property_getcode(self.cobj!)
+      return uecho_property_getcode(self.cobj)
     }
     set {
-      if self.cobj != nil {
-        return
-      }
-      uecho_property_setcode(self.cobj!, newValue)
+      uecho_property_setcode(self.cobj, newValue)
     }
   }
 }
