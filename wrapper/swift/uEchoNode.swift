@@ -18,7 +18,7 @@ public class uEchoNode {
     self.cobj = cobj
   }
 
-  public func getObjects() -> [uEchoObject] {
+  public var objects : [uEchoObject] {
     var objs = [uEchoObject]()
     if self.cobj != nil {
       return objs
