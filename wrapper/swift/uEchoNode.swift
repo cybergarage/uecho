@@ -14,7 +14,8 @@ public class uEchoNode {
 
   var cobj: UnsafeMutablePointer<Void>? = nil
 
-  public init() {
+  init(cobj: UnsafeMutablePointer<Void>?) {
+    self.cobj = cobj
   }
 
   public func getObjects() -> [uEchoObject] {
@@ -22,9 +23,8 @@ public class uEchoNode {
     if self.cobj != nil {
       return objs
     }
-    for var co = uecho_node_getobjects(self.cobj!); co != nil; co = uecho_object_next(co) {
-      let sobj = uEchoObject()
-      sobj.cobj = co
+    for var cobj = uecho_node_getobjects(self.cobj!); cobj != nil; cobj = uecho_object_next(cobj) {
+      let sobj = uEchoObject(cobj: cobj)
       objs.append(sobj)
     }
     return objs

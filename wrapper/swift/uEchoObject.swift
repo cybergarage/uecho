@@ -14,7 +14,8 @@ public class uEchoObject {
   
   var cobj: UnsafeMutablePointer<Void>? = nil
 
-  public init() {
+  init(cobj: UnsafeMutablePointer<Void>?) {
+    self.cobj = cobj
   }
   
   public func getCode() -> Int {
@@ -30,8 +31,7 @@ public class uEchoObject {
       return props
     }
     for var cprop = uecho_object_getproperties(self.cobj!); cprop != nil; cprop = uecho_property_next(cprop) {
-      let prop = uEchoProperty()
-      prop.cobj = cprop
+      let prop = uEchoProperty(cobj: cprop)
       props.append(prop)
     }
     return props
