@@ -18,11 +18,19 @@ public class uEchoObject {
     self.cobj = cobj
   }
   
-  public func getCode() -> Int {
-    if self.cobj != nil {
-      return 0
+  var code : Int {
+    get {
+      if self.cobj != nil {
+        return 0
+      }
+      return Int(uecho_object_getcode(self.cobj!))
     }
-    return Int(uecho_object_getcode(self.cobj!))
+    set {
+      if self.cobj != nil {
+        return
+      }
+      uecho_object_setcode(self.cobj!, Int32(newValue))
+    }
   }
   
   public func getProperties() -> [uEchoProperty] {
