@@ -13,6 +13,7 @@
 		2127D2561BAB3F5300424276 /* uEchoProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2127D2531BAB3F5300424276 /* uEchoProperty.swift */; settings = {ASSET_TAGS = (); }; };
 		2127D2571BAB3F5300424276 /* uEchoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2127D2541BAB3F5300424276 /* uEchoObject.swift */; settings = {ASSET_TAGS = (); }; };
 		2127D2581BAB3F5300424276 /* uEchoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2127D2551BAB3F5300424276 /* uEchoNode.swift */; settings = {ASSET_TAGS = (); }; };
+		212EF46A1BAC48C000DE504B /* uEchoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212EF4691BAC48C000DE504B /* uEchoMessage.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		2127D2531BAB3F5300424276 /* uEchoProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = uEchoProperty.swift; path = ../../uEchoProperty.swift; sourceTree = "<group>"; };
 		2127D2541BAB3F5300424276 /* uEchoObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = uEchoObject.swift; path = ../../uEchoObject.swift; sourceTree = "<group>"; };
 		2127D2551BAB3F5300424276 /* uEchoNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = uEchoNode.swift; path = ../../uEchoNode.swift; sourceTree = "<group>"; };
+		212EF4691BAC48C000DE504B /* uEchoMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = uEchoMessage.swift; path = ../../uEchoMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		2127D21E1BAB066700424276 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				212EF4691BAC48C000DE504B /* uEchoMessage.swift */,
 				2127D2531BAB3F5300424276 /* uEchoProperty.swift */,
 				2127D2541BAB3F5300424276 /* uEchoObject.swift */,
 				2127D2551BAB3F5300424276 /* uEchoNode.swift */,
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212EF46A1BAC48C000DE504B /* uEchoMessage.swift in Sources */,
 				2127D2581BAB3F5300424276 /* uEchoNode.swift in Sources */,
 				2127D2571BAB3F5300424276 /* uEchoObject.swift in Sources */,
 				2127D23E1BAB284D00424276 /* uEchoController.swift in Sources */,
