@@ -36,8 +36,7 @@ public class uEchoController {
       return nodes
     }
     for var cnode = uecho_controller_getnodes(self.cobj!); cnode != nil; cnode = uecho_node_next(cnode) {
-      let node = uEchoNode()
-      node.cobj = cnode
+      let node = uEchoNode(cobj: cnode)
       nodes.append(node)
     }
     return nodes
