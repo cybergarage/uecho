@@ -86,6 +86,7 @@ bool uecho_message_addproperty(uEchoMessage *msg, uEchoProperty *prop);
 bool uecho_message_setproperty(uEchoMessage *msg, uEchoPropertyCode propCode, size_t propDataSize, const byte *propData);
 uEchoProperty *uecho_message_getproperty(uEchoMessage *msg, size_t n);
 uEchoProperty *uecho_message_getpropertybycode(uEchoMessage *msg, uEchoPropertyCode code);
+bool uecho_message_clearproperties(uEchoMessage *msg);
 
 size_t uecho_message_size(uEchoMessage *msg);
 byte *uecho_message_getbytes(uEchoMessage *msg);
