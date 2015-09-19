@@ -12,7 +12,7 @@ import uEchoC
 
 public class uEchoController {
   
-  var cobj: UnsafeMutablePointer<Void>! = nil
+  public var cobj: UnsafeMutablePointer<Void>! = nil
   
   public init() {
     self.cobj = uecho_controller_new()
@@ -33,5 +33,9 @@ public class uEchoController {
       nodes.append(node)
     }
     return nodes
+  }
+
+  public func sendMessage(obj:uEchoObject, msg:uEchoMessage) -> Bool {
+    return uecho_controller_sendmessage(self.cobj, obj.cobj, msg.cobj);
   }
 }

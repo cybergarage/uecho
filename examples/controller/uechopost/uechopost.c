@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
   uEchoObjectCode dstObjCode;
   uEchoObject *dstObj;
   uEchoMessage *msg, *resMsg;
-  uEchoEsv esv;
+  int esv;
   char *edata, *edt;
   size_t edtSize;
   int epc, pdc, edtByte;
