@@ -23,7 +23,7 @@ extern "C" {
  * Constant
 ****************************************/
 
-typedef enum {
+enum {
   uEchoEsvWriteRequest = 0x60,
   uEchoEsvWriteRequestResponseRequired = 0x61,
   uEchoEsvReadRequest = 0x62,
@@ -36,12 +36,13 @@ typedef enum {
   uEchoEsvNotificationResponseRequired = 0x74,
   uEchoEsvNotificationResponse = 0x7A,
   uEchoEsvWriteReadResponse = 0x7E,
-} uEchoEsv;
+};
 
 /****************************************
  * Data Type
  ****************************************/
 
+typedef byte uEchoEsv;
 typedef unsigned int uEchoTID;
 
 #if !defined(_UECHO_MESSAGE_INTERNAL_H_)
