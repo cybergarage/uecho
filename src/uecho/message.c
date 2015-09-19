@@ -60,27 +60,39 @@ bool uecho_message_delete(uEchoMessage *msg)
 }
 
 /****************************************
- * uecho_message_clear
+ * uecho_message_clearproperties
  ****************************************/
 
-bool uecho_message_clear(uEchoMessage *msg)
+bool uecho_message_clearproperties(uEchoMessage *msg)
 {
   int n;
-  
+
   if (!msg)
     return false;
-
-  if (0 < msg->OPC) {
-    for (n=0; n<(int)(msg->OPC); n++) {
-      uecho_property_delete(msg->EP[n]);
-      msg->EP[n] = NULL;
-    }
+  
+  for (n=0; n<(int)(msg->OPC); n++) {
+    uecho_property_delete(msg->EP[n]);
+    msg->EP[n] = NULL;
   }
   
   if (msg->EP) {
     free(msg->EP);
     msg->EP = NULL;
   }
+  
+  msg->OPC = 0;
+  
+  return true;
+}
+
+/****************************************
+ * uecho_message_clear
+ ****************************************/
+
+bool uecho_message_clear(uEchoMessage *msg)
+{
+  if (!msg)
+    return false;
 
   if (msg->bytes) {
     free(msg->bytes);
@@ -91,6 +103,9 @@ bool uecho_message_clear(uEchoMessage *msg)
     free(msg->srcAddr);
     msg->srcAddr = NULL;
   }
+  
+  if (!uecho_message_clearproperties(msg))
+    return false;
   
   return true;
 }
