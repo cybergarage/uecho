@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2127D23A1BAB1CD900424276 /* uEcho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2127D2371BAB1C9400424276 /* uEcho.framework */; };
+		2127D25B1BACFE7100424276 /* uEchoLightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2127D25A1BACFE7100424276 /* uEchoLightController.swift */; settings = {ASSET_TAGS = (); }; };
+		2127D25D1BAD10AF00424276 /* uEchoLightObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2127D25C1BAD10AF00424276 /* uEchoLightObject.swift */; settings = {ASSET_TAGS = (); }; };
 		215E12E61BAAEB60003C7FD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E12E51BAAEB60003C7FD9 /* AppDelegate.swift */; };
 		215E12E81BAAEB60003C7FD9 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E12E71BAAEB60003C7FD9 /* MasterViewController.swift */; };
 		215E12EA1BAAEB60003C7FD9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E12E91BAAEB60003C7FD9 /* DetailViewController.swift */; };
@@ -35,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		2127D2311BAB1C9400424276 /* uEcho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = uEcho.xcodeproj; path = ../../../../wrapper/swift/ios/xcode/uEcho.xcodeproj; sourceTree = "<group>"; };
+		2127D25A1BACFE7100424276 /* uEchoLightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = uEchoLightController.swift; sourceTree = "<group>"; };
+		2127D25C1BAD10AF00424276 /* uEchoLightObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = uEchoLightObject.swift; sourceTree = "<group>"; };
 		215E12E21BAAEB60003C7FD9 /* uEchoLightCtrl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uEchoLightCtrl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		215E12E51BAAEB60003C7FD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		215E12E71BAAEB60003C7FD9 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 		215E12E41BAAEB60003C7FD9 /* uEchoLightCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				2127D25C1BAD10AF00424276 /* uEchoLightObject.swift */,
+				2127D25A1BACFE7100424276 /* uEchoLightController.swift */,
 				215E12E51BAAEB60003C7FD9 /* AppDelegate.swift */,
 				215E12E71BAAEB60003C7FD9 /* MasterViewController.swift */,
 				215E12E91BAAEB60003C7FD9 /* DetailViewController.swift */,
@@ -192,6 +198,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				215E12EA1BAAEB60003C7FD9 /* DetailViewController.swift in Sources */,
+				2127D25D1BAD10AF00424276 /* uEchoLightObject.swift in Sources */,
+				2127D25B1BACFE7100424276 /* uEchoLightController.swift in Sources */,
 				215E12E81BAAEB60003C7FD9 /* MasterViewController.swift in Sources */,
 				215E12E61BAAEB60003C7FD9 /* AppDelegate.swift in Sources */,
 			);

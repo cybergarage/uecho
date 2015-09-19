@@ -1,19 +1,20 @@
-//
-//  MasterViewController.swift
-//  uEchoLightCtrl
-//
-//  Created by The uecho Authors on 2015/09/17.
-//  Copyright © 2015年 The uecho Authors. All rights reserved.
-//
+/******************************************************************
+*
+* uEcho for Swift
+*
+* Copyright (C) The uecho Authors 2015
+*
+* This is licensed under BSD-style license, see file COPYING.
+*
+******************************************************************/
 
 import UIKit
-import uEcho
 
 class MasterViewController: UITableViewController {
 
   var detailViewController: DetailViewController? = nil
   var objects = [AnyObject]()
-  var uechoCtrl: uEchoController? = nil
+  var uechoCtrl: uEchoLightController? = nil
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,7 +28,7 @@ class MasterViewController: UITableViewController {
         self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
     }
     
-    self.uechoCtrl = uEchoController()
+    self.uechoCtrl = uEchoLightController()
   }
 
   override func viewWillAppear(animated: Bool) {
