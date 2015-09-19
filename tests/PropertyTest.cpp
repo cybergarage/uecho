@@ -26,11 +26,6 @@ BOOST_AUTO_TEST_CASE(PropertyBasicFunctions)
   uecho_property_delete(prop);
 }
 
-BOOST_AUTO_TEST_CASE(PropertyDataSize)
-{
-  BOOST_CHECK_EQUAL(sizeof(uEchoPropertyData), sizeof(uEchoProperty) - sizeof(uEchoList));
-}
-
 BOOST_AUTO_TEST_CASE(PropertySetData)
 {
   uEchoProperty *prop = uecho_property_new();

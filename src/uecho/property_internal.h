@@ -22,23 +22,21 @@ extern "C" {
 /****************************************
  * Data Type
  ****************************************/
+  
+#define UECHO_PROPERTY_DATA_STRUCT_MEMBERS \
+  byte code; \
+  int attr; \
+  byte *data; \
+  size_t dataSize;
 
 typedef struct {
   UECHO_LIST_STRUCT_MEMBERS
-
-  byte code;
-  int attr;
-  byte *data;
-  size_t dataSize;
-
+  UECHO_PROPERTY_DATA_STRUCT_MEMBERS
   void *parentObj;
 } uEchoProperty, uEchoPropertyList;
 
 typedef struct {
-  byte code;
-  int attr;
-  byte *data;
-  size_t dataSize;
+  UECHO_PROPERTY_DATA_STRUCT_MEMBERS
 } uEchoPropertyData;
 
 /****************************************
