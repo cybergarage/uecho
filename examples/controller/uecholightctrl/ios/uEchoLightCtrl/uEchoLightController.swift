@@ -30,4 +30,20 @@ public class uEchoLightController : uEchoController {
     }
     return objs
   }
+  
+  func setOperationStatus(obj : uEchoObject, status : Bool) -> Bool {
+    let prop = uEchoProperty()
+    prop.code = 0x80
+    var data = [UInt8]()
+    data.append(status ? 0x30 : 0x31)
+    
+    var props = [uEchoProperty]()
+    props.append(prop)
+    
+    let msg = uEchoMessage()
+    msg.ESV = 0x60
+    msg.properties = props
+    
+    return super.sendMessage(obj, msg:msg)
+  }
 }
