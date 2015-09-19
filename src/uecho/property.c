@@ -104,6 +104,30 @@ bool uecho_property_setcount(uEchoProperty *prop, size_t count)
 }
 
 /****************************************
+ * uecho_property_addcount
+ ****************************************/
+
+bool uecho_property_addcount(uEchoProperty *prop, size_t count)
+{
+  size_t newDataSize;
+  
+  if (!prop)
+    return false;
+  
+  if (count == 0)
+    return true;
+  
+  newDataSize = prop->dataSize + count;
+  prop->data = (byte *)realloc(prop->data, newDataSize);
+  if (!prop->data)
+    return false;
+  
+  prop->dataSize = newDataSize;
+  
+  return true;
+}
+
+/****************************************
  * uecho_property_setdata
  ****************************************/
 
@@ -121,6 +145,39 @@ bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count)
   memcpy(prop->data, data, count);
 
   return true;
+}
+
+/****************************************
+ * uecho_property_adddata
+ ****************************************/
+
+bool uecho_property_adddata(uEchoProperty *prop, const byte *data, size_t count)
+{
+  size_t currDataSize;
+  
+  if (!prop)
+    return false;
+  
+  if (count == 0)
+    return true;
+  
+  currDataSize = uecho_property_getdatasize(prop);
+  
+  if (!uecho_property_addcount(prop, count))
+    return false;
+  
+  memcpy((prop->data + currDataSize), data, count);
+  
+  return true;
+}
+
+/****************************************
+ * uecho_property_addbytedata
+ ****************************************/
+
+bool uecho_property_addbytedata(uEchoProperty *prop, const byte data)
+{
+  return uecho_property_adddata(prop, &data, 1);
 }
 
 /****************************************
