@@ -194,7 +194,6 @@ int main(int argc, char *argv[])
   // Create Message
   
   msg = uecho_message_new();
-  uecho_message_setdestinationobjectcode(msg, dstObjCode);
   sscanf(argv[2], "%x", &esv);
   uecho_message_setesv(msg, esv);
 
