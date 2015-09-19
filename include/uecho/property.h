@@ -52,10 +52,11 @@ typedef void uEchoProperty;
 uEchoProperty *uecho_property_new(void);
 bool uecho_property_delete(uEchoProperty *prop);
 
-bool uecho_property_setcount(uEchoProperty *prop, size_t count);
 bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count);
 bool uecho_property_setintegerdata(uEchoProperty *prop, int data, size_t dataSize);
 bool uecho_property_setbytedata(uEchoProperty *prop, byte data);
+bool uecho_property_adddata(uEchoProperty *prop, const byte *data, size_t count);
+bool uecho_property_addbytedata(uEchoProperty *prop, const byte data);
 bool uecho_property_cleardata(uEchoProperty *prop);
   
 uEchoProperty *uecho_property_next(uEchoProperty *prop);

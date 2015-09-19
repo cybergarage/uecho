@@ -18,12 +18,14 @@ BOOST_AUTO_TEST_CASE(PropertyBasicFunctions)
 {
   uEchoProperty *prop = uecho_property_new();
   
+  BOOST_CHECK(prop);
+  
   for (int n=uEchoPropertyCodeMin; n<uEchoPropertyCodeMax; n++) {
       uecho_property_setcode(prop, n);
       BOOST_CHECK_EQUAL(uecho_property_getcode(prop), n);
   }
 
-  uecho_property_delete(prop);
+  BOOST_CHECK(uecho_property_delete(prop));
 }
 
 BOOST_AUTO_TEST_CASE(PropertySetData)
@@ -62,7 +64,7 @@ BOOST_AUTO_TEST_CASE(PropertySetData)
   BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), 0);
   BOOST_CHECK_EQUAL(uecho_property_getdata(prop), (byte*)NULL);
   
-  uecho_property_delete(prop);
+  BOOST_CHECK(uecho_property_delete(prop));
 }
 
 BOOST_AUTO_TEST_CASE(PropertyPermission)
@@ -98,7 +100,7 @@ BOOST_AUTO_TEST_CASE(PropertyPermission)
   BOOST_CHECK_EQUAL(uecho_property_isreadonly(prop), false);
   BOOST_CHECK_EQUAL(uecho_property_iswriteonly(prop), false);
 
-  uecho_property_delete(prop);
+  BOOST_CHECK(uecho_property_delete(prop));
 }
 
 BOOST_AUTO_TEST_CASE(PropertyAnnouncement)
@@ -113,7 +115,7 @@ BOOST_AUTO_TEST_CASE(PropertyAnnouncement)
   uecho_property_setattribute(prop, uEchoPropertyAttrNone);
   BOOST_CHECK_EQUAL(uecho_property_isannouncement(prop), false);
   
-  uecho_property_delete(prop);
+  BOOST_CHECK(uecho_property_delete(prop));
 }
 
 
@@ -146,6 +148,28 @@ BOOST_AUTO_TEST_CASE(PropertyByte2Integer)
     BOOST_CHECK_EQUAL(n, val);
   }
 
-  uecho_property_delete(prop);
+  BOOST_CHECK(uecho_property_delete(prop));
+}
+
+BOOST_AUTO_TEST_CASE(PropertyAddData)
+{
+  uEchoProperty *prop = uecho_property_new();
+  
+  BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), 0);
+  
+  const size_t PROPERTY_ADD_DATA_COUNT = 10;
+
+  for (size_t n=0; n<PROPERTY_ADD_DATA_COUNT; n++) {
+    byte newByte = n;
+    BOOST_CHECK(uecho_property_addbytedata(prop, newByte));
+    BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), (n+1));
+    byte *bytes = uecho_property_getdata(prop);
+    BOOST_CHECK(bytes);
+    BOOST_CHECK_EQUAL(bytes[n], newByte);
+  }
+  
+  BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), PROPERTY_ADD_DATA_COUNT);
+  
+  BOOST_CHECK(uecho_property_delete(prop));
 }
 
