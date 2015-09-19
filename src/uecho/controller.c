@@ -355,6 +355,8 @@ bool uecho_controller_sendmessage(uEchoController *ctrl, uEchoObject *obj, uEcho
   if (!ctrl || !obj || !msg)
     return false;
 
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(obj));
+
   nodeProfObj = uecho_node_getnodeprofileclassobject(ctrl->node);
   if (!nodeProfObj)
     return false;
