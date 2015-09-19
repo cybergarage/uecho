@@ -1,10 +1,12 @@
-//
-//  DetailViewController.swift
-//  uEchoLightCtrl
-//
-//  Created by Satoshi Konno on 2015/09/17.
-//  Copyright © 2015年 Satoshi Konno. All rights reserved.
-//
+/******************************************************************
+*
+* uEcho for Swift
+*
+* Copyright (C) Satoshi Konno 2015
+*
+* This is licensed under BSD-style license, see file COPYING.
+*
+******************************************************************/
 
 import UIKit
 

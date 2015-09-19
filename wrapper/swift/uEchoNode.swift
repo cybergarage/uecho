@@ -12,10 +12,13 @@ import uEchoC
 
 public class uEchoNode {
 
-  var cobj: UnsafeMutablePointer<Void>? = nil
+  public var cobj: UnsafeMutablePointer<Void>? = nil
 
-  init(cobj: UnsafeMutablePointer<Void>?) {
+  public init(cobj: UnsafeMutablePointer<Void>?) {
     self.cobj = cobj
+  }
+
+  deinit {
   }
 
   public var objects : [uEchoObject] {
