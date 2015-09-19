@@ -10,8 +10,22 @@
 
 import uEchoC
 
+public enum uEchoMessageEsv : UInt8 {
+  case WriteRequest = 0x60
+  case WriteRequestResponseRequired = 0x61
+  case ReadRequest = 0x62
+  case NotificationRequest = 0x63
+  case WriteReadRequest = 0x6E
+  case WriteResponse = 0x71
+  case ReadResponse = 0x72
+  case Notification = 0x73
+  case NotificationResponseRequired = 0x74
+  case NotificationResponse = 0x7A
+  case WriteReadResponse = 0x7E
+}
+
 public class uEchoMessage {
-  
+
   var cobj: UnsafeMutablePointer<Void>! = nil
 
   public init() {
