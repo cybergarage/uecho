@@ -36,6 +36,7 @@ uEchoController *uecho_controller_new(void)
   uecho_server_setuserdata(server, ctrl);
   uecho_server_setmessagelistener(server, uecho_controller_servermessagelistener);
   
+  uecho_controller_setuserdata(ctrl, NULL);
   uecho_controller_setlasttid(ctrl, 0);
   uecho_controller_setmessagelistener(ctrl, NULL);
   uecho_controller_setpostrequestmessage(ctrl, NULL);
@@ -280,6 +281,28 @@ bool uecho_controller_isoptionenabled(uEchoController *ctrl, uEchoOption param)
 void uecho_controller_disableudpserver(uEchoController *ctrl)
 {
   uecho_controller_enableoption(ctrl, uEchoControllerOptionDisableUdpServer);
+}
+
+/****************************************
+ * uecho_controller_setuserdata
+ ****************************************/
+
+void uecho_controller_setuserdata(uEchoController *ctrl, void *data)
+{
+  if (!ctrl)
+    return;
+  ctrl->userData = data;
+}
+
+/****************************************
+ * uecho_controller_getuserdata
+ ****************************************/
+
+void *uecho_controller_getuserdata(uEchoController *ctrl)
+{
+  if (!ctrl)
+    return NULL;
+  return ctrl->userData;
 }
 
 /****************************************

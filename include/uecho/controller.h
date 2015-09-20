@@ -67,6 +67,9 @@ bool uecho_controller_start(uEchoController *ctrl);
 bool uecho_controller_stop(uEchoController *ctrl);
 bool uecho_controller_isrunning(uEchoController *ctrl);
 
+void uecho_controller_setuserdata(uEchoController *ctrl, void *data);
+void *uecho_controller_getuserdata(uEchoController *ctrl);
+
 #ifdef  __cplusplus
 }
 #endif

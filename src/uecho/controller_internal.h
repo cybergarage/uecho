@@ -39,6 +39,7 @@ typedef struct _uEchoController {
   uEchoNodeList *nodes;
   void (*msgListener)(struct _uEchoController *, uEchoMessage *); /* uEchoControllerMessageListener */
   uEchoOption option;
+  void *userData;
   
   clock_t postResWaitMiliTime;
   uEchoMessage *postReqMsg;
