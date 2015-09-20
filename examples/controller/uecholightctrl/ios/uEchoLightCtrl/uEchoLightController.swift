@@ -12,6 +12,12 @@ import uEcho
 
 public class uEchoLightController : uEchoController {
   
+  let LightClassGroupCode = 0x02
+  let LightClassCode = 0x91
+  let LightOperatingStatusCode : UInt8 = 0x80
+  let LightOperatingStatusOn : UInt8 = 0x30
+  let LightOperatingStatusOff : UInt8 = 0x31
+  
   override init() {
     super.init()
   }
@@ -23,7 +29,7 @@ public class uEchoLightController : uEchoController {
     var objs = [uEchoObject]()
     for node in nodes {
       for obj in node.objects {
-        if (obj.classGroupCode == 0x02) && (obj.classCode == 0x91) {
+        if (obj.classGroupCode == LightClassGroupCode) && (obj.classCode == LightClassCode) {
           objs.append(obj)
         }
       }
@@ -33,17 +39,35 @@ public class uEchoLightController : uEchoController {
   
   func setOperationStatus(obj : uEchoObject, status : Bool) -> Bool {
     let prop = uEchoProperty()
-    prop.code = 0x80
+    prop.code = LightOperatingStatusCode
     var data = [UInt8]()
-    data.append(status ? 0x30 : 0x31)
-    
-    var props = [uEchoProperty]()
-    props.append(prop)
+    data.append(status ? LightOperatingStatusOn : LightOperatingStatusOff)
     
     let msg = uEchoMessage()
     msg.ESV = 0x60
-    msg.properties = props
+    msg.properties = [prop]
     
     return super.sendMessage(obj, msg:msg)
+  }
+
+  func getOperationStatus(obj : uEchoObject, status : Bool) -> Bool {
+    let prop = uEchoProperty()
+    prop.code = LightOperatingStatusCode
+    
+    let msg = uEchoMessage()
+    msg.ESV = 0x62
+    msg.properties = [prop]
+    
+    let res = super.postMessage(obj, msg:msg)
+    if !res.result {
+        return false
+    }
+
+    let resProp = res.message.getPropertyByCode(LightOperatingStatusCode)
+    if resProp == nil {
+      return false
+    }
+    
+    return (resProp.getUInt8Data() == LightOperatingStatusOn) ? true : false
   }
 }

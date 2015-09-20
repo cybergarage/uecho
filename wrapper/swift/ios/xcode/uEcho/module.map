@@ -1,4 +1,5 @@
 module uEchoC [system] {
     header "../../../../../include/uecho/uecho.h"
+    header "../../../uEchoFramework.h"
     export *
 }
