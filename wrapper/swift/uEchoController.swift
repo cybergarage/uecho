@@ -38,4 +38,10 @@ public class uEchoController {
   public func sendMessage(obj:uEchoObject, msg:uEchoMessage) -> Bool {
     return uecho_controller_sendmessage(self.cobj, obj.cobj, msg.cobj);
   }
+
+  public func postMessage(obj:uEchoObject, msg:uEchoMessage) -> (result:Bool, response:uEchoMessage) {
+    let resMsg = uEchoMessage()
+    let postResult = uecho_controller_postmessage(self.cobj, obj.cobj, msg.cobj, resMsg.cobj);
+    return (postResult, msg)
+  }
 }
