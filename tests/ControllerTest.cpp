@@ -19,6 +19,8 @@ BOOST_AUTO_TEST_CASE(ControllerRun)
 {
   uEchoController *ctrl = uecho_controller_new();
   
+  BOOST_CHECK(!uecho_controller_getuserdata(ctrl));
+  
   BOOST_CHECK(uecho_controller_start(ctrl));
   BOOST_CHECK(uecho_controller_stop(ctrl));
 
