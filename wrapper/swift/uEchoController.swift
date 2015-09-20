@@ -13,9 +13,11 @@ import uEchoC
 public class uEchoController {
   
   public var cobj: UnsafeMutablePointer<Void>! = nil
+  public var listner: (uEchoMessage)! = nil
   
   public init() {
     self.cobj = uecho_controller_new()
+    uecho_controller_setmessagelistener(self.cobj, uEchoFrameworkControllerMessageListener)
   }
 
   deinit {
@@ -39,7 +41,7 @@ public class uEchoController {
     return uecho_controller_sendmessage(self.cobj, obj.cobj, msg.cobj);
   }
 
-  public func postMessage(obj:uEchoObject, msg:uEchoMessage) -> (result:Bool, response:uEchoMessage) {
+  public func postMessage(obj:uEchoObject, msg:uEchoMessage) -> (result:Bool, message:uEchoMessage) {
     let resMsg = uEchoMessage()
     let postResult = uecho_controller_postmessage(self.cobj, obj.cobj, msg.cobj, resMsg.cobj);
     return (postResult, msg)
