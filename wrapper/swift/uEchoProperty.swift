@@ -57,4 +57,28 @@ public class uEchoProperty {
       }
     }
   }
+
+  public func getUInt8Data() -> UInt8 {
+    var value : UInt8 = 0
+    if !uecho_property_getbytedata(self.cobj, &value) {
+      return 0
+    }
+    return value
+  }
+
+  public func getInt16Data() -> Int16 {
+    var value : Int32 = 0
+    if !uecho_property_getintegerdata(self.cobj, 2, &value) {
+      return 0
+    }
+    return Int16(value)
+  }
+
+  public func getUInt32Data() -> Int32 {
+    var value : Int32 = 0
+    if !uecho_property_getintegerdata(self.cobj, 4, &value) {
+      return 0
+    }
+    return Int32(value)
+  }
 }

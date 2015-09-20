@@ -70,4 +70,17 @@ public class uEchoMessage {
       }
     }
   }
+  
+  public func getProperties() -> [uEchoProperty] {
+    return self.properties
+  }
+  
+  public func getPropertyByCode(code : UInt8) -> uEchoProperty! {
+    for prop in self.properties {
+      if prop.code == code {
+        return prop
+      }
+    }
+    return nil
+  }
 }
