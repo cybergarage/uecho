@@ -13,8 +13,27 @@ import uEchoC
 public typealias uEchoControllerCListener = @convention(c) (UnsafeMutablePointer<Void>, UnsafeMutablePointer<Void>) -> Void
 public typealias uEchoControllerListener = (uEchoMessage) -> Void
 
-func uEchoFrameworkControllerMessageListener(ctrl : UnsafeMutablePointer<Void>, msg : UnsafeMutablePointer<Void>) -> Void
+private var gSharedControllerListener : uEchoController! = nil
+
+public func uEchoGetSharedController() -> uEchoController {
+  if gSharedControllerListener == nil {
+    gSharedControllerListener = uEchoController()
+  }
+  return gSharedControllerListener
+}
+
+func uEchoFrameworkControllerMessageListener(cctrl : UnsafeMutablePointer<Void>, cmsg : UnsafeMutablePointer<Void>) -> Void
 {
+  // FIXME : use uecho_controller_getuserdata() to get a target instance
+  let ctrl = gSharedControllerListener
+  //let ctrl = uEchoController(uecho_controller_getuserdata(cctrl))
+
+  if ctrl.listner == nil {
+    return
+  }
+  
+  let msg = uEchoMessage(cobj: cmsg)
+  ctrl.listner(msg)
 }
 
 public class uEchoController {
@@ -24,7 +43,11 @@ public class uEchoController {
   
   public init() {
     self.cobj = uecho_controller_new()
-    //uecho_controller_setuserdata(self.cobj, UnsafeMutablePointer(self))
+
+    // FIXME : use uecho_controller_setuserdata() to set self pointer
+    gSharedControllerListener = self
+    //uecho_controller_setuserdata(self.cobj, UnsafeMutablePointer<Void>(self))
+    
     uecho_controller_setmessagelistener(self.cobj, uEchoFrameworkControllerMessageListener)
   }
 

@@ -26,14 +26,23 @@ public enum uEchoMessageEsv : UInt8 {
 
 public class uEchoMessage {
 
+  private var isOwner : Bool = false
   var cobj: UnsafeMutablePointer<Void>! = nil
+
+  public init(cobj: UnsafeMutablePointer<Void>) {
+    self.cobj = cobj
+    self.isOwner = false
+  }
 
   public init() {
     self.cobj = uecho_message_new();
+    self.isOwner = true
   }
 
   deinit {
-    uecho_message_delete(self.cobj)
+    if isOwner {
+      uecho_message_delete(self.cobj)
+    }
   }
   
   public var ESV : UInt8 {
