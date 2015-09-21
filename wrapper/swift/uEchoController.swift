@@ -10,13 +10,21 @@
 
 import uEchoC
 
+public typealias uEchoControllerCListener = @convention(c) (UnsafeMutablePointer<Void>, UnsafeMutablePointer<Void>) -> Void
+public typealias uEchoControllerListener = (uEchoMessage) -> Void
+
+func uEchoFrameworkControllerMessageListener(ctrl : UnsafeMutablePointer<Void>, msg : UnsafeMutablePointer<Void>) -> Void
+{
+}
+
 public class uEchoController {
   
   public var cobj: UnsafeMutablePointer<Void>! = nil
-  public var listner: (uEchoMessage)! = nil
+  public var listner: (uEchoControllerListener)! = nil
   
   public init() {
     self.cobj = uecho_controller_new()
+    //uecho_controller_setuserdata(self.cobj, UnsafeMutablePointer(self))
     uecho_controller_setmessagelistener(self.cobj, uEchoFrameworkControllerMessageListener)
   }
 
