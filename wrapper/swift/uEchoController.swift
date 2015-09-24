@@ -10,8 +10,8 @@
 
 import uEchoC
 
-public typealias uEchoControllerCListener = @convention(c) (UnsafeMutablePointer<Void>, UnsafeMutablePointer<Void>) -> Void
 public typealias uEchoControllerListener = (uEchoMessage) -> Void
+private typealias uEchoControllerCListener = @convention(c) (UnsafeMutablePointer<Void>, UnsafeMutablePointer<Void>) -> Void
 
 private var gSharedControllerListener : uEchoController! = nil
 

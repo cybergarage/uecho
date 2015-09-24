@@ -9,12 +9,13 @@
 ******************************************************************/
 
 import UIKit
+import uEcho
 
 class MasterViewController: UITableViewController {
 
   var detailViewController: DetailViewController? = nil
   var objects = [AnyObject]()
-  var uechoCtrl: uEchoLightController? = nil
+  var uechoCtrl: uEchoLightController! = nil
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -29,6 +30,7 @@ class MasterViewController: UITableViewController {
     }
     
     self.uechoCtrl = uEchoLightController()
+    self.uechoCtrl.listner = self.controllerMessageReceived
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -93,6 +95,11 @@ class MasterViewController: UITableViewController {
     }
   }
 
+  // uEcho
+  
+  func controllerMessageReceived(msg : uEchoMessage) {
+    
+  }
 
 }
 
