@@ -59,6 +59,15 @@ void uecho_node_setoption(uEchoNode *node, uEchoOption value);
   
 void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg);
 
+bool uecho_node_announceproperty(uEchoNode *node, uEchoProperty *prop);
+bool uecho_node_announce(uEchoNode *node);
+  
+/****************************************
+ * Function (Property)
+ ****************************************/
+
+uEchoNode *uecho_property_getnode(uEchoProperty *prop);
+
 /****************************************
  * Function (Node List)
  ****************************************/

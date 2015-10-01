@@ -60,6 +60,18 @@ uEcho verifies the messages form other nodes using the objects and properties in
 
 [enet]:http://echonet.jp/english/
 
+## Supported Basic Sequences
+
+uEcho supports the following five basic sequences in ECHONET Lite Communication Middleware Specification [\[1\]][enet-spec]. uEcho handles the five basic sequences automatically, thus the developer doesn't have to implement the responses directly.
+
+| Type | Description | Support |
+|---|---|---|
+| (A) | Basic sequence for receiving a request (no response required) | O |
+| (B) | Basic sequence for receiving a request (response required) | O |
+| (C) | Basic sequence for processing a notification request | O |
+| (D) | Basic sequence for autonomous notification | O |
+| (E) | Basic sequence for processing a request requiring a notification response | O |
+
 ## References
 
 - \[1\] [Part II ECHONET Lite Communication Middleware Specification][enet-spec]
