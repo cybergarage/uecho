@@ -46,11 +46,13 @@ typedef struct {
 #include <uecho/property.h>
 
 /****************************************
- * Function (Property List)
+ * Function (Property)
  ****************************************/
 
 bool uecho_property_setcount(uEchoProperty *prop, size_t count);
 bool uecho_property_addcount(uEchoProperty *prop, size_t count);
+
+bool uecho_property_announce(uEchoProperty *prop);
 
 /****************************************
  * Function (Property List)

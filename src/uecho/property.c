@@ -11,6 +11,7 @@
 #include <string.h>
 
 #include <uecho/property_internal.h>
+#include <uecho/node_internal.h>
 #include <uecho/misc.h>
 
 /****************************************
@@ -144,6 +145,12 @@ bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count)
   
   memcpy(prop->data, data, count);
 
+  // (D) Basic sequence for autonomous notification
+  
+  if (uecho_property_isannouncement(prop)) {
+    uecho_property_announce(prop);
+  }
+
   return true;
 }
 
@@ -168,6 +175,12 @@ bool uecho_property_adddata(uEchoProperty *prop, const byte *data, size_t count)
   
   memcpy((prop->data + currDataSize), data, count);
   
+  // (D) Basic sequence for autonomous notification
+
+  if (uecho_property_isannouncement(prop)) {
+    uecho_property_announce(prop);
+  }
+
   return true;
 }
 
@@ -456,4 +469,37 @@ bool uecho_property_equals(uEchoProperty *prop1, uEchoProperty *prop2)
   return true;
 }
 
+/****************************************
+ * uecho_property_getnode
+ ****************************************/
 
+uEchoNode *uecho_property_getnode(uEchoProperty *prop)
+{
+  uEchoObject *parentObj;
+  uEchoNode *parentNode;
+  
+  parentObj = uecho_property_getparentobject(prop);
+  if (!parentObj)
+    return NULL;
+
+  parentNode = uecho_object_getparentnode(parentObj);
+  if (!parentNode)
+    return NULL;
+  
+  return parentNode;
+}
+
+/****************************************
+ * uecho_property_announce
+ ****************************************/
+
+bool uecho_property_announce(uEchoProperty *prop)
+{
+  uEchoNode *node;
+  
+  node = uecho_property_getnode(prop);
+  if (!node)
+    return false;
+  
+  return uecho_node_announceproperty(node, prop);
+}
