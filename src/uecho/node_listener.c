@@ -142,7 +142,7 @@ bool uecho_object_iswritablepropertyrequest(uEchoObject *obj, uEchoProperty *req
   nodeProp = uecho_object_getproperty(obj, uecho_property_getcode(reqProp));
   if (!nodeProp)
     return false;
-  
+
   if (!uecho_property_iswritable(nodeProp))
     return false;
 
@@ -253,9 +253,10 @@ void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg)
   // if (uecho_node_isselfobjectmessage(node, msg))
   //   return;
   
-  // Processing when the controlled object exists, except when ESV = 0x60-0x63, 0x6E and 0x74
-
   esv = uecho_message_getesv(msg);
+  
+  // 4.2.2 Basic Sequences for Object Control in General
+  // (B) Processing when the controlled object exists, except when ESV = 0x60 to 0x63, 0x6E and 0x74
   if (!uecho_message_isrequestesv(esv))
     return;
   
@@ -263,6 +264,9 @@ void uecho_node_servermessagelistener(uEchoServer *server, uEchoMessage *msg)
   
   dstObjCode = uecho_message_getdestinationobjectcode(msg);
   nodeDestObj = uecho_node_getobjectbycode(node, dstObjCode);
+
+  // 4.2.2 Basic Sequences for Object Control in General
+  // (A) | Processing when the controlled object does not exist
   if (!nodeDestObj)
     return;
 
