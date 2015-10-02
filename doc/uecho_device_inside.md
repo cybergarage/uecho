@@ -62,7 +62,11 @@ uEcho verifies the messages form other nodes using the objects and properties in
 
 ## Supported Basic Sequences
 
-uEcho supports the following five basic sequences in ECHONET Lite Communication Middleware Specification [\[1\]][enet-spec]. uEcho handles the five basic sequences automatically, thus the developer doesn't have to implement the responses directly.
+uEcho supports the following five basic sequences in ECHONET Lite Communication Middleware Specification [\[1\]][enet-spec].
+
+### 4.2.1 Basic Sequences for Service Content
+
+uEcho handles the five basic sequences automatically, thus the developer doesn't have to implement the responses directly.
 
 | Type | Description | Support |
 |---|---|---|
@@ -71,6 +75,19 @@ uEcho supports the following five basic sequences in ECHONET Lite Communication 
 | (C) | Basic sequence for processing a notification request | O |
 | (D) | Basic sequence for autonomous notification | O |
 | (E) | Basic sequence for processing a request requiring a notification response | O |
+
+### 4.2.2 Basic Sequences for Object Control in General
+
+uEcho supports the following basic sequences too.
+
+| Type | Description | Support |
+|---|---|---|
+| (A) | Processing when the controlled object does not exist | O |
+| (B) | Processing when the controlled object exists, except when ESV = 0x60 to 0x63, 0x6E and 0x74 | O |
+| (C) | Processing when the controlled object exists but the controlled property does not exist or can be processed only partially | - |
+| (D) | Processing when the controlled property exists but the stipulated service processing functions are not available | - |
+| (E) | Processing when the controlled property exists and the stipulated service processing functions are available but the EDT size does not match | - |
+| (F) | Processing when the controlled property exists, the stipulated service processing functions are available and also the EDT size matches | - |
 
 ## References
 
