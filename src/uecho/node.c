@@ -464,7 +464,7 @@ bool uecho_node_announceproperty(uEchoNode *node, uEchoProperty *prop)
   
   uecho_message_delete(msg);
   
-  return false;
+  return isSuccess;
 }
 
 /****************************************
