@@ -36,6 +36,12 @@ enum {
   uEchoEsvNotificationResponseRequired = 0x74,
   uEchoEsvNotificationResponse = 0x7A,
   uEchoEsvWriteReadResponse = 0x7E,
+
+  uEchoEsvWriteRequestError = 0x50,
+  uEchoEsvWriteRequestResponseRequiredError = 0x51,
+  uEchoEsvReadRequestError = 0x52,
+  uEchoEsvNotificationRequestError = 0x53,
+  uEchoEsvWriteReadRequestError = 0x5E,
 };
 
 /****************************************
@@ -59,14 +65,17 @@ bool uecho_message_clear(uEchoMessage *msg);
 
 bool uecho_message_parse(uEchoMessage *msg, const byte *data, size_t dataLen);
 
+void uecho_message_setehd1(uEchoMessage *msg, byte val);
+byte uecho_message_getehd1(uEchoMessage *msg);
+  
+void uecho_message_setehd2(uEchoMessage *msg, byte val);
+byte uecho_message_getehd2(uEchoMessage *msg);
+
 bool uecho_message_settid(uEchoMessage *msg, uEchoTID val);
 uEchoTID uecho_message_gettid(uEchoMessage *msg);
 
 bool uecho_message_setopc(uEchoMessage *msg, byte val);
 byte uecho_message_getopc(uEchoMessage *msg);
-
-void uecho_message_setehd1(uEchoMessage *msg, byte val);
-byte uecho_message_getehd1(uEchoMessage *msg);
 
 bool uecho_message_setsourceobjectcode(uEchoMessage *msg, int code);
 int uecho_message_getsourceobjectcode(uEchoMessage *msg);
@@ -76,9 +85,6 @@ bool uecho_message_setdestinationobjectcode(uEchoMessage *msg, int code);
 int uecho_message_getdestinationobjectcode(uEchoMessage *msg);
 bool uecho_message_isdestinationobjectcode(uEchoMessage *msg, int code);
   
-void uecho_message_setehd2(uEchoMessage *msg, byte val);
-byte uecho_message_getehd2(uEchoMessage *msg);
-
 bool uecho_message_setesv(uEchoMessage *msg, uEchoEsv val);
 uEchoEsv uecho_message_getesv(uEchoMessage *msg);
 
@@ -95,15 +101,10 @@ void uecho_message_setsourceaddress(uEchoMessage *msg, const char *addr);
 const char *uecho_message_getsourceaddress(uEchoMessage *msg);
 bool uecho_message_issourceaddress(uEchoMessage *msg, const char *addr);
 
-
 bool uecho_message_set(uEchoMessage *msg, uEchoMessage *srcMsg);
 uEchoMessage *uecho_message_copy(uEchoMessage *msg);
 bool uecho_message_equals(uEchoMessage *msg1, uEchoMessage *msg2);
 
-bool uecho_message_isresponserequired(uEchoMessage *msg);
-bool uecho_message_isresponsemessage(uEchoMessage *msg, uEchoMessage *resMeg);
-bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv *resEsv);
-  
 /****************************************
 * Function
 ****************************************/
