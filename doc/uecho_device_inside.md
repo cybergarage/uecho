@@ -78,7 +78,7 @@ uEcho handles the five basic sequences automatically, thus the developer doesn't
 
 ### 4.2.2 Basic Sequences for Object Control in General
 
-uEcho supports the following basic sequences too, and returns the error responses automatically. Use `uecho_node_setmessagelistener()` if you want to listen the error requests.
+uEcho supports the following basic sequences too, and returns the error responses automatically. The developer doesn't have to receive and handle the error messages, but use `uecho_node_setmessagelistener()` if you want to listen the error messages.
 
 | Type | Description | Support |
 |---|---|---|
