@@ -44,7 +44,7 @@ public class uEchoObject {
 
   public var properties : [uEchoProperty] {
     var props = [uEchoProperty]()
-    if self.cobj != nil {
+    if self.cobj == nil {
       return props
     }
     for var cprop = uecho_object_getproperties(self.cobj!); cprop != nil; cprop = uecho_property_next(cprop) {

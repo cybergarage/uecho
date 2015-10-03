@@ -23,7 +23,7 @@ public class uEchoNode {
 
   public var objects : [uEchoObject] {
     var objs = [uEchoObject]()
-    if self.cobj != nil {
+    if self.cobj == nil {
       return objs
     }
     for var cobj = uecho_node_getobjects(self.cobj!); cobj != nil; cobj = uecho_object_next(cobj) {
