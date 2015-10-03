@@ -93,5 +93,4 @@ uEcho supports the following basic sequences too, and returns the error response
 - \[1\] [Part II ECHONET Lite Communication Middleware Specification][enet-spec]
 - \[2\] [Detailed Requirements for ECHONET Device objects][enet-spec]
 
-[enet]:http://echonet.jp/english/
 [enet-spec]:http://www.echonet.gr.jp/english/spec/index.htm
