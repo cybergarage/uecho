@@ -14,8 +14,8 @@ import uEcho
 class MasterViewController: UITableViewController {
 
   var detailViewController: DetailViewController? = nil
-  var objects = [AnyObject]()
-  var uechoCtrl: uEchoLightController! = nil
+  var objects = [uEchoObject]()
+  var controller: uEchoLightController! = nil
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,9 +27,9 @@ class MasterViewController: UITableViewController {
         self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
     }
     
-    self.uechoCtrl = uEchoLightController()
-    self.uechoCtrl.listner = self.controllerMessageReceived
-    self.uechoCtrl.start();
+    self.controller = uEchoLightController()
+    self.controller.listner = self.controllerMessageReceived
+    self.controller.start();
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -38,7 +38,7 @@ class MasterViewController: UITableViewController {
   }
 
   override func viewDidAppear(animated: Bool) {
-    self.uechoCtrl.search();
+    self.controller.search();
     super.viewDidAppear(animated)
   }
   override func didReceiveMemoryWarning() {
@@ -46,7 +46,8 @@ class MasterViewController: UITableViewController {
   }
 
   func searchObjects(sender: AnyObject) {
-    self.uechoCtrl.search();
+    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    self.controller.search();
   }
 
   // MARK: - Segues
@@ -54,7 +55,7 @@ class MasterViewController: UITableViewController {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "showDetail" {
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            let object = objects[indexPath.row] as! NSDate
+            let object = objects[indexPath.row]
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
             controller.detailItem = object
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -76,8 +77,8 @@ class MasterViewController: UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
-    let object = objects[indexPath.row] as! NSDate
-    cell.textLabel!.text = object.description
+    let object = objects[indexPath.row]
+    cell.textLabel!.text = object.code.description
     return cell
   }
 
@@ -88,6 +89,8 @@ class MasterViewController: UITableViewController {
   // MARK: - uEcho Listener
   
   func controllerMessageReceived(msg : uEchoMessage) {
+    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    self.objects = self.controller.objects
     self.tableView.reloadData();
   }
 
