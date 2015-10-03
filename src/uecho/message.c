@@ -313,8 +313,35 @@ bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv *resEsv)
     case uEchoEsvNotificationResponseRequired:
       *resEsv = uEchoEsvNotificationResponse;
       return true;
-    default:
-      return false;
+  }
+  
+  return false;
+}
+
+/****************************************
+ * uecho_message_requestesv2errorresponseesv
+ ****************************************/
+
+bool uecho_message_requestesv2errorresponseesv(uEchoEsv reqEsv, uEchoEsv *resEsv)
+{
+  *resEsv = 0;
+  
+  switch (reqEsv) {
+    case uEchoEsvWriteRequest:
+      *resEsv = uEchoEsvWriteRequestError;
+      return true;
+    case uEchoEsvWriteRequestResponseRequired:
+      *resEsv = uEchoEsvWriteRequestResponseRequiredError;
+      return true;
+    case uEchoEsvReadRequest:
+      *resEsv = uEchoEsvReadRequestError;
+      return true;
+    case uEchoEsvNotificationRequest:
+      *resEsv = uEchoEsvNotificationRequestError;
+      return true;
+    case uEchoEsvWriteReadRequest:
+      *resEsv = uEchoEsvWriteReadRequestError;
+      return true;
   }
   
   return false;
