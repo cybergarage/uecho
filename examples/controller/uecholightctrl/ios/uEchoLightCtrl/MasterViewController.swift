@@ -19,11 +19,9 @@ class MasterViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
-    let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-    self.navigationItem.rightBarButtonItem = addButton
+    
+    let reloadButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "searchObjects:")
+    self.navigationItem.rightBarButtonItem = reloadButton
     if let split = self.splitViewController {
         let controllers = split.viewControllers
         self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -31,6 +29,7 @@ class MasterViewController: UITableViewController {
     
     self.uechoCtrl = uEchoLightController()
     self.uechoCtrl.listner = self.controllerMessageReceived
+    self.uechoCtrl.start();
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -38,15 +37,16 @@ class MasterViewController: UITableViewController {
     super.viewWillAppear(animated)
   }
 
+  override func viewDidAppear(animated: Bool) {
+    self.uechoCtrl.search();
+    super.viewDidAppear(animated)
+  }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
 
-  func insertNewObject(sender: AnyObject) {
-    objects.insert(NSDate(), atIndex: 0)
-    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-    self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+  func searchObjects(sender: AnyObject) {
+    self.uechoCtrl.search();
   }
 
   // MARK: - Segues
@@ -82,23 +82,13 @@ class MasterViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    // Return false if you do not want the specified item to be editable.
-    return true
+    return false
   }
 
-  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
-        objects.removeAtIndex(indexPath.row)
-        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-    } else if editingStyle == .Insert {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-  }
-
-  // uEcho
+  // MARK: - uEcho Listener
   
   func controllerMessageReceived(msg : uEchoMessage) {
-    
+    self.tableView.reloadData();
   }
 
 }
