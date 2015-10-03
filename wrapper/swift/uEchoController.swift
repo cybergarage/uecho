@@ -11,7 +11,7 @@
 import uEchoC
 
 public typealias uEchoControllerListener = (uEchoMessage) -> Void
-private typealias uEchoControllerCListener = @convention(c) (UnsafeMutablePointer<Void>, UnsafeMutablePointer<Void>) -> Void
+public typealias uEchoControllerCListener = @convention(c) (UnsafeMutablePointer<Void>, UnsafeMutablePointer<Void>) -> Void
 
 private var gSharedControllerListener : uEchoController! = nil
 
@@ -53,6 +53,14 @@ public class uEchoController {
 
   deinit {
     uecho_controller_delete(self.cobj)
+  }
+  
+  public func start() -> Bool {
+    return uecho_controller_start(self.cobj)
+  }
+
+  public func stop() -> Bool {
+    return uecho_controller_stop(self.cobj)
   }
   
   public func search() {
