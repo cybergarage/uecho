@@ -1,1 +1,8 @@
 language: c
+
+compiler:
+    - clang
+    - gcc
+
+script:
+    ./bootstrap && ./configure && make && make test
