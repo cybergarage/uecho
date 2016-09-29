@@ -105,6 +105,9 @@ bool uecho_message_set(uEchoMessage *msg, uEchoMessage *srcMsg);
 uEchoMessage *uecho_message_copy(uEchoMessage *msg);
 bool uecho_message_equals(uEchoMessage *msg1, uEchoMessage *msg2);
 
+bool uecho_message_isresponserequired(uEchoMessage *msg);
+bool uecho_message_isresponsemessage(uEchoMessage *msg, uEchoMessage *resMeg);
+
 /****************************************
 * Function
 ****************************************/
