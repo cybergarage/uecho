@@ -63,8 +63,6 @@ typedef struct _uEchoMessage
  * Function
  ****************************************/
 
-bool uecho_message_isresponserequired(uEchoMessage *msg);
-bool uecho_message_isresponsemessage(uEchoMessage *msg, uEchoMessage *resMeg);
 bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv *resEsv);
 bool uecho_message_requestesv2errorresponseesv(uEchoEsv reqEsv, uEchoEsv *resEsv);
 
