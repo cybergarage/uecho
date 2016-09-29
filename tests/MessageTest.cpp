@@ -99,7 +99,7 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
   BOOST_CHECK_EQUAL(uecho_message_getsourceobjectcode(msg), 0xA0B0C0);
   BOOST_CHECK_EQUAL(uecho_message_getdestinationobjectcode(msg), 0xD0E0F0);
   
-  BOOST_CHECK_EQUAL(uecho_message_getesv(msg), uEchoEsvReadRequest);
+  BOOST_CHECK_EQUAL(uecho_message_getesv(msg), (uEchoEsv)uEchoEsvReadRequest);
   
   BOOST_CHECK_EQUAL(uecho_message_getopc(msg), 3);
   
