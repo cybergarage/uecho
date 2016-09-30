@@ -41,6 +41,7 @@ foreach $file (@find_files) {
 print join(" \\\n", @source_files) . "\n";
 
 print<<FOTTER;
+
 #if HAVE_LIBTOOL
 #uechotest_LDADD = ../../lib/unix/libuecho.la
 #else
