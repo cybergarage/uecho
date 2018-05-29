@@ -37,6 +37,7 @@ uechotest_SOURCES = \
 	../SocketTest.cpp \
 	../DeviceTest.cpp \
 	../ObjectListTest.cpp
+
 #if HAVE_LIBTOOL
 #uechotest_LDADD = ../../lib/unix/libuecho.la
 #else
