@@ -62,9 +62,6 @@ uEchoNetworkInterface *uecho_net_interface_getany(void)
 {
   uEchoNetworkInterface *netIf;
 
-  if (!netIf)
-    return NULL;
-  
   netIf = uecho_net_interface_new();
   uecho_net_interface_setname(netIf, "INADDR_ANY");
   uecho_net_interface_setaddress(netIf, "0.0.0.0");

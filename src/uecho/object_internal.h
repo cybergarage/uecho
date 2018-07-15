@@ -37,13 +37,13 @@ typedef struct _uEchoObject {
   // Property map caches
 
   size_t annoPropMapSize;
-  byte *annoPropMapBytes;
+  uEchoPropertyCode *annoPropMapBytes;
   
   size_t setPropMapSize;
-  byte *setPropMapBytes;
+  uEchoPropertyCode *setPropMapBytes;
 
   size_t getPropMapSize;
-  byte *getPropMapBytes;
+  uEchoPropertyCode *getPropMapBytes;
 
   // Listener
   
@@ -74,6 +74,8 @@ bool uecho_object_updatepropertymaps(uEchoObject *obj);
 void uecho_object_clearpropertymapcaches(uEchoObject *obj);
 
 uEchoProperty *uecho_object_getpropertywait(uEchoObject *obj, uEchoPropertyCode code, clock_t waitMiliTime);
+
+bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uEchoPropertyCode *propCodes, size_t propsCodeSize);
 
 /****************************************
  * Function (Object List)
