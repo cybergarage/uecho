@@ -578,7 +578,6 @@ bool uecho_controller_searchallobjects(uEchoController *ctrl)
 bool uecho_controller_searchobjectwithesv(uEchoController *ctrl, byte objCode, uEchoEsv esv)
 {
   uEchoMessage *msg;
-  uEchoProperty *prop;
   
   if (!ctrl)
     return false;
@@ -590,10 +589,6 @@ bool uecho_controller_searchobjectwithesv(uEchoController *ctrl, byte objCode, u
   
   uecho_message_setesv(msg, esv);
   uecho_message_setdestinationobjectcode(msg, objCode);
-  
-  prop = uecho_message_getproperty(msg, 0);
-  uecho_property_setcode(prop, uEchoNodeProfileClassOperatingStatus);
-  uecho_property_setdata(prop, NULL, 0);
   
   return uecho_controller_announcemessage(ctrl, msg);
 }
