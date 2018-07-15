@@ -109,11 +109,11 @@ bool uecho_object_updatepropertymaps(uEchoObject *obj)
   }
   
   // Update property map properties
-  
-  uecho_propertylist_set(obj->properties, uEchoProfileGetPropertyMap, uEchoPropertyAttrRead, obj->getPropMapBytes, obj->getPropMapSize);
-  uecho_propertylist_set(obj->properties, uEchoProfileSetPropertyMap, uEchoPropertyAttrRead, obj->setPropMapBytes, obj->setPropMapSize);
-  uecho_propertylist_set(obj->properties, uEchoProfileAnnoPropertyMap, uEchoPropertyAttrRead, obj->annoPropMapBytes, obj->annoPropMapSize);
-  
+
+  uecho_object_setpropertymap(obj, uEchoProfileGetPropertyMap, obj->getPropMapBytes, obj->getPropMapSize);
+  uecho_object_setpropertymap(obj, uEchoProfileSetPropertyMap, obj->setPropMapBytes, obj->setPropMapSize);
+  uecho_object_setpropertymap(obj, uEchoProfileAnnoPropertyMap, obj->annoPropMapBytes, obj->annoPropMapSize);
+
   return true;
 }
 
