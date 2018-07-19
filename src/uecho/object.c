@@ -273,8 +273,7 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
   
   if (propsCodeSize <= uEchoPropertyMapMaxLen) {
     memcpy(propMap, propCodes, propsCodeSize);
-    uecho_object_setproperty(obj, mapCode, uEchoPropertyAttrRead);
-    uecho_object_setpropertydata(obj, mapCode, propMapData, (propsCodeSize + 1));
+    uecho_propertylist_set(obj->properties, mapCode, uEchoPropertyAttrRead, propMapData, (propsCodeSize + 1));
     return true;
   }
   
@@ -289,8 +288,7 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
     propMap[propByteIdx] |= (((propCode - uEchoPropertyCodeMin) & 0xF0) >> 8) & 0x0F;
   }
   
-  uecho_object_setproperty(obj, mapCode, uEchoPropertyAttrRead);
-  uecho_object_setpropertydata(obj, mapCode, propMapData, (uEchoPropertyMapMaxLen + 1));
+  uecho_propertylist_set(obj->properties, mapCode, uEchoPropertyAttrRead, propMapData, (propsCodeSize + 1));
   
   return true;
 }
