@@ -50,7 +50,7 @@ bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject *obj)
   // Version Information
   
   uecho_object_setproperty(obj, uEchoNodeProfileClassVersionInformation, uEchoPropertyAttrRead);
-  uecho_nodeprofileclass_setversion(obj, uEchoMajorVersion, uEchoMinorVersion, uEchoSpecifiedMessageFormat);
+  uecho_nodeprofileclass_setversion(obj, uEchoMajorVersion, uEchoMinorVersion);
 
   // Identification Number
   
@@ -96,13 +96,13 @@ bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject *obj, bool stats)
  * uecho_nodeprofileclass_setversion
  ****************************************/
 
-bool uecho_nodeprofileclass_setversion(uEchoObject *obj, int majorVer, int minorVer, uEchoMessageFormatType msgType)
+bool uecho_nodeprofileclass_setversion(uEchoObject *obj, int majorVer, int minorVer)
 {
   byte verBytes[uEchoNodeProfileClassVersionInformationLen];
   
   verBytes[0] = uEchoMajorVersion;
   verBytes[1] = uEchoMinorVersion;
-  verBytes[2] = uEchoSpecifiedMessageFormat;
+  verBytes[2] = 0x01;
   verBytes[3] = 0x00;
 
   return uecho_object_setpropertydata(obj, uEchoNodeProfileClassVersionInformation, verBytes, uEchoNodeProfileClassVersionInformationLen);
