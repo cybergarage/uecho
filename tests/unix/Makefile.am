@@ -13,30 +13,30 @@ TESTS = uechotest
 check_PROGRAMS = uechotest
 
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
-	../TestDevice.h
+	..//TestDevice.h
 
 uechotest_SOURCES = \
-	../ThreadTest.cpp \
-	../ClassListTest.cpp \
-	../ControllerTest.cpp \
-	../uEchoTest.cpp \
-	../MutexTest.cpp \
-	../MiscTest.cpp \
-	../PropertyTest.cpp \
-	../PropertyListTest.cpp \
-	../ObserverTest.cpp \
-	../ProfileTest.cpp \
-	../ServerTest.cpp \
-	../ObjectTest.cpp \
-	../NodeTest.cpp \
-	../NodeListTest.cpp \
-	../TestDevice.cpp \
-	../ClassTest.cpp \
-	../InterfaceTest.cpp \
-	../MessageTest.cpp \
-	../SocketTest.cpp \
-	../DeviceTest.cpp \
-	../ObjectListTest.cpp
+	..//ObjectTest.cpp \
+	..//ObserverTest.cpp \
+	..//uEchoTest.cpp \
+	..//ServerTest.cpp \
+	..//TestDevice.cpp \
+	..//ObjectListTest.cpp \
+	..//ThreadTest.cpp \
+	..//NodeTest.cpp \
+	..//PropertyTest.cpp \
+	..//SocketTest.cpp \
+	..//DeviceTest.cpp \
+	..//ControllerTest.cpp \
+	..//MessageTest.cpp \
+	..//MutexTest.cpp \
+	..//NodeListTest.cpp \
+	..//MiscTest.cpp \
+	..//InterfaceTest.cpp \
+	..//PropertyListTest.cpp \
+	..//ClassListTest.cpp \
+	..//ClassTest.cpp \
+	..//ProfileTest.cpp
 
 #if HAVE_LIBTOOL
 #uechotest_LDADD = ../../lib/unix/libuecho.la
