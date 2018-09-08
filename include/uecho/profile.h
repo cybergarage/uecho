@@ -41,7 +41,9 @@ typedef enum {
 } uEchoProfileEPC;
 
 enum {
-  uEchoPropertyMapMaxLen = 16,
+  uEchoPropertyMapFormat1MaxSize = 15,
+  uEchoPropertyMapFormat2Size = 18,
+  uEchoPropertyMapFormatMaxSize = uEchoPropertyMapFormat2Size,
 };
 
 typedef enum {
