@@ -145,7 +145,7 @@ bool uecho_propertylist_setintegerdata(uEchoPropertyList *props, uEchoPropertyCo
 }
 
 /****************************************
- * uecho_propertylist_setintegerdata
+ * uecho_propertylist_setbytedata
  ****************************************/
 
 bool uecho_propertylist_setbytedata(uEchoPropertyList *props, uEchoPropertyCode code, byte data)
@@ -253,4 +253,3 @@ bool uecho_propertylist_getbytedata(uEchoPropertyList *props, uEchoPropertyCode 
   
   return uecho_property_getbytedata(prop, data);
 }
-
