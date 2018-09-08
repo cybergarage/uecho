@@ -259,7 +259,7 @@ bool uecho_object_isprofile(uEchoObject *obj)
 
 bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uEchoPropertyCode *propCodes, size_t propsCodeSize)
 {
-  byte propMapData[uEchoPropertyMapMaxLen + 1];
+  byte propMapData[uEchoPropertyMapFormatMaxSize];
   uEchoPropertyCode *propMap;
   size_t n, propByteIdx;
   
@@ -269,15 +269,15 @@ bool uecho_object_setpropertymap(uEchoObject *obj, uEchoPropertyCode mapCode, uE
   propMapData[0] = (byte)propsCodeSize;
   propMap = propMapData + 1;
   
-  // propsCodeSize <= uEchoPropertyMapMaxLen
+  // Description Format 1
   
-  if (propsCodeSize <= uEchoPropertyMapMaxLen) {
+  if (propsCodeSize <= uEchoPropertyMapFormat1MaxSize) {
     memcpy(propMap, propCodes, propsCodeSize);
     uecho_propertylist_set(obj->properties, mapCode, uEchoPropertyAttrRead, propMapData, (propsCodeSize + 1));
     return true;
   }
   
-  // uEchoPropertyMapMaxLen < propsCodeSize
+  // Description Format 2
   
   for (n=0; n<propsCodeSize; n++) {
     byte propCode;
