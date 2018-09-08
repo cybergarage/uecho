@@ -21,7 +21,7 @@
 #define LIGHT_PROPERTY_POWER_ON 0x30
 #define LIGHT_PROPERTY_POWER_OFF 0x31
 
-#undef ROUND_PLATFORM_RASPBIAN
+#undef UECHO_PLATFORM_RASPBIAN
 #define RASPBERRY_PI_LIGHT_GPIO_NO "3"
 
 /****************************************
@@ -81,13 +81,13 @@ void uecho_lighting_propertyrequestlistener(uEchoObject *obj, uEchoEsv esv, uEch
   switch (status) {
     case LIGHT_PROPERTY_POWER_ON:
       printf("POWER = ON\n");
-#if defined(ROUND_PLATFORM_RASPBIAN)
+#if defined(UECHO_PLATFORM_RASPBIAN)
       system("echo \"1\" > /sys/class/gpio/gpio" RASPBERRY_PI_LIGHT_GPIO_NO "/value");
 #endif
       break;
     case LIGHT_PROPERTY_POWER_OFF:
       printf("POWER = OFF\n");
-#if defined(ROUND_PLATFORM_RASPBIAN)
+#if defined(UECHO_PLATFORM_RASPBIAN)
       system("echo \"0\" > /sys/class/gpio/gpio" RASPBERRY_PI_LIGHT_GPIO_NO "/value");
 #endif
       break;
@@ -128,7 +128,7 @@ uEchoObject *uecho_light_new(void)
   
   // Set Raspbian GPIO
 
-#if defined(ROUND_PLATFORM_RASPBIAN)
+#if defined(UECHO_PLATFORM_RASPBIAN)
   system("echo \"" RASPBERRY_PI_LIGHT_GPIO_NO "\" > /sys/class/gpio/export");
   system("echo \"out\" > /sys/class/gpio/gpio" RASPBERRY_PI_LIGHT_GPIO_NO "/direction");
 #endif
@@ -142,7 +142,7 @@ uEchoObject *uecho_light_new(void)
 
 bool uecho_light_delete(uEchoObject *obj)
 {
-#if defined(ROUND_PLATFORM_RASPBIAN)
+#if defined(UECHO_PLATFORM_RASPBIAN)
   system("echo \"" RASPBERRY_PI_LIGHT_GPIO_NO "\" > /sys/class/gpio/unexport");
 #endif
 

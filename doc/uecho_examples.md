@@ -104,7 +104,7 @@ For Raspbery Pi, `uecholigh` outputs the lighting power status into the specifie
 
 ![RaspberyPi](img/uecholight_raspberry_pi.jpg)
 
-To enable the GPIO function for Raspbery Pi, compile with ROUND_PLATFORM_RASPBIAN option and run `uecholight` with root privileges.
+To enable the GPIO function for Raspbery Pi, compile with UECHO_PLATFORM_RASPBIAN option and run `uecholight` with root privileges.
 
 ## References
 
