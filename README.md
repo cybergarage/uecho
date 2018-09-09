@@ -1,4 +1,4 @@
-![logo](img/uecho_logo.png)
+![logo](doc/img/uecho_logo.png)
 
 uEcho for C is a portable and cross platform development framework for [ECHONET Lite][enet] developers.
 
@@ -15,14 +15,14 @@ To implement IoT controller or devices of ECHONET Lite, developer had to underst
 
 # Table of Contents
 
-- [What is uEcho ?](doc/uecho_overview.md)
-- [Setup](doc/uecho_setup.md)
+- [What is uEcho ?](doc/overview.md)
+- [Setup](doc/setup.md)
 - Controller
-  - [Overview of Controller](doc/uecho_controller_overview.md)
-  - [Inside of Controller](doc/uecho_controller_inside.md)
+  - [Overview of Controller](doc/controller_overview.md)
+  - [Inside of Controller](doc/controller_inside.md)
 - Device
-  - [Overview of Device](doc/uecho_device_overview.md)
-  - [Inside of Device](doc/uecho_device_inside.md)
-- [Examples](doc/uecho_examples.md)
+  - [Overview of Device](doc/device_overview.md)
+  - [Inside of Device](doc/device_inside.md)
+- [Examples](doc/examples.md)
 
 [enet]:http://echonet.jp/english/
