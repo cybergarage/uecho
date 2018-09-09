@@ -1,4 +1,4 @@
-![logo](../img/uecho_logo.png)
+![logo](img/logo.png)
 
 # Inside of uEcho Controller
 
@@ -12,13 +12,13 @@ The controller is a special node of [ECHONETLite][enet] to control other nodes, 
 
 The uEcho added the node profile class objects automatically when the controller is created.
 
-![Controller Objects](img/uecho_controller_object.png)
+![Controller Objects](img/controller_object.png)
 
 ## Controller Message Listeners
 
 Basically uEcho handles all messages from other nodes automatically. However, developer can set more detail user listeners into the node, objects and properties.
 
-![Controller Listeners](img/uecho_controller_listeners.png)
+![Controller Listeners](img/controller_listeners.png)
 
 To set the listeners, use `uecho_controller_setmessagelistener`.
 
@@ -26,7 +26,7 @@ To set the listeners, use `uecho_controller_setmessagelistener`.
 
 After a node is received a message from other nodes, the node's listeners are called as the following sequences:
 
-![Controller Observers](img/uecho_controller_msg_listener.png)
+![Controller Observers](img/controller_msg_listener.png)
 
 ## References
 
