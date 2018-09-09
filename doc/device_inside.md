@@ -1,4 +1,4 @@
-![logo](../img/uecho_logo.png)
+![logo](img/logo.png)
 
 # Inside of uEcho Device
 
@@ -12,7 +12,7 @@
 
 The uEcho updates the node profile class objects automatically when the children node is changed.
 
-![Device Objects](img/uecho_device_objects.png)
+![Device Objects](img/device_objects.png)
 
 ## Device Object Super Class
 
@@ -38,7 +38,7 @@ uEcho updates the following mandatory properties automatically too when any prop
 
 Basically uEcho handles all messages from other nodes automatically. However, developer can set more detail user listeners into the node, objects and properties.
 
-![Device Listeners](img/uecho_device_listeners.png)
+![Device Listeners](img/device_listeners.png)
 
 To set the listeners, use `uecho_node_setmessagelistener`, `uecho_object_setmessagelistener` and `uecho_object_setpropertyrequeslistener`.
 
@@ -46,7 +46,7 @@ To set the listeners, use `uecho_node_setmessagelistener`, `uecho_object_setmess
 
 After a node is received a message from other nodes, the node's listeners are called as the following sequences:
 
-![Node Observers](img/uecho_node_msg_listener.png)
+![Node Observers](img/node_msg_listener.png)
 
 ### Node Message Listener
 
