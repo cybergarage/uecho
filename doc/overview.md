@@ -1,4 +1,4 @@
-![logo](../img/uecho_logo.png)
+![logo](img/uecho_logo.png)
 
 eEcho for C is a portable and cross platform development framework for creating controller applications and devices of [ECHONET Lite][enet]. [ECHONET][enet] is an open standard specification for IoT devices in Japan, it specifies more than 100 IoT devices such as crime prevention sensor, air conditioner and refrigerator.
 
