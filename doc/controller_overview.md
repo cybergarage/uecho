@@ -1,4 +1,4 @@
-![logo](../img/uecho_logo.png)
+![logo](img/logo.png)
 
 # Overview of uEcho Controller
 
