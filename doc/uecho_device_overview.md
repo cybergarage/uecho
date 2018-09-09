@@ -1,3 +1,5 @@
+![logo](../img/uecho_logo.png)
+
 # Overview of uEcho Device
 
 ## Making Devices

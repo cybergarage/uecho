@@ -1,3 +1,5 @@
+![logo](../img/uecho_logo.png)
+
 # Inside of uEcho Device
 
 ## Node Profile Object
