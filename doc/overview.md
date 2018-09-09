@@ -14,14 +14,14 @@ The uEcho is inspired by reactive programming too. Using the uEcho, developer ha
 
 # Table of Contents
 
-- [What is uEcho ?](./uecho_overview.md)
-- [Setup](./uecho_setup.md)
+- [What is uEcho ?](overview.md)
+- [Setup](setup.md)
 - Controller
-  - [Overview of Controller](./uecho_controller_overview.md)
-  - [Inside of Controller](./uecho_controller_inside.md)
+  - [Overview of Controller](controller_overview.md)
+  - [Inside of Controller](controller_inside.md)
 - Device
-  - [Overview of Device](./uecho_device_overview.md)
-  - [Inside of Device](./uecho_device_inside.md)
-- [Examples](./uecho_examples.md)
+  - [Overview of Device](device_overview.md)
+  - [Inside of Device](device_inside.md)
+- [Examples](examples.md)
 
 [enet]:http://echonet.jp/english/
