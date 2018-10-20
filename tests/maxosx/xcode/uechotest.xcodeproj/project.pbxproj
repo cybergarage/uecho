@@ -196,7 +196,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2103632C1B4A51B300DB3025 /* Build configuration list for PBXProject "uEchoTest" */;
+			buildConfigurationList = 2103632C1B4A51B300DB3025 /* Build configuration list for PBXProject "uechotest" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -420,7 +420,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2103632C1B4A51B300DB3025 /* Build configuration list for PBXProject "uEchoTest" */ = {
+		2103632C1B4A51B300DB3025 /* Build configuration list for PBXProject "uechotest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				210363361B4A51B300DB3025 /* Debug */,
