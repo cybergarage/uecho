@@ -134,7 +134,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2153A5E81B8F14C000FAE69A /* Build configuration list for PBXProject "uEchoSearch" */;
+			buildConfigurationList = 2153A5E81B8F14C000FAE69A /* Build configuration list for PBXProject "uechosearch" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -312,7 +312,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2153A5E81B8F14C000FAE69A /* Build configuration list for PBXProject "uEchoSearch" */ = {
+		2153A5E81B8F14C000FAE69A /* Build configuration list for PBXProject "uechosearch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2153A5F21B8F14C000FAE69A /* Debug */,
