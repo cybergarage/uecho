@@ -7,21 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		217B79BE1B8F1B8800FF2797 /* liblibuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 217B79B51B8F1B6800FF2797 /* liblibuecho.a */; };
-		217B79C11B8F1BB200FF2797 /* uechodump.c in Sources */ = {isa = PBXBuildFile; fileRef = 217B79C01B8F1BB200FF2797 /* uechodump.c */; };
+		21B1B2F31B8F1C8700873DBA /* lighting_dev.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B1B2F11B8F1C8700873DBA /* lighting_dev.c */; };
+		21B1B2F41B8F1C8700873DBA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B1B2F21B8F1C8700873DBA /* main.c */; };
+		21B1B2F81B8F1DD200873DBA /* liblibuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 217B79BB1B8F1B7300FF2797 /* liblibuecho.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		217B79BF1B8F1B9400FF2797 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
-		217B79B41B8F1B6800FF2797 /* PBXContainerItemProxy */ = {
+		217B79BA1B8F1B7300FF2797 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 217B79B01B8F1B6800FF2797 /* libuecho.xcodeproj */;
+			containerPortal = 217B79B61B8F1B7300FF2797 /* libuecho.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 212ADD881A8D4F000054EC0F;
 			remoteInfo = libuecho;
 		};
-		217B79BC1B8F1B8300FF2797 /* PBXContainerItemProxy */ = {
+		21B1B2F61B8F1DCE00873DBA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 217B79B01B8F1B6800FF2797 /* libuecho.xcodeproj */;
+			containerPortal = 217B79B61B8F1B7300FF2797 /* libuecho.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 212ADD871A8D4F000054EC0F;
 			remoteInfo = libuecho;
@@ -29,7 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2153A5EB1B8F14C000FAE69A /* CopyFiles */ = {
+		215CB3421B8F189C000BA7FF /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -41,60 +54,64 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2153A5ED1B8F14C000FAE69A /* uEchoDump */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uEchoDump; sourceTree = BUILT_PRODUCTS_DIR; };
-		217B79B01B8F1B6800FF2797 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
-		217B79C01B8F1BB200FF2797 /* uechodump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = uechodump.c; path = ../../uechodump.c; sourceTree = "<group>"; };
+		215CB3441B8F189C000BA7FF /* uecholight.temp_caseinsensitive_rename */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = uecholight.temp_caseinsensitive_rename; sourceTree = BUILT_PRODUCTS_DIR; };
+		217B79B61B8F1B7300FF2797 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
+		21B1B2F01B8F1C8700873DBA /* lighting_dev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lighting_dev.h; path = ../../lighting_dev.h; sourceTree = "<group>"; };
+		21B1B2F11B8F1C8700873DBA /* lighting_dev.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lighting_dev.c; path = ../../lighting_dev.c; sourceTree = "<group>"; };
+		21B1B2F21B8F1C8700873DBA /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = main.c; path = ../../main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2153A5EA1B8F14C000FAE69A /* Frameworks */ = {
+		215CB3411B8F189C000BA7FF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				217B79BE1B8F1B8800FF2797 /* liblibuecho.a in Frameworks */,
+				21B1B2F81B8F1DD200873DBA /* liblibuecho.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2153A5E41B8F14C000FAE69A = {
+		215CB33B1B8F189B000BA7FF = {
 			isa = PBXGroup;
 			children = (
-				217B79AE1B8F1B4100FF2797 /* Sources */,
-				217B79AD1B8F1B3700FF2797 /* Frameworks */,
-				2153A5EE1B8F14C000FAE69A /* Products */,
+				217B79AF1B8F1B4800FF2797 /* Sources */,
+				217B79AC1B8F1B1E00FF2797 /* Frameworks */,
+				215CB3451B8F189C000BA7FF /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		2153A5EE1B8F14C000FAE69A /* Products */ = {
+		215CB3451B8F189C000BA7FF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2153A5ED1B8F14C000FAE69A /* uEchoDump */,
+				215CB3441B8F189C000BA7FF /* uecholight.temp_caseinsensitive_rename */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		217B79AD1B8F1B3700FF2797 /* Frameworks */ = {
+		217B79AC1B8F1B1E00FF2797 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				217B79B01B8F1B6800FF2797 /* libuecho.xcodeproj */,
+				217B79B61B8F1B7300FF2797 /* libuecho.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		217B79AE1B8F1B4100FF2797 /* Sources */ = {
+		217B79AF1B8F1B4800FF2797 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				217B79C01B8F1BB200FF2797 /* uechodump.c */,
+				21B1B2F01B8F1C8700873DBA /* lighting_dev.h */,
+				21B1B2F11B8F1C8700873DBA /* lighting_dev.c */,
+				21B1B2F21B8F1C8700873DBA /* main.c */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
 		};
-		217B79B11B8F1B6800FF2797 /* Products */ = {
+		217B79B71B8F1B7300FF2797 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				217B79B51B8F1B6800FF2797 /* liblibuecho.a */,
+				217B79BB1B8F1B7300FF2797 /* liblibuecho.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,92 +119,94 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2153A5EC1B8F14C000FAE69A /* uEchoDump */ = {
+		215CB3431B8F189C000BA7FF /* uEchoLight */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2153A5F41B8F14C000FAE69A /* Build configuration list for PBXNativeTarget "uEchoDump" */;
+			buildConfigurationList = 215CB34B1B8F189C000BA7FF /* Build configuration list for PBXNativeTarget "uEchoLight" */;
 			buildPhases = (
-				2153A5E91B8F14C000FAE69A /* Sources */,
-				2153A5EA1B8F14C000FAE69A /* Frameworks */,
-				2153A5EB1B8F14C000FAE69A /* CopyFiles */,
+				215CB3401B8F189C000BA7FF /* Sources */,
+				215CB3411B8F189C000BA7FF /* Frameworks */,
+				215CB3421B8F189C000BA7FF /* CopyFiles */,
 			);
 			buildRules = (
+				217B79BF1B8F1B9400FF2797 /* PBXBuildRule */,
 			);
 			dependencies = (
-				217B79BD1B8F1B8300FF2797 /* PBXTargetDependency */,
+				21B1B2F71B8F1DCE00873DBA /* PBXTargetDependency */,
 			);
-			name = uEchoDump;
-			productName = uEchoSearch;
-			productReference = 2153A5ED1B8F14C000FAE69A /* uEchoDump */;
+			name = uEchoLight;
+			productName = LightingDev;
+			productReference = 215CB3441B8F189C000BA7FF /* uecholight.temp_caseinsensitive_rename */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		2153A5E51B8F14C000FAE69A /* Project object */ = {
+		215CB33C1B8F189B000BA7FF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = cybergarage;
 				TargetAttributes = {
-					2153A5EC1B8F14C000FAE69A = {
+					215CB3431B8F189C000BA7FF = {
 						CreatedOnToolsVersion = 6.4;
 					};
 				};
 			};
-			buildConfigurationList = 2153A5E81B8F14C000FAE69A /* Build configuration list for PBXProject "uEchoDump" */;
+			buildConfigurationList = 215CB33F1B8F189B000BA7FF /* Build configuration list for PBXProject "uecholight" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 2153A5E41B8F14C000FAE69A;
-			productRefGroup = 2153A5EE1B8F14C000FAE69A /* Products */;
+			mainGroup = 215CB33B1B8F189B000BA7FF;
+			productRefGroup = 215CB3451B8F189C000BA7FF /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 217B79B11B8F1B6800FF2797 /* Products */;
-					ProjectRef = 217B79B01B8F1B6800FF2797 /* libuecho.xcodeproj */;
+					ProductGroup = 217B79B71B8F1B7300FF2797 /* Products */;
+					ProjectRef = 217B79B61B8F1B7300FF2797 /* libuecho.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				2153A5EC1B8F14C000FAE69A /* uEchoDump */,
+				215CB3431B8F189C000BA7FF /* uEchoLight */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		217B79B51B8F1B6800FF2797 /* liblibuecho.a */ = {
+		217B79BB1B8F1B7300FF2797 /* liblibuecho.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = liblibuecho.a;
-			remoteRef = 217B79B41B8F1B6800FF2797 /* PBXContainerItemProxy */;
+			remoteRef = 217B79BA1B8F1B7300FF2797 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2153A5E91B8F14C000FAE69A /* Sources */ = {
+		215CB3401B8F189C000BA7FF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				217B79C11B8F1BB200FF2797 /* uechodump.c in Sources */,
+				21B1B2F41B8F1C8700873DBA /* main.c in Sources */,
+				21B1B2F31B8F1C8700873DBA /* lighting_dev.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		217B79BD1B8F1B8300FF2797 /* PBXTargetDependency */ = {
+		21B1B2F71B8F1DCE00873DBA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libuecho;
-			targetProxy = 217B79BC1B8F1B8300FF2797 /* PBXContainerItemProxy */;
+			targetProxy = 21B1B2F61B8F1DCE00873DBA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		2153A5F21B8F14C000FAE69A /* Debug */ = {
+		215CB3491B8F189C000BA7FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -241,12 +260,11 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lcurses";
 				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
-		2153A5F31B8F14C000FAE69A /* Release */ = {
+		215CB34A1B8F189C000BA7FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -292,47 +310,46 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "-lcurses";
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
-		2153A5F51B8F14C000FAE69A /* Debug */ = {
+		215CB34C1B8F189C000BA7FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = uEchoDump;
+				PRODUCT_NAME = uecholight.temp_caseinsensitive_rename;
 			};
 			name = Debug;
 		};
-		2153A5F61B8F14C000FAE69A /* Release */ = {
+		215CB34D1B8F189C000BA7FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = uEchoDump;
+				PRODUCT_NAME = uecholight.temp_caseinsensitive_rename;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2153A5E81B8F14C000FAE69A /* Build configuration list for PBXProject "uEchoDump" */ = {
+		215CB33F1B8F189B000BA7FF /* Build configuration list for PBXProject "uecholight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2153A5F21B8F14C000FAE69A /* Debug */,
-				2153A5F31B8F14C000FAE69A /* Release */,
+				215CB3491B8F189C000BA7FF /* Debug */,
+				215CB34A1B8F189C000BA7FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2153A5F41B8F14C000FAE69A /* Build configuration list for PBXNativeTarget "uEchoDump" */ = {
+		215CB34B1B8F189C000BA7FF /* Build configuration list for PBXNativeTarget "uEchoLight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2153A5F51B8F14C000FAE69A /* Debug */,
-				2153A5F61B8F14C000FAE69A /* Release */,
+				215CB34C1B8F189C000BA7FF /* Debug */,
+				215CB34D1B8F189C000BA7FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 2153A5E51B8F14C000FAE69A /* Project object */;
+	rootObject = 215CB33C1B8F189B000BA7FF /* Project object */;
 }
