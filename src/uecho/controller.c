@@ -526,8 +526,10 @@ bool uecho_controller_postmessage(uEchoController *ctrl, uEchoObject *obj, uEcho
   uecho_controller_setpostrequestmessage(ctrl, reqMsg);
   uecho_controller_setpostresponsemessage(ctrl, resMsg);
   
-  if (!uecho_controller_sendmessage(ctrl, obj, reqMsg))
+  if (!uecho_controller_sendmessage(ctrl, obj, reqMsg)) {
+    uecho_mutex_unlock(ctrl->mutex);
     return false;
+  }
 
   isResponceReceived = false;
   for (n=0; n<uEchoControllerPostResponseLoopCount; n++) {
