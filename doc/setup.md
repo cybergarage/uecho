@@ -2,9 +2,9 @@
 
 # Setup
 
-The uEcho is a framework which consist of the header and library files. Currently the uEcho supports MacOSX and Linux platforms such as Ubuntu and Raspbian.
+The `uecho-c` is a framework which consist of the header and library files. Currently the `uecho-c` supports MacOSX and Linux platforms such as Ubuntu and Raspbian.
 
-## Installing uEcho from source
+## Installing from source
 
 To install on your platform from the Github repository, run the following in a terminal:
 
