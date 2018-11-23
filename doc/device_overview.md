@@ -13,6 +13,8 @@ uEcho supports your original standard devices of [ECHONET Lite][enet] specificat
 To create your original device, use `uecho_node_new()` as the following at first.
 
 ```
+#include <uecho/uecho.h>
+
 uEchoNode *node = uecho_node_new();
 ```
 
@@ -77,8 +79,8 @@ uecho_node_start(node);
 
 Let's check the following documentations to know the device functions of uEcho in more detail.
 
-- [uEcho Examples](./uecho_examples.md)
-- [Inside of uEcho Device](./uecho_device_inside.md)
+- [uEcho Examples](./examples.md)
+- [Inside of uEcho Device](./device_inside.md)
 
 ## References
 
