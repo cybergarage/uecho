@@ -11,6 +11,8 @@ The controller is a special node of [ECHONETLite][enet] to control other nodes, 
 To start a controller, create a controller using `uecho_controller_new` and start the controller using `uecho_controller_start` as the following:
 
 ```
+#include <uecho/uecho.h>
+
 uEchoController *ctrl = uecho_controller_new();
 uecho_controller_start(ctrl);
 ```
@@ -27,7 +29,7 @@ uecho_controller_searchallobjects(ctrl);
 
 ### 3. Getting Nodes and Objects
 
-After the searching, use `uecho_controller_getnodes` and `uecho_node_next` to get all found nodes. [ECHONETLite](http://www.echonet.gr.jp/english/index.htm) node can have multiple objects, use `uecho_node_getobjects` and `uecho_object_next` to get all objects in the node.
+After the searching, use `uecho_controller_getnodes` and `uecho_node_next` to get all found nodes. [ECHONETLite](http://www.echonet.gr.jp/english/index.htm) node can have multiple objects, use `uecho_node_getobjects` and `uecho_object_next` to get the all objects in the node.
 
 ```
 uEchoController *ctrl;
@@ -101,7 +103,7 @@ uecho_message_delete(resMsg);
 
 Let's check the following documentations to know the controller functions of uEcho in more detail.
 
-- [uEcho Examples](./uecho_examples.md)
-- [Inside of uEcho Controller](./uecho_controller_inside.md)
+- [uEcho Examples](./examples.md)
+- [Inside of uEcho Controller](./controller_inside.md)
 
 [enet]:http://echonet.jp/english/

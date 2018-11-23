@@ -1,11 +1,8 @@
 ![logo](doc/img/logo.png)
 
-uEcho for C is a portable and cross platform development framework for [ECHONET Lite][enet] developers.
+uEcho for C is a portable and cross platform development framework for [ECHONET Lite][enet] developers. [ECHONET Lite][enet] is an open standard specification for IoT devices in Japan, it specifies more than 100 IoT devices such as crime prevention sensor, air conditioner and refrigerator.
 
-![RaspberyPi](doc/img/example_raspberry_pi.jpg)
-
-[ECHONET Lite][enet] is an open standard specification for IoT devices in Japan, it specifies more than 100 IoT devices such as crime prevention sensor, air conditioner and refrigerator.
-# Overview
+# What is uEcho ?
 
 The uEcho supports to control devices of [ECHONET Lite][enet] and create the standard devices of the specification easily. The uEcho is designed in object-oriented programming and inspired by reactive programming too.
 
@@ -15,7 +12,6 @@ To implement IoT controller or devices of ECHONET Lite, developer had to underst
 
 # Table of Contents
 
-- [What is uEcho ?](doc/overview.md)
 - [Setup](doc/setup.md)
 - Controller
   - [Overview of Controller](doc/controller_overview.md)
