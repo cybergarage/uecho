@@ -31,12 +31,13 @@ Then, add the device object into the node using `uecho_node_addobject()` as the 
 ```
 uEchoObject *obj;
 obj = uecho_device_new();
+
 uecho_object_setmanufacturercode(obj, 0xXXXXXX);
 uecho_object_setcode(obj, 0xXXXXXX);
-....
+
 uecho_object_setproperty(obj, 0xXX, uEchoPropertyAttrReadWrite);
 uecho_object_setpropertydata(obj, 0xXX, ....., ....);
-....
+
 uecho_node_addobject(node, obj);
 ```
 
