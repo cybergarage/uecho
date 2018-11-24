@@ -43,7 +43,7 @@ uecho_node_addobject(node, obj);
 
 ### 3. Setting Observers
 
-To implement the device, developer has only to handle write requests from other nodes because eEcho handles other read and notification requests automatically. To handle the write requests, use `uecho_object_setpropertywriterequestlistener()` as the following:
+To implement the device, you have only to handle write requests from other nodes because uEcho handles other standard read and notification requests automatically. To handle the write requests, use `uecho_object_setpropertywriterequestlistener()` as the following:
 
 ```
 void object_propertywriterequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoProperty *prop)
