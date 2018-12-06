@@ -19,4 +19,3 @@ BOOST_AUTO_TEST_CASE(MutexText)
   BOOST_CHECK_EQUAL(uecho_mutex_unlock(mutex), true);
   uecho_mutex_delete(mutex);
 }
-Ω
