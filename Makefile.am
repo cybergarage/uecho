@@ -9,9 +9,11 @@
 ##################################################################
 
 SUBDIRS = include lib
+
 if UECHO_ENABLE_EXAMPLES
 SUBDIRS += examples
 endif
-if UECHO_ENABLE_TESTS
-SUBDIRS += tests
+
+if UECHO_ENABLE_TEST
+SUBDIRS += test
 endif
