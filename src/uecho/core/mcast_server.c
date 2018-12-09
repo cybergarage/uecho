@@ -82,13 +82,20 @@ void *uecho_mcast_server_getuserdata(uEchoMcastServer *server)
 
 bool uecho_mcast_server_open(uEchoMcastServer *server, const char *bindAddr)
 {
+  uEchoSocketOption opt;
+
   if (!server)
     return false;
  
   uecho_mcast_server_close(server);
   
   server->socket = uecho_socket_dgram_new();
-  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, false, true)) {
+
+  uecho_socket_option_setbindinterface(&opt, false);
+  uecho_socket_option_setreuseaddress(&opt, true);
+  uecho_socket_option_setmulticastloop(&opt, true);
+
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, &opt)) {
     uecho_mcast_server_close(server);
     return false;
   }
