@@ -81,13 +81,20 @@ void *uecho_udp_server_getuserdata(uEchoUdpServer *server)
 
 bool uecho_udp_server_open(uEchoUdpServer *server, const char *bindAddr)
 {
+  uEchoSocketOption opt;
+
   if (!server)
     return false;
     
   uecho_udp_server_close(server);
   
   server->socket = uecho_socket_dgram_new();
-  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, true, true)) {
+
+  uecho_socket_option_setbindinterface(&opt, true);
+  uecho_socket_option_setreuseaddress(&opt, true);
+  uecho_socket_option_setmulticastloop(&opt, false);
+  
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, &opt)) {
     uecho_udp_server_close(server);
     return false;
   }

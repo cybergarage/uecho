@@ -29,17 +29,27 @@ BOOST_AUTO_TEST_CASE(BindAddr)
   const char *bindAddr = uecho_net_interface_getaddress(netIf);
   
   uEchoSocket *sock = uecho_socket_dgram_new();
+  uEchoSocketOption *opt = uecho_socket_option_new();
 
   // Unicast binding
   
-  BOOST_CHECK(uecho_socket_bind(sock, uEchoUdpPort, bindAddr, true, true));
+  uecho_socket_option_setbindinterface(opt, true);
+  uecho_socket_option_setreuseaddress(opt, true);
+  uecho_socket_option_setmulticastloop(opt, false);
+  
+  BOOST_CHECK(uecho_socket_bind(sock, uEchoUdpPort, bindAddr, opt));
   BOOST_CHECK(uecho_socket_close(sock));
   
   // Multicast binding
 
-  BOOST_CHECK(uecho_socket_bind(sock, uEchoUdpPort, bindAddr, false, true));
+  uecho_socket_option_setbindinterface(opt, false);
+  uecho_socket_option_setreuseaddress(opt, true);
+  uecho_socket_option_setmulticastloop(opt, true);
+  
+  BOOST_CHECK(uecho_socket_bind(sock, uEchoUdpPort, bindAddr, opt));
   BOOST_CHECK(uecho_socket_close(sock));
   
+  uecho_socket_option_delete(opt);
   uecho_socket_delete(sock);
   
   uecho_net_interfacelist_delete(netIfList);
