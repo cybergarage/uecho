@@ -9,19 +9,19 @@
 ##################################################################
 
 uechoheaders = \
-	./uecho/profile.h \
 	./uecho/device.h \
-	./uecho/util/timer.h \
-	./uecho/misc.h \
-	./uecho/message.h \
-	./uecho/node.h \
-	./uecho/uecho.h \
-	./uecho/controller.h \
-	./uecho/class.h \
-	./uecho/object.h \
-	./uecho/property.h \
 	./uecho/const.h \
-	./uecho/typedef.h
+	./uecho/object.h \
+	./uecho/class.h \
+	./uecho/typedef.h \
+	./uecho/uecho.h \
+	./uecho/node.h \
+	./uecho/message.h \
+	./uecho/property.h \
+	./uecho/profile.h \
+	./uecho/misc.h \
+	./uecho/util/timer.h \
+	./uecho/controller.h
 
 nobase_include_HEADERS = \
 	$(uechoheaders)
