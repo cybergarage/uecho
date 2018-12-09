@@ -21,10 +21,10 @@
 * uecho_strdup
 ****************************************/
 
-char *uecho_strdup(const char *str)
+char* uecho_strdup(const char* str)
 {
 #if !defined(HAVE_STRDUP)
- char *cpStrBuf;
+  char* cpStrBuf;
 #endif
 
   if (str == NULL)
@@ -33,8 +33,8 @@ char *uecho_strdup(const char *str)
 #if defined(HAVE_STRDUP)
   return strdup(str);
 #else
-  cpStrBuf = (char *)malloc(strlen(str)+1);
-  if ( NULL != cpStrBuf )
+  cpStrBuf = (char*)malloc(strlen(str) + 1);
+  if (NULL != cpStrBuf)
     strcpy(cpStrBuf, str);
   return cpStrBuf;
 #endif
@@ -44,19 +44,19 @@ char *uecho_strdup(const char *str)
  * uecho_strloc
  ****************************************/
 
-bool uecho_strloc(const char *str, char **buf)
+bool uecho_strloc(const char* str, char** buf)
 {
   if (!str || !buf)
     return false;
-    
+
   if (*buf) {
     free(*buf);
     *buf = NULL;
   }
-  
+
   if (!str)
     return true;
-  
+
   *buf = uecho_strdup(str);
 
   return true;
@@ -66,63 +66,64 @@ bool uecho_strloc(const char *str, char **buf)
 * uecho_strlen
 ****************************************/
 
-size_t uecho_strlen(const char *str)
+size_t uecho_strlen(const char* str)
 {
- return (str == NULL) ? 0 : strlen(str);
+  return (str == NULL) ? 0 : strlen(str);
 }
 
 /****************************************
 * uecho_strcpy
 ****************************************/
 
-char *uecho_strcpy(char *dst, const char *src)
+char* uecho_strcpy(char* dst, const char* src)
 {
- return strcpy(dst, src);
+  return strcpy(dst, src);
 }
 
 /****************************************
 * uecho_strcat
 ****************************************/
 
-char *uecho_strcat(char *dst, const char *src)
+char* uecho_strcat(char* dst, const char* src)
 {
- return strcat(dst, src);
+  return strcat(dst, src);
 }
 
 /****************************************
 * uecho_strcmp
 ****************************************/
 
-int uecho_strcmp(const char *str1, const char *str2)
+int uecho_strcmp(const char* str1, const char* str2)
 {
- if (str1 == NULL)
-  return -1;
- if (str2 == NULL)
-  return 1;
- return strcmp(str1, str2);
+  if (str1 == NULL)
+    return -1;
+  if (str2 == NULL)
+    return 1;
+  return strcmp(str1, str2);
 }
 
 /****************************************
 * uecho_strncmp
 ****************************************/
 
-int uecho_strncmp(const char *str1, const char *str2, int nchars)
+int uecho_strncmp(const char* str1, const char* str2, int nchars)
 {
- if (str1 == NULL)
-   return -1;
- if (str2 == NULL)
-   return 1;
+  if (str1 == NULL)
+    return -1;
+  if (str2 == NULL)
+    return 1;
 
- return strncmp(str1, str2, nchars);
+  return strncmp(str1, str2, nchars);
 }
 
 /****************************************
 * uecho_strcasecmp
 ****************************************/
 
-int uecho_strcasecmp(const char *str1, const char *str2)
+int uecho_strcasecmp(const char* str1, const char* str2)
 {
-  if (str1 == NULL || str2 == NULL) return -1;
+  if (str1 == NULL || str2 == NULL)
+    return -1;
 #if !defined(WIN32)
   return strcasecmp(str1, str2);
 #else
@@ -138,11 +139,11 @@ int uecho_strcasecmp(const char *str1, const char *str2)
 * uecho_streq
 ****************************************/
 
-bool uecho_streq(const char *str1, const char *str2)
+bool uecho_streq(const char* str1, const char* str2)
 {
   if (str1 == NULL || str2 == NULL)
     return false;
-  
+
   return ((uecho_strcmp(str1, str2) == 0) ? true : false);
 }
 
@@ -150,11 +151,11 @@ bool uecho_streq(const char *str1, const char *str2)
 * uecho_strcaseeq
 ****************************************/
 
-bool uecho_strcaseeq(const char *str1, const char *str2)
+bool uecho_strcaseeq(const char* str1, const char* str2)
 {
   if (str1 == NULL || str2 == NULL)
     return false;
-  
+
   return ((uecho_strcasecmp(str1, str2) == 0) ? true : false);
 }
 
@@ -162,9 +163,9 @@ bool uecho_strcaseeq(const char *str1, const char *str2)
 * uecho_strstr
 ****************************************/
 
-ssize_t uecho_strstr(const char *haystack, const char *needle)
+ssize_t uecho_strstr(const char* haystack, const char* needle)
 {
-  char *strPos;
+  char* strPos;
 
   if (haystack == NULL || needle == NULL)
     return -1;
@@ -178,22 +179,22 @@ ssize_t uecho_strstr(const char *haystack, const char *needle)
 * uecho_strchr
 ****************************************/
 
-ssize_t uecho_strchr(const char *str, const char *chars, size_t nchars)
+ssize_t uecho_strchr(const char* str, const char* chars, size_t nchars)
 {
   size_t strLen;
   ssize_t i, j;
 
   if (str == NULL || chars == NULL)
     return -1;
-    
+
   strLen = uecho_strlen(str);
-  for (i=0; i<strLen; i++) {
-    for (j=0; j<nchars; j++) {
+  for (i = 0; i < strLen; i++) {
+    for (j = 0; j < nchars; j++) {
       if (str[i] == chars[j])
         return i;
-    }    
+    }
   }
-  
+
   return -1;
 }
 
@@ -201,46 +202,48 @@ ssize_t uecho_strchr(const char *str, const char *chars, size_t nchars)
 * uecho_strrchr
 ****************************************/
 
-ssize_t uecho_strrchr(const char *str, const char *chars, size_t nchars)
+ssize_t uecho_strrchr(const char* str, const char* chars, size_t nchars)
 {
   size_t strLen;
   ssize_t i, j;
-  
+
   if (str == NULL || chars == NULL)
     return -1;
-    
+
   strLen = uecho_strlen(str);
-  for (i=(strLen-1); 0<=i; i--) {
-    for (j=0; j<nchars; j++) {
+  for (i = (strLen - 1); 0 <= i; i--) {
+    for (j = 0; j < nchars; j++) {
       if (str[i] == chars[j])
         return i;
-    }    
+    }
   }
-  
-  return -1;
 
+  return -1;
 }
 
 /****************************************
 * uecho_strtrimwhite
 ****************************************/
 
-char *uecho_strtrimwhite(char *str)
+char* uecho_strtrimwhite(char* str)
 {
   size_t strLen;
   ssize_t i;
   strLen = uecho_strlen(str);
-  if (strLen == 0) return str;
-  for (i=(strLen-1); 0<=i; i--) {
+  if (strLen == 0)
+    return str;
+  for (i = (strLen - 1); 0 <= i; i--) {
     if (isspace(str[i])) {
       strLen--;
-    } 
+    }
   }
-  for (i=0 ; i<strLen ; i++) {
-    if (!isspace(str[i])) break;
+  for (i = 0; i < strLen; i++) {
+    if (!isspace(str[i]))
+      break;
   }
 
-  if (i>0) memmove(str,str+i,strLen-i);
+  if (i > 0)
+    memmove(str, str + i, strLen - i);
 
   str[strLen] = 0;
   return str;
@@ -250,9 +253,10 @@ char *uecho_strtrimwhite(char *str)
 * uecho_strtrim
 ****************************************/
 
-char *uecho_strtrim(char *str, char *delim, size_t ndelim)
+char* uecho_strtrim(char* str, char* delim, size_t ndelim)
 {
-  if (str == NULL || delim == NULL) return NULL;
+  if (str == NULL || delim == NULL)
+    return NULL;
 
   uecho_strrtrim(str, delim, ndelim);
   return uecho_strltrim(str, delim, ndelim);
@@ -262,15 +266,15 @@ char *uecho_strtrim(char *str, char *delim, size_t ndelim)
 * uecho_strltrim
 ****************************************/
 
-char *uecho_strltrim(char *str, char *delim, size_t ndelim)
+char* uecho_strltrim(char* str, char* delim, size_t ndelim)
 {
   size_t strLen;
   ssize_t i, j;
-  
+
   strLen = uecho_strlen(str);
-  for (i=0; i<strLen; i++) {
+  for (i = 0; i < strLen; i++) {
     bool hasDelim = false;
-    for (j=0; j<ndelim; j++) {
+    for (j = 0; j < ndelim; j++) {
       if (str[i] == delim[j]) {
         hasDelim = true;
         break;
@@ -279,7 +283,7 @@ char *uecho_strltrim(char *str, char *delim, size_t ndelim)
     if (hasDelim == false)
       return (str + i);
   }
-  
+
   return (str + strLen);
 }
 
@@ -287,15 +291,15 @@ char *uecho_strltrim(char *str, char *delim, size_t ndelim)
 * uecho_strrtrim
 ****************************************/
 
-char *uecho_strrtrim(char *str, char *delim, size_t ndelim)
+char* uecho_strrtrim(char* str, char* delim, size_t ndelim)
 {
   size_t strLen;
   ssize_t i, j;
-  
+
   strLen = uecho_strlen(str);
-  for (i=(strLen-1); 0<=i; i--) {
+  for (i = (strLen - 1); 0 <= i; i--) {
     bool hasDelim = false;
-    for (j=0; j<ndelim; j++) {
+    for (j = 0; j < ndelim; j++) {
       if (str[i] == delim[j]) {
         hasDelim = true;
         str[i] = '\0';
@@ -305,7 +309,7 @@ char *uecho_strrtrim(char *str, char *delim, size_t ndelim)
     if (hasDelim == false)
       break;
   }
-  
+
   return str;
 }
 
@@ -313,7 +317,7 @@ char *uecho_strrtrim(char *str, char *delim, size_t ndelim)
 * uecho_strncpy
 ****************************************/
 
-char *uecho_strncpy(char *str1, const char *str2, size_t cnt)
+char* uecho_strncpy(char* str1, const char* str2, size_t cnt)
 {
   strncpy(str1, str2, cnt);
   return str1;
@@ -323,7 +327,7 @@ char *uecho_strncpy(char *str1, const char *str2, size_t cnt)
 * uecho_strncat
 ****************************************/
 
-char *uecho_strncat(char *str1, const char *str2, size_t cnt)
+char* uecho_strncat(char* str1, const char* str2, size_t cnt)
 {
   size_t str1Len;
   str1Len = uecho_strlen(str1);
@@ -334,83 +338,82 @@ char *uecho_strncat(char *str1, const char *str2, size_t cnt)
 * uecho_int2str
 ****************************************/
 
-const char *uecho_int2str(int value, char *buf, size_t bufSize)
+const char* uecho_int2str(int value, char* buf, size_t bufSize)
 {
 #if defined(HAVE_SNPRINTF)
- snprintf(buf, bufSize, "%d", value);
+  snprintf(buf, bufSize, "%d", value);
 #else
- sprintf(buf, "%d", value);
+  sprintf(buf, "%d", value);
 #endif
- return buf;
+  return buf;
 }
 
 /****************************************
 * uecho_long2str
 ****************************************/
 
-const char *uecho_long2str(long value, char *buf, size_t bufSize)
+const char* uecho_long2str(long value, char* buf, size_t bufSize)
 {
 #if defined(HAVE_SNPRINTF)
- snprintf(buf, bufSize, "%ld", value);
+  snprintf(buf, bufSize, "%ld", value);
 #else
- sprintf(buf, "%ld", value);
+  sprintf(buf, "%ld", value);
 #endif
- return buf;
+  return buf;
 }
 
 /****************************************
 * uecho_float2str
 ****************************************/
 
-const char *uecho_float2str(float value, char *buf, size_t bufSize)
+const char* uecho_float2str(float value, char* buf, size_t bufSize)
 {
 #if defined(HAVE_SNPRINTF)
- snprintf(buf, bufSize, "%f", value);
+  snprintf(buf, bufSize, "%f", value);
 #else
- sprintf(buf, "%f", value);
+  sprintf(buf, "%f", value);
 #endif
- return buf;
+  return buf;
 }
 
 /****************************************
 * uecho_double2str
 ****************************************/
 
-const char *uecho_double2str(double value, char *buf, size_t bufSize)
+const char* uecho_double2str(double value, char* buf, size_t bufSize)
 {
 #if defined(HAVE_SNPRINTF)
- snprintf(buf, bufSize, "%lf", value);
+  snprintf(buf, bufSize, "%lf", value);
 #else
- sprintf(buf, "%lf", value);
+  sprintf(buf, "%lf", value);
 #endif
- return buf;
+  return buf;
 }
 
 /****************************************
 * uecho_sizet2str
 ****************************************/
 
-const char *uecho_sizet2str(size_t value, char *buf, size_t bufSize)
+const char* uecho_sizet2str(size_t value, char* buf, size_t bufSize)
 {
 #if defined(HAVE_SNPRINTF)
- snprintf(buf, bufSize, "%zd", value);
+  snprintf(buf, bufSize, "%zd", value);
 #else
- sprintf(buf, "%zd", value);
+  sprintf(buf, "%zd", value);
 #endif
- return buf;
+  return buf;
 }
 
 /****************************************
 * uecho_ssizet2str
 ****************************************/
 
-const char *uecho_ssizet2str(ssize_t value, char *buf, size_t bufSize)
+const char* uecho_ssizet2str(ssize_t value, char* buf, size_t bufSize)
 {
 #if defined(HAVE_SNPRINTF)
- snprintf(buf, bufSize, "%zd", value);
+  snprintf(buf, bufSize, "%zd", value);
 #else
- sprintf(buf, "%zd", value);
+  sprintf(buf, "%zd", value);
 #endif
- return buf;
+  return buf;
 }
-

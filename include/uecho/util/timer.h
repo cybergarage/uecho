@@ -13,7 +13,7 @@
 
 #include <uecho/typedef.h>
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -31,7 +31,7 @@ void uecho_waitrandom(clock_t mtime);
 
 clock_t uecho_getcurrentsystemtime(void);
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 }
 #endif
 
