@@ -11,12 +11,13 @@
 #ifndef _UECHO_NET_CSOCKET_H_
 #define _UECHO_NET_CSOCKET_H_
 
-#include <uecho/typedef.h>
-#include <uecho/util/strings.h>
-
 #if defined(UECHO_USE_OPENSSL)
 #include <openssl/ssl.h>
 #endif
+
+#include <uecho/typedef.h>
+#include <uecho/util/strings.h>
+#include <uecho/net/socket_opt.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -115,7 +116,7 @@ bool uecho_socket_close(uEchoSocket *socket);
 
 bool uecho_socket_listen(uEchoSocket *socket);
 
-bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, bool bindFlag, bool reuseFlag);
+bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, uEchoSocketOption *opt);
 bool uecho_socket_accept(uEchoSocket *sock, uEchoSocket *clientSock);
 bool uecho_socket_connect(uEchoSocket *sock, const char *addr, int port);
 ssize_t uecho_socket_read(uEchoSocket *sock, char *buffer, size_t bufferLen);
