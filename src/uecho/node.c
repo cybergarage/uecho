@@ -8,8 +8,9 @@
  *
  ******************************************************************/
 
-#include <uecho/misc.h>
 #include <uecho/node_internal.h>
+
+#include <uecho/misc.h>
 #include <uecho/profile.h>
 
 /****************************************

@@ -11,6 +11,7 @@
 #include <arpa/inet.h>
 
 #include <uecho/message_internal.h>
+
 #include <uecho/misc.h>
 #include <uecho/net/socket.h>
 #include <uecho/util/strings.h>

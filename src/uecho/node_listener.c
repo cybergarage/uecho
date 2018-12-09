@@ -8,9 +8,10 @@
  *
  ******************************************************************/
 
+#include <uecho/node_internal.h>
+
 #include <uecho/core/observer.h>
 #include <uecho/core/server.h>
-#include <uecho/node_internal.h>
 
 /****************************************
  * uecho_object_notifyrequestproperty

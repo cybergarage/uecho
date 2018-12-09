@@ -11,10 +11,12 @@
 #ifndef _UECHO_NODE_INTERNAL_H_
 #define _UECHO_NODE_INTERNAL_H_
 
-#include <uecho/class_internal.h>
-#include <uecho/core/server.h>
-#include <uecho/object_internal.h>
 #include <uecho/typedef.h>
+
+#include <uecho/class_internal.h>
+#include <uecho/object_internal.h>
+
+#include <uecho/core/server.h>
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
 
