@@ -16,11 +16,11 @@
 * uecho_mutex_new
 ****************************************/
 
-uEchoMutex *uecho_mutex_new(void)
+uEchoMutex* uecho_mutex_new(void)
 {
-  uEchoMutex *mutex;
+  uEchoMutex* mutex;
 
-  mutex = (uEchoMutex *)malloc(sizeof(uEchoMutex));
+  mutex = (uEchoMutex*)malloc(sizeof(uEchoMutex));
 
   if (!mutex)
     return NULL;
@@ -38,7 +38,7 @@ uEchoMutex *uecho_mutex_new(void)
 * uecho_mutex_delete
 ****************************************/
 
-bool uecho_mutex_delete(uEchoMutex *mutex)
+bool uecho_mutex_delete(uEchoMutex* mutex)
 {
   if (!mutex)
     return false;
@@ -57,7 +57,7 @@ bool uecho_mutex_delete(uEchoMutex *mutex)
 * uecho_mutex_lock
 ****************************************/
 
-bool uecho_mutex_lock(uEchoMutex *mutex)
+bool uecho_mutex_lock(uEchoMutex* mutex)
 {
   if (!mutex)
     return false;
@@ -75,7 +75,7 @@ bool uecho_mutex_lock(uEchoMutex *mutex)
 * uecho_mutex_unlock
 ****************************************/
 
-bool uecho_mutex_unlock(uEchoMutex *mutex)
+bool uecho_mutex_unlock(uEchoMutex* mutex)
 {
   if (!mutex)
     return false;

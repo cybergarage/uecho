@@ -14,9 +14,9 @@
 
 BOOST_AUTO_TEST_CASE(GetInterface)
 {
-  uEchoNetworkInterfaceList *netIfList = uecho_net_interfacelist_new();
+  uEchoNetworkInterfaceList* netIfList = uecho_net_interfacelist_new();
 
   BOOST_CHECK(0 < uecho_net_gethostinterfaces(netIfList));
-  
+
   uecho_net_interfacelist_delete(netIfList);
 }

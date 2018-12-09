@@ -14,14 +14,13 @@
 * uecho_string_tokenizer_new
 ****************************************/
 
-uEchoStringTokenizer *uecho_string_tokenizer_new(const char *value, const char *delim)
+uEchoStringTokenizer* uecho_string_tokenizer_new(const char* value, const char* delim)
 {
-  uEchoStringTokenizer *strToken;
+  uEchoStringTokenizer* strToken;
 
-  strToken = (uEchoStringTokenizer *)malloc(sizeof(uEchoStringTokenizer));
+  strToken = (uEchoStringTokenizer*)malloc(sizeof(uEchoStringTokenizer));
 
-  if ( NULL != strToken )
-  {
+  if (NULL != strToken) {
     strToken->value = uecho_strdup(value);
     strToken->delim = uecho_strdup(delim);
     strToken->delimCnt = uecho_strlen(strToken->delim);
@@ -31,7 +30,7 @@ uEchoStringTokenizer *uecho_string_tokenizer_new(const char *value, const char *
     strToken->nextToken = NULL;
     uecho_string_tokenizer_nexttoken(strToken);
   }
-  
+
   return strToken;
 }
 
@@ -39,7 +38,7 @@ uEchoStringTokenizer *uecho_string_tokenizer_new(const char *value, const char *
 * uecho_string_tokenizer_delete
 ****************************************/
 
-void uecho_string_tokenizer_delete(uEchoStringTokenizer *strToken)
+void uecho_string_tokenizer_delete(uEchoStringTokenizer* strToken)
 {
   free(strToken->value);
   free(strToken->delim);
@@ -50,7 +49,7 @@ void uecho_string_tokenizer_delete(uEchoStringTokenizer *strToken)
 * uecho_string_tokenizer_hasmoretoken
 ****************************************/
 
-bool uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer *strToken)
+bool uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer* strToken)
 {
   return strToken->hasNextTokens;
 }
@@ -59,20 +58,20 @@ bool uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer *strToken)
 * uecho_string_tokenizer_nexttoken
 ****************************************/
 
-char *uecho_string_tokenizer_nexttoken(uEchoStringTokenizer *strToken)
+char* uecho_string_tokenizer_nexttoken(uEchoStringTokenizer* strToken)
 {
   size_t tokenCnt;
   size_t i, j;
-  
+
   strToken->currToken = strToken->nextToken;
   strToken->nextToken = NULL;
   strToken->hasNextTokens = false;
   strToken->repToken = '\0';
-  
+
   tokenCnt = 0;
-  for (i=strToken->nextStartPos; i<=strToken->lastPos; i++) {
+  for (i = strToken->nextStartPos; i <= strToken->lastPos; i++) {
     bool isDelimChar = false;
-    for (j=0; j<strToken->delimCnt; j++) {
+    for (j = 0; j < strToken->delimCnt; j++) {
       if (strToken->value[i] == strToken->delim[j]) {
         isDelimChar = true;
         if (tokenCnt == 0) {
@@ -91,7 +90,7 @@ char *uecho_string_tokenizer_nexttoken(uEchoStringTokenizer *strToken)
     if (isDelimChar == false)
       tokenCnt++;
   }
-  
+
   if (strToken->hasNextTokens == false && 0 < tokenCnt) {
     strToken->hasNextTokens = true;
     strToken->nextToken = strToken->value + strToken->nextStartPos;
@@ -105,7 +104,7 @@ char *uecho_string_tokenizer_nexttoken(uEchoStringTokenizer *strToken)
 * uecho_string_tokenizer_nextalltoken
 ****************************************/
 
-char *uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer *strToken)
+char* uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer* strToken)
 {
   size_t nextTokenLen;
 

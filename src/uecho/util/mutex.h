@@ -19,7 +19,7 @@
 #include <pthread.h>
 #endif
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -29,7 +29,7 @@ extern "C" {
 
 typedef struct _uEchoMutex {
 #if defined(WIN32)
-  HANDLE  mutexID;
+  HANDLE mutexID;
 #else
   pthread_mutex_t mutexID;
 #endif
@@ -39,13 +39,13 @@ typedef struct _uEchoMutex {
  * Functions
  ****************************************/
 
-uEchoMutex *uecho_mutex_new(void);
-bool uecho_mutex_delete(uEchoMutex *mutex);
+uEchoMutex* uecho_mutex_new(void);
+bool uecho_mutex_delete(uEchoMutex* mutex);
 
-bool uecho_mutex_lock(uEchoMutex *mutex);
-bool uecho_mutex_unlock(uEchoMutex *mutex);
+bool uecho_mutex_lock(uEchoMutex* mutex);
+bool uecho_mutex_unlock(uEchoMutex* mutex);
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 
 } /* extern "C" */
 
