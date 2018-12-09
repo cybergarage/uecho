@@ -270,7 +270,7 @@ bool uecho_socket_listen(uEchoSocket *sock)
 * uecho_socket_bind
 ****************************************/
 
-bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, bool bindFlag, bool reuseFlag)
+bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, uEchoSocketOption *opt)
 {
   struct addrinfo *addrInfo;
   int ret;
@@ -281,19 +281,21 @@ bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, bo
   if (bindPort <= 0 /* || bindAddr == NULL*/)
     return false;
 
-  if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), bindAddr, bindPort, &addrInfo, bindFlag) == false)
+  if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), bindAddr, bindPort, &addrInfo, uecho_socket_option_isbindinterface(opt)) == false)
     return false;
   uecho_socket_setid(sock, socket(addrInfo->ai_family, addrInfo->ai_socktype, 0));
   if (sock->id== -1) {
     uecho_socket_close(sock);
     return false;
   }
-  if (reuseFlag == true) {
+
+  if (uecho_socket_option_isreuseaddress(opt)) {
     if (uecho_socket_setreuseaddress(sock, true) == false) {
       uecho_socket_close(sock);
       return false;
     }
   }
+
   ret = bind(sock->id, addrInfo->ai_addr, addrInfo->ai_addrlen);
   freeaddrinfo(addrInfo);
 
