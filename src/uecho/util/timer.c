@@ -13,11 +13,11 @@
 #include <limits.h>
 
 #if defined(WIN32)
+#include <time.h>
 #include <windows.h>
-#include <time.h>
 #else
-#include <unistd.h>
 #include <time.h>
+#include <unistd.h>
 #endif
 
 /****************************************
@@ -53,7 +53,7 @@ void uecho_waitrandom(clock_t mtime)
 
 clock_t uecho_getcurrentsystemtime(void)
 {
-  return (size_t)(time((time_t *)NULL));
+  return (size_t)(time((time_t*)NULL));
 }
 
 /****************************************
@@ -68,6 +68,6 @@ float uecho_random(void)
     srand((int)(uecho_getcurrentsystemtime() % INT_MAX));
     seedDone = true;
   }
-  
+
   return (float)rand() / (float)RAND_MAX;
 }

@@ -16,23 +16,23 @@
 
 BOOST_AUTO_TEST_CASE(PropertyListAdd)
 {
-  uEchoPropertyList *props = uecho_propertylist_new();
-  
+  uEchoPropertyList* props = uecho_propertylist_new();
+
   BOOST_CHECK_EQUAL(uecho_propertylist_size(props), 0);
-  
-  for (size_t n=uEchoPropertyCodeMin; n<=uEchoPropertyCodeMax; n++) {
-    uEchoProperty *prop = uecho_property_new();
+
+  for (size_t n = uEchoPropertyCodeMin; n <= uEchoPropertyCodeMax; n++) {
+    uEchoProperty* prop = uecho_property_new();
     uecho_property_setcode(prop, n);
-    byte *propData = (byte *)malloc(n);
+    byte* propData = (byte*)malloc(n);
     uecho_property_setdata(prop, propData, n);
     BOOST_CHECK(uecho_propertylist_add(props, prop));
     free(propData);
   }
 
   BOOST_CHECK_EQUAL(uecho_propertylist_size(props), (uEchoPropertyCodeMax - uEchoPropertyCodeMin + 1));
-  
-  for (size_t n=uEchoPropertyCodeMin; n<=uEchoPropertyCodeMax; n++) {
-    uEchoProperty *prop = uecho_propertylist_findbycode(props, n);
+
+  for (size_t n = uEchoPropertyCodeMin; n <= uEchoPropertyCodeMax; n++) {
+    uEchoProperty* prop = uecho_propertylist_findbycode(props, n);
     BOOST_CHECK(prop);
     BOOST_CHECK_EQUAL(uecho_property_getcode(prop), n);
     BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), n);
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(PropertyListAdd)
   BOOST_CHECK_EQUAL(uecho_propertylist_size(props), (uEchoPropertyCodeMax - uEchoPropertyCodeMin + 1));
 
   BOOST_CHECK(uecho_propertylist_clear(props));
-  
+
   BOOST_CHECK_EQUAL(uecho_propertylist_size(props), 0);
 
   uecho_propertylist_delete(props);
@@ -49,30 +49,30 @@ BOOST_AUTO_TEST_CASE(PropertyListAdd)
 
 BOOST_AUTO_TEST_CASE(PropertyListSet)
 {
-  uEchoPropertyList *props = uecho_propertylist_new();
-  
+  uEchoPropertyList* props = uecho_propertylist_new();
+
   BOOST_CHECK_EQUAL(uecho_propertylist_size(props), 0);
-  
-  for (size_t n=uEchoPropertyCodeMin; n<=uEchoPropertyCodeMax; n++) {
-    byte *propData = (byte *)malloc(n);
+
+  for (size_t n = uEchoPropertyCodeMin; n <= uEchoPropertyCodeMax; n++) {
+    byte* propData = (byte*)malloc(n);
     BOOST_CHECK(uecho_propertylist_setdata(props, n, propData, n));
     free(propData);
   }
-  
+
   BOOST_CHECK_EQUAL(uecho_propertylist_size(props), (uEchoPropertyCodeMax - uEchoPropertyCodeMin + 1));
 
-  for (size_t n=uEchoPropertyCodeMin; n<=uEchoPropertyCodeMax; n++) {
-    uEchoProperty *prop = uecho_propertylist_findbycode(props, n);
+  for (size_t n = uEchoPropertyCodeMin; n <= uEchoPropertyCodeMax; n++) {
+    uEchoProperty* prop = uecho_propertylist_findbycode(props, n);
     BOOST_CHECK(prop);
     BOOST_CHECK_EQUAL(uecho_property_getcode(prop), n);
     BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), n);
   }
-  
+
   BOOST_CHECK_EQUAL(uecho_propertylist_size(props), (uEchoPropertyCodeMax - uEchoPropertyCodeMin + 1));
-  
+
   BOOST_CHECK(uecho_propertylist_clear(props));
-  
+
   BOOST_CHECK_EQUAL(uecho_propertylist_size(props), 0);
-  
+
   uecho_propertylist_delete(props);
 }

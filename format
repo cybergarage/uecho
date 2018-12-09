@@ -1,0 +1,12 @@
+#!/bin/bash
+formatters=(clang-format clang-format-7)
+for f in "${formatters[@]}"
+do
+	if command -v "${f}" &> /dev/null
+	then
+		format=$f
+		break
+	fi
+done
+
+find . -name beringei -prune -o \( -name "*.h" -or -name "*.c" -or -name "*.cpp" \) -exec "$format" -i {} \;
