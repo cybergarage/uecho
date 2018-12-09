@@ -12,6 +12,7 @@
 #define _UECHO_PROPERTY_INTERNAL_H_
 
 #include <stdbool.h>
+
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
 

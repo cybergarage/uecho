@@ -11,10 +11,12 @@
 #ifndef _UECHO_OBJECT_INTERNAL_H_
 #define _UECHO_OBJECT_INTERNAL_H_
 
+#include <uecho/typedef.h>
+
 #include <uecho/const_internal.h>
 #include <uecho/message_internal.h>
 #include <uecho/property_internal.h>
-#include <uecho/typedef.h>
+
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
 

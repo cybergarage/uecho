@@ -11,8 +11,9 @@
 #ifndef _UECHO_TEST_TESTDEVICE_H_
 #define _UECHO_TEST_TESTDEVICE_H_
 
-#include <uecho/device.h>
 #include <uecho/node_internal.h>
+
+#include <uecho/device.h>
 
 const uEchoObjectCode UECHO_TEST_MANCODE = 0x000000;
 const uEchoObjectCode UECHO_TEST_OBJECTCODE = 0xF00101;

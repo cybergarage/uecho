@@ -10,9 +10,10 @@
 
 #include <string.h>
 
-#include <uecho/misc.h>
 #include <uecho/node_internal.h>
 #include <uecho/property_internal.h>
+
+#include <uecho/misc.h>
 
 /****************************************
 * uecho_property_new

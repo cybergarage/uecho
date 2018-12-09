@@ -8,10 +8,11 @@
  *
  ******************************************************************/
 
+#include <uecho/object_internal.h>
+
 #include <uecho/core/observer.h>
 #include <uecho/misc.h>
 #include <uecho/node.h>
-#include <uecho/object_internal.h>
 #include <uecho/profile.h>
 #include <uecho/util/timer.h>
 

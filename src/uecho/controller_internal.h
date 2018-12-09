@@ -11,8 +11,9 @@
 #ifndef _UECHO_CONTROLLER_INTERNAL_H_
 #define _UECHO_CONTROLLER_INTERNAL_H_
 
-#include <uecho/const.h>
 #include <uecho/node_internal.h>
+
+#include <uecho/const.h>
 #include <uecho/typedef.h>
 #include <uecho/util/mutex.h>
 
