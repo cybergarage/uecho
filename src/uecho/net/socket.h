@@ -15,11 +15,11 @@
 #include <openssl/ssl.h>
 #endif
 
+#include <uecho/net/socket_opt.h>
 #include <uecho/typedef.h>
 #include <uecho/util/strings.h>
-#include <uecho/net/socket_opt.h>
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -48,7 +48,7 @@ typedef int SOCKET;
 #define UECHO_NET_SOCKET_DGRAM_ANCILLARY_BUFSIZE 512
 #define UECHO_NET_SOCKET_MULTICAST_DEFAULT_TTL 4
 #define UECHO_NET_SOCKET_AUTO_IP_NET 0xa9fe0000
-#define UECHO_NET_SOCKET_AUTO_IP_MASK 0xffff0000 
+#define UECHO_NET_SOCKET_AUTO_IP_MASK 0xffff0000
 
 /****************************************
 * Data Type
@@ -60,7 +60,7 @@ typedef struct _uEchoSocket {
   SOCKET id;
   int type;
   int direction;
-  uEchoString *ipaddr;
+  uEchoString* ipaddr;
   int port;
 #if defined(UECHO_USE_OPENSSL)
   SSL_CTX* ctx;
@@ -69,13 +69,13 @@ typedef struct _uEchoSocket {
 } uEchoSocket;
 
 typedef struct _uEchoDatagramPacket {
-  byte *data;
+  byte* data;
   size_t dataLen;
-  
-  uEchoString *localAddress;
+
+  uEchoString* localAddress;
   int localPort;
-  
-  uEchoString *remoteAddress;
+
+  uEchoString* remoteAddress;
   int remotePort;
 } uEchoDatagramPacket;
 
@@ -86,12 +86,12 @@ typedef struct _uEchoDatagramPacket {
 void uecho_socket_startup(void);
 void uecho_socket_cleanup(void);
 
-uEchoSocket *uecho_socket_new(int type);
+uEchoSocket* uecho_socket_new(int type);
 #define uecho_socket_stream_new() uecho_socket_new(UECHO_NET_SOCKET_STREAM)
 #define uecho_socket_dgram_new() uecho_socket_new(UECHO_NET_SOCKET_DGRAM)
-bool uecho_socket_delete(uEchoSocket *socket);
+bool uecho_socket_delete(uEchoSocket* socket);
 
-void uecho_socket_setid(uEchoSocket *socket, SOCKET value);
+void uecho_socket_setid(uEchoSocket* socket, SOCKET value);
 #define uecho_socket_getid(socket) (socket->id)
 
 #define uecho_socket_settype(socket, value) (socket->type = value)
@@ -106,50 +106,50 @@ void uecho_socket_setid(uEchoSocket *socket, SOCKET value);
 
 #define uecho_socket_setaddress(socket, value) uecho_string_setvalue(socket->ipaddr, value)
 #define uecho_socket_getaddress(socket) uecho_string_getvalue(socket->ipaddr)
-bool uecho_socket_isboundaddress(uEchoSocket *socket, const char *addr);
+bool uecho_socket_isboundaddress(uEchoSocket* socket, const char* addr);
 
 #define uecho_socket_setport(socket, value) (socket->port = value)
 #define uecho_socket_getport(socket) (socket->port)
 
-bool uecho_socket_isbound(uEchoSocket *socket);
-bool uecho_socket_close(uEchoSocket *socket);
+bool uecho_socket_isbound(uEchoSocket* socket);
+bool uecho_socket_close(uEchoSocket* socket);
 
-bool uecho_socket_listen(uEchoSocket *socket);
+bool uecho_socket_listen(uEchoSocket* socket);
 
-bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, uEchoSocketOption *opt);
-bool uecho_socket_accept(uEchoSocket *sock, uEchoSocket *clientSock);
-bool uecho_socket_connect(uEchoSocket *sock, const char *addr, int port);
-ssize_t uecho_socket_read(uEchoSocket *sock, char *buffer, size_t bufferLen);
-size_t uecho_socket_write(uEchoSocket *sock, const char *buffer, size_t bufferLen);
-ssize_t uecho_socket_readline(uEchoSocket *sock, char *buffer, size_t bufferLen);
-size_t uecho_socket_skip(uEchoSocket *sock, size_t skipLen);
+bool uecho_socket_bind(uEchoSocket* sock, int bindPort, const char* bindAddr, uEchoSocketOption* opt);
+bool uecho_socket_accept(uEchoSocket* sock, uEchoSocket* clientSock);
+bool uecho_socket_connect(uEchoSocket* sock, const char* addr, int port);
+ssize_t uecho_socket_read(uEchoSocket* sock, char* buffer, size_t bufferLen);
+size_t uecho_socket_write(uEchoSocket* sock, const char* buffer, size_t bufferLen);
+ssize_t uecho_socket_readline(uEchoSocket* sock, char* buffer, size_t bufferLen);
+size_t uecho_socket_skip(uEchoSocket* sock, size_t skipLen);
 
-size_t uecho_socket_sendto(uEchoSocket *sock, const char *addr, int port, const byte *data, size_t dataeLen);
-ssize_t uecho_socket_recv(uEchoSocket *sock, uEchoDatagramPacket *dgmPkt);
+size_t uecho_socket_sendto(uEchoSocket* sock, const char* addr, int port, const byte* data, size_t dataeLen);
+ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgmPkt);
 
 /****************************************
 * Function (Multicast)
 ****************************************/
 
-bool uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char *ifAddr);
+bool uecho_socket_joingroup(uEchoSocket* sock, const char* mcastAddr, const char* ifAddr);
 
 /****************************************
 * Function (Option)
 ****************************************/
 
-bool uecho_socket_setreuseaddress(uEchoSocket *socket, bool flag);
-bool uecho_socket_setmulticastloop(uEchoSocket *sock, bool flag);
-bool uecho_socket_setmulticastttl(uEchoSocket *sock,  int ttl);
-bool uecho_socket_settimeout(uEchoSocket *sock, int sec);
+bool uecho_socket_setreuseaddress(uEchoSocket* socket, bool flag);
+bool uecho_socket_setmulticastloop(uEchoSocket* sock, bool flag);
+bool uecho_socket_setmulticastttl(uEchoSocket* sock, int ttl);
+bool uecho_socket_settimeout(uEchoSocket* sock, int sec);
 
 /****************************************
 * Function (DatagramPacket)
 ****************************************/
 
-uEchoDatagramPacket *uecho_socket_datagram_packet_new(void);
-void uecho_socket_datagram_packet_delete(uEchoDatagramPacket *dgmPkt);
-bool uecho_socket_datagram_packet_setdata(uEchoDatagramPacket *dgmPkt, const byte *data, size_t dataLen);
-bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket *dgmPkt);
+uEchoDatagramPacket* uecho_socket_datagram_packet_new(void);
+void uecho_socket_datagram_packet_delete(uEchoDatagramPacket* dgmPkt);
+bool uecho_socket_datagram_packet_setdata(uEchoDatagramPacket* dgmPkt, const byte* data, size_t dataLen);
+bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket* dgmPkt);
 
 #define uecho_socket_datagram_packet_getdata(dgmPkt) (dgmPkt->data)
 #define uecho_socket_datagram_packet_getlength(dgmPkt) (dgmPkt->dataLen)
@@ -163,7 +163,7 @@ bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket *dgmPkt);
 #define uecho_socket_datagram_packet_setremoteport(dgmPkt, port) (dgmPkt->remotePort = port)
 #define uecho_socket_datagram_packet_getremoteport(dgmPkt) (dgmPkt->remotePort)
 
-bool uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoDatagramPacket *srcDgmPkt);
+bool uecho_socket_datagram_packet_copy(uEchoDatagramPacket* dstDgmPkt, uEchoDatagramPacket* srcDgmPkt);
 
 /****************************************
 * Function (SSLSocket)
@@ -175,7 +175,7 @@ bool uecho_socket_datagram_packet_copy(uEchoDatagramPacket *dstDgmPkt, uEchoData
 #define uecho_socket_isssl(socket) ((socket->type & UECHO_NET_SOCKET_SSL) ? true : false)
 #endif
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

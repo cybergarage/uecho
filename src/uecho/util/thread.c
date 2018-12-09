@@ -8,13 +8,13 @@
  *
  ******************************************************************/
 
-#if !defined (WIN32)
+#if !defined(WIN32)
 #include <signal.h>
 #endif
 
+#include <string.h>
 #include <uecho/util/thread.h>
 #include <uecho/util/timer.h>
-#include <string.h>
 
 static void uecho_sig_handler(int sign);
 
@@ -25,25 +25,25 @@ static void uecho_sig_handler(int sign);
 #if defined(WIN32)
 static DWORD WINAPI Win32ThreadProc(LPVOID lpParam)
 {
-  uEchoThread *thread;
+  uEchoThread* thread;
 
-  thread = (uEchoThread *)lpParam;
+  thread = (uEchoThread*)lpParam;
   if (thread->action != NULL)
     thread->action(thread);
-  
+
   return 0;
 }
 #else
-static void *PosixThreadProc(void *param)
+static void* PosixThreadProc(void* param)
 {
   sigset_t set;
   struct sigaction actions;
-  uEchoThread *thread = (uEchoThread *)param;
+  uEchoThread* thread = (uEchoThread*)param;
 
   sigfillset(&set);
   sigdelset(&set, SIGQUIT);
   pthread_sigmask(SIG_SETMASK, &set, NULL);
-  
+
   memset(&actions, 0, sizeof(actions));
   sigemptyset(&actions.sa_mask);
   actions.sa_flags = 0;
@@ -52,7 +52,7 @@ static void *PosixThreadProc(void *param)
 
   if (thread->action != NULL)
     thread->action(thread);
-  
+
   return 0;
 }
 #endif
@@ -61,17 +61,17 @@ static void *PosixThreadProc(void *param)
 * uecho_thread_new
 ****************************************/
 
-uEchoThread *uecho_thread_new(void)
+uEchoThread* uecho_thread_new(void)
 {
-  uEchoThread *thread;
+  uEchoThread* thread;
 
-  thread = (uEchoThread *)malloc(sizeof(uEchoThread));
+  thread = (uEchoThread*)malloc(sizeof(uEchoThread));
 
   if (!thread)
     return NULL;
-  
-  uecho_list_node_init((uEchoList *)thread);
-    
+
+  uecho_list_node_init((uEchoList*)thread);
+
   thread->runnableFlag = false;
   thread->action = NULL;
   thread->userData = NULL;
@@ -83,17 +83,17 @@ uEchoThread *uecho_thread_new(void)
 * uecho_thread_delete
 ****************************************/
 
-bool uecho_thread_delete(uEchoThread *thread)
+bool uecho_thread_delete(uEchoThread* thread)
 {
   if (!thread)
     return false;
-  
+
   if (thread->runnableFlag == true) {
     uecho_thread_stop(thread);
   }
 
   uecho_thread_remove(thread);
-  
+
   free(thread);
 
   return true;
@@ -103,11 +103,11 @@ bool uecho_thread_delete(uEchoThread *thread)
 * uecho_thread_start
 ****************************************/
 
-bool uecho_thread_start(uEchoThread *thread)
+bool uecho_thread_start(uEchoThread* thread)
 {
   if (!thread)
     return false;
-  
+
   thread->runnableFlag = true;
 
 #if defined(WIN32)
@@ -119,7 +119,7 @@ bool uecho_thread_start(uEchoThread *thread)
     return false;
   }
 
-  if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) !=0) {
+  if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) != 0) {
     thread->runnableFlag = false;
     pthread_attr_destroy(&thread_attr);
     return false;
@@ -132,7 +132,7 @@ bool uecho_thread_start(uEchoThread *thread)
   }
   pthread_attr_destroy(&thread_attr);
 #endif
-  
+
   return true;
 }
 
@@ -140,11 +140,11 @@ bool uecho_thread_start(uEchoThread *thread)
 * uecho_thread_stop
 ****************************************/
 
-bool uecho_thread_stop(uEchoThread *thread)
+bool uecho_thread_stop(uEchoThread* thread)
 {
   if (!thread)
     return false;
-  
+
   if (thread->runnableFlag == true) {
     thread->runnableFlag = false;
 #if defined(WIN32)
@@ -152,8 +152,8 @@ bool uecho_thread_stop(uEchoThread *thread)
     WaitForSingleObject(thread->hThread, INFINITE);
 #else
     pthread_kill(thread->pThread, 0);
-		/* Now we wait one second for thread termination instead of using pthread_join */
-		uecho_sleep(UECHO_THREAD_MIN_SLEEP);
+    /* Now we wait one second for thread termination instead of using pthread_join */
+    uecho_sleep(UECHO_THREAD_MIN_SLEEP);
 #endif
   }
 
@@ -164,7 +164,7 @@ bool uecho_thread_stop(uEchoThread *thread)
 * uecho_thread_restart
 ****************************************/
 
-bool uecho_thread_restart(uEchoThread *thread)
+bool uecho_thread_restart(uEchoThread* thread)
 {
   uecho_thread_stop(thread);
   return uecho_thread_start(thread);
@@ -174,15 +174,15 @@ bool uecho_thread_restart(uEchoThread *thread)
 * uecho_thread_isrunnable
 ****************************************/
 
-bool uecho_thread_isrunnable(uEchoThread *thread)
+bool uecho_thread_isrunnable(uEchoThread* thread)
 {
   if (!thread)
     return false;
-  
+
 #if !defined(WIN32)
   pthread_testcancel();
 #endif
-  
+
   return thread->runnableFlag;
 }
 
@@ -190,11 +190,11 @@ bool uecho_thread_isrunnable(uEchoThread *thread)
  * uecho_thread_isrunning
  ****************************************/
 
-bool uecho_thread_isrunning(uEchoThread *thread)
+bool uecho_thread_isrunning(uEchoThread* thread)
 {
   if (!thread)
     return false;
-  
+
   return thread->runnableFlag;
 }
 
@@ -202,11 +202,11 @@ bool uecho_thread_isrunning(uEchoThread *thread)
 * uecho_thread_setaction
 ****************************************/
 
-void uecho_thread_setaction(uEchoThread *thread, uEchoThreadFunc func)
+void uecho_thread_setaction(uEchoThread* thread, uEchoThreadFunc func)
 {
   if (!thread)
     return;
-  
+
   thread->action = func;
 }
 
@@ -214,7 +214,7 @@ void uecho_thread_setaction(uEchoThread *thread, uEchoThreadFunc func)
 * uecho_thread_setuserdata
 ****************************************/
 
-void uecho_thread_setuserdata(uEchoThread *thread, void *value)
+void uecho_thread_setuserdata(uEchoThread* thread, void* value)
 {
   if (!thread)
     return;
@@ -226,7 +226,7 @@ void uecho_thread_setuserdata(uEchoThread *thread, void *value)
 * uecho_thread_getuserdata
 ****************************************/
 
-void *uecho_thread_getuserdata(uEchoThread *thread)
+void* uecho_thread_getuserdata(uEchoThread* thread)
 {
   if (!thread)
     return NULL;

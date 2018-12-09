@@ -14,15 +14,15 @@
 * uecho_object_property_observerlist_new
 ****************************************/
 
-uEchoObjectPropertyObserverList *uecho_object_property_observerlist_new(void)
+uEchoObjectPropertyObserverList* uecho_object_property_observerlist_new(void)
 {
-  uEchoObjectPropertyObserverList *observers;
+  uEchoObjectPropertyObserverList* observers;
 
-  observers = (uEchoObjectPropertyObserverList *)malloc(sizeof(uEchoObjectPropertyObserverList));
+  observers = (uEchoObjectPropertyObserverList*)malloc(sizeof(uEchoObjectPropertyObserverList));
   if (!observers)
     return NULL;
 
-  uecho_list_header_init((uEchoList *)observers);
+  uecho_list_header_init((uEchoList*)observers);
 
   return observers;
 }
@@ -31,7 +31,7 @@ uEchoObjectPropertyObserverList *uecho_object_property_observerlist_new(void)
 * uecho_object_property_observerlist_delete
 ****************************************/
 
-void uecho_object_property_observerlist_delete(uEchoObjectPropertyObserverList *observers)
+void uecho_object_property_observerlist_delete(uEchoObjectPropertyObserverList* observers)
 {
   uecho_object_property_observerlist_clear(observers);
 

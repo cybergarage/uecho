@@ -13,25 +13,25 @@
 
 #include <uecho/typedef.h>
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
 /****************************************
  * Constant
  ****************************************/
-  
+
 enum {
-  uEchoOptionNone                   = 0x00,
+  uEchoOptionNone = 0x00,
 };
-  
+
 /****************************************
  * Data Type
  ****************************************/
-  
+
 typedef int uEchoOption;
-  
-#ifdef  __cplusplus
+
+#ifdef __cplusplus
 } /* extern C */
 #endif
 

@@ -13,7 +13,7 @@
 
 #include <stdbool.h>
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -31,8 +31,8 @@ typedef struct _uEchoSocketOption {
 * Function (Socket)
 ****************************************/
 
-uEchoSocketOption *uecho_socket_option_new();
-bool uecho_socket_option_delete(uEchoSocketOption *opt);
+uEchoSocketOption* uecho_socket_option_new();
+bool uecho_socket_option_delete(uEchoSocketOption* opt);
 
 #define uecho_socket_option_setreuseaddress(opt, flag) ((opt)->reuse = flag)
 #define uecho_socket_option_isreuseaddress(opt) ((opt)->reuse)
@@ -43,7 +43,7 @@ bool uecho_socket_option_delete(uEchoSocketOption *opt);
 #define uecho_socket_option_setmulticastloop(opt, flag) ((opt)->loop = flag)
 #define uecho_socket_option_ismulticastloop(opt) ((opt)->loop)
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

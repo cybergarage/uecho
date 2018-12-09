@@ -11,16 +11,16 @@
 #ifndef _UECHO_CONST_H_
 #define _UECHO_CONST_H_
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
 #define uEchoMulticastAddr "224.0.23.0"
-  
+
 enum {
   uEchoMajorVersion = 0x02,
   uEchoMinorVersion = 0x0A,
-  
+
   uEchoUdpPort = 3610,
   uEchoTcpPort = 3610,
 
@@ -37,8 +37,8 @@ enum {
   uEchoManufacturerCodeTestMin = 0xFFFFF0,
   uEchoManufacturerCodeTestMax = 0xFFFFFF,
 };
-  
-#ifdef  __cplusplus
+
+#ifdef __cplusplus
 }
 #endif
 

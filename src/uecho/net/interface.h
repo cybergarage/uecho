@@ -12,16 +12,16 @@
 #define _UECHO_NET_CINTERFACE_H_
 
 #include <uecho/typedef.h>
-#include <uecho/util/strings.h>
 #include <uecho/util/list.h>
+#include <uecho/util/strings.h>
 
 #if !defined(WIN32)
-#include <sys/socket.h>
-#include <netinet/in.h>
 #include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
 #endif
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -29,8 +29,8 @@ extern "C" {
 * Define
 ****************************************/
 
-#define UECHO_NET_IPV4_ADDRSTRING_MAXSIZE ((3*4)+(1*3)+1)
-#define UECHO_NET_IPV6_ADDRSTRING_MAXSIZE (1+(8*4)+(1*7)+1+1)
+#define UECHO_NET_IPV4_ADDRSTRING_MAXSIZE ((3 * 4) + (1 * 3) + 1)
+#define UECHO_NET_IPV6_ADDRSTRING_MAXSIZE (1 + (8 * 4) + (1 * 7) + 1 + 1)
 
 #define UECHO_NET_IPV4_LOOPBACK "127.0.0.1"
 #define UECHO_NET_IPV6_LOOPBACK "fixmelater"
@@ -42,10 +42,10 @@ extern "C" {
 
 typedef struct {
   UECHO_LIST_STRUCT_MEMBERS
-  
-  uEchoString *name;
-  uEchoString *ipaddr;
-  uEchoString *netmask;
+
+  uEchoString* name;
+  uEchoString* ipaddr;
+  uEchoString* netmask;
   byte macaddr[UECHO_NET_MACADDR_SIZE];
   int index;
 } uEchoNetworkInterface, uEchoNetworkInterfaceList;
@@ -54,20 +54,20 @@ typedef struct {
 * Function (NetworkInterface)
 ****************************************/
 
-uEchoNetworkInterface *uecho_net_interface_new(void);
-void uecho_net_interface_delete(uEchoNetworkInterface *netIf);
+uEchoNetworkInterface* uecho_net_interface_new(void);
+void uecho_net_interface_delete(uEchoNetworkInterface* netIf);
 uEchoNetworkInterface* uecho_net_interface_getany(void);
 
-#define uecho_net_interface_next(netIf) (uEchoNetworkInterface *)uecho_list_next((uEchoList *)netIf)
-#define uecho_net_interface_remove(netIf) uecho_list_remove((uEchoList *)netIf)
+#define uecho_net_interface_next(netIf) (uEchoNetworkInterface*)uecho_list_next((uEchoList*)netIf)
+#define uecho_net_interface_remove(netIf) uecho_list_remove((uEchoList*)netIf)
 
-void uecho_net_interface_setname(uEchoNetworkInterface *netIf, char *name);
-char *uecho_net_interface_getname(uEchoNetworkInterface *netIf);
-void uecho_net_interface_setaddress(uEchoNetworkInterface *netIf, char *ipaddr);
-char *uecho_net_interface_getaddress(uEchoNetworkInterface *netIf);
-void uecho_net_interface_setnetmask(uEchoNetworkInterface *netIf, char *ipaddr);
-char *uecho_net_interface_getnetmask(uEchoNetworkInterface *netIf);
-char *uecho_net_selectaddr(struct sockaddr *remoteaddr);
+void uecho_net_interface_setname(uEchoNetworkInterface* netIf, char* name);
+char* uecho_net_interface_getname(uEchoNetworkInterface* netIf);
+void uecho_net_interface_setaddress(uEchoNetworkInterface* netIf, char* ipaddr);
+char* uecho_net_interface_getaddress(uEchoNetworkInterface* netIf);
+void uecho_net_interface_setnetmask(uEchoNetworkInterface* netIf, char* ipaddr);
+char* uecho_net_interface_getnetmask(uEchoNetworkInterface* netIf);
+char* uecho_net_selectaddr(struct sockaddr* remoteaddr);
 
 #define uecho_net_interface_setmacaddress(netIf, value) memcpy(netIf->macaddr, value, UECHO_NET_MACADDR_SIZE)
 #define uecho_net_interface_getmacaddress(netIf, buf) memcpy(buf, netIf->macaddr, UECHO_NET_MACADDR_SIZE)
@@ -79,26 +79,25 @@ char *uecho_net_selectaddr(struct sockaddr *remoteaddr);
 * Function (NetworkInterfaceList)
 ****************************************/
 
-uEchoNetworkInterfaceList *uecho_net_interfacelist_new(void);
-void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList *netIfList);
+uEchoNetworkInterfaceList* uecho_net_interfacelist_new(void);
+void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList* netIfList);
 
-#define uecho_net_interfacelist_clear(netIfList) uecho_list_clear((uEchoList *)netIfList, (UECHO_LIST_DESTRUCTORFUNC)uecho_net_interface_delete)
-#define uecho_net_interfacelist_size(netIfList) uecho_list_size((uEchoList *)netIfList)
-#define uecho_net_interfacelist_gets(netIfList) (uEchoNetworkInterface *)uecho_list_next((uEchoList *)netIfList)
-#define uecho_net_interfacelist_add(netIfList,netIf) uecho_list_add((uEchoList *)netIfList, (uEchoList *)netIf)
+#define uecho_net_interfacelist_clear(netIfList) uecho_list_clear((uEchoList*)netIfList, (UECHO_LIST_DESTRUCTORFUNC)uecho_net_interface_delete)
+#define uecho_net_interfacelist_size(netIfList) uecho_list_size((uEchoList*)netIfList)
+#define uecho_net_interfacelist_gets(netIfList) (uEchoNetworkInterface*)uecho_list_next((uEchoList*)netIfList)
+#define uecho_net_interfacelist_add(netIfList, netIf) uecho_list_add((uEchoList*)netIfList, (uEchoList*)netIf)
 
 /****************************************
 * Function
 ****************************************/
 
-size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList *netIfList);
+size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList* netIfList);
 
-bool uecho_net_isipv6address(const char *addr);
-int uecho_net_getipv6scopeid(const char *addr);
+bool uecho_net_isipv6address(const char* addr);
+int uecho_net_getipv6scopeid(const char* addr);
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 }
 #endif
 
 #endif
-
