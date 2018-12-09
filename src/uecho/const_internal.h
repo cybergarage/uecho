@@ -11,7 +11,7 @@
 #ifndef _UECHO_CONST_INTERNAL_H_
 #define _UECHO_CONST_INTERNAL_H_
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -19,7 +19,7 @@ enum {
   uEchoWaitRetryCount = 20,
 };
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

@@ -14,19 +14,19 @@
 
 BOOST_AUTO_TEST_CASE(ProfileSuperClassMandatoryProperties)
 {
-  uEchoObject *obj = uecho_profile_new();
-  
+  uEchoObject* obj = uecho_profile_new();
+
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileManufacturerCode));
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileAnnoPropertyMap));
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileSetPropertyMap));
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileGetPropertyMap));
-  
+
   uecho_object_delete(obj);
 }
 
 BOOST_AUTO_TEST_CASE(NodeProfileObjectMandatoryProperties)
 {
-  uEchoObject *obj = uecho_nodeprofileclass_new();
+  uEchoObject* obj = uecho_nodeprofileclass_new();
 
   BOOST_CHECK(uecho_object_iscode(obj, uEchoNodeProfileObject));
 
@@ -43,8 +43,8 @@ BOOST_AUTO_TEST_CASE(NodeProfileObjectMandatoryProperties)
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassInstanceListNotification));
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassSelfNodeInstanceListS));
   BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassSelfNodeClassListS));
-  
+
   BOOST_CHECK(uecho_nodeprofileclass_isoperatingstatus(obj));
-  
+
   uecho_object_delete(obj);
 }
