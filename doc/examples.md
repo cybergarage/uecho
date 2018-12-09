@@ -2,7 +2,7 @@
 
 # Examples
 
-The `uecho-c` includes sample implementations for controller and device of [ECHONET Lite][enet] in the `examples` directory.
+The `uecho` includes sample implementations for controller and device of [ECHONET Lite][enet] in the `examples` directory.
 
 ## Examples for Controller
 
