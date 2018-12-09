@@ -138,6 +138,7 @@ bool uecho_socket_joingroup(uEchoSocket *sock, const char *mcastAddr, const char
 ****************************************/
 
 bool uecho_socket_setreuseaddress(uEchoSocket *socket, bool flag);
+bool uecho_socket_setmulticastloop(uEchoSocket *sock, bool flag);
 bool uecho_socket_setmulticastttl(uEchoSocket *sock,  int ttl);
 bool uecho_socket_settimeout(uEchoSocket *sock, int sec);
 

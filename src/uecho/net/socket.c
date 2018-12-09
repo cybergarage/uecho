@@ -296,6 +296,13 @@ bool uecho_socket_bind(uEchoSocket *sock, int bindPort, const char *bindAddr, uE
     }
   }
 
+  if (uecho_socket_option_ismulticastloop(opt)) {
+    if (uecho_socket_setmulticastloop(sock, true) == false) {
+      uecho_socket_close(sock);
+      return false;
+    }
+  }
+  
   ret = bind(sock->id, addrInfo->ai_addr, addrInfo->ai_addrlen);
   freeaddrinfo(addrInfo);
 
@@ -638,6 +645,33 @@ bool uecho_socket_setreuseaddress(uEchoSocket *sock, bool flag)
 #endif
 
   return (sockOptRet == 0) ? true : false;
+}
+
+/****************************************
+* uecho_socket_setmulticastloop
+****************************************/
+
+bool uecho_socket_setmulticastloop(uEchoSocket *sock, bool flag)
+{
+  int sockOptRet;
+#if defined (WIN32)
+  bool optval;
+#else
+  int optval;
+#endif
+
+  if (!sock)
+    return false;
+  
+#if defined (WIN32)
+  optval = (flag == true) ? 1 : 0;
+  sockOptRet = setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, (const char *)&optval, sizeof(optval));
+#else
+  optval = (flag == true) ? 1 : 0;
+  sockOptRet = setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, (const char *)&optval, sizeof(optval));
+#endif
+
+  return (sockOptRet == 0) ? true : false;  
 }
 
 /****************************************
