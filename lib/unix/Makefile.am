@@ -34,6 +34,7 @@ uecho_sources = \
 	../../src/uecho/core/object_property_observer_list.c \
 	../../src/uecho/core/object_property_observer_manager.c \
 	../../src/uecho/class.c \
+	../../src/uecho/util/log.c \
 	../../src/uecho/util/thread.c \
 	../../src/uecho/util/list.c \
 	../../src/uecho/util/timer.c \

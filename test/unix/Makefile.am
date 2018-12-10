@@ -30,6 +30,7 @@ uechotest_SOURCES = \
 	..//ControllerTest.cpp \
 	..//MessageTest.cpp \
 	..//MutexTest.cpp \
+	..//LogTest.cpp \
 	..//NodeListTest.cpp \
 	..//MiscTest.cpp \
 	..//InterfaceTest.cpp \
