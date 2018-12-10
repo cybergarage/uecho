@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210CC7A321BEB18100EEEB58 /* log.c in Sources */ = {isa = PBXBuildFile; fileRef = 210CC7A221BEB18100EEEB58 /* log.c */; };
+		210CC7A521BEB1B400EEEB58 /* log.h in Headers */ = {isa = PBXBuildFile; fileRef = 210CC7A421BEB1B400EEEB58 /* log.h */; };
 		2111B1851B93E8FC005FDBD6 /* controller_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B1841B93E8FC005FDBD6 /* controller_internal.h */; };
 		2111B1891B93EE4D005FDBD6 /* object_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B1881B93EE4D005FDBD6 /* object_internal.h */; };
 		2111B18B1B93F2BB005FDBD6 /* property_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B18A1B93F2BB005FDBD6 /* property_internal.h */; };
@@ -84,6 +86,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		210CC7A221BEB18100EEEB58 /* log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log.c; sourceTree = "<group>"; };
+		210CC7A421BEB1B400EEEB58 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
 		2111B1841B93E8FC005FDBD6 /* controller_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controller_internal.h; sourceTree = "<group>"; };
 		2111B1881B93EE4D005FDBD6 /* object_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object_internal.h; sourceTree = "<group>"; };
 		2111B18A1B93F2BB005FDBD6 /* property_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property_internal.h; sourceTree = "<group>"; };
@@ -288,17 +292,19 @@
 		21678EFC1A8D512000AE79AA /* util */ = {
 			isa = PBXGroup;
 			children = (
-				2111B19A1B940DAB005FDBD6 /* list.h */,
-				2111B19B1B940DAB005FDBD6 /* mutex.h */,
-				2111B19C1B940DAB005FDBD6 /* strings.h */,
-				2111B19D1B940DAB005FDBD6 /* thread.h */,
-				21EEC8561B7204D80012AB57 /* thread_list.c */,
-				21EEC8571B7204D80012AB57 /* thread.c */,
 				21678EFD1A8D512000AE79AA /* list.c */,
+				2111B19A1B940DAB005FDBD6 /* list.h */,
+				210CC7A221BEB18100EEEB58 /* log.c */,
+				210CC7A421BEB1B400EEEB58 /* log.h */,
 				21678EFE1A8D512000AE79AA /* mutex.c */,
-				21678EFF1A8D512000AE79AA /* strings.c */,
+				2111B19B1B940DAB005FDBD6 /* mutex.h */,
 				21678F001A8D512000AE79AA /* strings_function.c */,
 				21678F011A8D512000AE79AA /* strings_tokenizer.c */,
+				21678EFF1A8D512000AE79AA /* strings.c */,
+				2111B19C1B940DAB005FDBD6 /* strings.h */,
+				21EEC8561B7204D80012AB57 /* thread_list.c */,
+				21EEC8571B7204D80012AB57 /* thread.c */,
+				2111B19D1B940DAB005FDBD6 /* thread.h */,
 				21678F021A8D512000AE79AA /* timer.c */,
 			);
 			path = util;
@@ -371,6 +377,7 @@
 				2111B1851B93E8FC005FDBD6 /* controller_internal.h in Headers */,
 				21976AB51B897C4F00A154CE /* misc.h in Headers */,
 				2142A5EC1B9572A2008B1AF0 /* socket.h in Headers */,
+				210CC7A521BEB1B400EEEB58 /* log.h in Headers */,
 				2142A5EB1B9572A2008B1AF0 /* interface.h in Headers */,
 				2185D9CD1B68D5BC00A5B0C3 /* object.h in Headers */,
 			);
@@ -432,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210CC7A321BEB18100EEEB58 /* log.c in Sources */,
 				217142921B8865EF003ABA30 /* class_list.c in Sources */,
 				2159A1D21B751D2100A134D8 /* udp_server_list.c in Sources */,
 				21976AB31B897C1F00A154CE /* misc.c in Sources */,
