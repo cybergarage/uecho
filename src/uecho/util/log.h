@@ -11,6 +11,10 @@
 #ifndef _UECHO_UTIL_LOG_H_
 #define _UECHO_UTIL_LOG_H_
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -18,22 +22,20 @@ extern "C" {
 #define MAX_LOG_BUF 2048
 
 #define LOG_ERROR 1
-#define LOG_ERROR_S "ERROR"
-
 #define LOG_WARNING 2
-#define LOG_WARNING_S "WARN"
-
 #define LOG_INFO 4
-#define LOG_INFO_S "INFO"
-
 #define LOG_DEBUG 8
+
+#define LOG_ERROR_S "ERROR"
+#define LOG_WARNING_S "WARN"
+#define LOG_INFO_S "INFO"
 #define LOG_DEBUG_S "DEBUG"
 
 #define LOG_ALL (LOG_ERROR | LOG_WARNING | LOG_INFO | LOG_DEBUG)
 
 void uecho_log_output(int severity, const char* file, int line_n, const char* function, const char* format, ...);
 
-#ifdef CLOG_DEBUG
+#if defined(DEBUG)
 
 #if defined(__USE_ISOC99)
 #define uecho_log_error(format, ...) uecho_log_output(LOG_ERROR, __FILE__, __LINE__, __PRETTY_FUNCTION__, format, __VA_ARGS__)

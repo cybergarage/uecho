@@ -145,6 +145,23 @@ AC_DEFINE([HAVE_SO_NOSIGPIPE],1,[SO_NOSIGPIPES])],
 )
 
 ##############################
+# Debug
+##############################
+
+AC_ARG_ENABLE(
+ 	[debug],
+	AC_HELP_STRING([--enable-debug], [ enable debugging (default = no) ]),
+	[case "${enableval}" in
+    	yes | no ) enable_debug="${enableval}" ;;
+	esac],
+	[]
+)
+
+if [ test "$enable_debug" = yes ]; then
+	AC_DEFINE([DEBUG],1,[Define to 1 if you want to debug])
+fi
+
+##############################
 # Testing
 ##############################
 
@@ -170,13 +187,13 @@ fi
 ##############################
 
 AC_ARG_ENABLE(
-  [examples],
-  AC_HELP_STRING([--enable-examples],
-  [ build examples (default = yes) ]),
-  [case "${enableval}" in
-    yes | no ) build_examples="${enableval}" ;;
-  esac],
-  [build_examples="yes"]
+	[examples],
+	AC_HELP_STRING([--enable-examples],
+	[ build examples (default = yes) ]),
+	[case "${enableval}" in
+	yes | no ) build_examples="${enableval}" ;;
+	esac],
+	[build_examples="yes"]
 )
 AM_CONDITIONAL(UECHO_ENABLE_EXAMPLES,test "$build_examples" = yes)
 
