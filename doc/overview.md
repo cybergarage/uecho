@@ -1,10 +1,12 @@
 ![logo](img/logo.png)
 
+[![Build Status](https://travis-ci.org/cybergarage/uecho.svg?branch=master)](https://travis-ci.org/cybergarage/uecho)
+
 uEcho for C, `uecho`,  is a portable and cross platform development framework for creating controller applications and devices of [ECHONET Lite][enet]. [ECHONET][enet] is an open standard specification for IoT devices in Japan, it specifies more than 100 IoT devices such as crime prevention sensor, air conditioner and refrigerator.
 
 ## What is uEcho ?
 
-The `uecho` supports to control any [ECHONET Lite][enet] devices and create the standard devices of the specification easily. The `uecho` is designed in object-oriented programming, and the functions are object-oriented in their naming convention, and are grouped into classes such as `Controller`, `Node`, `Class` and `Object`.
+The `uecho` supports to control any [ECHONET Lite][enet] devices or create the standard devices of the specification easily. The `uecho` is designed in object-oriented programming, and the functions are object-oriented in their naming convention, and are grouped into classes such as `Controller`, `Node`, `Class` and `Object`.
 
 ![framwork](img/framework.png)
 
