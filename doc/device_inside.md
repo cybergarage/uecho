@@ -40,7 +40,7 @@ The `uecho` add the following mandatory properties too. However, the developer d
 
 Basically, the `uecho` handles all messages from other nodes automatically. However, developer can set some user listeners into the node, objects and properties to handle the messages from other nodes.
 
-Using the user listeners, the developer can handle the write requests and update the internal status. To set the listeners, use `uecho_node_setmessagelistener`, `uecho_object_setmessagelistener` or `uecho_object_setpropertyrequeslistener`.
+Using the user listeners, the developer can handle the write requests and update the internal status. To set the listeners, use `uecho_node_setmessagelistener()`, `uecho_object_setmessagelistener()` or `uecho_object_setpropertyrequestlistener()`.
 
 ### Message Listener Sequences
 
@@ -52,16 +52,27 @@ After a node is received a message from other nodes, the node's listeners are ca
 
 ### Node Message Listener
 
-The `uecho_node_setmessagelistener` can get all message for the node from other nodes, thus the message might be invalid.
+The `uecho_node_setmessagelistener()` can get all message for the node from other nodes, thus the message might be invalid.
+
+```
+typedef void (*uEchoNodeMessageListener)(uEchoNode*, uEchoMessage*);
+```
 
 ### Object Message Listener
 
-The `uecho` verifies the messages form other nodes using the objects and properties information of the node, and returns an error response when the message is invalid automatically. The `uecho_object_setmessagelistener` can get only valid messages for the object from other nodes.
+The `uecho` verifies the messages form other nodes using the objects and properties information of the node, and returns an error response when the message is invalid automatically. The `uecho_object_setmessagelistener()` can get only valid messages for the object from other nodes.
+
+```
+typedef void (*uEchoObjectMessageListener)(uEchoObject*, uEchoMessage*);
+```
 
 ### Property Message Listener
 
-The `uecho_object_setpropertyrequeslistener` can get only valid request message for the object property from other nodes.
+The `uecho_object_setpropertyrequestlistener()` can get only valid request message for the object property from other nodes.
 
+```
+typedef void (*uEchoPropertyRequestListener)(uEchoObject*, uEchoEsv, uEchoProperty*);
+```
 
 ## Supported Basic Sequences
 
