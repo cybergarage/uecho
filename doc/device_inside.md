@@ -40,7 +40,7 @@ The `uecho` add the following mandatory properties too. However, the developer d
 
 Basically, the `uecho` handles all messages from other nodes automatically. However, developer can set some user listeners into the node, objects and properties to handle the messages from other nodes.
 
-Using the user listeners, the developer can handle the write requests and update the internal status. To set the listeners, use `uecho_node_setmessagelistener`, `uecho_object_setmessagelistener` and `uecho_object_setpropertyrequeslistener`.
+Using the user listeners, the developer can handle the write requests and update the internal status. To set the listeners, use `uecho_node_setmessagelistener`, `uecho_object_setmessagelistener` or `uecho_object_setpropertyrequeslistener`.
 
 ### Message Listener Sequences
 
