@@ -44,7 +44,7 @@ void uecho_log_output(int severity, const char* file, int line_n, const char* fu
 #define uecho_log_debug(format, ...) uecho_log_output(LOG_DEBUG, __FILE__, __LINE__, __PRETTY_FUNCTION__, format, __VA_ARGS__)
 #else
 #define uecho_log_error(format...) uecho_log_output(LOG_ERROR, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)
-#define uecho_log_warning(format...) uecho_log_output(LOG_WARNING, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)
+#define uecho_log_warn(format...) uecho_log_output(LOG_WARNING, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)
 #define uecho_log_info(format...) uecho_log_output(LOG_INFO, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)
 #define uecho_log_debug(format...) uecho_log_output(LOG_DEBUG, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)
 #endif
