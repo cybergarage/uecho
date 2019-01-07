@@ -69,7 +69,7 @@ Usage : uechodump [options]
  -h : Print this message
 ```
 
-The `uechodump` prints all multicast packets of announce and notification messages from other node as the following:
+The `uechodump` prints all multicast packets of announce and notification messages from other node as the following:
 
 ```
 $ uechodump
@@ -92,7 +92,7 @@ Usage : uecholight
  -h        : Print this message
  ```
 
-The example device object is specified as the 'Requirements for mono functional lighting class' in the Detailed Requirements
+The example device object is specified as the 'Requirements for mono functional lighting class' in the Detailed Requirements
 for ECHONET Device objects[\[1\]][enet-spec], and the object code is below.
 
 - mono functional lighting class
