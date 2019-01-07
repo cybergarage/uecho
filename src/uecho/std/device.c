@@ -14,15 +14,15 @@
 * uecho_device_new
 ****************************************/
 
-uEchoObject *uecho_device_new(void)
+uEchoObject* uecho_device_new(void)
 {
-  uEchoObject *obj;
+  uEchoObject* obj;
 
   obj = uecho_object_new();
-    
+
   if (!obj)
     return NULL;
-  
+
   uecho_device_addmandatoryproperties(obj);
 
   return obj;

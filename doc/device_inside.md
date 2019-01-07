@@ -2,21 +2,23 @@
 
 # Inside of uEcho Device
 
+A [ECHONET Lite][enet] node includes the objects, and the objects can be classified into two types: profile objects and device objects. The profile object is standard profile information such as the operation status, manufacturer information, and device object list. The device object is a logical model of the information or of control items that can be remotely controlled. 
+
+![Device Objects](img/device_objects.png)
+
 ## Node Profile Object
 
-[ECHONET Lite][enet] device node must have a following special node profile class object which has all children objects of the node [\[1\]][enet-spec].
+The node profile object is a standard profile object, [ECHONET Lite][enet] node must have the following mandatory profile class object which has all children objects of the node [\[1\]][enet-spec].
 
 - Class group code: 0x0E
 - Class code: 0xF0
 - Instance code: 0x01 (general node)
 
-The uEcho updates the node profile class objects automatically when the children node is changed.
-
-![Device Objects](img/device_objects.png)
+The `uecho` updates the node profile class objects automatically when the children node is changed, and so the developer doesn't need to update the node profile object yourself.
 
 ## Device Object Super Class
 
-[ECHONETLite][enet] device node must have some properties [\[2\]][enet-spec]. To use `uecho_device_new()` or `uecho_device_addmandatoryproperties()`, the following mandatory properties are added into the node.
+[ECHONETLite][enet] device node must have some mandatory properties [\[2\]][enet-spec]. The `uecho_device_new()` addes the following mandatory properties into the device object as default, and the developer should update the properties according to the device status.
 
 | EPC | Property name | Default value |
 |---|---|---|
@@ -26,7 +28,7 @@ The uEcho updates the node profile class objects automatically when the children
 | 0x88 | Fault status | 0x42 = No fault has occurred |
 | 0x8A | Manufacturer code | 0xFFFFF0 = Testing code |
 
-uEcho updates the following mandatory properties automatically too when any properties are added or removed.
+The `uecho` add the following mandatory properties too. However, the developer doesn't need to update the mandatory properties because the `uecho` updates the mandatory properties automatically when any properties are added or removed.
 
 | EPC | Property name |
 |---|---|
@@ -36,11 +38,9 @@ uEcho updates the following mandatory properties automatically too when any prop
 
 ## Device Message Listeners
 
-Basically uEcho handles all messages from other nodes automatically. However, developer can set more detail user listeners into the node, objects and properties.
+Basically, the `uecho` handles all messages from other nodes automatically. However, developer can set some user listeners into the node, objects and properties to handle the messages from other nodes.
 
-![Device Listeners](img/device_listeners.png)
-
-To set the listeners, use `uecho_node_setmessagelistener`, `uecho_object_setmessagelistener` and `uecho_object_setpropertyrequeslistener`.
+Using the user listeners, the developer can handle the write requests and update the internal status. To set the listeners, use `uecho_node_setmessagelistener()`, `uecho_object_setmessagelistener()` or `uecho_object_setpropertyrequestlistener()`.
 
 ### Message Listener Sequences
 
@@ -48,27 +48,41 @@ After a node is received a message from other nodes, the node's listeners are ca
 
 ![Node Observers](img/node_msg_listener.png)
 
+The developer can handle all request messages using the node message listener, and they can handle only valid messages using the object and property message listeners.
+
 ### Node Message Listener
 
-`uecho_node_setmessagelistener` can get all message for the node from other nodes, thus the message might be invalid.
+The `uecho_node_setmessagelistener()` can set the following listener to get all message for the node from other nodes, thus the message might be invalid.
+
+```
+typedef void (*uEchoNodeMessageListener)(uEchoNode*, uEchoMessage*);
+```
 
 ### Object Message Listener
 
-uEcho verifies the messages form other nodes using the objects and properties information of the node, and returns an error response when the message is invalid automatically. `uecho_object_setmessagelistener` can get only valid messages for the object from other nodes.
+The `uecho` verifies the messages form other nodes using the objects and properties information of the node, and returns an error response when the message is invalid automatically. 
+
+The `uecho_object_setmessagelistener()` can set the following listener to get only valid messages for the object from other nodes.
+
+```
+typedef void (*uEchoObjectMessageListener)(uEchoObject*, uEchoMessage*);
+```
 
 ### Property Message Listener
 
-`uecho_object_setpropertyrequeslistener` can get only valid request message for the object property from other nodes.
+The `uecho_object_setpropertyrequestlistener()` can set the following listener to get only valid request message for the object property from other nodes.
 
-[enet]:http://echonet.jp/english/
+```
+typedef void (*uEchoPropertyRequestListener)(uEchoObject*, uEchoEsv, uEchoProperty*);
+```
 
 ## Supported Basic Sequences
 
-uEcho supports the following five basic sequences in ECHONET Lite Communication Middleware Specification [\[1\]][enet-spec].
+The `uecho` supports the following five basic sequences in ECHONET Lite Communication Middleware Specification [\[1\]][enet-spec].
 
 ### 4.2.1 Basic Sequences for Service Content
 
-uEcho handles the five basic sequences automatically, thus the developer doesn't have to implement the responses directly. The property data is announced automatically when the property is changed using `uecho_property_setdata()`.
+The `uecho` handles the five basic sequences automatically, thus the developer doesn't have to implement the responses directly. The property data is announced automatically when the property is changed using `uecho_property_setdata()`.
 
 | Type | Description | Support |
 |---|---|---|
@@ -80,7 +94,7 @@ uEcho handles the five basic sequences automatically, thus the developer doesn't
 
 ### 4.2.2 Basic Sequences for Object Control in General
 
-uEcho supports the following basic sequences too, and returns the error responses automatically. The developer doesn't have to receive and handle the error messages, but use `uecho_node_setmessagelistener()` if you want to listen the error messages.
+The `uecho` supports the following basic sequences too, and returns the error responses automatically. The developer doesn't have to receive and handle the error messages, but use `uecho_node_setmessagelistener()` if you want to listen the error messages.
 
 | Type | Description | Support |
 |---|---|---|
@@ -95,4 +109,5 @@ uEcho supports the following basic sequences too, and returns the error response
 - \[1\] [Part II ECHONET Lite Communication Middleware Specification][enet-spec]
 - \[2\] [Detailed Requirements for ECHONET Device objects][enet-spec]
 
+[enet]:http://echonet.jp/english/
 [enet-spec]:http://www.echonet.gr.jp/english/spec/index.htm

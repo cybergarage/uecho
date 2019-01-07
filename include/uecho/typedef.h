@@ -26,10 +26,10 @@
 #endif
 
 #ifdef HAVE_CONFIG_H
-#  include "config.h"
+#include "config.h"
 #endif
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -61,7 +61,7 @@ extern "C" {
 
 typedef unsigned char byte;
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

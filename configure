@@ -625,8 +625,8 @@ LTLIBOBJS
 LIBOBJS
 UECHO_ENABLE_EXAMPLES_FALSE
 UECHO_ENABLE_EXAMPLES_TRUE
-UECHO_ENABLE_TESTS_FALSE
-UECHO_ENABLE_TESTS_TRUE
+UECHO_ENABLE_TEST_FALSE
+UECHO_ENABLE_TEST_TRUE
 EGREP
 GREP
 CPP
@@ -724,7 +724,8 @@ ac_user_opts='
 enable_option_checking
 enable_silent_rules
 enable_dependency_tracking
-enable_tests
+enable_debug
+enable_test
 enable_examples
 '
       ac_precious_vars='build_alias
@@ -1359,7 +1360,8 @@ Optional Features:
                           do not reject slow dependency extractors
   --disable-dependency-tracking
                           speeds up one-time build
-  --enable-tests          build tests (default = no)
+  --enable-debug          enable debugging (default = no)
+  --enable-test           build tests (default = no)
   --enable-examples       build examples (default = yes)
 
 Some influential environment variables:
@@ -5047,104 +5049,44 @@ fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 
 ##############################
+# Debug
+##############################
+
+# Check whether --enable-debug was given.
+if test "${enable_debug+set}" = set; then :
+  enableval=$enable_debug; case "${enableval}" in
+    	yes | no ) enable_debug="${enableval}" ;;
+	esac
+fi
+
+
+if  test "$enable_debug" = yes ; then
+
+$as_echo "#define DEBUG 1" >>confdefs.h
+
+fi
+
+##############################
 # Testing
 ##############################
 
-# Check whether --enable-tests was given.
-if test "${enable_tests+set}" = set; then :
-  enableval=$enable_tests; build_tests="yes"
+# Check whether --enable-test was given.
+if test "${enable_test+set}" = set; then :
+  enableval=$enable_test; case "${enableval}" in
+    	yes | no ) build_test="${enableval}" ;;
+	esac
 fi
 
- if test "$build_tests" = yes; then
-  UECHO_ENABLE_TESTS_TRUE=
-  UECHO_ENABLE_TESTS_FALSE='#'
+
+ if test "$build_test" = yes; then
+  UECHO_ENABLE_TEST_TRUE=
+  UECHO_ENABLE_TEST_FALSE='#'
 else
-  UECHO_ENABLE_TESTS_TRUE='#'
-  UECHO_ENABLE_TESTS_FALSE=
+  UECHO_ENABLE_TEST_TRUE='#'
+  UECHO_ENABLE_TEST_FALSE=
 fi
 
-if  test "$build_tests" = yes ; then
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_unit_test_framework-mt" >&5
-$as_echo_n "checking for main in -lboost_unit_test_framework-mt... " >&6; }
-if ${ac_cv_lib_boost_unit_test_framework_mt_main+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lboost_unit_test_framework-mt  $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-
-int
-main ()
-{
-return main ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_boost_unit_test_framework_mt_main=yes
-else
-  ac_cv_lib_boost_unit_test_framework_mt_main=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_boost_unit_test_framework_mt_main" >&5
-$as_echo "$ac_cv_lib_boost_unit_test_framework_mt_main" >&6; }
-if test "x$ac_cv_lib_boost_unit_test_framework_mt_main" = xyes; then :
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_LIBBOOST_UNIT_TEST_FRAMEWORK_MT 1
-_ACEOF
-
-  LIBS="-lboost_unit_test_framework-mt $LIBS"
-
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_unit_test_framework" >&5
-$as_echo_n "checking for main in -lboost_unit_test_framework... " >&6; }
-if ${ac_cv_lib_boost_unit_test_framework_main+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lboost_unit_test_framework  $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-
-int
-main ()
-{
-return main ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_boost_unit_test_framework_main=yes
-else
-  ac_cv_lib_boost_unit_test_framework_main=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_boost_unit_test_framework_main" >&5
-$as_echo "$ac_cv_lib_boost_unit_test_framework_main" >&6; }
-if test "x$ac_cv_lib_boost_unit_test_framework_main" = xyes; then :
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_LIBBOOST_UNIT_TEST_FRAMEWORK 1
-_ACEOF
-
-  LIBS="-lboost_unit_test_framework $LIBS"
-
-else
-  as_fn_error $? "uEcho needs boost::unit_test_framework" "$LINENO" 5
-fi
-
-fi
-
+if  test "$build_test" = yes ; then
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_system-mt" >&5
 $as_echo_n "checking for main in -lboost_system-mt... " >&6; }
 if ${ac_cv_lib_boost_system_mt_main+:} false; then :
@@ -5226,6 +5168,87 @@ fi
 
 fi
 
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_unit_test_framework-mt" >&5
+$as_echo_n "checking for main in -lboost_unit_test_framework-mt... " >&6; }
+if ${ac_cv_lib_boost_unit_test_framework_mt_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lboost_unit_test_framework-mt  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_boost_unit_test_framework_mt_main=yes
+else
+  ac_cv_lib_boost_unit_test_framework_mt_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_boost_unit_test_framework_mt_main" >&5
+$as_echo "$ac_cv_lib_boost_unit_test_framework_mt_main" >&6; }
+if test "x$ac_cv_lib_boost_unit_test_framework_mt_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBBOOST_UNIT_TEST_FRAMEWORK_MT 1
+_ACEOF
+
+  LIBS="-lboost_unit_test_framework-mt $LIBS"
+
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lboost_unit_test_framework" >&5
+$as_echo_n "checking for main in -lboost_unit_test_framework... " >&6; }
+if ${ac_cv_lib_boost_unit_test_framework_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lboost_unit_test_framework  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_boost_unit_test_framework_main=yes
+else
+  ac_cv_lib_boost_unit_test_framework_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_boost_unit_test_framework_main" >&5
+$as_echo "$ac_cv_lib_boost_unit_test_framework_main" >&6; }
+if test "x$ac_cv_lib_boost_unit_test_framework_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBBOOST_UNIT_TEST_FRAMEWORK 1
+_ACEOF
+
+  LIBS="-lboost_unit_test_framework $LIBS"
+
+else
+  as_fn_error $? "uEcho needs boost::unit_test_framework" "$LINENO" 5
+fi
+
+fi
+
 fi
 
 ##############################
@@ -5235,8 +5258,8 @@ fi
 # Check whether --enable-examples was given.
 if test "${enable_examples+set}" = set; then :
   enableval=$enable_examples; case "${enableval}" in
-    yes | no ) build_examples="${enableval}" ;;
-  esac
+	yes | no ) build_examples="${enableval}" ;;
+	esac
 else
   build_examples="yes"
 
@@ -5255,7 +5278,7 @@ fi
 # Makefiles
 ##############################
 
-ac_config_files="$ac_config_files Makefile include/Makefile lib/Makefile lib/unix/Makefile tests/Makefile tests/unix/Makefile examples/Makefile examples/controller/Makefile examples/controller/uechosearch/Makefile examples/controller/uechosearch/unix/Makefile examples/controller/uechodump/Makefile examples/controller/uechodump/unix/Makefile examples/controller/uechopost/Makefile examples/controller/uechopost/unix/Makefile examples/device/Makefile examples/device/uecholight/Makefile examples/device/uecholight/unix/Makefile"
+ac_config_files="$ac_config_files Makefile include/Makefile lib/Makefile lib/unix/Makefile test/Makefile test/unix/Makefile examples/Makefile examples/controller/Makefile examples/controller/uechosearch/Makefile examples/controller/uechosearch/unix/Makefile examples/controller/uechodump/Makefile examples/controller/uechodump/unix/Makefile examples/controller/uechopost/Makefile examples/controller/uechopost/unix/Makefile examples/device/Makefile examples/device/uecholight/Makefile examples/device/uecholight/unix/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -5393,8 +5416,8 @@ if test -z "${am__fastdepCXX_TRUE}" && test -z "${am__fastdepCXX_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCXX\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
-if test -z "${UECHO_ENABLE_TESTS_TRUE}" && test -z "${UECHO_ENABLE_TESTS_FALSE}"; then
-  as_fn_error $? "conditional \"UECHO_ENABLE_TESTS\" was never defined.
+if test -z "${UECHO_ENABLE_TEST_TRUE}" && test -z "${UECHO_ENABLE_TEST_FALSE}"; then
+  as_fn_error $? "conditional \"UECHO_ENABLE_TEST\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${UECHO_ENABLE_EXAMPLES_TRUE}" && test -z "${UECHO_ENABLE_EXAMPLES_FALSE}"; then
@@ -5999,8 +6022,8 @@ do
     "include/Makefile") CONFIG_FILES="$CONFIG_FILES include/Makefile" ;;
     "lib/Makefile") CONFIG_FILES="$CONFIG_FILES lib/Makefile" ;;
     "lib/unix/Makefile") CONFIG_FILES="$CONFIG_FILES lib/unix/Makefile" ;;
-    "tests/Makefile") CONFIG_FILES="$CONFIG_FILES tests/Makefile" ;;
-    "tests/unix/Makefile") CONFIG_FILES="$CONFIG_FILES tests/unix/Makefile" ;;
+    "test/Makefile") CONFIG_FILES="$CONFIG_FILES test/Makefile" ;;
+    "test/unix/Makefile") CONFIG_FILES="$CONFIG_FILES test/unix/Makefile" ;;
     "examples/Makefile") CONFIG_FILES="$CONFIG_FILES examples/Makefile" ;;
     "examples/controller/Makefile") CONFIG_FILES="$CONFIG_FILES examples/controller/Makefile" ;;
     "examples/controller/uechosearch/Makefile") CONFIG_FILES="$CONFIG_FILES examples/controller/uechosearch/Makefile" ;;
