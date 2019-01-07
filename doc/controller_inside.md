@@ -4,29 +4,21 @@
 
 ## Node Profile Object
 
-The controller is a special node of [ECHONETLite][enet] to control other nodes, but [ECHONETLite][enet] controller must have a following special node profile class object which has all children objects of the node [\[1\]][enet-spec].
+The controller is a special node which is specified in [ECHONETLite][enet] to control other nodes, and the controller must implement the following special node profile class object which has all children objects of the node [\[1\]][enet-spec].
 
 - Class group code: 0x0E
 - Class code: 0xF0
 - Instance code: 0x01 (general node)
 
-The uEcho added the node profile class objects automatically when the controller is created.
-
-![Controller Objects](img/controller_object.png)
+The `uecho` adds the node profile class objects automatically when the controller is created, and so the developer doesn't need to add the objects yourself.
 
 ## Controller Message Listeners
 
-Basically uEcho handles all messages from other nodes automatically. However, developer can set more detail user listeners into the node, objects and properties.
-
-![Controller Listeners](img/controller_listeners.png)
-
-To set the listeners, use `uecho_controller_setmessagelistener`.
-
-### Message Listener Sequences
-
-After a node is received a message from other nodes, the node's listeners are called as the following sequences:
+The `uecho` handles all messages from other nodes automatically. However, the developer can set the listener using `uecho_controller_setmessagelistener()` to listen to the internal messages from other nodes. 
 
 ![Controller Observers](img/controller_msg_listener.png)
+
+After a node is received a message from other nodes, the node's listeners are called as the following sequences:
 
 ## References
 

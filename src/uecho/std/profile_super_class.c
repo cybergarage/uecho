@@ -17,13 +17,13 @@
  * uecho_profile_addmandatoryproperties
  ****************************************/
 
-bool uecho_profile_addmandatoryproperties(uEchoObject *obj)
+bool uecho_profile_addmandatoryproperties(uEchoObject* obj)
 {
   if (!obj)
     return false;
 
   uecho_object_addmandatoryproperties(obj);
-  
+
   return true;
 }
 
@@ -31,7 +31,7 @@ bool uecho_profile_addmandatoryproperties(uEchoObject *obj)
  * uecho_profile_setmanufacturercode
  ****************************************/
 
-bool uecho_profile_setmanufacturercode(uEchoObject *obj, uEchoObjectCode code)
+bool uecho_profile_setmanufacturercode(uEchoObject* obj, uEchoObjectCode code)
 {
   return uecho_object_setmanufacturercode(obj, code);
 }
@@ -40,7 +40,7 @@ bool uecho_profile_setmanufacturercode(uEchoObject *obj, uEchoObjectCode code)
  * uecho_profile_getmanufacturercode
  ****************************************/
 
-bool uecho_profile_getmanufacturercode(uEchoObject *obj)
+bool uecho_profile_getmanufacturercode(uEchoObject* obj)
 {
   return uecho_object_getmanufacturercode(obj);
 }

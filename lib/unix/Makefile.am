@@ -23,6 +23,7 @@ uecho_sources = \
 	../../src/uecho/net/interface_list.c \
 	../../src/uecho/net/net_function.c \
 	../../src/uecho/net/socket.c \
+	../../src/uecho/net/socket_opt.c \
 	../../src/uecho/object.c \
 	../../src/uecho/core/object_property_observer.c \
 	../../src/uecho/core/mcast_server.c \
@@ -33,6 +34,7 @@ uecho_sources = \
 	../../src/uecho/core/object_property_observer_list.c \
 	../../src/uecho/core/object_property_observer_manager.c \
 	../../src/uecho/class.c \
+	../../src/uecho/util/log.c \
 	../../src/uecho/util/thread.c \
 	../../src/uecho/util/list.c \
 	../../src/uecho/util/timer.c \

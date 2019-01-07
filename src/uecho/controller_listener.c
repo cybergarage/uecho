@@ -9,39 +9,40 @@
  ******************************************************************/
 
 #include <uecho/controller_internal.h>
-#include <uecho/profile.h>
+
 #include <uecho/misc.h>
+#include <uecho/profile.h>
 
 /****************************************
  * uecho_controller_handlesearchmessage
  ****************************************/
 
-void uecho_controller_handlesearchmessage(uEchoController *ctrl, uEchoMessage *msg)
+void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* msg)
 {
-  uEchoNode *node;
-  uEchoProperty *prop;
+  uEchoNode* node;
+  uEchoProperty* prop;
   uEchoObjectCode objCode;
-  byte *propData;
+  byte* propData;
   size_t propSize, instanceSize;
   size_t idx;
-  const char *msgAddr;
+  const char* msgAddr;
 
   // Check message
-  
+
   prop = uecho_message_getpropertybycode(msg, uEchoNodeProfileClassSelfNodeInstanceListS);
   if (!prop)
     return;
-  
+
   propSize = uecho_property_getdatasize(prop);
   if (propSize < 1)
     return;
 
   // Get or create node
-  
+
   msgAddr = uecho_message_getsourceaddress(msg);
   if (!msgAddr)
     return;
-  
+
   node = uecho_controller_getnodebyaddress(ctrl, msgAddr);
   if (!node) {
     node = uecho_node_new();
@@ -50,14 +51,14 @@ void uecho_controller_handlesearchmessage(uEchoController *ctrl, uEchoMessage *m
     uecho_node_setaddress(node, uecho_message_getsourceaddress(msg));
     uecho_controller_addnode(ctrl, node);
   }
-  
+
   // Updated node
-  
+
   propData = uecho_property_getdata(prop);
 
   instanceSize = propData[0];
-  
-  for (idx=1; (idx+2)<propSize; idx+=3) {
+
+  for (idx = 1; (idx + 2) < propSize; idx += 3) {
     objCode = uecho_byte2integer((propData + idx), 3);
     uecho_node_setobject(node, objCode);
   }
@@ -67,14 +68,14 @@ void uecho_controller_handlesearchmessage(uEchoController *ctrl, uEchoMessage *m
  * uecho_controller_updatepropertydata
  ****************************************/
 
-void uecho_controller_updatepropertydata(uEchoController *ctrl, uEchoMessage *msg)
+void uecho_controller_updatepropertydata(uEchoController* ctrl, uEchoMessage* msg)
 {
-  uEchoNode *srcNode;
-  uEchoObject *srcObj;
-  uEchoProperty *msgProp;
+  uEchoNode* srcNode;
+  uEchoObject* srcObj;
+  uEchoProperty* msgProp;
   uEchoPropertyCode msgPropCode;
   size_t msgOpc, n;
-  
+
   srcNode = uecho_controller_getnodebyaddress(ctrl, uecho_message_getsourceaddress(msg));
   if (!srcNode)
     return;
@@ -82,9 +83,9 @@ void uecho_controller_updatepropertydata(uEchoController *ctrl, uEchoMessage *ms
   srcObj = uecho_node_getobjectbycode(srcNode, uecho_message_getsourceobjectcode(msg));
   if (!srcObj)
     return;
-  
+
   msgOpc = uecho_message_getopc(msg);
-  for (n=0; n<msgOpc; n++) {
+  for (n = 0; n < msgOpc; n++) {
     msgProp = uecho_message_getproperty(msg, n);
     if (!msgProp)
       continue;
@@ -100,7 +101,7 @@ void uecho_controller_updatepropertydata(uEchoController *ctrl, uEchoMessage *ms
  * uecho_controller_handlepostresponse
  ****************************************/
 
-void uecho_controller_handlepostresponse(uEchoController *ctrl, uEchoMessage *msg)
+void uecho_controller_handlepostresponse(uEchoController* ctrl, uEchoMessage* msg)
 {
   if (!uecho_controller_ispostresponsemessage(ctrl, msg))
     return;
@@ -112,7 +113,7 @@ void uecho_controller_handlepostresponse(uEchoController *ctrl, uEchoMessage *ms
  * uecho_controller_handlerequestmessage
  ****************************************/
 
-void uecho_controller_handlerequestmessage(uEchoController *ctrl, uEchoMessage *msg)
+void uecho_controller_handlerequestmessage(uEchoController* ctrl, uEchoMessage* msg)
 {
   if (uecho_controller_ispostresponsewaiting(ctrl)) {
     uecho_controller_handlepostresponse(ctrl, msg);
@@ -133,24 +134,24 @@ void uecho_controller_handlerequestmessage(uEchoController *ctrl, uEchoMessage *
 * uecho_controller_servermessagelistener
 ****************************************/
 
-void uecho_controller_servermessagelistener(uEchoServer *server, uEchoMessage *msg)
+void uecho_controller_servermessagelistener(uEchoServer* server, uEchoMessage* msg)
 {
-  uEchoController *ctrl;
-  
+  uEchoController* ctrl;
+
   if (!server || !msg)
     return;
-  
-  ctrl = (uEchoController *)uecho_server_getuserdata(server);
+
+  ctrl = (uEchoController*)uecho_server_getuserdata(server);
   if (!ctrl)
     return;
-  
+
   if (!uecho_node_hasobjectbycode(ctrl->node, uecho_message_getdestinationobjectcode(msg))) {
     if (ctrl->msgListener) {
       ctrl->msgListener(ctrl, msg);
     }
     return;
   }
-  
+
   uecho_controller_handlerequestmessage(ctrl, msg);
 
   if (ctrl->msgListener) {
