@@ -9,7 +9,7 @@ before_script:
     - sudo apt-get install libboost-all-dev
 
 script:
-    - ./bootstrap && ./configure --enable-tests && make && make check
+    - ./bootstrap && ./configure --enable-test && make && make check
 
 notifications:
   email: false

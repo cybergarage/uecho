@@ -10,31 +10,32 @@
 
 #include <string.h>
 
-#include <uecho/property_internal.h>
 #include <uecho/node_internal.h>
+#include <uecho/property_internal.h>
+
 #include <uecho/misc.h>
 
 /****************************************
 * uecho_property_new
 ****************************************/
 
-uEchoProperty *uecho_property_new(void)
+uEchoProperty* uecho_property_new(void)
 {
-  uEchoProperty *prop;
+  uEchoProperty* prop;
 
-  prop = (uEchoProperty *)malloc(sizeof(uEchoProperty));
-    
+  prop = (uEchoProperty*)malloc(sizeof(uEchoProperty));
+
   if (!prop)
     return NULL;
 
-  uecho_list_node_init((uEchoList *)prop);
-  
+  uecho_list_node_init((uEchoList*)prop);
+
   prop->data = NULL;
   prop->dataSize = 0;
-  
+
   uecho_property_setparentobject(prop, NULL);
   uecho_property_setattribute(prop, uEchoPropertyAttrReadWrite);
-  
+
   return prop;
 }
 
@@ -42,16 +43,16 @@ uEchoProperty *uecho_property_new(void)
 * uecho_property_delete
 ****************************************/
 
-bool uecho_property_delete(uEchoProperty *prop)
+bool uecho_property_delete(uEchoProperty* prop)
 {
   if (!prop)
     return false;
-  
+
   uecho_property_cleardata(prop);
   uecho_property_remove(prop);
 
   free(prop);
-  
+
   return true;
 }
 
@@ -59,11 +60,11 @@ bool uecho_property_delete(uEchoProperty *prop)
  * uecho_property_setparentobject
  ****************************************/
 
-bool uecho_property_setparentobject(uEchoProperty *prop, uEchoObject *obj)
+bool uecho_property_setparentobject(uEchoProperty* prop, uEchoObject* obj)
 {
   if (!prop)
     return false;
-  
+
   prop->parentObj = obj;
 
   return true;
@@ -73,11 +74,11 @@ bool uecho_property_setparentobject(uEchoProperty *prop, uEchoObject *obj)
  * uecho_property_getparentobject
  ****************************************/
 
-uEchoObject *uecho_property_getparentobject(uEchoProperty *prop)
+uEchoObject* uecho_property_getparentobject(uEchoProperty* prop)
 {
   if (!prop)
     return NULL;
-  
+
   return prop->parentObj;
 }
 
@@ -85,22 +86,22 @@ uEchoObject *uecho_property_getparentobject(uEchoProperty *prop)
  * uecho_property_setcount
  ****************************************/
 
-bool uecho_property_setcount(uEchoProperty *prop, size_t count)
+bool uecho_property_setcount(uEchoProperty* prop, size_t count)
 {
   uecho_property_cleardata(prop);
-  
+
   if (!prop)
     return false;
-  
+
   if (count == 0)
     return true;
-  
-  prop->data = (byte *)calloc(1, count);
+
+  prop->data = (byte*)calloc(1, count);
   if (!prop->data)
     return false;
-  
+
   prop->dataSize = count;
-  
+
   return true;
 }
 
@@ -108,23 +109,23 @@ bool uecho_property_setcount(uEchoProperty *prop, size_t count)
  * uecho_property_addcount
  ****************************************/
 
-bool uecho_property_addcount(uEchoProperty *prop, size_t count)
+bool uecho_property_addcount(uEchoProperty* prop, size_t count)
 {
   size_t newDataSize;
-  
+
   if (!prop)
     return false;
-  
+
   if (count == 0)
     return true;
-  
+
   newDataSize = prop->dataSize + count;
-  prop->data = (byte *)realloc(prop->data, newDataSize);
+  prop->data = (byte*)realloc(prop->data, newDataSize);
   if (!prop->data)
     return false;
-  
+
   prop->dataSize = newDataSize;
-  
+
   return true;
 }
 
@@ -132,21 +133,21 @@ bool uecho_property_addcount(uEchoProperty *prop, size_t count)
  * uecho_property_setdata
  ****************************************/
 
-bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count)
+bool uecho_property_setdata(uEchoProperty* prop, const byte* data, size_t count)
 {
   if (!prop)
     return false;
-  
+
   if (!uecho_property_setcount(prop, count))
     return false;
-  
+
   if (count == 0)
     return true;
-  
+
   memcpy(prop->data, data, count);
 
   // (D) Basic sequence for autonomous notification
-  
+
   if (uecho_property_isannouncement(prop)) {
     uecho_property_announce(prop);
   }
@@ -158,23 +159,23 @@ bool uecho_property_setdata(uEchoProperty *prop, const byte *data, size_t count)
  * uecho_property_adddata
  ****************************************/
 
-bool uecho_property_adddata(uEchoProperty *prop, const byte *data, size_t count)
+bool uecho_property_adddata(uEchoProperty* prop, const byte* data, size_t count)
 {
   size_t currDataSize;
-  
+
   if (!prop)
     return false;
-  
+
   if (count == 0)
     return true;
-  
+
   currDataSize = uecho_property_getdatasize(prop);
-  
+
   if (!uecho_property_addcount(prop, count))
     return false;
-  
+
   memcpy((prop->data + currDataSize), data, count);
-  
+
   // (D) Basic sequence for autonomous notification
 
   if (uecho_property_isannouncement(prop)) {
@@ -188,7 +189,7 @@ bool uecho_property_adddata(uEchoProperty *prop, const byte *data, size_t count)
  * uecho_property_addbytedata
  ****************************************/
 
-bool uecho_property_addbytedata(uEchoProperty *prop, const byte data)
+bool uecho_property_addbytedata(uEchoProperty* prop, const byte data)
 {
   return uecho_property_adddata(prop, &data, 1);
 }
@@ -197,24 +198,24 @@ bool uecho_property_addbytedata(uEchoProperty *prop, const byte data)
  * uecho_property_setintegerdata
  ****************************************/
 
-bool uecho_property_setintegerdata(uEchoProperty *prop, int data, size_t dataSize)
+bool uecho_property_setintegerdata(uEchoProperty* prop, int data, size_t dataSize)
 {
   bool isSuccess;
-  byte *intByte;
-  
+  byte* intByte;
+
   if (!prop)
     return false;
 
-  intByte = (byte *)malloc(dataSize);
+  intByte = (byte*)malloc(dataSize);
   if (!intByte)
     return true;
-  
+
   uecho_integer2byte(data, intByte, dataSize);
-  
+
   isSuccess = uecho_property_setdata(prop, intByte, dataSize);
-  
+
   free(intByte);
-  
+
   return isSuccess;
 }
 
@@ -222,16 +223,16 @@ bool uecho_property_setintegerdata(uEchoProperty *prop, int data, size_t dataSiz
  * uecho_property_getintegerdata
  ****************************************/
 
-bool uecho_property_getintegerdata(uEchoProperty *prop, size_t dataSize, int *data)
+bool uecho_property_getintegerdata(uEchoProperty* prop, size_t dataSize, int* data)
 {
   if (!prop)
     return false;
-  
+
   if (prop->dataSize != dataSize)
     return false;
-  
+
   *data = uecho_byte2integer(prop->data, dataSize);
-  
+
   return true;
 }
 
@@ -239,7 +240,7 @@ bool uecho_property_getintegerdata(uEchoProperty *prop, size_t dataSize, int *da
  * uecho_property_setbytedata
  ****************************************/
 
-bool uecho_property_setbytedata(uEchoProperty *prop, byte data)
+bool uecho_property_setbytedata(uEchoProperty* prop, byte data)
 {
   if (!prop)
     return false;
@@ -251,16 +252,16 @@ bool uecho_property_setbytedata(uEchoProperty *prop, byte data)
  * uecho_property_getbytedata
  ****************************************/
 
-bool uecho_property_getbytedata(uEchoProperty *prop, byte *data)
+bool uecho_property_getbytedata(uEchoProperty* prop, byte* data)
 {
   if (!prop)
     return false;
-  
+
   if (prop->dataSize != 1)
     return false;
-  
+
   *data = prop->data[0];
-  
+
   return true;
 }
 
@@ -268,18 +269,18 @@ bool uecho_property_getbytedata(uEchoProperty *prop, byte *data)
  * uecho_property_cleardata
  ****************************************/
 
-bool uecho_property_cleardata(uEchoProperty *prop)
+bool uecho_property_cleardata(uEchoProperty* prop)
 {
   if (!prop)
     return false;
 
-  prop->dataSize= 0;
-  
+  prop->dataSize = 0;
+
   if (prop->data) {
     free(prop->data);
     prop->data = NULL;
   }
-  
+
   return true;
 }
 
@@ -287,34 +288,34 @@ bool uecho_property_cleardata(uEchoProperty *prop)
  * uecho_property_cleardata
  ****************************************/
 
-uEchoProperty *uecho_property_next(uEchoProperty *prop)
+uEchoProperty* uecho_property_next(uEchoProperty* prop)
 {
-  return (uEchoProperty *)uecho_list_next((uEchoList *)prop);
+  return (uEchoProperty*)uecho_list_next((uEchoList*)prop);
 }
-  
+
 /****************************************
  * uecho_property_remove
  ****************************************/
 
-void uecho_property_remove(uEchoProperty *prop)
+void uecho_property_remove(uEchoProperty* prop)
 {
-  uecho_list_remove((uEchoList *)prop);
+  uecho_list_remove((uEchoList*)prop);
 }
 
 /****************************************
  * uecho_property_setcode
  ****************************************/
 
-void uecho_property_setcode(uEchoProperty *prop, uEchoPropertyCode val)
+void uecho_property_setcode(uEchoProperty* prop, uEchoPropertyCode val)
 {
   prop->code = val;
 }
-      
+
 /****************************************
  * uecho_property_getcode
  ****************************************/
 
-uEchoPropertyCode uecho_property_getcode(uEchoProperty *prop)
+uEchoPropertyCode uecho_property_getcode(uEchoProperty* prop)
 {
   return prop->code;
 }
@@ -323,7 +324,7 @@ uEchoPropertyCode uecho_property_getcode(uEchoProperty *prop)
  * uecho_property_getdata
  ****************************************/
 
-byte *uecho_property_getdata(uEchoProperty *prop)
+byte* uecho_property_getdata(uEchoProperty* prop)
 {
   return prop->data;
 }
@@ -332,7 +333,7 @@ byte *uecho_property_getdata(uEchoProperty *prop)
  * uecho_property_getdatasize
  ****************************************/
 
-byte uecho_property_getdatasize(uEchoProperty *prop)
+byte uecho_property_getdatasize(uEchoProperty* prop)
 {
   return prop->dataSize;
 }
@@ -341,7 +342,7 @@ byte uecho_property_getdatasize(uEchoProperty *prop)
  * uecho_property_setattribute
  ****************************************/
 
-void uecho_property_setattribute(uEchoProperty *prop, uEchoPropertyAttr val)
+void uecho_property_setattribute(uEchoProperty* prop, uEchoPropertyAttr val)
 {
   prop->attr = val;
 }
@@ -350,7 +351,7 @@ void uecho_property_setattribute(uEchoProperty *prop, uEchoPropertyAttr val)
  * uecho_property_getattribute
  ****************************************/
 
-uEchoPropertyAttr uecho_property_getattribute(uEchoProperty *prop)
+uEchoPropertyAttr uecho_property_getattribute(uEchoProperty* prop)
 {
   return prop->attr;
 }
@@ -359,7 +360,7 @@ uEchoPropertyAttr uecho_property_getattribute(uEchoProperty *prop)
  * uecho_property_isreadable
  ****************************************/
 
-bool uecho_property_isreadable(uEchoProperty *prop)
+bool uecho_property_isreadable(uEchoProperty* prop)
 {
   return (prop->attr & uEchoPropertyAttrRead) ? true : false;
 }
@@ -368,7 +369,7 @@ bool uecho_property_isreadable(uEchoProperty *prop)
  * uecho_property_iswritable
  ****************************************/
 
-bool uecho_property_iswritable(uEchoProperty *prop)
+bool uecho_property_iswritable(uEchoProperty* prop)
 {
   return (prop->attr & uEchoPropertyAttrWrite) ? true : false;
 }
@@ -377,7 +378,7 @@ bool uecho_property_iswritable(uEchoProperty *prop)
  * uecho_property_isreadonly
  ****************************************/
 
-bool uecho_property_isreadonly(uEchoProperty *prop)
+bool uecho_property_isreadonly(uEchoProperty* prop)
 {
   if (!prop)
     return false;
@@ -386,7 +387,7 @@ bool uecho_property_isreadonly(uEchoProperty *prop)
     return false;
   if ((prop->attr & uEchoPropertyAttrWrite))
     return false;
-  
+
   return true;
 }
 
@@ -394,11 +395,11 @@ bool uecho_property_isreadonly(uEchoProperty *prop)
  * uecho_property_iswriteonly
  ****************************************/
 
-bool uecho_property_iswriteonly(uEchoProperty *prop)
+bool uecho_property_iswriteonly(uEchoProperty* prop)
 {
   if (!prop)
     return false;
-  
+
   if (!(prop->attr & uEchoPropertyAttrWrite))
     return false;
   if ((prop->attr & uEchoPropertyAttrRead))
@@ -411,14 +412,14 @@ bool uecho_property_iswriteonly(uEchoProperty *prop)
  * uecho_property_isannouncement
  ****************************************/
 
-bool uecho_property_isannouncement(uEchoProperty *prop)
+bool uecho_property_isannouncement(uEchoProperty* prop)
 {
   if (!prop)
     return false;
-  
+
   if ((prop->attr & uEchoPropertyAttrAnno))
     return true;
-  
+
   return false;
 }
 
@@ -426,22 +427,22 @@ bool uecho_property_isannouncement(uEchoProperty *prop)
  * uecho_property_copy
  ****************************************/
 
-uEchoProperty *uecho_property_copy(uEchoProperty *srcProp)
+uEchoProperty* uecho_property_copy(uEchoProperty* srcProp)
 {
-  uEchoProperty *newProp;
-  
+  uEchoProperty* newProp;
+
   if (!srcProp)
     return NULL;
-  
+
   newProp = uecho_property_new();
-  
+
   if (!newProp)
     return NULL;
-  
+
   uecho_property_setcode(newProp, uecho_property_getcode(srcProp));
   uecho_property_setattribute(newProp, uecho_property_getattribute(srcProp));
   uecho_property_setdata(newProp, uecho_property_getdata(srcProp), uecho_property_getdatasize(srcProp));
-  
+
   return newProp;
 }
 
@@ -449,11 +450,11 @@ uEchoProperty *uecho_property_copy(uEchoProperty *srcProp)
  * uecho_property_equals
  ****************************************/
 
-bool uecho_property_equals(uEchoProperty *prop1, uEchoProperty *prop2)
+bool uecho_property_equals(uEchoProperty* prop1, uEchoProperty* prop2)
 {
   if (!prop1 || !prop2)
     return false;
-  
+
   if (uecho_property_getcode(prop1) != uecho_property_getcode(prop2))
     return false;
 
@@ -473,11 +474,11 @@ bool uecho_property_equals(uEchoProperty *prop1, uEchoProperty *prop2)
  * uecho_property_getnode
  ****************************************/
 
-uEchoNode *uecho_property_getnode(uEchoProperty *prop)
+uEchoNode* uecho_property_getnode(uEchoProperty* prop)
 {
-  uEchoObject *parentObj;
-  uEchoNode *parentNode;
-  
+  uEchoObject* parentObj;
+  uEchoNode* parentNode;
+
   parentObj = uecho_property_getparentobject(prop);
   if (!parentObj)
     return NULL;
@@ -485,7 +486,7 @@ uEchoNode *uecho_property_getnode(uEchoProperty *prop)
   parentNode = uecho_object_getparentnode(parentObj);
   if (!parentNode)
     return NULL;
-  
+
   return parentNode;
 }
 
@@ -493,13 +494,13 @@ uEchoNode *uecho_property_getnode(uEchoProperty *prop)
  * uecho_property_announce
  ****************************************/
 
-bool uecho_property_announce(uEchoProperty *prop)
+bool uecho_property_announce(uEchoProperty* prop)
 {
-  uEchoNode *node;
-  
+  uEchoNode* node;
+
   node = uecho_property_getnode(prop);
   if (!node)
     return false;
-  
+
   return uecho_node_announceproperty(node, prop);
 }

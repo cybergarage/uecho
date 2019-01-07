@@ -11,15 +11,15 @@
 #ifndef _UECHO_MESSAGE_INTERNAL_H_
 #define _UECHO_MESSAGE_INTERNAL_H_
 
-#include <uecho/typedef.h>
-#include <uecho/const.h>
-#include <uecho/net/socket.h>
 #include <uecho/property_internal.h>
 
-#ifdef  __cplusplus
+#include <uecho/const.h>
+#include <uecho/net/socket.h>
+#include <uecho/typedef.h>
+
+#ifdef __cplusplus
 extern "C" {
 #endif
-
 
 /****************************************
  * Constant
@@ -38,8 +38,7 @@ enum {
  * Data Type
  ****************************************/
 
-typedef struct _uEchoMessage
-{
+typedef struct _uEchoMessage {
   byte EHD1;
   byte EHD2;
   byte TID[uEchoTIDSize];
@@ -47,28 +46,28 @@ typedef struct _uEchoMessage
   byte DEOJ[uEchoEOJSize];
   int ESV;
   byte OPC;
-  uEchoProperty **EP;
-  byte *bytes;
+  uEchoProperty** EP;
+  byte* bytes;
 
-  char *srcAddr;
+  char* srcAddr;
 } uEchoMessage;
 
 /****************************************
  * Header
  ****************************************/
-  
+
 #include <uecho/message.h>
 
 /****************************************
  * Function
  ****************************************/
 
-bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv *resEsv);
-bool uecho_message_requestesv2errorresponseesv(uEchoEsv reqEsv, uEchoEsv *resEsv);
+bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv* resEsv);
+bool uecho_message_requestesv2errorresponseesv(uEchoEsv reqEsv, uEchoEsv* resEsv);
 
-bool uecho_message_parsepacket(uEchoMessage *msg, uEchoDatagramPacket *dgmPkt);
+bool uecho_message_parsepacket(uEchoMessage* msg, uEchoDatagramPacket* dgmPkt);
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 } /* extern C */
 #endif
 
