@@ -231,13 +231,14 @@ uEchoList* uecho_list_next(uEchoList* list)
 
 bool uecho_list_clear(uEchoList* headList, UECHO_LIST_DESTRUCTORFUNC dstructorFunc)
 {
-  uEchoList* list;
+  uEchoList* list, *nextList;
 
   if (!headList)
     return false;
 
   list = uecho_list_next(headList);
   while (list != NULL) {
+    nextList = uecho_list_next(list);
     uecho_list_remove(list);
     if (dstructorFunc != NULL) {
       dstructorFunc(list);
@@ -245,7 +246,7 @@ bool uecho_list_clear(uEchoList* headList, UECHO_LIST_DESTRUCTORFUNC dstructorFu
     else {
       free(list);
     }
-    list = uecho_list_next(headList);
+    list = nextList;
   }
 
   return true;

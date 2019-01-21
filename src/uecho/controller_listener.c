@@ -23,7 +23,7 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
   uEchoProperty* prop;
   uEchoObjectCode objCode;
   byte* propData;
-  size_t propSize, instanceSize;
+  size_t propSize;
   size_t idx;
   const char* msgAddr;
 
@@ -55,8 +55,6 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
   // Updated node
 
   propData = uecho_property_getdata(prop);
-
-  instanceSize = propData[0];
 
   for (idx = 1; (idx + 2) < propSize; idx += 3) {
     objCode = uecho_byte2integer((propData + idx), 3);

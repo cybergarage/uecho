@@ -59,14 +59,12 @@ bool uecho_net_isipv6address(const char* addr)
 
 int uecho_net_getipv6scopeid(const char* addr)
 {
-  size_t addrLen;
   ssize_t perIdx;
   char scopeIDBuf[8 + 1];
 
   if (uecho_net_isipv6address(addr) == false)
     return 0;
 
-  addrLen = uecho_strlen(addr);
   perIdx = uecho_strchr(addr, "%", 1);
   if (perIdx < 0)
     return 0;
