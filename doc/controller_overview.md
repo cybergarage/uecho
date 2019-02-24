@@ -101,7 +101,7 @@ uecho_message_delete(resMsg);
 
 ## Next Steps
 
-Let's check the following documentations to know the controller functions of uEcho in more detail.
+Let's check the following documentation to know the controller functions of uEcho in more detail.
 
 - [Inside of uEcho Controller](./controller_inside.md)
 - [Examples](./examples.md)
