@@ -14,8 +14,8 @@
 
 BOOST_AUTO_TEST_CASE(LogFunction)
 {
-  const char *msg = "hello";
-  
+  const char* msg = "hello";
+
   uecho_log_debug("%s", msg);
   uecho_log_warn("%s", msg);
   uecho_log_error("%s", msg);
