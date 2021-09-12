@@ -8,11 +8,11 @@
  *
  ******************************************************************/
 
-#include <stdio.h>
-#include <time.h>
 #include <stdarg.h>
-#include <string.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
 #include <uecho/util/log.h>
 #include <uecho/util/mutex.h>
@@ -30,23 +30,23 @@ static const char* log_debug_s = LOG_DEBUG_S;
 static const char* uecho_log_type2string(int type)
 {
   switch (type) {
-    case LOG_ERROR:
-      return log_error_s;
-      break;
-      
-    case LOG_WARNING:
-      return log_warning_s;
-      break;
-      
-    case LOG_INFO:
-      return log_info_s;
-      break;
-      
-    case LOG_DEBUG:
-      return log_debug_s;
-      break;
+  case LOG_ERROR:
+    return log_error_s;
+    break;
+
+  case LOG_WARNING:
+    return log_warning_s;
+    break;
+
+  case LOG_INFO:
+    return log_info_s;
+    break;
+
+  case LOG_DEBUG:
+    return log_debug_s;
+    break;
   }
-  
+
   return "";
 }
 
@@ -64,11 +64,7 @@ void uecho_log_output(int severity, const char* file, int line_n, const char* fu
 
   strftime(tsPrefix, MAX_LOG_BUF, "%c", localts);
 
-  prefixLen = snprintf(msg, MAX_LOG_BUF,
-                           "%s : %s ",
-                           tsPrefix,
-                           uecho_log_type2string(severity)
-                           );
+  prefixLen = snprintf(msg, MAX_LOG_BUF, "%s : %s ", tsPrefix, uecho_log_type2string(severity));
 
   va_start(list, format);
   vsnprintf(msg + prefixLen, MAX_LOG_BUF - prefixLen, format, list);

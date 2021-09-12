@@ -231,7 +231,7 @@ uEchoList* uecho_list_next(uEchoList* list)
 
 bool uecho_list_clear(uEchoList* headList, UECHO_LIST_DESTRUCTORFUNC dstructorFunc)
 {
-  uEchoList* list, *nextList;
+  uEchoList *list, *nextList;
 
   if (!headList)
     return false;
