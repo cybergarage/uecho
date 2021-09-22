@@ -12,11 +12,14 @@ before_script:
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get update -qq; fi
     - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install libboost-all-dev; fi
     - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
-    - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install boost; fi
+    - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install automake autoconf boost; fi
 
 script:
-    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then ./bootstrap && ./configure --enable-test && make && make check; fi
-    - if [ "$TRAVIS_OS_NAME" = "osx" ]; then ./bootstrap && ./configure_macosx --enable-test && make && make check; fi
+    - ./bootstrap
+    - if [ "$TRAVIS_OS_NAME" = "linux" ]; then ./configure --enable-test; fi
+    - if [ "$TRAVIS_OS_NAME" = "osx" ]; then ./configure_macosx --enable-test; fi
+    - make
+    - make check
 
 notifications:
   email: false
