@@ -11,7 +11,7 @@ To install on your platform from the Github repository, run the following in a t
 ```
 git clone https://github.com/cybergarage/uecho.git
 cd uecho
-./boostrap && ./configure && make && sudo make install
+./bootstrap && ./configure && make && sudo make install
 ```
 
 ## MacOSX
