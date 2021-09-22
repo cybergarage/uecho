@@ -14,7 +14,7 @@ Usage : uechosearch [options]
  -h : Print this message
 ```
 
-The `uechosearch` searches all [ECHONET Lite][enet] device and profile objects in the local area network, and prints the all found objects with the IP address as the following:
+The `uechosearch` searches all [ECHONET Lite][enet] device and profile objects in the local area network, and prints all found objects with the IP address as the following:
 
 ```
 $ uechosearch
@@ -110,11 +110,11 @@ ESV = 80 : 31 (1)
 POWER = OFF
 ```
 
-For Raspbery Pi, `uecholigh` outputs the lighting power status into the specified GPIO port.
+For Raspberry Pi, `uecholight` outputs the lighting power status into the specified GPIO port.
 
 ![RaspberyPi](img/example_raspberry_pi.jpg)
 
-To enable the GPIO function for Raspbery Pi, compile with UECHO_PLATFORM_RASPBIAN option and run `uecholight` with root privileges.
+To enable the GPIO function for Raspberry Pi, compile with UECHO_PLATFORM_RASPBIAN option and run `uecholight` with root privileges.
 
 # References
 
