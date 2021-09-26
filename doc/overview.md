@@ -1,6 +1,6 @@
 ![logo](https://raw.githubusercontent.com/cybergarage/uecho/master/doc/img/logo.png)
 
-[![Build Status](https://app.travis-ci.com/cybergarage/cybergarage-upnp.svg?branch=master)](https://app.travis-ci.com/cybergarage/cybergarage-upnp)
+[![Build Status](https://github.com/cybergarage/uecho/actions/workflows/makefile.yml/badge.svg)](https://github.com/cybergarage/uecho/actions/workflows/makefile.yml)
 
 uEcho for C, `uecho`,  is a portable and cross platform development framework for creating controller applications and devices of [ECHONET Lite][enet]. [ECHONET][enet] is an open standard specification for IoT devices in Japan, it specifies more than 100 IoT devices such as crime prevention sensor, air conditioner and refrigerator.
 
