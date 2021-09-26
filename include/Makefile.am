@@ -10,18 +10,18 @@
 
 uechoheaders = \
 	./uecho/profile.h \
-	./uecho/device.h \
-	./uecho/util/timer.h \
-	./uecho/misc.h \
-	./uecho/message.h \
 	./uecho/node.h \
-	./uecho/uecho.h \
+	./uecho/misc.h \
 	./uecho/controller.h \
-	./uecho/class.h \
-	./uecho/object.h \
+	./uecho/device.h \
 	./uecho/property.h \
 	./uecho/const.h \
-	./uecho/typedef.h
+	./uecho/message.h \
+	./uecho/uecho.h \
+	./uecho/object.h \
+	./uecho/typedef.h \
+	./uecho/util/timer.h \
+	./uecho/class.h
 
 nobase_include_HEADERS = \
 	$(uechoheaders)
