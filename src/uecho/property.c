@@ -148,7 +148,7 @@ bool uecho_property_setdata(uEchoProperty* prop, const byte* data, size_t count)
 
   // (D) Basic sequence for autonomous notification
 
-  if (uecho_property_isannouncement(prop)) {
+  if (uecho_property_isannounceable(prop)) {
     uecho_property_announce(prop);
   }
 
@@ -178,7 +178,7 @@ bool uecho_property_adddata(uEchoProperty* prop, const byte* data, size_t count)
 
   // (D) Basic sequence for autonomous notification
 
-  if (uecho_property_isannouncement(prop)) {
+  if (uecho_property_isannounceable(prop)) {
     uecho_property_announce(prop);
   }
 
@@ -409,10 +409,10 @@ bool uecho_property_iswriteonly(uEchoProperty* prop)
 }
 
 /****************************************
- * uecho_property_isannouncement
+ * uecho_property_isannounceable
  ****************************************/
 
-bool uecho_property_isannouncement(uEchoProperty* prop)
+bool uecho_property_isannounceable(uEchoProperty* prop)
 {
   if (!prop)
     return false;

@@ -76,7 +76,7 @@ bool uecho_property_isreadable(uEchoProperty* prop);
 bool uecho_property_iswritable(uEchoProperty* prop);
 bool uecho_property_isreadonly(uEchoProperty* prop);
 bool uecho_property_iswriteonly(uEchoProperty* prop);
-bool uecho_property_isannouncement(uEchoProperty* prop);
+bool uecho_property_isannounceable(uEchoProperty* prop);
 
 uEchoProperty* uecho_property_copy(uEchoProperty* prop);
 bool uecho_property_equals(uEchoProperty* prop1, uEchoProperty* prop2);

@@ -99,7 +99,7 @@ bool uecho_object_updatepropertymaps(uEchoObject* obj)
     }
 
     // Announcement status changes property map
-    if (uecho_property_isannouncement(prop)) {
+    if (uecho_property_isannounceable(prop)) {
       obj->annoPropMapSize++;
       obj->annoPropMapBytes = realloc(obj->annoPropMapBytes, obj->annoPropMapSize);
       if (obj->annoPropMapBytes) {
