@@ -107,13 +107,13 @@ BOOST_AUTO_TEST_CASE(PropertyAnnouncement)
 {
   uEchoProperty* prop = uecho_property_new();
 
-  BOOST_CHECK_EQUAL(uecho_property_isannouncement(prop), false);
+  BOOST_CHECK_EQUAL(uecho_property_isannounceable(prop), false);
 
   uecho_property_setattribute(prop, uEchoPropertyAttrAnno);
-  BOOST_CHECK_EQUAL(uecho_property_isannouncement(prop), true);
+  BOOST_CHECK_EQUAL(uecho_property_isannounceable(prop), true);
 
   uecho_property_setattribute(prop, uEchoPropertyAttrNone);
-  BOOST_CHECK_EQUAL(uecho_property_isannouncement(prop), false);
+  BOOST_CHECK_EQUAL(uecho_property_isannounceable(prop), false);
 
   BOOST_CHECK(uecho_property_delete(prop));
 }
