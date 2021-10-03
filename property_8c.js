@@ -16,7 +16,7 @@ var property_8c =
     [ "uecho_property_getintegerdata", "property_8c.html#a72c596379460633a20edbedca7895519", null ],
     [ "uecho_property_getnode", "property_8c.html#a6299e5c0e4dce8e978e7750dd4e5d942", null ],
     [ "uecho_property_getparentobject", "property_8c.html#a494d30469a91331d42ede8d028125463", null ],
-    [ "uecho_property_isannouncement", "property_8c.html#ae4195dacaa168f4e08a5fbacb4069afa", null ],
+    [ "uecho_property_isannounceable", "property_8c.html#a5ebd5e077ff3372153c9f8bcb1d1d6b6", null ],
     [ "uecho_property_isreadable", "property_8c.html#a931608cd273d095fa71ef7e3bde78cb0", null ],
     [ "uecho_property_isreadonly", "property_8c.html#a39b704e2ae0b34ecad22c498586fb220", null ],
     [ "uecho_property_iswritable", "property_8c.html#a69d7159dfdc2b5dbe68d67fef963e82d", null ],
