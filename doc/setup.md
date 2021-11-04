@@ -14,11 +14,11 @@ cd uecho
 ./bootstrap && ./configure && make && sudo make install
 ```
 
-## MacOSX
+## Homebrew (macOS, Linux)
 
-To install on MacOSX using [Homebrew](http://brew.sh), run the following in a terminal:
+For any platforms which support [Homebrew](https://brew.sh/), you can easily install using Homebrew with the following `brew` commands:
 
 ```
-brew tap cybergarage/brew
+brew tap cybergarage/homebrew
 brew install uecho
 ```
