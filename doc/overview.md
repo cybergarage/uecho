@@ -45,4 +45,11 @@ make install
   - [Inside of Device](https://github.com/cybergarage/uecho/blob/master/doc/device_inside.md)
 - [Examples](https://github.com/cybergarage/uecho/blob/master/doc/examples.md)
 
+# References
+
+To develop [ECHONET Lite][enet] controller applications or devices using uEcho for C, please refer to the following developer's documentation to know the functions in more detail.
+
+* [Programming Guide](doc/mupnpcproguide.pdf)
+* [Doxygen](http://cybergarage.github.io/mupnp/)
+
 [enet]:http://echonet.jp/english/
