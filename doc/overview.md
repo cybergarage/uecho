@@ -22,7 +22,7 @@ For any platforms which support [Homebrew](https://brew.sh/), you can easily ins
 
 ```
 brew tap cybergarage/homebrew
-brew install mupnp
+brew install uecho
 ```
 
 ### Installation from source
