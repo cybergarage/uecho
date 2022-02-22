@@ -55,35 +55,16 @@ bool uecho_message_isrequestesv(uEchoEsv esv)
  * uecho_object_responsemessage
  ****************************************/
 
-uEchoMessage* uecho_object_createresponsemessage(uEchoObject* obj, uEchoMessage* msg)
+void uecho_object_responsemessage_setopc(uEchoMessage* resMsg, uEchoObject* obj, byte OPC, uEchoProperty** EP)
 {
   uEchoProperty *msgProp, *nodeProp, *resProp;
   uEchoPropertyCode msgPropCode;
   int nodePropSize;
   byte* nodePropData;
-  uEchoEsv msgEsv, resEsv;
-  int msgOpc, n;
-  uEchoMessage* resMsg;
+  int n;
 
-  if (!obj || !msg)
-    return NULL;
-
-  msgEsv = uecho_message_getesv(msg);
-  if (!uecho_message_requestesv2responseesv(msgEsv, &resEsv))
-    return NULL;
-
-  resMsg = uecho_message_new();
-  if (!resMsg)
-    return NULL;
-
-  uecho_message_setesv(resMsg, resEsv);
-  uecho_message_settid(resMsg, uecho_message_gettid(msg));
-  uecho_message_setsourceobjectcode(resMsg, uecho_message_getdestinationobjectcode(msg));
-  uecho_message_setdestinationobjectcode(resMsg, uecho_message_getsourceobjectcode(msg));
-
-  msgOpc = uecho_message_getopc(msg);
-  for (n = 0; n < msgOpc; n++) {
-    msgProp = uecho_message_getproperty(msg, n);
+  for (n = 0; n < OPC; n++) {
+    msgProp = EP[n];
     if (!msgProp)
       continue;
 
@@ -105,6 +86,36 @@ uEchoMessage* uecho_object_createresponsemessage(uEchoObject* obj, uEchoMessage*
     uecho_property_setdata(resProp, nodePropData, nodePropSize);
 
     uecho_message_addproperty(resMsg, resProp);
+  }
+}
+
+uEchoMessage* uecho_object_createresponsemessage(uEchoObject* obj, uEchoMessage* msg)
+{
+  uEchoEsv msgEsv, resEsv;
+  uEchoMessage* resMsg;
+
+  if (!obj || !msg)
+    return NULL;
+
+  msgEsv = uecho_message_getesv(msg);
+  if (!uecho_message_requestesv2responseesv(msgEsv, &resEsv))
+    return NULL;
+
+  resMsg = uecho_message_new();
+  if (!resMsg)
+    return NULL;
+
+  uecho_message_setesv(resMsg, resEsv);
+  uecho_message_settid(resMsg, uecho_message_gettid(msg));
+  uecho_message_setsourceobjectcode(resMsg, uecho_message_getdestinationobjectcode(msg));
+  uecho_message_setdestinationobjectcode(resMsg, uecho_message_getsourceobjectcode(msg));
+
+  if (uecho_message_isreadwritemessage(msg)) {
+    uecho_object_responsemessage_setopc(resMsg, obj, msg->OPCSet, msg->EPSet);
+    uecho_object_responsemessage_setopc(resMsg, obj, msg->OPCGet, msg->EPGet);
+  }
+  else {
+    uecho_object_responsemessage_setopc(resMsg, obj, msg->OPC, msg->EP);
   }
 
   return resMsg;
