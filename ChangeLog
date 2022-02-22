@@ -1,3 +1,21 @@
+2022-02-23 The uecho Authors <skonno@cybergarage.org>
+	* v1.1.0
+	* Update to support OPCSet and OPCGet message
+
+2019-02-24 The uecho Authors <skonno@cybergarage.org>
+	* v1.0.0
+	* Add uecho_log_*() for debug
+	* Format by WebKit style using clang-format
+	* Fix uecho_list_clear() not to access the freed list
+
+2018-11-13 The uecho Authors <skonno@cybergarage.org>
+	* v0.9.2
+	* Fix uecho_controller_postmessage() to unlock the internal mutex
+
+2018-09-08 The uecho Authors <skonno@cybergarage.org>
+	* v0.9.1
+	* Fix uecho_nodeprofileclass_setversion() to set the transmission type correctly
+
 2015-09-15 The uecho Authors <skonno@cybergarage.org>
 
 	* v0.9
