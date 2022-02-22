@@ -134,6 +134,11 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
     }
   }
 
+  uEchoMessage* msg_copy = uecho_message_new();
+  BOOST_CHECK(uecho_message_parse(msg_copy, uecho_message_getbytes(msg), uecho_message_size(msg)));
+  BOOST_CHECK(uecho_message_equals(msg, msg_copy));
+  uecho_message_delete(msg_copy);
+
   uecho_message_delete(msg);
 }
 BOOST_AUTO_TEST_CASE(MessageEsvType)
