@@ -78,6 +78,9 @@ bool uecho_message_requestesv2errorresponseesv(uEchoEsv reqEsv, uEchoEsv* resEsv
 
 bool uecho_message_parsepacket(uEchoMessage* msg, uEchoDatagramPacket* dgmPkt);
 
+bool uecho_message_isreadwritemessage(uEchoMessage* msg);
+
+
 #ifdef __cplusplus
 } /* extern C */
 #endif
