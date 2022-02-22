@@ -234,31 +234,47 @@ bool uecho_object_setpropertyrequest(uEchoObject* obj, uEchoProperty* reqProp)
   return uecho_property_setdata(nodeProp, uecho_property_getdata(reqProp), uecho_property_getdatasize(reqProp));
 }
 
-void uecho_object_handlemessage(uEchoObject* obj, uEchoMessage* msg)
+void uecho_object_handlewritemessage(uEchoObject* obj, byte OPC, uEchoProperty** EP)
 {
   uEchoProperty* msgProp;
+  int n;
+  for (n = 0; n < OPC; n++) {
+    msgProp = EP[n];
+    if (!msgProp)
+      continue;
+    if (!uecho_object_iswritablepropertyrequest(obj, msgProp))
+      continue;
+    uecho_object_setpropertyrequest(obj, msgProp);
+  }
+}
+
+void uecho_object_handlerequestmessage(uEchoObject* obj, uEchoEsv msgEsv, byte OPC, uEchoProperty** EP)
+{
+  uEchoProperty* msgProp;
+  int n;
+
+  for (n = 0; n < OPC; n++) {
+    msgProp = EP[n];
+    if (!msgProp)
+      continue;
+    uecho_object_notifyrequestproperty(obj, msgEsv, msgProp);
+  }
+}
+
+void uecho_object_handlemessage(uEchoObject* obj, uEchoMessage* msg)
+{
   uEchoEsv msgEsv;
-  int msgOpc, n;
 
   if (!obj || !msg)
     return;
 
   msgEsv = uecho_message_getesv(msg);
-  msgOpc = uecho_message_getopc(msg);
 
   // Write properties
 
   if (uecho_message_iswriterequest(msg)) {
-    for (n = 0; n < msgOpc; n++) {
-      msgProp = uecho_message_getproperty(msg, n);
-      if (!msgProp)
-        continue;
-
-      if (!uecho_object_iswritablepropertyrequest(obj, msgProp))
-        continue;
-
-      uecho_object_setpropertyrequest(obj, msgProp);
-    }
+    uecho_object_handlewritemessage(obj, msg->OPC, msg->EP);
+    uecho_object_handlewritemessage(obj, msg->OPCSet, msg->EPSet);
   }
 
   // Notify observers
@@ -267,12 +283,11 @@ void uecho_object_handlemessage(uEchoObject* obj, uEchoMessage* msg)
     obj->allMsgListener(obj, msg);
   }
 
-  for (n = 0; n < msgOpc; n++) {
-    msgProp = uecho_message_getproperty(msg, n);
-    if (!msgProp)
-      continue;
-    uecho_object_notifyrequestproperty(obj, msgEsv, msgProp);
-  }
+  // Notify request observers
+
+  uecho_object_handlerequestmessage(obj, msgEsv, msg->OPC, msg->EP);
+  uecho_object_handlerequestmessage(obj, uEchoEsvWriteRequest, msg->OPCSet, msg->EPSet);
+  uecho_object_handlerequestmessage(obj, uEchoEsvReadRequest, msg->OPCGet, msg->EPGet);
 
   // Response required ?
 
