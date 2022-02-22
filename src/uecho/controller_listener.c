@@ -66,13 +66,28 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
  * uecho_controller_updatepropertydata
  ****************************************/
 
+void uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* srcObj, byte OPC, uEchoProperty** EP)
+{
+  uEchoProperty* msgProp;
+  uEchoPropertyCode msgPropCode;
+  size_t n;
+
+  for (n = 0; n < OPC; n++) {
+    msgProp = EP[n];
+    if (!msgProp)
+      continue;
+    msgPropCode = uecho_property_getcode(msgProp);
+    if (!uecho_object_hasproperty(srcObj, msgPropCode)) {
+      uecho_object_setproperty(srcObj, msgPropCode, uEchoPropertyAttrNone);
+    }
+    uecho_object_setpropertydata(srcObj, msgPropCode, uecho_property_getdata(msgProp), uecho_property_getdatasize(msgProp));
+  }
+}
+
 void uecho_controller_updatepropertydata(uEchoController* ctrl, uEchoMessage* msg)
 {
   uEchoNode* srcNode;
   uEchoObject* srcObj;
-  uEchoProperty* msgProp;
-  uEchoPropertyCode msgPropCode;
-  size_t msgOpc, n;
 
   srcNode = uecho_controller_getnodebyaddress(ctrl, uecho_message_getsourceaddress(msg));
   if (!srcNode)
@@ -82,16 +97,11 @@ void uecho_controller_updatepropertydata(uEchoController* ctrl, uEchoMessage* ms
   if (!srcObj)
     return;
 
-  msgOpc = uecho_message_getopc(msg);
-  for (n = 0; n < msgOpc; n++) {
-    msgProp = uecho_message_getproperty(msg, n);
-    if (!msgProp)
-      continue;
-    msgPropCode = uecho_property_getcode(msgProp);
-    if (!uecho_object_hasproperty(srcObj, msgPropCode)) {
-      uecho_object_setproperty(srcObj, msgPropCode, uEchoPropertyAttrNone);
-    }
-    uecho_object_setpropertydata(srcObj, msgPropCode, uecho_property_getdata(msgProp), uecho_property_getdatasize(msgProp));
+  if (uecho_message_isreadwritemessage(msg)) {
+    uecho_controller_updateopcpropertydata(ctrl, srcObj, msg->OPCGet, msg->EPGet);
+  }
+  else {
+    uecho_controller_updateopcpropertydata(ctrl, srcObj, msg->OPC, msg->EP);
   }
 }
 
