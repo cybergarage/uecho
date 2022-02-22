@@ -71,17 +71,20 @@ bool uecho_message_delete(uEchoMessage* msg)
  * uecho_message_clearproperties
  ****************************************/
 
-bool uecho_properties_clear(uEchoProperty** EP, byte OPC)
+bool uecho_properties_clear(uEchoProperty*** EP, byte* OPC)
 {
   int n;
-  for (n = 0; n < (int)OPC; n++) {
-    uecho_property_delete(EP[n]);
-    EP[n] = NULL;
+  for (n = 0; n < (int)(*OPC); n++) {
+    uecho_property_delete((*EP)[n]);
+    (*EP)[n] = NULL;
   }
 
-  if (EP) {
-    free(EP);
+  if (*EP) {
+    free(*EP);
   }
+
+  *EP = NULL;
+  *OPC = 0;
 
   return true;
 }
@@ -90,20 +93,9 @@ bool uecho_message_clearproperties(uEchoMessage* msg)
 {
   if (!msg)
     return false;
-
-  uecho_properties_clear(msg->EP, msg->OPC);
-  uecho_properties_clear(msg->EPSet, msg->OPCSet);
-  uecho_properties_clear(msg->EPGet, msg->OPCGet);
-
-  msg->OPC = 0;
-  msg->EP = NULL;
-
-  msg->OPCSet = 0;
-  msg->EPSet = NULL;
-
-  msg->OPCGet = 0;
-  msg->EPGet = NULL;
-
+  uecho_properties_clear(&msg->EP, &msg->OPC);
+  uecho_properties_clear(&msg->EPSet, &msg->OPCSet);
+  uecho_properties_clear(&msg->EPGet, &msg->OPCGet);
   return true;
 }
 
