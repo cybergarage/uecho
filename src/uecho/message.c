@@ -847,7 +847,7 @@ size_t uecho_message_size(uEchoMessage* msg)
   else {
     msgLen += uecho_message_opcsize(msg->OPC, msg->EP);
   }
-  
+
   return msgLen;
 }
 
@@ -855,7 +855,7 @@ size_t uecho_message_size(uEchoMessage* msg)
  * uecho_message_getbytes
  ****************************************/
 
-bool uecho_message_setopcbytes(uEchoMessage* msg, byte OPC, uEchoProperty** EP, size_t *offset)
+bool uecho_message_setopcbytes(uEchoMessage* msg, byte OPC, uEchoProperty** EP, size_t* offset)
 {
   uEchoProperty* prop;
   size_t n, count;
