@@ -714,6 +714,17 @@ bool uecho_message_property_parse(byte OPC, uEchoProperty** EP, const byte* data
   return true;
 }
 
+bool uecho_message_isreadwritemessage(uEchoMessage* msg)
+{
+  if (msg->ESV == uEchoEsvWriteReadRequest)
+    return true;
+  if (msg->ESV == uEchoEsvWriteReadResponse)
+    return true;
+  if (msg->ESV == uEchoEsvWriteReadRequestError)
+    return true;
+  return false;
+}
+
 bool uecho_message_parse(uEchoMessage* msg, const byte* data, size_t dataLen)
 {
   size_t offset;
@@ -756,15 +767,27 @@ bool uecho_message_parse(uEchoMessage* msg, const byte* data, size_t dataLen)
 
   uecho_message_setesv(msg, data[10]);
 
-  // OPC
-
-  uecho_message_setopc(msg, data[11]);
-
-  // EP
-
-  offset = 12;
-  if (!uecho_message_property_parse(msg->OPC, msg->EP, data, dataLen, &offset))
-    return false;
+  if (uecho_message_isreadwritemessage(msg)) {
+    // OPCSet
+    uecho_message_setopcset(msg, data[11]);
+    offset = 12;
+    if (!uecho_message_property_parse(msg->OPCSet, msg->EPSet, data, dataLen, &offset))
+      return false;
+    // OPCGet
+    if ((dataLen - 1) < offset)
+      return false;
+    uecho_message_setopcget(msg, data[offset]);
+    offset += 1;
+    if (!uecho_message_property_parse(msg->OPCGet, msg->EPGet, data, dataLen, &offset))
+      return false;
+  }
+  else {
+    // OPC
+    uecho_message_setopc(msg, data[11]);
+    offset = 12;
+    if (!uecho_message_property_parse(msg->OPC, msg->EP, data, dataLen, &offset))
+      return false;
+  }
 
   return true;
 }
