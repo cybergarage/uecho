@@ -9,5 +9,5 @@ var socket__opt_8h =
     [ "uecho_socket_option_setreuseaddress", "socket__opt_8h.html#af25e9302f41ebc807127d730a02a661d", null ],
     [ "uEchoSocketOption", "socket__opt_8h.html#a5b5496fedde2ee302cf17af38d6d9651", null ],
     [ "uecho_socket_option_delete", "socket__opt_8h.html#a394f177be2708dd246cd841cbc120c36", null ],
-    [ "uecho_socket_option_new", "socket__opt_8h.html#a97dc77427ed0f6922e6f1fa08c6ab9c7", null ]
+    [ "uecho_socket_option_new", "socket__opt_8h.html#a4c046ddf6898d76f4c6b0b21327a3844", null ]
 ];

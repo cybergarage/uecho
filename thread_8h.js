@@ -23,7 +23,7 @@ var thread_8h =
     [ "uecho_thread_start", "thread_8h.html#ab24c256a88c60eac7b7b4ed6acf92355", null ],
     [ "uecho_thread_stop", "thread_8h.html#a75750177d8aa625f2ac02c97b094081e", null ],
     [ "uecho_threadlist_delete", "thread_8h.html#aceaaf2c44cafc40f811e77dec5d0b2d0", null ],
-    [ "uecho_threadlist_new", "thread_8h.html#a946d26dec87e87712e9898110559195b", null ],
+    [ "uecho_threadlist_new", "thread_8h.html#abe3fd75927a9dafaea300b6c644280ce", null ],
     [ "uecho_threadlist_start", "thread_8h.html#afa669219e3b1f0a8c553c49303592ba4", null ],
     [ "uecho_threadlist_stop", "thread_8h.html#ac3c71818ab84046036a08578a6c57048", null ]
 ];
