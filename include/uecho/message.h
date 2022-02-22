@@ -65,16 +65,12 @@ bool uecho_message_clear(uEchoMessage* msg);
 
 bool uecho_message_parse(uEchoMessage* msg, const byte* data, size_t dataLen);
 
-void uecho_message_setehd1(uEchoMessage* msg, byte val);
 byte uecho_message_getehd1(uEchoMessage* msg);
-
-void uecho_message_setehd2(uEchoMessage* msg, byte val);
 byte uecho_message_getehd2(uEchoMessage* msg);
 
 bool uecho_message_settid(uEchoMessage* msg, uEchoTID val);
 uEchoTID uecho_message_gettid(uEchoMessage* msg);
 
-bool uecho_message_setopc(uEchoMessage* msg, byte val);
 byte uecho_message_getopc(uEchoMessage* msg);
 byte uecho_message_getopcset(uEchoMessage* msg);
 byte uecho_message_getopcget(uEchoMessage* msg);
@@ -104,8 +100,6 @@ bool uecho_message_addpropertyget(uEchoMessage* msg, uEchoProperty* prop);
 bool uecho_message_setpropertyget(uEchoMessage* msg, uEchoPropertyCode propCode, size_t propDataSize, const byte* propData);
 uEchoProperty* uecho_message_getpropertyget(uEchoMessage* msg, size_t n);
 uEchoProperty* uecho_message_getpropertygetbycode(uEchoMessage* msg, uEchoPropertyCode code);
-
-bool uecho_message_clearproperties(uEchoMessage* msg);
 
 size_t uecho_message_size(uEchoMessage* msg);
 byte* uecho_message_getbytes(uEchoMessage* msg);

@@ -218,26 +218,38 @@ bool uecho_message_isdestinationobjectcode(uEchoMessage* msg, int code)
  * uecho_message_setopc
  ****************************************/
 
-bool uecho_message_setopc(uEchoMessage* msg, byte count)
+bool uecho_message_setopcep(byte* OPC, uEchoProperty*** EP, byte count)
 {
   int n;
+  *OPC = count;
+  if (*OPC <= 0)
+    return true;
+  *EP = (uEchoProperty**)malloc(sizeof(uEchoProperty*) * count);
+  for (n = 0; n < (size_t)count; n++) {
+    (*EP)[n] = uecho_property_new();
+  }
+  return true;
+}
 
+bool uecho_message_setopc(uEchoMessage* msg, byte count)
+{
   if (!msg)
     return false;
+  return uecho_message_setopcep(&msg->OPC, &msg->EP, count);
+}
 
-  uecho_message_clear(msg);
+bool uecho_message_setopcset(uEchoMessage* msg, byte count)
+{
+  if (!msg)
+    return false;
+  return uecho_message_setopcep(&msg->OPCSet, &msg->EPSet, count);
+}
 
-  msg->OPC = count;
-
-  if (msg->OPC <= 0)
-    return true;
-
-  msg->EP = (uEchoProperty**)malloc(sizeof(uEchoProperty*) * count);
-  for (n = 0; n < (int)(msg->OPC); n++) {
-    msg->EP[n] = uecho_property_new();
-  }
-
-  return true;
+bool uecho_message_setopcget(uEchoMessage* msg, byte count)
+{
+  if (!msg)
+    return false;
+  return uecho_message_setopcep(&msg->OPCGet, &msg->EPGet, count);
 }
 
 /****************************************
@@ -532,7 +544,7 @@ bool uecho_property_add(byte* OPC, uEchoProperty*** EP, uEchoProperty* prop)
 {
   *OPC += 1;
   *EP = (uEchoProperty**)realloc(*EP, sizeof(uEchoProperty*) * (*OPC));
-  *EP[(*OPC - 1)] = prop;
+  (*EP)[(*OPC - 1)] = prop;
   return true;
 }
 
@@ -680,6 +692,9 @@ bool uecho_message_parse(uEchoMessage* msg, const byte* data, size_t dataLen)
   size_t n, offset, count;
 
   if (!msg)
+    return false;
+
+  if (!uecho_message_clear(msg))
     return false;
 
   if (dataLen < uEchoMessageMinLen)
