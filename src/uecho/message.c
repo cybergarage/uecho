@@ -855,10 +855,28 @@ size_t uecho_message_size(uEchoMessage* msg)
  * uecho_message_getbytes
  ****************************************/
 
-byte* uecho_message_getbytes(uEchoMessage* msg)
+bool uecho_message_setopcbytes(uEchoMessage* msg, byte OPC, uEchoProperty** EP, size_t *offset)
 {
   uEchoProperty* prop;
-  size_t n, offset, count;
+  size_t n, count;
+  for (n = 0; n < (size_t)OPC; n++) {
+    prop = EP[n];
+    if (!prop)
+      return false;
+    count = uecho_property_getdatasize(prop);
+    msg->bytes[(*offset)++] = uecho_property_getcode(prop);
+    msg->bytes[(*offset)++] = count;
+    if (count <= 0)
+      continue;
+    memcpy((msg->bytes + (*offset)), uecho_property_getdata(prop), count);
+    *offset += count;
+  }
+  return true;
+}
+
+byte* uecho_message_getbytes(uEchoMessage* msg)
+{
+  size_t offset;
 
   if (msg->bytes) {
     free(msg->bytes);
@@ -877,20 +895,19 @@ byte* uecho_message_getbytes(uEchoMessage* msg)
   msg->bytes[8] = msg->DEOJ[1];
   msg->bytes[9] = msg->DEOJ[2];
   msg->bytes[10] = msg->ESV;
-  msg->bytes[11] = msg->OPC;
 
-  offset = 12;
-  for (n = 0; n < (size_t)(msg->OPC); n++) {
-    prop = uecho_message_getproperty(msg, n);
-    if (!prop)
-      continue;
-    count = uecho_property_getdatasize(prop);
-    msg->bytes[offset++] = uecho_property_getcode(prop);
-    msg->bytes[offset++] = count;
-    if (count <= 0)
-      continue;
-    memcpy((msg->bytes + offset), uecho_property_getdata(prop), count);
-    offset += count;
+  if (uecho_message_isreadwritemessage(msg)) {
+    msg->bytes[11] = msg->OPCSet;
+    offset = 12;
+    uecho_message_setopcbytes(msg, msg->OPCSet, msg->EPSet, &offset);
+    msg->bytes[offset] = msg->OPCGet;
+    offset += 1;
+    uecho_message_setopcbytes(msg, msg->OPCGet, msg->EPGet, &offset);
+  }
+  else {
+    msg->bytes[11] = msg->OPC;
+    offset = 12;
+    uecho_message_setopcbytes(msg, msg->OPC, msg->EP, &offset);
   }
 
   return msg->bytes;
