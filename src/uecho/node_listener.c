@@ -55,9 +55,8 @@ bool uecho_message_isrequestesv(uEchoEsv esv)
  * uecho_object_responsemessage
  ****************************************/
 
-bool uecho_object_responsemessage(uEchoObject* obj, uEchoMessage* msg)
+uEchoMessage* uecho_object_createresponsemessage(uEchoObject* obj, uEchoMessage* msg)
 {
-  uEchoNode* parentNode;
   uEchoProperty *msgProp, *nodeProp, *resProp;
   uEchoPropertyCode msgPropCode;
   int nodePropSize;
@@ -65,25 +64,17 @@ bool uecho_object_responsemessage(uEchoObject* obj, uEchoMessage* msg)
   uEchoEsv msgEsv, resEsv;
   int msgOpc, n;
   uEchoMessage* resMsg;
-  byte* resMsgBytes;
-  size_t resMsgLen;
 
   if (!obj || !msg)
-    return false;
+    return NULL;
 
   msgEsv = uecho_message_getesv(msg);
   if (!uecho_message_requestesv2responseesv(msgEsv, &resEsv))
-    return false;
-
-  parentNode = uecho_object_getparentnode(obj);
-  if (!parentNode)
-    return false;
-
-  // Create response message
+    return NULL;
 
   resMsg = uecho_message_new();
   if (!resMsg)
-    return false;
+    return NULL;
 
   uecho_message_setesv(resMsg, resEsv);
   uecho_message_settid(resMsg, uecho_message_gettid(msg));
@@ -116,11 +107,34 @@ bool uecho_object_responsemessage(uEchoObject* obj, uEchoMessage* msg)
     uecho_message_addproperty(resMsg, resProp);
   }
 
+  return resMsg;
+}
+
+bool uecho_object_responsemessage(uEchoObject* obj, uEchoMessage* msg)
+{
+  uEchoNode* parentNode;
+  uEchoMessage* resMsg;
+  byte* resMsgBytes;
+  size_t resMsgLen;
+
+  if (!obj || !msg)
+    return false;
+
+  parentNode = uecho_object_getparentnode(obj);
+  if (!parentNode)
+    return false;
+
+  // Create response message
+
+  resMsg = uecho_object_createresponsemessage(obj, msg);
+  if (!resMsg)
+    return false;
+
   // Send response message
 
   resMsgBytes = uecho_message_getbytes(resMsg);
   resMsgLen = uecho_message_size(resMsg);
-  if (resEsv == uEchoEsvNotification) {
+  if (uecho_message_getesv(resMsg) == uEchoEsvNotification) {
     uecho_node_announcemessagebytes(parentNode, resMsgBytes, resMsgLen);
   }
   else {
