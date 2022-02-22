@@ -46,7 +46,11 @@ typedef struct _uEchoMessage {
   byte DEOJ[uEchoEOJSize];
   int ESV;
   byte OPC;
+  byte OPCSet;
+  byte OPCGet;
   uEchoProperty** EP;
+  uEchoProperty** EPSet;
+  uEchoProperty** EPGet;
   byte* bytes;
 
   char* srcAddr;
