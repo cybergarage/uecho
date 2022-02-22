@@ -66,6 +66,13 @@ typedef struct _uEchoMessage {
  * Function
  ****************************************/
 
+void uecho_message_setehd1(uEchoMessage* msg, byte val);
+void uecho_message_setehd2(uEchoMessage* msg, byte val);
+
+bool uecho_message_setopc(uEchoMessage* msg, byte val);
+bool uecho_message_setopcset(uEchoMessage* msg, byte val);
+bool uecho_message_setopcget(uEchoMessage* msg, byte val);
+
 bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv* resEsv);
 bool uecho_message_requestesv2errorresponseesv(uEchoEsv reqEsv, uEchoEsv* resEsv);
 
