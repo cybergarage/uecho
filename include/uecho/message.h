@@ -97,9 +97,11 @@ uEchoProperty* uecho_message_getpropertybycode(uEchoMessage* msg, uEchoPropertyC
 
 bool uecho_message_addpropertyset(uEchoMessage* msg, uEchoProperty* prop);
 uEchoProperty* uecho_message_getpropertyset(uEchoMessage* msg, size_t n);
+uEchoProperty* uecho_message_getpropertysetbycode(uEchoMessage* msg, uEchoPropertyCode code);
 
 bool uecho_message_addpropertyget(uEchoMessage* msg, uEchoProperty* prop);
 uEchoProperty* uecho_message_getpropertyget(uEchoMessage* msg, size_t n);
+uEchoProperty* uecho_message_getpropertygetbycode(uEchoMessage* msg, uEchoPropertyCode code);
 
 bool uecho_message_clearproperties(uEchoMessage* msg);
 
