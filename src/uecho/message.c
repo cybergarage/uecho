@@ -558,7 +558,7 @@ bool uecho_message_addpropertyget(uEchoMessage* msg, uEchoProperty* prop)
 }
 
 /****************************************
- * uecho_message_addproperty
+ * uecho_message_setproperty
  ****************************************/
 
 bool uecho_message_setproperty(uEchoMessage* msg, uEchoPropertyCode propCode, size_t propDataSize, const byte* propData)
@@ -587,13 +587,32 @@ bool uecho_message_setproperty(uEchoMessage* msg, uEchoPropertyCode propCode, si
  * uecho_message_getproperty
  ****************************************/
 
+uEchoProperty* uecho_property_get(byte OPC, uEchoProperty** EP, size_t n)
+{
+  if ((OPC - 1) < n)
+    return NULL;
+  return EP[n];
+}
+
 uEchoProperty* uecho_message_getproperty(uEchoMessage* msg, size_t n)
 {
   if (!msg)
-    return false;
-  if ((msg->OPC - 1) < n)
     return NULL;
-  return msg->EP[n];
+  return uecho_property_get(msg->OPC, msg->EP, n);
+}
+
+uEchoProperty* uecho_message_getpropertyset(uEchoMessage* msg, size_t n)
+{
+  if (!msg)
+    return NULL;
+  return uecho_property_get(msg->OPCSet, msg->EPSet, n);
+}
+
+uEchoProperty* uecho_message_getpropertyget(uEchoMessage* msg, size_t n)
+{
+  if (!msg)
+    return NULL;
+  return uecho_property_get(msg->OPCGet, msg->EPGet, n);
 }
 
 /****************************************
