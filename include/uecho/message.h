@@ -96,10 +96,12 @@ uEchoProperty* uecho_message_getproperty(uEchoMessage* msg, size_t n);
 uEchoProperty* uecho_message_getpropertybycode(uEchoMessage* msg, uEchoPropertyCode code);
 
 bool uecho_message_addpropertyset(uEchoMessage* msg, uEchoProperty* prop);
+bool uecho_message_setpropertyset(uEchoMessage* msg, uEchoPropertyCode propCode, size_t propDataSize, const byte* propData);
 uEchoProperty* uecho_message_getpropertyset(uEchoMessage* msg, size_t n);
 uEchoProperty* uecho_message_getpropertysetbycode(uEchoMessage* msg, uEchoPropertyCode code);
 
 bool uecho_message_addpropertyget(uEchoMessage* msg, uEchoProperty* prop);
+bool uecho_message_setpropertyget(uEchoMessage* msg, uEchoPropertyCode propCode, size_t propDataSize, const byte* propData);
 uEchoProperty* uecho_message_getpropertyget(uEchoMessage* msg, size_t n);
 uEchoProperty* uecho_message_getpropertygetbycode(uEchoMessage* msg, uEchoPropertyCode code);
 
