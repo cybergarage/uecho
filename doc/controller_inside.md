@@ -25,4 +25,4 @@ After a node is received a message from other nodes, the node's listeners are ca
 - \[1\] [Part II ECHONET Lite Communication Middleware Specification][enet-spec]
 
 [enet]:http://echonet.jp/english/
-[enet-spec]:http://www.echonet.gr.jp/english/spec/index.htm
+[enet-spec]:https://echonet.jp/spec_object_rp_en/
