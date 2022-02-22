@@ -686,10 +686,45 @@ bool uecho_message_setpropertyget(uEchoMessage* msg, uEchoPropertyCode propCode,
  * uecho_message_parse
  ****************************************/
 
-bool uecho_message_parse(uEchoMessage* msg, const byte* data, size_t dataLen)
+bool uecho_message_property_parse(byte OPC, uEchoProperty** EP, const byte* data, size_t dataLen, size_t* offset)
 {
   uEchoProperty* prop;
-  size_t n, offset, count;
+  size_t n, count;
+
+  // EP
+
+  for (n = 0; n < (size_t)OPC; n++) {
+    prop = EP[n];
+    if (!prop)
+      return false;
+
+    // EPC
+
+    if ((dataLen - 1) < (*offset))
+      return false;
+    uecho_property_setcode(prop, data[(*offset)++]);
+
+    // PDC
+
+    if ((dataLen - 1) < (*offset))
+      return false;
+    count = data[(*offset)++];
+
+    // EDT
+
+    if ((dataLen - 1) < ((*offset) + count - 1))
+      return false;
+    if (!uecho_property_setdata(prop, (data + (*offset)), count))
+      return false;
+    *offset += count;
+  }
+
+  return true;
+}
+
+bool uecho_message_parse(uEchoMessage* msg, const byte* data, size_t dataLen)
+{
+  size_t offset;
 
   if (!msg)
     return false;
@@ -736,31 +771,8 @@ bool uecho_message_parse(uEchoMessage* msg, const byte* data, size_t dataLen)
   // EP
 
   offset = 12;
-  for (n = 0; n < (int)(msg->OPC); n++) {
-    prop = uecho_message_getproperty(msg, n);
-    if (!prop)
-      return false;
-
-    // EPC
-
-    if ((dataLen - 1) < offset)
-      return false;
-    uecho_property_setcode(prop, data[offset++]);
-
-    // PDC
-
-    if ((dataLen - 1) < offset)
-      return false;
-    count = data[offset++];
-
-    // EDT
-
-    if ((dataLen - 1) < (offset + count - 1))
-      return false;
-    if (!uecho_property_setdata(prop, (data + offset), count))
-      return false;
-    offset += count;
-  }
+  if (!uecho_message_property_parse(msg->OPC, msg->EP, data, dataLen, &offset))
+    return false;
 
   return true;
 }
