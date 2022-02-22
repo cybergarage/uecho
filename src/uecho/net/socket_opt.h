@@ -31,7 +31,7 @@ typedef struct _uEchoSocketOption {
 * Function (Socket)
 ****************************************/
 
-uEchoSocketOption* uecho_socket_option_new();
+uEchoSocketOption* uecho_socket_option_new(void);
 bool uecho_socket_option_delete(uEchoSocketOption* opt);
 
 #define uecho_socket_option_setreuseaddress(opt, flag) ((opt)->reuse = flag)

@@ -78,7 +78,7 @@ void* uecho_thread_getuserdata(uEchoThread* thread);
 * Function (Thread List)
 ****************************************/
 
-uEchoThreadList* uecho_threadlist_new();
+uEchoThreadList* uecho_threadlist_new(void);
 void uecho_threadlist_delete(uEchoThreadList* threadList);
 
 #define uecho_threadlist_clear(threadList) uecho_list_clear((uEchoList*)threadList, (UECHO_LIST_DESTRUCTORFUNC)uecho_thread_delete)
