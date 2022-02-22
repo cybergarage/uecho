@@ -619,23 +619,39 @@ uEchoProperty* uecho_message_getpropertyget(uEchoMessage* msg, size_t n)
  * uecho_message_getpropertybycode
  ****************************************/
 
-uEchoProperty* uecho_message_getpropertybycode(uEchoMessage* msg, uEchoPropertyCode code)
+uEchoProperty* uecho_property_getbycode(byte OPC, uEchoProperty** EP, uEchoPropertyCode code)
 {
   uEchoProperty* prop;
   size_t n;
-
-  if (!msg)
-    return NULL;
-
-  for (n = 0; n < (size_t)(msg->OPC); n++) {
-    prop = uecho_message_getproperty(msg, n);
+  for (n = 0; n < (size_t)(OPC); n++) {
+    prop = EP[n];
     if (!prop)
       continue;
-    if (uecho_property_getcode(prop) == code)
+    if (prop->code == code)
       return prop;
   }
-
   return NULL;
+}
+
+uEchoProperty* uecho_message_getpropertybycode(uEchoMessage* msg, uEchoPropertyCode code)
+{
+  if (!msg)
+    return NULL;
+  return uecho_property_getbycode(msg->OPC, msg->EP, code);
+}
+
+uEchoProperty* uecho_message_getpropertysetbycode(uEchoMessage* msg, uEchoPropertyCode code)
+{
+  if (!msg)
+    return NULL;
+  return uecho_property_getbycode(msg->OPCSet, msg->EPSet, code);
+}
+
+uEchoProperty* uecho_message_getpropertygetbycode(uEchoMessage* msg, uEchoPropertyCode code)
+{
+  if (!msg)
+    return NULL;
+  return uecho_property_getbycode(msg->OPCGet, msg->EPGet, code);
 }
 
 /****************************************
