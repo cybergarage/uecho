@@ -813,24 +813,41 @@ bool uecho_message_parsepacket(uEchoMessage* msg, uEchoDatagramPacket* dgmPkt)
  * uecho_message_size
  ****************************************/
 
-size_t uecho_message_size(uEchoMessage* msg)
+size_t uecho_message_opcsize(byte OPC, uEchoProperty** EP)
 {
   uEchoProperty* prop;
   size_t msgLen, n;
 
-  if (!msg)
-    return 0;
-
-  msgLen = uEchoMessageMinLen;
-
-  for (n = 0; n < (size_t)(msg->OPC); n++) {
-    prop = uecho_message_getproperty(msg, n);
+  msgLen = 0;
+  for (n = 0; n < (size_t)(OPC); n++) {
+    prop = EP[n];
     if (!prop)
       continue;
     msgLen += 2;
     msgLen += uecho_property_getdatasize(prop);
   }
 
+  return msgLen;
+}
+
+size_t uecho_message_size(uEchoMessage* msg)
+{
+  size_t msgLen;
+
+  if (!msg)
+    return 0;
+
+  msgLen = uEchoMessageMinLen;
+
+  if (uecho_message_isreadwritemessage(msg)) {
+    msgLen += uecho_message_opcsize(msg->OPCSet, msg->EPSet);
+    msgLen += 1;
+    msgLen += uecho_message_opcsize(msg->OPCGet, msg->EPGet);
+  }
+  else {
+    msgLen += uecho_message_opcsize(msg->OPC, msg->EP);
+  }
+  
   return msgLen;
 }
 
