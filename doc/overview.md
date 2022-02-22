@@ -1,6 +1,6 @@
 ![logo](https://raw.githubusercontent.com/cybergarage/uecho/master/doc/img/logo.png)
 
-[![Build Status](https://github.com/cybergarage/uecho/actions/workflows/makefile.yml/badge.svg)](https://github.com/cybergarage/uecho/actions/workflows/makefile.yml)
+[![Build Status](https://github.com/cybergarage/uecho/actions/workflows/make.yml/badge.svg)](https://github.com/cybergarage/uecho/actions/workflows/makefile.yml)
 
 uEcho for C, `uecho`,  is a portable and cross platform development framework for creating controller applications and devices of [ECHONET Lite][enet]. [ECHONET][enet] is an open standard specification for IoT devices in Japan, it specifies more than 100 IoT devices such as crime prevention sensor, air conditioner and refrigerator.
 
@@ -14,29 +14,9 @@ To implement IoT controller or devices of [ECHONET Lite][enet], the developer ha
 
 Using The `uecho`, all developer has only to set basic listeners to implement the devices and controllers because The `uecho` handles other requests such as request and notification requests automatically.
 
-## Building and Installation
-
-### Homebrew (macOS, Linux, Raspbian)
-
-For any platforms which support [Homebrew](https://brew.sh/), you can easily install using Homebrew with the following `brew` commands:
-
-```
-brew tap cybergarage/homebrew
-brew install mupnp
-```
-
-### Installation from source
-
-mUPnP for C is distributed as an Automake project, and so you can install the library from the source codes with the following commands:
-
-```
-./configure
-make install
-```
-
 ## Table of Contents
 
-- [Setup](https://github.com/cybergarage/uecho/blob/master/doc/setup.md)
+- [Building and Installation](https://github.com/cybergarage/uecho/blob/master/doc/setup.md)
 - Controller
   - [Overview of Controller](https://github.com/cybergarage/uecho/blob/master/doc/controller_overview.md)
   - [Inside of Controller](https://github.com/cybergarage/uecho/blob/master/doc/controller_inside.md)
