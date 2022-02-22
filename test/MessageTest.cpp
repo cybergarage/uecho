@@ -121,6 +121,8 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
   BOOST_CHECK_EQUAL(uecho_message_getesv(msg), (uEchoEsv)uEchoEsvReadRequest);
 
   BOOST_CHECK_EQUAL(uecho_message_getopc(msg), 3);
+  BOOST_CHECK_EQUAL(uecho_message_getopcset(msg), 0);
+  BOOST_CHECK_EQUAL(uecho_message_getopcget(msg), 0);
 
   for (int n = 1; n <= uecho_message_getopc(msg); n++) {
     uEchoProperty* prop = uecho_message_getproperty(msg, (n - 1));
@@ -141,6 +143,96 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
 
   uecho_message_delete(msg);
 }
+
+BOOST_AUTO_TEST_CASE(MessageWriteReadRequest)
+{
+  uEchoMessage* msg = uecho_message_new();
+
+  byte msgBytes[] = {
+    uEchoEhd1,
+    uEchoEhd2,
+    0x00,
+    0x00,
+    0xA0,
+    0xB0,
+    0xC0,
+    0xD0,
+    0xE0,
+    0xF0,
+    uEchoEsvWriteReadRequest,
+    3,
+    1,
+    1,
+    'a',
+    2,
+    2,
+    'b',
+    'c',
+    3,
+    3,
+    'c',
+    'd',
+    'e',
+    3,
+    1,
+    1,
+    'v',
+    2,
+    2,
+    'w',
+    'x',
+    3,
+    3,
+    'x',
+    'y',
+    'z',
+  };
+
+  BOOST_CHECK(uecho_message_parse(msg, msgBytes, sizeof(msgBytes)));
+
+  BOOST_CHECK_EQUAL(uecho_message_gettid(msg), 0);
+
+  BOOST_CHECK_EQUAL(uecho_message_getsourceobjectcode(msg), 0xA0B0C0);
+  BOOST_CHECK_EQUAL(uecho_message_getdestinationobjectcode(msg), 0xD0E0F0);
+
+  BOOST_CHECK_EQUAL(uecho_message_getesv(msg), (uEchoEsv)uEchoEsvWriteReadRequest);
+
+  BOOST_CHECK_EQUAL(uecho_message_getopc(msg), 0);
+  BOOST_CHECK_EQUAL(uecho_message_getopcset(msg), 3);
+  BOOST_CHECK_EQUAL(uecho_message_getopcget(msg), 3);
+
+  for (int n = 1; n <= uecho_message_getopcset(msg); n++) {
+    uEchoProperty* prop = uecho_message_getpropertyset(msg, (n - 1));
+    BOOST_CHECK(prop);
+    BOOST_CHECK_EQUAL(uecho_property_getcode(prop), n);
+    BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), n);
+    byte* data = uecho_property_getdata(prop);
+    BOOST_CHECK(data);
+    for (int i = 0; i < uecho_property_getdatasize(prop); i++) {
+      BOOST_CHECK_EQUAL(data[i], 'a' + (n - 1) + i);
+    }
+  }
+
+  for (int n = 1; n <= uecho_message_getopcget(msg); n++) {
+    uEchoProperty* prop = uecho_message_getpropertyget(msg, (n - 1));
+    BOOST_CHECK(prop);
+    BOOST_CHECK_EQUAL(uecho_property_getcode(prop), n);
+    BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), n);
+    byte* data = uecho_property_getdata(prop);
+    BOOST_CHECK(data);
+    for (int i = 0; i < uecho_property_getdatasize(prop); i++) {
+      BOOST_CHECK_EQUAL(data[i], 'v' + (n - 1) + i);
+    }
+  }
+
+  uEchoMessage* msg_copy = uecho_message_new();
+  BOOST_CHECK(uecho_message_parse(msg_copy, uecho_message_getbytes(msg), uecho_message_size(msg)));
+  BOOST_CHECK(uecho_message_equals(msg, msg_copy));
+  uecho_message_delete(msg_copy);
+
+  uecho_message_delete(msg);
+}
+
 BOOST_AUTO_TEST_CASE(MessageEsvType)
 {
   uEchoMessage* msg = uecho_message_new();
