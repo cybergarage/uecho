@@ -36,8 +36,15 @@ uEchoMessage* uecho_message_new(void)
   uecho_message_setdestinationobjectcode(msg, uEchoObjectCodeUnknown);
   uecho_message_setesv(msg, 0);
 
-  msg->EP = NULL;
   msg->OPC = 0;
+  msg->EP = NULL;
+
+  msg->OPCSet = 0;
+  msg->EPSet = NULL;
+
+  msg->OPCGet = 0;
+  msg->EPGet = NULL;
+
   msg->bytes = NULL;
   msg->srcAddr = NULL;
 
@@ -64,24 +71,38 @@ bool uecho_message_delete(uEchoMessage* msg)
  * uecho_message_clearproperties
  ****************************************/
 
-bool uecho_message_clearproperties(uEchoMessage* msg)
+bool uecho_properties_clear(uEchoProperty** EP, byte OPC)
 {
   int n;
+  for (n = 0; n < (int)OPC; n++) {
+    uecho_property_delete(EP[n]);
+    EP[n] = NULL;
+  }
 
+  if (EP) {
+    free(EP);
+  }
+
+  return true;
+}
+
+bool uecho_message_clearproperties(uEchoMessage* msg)
+{
   if (!msg)
     return false;
 
-  for (n = 0; n < (int)(msg->OPC); n++) {
-    uecho_property_delete(msg->EP[n]);
-    msg->EP[n] = NULL;
-  }
-
-  if (msg->EP) {
-    free(msg->EP);
-    msg->EP = NULL;
-  }
+  uecho_properties_clear(msg->EP, msg->OPC);
+  uecho_properties_clear(msg->EPSet, msg->OPCSet);
+  uecho_properties_clear(msg->EPGet, msg->OPCGet);
 
   msg->OPC = 0;
+  msg->EP = NULL;
+
+  msg->OPCSet = 0;
+  msg->EPSet = NULL;
+
+  msg->OPCGet = 0;
+  msg->EPGet = NULL;
 
   return true;
 }
@@ -226,6 +247,24 @@ bool uecho_message_setopc(uEchoMessage* msg, byte count)
 byte uecho_message_getopc(uEchoMessage* msg)
 {
   return msg->OPC;
+}
+
+/****************************************
+ * uecho_message_getopcset
+ ****************************************/
+
+byte uecho_message_getopcset(uEchoMessage* msg)
+{
+  return msg->OPCSet;
+}
+
+/****************************************
+ * uecho_message_getopcget
+ ****************************************/
+
+byte uecho_message_getopcget(uEchoMessage* msg)
+{
+  return msg->OPCGet;
 }
 
 /****************************************
@@ -489,17 +528,33 @@ bool uecho_message_isnotifyresponse(uEchoMessage* msg)
  * uecho_message_addproperty
  ****************************************/
 
+bool uecho_property_add(uEchoProperty*** EP, byte* OPC, uEchoProperty* prop)
+{
+  *OPC += 1;
+  *EP = (uEchoProperty**)realloc(*EP, sizeof(uEchoProperty*) * (*OPC));
+  *EP[(*OPC - 1)] = prop;
+  return true;
+}
+
 bool uecho_message_addproperty(uEchoMessage* msg, uEchoProperty* prop)
 {
-  if (!msg)
+  if (!msg || !prop)
     return false;
+  return uecho_property_add(&msg->EP, &msg->OPC, prop);
+}
 
-  msg->OPC++;
+bool uecho_message_addpropertyset(uEchoMessage* msg, uEchoProperty* prop)
+{
+  if (!msg || !prop)
+    return false;
+  return uecho_property_add(&msg->EPSet, &msg->OPCSet, prop);
+}
 
-  msg->EP = (uEchoProperty**)realloc(msg->EP, sizeof(uEchoProperty*) * msg->OPC);
-  msg->EP[(msg->OPC - 1)] = prop;
-
-  return true;
+bool uecho_message_addpropertyget(uEchoMessage* msg, uEchoProperty* prop)
+{
+  if (!msg || !prop)
+    return false;
+  return uecho_property_add(&msg->EPGet, &msg->OPCGet, prop);
 }
 
 /****************************************
