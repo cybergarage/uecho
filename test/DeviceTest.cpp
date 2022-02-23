@@ -155,6 +155,32 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   }
   BOOST_CHECK(propChanged);
 
+  // Send Message (WriteReadRequest:OFF)
+  /*
+
+  propByte = UECHO_TEST_PROPERTY_SWITCH_OFF;
+  msg = uecho_message_new();
+  uecho_message_setesv(msg, uEchoEsvWriteReadRequest);
+  BOOST_CHECK(uecho_message_setpropertyset(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 1, &propByte));
+  BOOST_CHECK(uecho_message_setpropertyget(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
+  BOOST_CHECK(uecho_controller_sendmessage(ctrl, foundObj, msg));
+  uecho_message_delete(msg);
+
+  // Check Property Update (OFF)
+
+  propChanged = false;
+  for (int n = 0; n < uEchoWaitRetryCount; n++) {
+    uecho_sleep(UECHO_TEST_RESPONSE_WAIT_MAX_MTIME / uEchoWaitRetryCount);
+    if (!uecho_property_getbytedata(foundProp, &propByte))
+      continue;
+    if (propByte == UECHO_TEST_PROPERTY_SWITCH_OFF) {
+      propChanged = true;
+      break;
+    }
+  }
+  BOOST_CHECK(propChanged);
+   */
+
   // Teminate
 
   BOOST_CHECK(uecho_controller_stop(ctrl));

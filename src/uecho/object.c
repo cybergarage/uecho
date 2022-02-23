@@ -531,22 +531,22 @@ bool uecho_object_hasmessagelistener(uEchoObject* obj)
 }
 
 /****************************************
- * uecho_object_setpropertyrequestlistener
+ * uecho_object_setpropertyrequesthandler
  ****************************************/
 
-bool uecho_object_setpropertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener)
+bool uecho_object_setpropertyrequesthandler(uEchoObject* obj, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestHandler handler)
 {
   if (!obj)
     return false;
 
-  return uecho_object_property_observer_manager_setobserver(obj->propListenerMgr, esv, code, listener);
+  return uecho_object_property_observer_manager_setobserver(obj->propListenerMgr, esv, code, handler);
 }
 
 /****************************************
  * uecho_object_getpropertyrequestlistener
  ****************************************/
 
-uEchoPropertyRequestListener uecho_object_getpropertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPropertyCode code)
+uEchoPropertyRequestHandler uecho_object_getpropertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPropertyCode code)
 {
   uEchoObjectPropertyObserver* obs;
 
@@ -557,7 +557,7 @@ uEchoPropertyRequestListener uecho_object_getpropertyrequestlistener(uEchoObject
   if (!obs)
     return NULL;
 
-  return obs->listener;
+  return obs->handler;
 }
 
 /****************************************
@@ -570,30 +570,30 @@ bool uecho_object_haspropertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEc
 }
 
 /****************************************
- * uecho_object_setpropertywriterequestlistener
+ * uecho_object_setpropertywriterequesthandler
  ****************************************/
 
-bool uecho_object_setpropertywriterequestlistener(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyRequestListener listener)
+bool uecho_object_setpropertywriterequesthandler(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyRequestHandler handler)
 {
   bool isSeccess = true;
 
-  isSeccess &= uecho_object_setpropertyrequestlistener(obj, uEchoEsvWriteRequest, code, listener);
-  isSeccess &= uecho_object_setpropertyrequestlistener(obj, uEchoEsvWriteRequestResponseRequired, code, listener);
-  isSeccess &= uecho_object_setpropertyrequestlistener(obj, uEchoEsvWriteReadRequest, code, listener);
+  isSeccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteRequest, code, handler);
+  isSeccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteRequestResponseRequired, code, handler);
+  isSeccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteReadRequest, code, handler);
 
   return isSeccess;
 }
 
 /****************************************
- * uecho_object_setpropertyreadlistener
+ * uecho_object_setpropertyreadhandler
  ****************************************/
 
-bool uecho_object_setpropertyreadlistener(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyRequestListener listener)
+bool uecho_object_setpropertyreadhandler(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyRequestHandler handler)
 {
   bool isSeccess = true;
 
-  isSeccess &= uecho_object_setpropertyrequestlistener(obj, uEchoEsvReadRequest, code, listener);
-  isSeccess &= uecho_object_setpropertyrequestlistener(obj, uEchoEsvWriteReadRequest, code, listener);
+  isSeccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvReadRequest, code, handler);
+  isSeccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteReadRequest, code, handler);
 
   return isSeccess;
 }

@@ -43,7 +43,7 @@ uecho_node_addobject(node, obj);
 
 ### 3. Setting Observers
 
-To implement the device, you have only to handle write requests from other nodes because uEcho handles other standard read and notification requests automatically. To handle the write requests, use `uecho_object_setpropertywriterequestlistener()` as the following:
+To implement the device, you have only to handle write requests from other nodes because uEcho handles other standard read and notification requests automatically. To handle the write requests, use `uecho_object_setpropertywriterequesthandler()` as the following:
 
 ```
 void object_propertywriterequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoProperty *prop)
@@ -61,11 +61,11 @@ void object_propertywriterequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPr
   uEchoObject *obj;
   byte propCode;
   ....
-  uecho_object_setpropertywriterequestlistener(obj, propCode, object_propertywriterequestlistener)  
+  uecho_object_setpropertywriterequesthandler(obj, propCode, object_propertywriterequestlistener)  
 }
 ```
 
-`uecho_object_setpropertywriterequestlistener()` sets the handler for all write request ESV types, Write (0x60) , Write Response Required (0x61) and Write & read Request (0x6E). To set handlers for each ESV, use `uecho_object_setpropertyrequeslistener()`.
+`uecho_object_setpropertywriterequesthandler()` sets the handler for all write request ESV types, Write (0x60) , Write Response Required (0x61) and Write & read Request (0x6E). To set handlers for each ESV, use `uecho_object_setpropertyrequeslistener()`.
 
 ### 4. Start Node
 

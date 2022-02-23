@@ -46,7 +46,7 @@ typedef void uEchoObject;
 #endif
 
 typedef void (*uEchoObjectMessageListener)(uEchoObject*, uEchoMessage*);
-typedef void (*uEchoPropertyRequestListener)(uEchoObject*, uEchoEsv, uEchoProperty*);
+typedef bool (*uEchoPropertyRequestHandler)(uEchoObject*, uEchoEsv, uEchoProperty*);
 
 /****************************************
  * Function (Object)
@@ -94,9 +94,9 @@ size_t uecho_object_getpropertycount(uEchoObject* obj);
 void uecho_object_clearproperties(uEchoObject* obj);
 
 void uecho_object_setmessagelistener(uEchoObject* obj, uEchoObjectMessageListener listener);
-bool uecho_object_setpropertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
-bool uecho_object_setpropertywriterequestlistener(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
-bool uecho_object_setpropertyreadlistener(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyRequestListener listener);
+bool uecho_object_setpropertyrequesthandler(uEchoObject* obj, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestHandler handler);
+bool uecho_object_setpropertywriterequesthandler(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyRequestHandler handler);
+bool uecho_object_setpropertyreadhandler(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyRequestHandler handler);
 
 bool uecho_object_announcemessage(uEchoObject* obj, uEchoMessage* msg);
 bool uecho_object_sendmessage(uEchoObject* obj, uEchoObject* dstObj, uEchoMessage* msg);

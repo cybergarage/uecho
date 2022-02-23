@@ -43,7 +43,7 @@ void uecho_test_object_messagelitener(uEchoObject* obj, uEchoMessage* msg)
 #endif
 }
 
-void uecho_test_property_requestlistener(uEchoObject* obj, uEchoEsv esv, uEchoProperty* prop)
+bool uecho_test_property_requestlistener(uEchoObject* obj, uEchoEsv esv, uEchoProperty* prop)
 {
   byte status;
 
@@ -55,10 +55,10 @@ void uecho_test_property_requestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPr
 #endif
 
   if (uecho_property_getdatasize(prop) != 1)
-    return;
+    return false;
 
   if (!uecho_property_getbytedata(prop, &status))
-    return;
+    return false;
 
 #if defined(UECHO_TEST_VERBOSE)
   switch (status) {
@@ -70,6 +70,8 @@ void uecho_test_property_requestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPr
     break;
   }
 #endif
+
+  return true;
 }
 
 uEchoObject* uecho_test_createtestdevice()
@@ -92,7 +94,7 @@ uEchoObject* uecho_test_createtestdevice()
 
   // Set property observer
 
-  uecho_object_setpropertywriterequestlistener(obj, UECHO_TEST_PROPERTY_SWITCHCODE, uecho_test_property_requestlistener);
+  uecho_object_setpropertywriterequesthandler(obj, UECHO_TEST_PROPERTY_SWITCHCODE, uecho_test_property_requestlistener);
 
   return obj;
 }
