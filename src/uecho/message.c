@@ -458,9 +458,7 @@ bool uecho_message_iswriterequest(uEchoMessage* msg)
 {
   if (!msg)
     return false;
-  if ((msg->ESV == uEchoEsvWriteRequest) || (msg->ESV == uEchoEsvWriteRequestResponseRequired) || (msg->ESV == uEchoEsvWriteReadRequest))
-    return true;
-  return false;
+  return uecho_esv_iswriterequest(msg->ESV);
 }
 
 /****************************************
@@ -471,9 +469,7 @@ bool uecho_message_isreadrequest(uEchoMessage* msg)
 {
   if (!msg)
     return false;
-  if ((msg->ESV == uEchoEsvReadRequest) || (msg->ESV == uEchoEsvWriteReadRequest))
-    return true;
-  return false;
+  return uecho_esv_isreadrequest(msg->ESV);
 }
 
 /****************************************
@@ -484,9 +480,7 @@ bool uecho_message_isnotifyrequest(uEchoMessage* msg)
 {
   if (!msg)
     return false;
-  if ((msg->ESV == uEchoEsvNotificationRequest) || (msg->ESV == uEchoEsvNotificationResponseRequired))
-    return true;
-  return false;
+  return uecho_esv_isnotifyrequest(msg->ESV);
 }
 
 /****************************************
@@ -497,9 +491,7 @@ bool uecho_message_iswriteresponse(uEchoMessage* msg)
 {
   if (!msg)
     return false;
-  if ((msg->ESV == uEchoEsvWriteResponse) || (msg->ESV == uEchoEsvWriteReadResponse))
-    return true;
-  return false;
+  return uecho_esv_iswriteresponse(msg->ESV);
 }
 
 /****************************************
@@ -510,9 +502,7 @@ bool uecho_message_isreadresponse(uEchoMessage* msg)
 {
   if (!msg)
     return false;
-  if ((msg->ESV == uEchoEsvReadResponse) || (msg->ESV == uEchoEsvWriteReadResponse))
-    return true;
-  return false;
+  return uecho_esv_isreadresponse(msg->ESV);
 }
 
 /****************************************
@@ -523,9 +513,7 @@ bool uecho_message_isnotifyresponse(uEchoMessage* msg)
 {
   if (!msg)
     return false;
-  if ((msg->ESV == uEchoEsvNotification) || (msg->ESV == uEchoEsvNotificationResponse))
-    return true;
-  return false;
+  return uecho_esv_isnotifyresponse(msg->ESV);
 }
 
 /****************************************

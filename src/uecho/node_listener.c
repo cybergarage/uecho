@@ -17,20 +17,23 @@
  * uecho_object_notifyrequestproperty
  ****************************************/
 
-void uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoEsv esv, uEchoProperty* msgProp)
+bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoEsv esv, uEchoProperty* msgProp)
 {
   uEchoObjectPropertyObserver* obs;
+  bool are_all_handler_accepted = true;
 
   if (!obj || !msgProp)
-    return;
+    return false;
 
   for (obs = uecho_object_property_observer_manager_getobservers(obj->propListenerMgr); obs; obs = uecho_object_property_observer_next(obs)) {
     if (esv != uecho_object_property_observer_getesv(obs))
       continue;
     if (uecho_property_getcode(msgProp) != uecho_object_property_observer_getpropetycode(obs))
       continue;
-    obs->handler(obj, esv, msgProp);
+    are_all_handler_accepted &= obs->handler(obj, esv, msgProp);
   }
+
+  return are_all_handler_accepted;
 }
 
 /****************************************
@@ -248,17 +251,21 @@ void uecho_object_handlewritemessage(uEchoObject* obj, byte OPC, uEchoProperty**
   }
 }
 
-void uecho_object_handlerequestmessage(uEchoObject* obj, uEchoEsv msgEsv, byte OPC, uEchoProperty** EP)
+int uecho_object_handlerequestmessage(uEchoObject* obj, uEchoEsv msgEsv, byte OPC, uEchoProperty** EP)
 {
   uEchoProperty* msgProp;
-  int n;
+  int accepted_request_cnt, n;
 
+  accepted_request_cnt = 0;
   for (n = 0; n < OPC; n++) {
     msgProp = EP[n];
     if (!msgProp)
       continue;
-    uecho_object_notifyrequestproperty(obj, msgEsv, msgProp);
+    if (uecho_object_notifyrequestproperty(obj, msgEsv, msgProp))
+      accepted_request_cnt++;
   }
+
+  return accepted_request_cnt;
 }
 
 void uecho_object_handlemessage(uEchoObject* obj, uEchoMessage* msg)
@@ -326,6 +333,43 @@ bool uecho_property_isacceptablemessage(uEchoProperty* prop, uEchoMessage* msg)
   return false;
 }
 
+int uecho_node_handlerequestmessage(uEchoObject* destObj, uEchoEsv reqEsv, byte OPC, uEchoProperty** EP, uEchoMessage* resMsg)
+{
+  uEchoPropertyCode msgPropCode;
+  uEchoProperty *msgProp, *objProp, *resProp;
+  int accepted_request_cnt, n;
+
+  accepted_request_cnt = 0;
+  for (n = 0; n < OPC; n++) {
+    msgProp = EP[n];
+    if (!msgProp)
+      continue;
+    msgPropCode = uecho_property_getcode(msgProp);
+
+    resProp = uecho_property_new();
+    if (!resProp)
+      continue;
+    uecho_property_setcode(resProp, msgPropCode);
+
+    objProp = uecho_object_getproperty(destObj, msgPropCode);
+    if (objProp) {
+      if (uecho_object_notifyrequestproperty(destObj, reqEsv, objProp)) {
+        accepted_request_cnt++;
+        if (uecho_esv_isreadrequest(reqEsv)) {
+        }
+      }
+      else {
+        if (uecho_esv_iswriterequest(reqEsv)) {
+        }
+      }
+    }
+
+    uecho_message_addproperty(resMsg, resProp);
+  }
+
+  return accepted_request_cnt;
+}
+
 void uecho_node_servermessagelistener(uEchoServer* server, uEchoMessage* msg)
 {
   uEchoEsv esv;
@@ -334,6 +378,8 @@ void uecho_node_servermessagelistener(uEchoServer* server, uEchoMessage* msg)
   uEchoObject* msgDestObj;
   int msgOpc, n;
   uEchoProperty *msgProp, *nodeProp;
+  int accepted_request_cnt;
+  uEchoMessage* resMsg;
 
   if (!server || !msg)
     return;
@@ -355,6 +401,10 @@ void uecho_node_servermessagelistener(uEchoServer* server, uEchoMessage* msg)
   if (!msgDestObj)
     return;
 
+  if (msgDestObj->allMsgListener) {
+    msgDestObj->allMsgListener(msgDestObj, msg);
+  }
+
   // 4.2.2 Basic Sequences for Object Control in General
   // (B) Processing when the controlled object exists,
   // except when ESV = 0x60 to 0x63, 0x6E and 0x74
@@ -362,6 +412,22 @@ void uecho_node_servermessagelistener(uEchoServer* server, uEchoMessage* msg)
   esv = uecho_message_getesv(msg);
   if (!uecho_message_isrequestesv(esv))
     return;
+
+  resMsg = uecho_message_new();
+  if (!resMsg)
+    return;
+  uecho_message_settid(resMsg, uecho_message_gettid(msg));
+  uecho_message_setsourceobjectcode(resMsg, uecho_message_getdestinationobjectcode(msg));
+  uecho_message_setdestinationobjectcode(resMsg, uecho_message_getsourceobjectcode(msg));
+
+  accepted_request_cnt = 0;
+  if (uecho_message_iswriterequest(msg)) {
+    accepted_request_cnt += uecho_node_handlerequestmessage(msgDestObj, uEchoEsvWriteRequest, msg->OPCSet, msg->EPSet, resMsg);
+    accepted_request_cnt += uecho_node_handlerequestmessage(msgDestObj, uEchoEsvReadRequest, msg->OPCGet, msg->EPGet, resMsg);
+  }
+  else {
+    accepted_request_cnt += uecho_node_handlerequestmessage(msgDestObj, esv, msg->OPC, msg->EP, resMsg);
+  }
 
   msgOpc = uecho_message_getopc(msg);
   for (n = 0; n < msgOpc; n++) {
