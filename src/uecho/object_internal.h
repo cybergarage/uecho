@@ -68,7 +68,7 @@ typedef struct _uEchoObject {
 uEchoObjectMessageListener uecho_object_getmessagelistener(uEchoObject* obj);
 bool uecho_object_hasmessagelistener(uEchoObject* obj);
 
-uEchoPropertyRequestListener uecho_object_getpropertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPropertyCode code);
+uEchoPropertyRequestHandler uecho_object_getpropertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPropertyCode code);
 bool uecho_object_haspropertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPropertyCode code);
 
 bool uecho_object_addmandatoryproperties(uEchoObject* obj);

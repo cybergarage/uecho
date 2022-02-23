@@ -36,11 +36,11 @@ The `uecho` add the following mandatory properties too. However, the developer d
 | 0x9E | Set property map  |
 | 0x9F | Get property map |
 
-## Device Message Listeners
+## Device Message Listener and Handler
 
 Basically, the `uecho` handles all messages from other nodes automatically. However, developer can set some user listeners into the node, objects and properties to handle the messages from other nodes.
 
-Using the user listeners, the developer can handle the write requests and update the internal status. To set the listeners, use `uecho_node_setmessagelistener()`, `uecho_object_setmessagelistener()` or `uecho_object_setpropertyrequestlistener()`.
+Using the user listeners, the developer can handle the write requests and update the internal status. To set the listeners, use `uecho_node_setmessagelistener()`, `uecho_object_setmessagelistener()` or `uecho_object_setpropertyrequesthandler()`.
 
 ### Message Listener Sequences
 
@@ -68,12 +68,12 @@ The `uecho_object_setmessagelistener()` can set the following listener to get on
 typedef void (*uEchoObjectMessageListener)(uEchoObject*, uEchoMessage*);
 ```
 
-### Property Message Listener
+### Property Message Handler
 
-The `uecho_object_setpropertyrequestlistener()` can set the following listener to get only valid request message for the object property from other nodes.
+The `uecho_object_setpropertyrequesthandler()` can set the following listener to get only valid request message for the object property from other nodes.
 
 ```
-typedef void (*uEchoPropertyRequestListener)(uEchoObject*, uEchoEsv, uEchoProperty*);
+typedef bool (*uEchoPropertyRequestHandler)(uEchoObject*, uEchoEsv, uEchoProperty*);
 ```
 
 ## Supported Basic Sequences

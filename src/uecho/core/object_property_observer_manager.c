@@ -42,7 +42,7 @@ void uecho_object_property_observer_manager_delete(uEchoObjectPropertyObserverMa
  * uecho_object_property_observer_manager_setobserver
  ****************************************/
 
-bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager* obsMgr, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestListener listener)
+bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager* obsMgr, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestHandler handler)
 {
   uEchoObjectPropertyObserver* obs;
 
@@ -58,7 +58,7 @@ bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObser
 
   uecho_object_property_observer_setesv(obs, esv);
   uecho_object_property_observer_setpropetycode(obs, code);
-  uecho_object_property_observer_setlistener(obs, listener);
+  uecho_object_property_observer_sethandler(obs, handler);
 
   return uecho_object_property_observerlist_add(obsMgr->observers, obs);
 }

@@ -26,7 +26,7 @@ uEchoObjectPropertyObserver* uecho_object_property_observer_new(void)
   uecho_list_node_init((uEchoList*)obs);
 
   uecho_object_property_observer_setpropetycode(obs, 0);
-  uecho_object_property_observer_setlistener(obs, NULL);
+  uecho_object_property_observer_sethandler(obs, NULL);
 
   return obs;
 }
@@ -79,19 +79,19 @@ uEchoPropertyCode uecho_object_property_observer_getpropetycode(uEchoObjectPrope
 }
 
 /****************************************
- * uecho_object_property_observer_setlistener
+ * uecho_object_property_observer_sethandler
  ****************************************/
 
-void uecho_object_property_observer_setlistener(uEchoObjectPropertyObserver* obs, uEchoPropertyRequestListener listener)
+void uecho_object_property_observer_sethandler(uEchoObjectPropertyObserver* obs, uEchoPropertyRequestHandler handler)
 {
-  obs->listener = listener;
+  obs->handler = handler;
 }
 
 /****************************************
  * uecho_object_property_observer_getlistener
  ****************************************/
 
-uEchoPropertyRequestListener uecho_object_property_observer_getlistener(uEchoObjectPropertyObserver* obs)
+uEchoPropertyRequestHandler uecho_object_property_observer_getlistener(uEchoObjectPropertyObserver* obs)
 {
-  return obs->listener;
+  return obs->handler;
 }

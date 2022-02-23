@@ -65,7 +65,7 @@ void uecho_lighting_object_messagelitener(uEchoObject* obj, uEchoMessage* msg)
  * uecho_lighting_propertyrequestlistener
  ****************************************/
 
-void uecho_lighting_propertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEchoProperty* prop)
+bool uecho_lighting_propertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEchoProperty* prop)
 {
   byte status;
 
@@ -73,7 +73,7 @@ void uecho_lighting_propertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEch
 
   if ((uecho_property_getdatasize(prop) != 1) || !uecho_property_getbytedata(prop, &status)) {
     printf("Bad Request\n");
-    return;
+    return false;
   }
 
   // TODO : Set the status to hardware
@@ -95,6 +95,8 @@ void uecho_lighting_propertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEch
     printf("POWER = %02X\n", status);
     break;
   }
+
+  return true;
 }
 
 /****************************************
@@ -124,7 +126,7 @@ uEchoObject* uecho_light_new(void)
 
   // Set property observer
 
-  uecho_object_setpropertywriterequestlistener(obj, LIGHT_PROPERTY_POWER_CODE, uecho_lighting_propertyrequestlistener);
+  uecho_object_setpropertywriterequesthandler(obj, LIGHT_PROPERTY_POWER_CODE, uecho_lighting_propertyrequestlistener);
 
   // Set Raspbian GPIO
 

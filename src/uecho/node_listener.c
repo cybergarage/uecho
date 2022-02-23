@@ -29,7 +29,7 @@ void uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoEsv esv, uEchoPro
       continue;
     if (uecho_property_getcode(msgProp) != uecho_object_property_observer_getpropetycode(obs))
       continue;
-    obs->listener(obj, esv, msgProp);
+    obs->handler(obj, esv, msgProp);
   }
 }
 
