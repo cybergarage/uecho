@@ -44,7 +44,7 @@ typedef struct _uEchoMessage {
   byte TID[uEchoTIDSize];
   byte SEOJ[uEchoEOJSize];
   byte DEOJ[uEchoEOJSize];
-  int ESV;
+  byte ESV;
   byte OPC;
   byte OPCSet;
   byte OPCGet;
