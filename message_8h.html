@@ -61,12 +61,12 @@ $(document).ready(function(){initNavTree('message_8h.html',''); initResizable();
 <div class="header">
   <div class="summary">
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">message.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="const_8h.html">uecho/const.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="esv_8h.html">uecho/esv.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="property_8h.html">uecho/property.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="typedef_8h.html">uecho/typedef.h</a>&gt;</code><br />
 </div><table class="memberdecls">
@@ -79,32 +79,6 @@ Typedefs</h2></td></tr>
 <tr class="memitem:abe5163bf0406462a4c4c66d9558f89a2"><td class="memItemLeft" align="right" valign="top">typedef void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#abe5163bf0406462a4c4c66d9558f89a2">uEchoMessage</a></td></tr>
 <tr class="separator:abe5163bf0406462a4c4c66d9558f89a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a385c44f6fb256e5716a2302a5b940388"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
-&#160;&#160;<a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388ac092ab42466c4621f9cb5f50616dba8a">uEchoEsvWriteRequest</a> = 0x60
-, <a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388a01fd0abe65a12f8c2bc843cdcafea9db">uEchoEsvWriteRequestResponseRequired</a> = 0x61
-, <a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388a185f9f5ca1134d3b614df2ac72eb0b83">uEchoEsvReadRequest</a> = 0x62
-, <a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388a7af154a67f26c75c76c58c6e90c0cd0c">uEchoEsvNotificationRequest</a> = 0x63
-, <br />
-&#160;&#160;<a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388ae33838bfe5f5955326ed70e6189a2697">uEchoEsvWriteReadRequest</a> = 0x6E
-, <a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388a7fc02b6f134c5db0ce974dde8aacbe23">uEchoEsvWriteResponse</a> = 0x71
-, <a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388a47411607095d0db6d6cff6a779ff4c2d">uEchoEsvReadResponse</a> = 0x72
-, <a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388a7ec8e56325f0ab51f5c8d29f40e643ba">uEchoEsvNotification</a> = 0x73
-, <br />
-&#160;&#160;<a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388af723d0f61fa649c9adf066e3406386b0">uEchoEsvNotificationResponseRequired</a> = 0x74
-, <a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388aeebcb14b234af5fb1e57daa73027a7f1">uEchoEsvNotificationResponse</a> = 0x7A
-, <a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388a5a1c4d6c79804f73d27dc6d1183f6b4d">uEchoEsvWriteReadResponse</a> = 0x7E
-, <a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388a4657a653d34b25a6bd0d04cc5712aba8">uEchoEsvWriteRequestError</a> = 0x50
-, <br />
-&#160;&#160;<a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388a26bedb9456dc4a4298d2c872e5035875">uEchoEsvWriteRequestResponseRequiredError</a> = 0x51
-, <a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388a349598f8f0b4951ed873cbfca3e36e9c">uEchoEsvReadRequestError</a> = 0x52
-, <a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388a5f736455b8d7d22549172867afe0f9de">uEchoEsvNotificationRequestError</a> = 0x53
-, <a class="el" href="message_8h.html#a385c44f6fb256e5716a2302a5b940388a7af16e718c6c857ed4970e9a02d1798c">uEchoEsvWriteReadRequestError</a> = 0x5E
-<br />
- }</td></tr>
-<tr class="separator:a385c44f6fb256e5716a2302a5b940388"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a3337a3c1cd04b62e75cacbd86c5f77b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a3337a3c1cd04b62e75cacbd86c5f77b3">uecho_message_new</a> (void)</td></tr>
@@ -115,22 +89,20 @@ Functions</h2></td></tr>
 <tr class="separator:a647dbfacf69ecfcd6dd2e04e5392a05c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02e0caa8f85074731864b07d7df03a8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a02e0caa8f85074731864b07d7df03a8a">uecho_message_parse</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *data, size_t dataLen)</td></tr>
 <tr class="separator:a02e0caa8f85074731864b07d7df03a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c3c92545e79877e9aba43cd52ab9feb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a4c3c92545e79877e9aba43cd52ab9feb">uecho_message_setehd1</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> val)</td></tr>
-<tr class="separator:a4c3c92545e79877e9aba43cd52ab9feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a031ca4a1669bca52f0eb33eb09b8bd0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a031ca4a1669bca52f0eb33eb09b8bd0f">uecho_message_getehd1</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg)</td></tr>
 <tr class="separator:a031ca4a1669bca52f0eb33eb09b8bd0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55b39d77a21523a46e748e3c69825909"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a55b39d77a21523a46e748e3c69825909">uecho_message_setehd2</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> val)</td></tr>
-<tr class="separator:a55b39d77a21523a46e748e3c69825909"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade88d3fbee3a9131ca81b9615201a850"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#ade88d3fbee3a9131ca81b9615201a850">uecho_message_getehd2</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg)</td></tr>
 <tr class="separator:ade88d3fbee3a9131ca81b9615201a850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf636ba5358734a4e37498ee2bd05ee0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#acf636ba5358734a4e37498ee2bd05ee0">uecho_message_settid</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, <a class="el" href="message_8h.html#a143375877639247d76da805348f40462">uEchoTID</a> val)</td></tr>
 <tr class="separator:acf636ba5358734a4e37498ee2bd05ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87bc8b771177279e7112334f7bf99012"><td class="memItemLeft" align="right" valign="top"><a class="el" href="message_8h.html#a143375877639247d76da805348f40462">uEchoTID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a87bc8b771177279e7112334f7bf99012">uecho_message_gettid</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg)</td></tr>
 <tr class="separator:a87bc8b771177279e7112334f7bf99012"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d4437735a128dfd513d8ca133058bd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a5d4437735a128dfd513d8ca133058bd3">uecho_message_setopc</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> val)</td></tr>
-<tr class="separator:a5d4437735a128dfd513d8ca133058bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8318abd983351a9f7d2da5bb6d216503"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a8318abd983351a9f7d2da5bb6d216503">uecho_message_getopc</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg)</td></tr>
 <tr class="separator:a8318abd983351a9f7d2da5bb6d216503"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa57c6180c98ea36577fa6ef009928e5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#aa57c6180c98ea36577fa6ef009928e5a">uecho_message_getopcset</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg)</td></tr>
+<tr class="separator:aa57c6180c98ea36577fa6ef009928e5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab82b2ab07bd4f62b5d02357a899c210c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#ab82b2ab07bd4f62b5d02357a899c210c">uecho_message_getopcget</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg)</td></tr>
+<tr class="separator:ab82b2ab07bd4f62b5d02357a899c210c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a7372875e2c0d4b595f4d70eeb2141b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a2a7372875e2c0d4b595f4d70eeb2141b">uecho_message_setsourceobjectcode</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, int code)</td></tr>
 <tr class="separator:a2a7372875e2c0d4b595f4d70eeb2141b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4768c5acdde35becf4a46e7d62d00f54"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a4768c5acdde35becf4a46e7d62d00f54">uecho_message_getsourceobjectcode</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg)</td></tr>
@@ -155,8 +127,22 @@ Functions</h2></td></tr>
 <tr class="separator:aad215a211f563a516f0b04af7749a7de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a081ed3a3ad0a413211cb1dd1cb667bce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a081ed3a3ad0a413211cb1dd1cb667bce">uecho_message_getpropertybycode</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, <a class="el" href="property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
 <tr class="separator:a081ed3a3ad0a413211cb1dd1cb667bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a788a921bcdbf8dcc342307f1a484f87c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a788a921bcdbf8dcc342307f1a484f87c">uecho_message_clearproperties</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg)</td></tr>
-<tr class="separator:a788a921bcdbf8dcc342307f1a484f87c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99702b4d081ea6d86d04a0dbe42ee750"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a99702b4d081ea6d86d04a0dbe42ee750">uecho_message_addpropertyset</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, <a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
+<tr class="separator:a99702b4d081ea6d86d04a0dbe42ee750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d662a2834f4c1b919c8cf9e4b109fb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a1d662a2834f4c1b919c8cf9e4b109fb5">uecho_message_setpropertyset</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, <a class="el" href="property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> propCode, size_t propDataSize, const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *propData)</td></tr>
+<tr class="separator:a1d662a2834f4c1b919c8cf9e4b109fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a388020d6450d3aeee50abfd9424d33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a8a388020d6450d3aeee50abfd9424d33">uecho_message_getpropertyset</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, size_t n)</td></tr>
+<tr class="separator:a8a388020d6450d3aeee50abfd9424d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae10a083e17fec80fb44727ef6e0cb9af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#ae10a083e17fec80fb44727ef6e0cb9af">uecho_message_getpropertysetbycode</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, <a class="el" href="property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
+<tr class="separator:ae10a083e17fec80fb44727ef6e0cb9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a394ab5890822811980e0c9c799ff7348"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a394ab5890822811980e0c9c799ff7348">uecho_message_addpropertyget</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, <a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
+<tr class="separator:a394ab5890822811980e0c9c799ff7348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcd0a00befb41f368032a4f290054b88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#afcd0a00befb41f368032a4f290054b88">uecho_message_setpropertyget</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, <a class="el" href="property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> propCode, size_t propDataSize, const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *propData)</td></tr>
+<tr class="separator:afcd0a00befb41f368032a4f290054b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b9890093066faf56330afb3d3e068ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a7b9890093066faf56330afb3d3e068ee">uecho_message_getpropertyget</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, size_t n)</td></tr>
+<tr class="separator:a7b9890093066faf56330afb3d3e068ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2924e7cf35ee58e1189eeadad518f95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#aa2924e7cf35ee58e1189eeadad518f95">uecho_message_getpropertygetbycode</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg, <a class="el" href="property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
+<tr class="separator:aa2924e7cf35ee58e1189eeadad518f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0d82de9b00fe75f790cdd8d2db394d9"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#ad0d82de9b00fe75f790cdd8d2db394d9">uecho_message_size</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg)</td></tr>
 <tr class="separator:ad0d82de9b00fe75f790cdd8d2db394d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a847529e8db36e4f8740b9f1f303a0d7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a847529e8db36e4f8740b9f1f303a0d7d">uecho_message_getbytes</a> (<a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *msg)</td></tr>
@@ -239,39 +225,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a385c44f6fb256e5716a2302a5b940388" name="a385c44f6fb256e5716a2302a5b940388"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a385c44f6fb256e5716a2302a5b940388">&#9670;&nbsp;</a></span>anonymous enum</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">anonymous enum</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388ac092ab42466c4621f9cb5f50616dba8a" name="a385c44f6fb256e5716a2302a5b940388ac092ab42466c4621f9cb5f50616dba8a"></a>uEchoEsvWriteRequest&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388a01fd0abe65a12f8c2bc843cdcafea9db" name="a385c44f6fb256e5716a2302a5b940388a01fd0abe65a12f8c2bc843cdcafea9db"></a>uEchoEsvWriteRequestResponseRequired&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388a185f9f5ca1134d3b614df2ac72eb0b83" name="a385c44f6fb256e5716a2302a5b940388a185f9f5ca1134d3b614df2ac72eb0b83"></a>uEchoEsvReadRequest&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388a7af154a67f26c75c76c58c6e90c0cd0c" name="a385c44f6fb256e5716a2302a5b940388a7af154a67f26c75c76c58c6e90c0cd0c"></a>uEchoEsvNotificationRequest&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388ae33838bfe5f5955326ed70e6189a2697" name="a385c44f6fb256e5716a2302a5b940388ae33838bfe5f5955326ed70e6189a2697"></a>uEchoEsvWriteReadRequest&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388a7fc02b6f134c5db0ce974dde8aacbe23" name="a385c44f6fb256e5716a2302a5b940388a7fc02b6f134c5db0ce974dde8aacbe23"></a>uEchoEsvWriteResponse&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388a47411607095d0db6d6cff6a779ff4c2d" name="a385c44f6fb256e5716a2302a5b940388a47411607095d0db6d6cff6a779ff4c2d"></a>uEchoEsvReadResponse&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388a7ec8e56325f0ab51f5c8d29f40e643ba" name="a385c44f6fb256e5716a2302a5b940388a7ec8e56325f0ab51f5c8d29f40e643ba"></a>uEchoEsvNotification&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388af723d0f61fa649c9adf066e3406386b0" name="a385c44f6fb256e5716a2302a5b940388af723d0f61fa649c9adf066e3406386b0"></a>uEchoEsvNotificationResponseRequired&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388aeebcb14b234af5fb1e57daa73027a7f1" name="a385c44f6fb256e5716a2302a5b940388aeebcb14b234af5fb1e57daa73027a7f1"></a>uEchoEsvNotificationResponse&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388a5a1c4d6c79804f73d27dc6d1183f6b4d" name="a385c44f6fb256e5716a2302a5b940388a5a1c4d6c79804f73d27dc6d1183f6b4d"></a>uEchoEsvWriteReadResponse&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388a4657a653d34b25a6bd0d04cc5712aba8" name="a385c44f6fb256e5716a2302a5b940388a4657a653d34b25a6bd0d04cc5712aba8"></a>uEchoEsvWriteRequestError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388a26bedb9456dc4a4298d2c872e5035875" name="a385c44f6fb256e5716a2302a5b940388a26bedb9456dc4a4298d2c872e5035875"></a>uEchoEsvWriteRequestResponseRequiredError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388a349598f8f0b4951ed873cbfca3e36e9c" name="a385c44f6fb256e5716a2302a5b940388a349598f8f0b4951ed873cbfca3e36e9c"></a>uEchoEsvReadRequestError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388a5f736455b8d7d22549172867afe0f9de" name="a385c44f6fb256e5716a2302a5b940388a5f736455b8d7d22549172867afe0f9de"></a>uEchoEsvNotificationRequestError&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a385c44f6fb256e5716a2302a5b940388a7af16e718c6c857ed4970e9a02d1798c" name="a385c44f6fb256e5716a2302a5b940388a7af16e718c6c857ed4970e9a02d1798c"></a>uEchoEsvWriteReadRequestError&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a5534af9d1e35fd57c086692ed3712ade" name="a5534af9d1e35fd57c086692ed3712ade"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5534af9d1e35fd57c086692ed3712ade">&#9670;&nbsp;</a></span>uecho_message_addproperty()</h2>
@@ -301,6 +254,62 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a394ab5890822811980e0c9c799ff7348" name="a394ab5890822811980e0c9c799ff7348"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a394ab5890822811980e0c9c799ff7348">&#9670;&nbsp;</a></span>uecho_message_addpropertyget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_message_addpropertyget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
+          <td class="paramname"><em>prop</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a99702b4d081ea6d86d04a0dbe42ee750" name="a99702b4d081ea6d86d04a0dbe42ee750"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99702b4d081ea6d86d04a0dbe42ee750">&#9670;&nbsp;</a></span>uecho_message_addpropertyset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_message_addpropertyset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
+          <td class="paramname"><em>prop</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a647dbfacf69ecfcd6dd2e04e5392a05c" name="a647dbfacf69ecfcd6dd2e04e5392a05c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a647dbfacf69ecfcd6dd2e04e5392a05c">&#9670;&nbsp;</a></span>uecho_message_clear()</h2>
 
@@ -309,24 +318,6 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_message_clear </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
-          <td class="paramname"><em>msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a788a921bcdbf8dcc342307f1a484f87c" name="a788a921bcdbf8dcc342307f1a484f87c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a788a921bcdbf8dcc342307f1a484f87c">&#9670;&nbsp;</a></span>uecho_message_clearproperties()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_message_clearproperties </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>msg</em></td><td>)</td>
@@ -509,6 +500,42 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ab82b2ab07bd4f62b5d02357a899c210c" name="ab82b2ab07bd4f62b5d02357a899c210c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab82b2ab07bd4f62b5d02357a899c210c">&#9670;&nbsp;</a></span>uecho_message_getopcget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> uecho_message_getopcget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa57c6180c98ea36577fa6ef009928e5a" name="aa57c6180c98ea36577fa6ef009928e5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa57c6180c98ea36577fa6ef009928e5a">&#9670;&nbsp;</a></span>uecho_message_getopcset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> uecho_message_getopcset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aad215a211f563a516f0b04af7749a7de" name="aad215a211f563a516f0b04af7749a7de"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aad215a211f563a516f0b04af7749a7de">&#9670;&nbsp;</a></span>uecho_message_getproperty()</h2>
 
@@ -545,6 +572,118 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> * uecho_message_getpropertybycode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a>&#160;</td>
+          <td class="paramname"><em>code</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7b9890093066faf56330afb3d3e068ee" name="a7b9890093066faf56330afb3d3e068ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b9890093066faf56330afb3d3e068ee">&#9670;&nbsp;</a></span>uecho_message_getpropertyget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> * uecho_message_getpropertyget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa2924e7cf35ee58e1189eeadad518f95" name="aa2924e7cf35ee58e1189eeadad518f95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2924e7cf35ee58e1189eeadad518f95">&#9670;&nbsp;</a></span>uecho_message_getpropertygetbycode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> * uecho_message_getpropertygetbycode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a>&#160;</td>
+          <td class="paramname"><em>code</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a388020d6450d3aeee50abfd9424d33" name="a8a388020d6450d3aeee50abfd9424d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a388020d6450d3aeee50abfd9424d33">&#9670;&nbsp;</a></span>uecho_message_getpropertyset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> * uecho_message_getpropertyset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae10a083e17fec80fb44727ef6e0cb9af" name="ae10a083e17fec80fb44727ef6e0cb9af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae10a083e17fec80fb44727ef6e0cb9af">&#9670;&nbsp;</a></span>uecho_message_getpropertysetbycode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> * uecho_message_getpropertysetbycode </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
@@ -1019,62 +1158,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4c3c92545e79877e9aba43cd52ab9feb" name="a4c3c92545e79877e9aba43cd52ab9feb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c3c92545e79877e9aba43cd52ab9feb">&#9670;&nbsp;</a></span>uecho_message_setehd1()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_message_setehd1 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
-          <td class="paramname"><em>msg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td>
-          <td class="paramname"><em>val</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a55b39d77a21523a46e748e3c69825909" name="a55b39d77a21523a46e748e3c69825909"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55b39d77a21523a46e748e3c69825909">&#9670;&nbsp;</a></span>uecho_message_setehd2()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_message_setehd2 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
-          <td class="paramname"><em>msg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td>
-          <td class="paramname"><em>val</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="afd34ec0b165b195edcb21fd8357560da" name="afd34ec0b165b195edcb21fd8357560da"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afd34ec0b165b195edcb21fd8357560da">&#9670;&nbsp;</a></span>uecho_message_setesv()</h2>
 
@@ -1103,14 +1186,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5d4437735a128dfd513d8ca133058bd3" name="a5d4437735a128dfd513d8ca133058bd3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d4437735a128dfd513d8ca133058bd3">&#9670;&nbsp;</a></span>uecho_message_setopc()</h2>
+<a id="a4585f5ea7b5244c480cfa2b813960372" name="a4585f5ea7b5244c480cfa2b813960372"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4585f5ea7b5244c480cfa2b813960372">&#9670;&nbsp;</a></span>uecho_message_setproperty()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_message_setopc </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_message_setproperty </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
@@ -1118,8 +1201,20 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td>
-          <td class="paramname"><em>val</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a>&#160;</td>
+          <td class="paramname"><em>propCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>propDataSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td>
+          <td class="paramname"><em>propData</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1131,14 +1226,54 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4585f5ea7b5244c480cfa2b813960372" name="a4585f5ea7b5244c480cfa2b813960372"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4585f5ea7b5244c480cfa2b813960372">&#9670;&nbsp;</a></span>uecho_message_setproperty()</h2>
+<a id="afcd0a00befb41f368032a4f290054b88" name="afcd0a00befb41f368032a4f290054b88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcd0a00befb41f368032a4f290054b88">&#9670;&nbsp;</a></span>uecho_message_setpropertyget()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_message_setproperty </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_message_setpropertyget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a>&#160;</td>
+          <td class="paramname"><em>propCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>propDataSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td>
+          <td class="paramname"><em>propData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d662a2834f4c1b919c8cf9e4b109fb5" name="a1d662a2834f4c1b919c8cf9e4b109fb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d662a2834f4c1b919c8cf9e4b109fb5">&#9670;&nbsp;</a></span>uecho_message_setpropertyset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_message_setpropertyset </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="message__internal_8h.html#acc9f23bd342516a8ed76516de328fc8e">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
