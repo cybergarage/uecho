@@ -14,24 +14,6 @@
 #include <uecho/core/server.h>
 
 /****************************************
- * uecho_message_isrequestesv
- ****************************************/
-
-bool uecho_message_isrequestesv(uEchoEsv esv)
-{
-  if ((uEchoEsvWriteRequest <= esv) && (esv <= uEchoEsvNotificationRequest))
-    return true;
-
-  if (esv == uEchoEsvWriteReadRequest)
-    return true;
-
-  if (esv == uEchoEsvNotificationResponseRequired)
-    return true;
-
-  return false;
-}
-
-/****************************************
  * uecho_node_isselfobjectmessage
  ****************************************/
 
@@ -156,7 +138,7 @@ void uecho_node_servermessagelistener(uEchoServer* server, uEchoMessage* reqMsg)
   // except when ESV = 0x60 to 0x63, 0x6E and 0x74
 
   reqEsv = uecho_message_getesv(reqMsg);
-  if (!uecho_message_isrequestesv(reqEsv))
+  if (!uecho_esv_isrequest(reqEsv))
     return;
 
   resMsg = uecho_message_new();

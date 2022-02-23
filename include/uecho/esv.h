@@ -55,6 +55,9 @@ bool uecho_esv_iswriteresponse(int esv);
 bool uecho_esv_isreadresponse(int esv);
 bool uecho_esv_isnotifyresponse(int esv);
 
+bool uecho_esv_isrequest(int esv);
+bool uecho_esv_isresponse(int esv);
+
 #ifdef __cplusplus
 } /* extern C */
 #endif

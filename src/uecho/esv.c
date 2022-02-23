@@ -75,3 +75,33 @@ bool uecho_esv_isnotifyresponse(int esv)
     return true;
   return false;
 }
+
+/****************************************
+ * uecho_esv_isrequest
+ ****************************************/
+
+bool uecho_esv_isrequest(int esv)
+{
+  if (uecho_esv_iswriterequest(esv))
+    return true;
+  if (uecho_esv_isreadrequest(esv))
+    return true;
+  if (uecho_esv_isnotifyrequest(esv))
+    return true;
+  return false;
+}
+
+/****************************************
+ * uecho_esv_isresponse
+ ****************************************/
+
+bool uecho_esv_isresponse(int esv)
+{
+  if (uecho_esv_iswriteresponse(esv))
+    return true;
+  if (uecho_esv_isreadresponse(esv))
+    return true;
+  if (uecho_esv_isnotifyresponse(esv))
+    return true;
+  return false;
+}
