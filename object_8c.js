@@ -16,7 +16,7 @@ var object_8c =
     [ "uecho_object_getpropertydata", "object_8c.html#a3c43165b7be23f5587fa2368807658ae", null ],
     [ "uecho_object_getpropertydatasize", "object_8c.html#a0833e912f45a6650abeb667461eed3a0", null ],
     [ "uecho_object_getpropertyintegerdata", "object_8c.html#a4c5a7bf9221334948d6edb9145a64070", null ],
-    [ "uecho_object_getpropertyrequestlistener", "object_8c.html#af62bb965ffecd66cfa313b792f61c5d1", null ],
+    [ "uecho_object_getpropertyrequestlistener", "object_8c.html#a3054313f425771f406e4662e8e26e121", null ],
     [ "uecho_object_getpropertywait", "object_8c.html#ab952fd555669144a6d83c860490fa283", null ],
     [ "uecho_object_hasmessagelistener", "object_8c.html#ad54ca32c82a5ab410f661f3b2798c538", null ],
     [ "uecho_object_hasproperty", "object_8c.html#a5c7e30e77c1c926a19ce470d9d420844", null ],
@@ -39,7 +39,7 @@ var object_8c =
     [ "uecho_object_setpropertydata", "object_8c.html#a808b37f8523ddc9d54f7ed5ccedb146a", null ],
     [ "uecho_object_setpropertyintegerdata", "object_8c.html#a2461abddd8bb9da757b2c7c921a0d6f4", null ],
     [ "uecho_object_setpropertymap", "object_8c.html#aa43d6168f34f1d53166e6d02d6877ce3", null ],
-    [ "uecho_object_setpropertyreadlistener", "object_8c.html#a5c27a05e84e789cde7dbad44f6296ef9", null ],
-    [ "uecho_object_setpropertyrequestlistener", "object_8c.html#adf43ecfbc2854758d99bda06c45365c1", null ],
-    [ "uecho_object_setpropertywriterequestlistener", "object_8c.html#a6ed58f12147d508bc24ebdbb5525aa8b", null ]
+    [ "uecho_object_setpropertyreadhandler", "object_8c.html#a8b11d51c134d83e2d0dd428cbaa63062", null ],
+    [ "uecho_object_setpropertyrequesthandler", "object_8c.html#a08efa74bf1a6dd8fb8ef5b81d4de6c12", null ],
+    [ "uecho_object_setpropertywriterequesthandler", "object_8c.html#af58c5117790f80da5c2dc6f306433708", null ]
 ];

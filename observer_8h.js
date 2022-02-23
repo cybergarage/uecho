@@ -13,19 +13,19 @@ var observer_8h =
     [ "uEchoObjectPropertyObserverManager", "observer_8h.html#ac59d7905190a93ee444702e7530dfc58", null ],
     [ "uecho_object_property_observer_delete", "observer_8h.html#ab3674d40148920f3371790cf80b205d6", null ],
     [ "uecho_object_property_observer_getesv", "observer_8h.html#aa532914f6bccaac660fbc8e53aca68b1", null ],
-    [ "uecho_object_property_observer_getlistener", "observer_8h.html#a19ef41f3ac1f4d961b93e59b3c48b4c6", null ],
+    [ "uecho_object_property_observer_getlistener", "observer_8h.html#af258f1d650137086b894e8ca98d3ee86", null ],
     [ "uecho_object_property_observer_getpropetycode", "observer_8h.html#acaf7bfc70cfacd1b7f622796abf0ca90", null ],
     [ "uecho_object_property_observer_manager_delete", "observer_8h.html#ae0f1b97624b582ada978eb3c7fc14c4e", null ],
     [ "uecho_object_property_observer_manager_getobserver", "observer_8h.html#aad017f0af3fb081b8d98deed22cc62ad", null ],
     [ "uecho_object_property_observer_manager_getobservers", "observer_8h.html#a25218bcf42e10843eef4fae957ca4b9e", null ],
     [ "uecho_object_property_observer_manager_new", "observer_8h.html#a4c836171f67297c2074d061cfc15be97", null ],
-    [ "uecho_object_property_observer_manager_setobserver", "observer_8h.html#a412cf509f8637e3f646dafa501d5ca58", null ],
+    [ "uecho_object_property_observer_manager_setobserver", "observer_8h.html#a401bab7ca0a0f055929ab6c9b30296bc", null ],
     [ "uecho_object_property_observer_new", "observer_8h.html#aa26565127aa1ed47784956c4ece0bc1e", null ],
     [ "uecho_object_property_observer_setesv", "observer_8h.html#a2e108de320683fa89de7c9a24cb084bd", null ],
-    [ "uecho_object_property_observer_setlistener", "observer_8h.html#a0f43dc3293049c9f26ca3a619f2afa11", null ],
+    [ "uecho_object_property_observer_sethandler", "observer_8h.html#a294c74dd5c226549aaeffc09d7b0d46b", null ],
     [ "uecho_object_property_observer_setpropetycode", "observer_8h.html#ad4d9865fef9699d1b84d78debb8cc24b", null ],
     [ "uecho_object_property_observerlist_delete", "observer_8h.html#ad96d4e8adefc78ff42dc7cf710791154", null ],
     [ "uecho_object_property_observerlist_getobserver", "observer_8h.html#a47807f5e95bc49c29a3539f7fc5b1d4b", null ],
     [ "uecho_object_property_observerlist_new", "observer_8h.html#abc42ebe0c1b99fb29b2f3b60d10c1411", null ],
-    [ "uecho_object_property_observerlist_setobserver", "observer_8h.html#aee029a0701424a834912606d0f3a9b7f", null ]
+    [ "uecho_object_property_observerlist_setobserver", "observer_8h.html#ae0a42b0031a2596b60d1f88fde62db0e", null ]
 ];
