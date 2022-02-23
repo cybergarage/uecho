@@ -100,8 +100,6 @@ void uecho_node_servermessagelistener(uEchoServer* server, uEchoMessage* reqMsg)
   uEchoNode* node;
   uEchoObjectCode msgDstObjCode;
   uEchoObject* msgDestObj;
-  // int msgOpc, n;
-  // uEchoProperty *msgProp, *nodeProp;
   int all_request_cnt, accepted_request_cnt;
   uEchoMessage* resMsg;
   bool is_response_required;
@@ -198,7 +196,6 @@ void uecho_node_servermessagelistener(uEchoServer* server, uEchoMessage* reqMsg)
       resEsv = uEchoEsvNotification;
     else
       resEsv = uEchoEsvNotificationRequestError;
-
   } break;
     // 4.2.3.6 Property value notification service (response required) [0x74, 0x7A]
   case uEchoEsvNotificationResponseRequired: {
@@ -206,6 +203,9 @@ void uecho_node_servermessagelistener(uEchoServer* server, uEchoMessage* reqMsg)
       resEsv = uEchoEsvNotificationResponse;
     else
       is_response_required = false;
+  } break;
+  default: {
+    is_response_required = false;
   } break;
   }
 

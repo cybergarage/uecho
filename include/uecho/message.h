@@ -24,7 +24,6 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef byte uEchoEsv;
 typedef unsigned int uEchoTID;
 
 #if !defined(_UECHO_MESSAGE_INTERNAL_H_)

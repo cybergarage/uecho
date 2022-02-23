@@ -19,6 +19,12 @@ extern "C" {
 #endif
 
 /****************************************
+ * Data Type
+ ****************************************/
+
+typedef byte uEchoEsv;
+
+/****************************************
  * Constant
 ****************************************/
 
@@ -47,16 +53,16 @@ enum {
 * Function
 ****************************************/
 
-bool uecho_esv_iswriterequest(int esv);
-bool uecho_esv_isreadrequest(int esv);
-bool uecho_esv_isnotifyrequest(int esv);
+bool uecho_esv_iswriterequest(uEchoEsv esv);
+bool uecho_esv_isreadrequest(uEchoEsv esv);
+bool uecho_esv_isnotifyrequest(uEchoEsv esv);
 
-bool uecho_esv_iswriteresponse(int esv);
-bool uecho_esv_isreadresponse(int esv);
-bool uecho_esv_isnotifyresponse(int esv);
+bool uecho_esv_iswriteresponse(uEchoEsv esv);
+bool uecho_esv_isreadresponse(uEchoEsv esv);
+bool uecho_esv_isnotifyresponse(uEchoEsv esv);
 
-bool uecho_esv_isrequest(int esv);
-bool uecho_esv_isresponse(int esv);
+bool uecho_esv_isrequest(uEchoEsv esv);
+bool uecho_esv_isresponse(uEchoEsv esv);
 
 #ifdef __cplusplus
 } /* extern C */

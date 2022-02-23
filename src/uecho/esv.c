@@ -14,7 +14,7 @@
  * uecho_esv_iswriterequest
  ****************************************/
 
-bool uecho_esv_iswriterequest(int esv)
+bool uecho_esv_iswriterequest(uEchoEsv esv)
 {
   if ((esv == uEchoEsvWriteRequest) || (esv == uEchoEsvWriteRequestResponseRequired) || (esv == uEchoEsvWriteReadRequest))
     return true;
@@ -25,7 +25,7 @@ bool uecho_esv_iswriterequest(int esv)
  * uecho_esv_isreadrequest
  ****************************************/
 
-bool uecho_esv_isreadrequest(int esv)
+bool uecho_esv_isreadrequest(uEchoEsv esv)
 {
   if ((esv == uEchoEsvReadRequest) || (esv == uEchoEsvWriteReadRequest))
     return true;
@@ -36,7 +36,7 @@ bool uecho_esv_isreadrequest(int esv)
  * uecho_esv_isnotifyrequest
  ****************************************/
 
-bool uecho_esv_isnotifyrequest(int esv)
+bool uecho_esv_isnotifyrequest(uEchoEsv esv)
 {
   if ((esv == uEchoEsvNotificationRequest) || (esv == uEchoEsvNotificationResponseRequired))
     return true;
@@ -47,7 +47,7 @@ bool uecho_esv_isnotifyrequest(int esv)
  * uecho_esv_iswriteresponse
  ****************************************/
 
-bool uecho_esv_iswriteresponse(int esv)
+bool uecho_esv_iswriteresponse(uEchoEsv esv)
 {
   if ((esv == uEchoEsvWriteResponse) || (esv == uEchoEsvWriteReadResponse))
     return true;
@@ -60,7 +60,7 @@ bool uecho_esv_iswriteresponse(int esv)
  * uecho_esv_isreadresponse
  ****************************************/
 
-bool uecho_esv_isreadresponse(int esv)
+bool uecho_esv_isreadresponse(uEchoEsv esv)
 {
   if ((esv == uEchoEsvReadResponse) || (esv == uEchoEsvWriteReadResponse))
     return true;
@@ -73,7 +73,7 @@ bool uecho_esv_isreadresponse(int esv)
  * uecho_esv_isnotifyresponse
  ****************************************/
 
-bool uecho_esv_isnotifyresponse(int esv)
+bool uecho_esv_isnotifyresponse(uEchoEsv esv)
 {
   if ((esv == uEchoEsvNotification) || (esv == uEchoEsvNotificationResponse))
     return true;
@@ -86,7 +86,7 @@ bool uecho_esv_isnotifyresponse(int esv)
  * uecho_esv_isrequest
  ****************************************/
 
-bool uecho_esv_isrequest(int esv)
+bool uecho_esv_isrequest(uEchoEsv esv)
 {
   if (uecho_esv_iswriterequest(esv))
     return true;
@@ -101,7 +101,7 @@ bool uecho_esv_isrequest(int esv)
  * uecho_esv_isresponse
  ****************************************/
 
-bool uecho_esv_isresponse(int esv)
+bool uecho_esv_isresponse(uEchoEsv esv)
 {
   if (uecho_esv_iswriteresponse(esv))
     return true;
