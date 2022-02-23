@@ -77,6 +77,8 @@ bool uecho_esv_isnotifyresponse(int esv)
 {
   if ((esv == uEchoEsvNotification) || (esv == uEchoEsvNotificationResponse))
     return true;
+  if (esv == uEchoEsvNotificationRequestError)
+    return true;
   return false;
 }
 
