@@ -16,28 +16,28 @@ AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 	../TestDevice.h
 
 uechotest_SOURCES = \
-	../MutexTest.cpp \
-	../ThreadTest.cpp \
-	../ClassListTest.cpp \
-	../DeviceTest.cpp \
-	../TestDevice.cpp \
-	../LogTest.cpp \
-	../uEchoTest.cpp \
-	../ObjectTest.cpp \
-	../PropertyListTest.cpp \
-	../ControllerTest.cpp \
-	../MiscTest.cpp \
-	../PropertyTest.cpp \
-	../InterfaceTest.cpp \
-	../NodeListTest.cpp \
-	../SocketTest.cpp \
-	../ServerTest.cpp \
-	../ClassTest.cpp \
-	../NodeTest.cpp \
 	../MessageTest.cpp \
-	../ProfileTest.cpp \
+	../NodeListTest.cpp \
 	../ObserverTest.cpp \
-	../ObjectListTest.cpp
+	../NodeTest.cpp \
+	../TestDevice.cpp \
+	../PropertyListTest.cpp \
+	../ThreadTest.cpp \
+	../PropertyTest.cpp \
+	../ClassTest.cpp \
+	../MutexTest.cpp \
+	../ClassListTest.cpp \
+	../ControllerTest.cpp \
+	../SocketTest.cpp \
+	../InterfaceTest.cpp \
+	../ObjectListTest.cpp \
+	../LogTest.cpp \
+	../DeviceTest.cpp \
+	../uEchoTest.cpp \
+	../MiscTest.cpp \
+	../ProfileTest.cpp \
+	../ObjectTest.cpp \
+	../ServerTest.cpp
 
 #if HAVE_LIBTOOL
 #uechotest_LDADD = ../../lib/unix/libuecho.la
