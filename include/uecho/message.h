@@ -12,37 +12,13 @@
 #define _UECHO_MESSAGE_H_
 
 #include <uecho/const.h>
+#include <uecho/esv.h>
 #include <uecho/property.h>
 #include <uecho/typedef.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/****************************************
- * Constant
-****************************************/
-
-enum {
-  uEchoEsvWriteRequest = 0x60,
-  uEchoEsvWriteRequestResponseRequired = 0x61,
-  uEchoEsvReadRequest = 0x62,
-  uEchoEsvNotificationRequest = 0x63,
-  uEchoEsvWriteReadRequest = 0x6E,
-
-  uEchoEsvWriteResponse = 0x71,
-  uEchoEsvReadResponse = 0x72,
-  uEchoEsvNotification = 0x73,
-  uEchoEsvNotificationResponseRequired = 0x74,
-  uEchoEsvNotificationResponse = 0x7A,
-  uEchoEsvWriteReadResponse = 0x7E,
-
-  uEchoEsvWriteRequestError = 0x50,
-  uEchoEsvWriteRequestResponseRequiredError = 0x51,
-  uEchoEsvReadRequestError = 0x52,
-  uEchoEsvNotificationRequestError = 0x53,
-  uEchoEsvWriteReadRequestError = 0x5E,
-};
 
 /****************************************
  * Data Type

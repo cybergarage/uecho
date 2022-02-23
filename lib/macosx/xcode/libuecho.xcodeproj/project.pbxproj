@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21070A5827C603AC00EE8917 /* esv.h in Headers */ = {isa = PBXBuildFile; fileRef = 21070A5727C603AB00EE8917 /* esv.h */; };
+		21070A5C27C6041200EE8917 /* esv.c in Sources */ = {isa = PBXBuildFile; fileRef = 21070A5B27C6041200EE8917 /* esv.c */; };
 		210CC7A321BEB18100EEEB58 /* log.c in Sources */ = {isa = PBXBuildFile; fileRef = 210CC7A221BEB18100EEEB58 /* log.c */; };
 		210CC7A521BEB1B400EEEB58 /* log.h in Headers */ = {isa = PBXBuildFile; fileRef = 210CC7A421BEB1B400EEEB58 /* log.h */; };
 		2111B1851B93E8FC005FDBD6 /* controller_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2111B1841B93E8FC005FDBD6 /* controller_internal.h */; };
@@ -86,6 +88,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21070A5727C603AB00EE8917 /* esv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = esv.h; sourceTree = "<group>"; };
+		21070A5B27C6041200EE8917 /* esv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = esv.c; sourceTree = "<group>"; };
 		210CC7A221BEB18100EEEB58 /* log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log.c; sourceTree = "<group>"; };
 		210CC7A421BEB1B400EEEB58 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
 		2111B1841B93E8FC005FDBD6 /* controller_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controller_internal.h; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 		21678EE21A8D510100AE79AA /* uecho */ = {
 			isa = PBXGroup;
 			children = (
+				21070A5727C603AB00EE8917 /* esv.h */,
 				217866E71B8F3F7C003AEB9B /* uecho.h */,
 				2185D9D01B68DEED00A5B0C3 /* property.h */,
 				21CF27541B917B03004A5AAD /* message.h */,
@@ -244,6 +249,7 @@
 				21D68B0C1B7C1D700032552C /* std */,
 				21757F481B6A0CA500281E6F /* core */,
 				21205A0F1B95DC4E008A941C /* const_internal.h */,
+				21070A5B27C6041200EE8917 /* esv.c */,
 				2111B1A41B941660005FDBD6 /* uecho_internal.h */,
 				2111B18C1B93F607005FDBD6 /* message_internal.h */,
 				21CF27561B917B25004A5AAD /* message_search.c */,
@@ -348,6 +354,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21070A5827C603AC00EE8917 /* esv.h in Headers */,
 				2111B1A11B940DAB005FDBD6 /* thread.h in Headers */,
 				21E280621B7BA82C004956BA /* profile.h in Headers */,
 				2111B1A51B941660005FDBD6 /* uecho_internal.h in Headers */,
@@ -482,6 +489,7 @@
 				21D8751221BD64CD00C98927 /* socket_opt.c in Sources */,
 				21678F061A8D512000AE79AA /* socket.c in Sources */,
 				21851C581B74724D00289276 /* net_function.c in Sources */,
+				21070A5C27C6041200EE8917 /* esv.c in Sources */,
 				215B493D1B85831E002B20CE /* profile.c in Sources */,
 				218F56931B8C425D00C03219 /* controller_listener.c in Sources */,
 			);
