@@ -64,6 +64,8 @@ bool uecho_esv_isreadresponse(int esv)
 {
   if ((esv == uEchoEsvReadResponse) || (esv == uEchoEsvWriteReadResponse))
     return true;
+  if ((esv == uEchoEsvReadRequestError) || (esv == uEchoEsvWriteReadRequestError))
+    return true;
   return false;
 }
 
