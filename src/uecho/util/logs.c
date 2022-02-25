@@ -10,8 +10,38 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <uecho/logs.h>
+#include <uecho/util/logs.h>
 #include <uecho/util/log.h>
+
+/****************************************
+* uecho_message_debug
+****************************************/
+
+void uecho_message_debug(uEchoMessage* msg)
+{
+  if (!msg)
+    return;
+
+  return uecho_message_packet_debug(
+      uecho_message_getsourceaddress(msg),
+      uecho_message_getbytes(msg),
+      uecho_message_size(msg));
+}
+
+/****************************************
+* uecho_socket_datagram_packet_debug
+****************************************/
+
+void uecho_socket_datagram_packet_debug(uEchoDatagramPacket* dpkt)
+{
+  if (!dpkt)
+    return;
+
+  return uecho_message_packet_debug(
+      uecho_socket_datagram_packet_getremoteaddress(dpkt),
+      uecho_socket_datagram_packet_getdata(dpkt),
+      uecho_socket_datagram_packet_getlength(dpkt));
+}
 
 /****************************************
 * uecho_message_packet_debug
@@ -34,16 +64,4 @@ void uecho_message_packet_debug(const char* addr, const byte* msgBytes, size_t m
   }
 
   uecho_log_debug(buf);
-}
-
-/****************************************
-* uecho_message_debug
-****************************************/
-
-void uecho_message_debug(uEchoMessage* msg)
-{
-  if (!msg)
-    return;
-
-  return uecho_message_packet_debug(uecho_message_getsourceaddress(msg), uecho_message_getbytes(msg), uecho_message_size(msg));
 }
