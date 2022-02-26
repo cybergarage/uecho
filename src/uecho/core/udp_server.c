@@ -76,6 +76,17 @@ void* uecho_udp_server_getuserdata(uEchoUdpServer* server)
 }
 
 /****************************************
+ * uecho_udp_server_getlocaladdress
+ ****************************************/
+
+const char * uecho_udp_server_getlocaladdress(uEchoUdpServer* server)
+{
+  if (!server->socket)
+    return "";
+  return uecho_socket_getaddress(server->socket);
+}
+
+/****************************************
  * uecho_udp_server_open
  ****************************************/
 
