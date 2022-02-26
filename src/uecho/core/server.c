@@ -245,22 +245,6 @@ bool uecho_server_postannounce(uEchoServer* server, const byte* msg, size_t msg_
 
 bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg, size_t msg_len)
 {
-  uEchoSocket* sock;
-  size_t sent_byte_cnt;
-
-  if (!server)
-    return false;
-
-  sock = uecho_socket_dgram_new();
-  if (!sock)
-    return false;
-
-  // uecho_net_packet_debug(uecho_server_get const char* from_addr, const char* to_addr, const byte* msg_bytes, size_t msg_len);
-
-  sent_byte_cnt = uecho_socket_sendto(sock, addr, uEchoUdpPort, msg, msg_len);
-
-  uecho_socket_delete(sock);
-
-  return (msg_len == sent_byte_cnt) ? true : false;
+  return uecho_udp_serverlist_sendto(server->udp_servers, addr, msg, msg_len);
 }
 
