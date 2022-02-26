@@ -54,7 +54,7 @@ bool uecho_udp_server_delete(uEchoUdpServer* server)
 
 void uecho_udp_server_setmessagelistener(uEchoUdpServer* server, uEchoUdpServerMessageListener listener)
 {
-  server->msgListener = listener;
+  server->msg_listener = listener;
 }
 
 /****************************************
@@ -63,7 +63,7 @@ void uecho_udp_server_setmessagelistener(uEchoUdpServer* server, uEchoUdpServerM
 
 void uecho_udp_server_setuserdata(uEchoUdpServer* server, void* data)
 {
-  server->userData = data;
+  server->user_data = data;
 }
 
 /****************************************
@@ -72,14 +72,14 @@ void uecho_udp_server_setuserdata(uEchoUdpServer* server, void* data)
 
 void* uecho_udp_server_getuserdata(uEchoUdpServer* server)
 {
-  return server->userData;
+  return server->user_data;
 }
 
 /****************************************
  * uecho_udp_server_open
  ****************************************/
 
-bool uecho_udp_server_open(uEchoUdpServer* server, const char* bindAddr)
+bool uecho_udp_server_open(uEchoUdpServer* server, const char* bind_addr)
 {
   uEchoSocketOption opt;
 
@@ -94,7 +94,7 @@ bool uecho_udp_server_open(uEchoUdpServer* server, const char* bindAddr)
   uecho_socket_option_setreuseaddress(&opt, true);
   uecho_socket_option_setmulticastloop(&opt, false);
 
-  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, &opt)) {
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bind_addr, &opt)) {
     uecho_udp_server_close(server);
     return false;
   }
@@ -145,10 +145,10 @@ bool uecho_udp_server_performlistener(uEchoUdpServer* server, uEchoMessage* msg)
   if (!server)
     return false;
 
-  if (!server->msgListener)
+  if (!server->msg_listener)
     return false;
 
-  server->msgListener(server, msg);
+  server->msg_listener(server, msg);
 
   return true;
 }
@@ -160,8 +160,8 @@ bool uecho_udp_server_performlistener(uEchoUdpServer* server, uEchoMessage* msg)
 static void uecho_udp_server_action(uEchoThread* thread)
 {
   uEchoUdpServer* server;
-  uEchoDatagramPacket* dgmPkt;
-  ssize_t dgmPktLen;
+  uEchoDatagramPacket* dgm_pkt;
+  ssize_t dgm_pkt_len;
   uEchoMessage* msg;
 
   server = (uEchoUdpServer*)uecho_thread_getuserdata(thread);
@@ -173,12 +173,12 @@ static void uecho_udp_server_action(uEchoThread* thread)
     return;
 
   while (uecho_thread_isrunnable(thread)) {
-    dgmPkt = uecho_socket_datagram_packet_new();
-    if (!dgmPkt)
+    dgm_pkt = uecho_socket_datagram_packet_new();
+    if (!dgm_pkt)
       break;
 
-    dgmPktLen = uecho_socket_recv(server->socket, dgmPkt);
-    if (dgmPktLen < 0)
+    dgm_pkt_len = uecho_socket_recv(server->socket, dgm_pkt);
+    if (dgm_pkt_len < 0)
       break;
 
     if (!uecho_thread_isrunnable(thread) || !uecho_socket_isbound(server->socket))
@@ -188,7 +188,7 @@ static void uecho_udp_server_action(uEchoThread* thread)
     if (!msg)
       continue;
 
-    if (uecho_message_parsepacket(msg, dgmPkt)) {
+    if (uecho_message_parsepacket(msg, dgm_pkt)) {
       uecho_udp_server_performlistener(server, msg);
     }
 

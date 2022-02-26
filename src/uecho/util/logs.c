@@ -10,8 +10,8 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <uecho/util/logs.h>
 #include <uecho/util/log.h>
+#include <uecho/util/logs.h>
 
 /****************************************
 * uecho_message_debug
@@ -47,19 +47,19 @@ void uecho_socket_datagram_packet_debug(uEchoDatagramPacket* dpkt)
 * uecho_message_packet_debug
 ****************************************/
 
-void uecho_message_packet_debug(const char* addr, const byte* msgBytes, size_t msgLen)
+void uecho_message_packet_debug(const char* addr, const byte* msg_bytes, size_t msg_len)
 {
   char buf[256];
   size_t offset;
   size_t n;
 
-  if (msgLen <= 0)
+  if (msg_len <= 0)
     return;
 
   snprintf(buf, sizeof(buf), "%s -> ", addr);
   offset = strlen(buf);
-  for (n = 0; n < msgLen; n++) {
-    snprintf((buf + offset), (sizeof(buf) - offset), "%02X", msgBytes[n]);
+  for (n = 0; n < msg_len; n++) {
+    snprintf((buf + offset), (sizeof(buf) - offset), "%02X", msg_bytes[n]);
     offset += 2;
   }
 

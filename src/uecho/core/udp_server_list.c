@@ -74,30 +74,30 @@ void uecho_udp_serverlist_setuserdata(uEchoUdpServerList* servers, void* data)
 bool uecho_udp_serverlist_open(uEchoUdpServerList* servers)
 {
   uEchoUdpServer* server;
-  uEchoNetworkInterfaceList* netIfList;
-  uEchoNetworkInterface* netIf;
-  bool allActionsSucceeded;
+  uEchoNetworkInterfaceList* net_if_list;
+  uEchoNetworkInterface* net_if;
+  bool all_actions_succeeded;
 
   uecho_udp_serverlist_close(servers);
 
-  netIfList = uecho_net_interfacelist_new();
+  net_if_list = uecho_net_interfacelist_new();
 
-  if (uecho_net_gethostinterfaces(netIfList) <= 0) {
-    uecho_net_interfacelist_delete(netIfList);
+  if (uecho_net_gethostinterfaces(net_if_list) <= 0) {
+    uecho_net_interfacelist_delete(net_if_list);
     return false;
   }
 
-  allActionsSucceeded = true;
+  all_actions_succeeded = true;
 
-  for (netIf = uecho_net_interfacelist_gets(netIfList); netIf; netIf = uecho_net_interface_next(netIf)) {
+  for (net_if = uecho_net_interfacelist_gets(net_if_list); net_if; net_if = uecho_net_interface_next(net_if)) {
     server = uecho_udp_server_new();
     if (!server) {
-      allActionsSucceeded = false;
+      all_actions_succeeded = false;
       break;
     }
 
-    if (!uecho_udp_server_open(server, uecho_net_interface_getaddress(netIf))) {
-      allActionsSucceeded = false;
+    if (!uecho_udp_server_open(server, uecho_net_interface_getaddress(net_if))) {
+      all_actions_succeeded = false;
       uecho_udp_server_delete(server);
       break;
     }
@@ -105,9 +105,9 @@ bool uecho_udp_serverlist_open(uEchoUdpServerList* servers)
     uecho_udp_serverlist_add(servers, server);
   }
 
-  uecho_net_interfacelist_delete(netIfList);
+  uecho_net_interfacelist_delete(net_if_list);
 
-  if (!allActionsSucceeded) {
+  if (!all_actions_succeeded) {
     uecho_udp_serverlist_close(servers);
     return false;
   }
@@ -122,14 +122,14 @@ bool uecho_udp_serverlist_open(uEchoUdpServerList* servers)
 bool uecho_udp_serverlist_close(uEchoUdpServerList* servers)
 {
   uEchoUdpServer* server;
-  bool allActionsSucceeded;
+  bool all_actions_succeeded;
 
-  allActionsSucceeded = true;
+  all_actions_succeeded = true;
   for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
-    allActionsSucceeded &= uecho_udp_server_close(server);
+    all_actions_succeeded &= uecho_udp_server_close(server);
   }
 
-  return allActionsSucceeded;
+  return all_actions_succeeded;
 }
 
 /****************************************
@@ -139,16 +139,16 @@ bool uecho_udp_serverlist_close(uEchoUdpServerList* servers)
 bool uecho_udp_serverlist_start(uEchoUdpServerList* servers)
 {
   uEchoUdpServer* server;
-  bool allActionsSucceeded;
+  bool all_actions_succeeded;
 
   uecho_udp_serverlist_stop(servers);
 
-  allActionsSucceeded = true;
+  all_actions_succeeded = true;
   for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
-    allActionsSucceeded &= uecho_udp_server_start(server);
+    all_actions_succeeded &= uecho_udp_server_start(server);
   }
 
-  return allActionsSucceeded;
+  return all_actions_succeeded;
 }
 
 /****************************************
@@ -158,14 +158,14 @@ bool uecho_udp_serverlist_start(uEchoUdpServerList* servers)
 bool uecho_udp_serverlist_stop(uEchoUdpServerList* servers)
 {
   uEchoUdpServer* server;
-  bool allActionsSucceeded;
+  bool all_actions_succeeded;
 
-  allActionsSucceeded = true;
+  all_actions_succeeded = true;
   for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
-    allActionsSucceeded &= uecho_udp_server_stop(server);
+    all_actions_succeeded &= uecho_udp_server_stop(server);
   }
 
-  return allActionsSucceeded;
+  return all_actions_succeeded;
 }
 
 /****************************************

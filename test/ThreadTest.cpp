@@ -16,11 +16,11 @@
 
 const int THREAD_TEST_LOOP_NUM = 10;
 
-void TestThereadFunc(uEchoThread* thread)
+void test_theread_func(uEchoThread* thread)
 {
-  int* testCounter = (int*)uecho_thread_getuserdata(thread);
+  int* test_counter = (int*)uecho_thread_getuserdata(thread);
   for (int n = 0; n < THREAD_TEST_LOOP_NUM; n++) {
-    (*testCounter)++;
+    (*test_counter)++;
   }
 }
 
@@ -28,15 +28,15 @@ BOOST_AUTO_TEST_CASE(ThreadTest)
 {
   uEchoThread* thread = uecho_thread_new();
 
-  int testCounter = 0;
-  uecho_thread_setaction(thread, TestThereadFunc);
-  uecho_thread_setuserdata(thread, &testCounter);
+  int test_counter = 0;
+  uecho_thread_setaction(thread, test_theread_func);
+  uecho_thread_setuserdata(thread, &test_counter);
 
   BOOST_CHECK_EQUAL(uecho_thread_start(thread), true);
-  while (testCounter != THREAD_TEST_LOOP_NUM) {
+  while (test_counter != THREAD_TEST_LOOP_NUM) {
     uecho_sleep(100);
   }
-  BOOST_CHECK_EQUAL(testCounter, THREAD_TEST_LOOP_NUM);
+  BOOST_CHECK_EQUAL(test_counter, THREAD_TEST_LOOP_NUM);
   BOOST_CHECK_EQUAL(uecho_thread_stop(thread), true);
 
   uecho_thread_delete(thread);

@@ -40,18 +40,18 @@ uEchoObject* uecho_object_new(void)
   obj->properties = uecho_propertylist_new();
 
   uecho_object_setmessagelistener(obj, NULL);
-  obj->propListenerMgr = uecho_object_property_observer_manager_new();
+  obj->prop_listener_mgr = uecho_object_property_observer_manager_new();
 
   // Property map caches
 
-  obj->annoPropMapSize = 0;
-  obj->annoPropMapBytes = NULL;
+  obj->anno_prop_map_size = 0;
+  obj->anno_prop_map_bytes = NULL;
 
-  obj->setPropMapSize = 0;
-  obj->setPropMapBytes = NULL;
+  obj->set_prop_map_size = 0;
+  obj->set_prop_map_bytes = NULL;
 
-  obj->getPropMapSize = 0;
-  obj->getPropMapBytes = NULL;
+  obj->get_prop_map_bytes = 0;
+  obj->get_prop_map_bytes = NULL;
 
   // Mandatory Properties
 
@@ -74,7 +74,7 @@ bool uecho_object_delete(uEchoObject* obj)
   uecho_object_clearpropertymapcaches(obj);
 
   uecho_propertylist_delete(obj->properties);
-  uecho_object_property_observer_manager_delete(obj->propListenerMgr);
+  uecho_object_property_observer_manager_delete(obj->prop_listener_mgr);
 
   free(obj);
 
@@ -99,7 +99,7 @@ bool uecho_object_setparentnode(uEchoObject* obj, uEchoNode* node)
   if (!obj)
     return false;
 
-  obj->parentNode = node;
+  obj->parent_node = node;
 
   return true;
 }
@@ -113,7 +113,7 @@ uEchoNode* uecho_object_getparentnode(uEchoObject* obj)
   if (!obj)
     return NULL;
 
-  return (uEchoNode*)obj->parentNode;
+  return (uEchoNode*)obj->parent_node;
 }
 
 /****************************************
@@ -258,38 +258,38 @@ bool uecho_object_isprofile(uEchoObject* obj)
  * uecho_object_setpropertymap
  ****************************************/
 
-bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode mapCode, uEchoPropertyCode* propCodes, size_t propsCodeSize)
+bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, uEchoPropertyCode* prop_codes, size_t props_code_size)
 {
-  byte propMapData[uEchoPropertyMapFormatMaxSize];
-  uEchoPropertyCode* propMap;
-  size_t n, propByteIdx;
+  byte prop_map_data[uEchoPropertyMapFormatMaxSize];
+  uEchoPropertyCode* prop_map;
+  size_t n, prop_byte_idx;
 
   if (!obj)
     return false;
 
-  propMapData[0] = (byte)propsCodeSize;
-  propMap = propMapData + 1;
+  prop_map_data[0] = (byte)props_code_size;
+  prop_map = prop_map_data + 1;
 
   // Description Format 1
 
-  if (propsCodeSize <= uEchoPropertyMapFormat1MaxSize) {
-    memcpy(propMap, propCodes, propsCodeSize);
-    uecho_propertylist_set(obj->properties, mapCode, uEchoPropertyAttrRead, propMapData, (propsCodeSize + 1));
+  if (props_code_size <= uEchoPropertyMapFormat1MaxSize) {
+    memcpy(prop_map, prop_codes, props_code_size);
+    uecho_propertylist_set(obj->properties, map_code, uEchoPropertyAttrRead, prop_map_data, (props_code_size + 1));
     return true;
   }
 
   // Description Format 2
 
-  for (n = 0; n < propsCodeSize; n++) {
-    byte propCode;
-    propCode = propCodes[n];
-    if ((propCode < uEchoPropertyCodeMin) || (uEchoPropertyCodeMax < propCode))
+  for (n = 0; n < props_code_size; n++) {
+    byte prop_code;
+    prop_code = prop_codes[n];
+    if ((prop_code < uEchoPropertyCodeMin) || (uEchoPropertyCodeMax < prop_code))
       continue;
-    propByteIdx = (propCode - uEchoPropertyCodeMin) & 0x0F;
-    propMap[propByteIdx] |= (((propCode - uEchoPropertyCodeMin) & 0xF0) >> 8) & 0x0F;
+    prop_byte_idx = (prop_code - uEchoPropertyCodeMin) & 0x0F;
+    prop_map[prop_byte_idx] |= (((prop_code - uEchoPropertyCodeMin) & 0xF0) >> 8) & 0x0F;
   }
 
-  uecho_propertylist_set(obj->properties, mapCode, uEchoPropertyAttrRead, propMapData, (propsCodeSize + 1));
+  uecho_propertylist_set(obj->properties, map_code, uEchoPropertyAttrRead, prop_map_data, (props_code_size + 1));
 
   return true;
 }
@@ -322,24 +322,24 @@ bool uecho_object_setproperty(uEchoObject* obj, uEchoPropertyCode code, uEchoPro
  * uecho_object_setpropertydata
  ****************************************/
 
-bool uecho_object_setpropertydata(uEchoObject* obj, uEchoPropertyCode code, byte* data, size_t dataLen)
+bool uecho_object_setpropertydata(uEchoObject* obj, uEchoPropertyCode code, byte* data, size_t data_len)
 {
   if (!obj)
     return false;
 
-  return uecho_propertylist_setdata(obj->properties, code, data, dataLen);
+  return uecho_propertylist_setdata(obj->properties, code, data, data_len);
 }
 
 /****************************************
  * uecho_object_setpropertyintegerdata
  ****************************************/
 
-bool uecho_object_setpropertyintegerdata(uEchoObject* obj, uEchoPropertyCode code, int data, size_t dataLen)
+bool uecho_object_setpropertyintegerdata(uEchoObject* obj, uEchoPropertyCode code, int data, size_t data_len)
 {
   if (!obj)
     return false;
 
-  return uecho_propertylist_setintegerdata(obj->properties, code, data, dataLen);
+  return uecho_propertylist_setintegerdata(obj->properties, code, data, data_len);
 }
 
 /****************************************
@@ -406,13 +406,13 @@ uEchoProperty* uecho_object_getproperty(uEchoObject* obj, uEchoPropertyCode code
  * uecho_object_getpropertywait
  ****************************************/
 
-uEchoProperty* uecho_object_getpropertywait(uEchoObject* obj, uEchoPropertyCode code, clock_t waitMiliTime)
+uEchoProperty* uecho_object_getpropertywait(uEchoObject* obj, uEchoPropertyCode code, clock_t wait_mili_time)
 {
   uEchoProperty* prop;
   int n;
 
   for (n = 0; n < uEchoWaitRetryCount; n++) {
-    uecho_sleep(waitMiliTime / uEchoWaitRetryCount);
+    uecho_sleep(wait_mili_time / uEchoWaitRetryCount);
     prop = uecho_object_getproperty(obj, code);
     if (prop)
       return prop;
@@ -474,12 +474,12 @@ byte* uecho_object_getpropertydata(uEchoObject* obj, uEchoPropertyCode code)
  * uecho_object_getpropertyintegerdata
  ****************************************/
 
-bool uecho_object_getpropertyintegerdata(uEchoObject* obj, uEchoPropertyCode code, size_t dataLen, int* data)
+bool uecho_object_getpropertyintegerdata(uEchoObject* obj, uEchoPropertyCode code, size_t data_len, int* data)
 {
   if (!obj)
     return false;
 
-  return uecho_propertylist_getintegerdata(obj->properties, code, dataLen, data);
+  return uecho_propertylist_getintegerdata(obj->properties, code, data_len, data);
 }
 
 /****************************************
@@ -503,7 +503,7 @@ void uecho_object_setmessagelistener(uEchoObject* obj, uEchoObjectMessageListene
   if (!obj)
     return;
 
-  obj->allMsgListener = listener;
+  obj->all_msg_listener = listener;
 }
 
 /****************************************
@@ -515,7 +515,7 @@ uEchoObjectMessageListener uecho_object_getmessagelistener(uEchoObject* obj)
   if (!obj)
     return NULL;
 
-  return obj->allMsgListener;
+  return obj->all_msg_listener;
 }
 
 /****************************************
@@ -527,7 +527,7 @@ bool uecho_object_hasmessagelistener(uEchoObject* obj)
   if (!obj)
     return false;
 
-  return obj->allMsgListener ? true : false;
+  return obj->all_msg_listener ? true : false;
 }
 
 /****************************************
@@ -539,7 +539,7 @@ bool uecho_object_setpropertyrequesthandler(uEchoObject* obj, uEchoEsv esv, uEch
   if (!obj)
     return false;
 
-  return uecho_object_property_observer_manager_setobserver(obj->propListenerMgr, esv, code, handler);
+  return uecho_object_property_observer_manager_setobserver(obj->prop_listener_mgr, esv, code, handler);
 }
 
 /****************************************
@@ -553,7 +553,7 @@ uEchoPropertyRequestHandler uecho_object_getpropertyrequestlistener(uEchoObject*
   if (!obj)
     return NULL;
 
-  obs = uecho_object_property_observer_manager_getobserver(obj->propListenerMgr, esv, code);
+  obs = uecho_object_property_observer_manager_getobserver(obj->prop_listener_mgr, esv, code);
   if (!obs)
     return NULL;
 
@@ -575,13 +575,13 @@ bool uecho_object_haspropertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEc
 
 bool uecho_object_setpropertywriterequesthandler(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyRequestHandler handler)
 {
-  bool isSeccess = true;
+  bool is_seccess = true;
 
-  isSeccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteRequest, code, handler);
-  isSeccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteRequestResponseRequired, code, handler);
-  isSeccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteReadRequest, code, handler);
+  is_seccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteRequest, code, handler);
+  is_seccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteRequestResponseRequired, code, handler);
+  is_seccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteReadRequest, code, handler);
 
-  return isSeccess;
+  return is_seccess;
 }
 
 /****************************************
@@ -590,12 +590,12 @@ bool uecho_object_setpropertywriterequesthandler(uEchoObject* obj, uEchoProperty
 
 bool uecho_object_setpropertyreadhandler(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyRequestHandler handler)
 {
-  bool isSeccess = true;
+  bool is_seccess = true;
 
-  isSeccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvReadRequest, code, handler);
-  isSeccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteReadRequest, code, handler);
+  is_seccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvReadRequest, code, handler);
+  is_seccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteReadRequest, code, handler);
 
-  return isSeccess;
+  return is_seccess;
 }
 
 /****************************************
@@ -604,38 +604,38 @@ bool uecho_object_setpropertyreadhandler(uEchoObject* obj, uEchoPropertyCode cod
 
 bool uecho_object_announcemessage(uEchoObject* obj, uEchoMessage* msg)
 {
-  uEchoNode* parentNode;
+  uEchoNode* parent_node;
 
   if (!obj)
     return false;
 
-  parentNode = uecho_object_getparentnode(obj);
-  if (!parentNode)
+  parent_node = uecho_object_getparentnode(obj);
+  if (!parent_node)
     return false;
 
   uecho_message_setsourceobjectcode(msg, uecho_object_getcode(obj));
 
-  return uecho_node_announcemessage(parentNode, msg);
+  return uecho_node_announcemessage(parent_node, msg);
 }
 
 /****************************************
  * uecho_object_sendmessage
  ****************************************/
 
-bool uecho_object_sendmessage(uEchoObject* obj, uEchoObject* dstObj, uEchoMessage* msg)
+bool uecho_object_sendmessage(uEchoObject* obj, uEchoObject* dst_obj, uEchoMessage* msg)
 {
-  uEchoNode *parentNode, *dstParentNode;
+  uEchoNode *parent_node, *dst_parent_node;
 
-  if (!obj || !dstObj)
+  if (!obj || !dst_obj)
     return false;
 
-  parentNode = uecho_object_getparentnode(obj);
-  dstParentNode = uecho_object_getparentnode(dstObj);
-  if (!parentNode || !dstParentNode)
+  parent_node = uecho_object_getparentnode(obj);
+  dst_parent_node = uecho_object_getparentnode(dst_obj);
+  if (!parent_node || !dst_parent_node)
     return false;
 
   uecho_message_setsourceobjectcode(msg, uecho_object_getcode(obj));
-  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(dstObj));
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(dst_obj));
 
-  return uecho_node_sendmessage(parentNode, dstParentNode, msg);
+  return uecho_node_sendmessage(parent_node, dst_parent_node, msg);
 }

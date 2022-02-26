@@ -40,11 +40,11 @@ void uecho_wait(clock_t mtime)
 void uecho_waitrandom(clock_t mtime)
 {
   double factor;
-  long waitTime;
+  long wait_time;
 
   factor = (double)rand() / (double)RAND_MAX;
-  waitTime = (long)((double)mtime * factor);
-  uecho_wait(waitTime);
+  wait_time = (long)((double)mtime * factor);
+  uecho_wait(wait_time);
 }
 
 /****************************************
@@ -62,11 +62,11 @@ clock_t uecho_getcurrentsystemtime(void)
 
 float uecho_random(void)
 {
-  static bool seedDone = false;
+  static bool seed_done = false;
 
-  if (seedDone == false) {
+  if (seed_done == false) {
     srand((int)(uecho_getcurrentsystemtime() % INT_MAX));
-    seedDone = true;
+    seed_done = true;
   }
 
   return (float)rand() / (float)RAND_MAX;

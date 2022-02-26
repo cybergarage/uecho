@@ -33,18 +33,18 @@ enum {
 * Data Type
 ****************************************/
 
-typedef struct _uEchoController {
+typedef struct UEchoController {
   uEchoMutex* mutex;
   uEchoNode* node;
-  uEchoTID lastTID;
+  uEchoTID last_tid;
   uEchoNodeList* nodes;
-  void (*msgListener)(struct _uEchoController*, uEchoMessage*); /* uEchoControllerMessageListener */
+  void (*msg_listener)(struct UEchoController*, uEchoMessage*); /* uEchoControllerMessageListener */
   uEchoOption option;
-  void* userData;
+  void* user_data;
 
-  clock_t postResWaitMiliTime;
-  uEchoMessage* postReqMsg;
-  uEchoMessage* postResMsg;
+  clock_t post_res_wait_mili_time;
+  uEchoMessage* post_req_msg;
+  uEchoMessage* post_res_msg;
 } uEchoController;
 
 /****************************************
@@ -58,10 +58,10 @@ typedef struct _uEchoController {
 ****************************************/
 
 bool uecho_controller_searchallobjectswithesv(uEchoController* ctrl, uEchoEsv esv);
-bool uecho_controller_searchobjectwithesv(uEchoController* ctrl, byte objCode, uEchoEsv esv);
+bool uecho_controller_searchobjectwithesv(uEchoController* ctrl, byte obj_code, uEchoEsv esv);
 
 uEchoObject* uecho_controller_getobjectbycode(uEchoController* ctrl, uEchoObjectCode code);
-uEchoObject* uecho_controller_getobjectbycodewithwait(uEchoController* ctrl, uEchoObjectCode code, clock_t waitMiliTime);
+uEchoObject* uecho_controller_getobjectbycodewithwait(uEchoController* ctrl, uEchoObjectCode code, clock_t wait_mili_time);
 
 void uecho_controller_enableoption(uEchoController* ctrl, uEchoOption param);
 void uecho_controller_disableoption(uEchoController* ctrl, uEchoOption param);

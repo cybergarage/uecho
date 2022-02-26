@@ -31,15 +31,15 @@ BOOST_AUTO_TEST_CASE(ControllerTID)
 {
   uEchoController* ctrl = uecho_controller_new();
 
-  uEchoTID firstTid = uecho_controller_getnexttid(ctrl);
-  BOOST_CHECK(uEchoTidMin <= firstTid);
-  BOOST_CHECK(firstTid <= uEchoTidMax);
+  uEchoTID first_tid = uecho_controller_getnexttid(ctrl);
+  BOOST_CHECK(uEchoTidMin <= first_tid);
+  BOOST_CHECK(first_tid <= uEchoTidMax);
 
-  uEchoTID prevTid = firstTid;
+  uEchoTID prev_tid = first_tid;
   for (int n = 0; n < 100; n++) {
     uEchoTID tid = uecho_controller_getnexttid(ctrl);
     BOOST_CHECK(uEchoTidMin <= tid);
-    BOOST_CHECK(prevTid < tid);
+    BOOST_CHECK(prev_tid < tid);
     BOOST_CHECK(tid <= uEchoTidMax);
   }
 
@@ -100,8 +100,8 @@ BOOST_AUTO_TEST_CASE(ControllerSearchAll)
 
   // Find device
 
-  uEchoObject* foundObj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
-  BOOST_CHECK(foundObj);
+  uEchoObject* found_obj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
+  BOOST_CHECK(found_obj);
 
   // Teminate
 
