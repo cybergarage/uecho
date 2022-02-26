@@ -50,7 +50,7 @@ uEchoObject* uecho_object_new(void)
   obj->set_prop_map_size = 0;
   obj->set_prop_map_bytes = NULL;
 
-  obj->get_prop_map_bytes = 0;
+  obj->get_prop_map_size = 0;
   obj->get_prop_map_bytes = NULL;
 
   // Mandatory Properties
