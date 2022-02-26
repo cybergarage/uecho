@@ -85,6 +85,8 @@
 		21EFF1A11B4A9A5E002B5E57 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EFF19F1B4A9A5E002B5E57 /* node.h */; };
 		21EFF1A41B4A9A76002B5E57 /* controller.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EFF1A21B4A9A76002B5E57 /* controller.c */; };
 		21EFF1A51B4A9A76002B5E57 /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 21EFF1A31B4A9A76002B5E57 /* node.c */; };
+		21F4EA5027C9F1840075E9DA /* logs.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F4EA4E27C9F1840075E9DA /* logs.c */; };
+		21F4EA5127C9F1840075E9DA /* logs.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F4EA4F27C9F1840075E9DA /* logs.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +169,8 @@
 		21EFF19F1B4A9A5E002B5E57 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
 		21EFF1A21B4A9A76002B5E57 /* controller.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = controller.c; sourceTree = "<group>"; };
 		21EFF1A31B4A9A76002B5E57 /* node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = node.c; sourceTree = "<group>"; };
+		21F4EA4E27C9F1840075E9DA /* logs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = logs.c; sourceTree = "<group>"; };
+		21F4EA4F27C9F1840075E9DA /* logs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logs.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +302,8 @@
 		21678EFC1A8D512000AE79AA /* util */ = {
 			isa = PBXGroup;
 			children = (
+				21F4EA4E27C9F1840075E9DA /* logs.c */,
+				21F4EA4F27C9F1840075E9DA /* logs.h */,
 				21678EFD1A8D512000AE79AA /* list.c */,
 				2111B19A1B940DAB005FDBD6 /* list.h */,
 				210CC7A221BEB18100EEEB58 /* log.c */,
@@ -371,6 +377,7 @@
 				217866E81B8F3F7C003AEB9B /* uecho.h in Headers */,
 				2111B1981B93FCB7005FDBD6 /* observer.h in Headers */,
 				2142A5E81B953B19008B1AF0 /* option.h in Headers */,
+				21F4EA5127C9F1840075E9DA /* logs.h in Headers */,
 				21205A101B95DC4E008A941C /* const_internal.h in Headers */,
 				2111B1911B93F78F005FDBD6 /* class_internal.h in Headers */,
 				21678F101A8D51C800AE79AA /* typedef.h in Headers */,
@@ -477,6 +484,7 @@
 				21678F0B1A8D512000AE79AA /* strings_function.c in Sources */,
 				215B49451B8589D4002B20CE /* device.c in Sources */,
 				21757F501B6A0D9400281E6F /* mcast_server.c in Sources */,
+				21F4EA5027C9F1840075E9DA /* logs.c in Sources */,
 				218C820F1B8D6DA000E262C3 /* object_property_observer_manager.c in Sources */,
 				218C820E1B8D6DA000E262C3 /* object_property_observer_list.c in Sources */,
 				21757F511B6A0D9400281E6F /* udp_server.c in Sources */,
