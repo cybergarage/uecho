@@ -23,7 +23,7 @@ void usage()
   printf(" -h : Print this message\n");
 }
 
-void keyUsage()
+void key_usage()
 {
   printf("s : search\n");
   printf("q : quit\n");
@@ -55,18 +55,18 @@ void uecho_print_multicastmessages(uEchoController* ctrl, uEchoMessage* msg)
 
 int main(int argc, char* argv[])
 {
-  bool nobindMode;
+  bool nobind_mode;
   uEchoController* ctrl;
   int c, key;
 
   // Parse options
 
-  nobindMode = false;
+  nobind_mode = false;
 
   while ((c = getopt(argc, argv, "nh")) != -1) {
     switch (c) {
     case 'n': {
-      nobindMode = true;
+      nobind_mode = true;
     } break;
     case 'h': {
       usage();
@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
       uecho_controller_searchallobjects(ctrl);
       break;
     default:
-      keyUsage();
+      key_usage();
     }
   } while (key != 'q');
 

@@ -54,20 +54,20 @@ void uecho_log_output(int severity, const char* file, int line_n, const char* fu
 {
   va_list list;
 
-  char msg[MAX_LOG_BUF], tsPrefix[MAX_LOG_BUF];
+  char msg[MAX_LOG_BUF], ts_prefix[MAX_LOG_BUF];
   time_t ts;
   struct tm* localts;
-  size_t prefixLen = -1;
+  size_t prefix_len = -1;
 
   ts = time(NULL);
   localts = localtime(&ts);
 
-  strftime(tsPrefix, MAX_LOG_BUF, "%c", localts);
+  strftime(ts_prefix, MAX_LOG_BUF, "%c", localts);
 
-  prefixLen = snprintf(msg, MAX_LOG_BUF, "%s : %s ", tsPrefix, uecho_log_type2string(severity));
+  prefix_len = snprintf(msg, MAX_LOG_BUF, "%s : %s ", ts_prefix, uecho_log_type2string(severity));
 
   va_start(list, format);
-  vsnprintf(msg + prefixLen, MAX_LOG_BUF - prefixLen, format, list);
+  vsnprintf(msg + prefix_len, MAX_LOG_BUF - prefix_len, format, list);
   va_end(list);
 
   printf("%s\n", msg);

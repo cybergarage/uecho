@@ -28,7 +28,7 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct _uEchoNode {
+typedef struct UEchoNode {
   UECHO_LIST_STRUCT_MEMBERS
 
   uEchoMutex* mutex;
@@ -37,7 +37,7 @@ typedef struct _uEchoNode {
   uEchoClassList* classes;
   uEchoObjectList* objects;
 
-  void (*msgListener)(struct _uEchoNode*, uEchoMessage*); /* uEchoNodeMessageListener */
+  void (*msg_listener)(struct UEchoNode*, uEchoMessage*); /* uEchoNodeMessageListener */
   char* address;
   uEchoOption option;
 } uEchoNode, uEchoNodeList;

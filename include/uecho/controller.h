@@ -54,14 +54,14 @@ uEchoControllerMessageListener uecho_controller_getmessagelistener(uEchoControll
 bool uecho_controller_hasmessagelistener(uEchoController* ctrl);
 
 bool uecho_controller_searchallobjects(uEchoController* ctrl);
-bool uecho_controller_searchobject(uEchoController* ctrl, byte objCode);
+bool uecho_controller_searchobject(uEchoController* ctrl, byte obj_code);
 
 bool uecho_controller_announcemessage(uEchoController* ctrl, uEchoMessage* msg);
 bool uecho_controller_sendmessage(uEchoController* ctrl, uEchoObject* obj, uEchoMessage* msg);
 
 void uecho_controller_setpostwaitemilitime(uEchoController* ctrl, clock_t mtime);
 clock_t uecho_controller_getpostwaitemilitime(uEchoController* ctrl);
-bool uecho_controller_postmessage(uEchoController* ctrl, uEchoObject* obj, uEchoMessage* reqMsg, uEchoMessage* resMsg);
+bool uecho_controller_postmessage(uEchoController* ctrl, uEchoObject* obj, uEchoMessage* req_msg, uEchoMessage* res_msg);
 
 bool uecho_controller_start(uEchoController* ctrl);
 bool uecho_controller_stop(uEchoController* ctrl);

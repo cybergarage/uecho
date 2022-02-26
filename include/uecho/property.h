@@ -53,7 +53,7 @@ uEchoProperty* uecho_property_new(void);
 bool uecho_property_delete(uEchoProperty* prop);
 
 bool uecho_property_setdata(uEchoProperty* prop, const byte* data, size_t count);
-bool uecho_property_setintegerdata(uEchoProperty* prop, int data, size_t dataSize);
+bool uecho_property_setintegerdata(uEchoProperty* prop, int data, size_t data_size);
 bool uecho_property_setbytedata(uEchoProperty* prop, byte data);
 bool uecho_property_adddata(uEchoProperty* prop, const byte* data, size_t count);
 bool uecho_property_addbytedata(uEchoProperty* prop, const byte data);
@@ -67,7 +67,7 @@ uEchoPropertyCode uecho_property_getcode(uEchoProperty* prop);
 
 byte uecho_property_getdatasize(uEchoProperty* prop);
 byte* uecho_property_getdata(uEchoProperty* prop);
-bool uecho_property_getintegerdata(uEchoProperty* prop, size_t dataSize, int* data);
+bool uecho_property_getintegerdata(uEchoProperty* prop, size_t data_size, int* data);
 bool uecho_property_getbytedata(uEchoProperty* prop, byte* data);
 
 void uecho_property_setattribute(uEchoProperty* prop, uEchoPropertyAttr val);
