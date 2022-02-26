@@ -2,6 +2,7 @@ var server_8c =
 [
     [ "uecho_mcast_server_msglistener", "server_8c.html#af30f29dec9ed5fbc83a9883f53850033", null ],
     [ "uecho_server_delete", "server_8c.html#a6d6a12c2645f0914500ac2e45ba9adc4", null ],
+    [ "uecho_server_getaddress", "server_8c.html#af510b6df1d992f7da64fcc79b21c69c8", null ],
     [ "uecho_server_getuserdata", "server_8c.html#a024930554fb691d245fb74a578df14fa", null ],
     [ "uecho_server_isboundaddress", "server_8c.html#af062c73992c953219f2a6455a036052e", null ],
     [ "uecho_server_isrunning", "server_8c.html#a5c7d8a3de2a481cad4d84b1b885236b9", null ],
