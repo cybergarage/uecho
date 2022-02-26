@@ -231,12 +231,36 @@ const char * uecho_server_getaddress(uEchoServer* server)
 }
 
 /****************************************
+ * uecho_server_sendto
+ ****************************************/
+
+bool uecho_server_sendto(uEchoServer* server, const char* addr, int port, byte* msg, size_t msg_len)
+{
+  uEchoSocket* sock;
+  size_t sent_byte_cnt;
+
+  sock = uecho_socket_dgram_new();
+  if (!sock)
+    return false;
+
+  sent_byte_cnt = uecho_socket_sendto(sock, addr, port, msg, msg_len);
+  uecho_socket_delete(sock);
+  return (msg_len == sent_byte_cnt) ? true : false;
+}
+
+/****************************************
  * uecho_server_postannounce
  ****************************************/
 
-bool uecho_server_postannounce(uEchoServer* server, const byte* msg, size_t msg_len)
+bool uecho_server_postannounce(uEchoServer* server, byte* msg, size_t msg_len)
 {
-  return uecho_mcast_serverlist_post(server->mcast_servers, msg, msg_len);
+  if (!server)
+    return false;
+
+  if (uecho_mcast_serverlist_post(server->mcast_servers, msg, msg_len))
+    return true;
+
+  return uecho_server_sendto(server, uEchoMulticastAddr, uEchoUdpPort, msg, msg_len);
 }
 
 /****************************************
@@ -245,20 +269,12 @@ bool uecho_server_postannounce(uEchoServer* server, const byte* msg, size_t msg_
 
 bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg, size_t msg_len)
 {
-  uEchoSocket* sock;
-  size_t sent_byte_cnt;
-
   if (!server)
     return false;
 
   if (uecho_udp_serverlist_sendto(server->udp_servers, addr, msg, msg_len))
     return true;
 
-  sock = uecho_socket_dgram_new();
-  if (!sock)
-    return false;
-  sent_byte_cnt = uecho_socket_sendto(sock, addr, uEchoUdpPort, msg, msg_len);
-  uecho_socket_delete(sock);
-  return (msg_len == sent_byte_cnt) ? true : false;
+  return uecho_server_sendto(server, addr, uEchoUdpPort, msg, msg_len);
 }
 
