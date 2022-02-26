@@ -221,6 +221,12 @@ void uecho_mcast_server_msglistener(uEchoMcastServer* mcast_server, uEchoMessage
 
 const char * uecho_server_getaddress(uEchoServer* server)
 {
+  uEchoMcastServer* mcast_server;
+
+  for (mcast_server = uecho_mcast_serverlist_gets(server->mcast_servers); mcast_server; mcast_server = uecho_mcast_server_next(mcast_server)) {
+    return uecho_mcast_server_getaddress(mcast_server);
+  }
+
   return "";
 }
 
