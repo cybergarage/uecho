@@ -16,63 +16,63 @@
 
 uEchoDatagramPacket* uecho_socket_datagram_packet_new(void)
 {
-  uEchoDatagramPacket* dgmPkt;
+  uEchoDatagramPacket* dgm_pkt;
 
-  dgmPkt = (uEchoDatagramPacket*)malloc(sizeof(uEchoDatagramPacket));
+  dgm_pkt = (uEchoDatagramPacket*)malloc(sizeof(uEchoDatagramPacket));
 
-  if (!dgmPkt)
+  if (!dgm_pkt)
     return NULL;
 
-  dgmPkt->data = NULL;
-  dgmPkt->dataLen = 0;
+  dgm_pkt->data = NULL;
+  dgm_pkt->data_len = 0;
 
   uecho_string_new();
-  dgmPkt->localAddress = uecho_string_new();
-  dgmPkt->remoteAddress = uecho_string_new();
+  dgm_pkt->local_address = uecho_string_new();
+  dgm_pkt->remote_address = uecho_string_new();
 
-  uecho_socket_datagram_packet_setlocalport(dgmPkt, 0);
-  uecho_socket_datagram_packet_setremoteport(dgmPkt, 0);
+  uecho_socket_datagram_packet_setlocalport(dgm_pkt, 0);
+  uecho_socket_datagram_packet_setremoteport(dgm_pkt, 0);
 
-  return dgmPkt;
+  return dgm_pkt;
 }
 
 /****************************************
 * uecho_socket_datagram_packet_delete
 ****************************************/
 
-void uecho_socket_datagram_packet_delete(uEchoDatagramPacket* dgmPkt)
+void uecho_socket_datagram_packet_delete(uEchoDatagramPacket* dgm_pkt)
 {
-  if (!dgmPkt)
+  if (!dgm_pkt)
     return;
 
-  uecho_socket_datagram_packet_clear(dgmPkt);
+  uecho_socket_datagram_packet_clear(dgm_pkt);
 
-  uecho_string_delete(dgmPkt->localAddress);
-  uecho_string_delete(dgmPkt->remoteAddress);
+  uecho_string_delete(dgm_pkt->local_address);
+  uecho_string_delete(dgm_pkt->remote_address);
 
-  free(dgmPkt);
+  free(dgm_pkt);
 }
 
 /****************************************
  * uecho_socket_datagram_packet_setdata
  ****************************************/
 
-bool uecho_socket_datagram_packet_setdata(uEchoDatagramPacket* dgmPkt, const byte* data, size_t dataLen)
+bool uecho_socket_datagram_packet_setdata(uEchoDatagramPacket* dgm_pkt, const byte* data, size_t data_len)
 {
-  if (!dgmPkt)
+  if (!dgm_pkt)
     return false;
 
-  uecho_socket_datagram_packet_clear(dgmPkt);
+  uecho_socket_datagram_packet_clear(dgm_pkt);
 
-  if (!data || (dataLen <= 0))
+  if (!data || (data_len <= 0))
     return true;
 
-  dgmPkt->data = malloc(dataLen);
-  if (!dgmPkt->data)
+  dgm_pkt->data = malloc(data_len);
+  if (!dgm_pkt->data)
     return false;
 
-  memcpy(dgmPkt->data, data, dataLen);
-  dgmPkt->dataLen = dataLen;
+  memcpy(dgm_pkt->data, data, data_len);
+  dgm_pkt->data_len = data_len;
 
   return true;
 }
@@ -81,16 +81,16 @@ bool uecho_socket_datagram_packet_setdata(uEchoDatagramPacket* dgmPkt, const byt
  * uecho_socket_datagram_packet_clear
  ****************************************/
 
-bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket* dgmPkt)
+bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket* dgm_pkt)
 {
-  if (!dgmPkt)
+  if (!dgm_pkt)
     return false;
 
-  if (dgmPkt->data) {
-    free(dgmPkt->data);
-    dgmPkt->data = NULL;
+  if (dgm_pkt->data) {
+    free(dgm_pkt->data);
+    dgm_pkt->data = NULL;
   }
-  dgmPkt->dataLen = 0;
+  dgm_pkt->data_len = 0;
 
   return true;
 }
@@ -99,16 +99,16 @@ bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket* dgmPkt)
 * uecho_socket_datagram_packet_copy
 ****************************************/
 
-bool uecho_socket_datagram_packet_copy(uEchoDatagramPacket* dstDgmPkt, uEchoDatagramPacket* srcDgmPkt)
+bool uecho_socket_datagram_packet_copy(uEchoDatagramPacket* dst_dgm_pkt, uEchoDatagramPacket* src_dgm_pkt)
 {
-  if (!dstDgmPkt || !srcDgmPkt)
+  if (!dst_dgm_pkt || !src_dgm_pkt)
     return false;
 
-  uecho_socket_datagram_packet_setdata(dstDgmPkt, uecho_socket_datagram_packet_getdata(srcDgmPkt), uecho_socket_datagram_packet_getlength(srcDgmPkt));
-  uecho_socket_datagram_packet_setlocaladdress(dstDgmPkt, uecho_socket_datagram_packet_getlocaladdress(srcDgmPkt));
-  uecho_socket_datagram_packet_setlocalport(dstDgmPkt, uecho_socket_datagram_packet_getlocalport(srcDgmPkt));
-  uecho_socket_datagram_packet_setremoteaddress(dstDgmPkt, uecho_socket_datagram_packet_getremoteaddress(srcDgmPkt));
-  uecho_socket_datagram_packet_setremoteport(dstDgmPkt, uecho_socket_datagram_packet_getremoteport(srcDgmPkt));
+  uecho_socket_datagram_packet_setdata(dst_dgm_pkt, uecho_socket_datagram_packet_getdata(src_dgm_pkt), uecho_socket_datagram_packet_getlength(src_dgm_pkt));
+  uecho_socket_datagram_packet_setlocaladdress(dst_dgm_pkt, uecho_socket_datagram_packet_getlocaladdress(src_dgm_pkt));
+  uecho_socket_datagram_packet_setlocalport(dst_dgm_pkt, uecho_socket_datagram_packet_getlocalport(src_dgm_pkt));
+  uecho_socket_datagram_packet_setremoteaddress(dst_dgm_pkt, uecho_socket_datagram_packet_getremoteaddress(src_dgm_pkt));
+  uecho_socket_datagram_packet_setremoteport(dst_dgm_pkt, uecho_socket_datagram_packet_getremoteport(src_dgm_pkt));
 
   return true;
 }
