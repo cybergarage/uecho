@@ -91,6 +91,8 @@ bool uecho_server_start(uEchoServer* server);
 bool uecho_server_stop(uEchoServer* server);
 bool uecho_server_isrunning(uEchoServer* server);
 
+const char * uecho_server_getlocaladdress(uEchoServer* server);
+
 bool uecho_server_postannounce(uEchoServer* server, const byte* msg, size_t msg_len);
 bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg, size_t msg_len);
 
@@ -118,6 +120,8 @@ bool uecho_udp_server_performlistener(uEchoUdpServer* server, uEchoMessage* msg)
 
 bool uecho_udp_server_open(uEchoUdpServer* server, const char* bind_addr);
 bool uecho_udp_server_close(uEchoUdpServer* server);
+
+const char * uecho_udp_server_getlocaladdress(uEchoUdpServer* server);
 
 bool uecho_udp_server_start(uEchoUdpServer* server);
 bool uecho_udp_server_stop(uEchoUdpServer* server);

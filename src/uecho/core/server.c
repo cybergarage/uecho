@@ -219,6 +219,15 @@ void uecho_mcast_server_msglistener(uEchoMcastServer* mcast_server, uEchoMessage
  * uecho_server_postannounce
  ****************************************/
 
+const char * uecho_server_getlocaladdress(uEchoServer* server)
+{
+  return "";
+}
+
+/****************************************
+ * uecho_server_postannounce
+ ****************************************/
+
 bool uecho_server_postannounce(uEchoServer* server, const byte* msg, size_t msg_len)
 {
   return uecho_mcast_serverlist_post(server->mcast_servers, msg, msg_len);
@@ -240,9 +249,12 @@ bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg,
   if (!sock)
     return false;
 
+  // uecho_net_packet_debug(uecho_server_get const char* from_addr, const char* to_addr, const byte* msg_bytes, size_t msg_len);
+
   sent_byte_cnt = uecho_socket_sendto(sock, addr, uEchoUdpPort, msg, msg_len);
 
   uecho_socket_delete(sock);
 
   return (msg_len == sent_byte_cnt) ? true : false;
 }
+
