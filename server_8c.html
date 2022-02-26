@@ -94,8 +94,10 @@ Functions</h2></td></tr>
 <tr class="separator:af30f29dec9ed5fbc83a9883f53850033"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af510b6df1d992f7da64fcc79b21c69c8"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#af510b6df1d992f7da64fcc79b21c69c8">uecho_server_getaddress</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server)</td></tr>
 <tr class="separator:af510b6df1d992f7da64fcc79b21c69c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a881d2272e0101db0bcb59f024813e775"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#a881d2272e0101db0bcb59f024813e775">uecho_server_postannounce</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server, const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *msg, size_t msg_len)</td></tr>
-<tr class="separator:a881d2272e0101db0bcb59f024813e775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef60ccdcb8418c3005b0e9466a00926c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#aef60ccdcb8418c3005b0e9466a00926c">uecho_server_sendto</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server, const char *addr, int port, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *msg, size_t msg_len)</td></tr>
+<tr class="separator:aef60ccdcb8418c3005b0e9466a00926c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4271fe6d99c644544cd3df8ccadcad0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#ad4271fe6d99c644544cd3df8ccadcad0">uecho_server_postannounce</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *msg, size_t msg_len)</td></tr>
+<tr class="separator:ad4271fe6d99c644544cd3df8ccadcad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3027fa9bc005706ef21d9b445ec4eed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#af3027fa9bc005706ef21d9b445ec4eed">uecho_server_postresponse</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server, const char *addr, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *msg, size_t msg_len)</td></tr>
 <tr class="separator:af3027fa9bc005706ef21d9b445ec4eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -274,8 +276,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a881d2272e0101db0bcb59f024813e775" name="a881d2272e0101db0bcb59f024813e775"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a881d2272e0101db0bcb59f024813e775">&#9670;&nbsp;</a></span>uecho_server_postannounce()</h2>
+<a id="ad4271fe6d99c644544cd3df8ccadcad0" name="ad4271fe6d99c644544cd3df8ccadcad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4271fe6d99c644544cd3df8ccadcad0">&#9670;&nbsp;</a></span>uecho_server_postannounce()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -289,7 +291,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -325,6 +327,52 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>msg_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef60ccdcb8418c3005b0e9466a00926c" name="aef60ccdcb8418c3005b0e9466a00926c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef60ccdcb8418c3005b0e9466a00926c">&#9670;&nbsp;</a></span>uecho_server_sendto()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_server_sendto </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
