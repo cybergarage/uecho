@@ -43,21 +43,21 @@ typedef struct _uEchoList {
 bool uecho_list_header_init(uEchoList* list);
 bool uecho_list_node_init(uEchoList* list);
 
-bool uecho_list_insert(uEchoList* prevList, uEchoList* list);
-bool uecho_list_add(uEchoList* headList, uEchoList* list);
+bool uecho_list_insert(uEchoList* prev_list, uEchoList* list);
+bool uecho_list_add(uEchoList* head_list, uEchoList* list);
 bool uecho_list_remove(uEchoList* list);
 
-size_t uecho_list_size(uEchoList* headList);
+size_t uecho_list_size(uEchoList* head_list);
 
-uEchoList* uecho_list_gets(uEchoList* headList);
-uEchoList* uecho_list_get(uEchoList* headList, int index);
+uEchoList* uecho_list_gets(uEchoList* head_list);
+uEchoList* uecho_list_get(uEchoList* head_list, int index);
 
 uEchoList* uecho_list_prev_circular(uEchoList* list);
 uEchoList* uecho_list_prev(uEchoList* list);
 uEchoList* uecho_list_next_circular(uEchoList* list);
 uEchoList* uecho_list_next(uEchoList* list);
 
-bool uecho_list_clear(uEchoList* headList, UECHO_LIST_DESTRUCTORFUNC dstructorFunc);
+bool uecho_list_clear(uEchoList* head_list, UECHO_LIST_DESTRUCTORFUNC dstructor_func);
 
 #ifdef __cplusplus
 } /* extern "C" */

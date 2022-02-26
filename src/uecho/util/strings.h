@@ -60,12 +60,12 @@ char* uecho_strncpy(char* str1, const char* str2, size_t cnt);
 char* uecho_strncat(char* str1, const char* str2, size_t cnt);
 bool uecho_strloc(const char* str, char** buf);
 
-const char* uecho_int2str(int value, char* buf, size_t bufSize);
-const char* uecho_long2str(long value, char* buf, size_t bufSize);
-const char* uecho_float2str(float value, char* buf, size_t bufSize);
-const char* uecho_double2str(double value, char* buf, size_t bufSize);
-const char* uecho_sizet2str(size_t value, char* buf, size_t bufSize);
-const char* uecho_ssizet2str(ssize_t value, char* buf, size_t bufSize);
+const char* uecho_int2str(int value, char* buf, size_t buf_size);
+const char* uecho_long2str(long value, char* buf, size_t buf_size);
+const char* uecho_float2str(float value, char* buf, size_t buf_size);
+const char* uecho_double2str(double value, char* buf, size_t buf_size);
+const char* uecho_sizet2str(size_t value, char* buf, size_t buf_size);
+const char* uecho_ssizet2str(ssize_t value, char* buf, size_t buf_size);
 
 #define uecho_str2int(value) (value ? atoi(value) : 0)
 #define uecho_str2long(value) (value ? atol(value) : 0)
@@ -80,22 +80,22 @@ const char* uecho_ssizet2str(ssize_t value, char* buf, size_t bufSize);
 * Data Type
 ****************************************/
 
-typedef struct _uEchoString {
+typedef struct UEchoString {
   char* value;
-  size_t memSize;
-  size_t valueSize;
+  size_t mem_size;
+  size_t value_size;
 } uEchoString;
 
-typedef struct _uEchoStringTokenizer {
+typedef struct UEchoStringTokenizer {
   char* value;
   char* delim;
-  size_t delimCnt;
-  size_t nextStartPos;
-  size_t lastPos;
-  char* currToken;
-  char* nextToken;
-  char repToken;
-  bool hasNextTokens;
+  size_t delim_cnt;
+  size_t next_start_pos;
+  size_t last_pos;
+  char* curr_token;
+  char* next_token;
+  char rep_token;
+  bool has_next_tokens;
 } uEchoStringTokenizer;
 
 /****************************************
@@ -103,10 +103,10 @@ typedef struct _uEchoStringTokenizer {
 ****************************************/
 
 uEchoStringTokenizer* uecho_string_tokenizer_new(const char* str, const char* delim);
-void uecho_string_tokenizer_delete(uEchoStringTokenizer* strToken);
-bool uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer* strToken);
-char* uecho_string_tokenizer_nexttoken(uEchoStringTokenizer* strToken);
-char* uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer* strToken);
+void uecho_string_tokenizer_delete(uEchoStringTokenizer* str_token);
+bool uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer* str_token);
+char* uecho_string_tokenizer_nexttoken(uEchoStringTokenizer* str_token);
+char* uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer* str_token);
 
 /****************************************
 * Function (String)
@@ -133,11 +133,11 @@ char* uecho_string_getvalue(uEchoString* str);
 size_t uecho_string_length(uEchoString* str);
 
 char* uecho_string_addvalue(uEchoString* str, const char* value);
-char* uecho_string_naddvalue(uEchoString* str, const char* value, size_t valueLen);
-char* uecho_string_addrepvalue(uEchoString* str, const char* value, size_t repeatCnt);
-char* uecho_string_naddrepvalue(uEchoString* str, const char* value, size_t valueLen, size_t repeatCnt);
+char* uecho_string_naddvalue(uEchoString* str, const char* value, size_t value_len);
+char* uecho_string_addrepvalue(uEchoString* str, const char* value, size_t repeat_cnt);
+char* uecho_string_naddrepvalue(uEchoString* str, const char* value, size_t value_len, size_t repeat_cnt);
 
-char* uecho_string_replace(uEchoString* str, char* fromStr[], char* toStr[], size_t fromStrCnt);
+char* uecho_string_replace(uEchoString* str, char* from_str[], char* to_str[], size_t from_str_cnt);
 
 size_t uecho_string_getmemorysize(uEchoString* str);
 

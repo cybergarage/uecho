@@ -21,37 +21,37 @@
 
 uEchoNetworkInterface* uecho_net_interface_new(void)
 {
-  uEchoNetworkInterface* netIf;
+  uEchoNetworkInterface* net_if;
 
-  netIf = (uEchoNetworkInterface*)malloc(sizeof(uEchoNetworkInterface));
+  net_if = (uEchoNetworkInterface*)malloc(sizeof(uEchoNetworkInterface));
 
-  if (!netIf)
+  if (!net_if)
     return NULL;
 
-  uecho_list_node_init((uEchoList*)netIf);
-  netIf->name = uecho_string_new();
-  netIf->ipaddr = uecho_string_new();
-  netIf->netmask = uecho_string_new();
-  uecho_net_interface_setindex(netIf, 0);
-  memset(netIf->macaddr, 0, (size_t)UECHO_NET_MACADDR_SIZE);
+  uecho_list_node_init((uEchoList*)net_if);
+  net_if->name = uecho_string_new();
+  net_if->ipaddr = uecho_string_new();
+  net_if->netmask = uecho_string_new();
+  uecho_net_interface_setindex(net_if, 0);
+  memset(net_if->macaddr, 0, (size_t)UECHO_NET_MACADDR_SIZE);
 
-  return netIf;
+  return net_if;
 }
 
 /****************************************
 * uecho_net_interface_delete
 ****************************************/
 
-void uecho_net_interface_delete(uEchoNetworkInterface* netIf)
+void uecho_net_interface_delete(uEchoNetworkInterface* net_if)
 {
-  if (!netIf)
+  if (!net_if)
     return;
 
-  uecho_list_remove((uEchoList*)netIf);
-  uecho_string_delete(netIf->name);
-  uecho_string_delete(netIf->ipaddr);
-  uecho_string_delete(netIf->netmask);
-  free(netIf);
+  uecho_list_remove((uEchoList*)net_if);
+  uecho_string_delete(net_if->name);
+  uecho_string_delete(net_if->ipaddr);
+  uecho_string_delete(net_if->netmask);
+  free(net_if);
 }
 
 /****************************************
@@ -60,83 +60,83 @@ void uecho_net_interface_delete(uEchoNetworkInterface* netIf)
 
 uEchoNetworkInterface* uecho_net_interface_getany(void)
 {
-  uEchoNetworkInterface* netIf;
+  uEchoNetworkInterface* net_if;
 
-  netIf = uecho_net_interface_new();
-  uecho_net_interface_setname(netIf, "INADDR_ANY");
-  uecho_net_interface_setaddress(netIf, "0.0.0.0");
+  net_if = uecho_net_interface_new();
+  uecho_net_interface_setname(net_if, "INADDR_ANY");
+  uecho_net_interface_setaddress(net_if, "0.0.0.0");
 
-  return netIf;
+  return net_if;
 }
 
 /****************************************
 * uecho_net_interface_setname
 ****************************************/
 
-void uecho_net_interface_setname(uEchoNetworkInterface* netIf, char* name)
+void uecho_net_interface_setname(uEchoNetworkInterface* net_if, char* name)
 {
-  if (!netIf)
+  if (!net_if)
     return;
 
-  uecho_string_setvalue(netIf->name, name);
+  uecho_string_setvalue(net_if->name, name);
 }
 
 /****************************************
 * uecho_net_interface_getname
 ****************************************/
 
-char* uecho_net_interface_getname(uEchoNetworkInterface* netIf)
+char* uecho_net_interface_getname(uEchoNetworkInterface* net_if)
 {
-  if (!netIf)
+  if (!net_if)
     return NULL;
 
-  return uecho_string_getvalue(netIf->name);
+  return uecho_string_getvalue(net_if->name);
 }
 
 /****************************************
 * uecho_net_interface_setaddress
 ****************************************/
 
-void uecho_net_interface_setaddress(uEchoNetworkInterface* netIf, char* value)
+void uecho_net_interface_setaddress(uEchoNetworkInterface* net_if, char* value)
 {
-  if (!netIf)
+  if (!net_if)
     return;
 
-  uecho_string_setvalue(netIf->ipaddr, value);
+  uecho_string_setvalue(net_if->ipaddr, value);
 }
 
 /****************************************
 * uecho_net_interface_getaddress
 ****************************************/
 
-char* uecho_net_interface_getaddress(uEchoNetworkInterface* netIf)
+char* uecho_net_interface_getaddress(uEchoNetworkInterface* net_if)
 {
-  if (!netIf)
+  if (!net_if)
     return NULL;
 
-  return uecho_string_getvalue(netIf->ipaddr);
+  return uecho_string_getvalue(net_if->ipaddr);
 }
 
 /****************************************
 * uecho_net_interface_setnetmask
 ****************************************/
 
-void uecho_net_interface_setnetmask(uEchoNetworkInterface* netIf, char* value)
+void uecho_net_interface_setnetmask(uEchoNetworkInterface* net_if, char* value)
 {
-  if (!netIf)
+  if (!net_if)
     return;
 
-  uecho_string_setvalue(netIf->netmask, value);
+  uecho_string_setvalue(net_if->netmask, value);
 }
 
 /****************************************
 * uecho_net_interface_getnetmask
 ****************************************/
 
-char* uecho_net_interface_getnetmask(uEchoNetworkInterface* netIf)
+char* uecho_net_interface_getnetmask(uEchoNetworkInterface* net_if)
 {
-  if (!netIf)
+  if (!net_if)
     return NULL;
 
-  return uecho_string_getvalue(netIf->netmask);
+  return uecho_string_getvalue(net_if->netmask);
 }

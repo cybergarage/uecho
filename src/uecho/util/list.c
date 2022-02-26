@@ -44,34 +44,34 @@ bool uecho_list_node_init(uEchoList* list)
 * uecho_list_size
 ****************************************/
 
-size_t uecho_list_size(uEchoList* headList)
+size_t uecho_list_size(uEchoList* head_list)
 {
   uEchoList* list;
-  int listCnt;
+  int list_cnt;
 
-  if (!headList)
+  if (!head_list)
     return 0;
 
-  listCnt = 0;
-  for (list = uecho_list_next(headList); list != NULL; list = uecho_list_next(list))
-    listCnt++;
+  list_cnt = 0;
+  for (list = uecho_list_next(head_list); list != NULL; list = uecho_list_next(list))
+    list_cnt++;
 
-  return listCnt;
+  return list_cnt;
 }
 
 /****************************************
 * uecho_list_get
 ****************************************/
 
-uEchoList* uecho_list_get(uEchoList* headList, int index)
+uEchoList* uecho_list_get(uEchoList* head_list, int index)
 {
   uEchoList* list;
   int n;
 
-  if (!headList)
+  if (!head_list)
     return NULL;
 
-  list = uecho_list_next(headList);
+  list = uecho_list_next(head_list);
   for (n = 0; n < index; n++) {
     if (!list)
       break;
@@ -86,16 +86,16 @@ uEchoList* uecho_list_get(uEchoList* headList, int index)
 ****************************************/
 
 bool uecho_list_insert(
-    uEchoList* prevList,
+    uEchoList* prev_list,
     uEchoList* list)
 {
-  if (!prevList || !list)
+  if (!prev_list || !list)
     return false;
 
-  list->prev = prevList;
-  list->next = prevList->next;
-  prevList->next->prev = list;
-  prevList->next = list;
+  list->prev = prev_list;
+  list->next = prev_list->next;
+  prev_list->next->prev = list;
+  prev_list->next = list;
 
   return true;
 }
@@ -105,16 +105,16 @@ bool uecho_list_insert(
 ****************************************/
 
 bool uecho_list_add(
-    uEchoList* headList,
+    uEchoList* head_list,
     uEchoList* list)
 {
-  if (!headList || !list)
+  if (!head_list || !list)
     return false;
 
-  if (!headList->prev)
+  if (!head_list->prev)
     return false;
 
-  uecho_list_insert(headList->prev, list);
+  uecho_list_insert(head_list->prev, list);
 
   return true;
 }
@@ -199,12 +199,12 @@ uEchoList* uecho_list_next_circular(
  * uecho_list_gets
  ****************************************/
 
-uEchoList* uecho_list_gets(uEchoList* headList)
+uEchoList* uecho_list_gets(uEchoList* head_list)
 {
-  if (!headList)
+  if (!head_list)
     return NULL;
 
-  return uecho_list_next(headList);
+  return uecho_list_next(head_list);
 }
 
 /****************************************
@@ -229,24 +229,24 @@ uEchoList* uecho_list_next(uEchoList* list)
 * uecho_list_clear
 ****************************************/
 
-bool uecho_list_clear(uEchoList* headList, UECHO_LIST_DESTRUCTORFUNC dstructorFunc)
+bool uecho_list_clear(uEchoList* head_list, UECHO_LIST_DESTRUCTORFUNC dstructor_func)
 {
-  uEchoList *list, *nextList;
+  uEchoList *list, *next_list;
 
-  if (!headList)
+  if (!head_list)
     return false;
 
-  list = uecho_list_next(headList);
+  list = uecho_list_next(head_list);
   while (list != NULL) {
-    nextList = uecho_list_next(list);
+    next_list = uecho_list_next(list);
     uecho_list_remove(list);
-    if (dstructorFunc != NULL) {
-      dstructorFunc(list);
+    if (dstructor_func != NULL) {
+      dstructor_func(list);
     }
     else {
       free(list);
     }
-    list = nextList;
+    list = next_list;
   }
 
   return true;

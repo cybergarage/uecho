@@ -59,9 +59,9 @@ void object_propertywriterequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoPr
 ....
 {
   uEchoObject *obj;
-  byte propCode;
+  byte prop_code;
   ....
-  uecho_object_setpropertywriterequesthandler(obj, propCode, object_propertywriterequestlistener)  
+  uecho_object_setpropertywriterequesthandler(obj, prop_code, object_propertywriterequestlistener)  
 }
 ```
 

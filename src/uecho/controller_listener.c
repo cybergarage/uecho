@@ -21,11 +21,11 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
 {
   uEchoNode* node;
   uEchoProperty* prop;
-  uEchoObjectCode objCode;
-  byte* propData;
-  size_t propSize;
+  uEchoObjectCode obj_code;
+  byte* prop_data;
+  size_t prop_size;
   size_t idx;
-  const char* msgAddr;
+  const char* msg_addr;
 
   // Check message
 
@@ -33,17 +33,17 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
   if (!prop)
     return;
 
-  propSize = uecho_property_getdatasize(prop);
-  if (propSize < 1)
+  prop_size = uecho_property_getdatasize(prop);
+  if (prop_size < 1)
     return;
 
   // Get or create node
 
-  msgAddr = uecho_message_getsourceaddress(msg);
-  if (!msgAddr)
+  msg_addr = uecho_message_getsourceaddress(msg);
+  if (!msg_addr)
     return;
 
-  node = uecho_controller_getnodebyaddress(ctrl, msgAddr);
+  node = uecho_controller_getnodebyaddress(ctrl, msg_addr);
   if (!node) {
     node = uecho_node_new();
     if (!node)
@@ -54,11 +54,11 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
 
   // Updated node
 
-  propData = uecho_property_getdata(prop);
+  prop_data = uecho_property_getdata(prop);
 
-  for (idx = 1; (idx + 2) < propSize; idx += 3) {
-    objCode = uecho_byte2integer((propData + idx), 3);
-    uecho_node_setobject(node, objCode);
+  for (idx = 1; (idx + 2) < prop_size; idx += 3) {
+    obj_code = uecho_byte2integer((prop_data + idx), 3);
+    uecho_node_setobject(node, obj_code);
   }
 }
 
@@ -66,42 +66,42 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
  * uecho_controller_updatepropertydata
  ****************************************/
 
-void uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* srcObj, byte OPC, uEchoProperty** EP)
+void uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* src_obj, byte opc, uEchoProperty** ep)
 {
-  uEchoProperty* msgProp;
-  uEchoPropertyCode msgPropCode;
+  uEchoProperty* msg_prop;
+  uEchoPropertyCode msg_prop_code;
   size_t n;
 
-  for (n = 0; n < OPC; n++) {
-    msgProp = EP[n];
-    if (!msgProp)
+  for (n = 0; n < opc; n++) {
+    msg_prop = ep[n];
+    if (!msg_prop)
       continue;
-    msgPropCode = uecho_property_getcode(msgProp);
-    if (!uecho_object_hasproperty(srcObj, msgPropCode)) {
-      uecho_object_setproperty(srcObj, msgPropCode, uEchoPropertyAttrNone);
+    msg_prop_code = uecho_property_getcode(msg_prop);
+    if (!uecho_object_hasproperty(src_obj, msg_prop_code)) {
+      uecho_object_setproperty(src_obj, msg_prop_code, uEchoPropertyAttrNone);
     }
-    uecho_object_setpropertydata(srcObj, msgPropCode, uecho_property_getdata(msgProp), uecho_property_getdatasize(msgProp));
+    uecho_object_setpropertydata(src_obj, msg_prop_code, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
   }
 }
 
 void uecho_controller_updatepropertydata(uEchoController* ctrl, uEchoMessage* msg)
 {
-  uEchoNode* srcNode;
-  uEchoObject* srcObj;
+  uEchoNode* src_node;
+  uEchoObject* src_obj;
 
-  srcNode = uecho_controller_getnodebyaddress(ctrl, uecho_message_getsourceaddress(msg));
-  if (!srcNode)
+  src_node = uecho_controller_getnodebyaddress(ctrl, uecho_message_getsourceaddress(msg));
+  if (!src_node)
     return;
 
-  srcObj = uecho_node_getobjectbycode(srcNode, uecho_message_getsourceobjectcode(msg));
-  if (!srcObj)
+  src_obj = uecho_node_getobjectbycode(src_node, uecho_message_getsourceobjectcode(msg));
+  if (!src_obj)
     return;
 
   if (uecho_message_isreadwritemessage(msg)) {
-    uecho_controller_updateopcpropertydata(ctrl, srcObj, msg->OPCGet, msg->EPGet);
+    uecho_controller_updateopcpropertydata(ctrl, src_obj, msg->opc_get, msg->ep_get);
   }
   else {
-    uecho_controller_updateopcpropertydata(ctrl, srcObj, msg->OPC, msg->EP);
+    uecho_controller_updateopcpropertydata(ctrl, src_obj, msg->opc, msg->ep);
   }
 }
 
@@ -154,15 +154,15 @@ void uecho_controller_servermessagelistener(uEchoServer* server, uEchoMessage* m
     return;
 
   if (!uecho_node_hasobjectbycode(ctrl->node, uecho_message_getdestinationobjectcode(msg))) {
-    if (ctrl->msgListener) {
-      ctrl->msgListener(ctrl, msg);
+    if (ctrl->msg_listener) {
+      ctrl->msg_listener(ctrl, msg);
     }
     return;
   }
 
   uecho_controller_handlerequestmessage(ctrl, msg);
 
-  if (ctrl->msgListener) {
-    ctrl->msgListener(ctrl, msg);
+  if (ctrl->msg_listener) {
+    ctrl->msg_listener(ctrl, msg);
   }
 }

@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(MessageBadHeader)
 {
   uEchoMessage* msg = uecho_message_new();
 
-  byte msgBytes[] = {
+  byte msg_bytes[] = {
     0x00,
     0x00,
     0x00,
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(MessageBadHeader)
     0x00,
   };
 
-  BOOST_CHECK(!uecho_message_parse(msg, msgBytes, uEchoMessageMinLen));
+  BOOST_CHECK(!uecho_message_parse(msg, msg_bytes, uEchoMessageMinLen));
 
   uecho_message_delete(msg);
 }
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
 {
   uEchoMessage* msg = uecho_message_new();
 
-  byte msgBytes[] = {
+  byte msg_bytes[] = {
     uEchoEhd1,
     uEchoEhd2,
     0x00,
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
     'e',
   };
 
-  BOOST_CHECK(uecho_message_parse(msg, msgBytes, sizeof(msgBytes)));
+  BOOST_CHECK(uecho_message_parse(msg, msg_bytes, sizeof(msg_bytes)));
 
   BOOST_CHECK_EQUAL(uecho_message_gettid(msg), 0);
 
@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE(MessageWriteReadRequest)
 {
   uEchoMessage* msg = uecho_message_new();
 
-  byte msgBytes[] = {
+  byte msg_bytes[] = {
     uEchoEhd1,
     uEchoEhd2,
     0x00,
@@ -188,7 +188,7 @@ BOOST_AUTO_TEST_CASE(MessageWriteReadRequest)
     'z',
   };
 
-  BOOST_CHECK(uecho_message_parse(msg, msgBytes, sizeof(msgBytes)));
+  BOOST_CHECK(uecho_message_parse(msg, msg_bytes, sizeof(msg_bytes)));
 
   BOOST_CHECK_EQUAL(uecho_message_gettid(msg), 0);
 

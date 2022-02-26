@@ -27,11 +27,11 @@ extern "C" {
  * Data Types
  ****************************************/
 
-typedef struct _uEchoMutex {
+typedef struct UEchoMutex {
 #if defined(WIN32)
-  HANDLE mutexID;
+  HANDLE mutex_id;
 #else
-  pthread_mutex_t mutexID;
+  pthread_mutex_t mutex_id;
 #endif
 } uEchoMutex;
 

@@ -16,46 +16,46 @@
 
 uEchoThreadList* uecho_threadlist_new(void)
 {
-  uEchoThreadList* threadList;
+  uEchoThreadList* thread_list;
 
-  threadList = (uEchoThreadList*)malloc(sizeof(uEchoThreadList));
+  thread_list = (uEchoThreadList*)malloc(sizeof(uEchoThreadList));
 
-  if (!threadList)
+  if (!thread_list)
     return NULL;
 
-  uecho_list_header_init((uEchoList*)threadList);
-  threadList->runnableFlag = false;
-  threadList->action = NULL;
-  threadList->userData = NULL;
+  uecho_list_header_init((uEchoList*)thread_list);
+  thread_list->runnable_flag = false;
+  thread_list->action = NULL;
+  thread_list->user_data = NULL;
 
-  return threadList;
+  return thread_list;
 }
 
 /****************************************
 * uecho_threadlist_delete
 ****************************************/
 
-void uecho_threadlist_delete(uEchoThreadList* threadList)
+void uecho_threadlist_delete(uEchoThreadList* thread_list)
 {
-  if (!threadList)
+  if (!thread_list)
     return;
 
-  uecho_threadlist_clear(threadList);
-  free(threadList);
+  uecho_threadlist_clear(thread_list);
+  free(thread_list);
 }
 
 /****************************************
 * uecho_threadlist_start
 ****************************************/
 
-bool uecho_threadlist_start(uEchoThreadList* threadList)
+bool uecho_threadlist_start(uEchoThreadList* thread_list)
 {
   uEchoThreadList* thread;
 
-  if (!threadList)
+  if (!thread_list)
     return false;
 
-  for (thread = uecho_threadlist_gets(threadList); thread != NULL; thread = uecho_thread_next(thread)) {
+  for (thread = uecho_threadlist_gets(thread_list); thread != NULL; thread = uecho_thread_next(thread)) {
     uecho_thread_start(thread);
   }
 
@@ -66,14 +66,14 @@ bool uecho_threadlist_start(uEchoThreadList* threadList)
 * uecho_threadlist_stop
 ****************************************/
 
-bool uecho_threadlist_stop(uEchoThreadList* threadList)
+bool uecho_threadlist_stop(uEchoThreadList* thread_list)
 {
   uEchoThreadList* thread;
 
-  if (!threadList)
+  if (!thread_list)
     return false;
 
-  for (thread = uecho_threadlist_gets(threadList); thread != NULL; thread = uecho_thread_next(thread))
+  for (thread = uecho_threadlist_gets(thread_list); thread != NULL; thread = uecho_thread_next(thread))
     uecho_thread_stop(thread);
 
   return true;
