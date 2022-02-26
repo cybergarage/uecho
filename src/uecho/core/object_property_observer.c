@@ -66,7 +66,7 @@ uEchoEsv uecho_object_property_observer_getesv(uEchoObjectPropertyObserver* obs)
 
 void uecho_object_property_observer_setpropetycode(uEchoObjectPropertyObserver* obs, uEchoPropertyCode code)
 {
-  obs->propCode = code;
+  obs->prop_code = code;
 }
 
 /****************************************
@@ -75,7 +75,7 @@ void uecho_object_property_observer_setpropetycode(uEchoObjectPropertyObserver* 
 
 uEchoPropertyCode uecho_object_property_observer_getpropetycode(uEchoObjectPropertyObserver* obs)
 {
-  return obs->propCode;
+  return obs->prop_code;
 }
 
 /****************************************

@@ -26,54 +26,54 @@ BOOST_AUTO_TEST_CASE(ServerTest)
 
 BOOST_AUTO_TEST_CASE(UdpServerTest)
 {
-  uEchoNetworkInterfaceList* netIfList = uecho_net_interfacelist_new();
+  uEchoNetworkInterfaceList* net_if_list = uecho_net_interfacelist_new();
 
-  BOOST_CHECK(0 < uecho_net_gethostinterfaces(netIfList));
+  BOOST_CHECK(0 < uecho_net_gethostinterfaces(net_if_list));
 
-  if (uecho_net_gethostinterfaces(netIfList) <= 0) {
-    uecho_net_interfacelist_delete(netIfList);
+  if (uecho_net_gethostinterfaces(net_if_list) <= 0) {
+    uecho_net_interfacelist_delete(net_if_list);
     return;
   }
 
-  uEchoNetworkInterface* netIf = uecho_net_interfacelist_gets(netIfList);
-  const char* bindAddr = uecho_net_interface_getaddress(netIf);
+  uEchoNetworkInterface* net_if = uecho_net_interfacelist_gets(net_if_list);
+  const char* bind_addr = uecho_net_interface_getaddress(net_if);
 
   uEchoUdpServer* server = uecho_udp_server_new();
   BOOST_CHECK(server);
 
-  BOOST_CHECK(uecho_udp_server_open(server, bindAddr));
+  BOOST_CHECK(uecho_udp_server_open(server, bind_addr));
   BOOST_CHECK(uecho_udp_server_start(server));
   BOOST_CHECK(uecho_udp_server_stop(server));
 
   BOOST_CHECK(uecho_udp_server_delete(server));
 
-  uecho_net_interfacelist_delete(netIfList);
+  uecho_net_interfacelist_delete(net_if_list);
 }
 
 BOOST_AUTO_TEST_CASE(McastServerTest)
 {
-  uEchoNetworkInterfaceList* netIfList = uecho_net_interfacelist_new();
+  uEchoNetworkInterfaceList* net_if_list = uecho_net_interfacelist_new();
 
-  BOOST_CHECK(0 < uecho_net_gethostinterfaces(netIfList));
+  BOOST_CHECK(0 < uecho_net_gethostinterfaces(net_if_list));
 
-  if (uecho_net_gethostinterfaces(netIfList) <= 0) {
-    uecho_net_interfacelist_delete(netIfList);
+  if (uecho_net_gethostinterfaces(net_if_list) <= 0) {
+    uecho_net_interfacelist_delete(net_if_list);
     return;
   }
 
-  uEchoNetworkInterface* netIf = uecho_net_interfacelist_gets(netIfList);
-  const char* bindAddr = uecho_net_interface_getaddress(netIf);
+  uEchoNetworkInterface* net_if = uecho_net_interfacelist_gets(net_if_list);
+  const char* bind_addr = uecho_net_interface_getaddress(net_if);
 
   uEchoMcastServer* server = uecho_mcast_server_new();
   BOOST_CHECK(server);
 
-  BOOST_CHECK(uecho_mcast_server_open(server, bindAddr));
+  BOOST_CHECK(uecho_mcast_server_open(server, bind_addr));
   BOOST_CHECK(uecho_mcast_server_start(server));
   BOOST_CHECK(uecho_mcast_server_stop(server));
 
   BOOST_CHECK(uecho_mcast_server_delete(server));
 
-  uecho_net_interfacelist_delete(netIfList);
+  uecho_net_interfacelist_delete(net_if_list);
 }
 
 BOOST_AUTO_TEST_CASE(UdpServerListTest)

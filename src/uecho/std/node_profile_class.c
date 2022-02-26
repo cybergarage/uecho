@@ -86,46 +86,46 @@ bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject* obj)
 
 bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject* obj, bool stats)
 {
-  byte statsByte;
+  byte stats_byte;
 
-  statsByte = stats ? uEchoNodeProfileClassBooting : uEchoNodeProfileClassNotBooting;
-  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassOperatingStatus, &statsByte, uEchoNodeProfileClassOperatingStatusLen);
+  stats_byte = stats ? uEchoNodeProfileClassBooting : uEchoNodeProfileClassNotBooting;
+  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassOperatingStatus, &stats_byte, uEchoNodeProfileClassOperatingStatusLen);
 }
 
 /****************************************
  * uecho_nodeprofileclass_setversion
  ****************************************/
 
-bool uecho_nodeprofileclass_setversion(uEchoObject* obj, int majorVer, int minorVer)
+bool uecho_nodeprofileclass_setversion(uEchoObject* obj, int major_ver, int minor_ver)
 {
-  byte verBytes[uEchoNodeProfileClassVersionInformationLen];
+  byte ver_bytes[uEchoNodeProfileClassVersionInformationLen];
 
-  verBytes[0] = uEchoMajorVersion;
-  verBytes[1] = uEchoMinorVersion;
-  verBytes[2] = 0x01;
-  verBytes[3] = 0x00;
+  ver_bytes[0] = uEchoMajorVersion;
+  ver_bytes[1] = uEchoMinorVersion;
+  ver_bytes[2] = 0x01;
+  ver_bytes[3] = 0x00;
 
-  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassVersionInformation, verBytes, uEchoNodeProfileClassVersionInformationLen);
+  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassVersionInformation, ver_bytes, uEchoNodeProfileClassVersionInformationLen);
 }
 
 /****************************************
  * uecho_nodeprofileclass_setid
  ****************************************/
 
-bool uecho_nodeprofileclass_setid(uEchoObject* obj, byte* manCode, byte* uniqId)
+bool uecho_nodeprofileclass_setid(uEchoObject* obj, byte* man_code, byte* uniq_id)
 {
-  byte propData[uEchoNodeProfileClassIdentificationNumberLen];
+  byte prop_data[uEchoNodeProfileClassIdentificationNumberLen];
   byte* prop;
 
-  propData[0] = uEchoLowerCommunicationLayerProtocolType;
+  prop_data[0] = uEchoLowerCommunicationLayerProtocolType;
 
-  prop = propData + 1;
-  memcpy(prop, manCode, uEchoNodeProfileClassIdentificationManufacturerCodeLen);
+  prop = prop_data + 1;
+  memcpy(prop, man_code, uEchoNodeProfileClassIdentificationManufacturerCodeLen);
 
   prop += uEchoNodeProfileClassIdentificationManufacturerCodeLen;
-  memcpy(prop, uniqId, uEchoNodeProfileClassIdentificationUniqueIdLen);
+  memcpy(prop, uniq_id, uEchoNodeProfileClassIdentificationUniqueIdLen);
 
-  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassIdentificationNumber, propData, uEchoNodeProfileClassIdentificationNumberLen);
+  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassIdentificationNumber, prop_data, uEchoNodeProfileClassIdentificationNumberLen);
 }
 
 /****************************************
@@ -134,13 +134,13 @@ bool uecho_nodeprofileclass_setid(uEchoObject* obj, byte* manCode, byte* uniqId)
 
 bool uecho_nodeprofileclass_setdefaultid(uEchoObject* obj)
 {
-  byte manCode[uEchoNodeProfileClassIdentificationManufacturerCodeLen];
-  byte uniqId[uEchoNodeProfileClassIdentificationUniqueIdLen];
+  byte man_code[uEchoNodeProfileClassIdentificationManufacturerCodeLen];
+  byte uniq_id[uEchoNodeProfileClassIdentificationUniqueIdLen];
 
-  memset(manCode, 0, sizeof(manCode));
-  memset(uniqId, 0, sizeof(uniqId));
+  memset(man_code, 0, sizeof(man_code));
+  memset(uniq_id, 0, sizeof(uniq_id));
 
-  return uecho_nodeprofileclass_setid(obj, manCode, uniqId);
+  return uecho_nodeprofileclass_setid(obj, man_code, uniq_id);
 }
 
 /****************************************
@@ -165,33 +165,33 @@ bool uecho_nodeprofileclass_setinstancecount(uEchoObject* obj, int count)
  * uecho_nodeprofileclass_setclasslist
  ****************************************/
 
-bool uecho_nodeprofileclass_setclasslist(uEchoObject* obj, int listCnt, byte* listBytes)
+bool uecho_nodeprofileclass_setclasslist(uEchoObject* obj, int list_cnt, byte* list_bytes)
 {
-  if (uEchoNodeProfileClassSelfNodeClassListSMax < listCnt) {
-    listCnt = uEchoNodeProfileClassSelfNodeClassListSMax;
+  if (uEchoNodeProfileClassSelfNodeClassListSMax < list_cnt) {
+    list_cnt = uEchoNodeProfileClassSelfNodeClassListSMax;
   }
-  listBytes[0] = listCnt;
-  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassSelfNodeClassListS, listBytes, ((listCnt * 2) + 1));
+  list_bytes[0] = list_cnt;
+  return uecho_object_setpropertydata(obj, uEchoNodeProfileClassSelfNodeClassListS, list_bytes, ((list_cnt * 2) + 1));
 }
 
 /****************************************
  * uecho_nodeprofileclass_setinstancelist
  ****************************************/
 
-bool uecho_nodeprofileclass_setinstancelist(uEchoObject* obj, int listCnt, byte* listBytes)
+bool uecho_nodeprofileclass_setinstancelist(uEchoObject* obj, int list_cnt, byte* list_bytes)
 {
-  bool isSuccess;
+  bool is_success;
 
-  if (uEchoNodeProfileClassSelfNodeInstanceListSMax < listCnt) {
-    listCnt = uEchoNodeProfileClassSelfNodeInstanceListSMax;
+  if (uEchoNodeProfileClassSelfNodeInstanceListSMax < list_cnt) {
+    list_cnt = uEchoNodeProfileClassSelfNodeInstanceListSMax;
   }
-  listBytes[0] = listCnt;
+  list_bytes[0] = list_cnt;
 
-  isSuccess = true;
-  isSuccess &= uecho_object_setpropertydata(obj, uEchoNodeProfileClassSelfNodeInstanceListS, listBytes, ((listCnt * 3) + 1));
-  isSuccess &= uecho_object_setpropertydata(obj, uEchoNodeProfileClassInstanceListNotification, listBytes, ((listCnt * 3) + 1));
+  is_success = true;
+  is_success &= uecho_object_setpropertydata(obj, uEchoNodeProfileClassSelfNodeInstanceListS, list_bytes, ((list_cnt * 3) + 1));
+  is_success &= uecho_object_setpropertydata(obj, uEchoNodeProfileClassInstanceListNotification, list_bytes, ((list_cnt * 3) + 1));
 
-  return isSuccess;
+  return is_success;
 }
 
 /****************************************
@@ -200,12 +200,12 @@ bool uecho_nodeprofileclass_setinstancelist(uEchoObject* obj, int listCnt, byte*
 
 bool uecho_nodeprofileclass_isoperatingstatus(uEchoObject* obj)
 {
-  byte statsByte;
+  byte stats_byte;
 
-  if (!uecho_object_getpropertybytedata(obj, uEchoNodeProfileClassOperatingStatus, &statsByte))
+  if (!uecho_object_getpropertybytedata(obj, uEchoNodeProfileClassOperatingStatus, &stats_byte))
     return false;
 
-  return (statsByte == uEchoNodeProfileClassBooting) ? true : false;
+  return (stats_byte == uEchoNodeProfileClassBooting) ? true : false;
 }
 
 /****************************************
@@ -270,11 +270,11 @@ byte* uecho_nodeprofileclass_getclasslist(uEchoObject* obj)
 bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject* obj)
 {
   uEchoNode* node;
-  uEchoClass* nodeCls;
-  uEchoObject* nodeObj;
-  byte *nodeClassList, *nodeInstanceList;
-  int nodeClassListCnt, nodeInstanceListCnt;
-  int nodeClassCnt, nodeInstanceCnt;
+  uEchoClass* node_cls;
+  uEchoObject* node_obj;
+  byte *node_class_list, *node_instance_list;
+  int node_class_list_cnt, node_instance_list_cnt;
+  int node_class_cnt, node_instance_cnt;
   int idx;
 
   if (!obj)
@@ -286,52 +286,52 @@ bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject* obj)
 
   // Class Properties
 
-  nodeClassList = (byte*)realloc(NULL, 1);
-  nodeClassListCnt = 0;
-  nodeClassCnt = 0;
+  node_class_list = (byte*)realloc(NULL, 1);
+  node_class_list_cnt = 0;
+  node_class_cnt = 0;
 
-  for (nodeCls = uecho_node_getclasses(node); nodeCls; nodeCls = uecho_class_next(nodeCls)) {
-    nodeClassCnt++;
+  for (node_cls = uecho_node_getclasses(node); node_cls; node_cls = uecho_class_next(node_cls)) {
+    node_class_cnt++;
 
-    if (uecho_class_isprofile(nodeCls))
+    if (uecho_class_isprofile(node_cls))
       continue;
 
-    nodeClassListCnt++;
-    nodeClassList = (byte*)realloc(nodeClassList, ((2 * nodeClassListCnt) + 1));
-    idx = (2 * (nodeClassListCnt - 1)) + 1;
-    nodeClassList[idx + 0] = uecho_class_getclassgroupcode(nodeCls);
-    nodeClassList[idx + 1] = uecho_class_getclasscode(nodeCls);
+    node_class_list_cnt++;
+    node_class_list = (byte*)realloc(node_class_list, ((2 * node_class_list_cnt) + 1));
+    idx = (2 * (node_class_list_cnt - 1)) + 1;
+    node_class_list[idx + 0] = uecho_class_getclassgroupcode(node_cls);
+    node_class_list[idx + 1] = uecho_class_getclasscode(node_cls);
   }
 
-  uecho_nodeprofileclass_setclasscount(obj, nodeClassCnt);
-  uecho_nodeprofileclass_setclasslist(obj, nodeClassListCnt, nodeClassList);
+  uecho_nodeprofileclass_setclasscount(obj, node_class_cnt);
+  uecho_nodeprofileclass_setclasslist(obj, node_class_list_cnt, node_class_list);
 
-  free(nodeClassList);
+  free(node_class_list);
 
   // Instance Properties
 
-  nodeInstanceList = (byte*)realloc(NULL, 1);
-  nodeInstanceListCnt = 0;
-  nodeInstanceCnt = 0;
+  node_instance_list = (byte*)realloc(NULL, 1);
+  node_instance_list_cnt = 0;
+  node_instance_cnt = 0;
 
-  for (nodeObj = uecho_node_getobjects(node); nodeObj; nodeObj = uecho_object_next(nodeObj)) {
-    if (uecho_object_isprofile(nodeObj))
+  for (node_obj = uecho_node_getobjects(node); node_obj; node_obj = uecho_object_next(node_obj)) {
+    if (uecho_object_isprofile(node_obj))
       continue;
 
-    nodeInstanceCnt++;
+    node_instance_cnt++;
 
-    nodeInstanceListCnt++;
-    nodeInstanceList = (byte*)realloc(nodeInstanceList, ((3 * nodeInstanceListCnt) + 1));
-    idx = (3 * (nodeInstanceListCnt - 1)) + 1;
-    nodeInstanceList[idx + 0] = uecho_object_getclassgroupcode(nodeObj);
-    nodeInstanceList[idx + 1] = uecho_object_getclasscode(nodeObj);
-    nodeInstanceList[idx + 2] = uecho_object_getinstancecode(nodeObj);
+    node_instance_list_cnt++;
+    node_instance_list = (byte*)realloc(node_instance_list, ((3 * node_instance_list_cnt) + 1));
+    idx = (3 * (node_instance_list_cnt - 1)) + 1;
+    node_instance_list[idx + 0] = uecho_object_getclassgroupcode(node_obj);
+    node_instance_list[idx + 1] = uecho_object_getclasscode(node_obj);
+    node_instance_list[idx + 2] = uecho_object_getinstancecode(node_obj);
   }
 
-  uecho_nodeprofileclass_setinstancecount(obj, nodeInstanceCnt);
-  uecho_nodeprofileclass_setinstancelist(obj, nodeInstanceListCnt, nodeInstanceList);
+  uecho_nodeprofileclass_setinstancecount(obj, node_instance_cnt);
+  uecho_nodeprofileclass_setinstancelist(obj, node_instance_list_cnt, node_instance_list);
 
-  free(nodeInstanceList);
+  free(node_instance_list);
 
   return true;
 }

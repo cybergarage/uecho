@@ -36,20 +36,20 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct _uEchoThread {
+typedef struct UEchoThread {
   UECHO_LIST_STRUCT_MEMBERS
 
-  bool runnableFlag;
+  bool runnable_flag;
 
 #if defined(WIN32)
   HANDLE hThread;
   DWORD threadID;
 #else
-  pthread_t pThread;
+  pthread_t p_thread;
 #endif
 
-  void (*action)(struct _uEchoThread*);
-  void* userData;
+  void (*action)(struct UEchoThread*);
+  void* user_data;
 } uEchoThread, uEchoThreadList;
 
 typedef void (*uEchoThreadFunc)(uEchoThread*);
@@ -67,7 +67,7 @@ bool uecho_thread_restart(uEchoThread* thread);
 bool uecho_thread_isrunnable(uEchoThread* thread);
 bool uecho_thread_isrunning(uEchoThread* thread);
 
-void uecho_thread_setaction(uEchoThread* thread, uEchoThreadFunc actionFunc);
+void uecho_thread_setaction(uEchoThread* thread, uEchoThreadFunc action_func);
 void uecho_thread_setuserdata(uEchoThread* thread, void* data);
 void* uecho_thread_getuserdata(uEchoThread* thread);
 
@@ -79,7 +79,7 @@ void* uecho_thread_getuserdata(uEchoThread* thread);
 ****************************************/
 
 uEchoThreadList* uecho_threadlist_new(void);
-void uecho_threadlist_delete(uEchoThreadList* threadList);
+void uecho_threadlist_delete(uEchoThreadList* thread_list);
 
 #define uecho_threadlist_clear(threadList) uecho_list_clear((uEchoList*)threadList, (UECHO_LIST_DESTRUCTORFUNC)uecho_thread_delete)
 #define uecho_threadlist_size(threadList) uecho_list_size((uEchoList*)threadList)
@@ -87,8 +87,8 @@ void uecho_threadlist_delete(uEchoThreadList* threadList);
 #define uecho_threadlist_add(threadList, thread) uecho_list_add((uEchoList*)threadList, (uEchoList*)thread)
 #define uecho_threadlist_remove(thread) uecho_list_remove((uEchoList*)thread)
 
-bool uecho_threadlist_start(uEchoThreadList* threadList);
-bool uecho_threadlist_stop(uEchoThreadList* threadList);
+bool uecho_threadlist_start(uEchoThreadList* thread_list);
+bool uecho_threadlist_stop(uEchoThreadList* thread_list);
 
 #ifdef __cplusplus
 
