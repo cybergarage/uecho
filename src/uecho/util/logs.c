@@ -60,7 +60,12 @@ void uecho_net_packet_debug(const char *prefix, const char* from_addr, const cha
   if (msg_len <= 0)
     return;
 
-  snprintf(buf, sizeof(buf), "%s%s -> %s ", prefix, from_addr, to_addr);
+  offset = 0;
+  if (prefix && (0 < strlen(prefix))) {
+    snprintf(buf, sizeof(buf), "%s ", prefix);
+    offset = strlen(buf);
+  }
+  snprintf((buf + offset), (sizeof(buf) - offset), "%-15s -> %-15s ", from_addr, to_addr);
   offset = strlen(buf);
   for (n = 0; n < msg_len; n++) {
     snprintf((buf + offset), (sizeof(buf) - offset), "%02X", msg_bytes[n]);
