@@ -22,32 +22,32 @@ void uecho_message_debug(uEchoMessage* msg)
   if (!msg)
     return;
 
-  return uecho_message_packet_debug(
+  return uecho_net_packet_debug(
       uecho_message_getsourceaddress(msg),
       uecho_message_getbytes(msg),
       uecho_message_size(msg));
 }
 
 /****************************************
-* uecho_socket_datagram_packet_debug
+* uecho_net_datagram_packet_debug
 ****************************************/
 
-void uecho_socket_datagram_packet_debug(uEchoDatagramPacket* dpkt)
+void uecho_net_datagram_packet_debug(uEchoDatagramPacket* dpkt)
 {
   if (!dpkt)
     return;
 
-  return uecho_message_packet_debug(
+  return uecho_net_packet_debug(
       uecho_socket_datagram_packet_getremoteaddress(dpkt),
       uecho_socket_datagram_packet_getdata(dpkt),
       uecho_socket_datagram_packet_getlength(dpkt));
 }
 
 /****************************************
-* uecho_message_packet_debug
+* uecho_net_packet_debug
 ****************************************/
 
-void uecho_message_packet_debug(const char* addr, const byte* msg_bytes, size_t msg_len)
+void uecho_net_packet_debug(const char* from_addr, const char* to_addr, const byte* msg_bytes, size_t msg_len)
 {
   char buf[256];
   size_t offset;
@@ -56,7 +56,7 @@ void uecho_message_packet_debug(const char* addr, const byte* msg_bytes, size_t 
   if (msg_len <= 0)
     return;
 
-  snprintf(buf, sizeof(buf), "%s -> ", addr);
+  snprintf(buf, sizeof(buf), "%s -> %s ", from_addr, to_addr);
   offset = strlen(buf);
   for (n = 0; n < msg_len; n++) {
     snprintf((buf + offset), (sizeof(buf) - offset), "%02X", msg_bytes[n]);
