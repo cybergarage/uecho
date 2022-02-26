@@ -563,7 +563,7 @@ size_t uecho_socket_sendto(uEchoSocket* sock, const char* addr, int port, const 
   if (0 <= sock->id)
     sent_len = sendto(sock->id, data, data_len, 0, addr_info->ai_addr, addr_info->ai_addrlen);
 
-  uecho_net_packet_debug("SEND", uecho_socket_getaddress(sock), addr, data, data_len);
+  uecho_net_packet_debug("S", uecho_socket_getaddress(sock), addr, data, data_len);
 
   freeaddrinfo(addr_info);
 
@@ -611,7 +611,7 @@ ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgm_pkt)
   uecho_socket_datagram_packet_setlocaladdress(dgm_pkt, local_addr);
   free(local_addr);
 
-  uecho_net_packet_debug("RECV", remote_addr, local_addr, recv_buf, recv_len);
+  uecho_net_packet_debug("R", remote_addr, local_addr, recv_buf, recv_len);
 
   return recv_len;
 }
