@@ -196,3 +196,24 @@ bool uecho_udp_serverlist_isboundaddress(uEchoUdpServerList* servers, const char
 
   return false;
 }
+
+/****************************************
+ * uecho_udp_serverlist_sendto
+ ****************************************/
+
+bool uecho_udp_serverlist_sendto(uEchoUdpServerList* servers, const char* addr, byte* msg, size_t msg_len)
+{
+  uEchoUdpServer* server;
+  uEchoSocket* sock;
+  size_t sent_byte_cnt;
+
+  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
+    sock = uecho_udp_getsocket(server);
+    if (!sock)
+      continue;
+    sent_byte_cnt = uecho_socket_sendto(sock, addr, uEchoUdpPort, msg, msg_len);
+    return (msg_len == sent_byte_cnt) ? true : false;
+  }
+
+  return false;
+}

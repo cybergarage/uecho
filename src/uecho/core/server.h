@@ -122,6 +122,7 @@ bool uecho_udp_server_open(uEchoUdpServer* server, const char* bind_addr);
 bool uecho_udp_server_close(uEchoUdpServer* server);
 
 const char * uecho_udp_server_getaddress(uEchoUdpServer* server);
+bool uecho_udp_serverlist_sendto(uEchoUdpServerList* servers, const char* addr, byte* msg, size_t msg_len);
 
 bool uecho_udp_server_start(uEchoUdpServer* server);
 bool uecho_udp_server_stop(uEchoUdpServer* server);
