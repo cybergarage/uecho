@@ -110,7 +110,7 @@ bool uecho_object_updatepropertymaps(uEchoObject* obj)
 
   // Update property map properties
 
-  uecho_object_setpropertymap(obj, uEchoProfileGetPropertyMap, obj->get_prop_map_bytes, obj->get_prop_map_bytes);
+  uecho_object_setpropertymap(obj, uEchoProfileGetPropertyMap, obj->get_prop_map_bytes, obj->get_prop_map_size);
   uecho_object_setpropertymap(obj, uEchoProfileSetPropertyMap, obj->set_prop_map_bytes, obj->set_prop_map_size);
   uecho_object_setpropertymap(obj, uEchoProfileAnnoPropertyMap, obj->anno_prop_map_bytes, obj->anno_prop_map_size);
 
