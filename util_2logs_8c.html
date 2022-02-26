@@ -73,10 +73,10 @@ $(document).ready(function(){initNavTree('util_2logs_8c.html',''); initResizable
 Functions</h2></td></tr>
 <tr class="memitem:a1f1a8b5fc0675642a5b26196657ea86e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_2logs_8c.html#a1f1a8b5fc0675642a5b26196657ea86e">uecho_message_debug</a> (<a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
 <tr class="separator:a1f1a8b5fc0675642a5b26196657ea86e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae53c46ba741c8b60facffb2ff8d59071"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_2logs_8c.html#ae53c46ba741c8b60facffb2ff8d59071">uecho_socket_datagram_packet_debug</a> (<a class="el" href="socket_8h.html#a4f4dff4ef7b22fdfc58ab6cca2d76984">uEchoDatagramPacket</a> *dpkt)</td></tr>
-<tr class="separator:ae53c46ba741c8b60facffb2ff8d59071"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfa3c8102b46a6e54d62434bb7cc366b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_2logs_8c.html#abfa3c8102b46a6e54d62434bb7cc366b">uecho_message_packet_debug</a> (const char *addr, const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *msg_bytes, size_t msg_len)</td></tr>
-<tr class="separator:abfa3c8102b46a6e54d62434bb7cc366b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42d1299765d0116c16b50687cb408d73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_2logs_8c.html#a42d1299765d0116c16b50687cb408d73">uecho_net_datagram_packet_debug</a> (<a class="el" href="socket_8h.html#a4f4dff4ef7b22fdfc58ab6cca2d76984">uEchoDatagramPacket</a> *dpkt)</td></tr>
+<tr class="separator:a42d1299765d0116c16b50687cb408d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e5ec7c77dfccf79fbd9241da388ed3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_2logs_8c.html#a2e5ec7c77dfccf79fbd9241da388ed3d">uecho_net_packet_debug</a> (const char *prefix, const char *from_addr, const char *to_addr, const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *msg_bytes, size_t msg_len)</td></tr>
+<tr class="separator:a2e5ec7c77dfccf79fbd9241da388ed3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a1f1a8b5fc0675642a5b26196657ea86e" name="a1f1a8b5fc0675642a5b26196657ea86e"></a>
@@ -97,17 +97,47 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abfa3c8102b46a6e54d62434bb7cc366b" name="abfa3c8102b46a6e54d62434bb7cc366b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfa3c8102b46a6e54d62434bb7cc366b">&#9670;&nbsp;</a></span>uecho_message_packet_debug()</h2>
+<a id="a42d1299765d0116c16b50687cb408d73" name="a42d1299765d0116c16b50687cb408d73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42d1299765d0116c16b50687cb408d73">&#9670;&nbsp;</a></span>uecho_net_datagram_packet_debug()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void uecho_message_packet_debug </td>
+          <td class="memname">void uecho_net_datagram_packet_debug </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="socket_8h.html#a4f4dff4ef7b22fdfc58ab6cca2d76984">uEchoDatagramPacket</a> *&#160;</td>
+          <td class="paramname"><em>dpkt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2e5ec7c77dfccf79fbd9241da388ed3d" name="a2e5ec7c77dfccf79fbd9241da388ed3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e5ec7c77dfccf79fbd9241da388ed3d">&#9670;&nbsp;</a></span>uecho_net_packet_debug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uecho_net_packet_debug </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>addr</em>, </td>
+          <td class="paramname"><em>prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>from_addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>to_addr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -125,24 +155,6 @@ Functions</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae53c46ba741c8b60facffb2ff8d59071" name="ae53c46ba741c8b60facffb2ff8d59071"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae53c46ba741c8b60facffb2ff8d59071">&#9670;&nbsp;</a></span>uecho_socket_datagram_packet_debug()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_socket_datagram_packet_debug </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="socket_8h.html#a4f4dff4ef7b22fdfc58ab6cca2d76984">uEchoDatagramPacket</a> *&#160;</td>
-          <td class="paramname"><em>dpkt</em></td><td>)</td>
-          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -1,6 +1,6 @@
 var util_2logs_8h =
 [
     [ "uecho_message_debug", "util_2logs_8h.html#a1f1a8b5fc0675642a5b26196657ea86e", null ],
-    [ "uecho_message_packet_debug", "util_2logs_8h.html#afeaac10e8c07e402aa5edb3d6eecdd6a", null ],
-    [ "uecho_socket_datagram_packet_debug", "util_2logs_8h.html#ae53c46ba741c8b60facffb2ff8d59071", null ]
+    [ "uecho_net_datagram_packet_debug", "util_2logs_8h.html#a42d1299765d0116c16b50687cb408d73", null ],
+    [ "uecho_net_packet_debug", "util_2logs_8h.html#ac7f0a4b6bd5350adc876e849b6f8d25c", null ]
 ];

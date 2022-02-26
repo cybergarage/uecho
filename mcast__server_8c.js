@@ -3,6 +3,7 @@ var mcast__server_8c =
     [ "uecho_mcast_server_action", "mcast__server_8c.html#ae7d1676ff91f959fcc5d2b10db9fd814", null ],
     [ "uecho_mcast_server_close", "mcast__server_8c.html#a16fa55f00a4e8441b93e10b18a9f8201", null ],
     [ "uecho_mcast_server_delete", "mcast__server_8c.html#a798c3a8f0985e41682d9fd0c484e5bff", null ],
+    [ "uecho_mcast_server_getaddress", "mcast__server_8c.html#aeaedaa368c4c0d055d9d5c88b5b2c705", null ],
     [ "uecho_mcast_server_getuserdata", "mcast__server_8c.html#af07545235ad58d7e5753260c77f2dc0e", null ],
     [ "uecho_mcast_server_isopened", "mcast__server_8c.html#a9ab2714c3af8d54010cf4cf14997f3c5", null ],
     [ "uecho_mcast_server_isrunning", "mcast__server_8c.html#a727e30cdf671b35ec43e22cfce16d21e", null ],
