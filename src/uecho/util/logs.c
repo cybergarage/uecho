@@ -24,6 +24,7 @@ void uecho_message_debug(uEchoMessage* msg)
 
   return uecho_net_packet_debug(
       uecho_message_getsourceaddress(msg),
+      "",
       uecho_message_getbytes(msg),
       uecho_message_size(msg));
 }
@@ -39,6 +40,7 @@ void uecho_net_datagram_packet_debug(uEchoDatagramPacket* dpkt)
 
   return uecho_net_packet_debug(
       uecho_socket_datagram_packet_getremoteaddress(dpkt),
+      uecho_socket_datagram_packet_getlocaladdress(dpkt),
       uecho_socket_datagram_packet_getdata(dpkt),
       uecho_socket_datagram_packet_getlength(dpkt));
 }
