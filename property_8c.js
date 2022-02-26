@@ -5,7 +5,7 @@ var property_8c =
     [ "uecho_property_adddata", "property_8c.html#add9d824b8cb4fe48cb3decb15af3d4a8", null ],
     [ "uecho_property_announce", "property_8c.html#ab4e3e5fe5a30833eda4beee5ec2d4c13", null ],
     [ "uecho_property_cleardata", "property_8c.html#a8b24a2689f46b69c4394c02b711a6afa", null ],
-    [ "uecho_property_copy", "property_8c.html#acd9d073aca1303c6db3a285d12b33249", null ],
+    [ "uecho_property_copy", "property_8c.html#a9ca058dc0ecde97de36fc944dede39d0", null ],
     [ "uecho_property_delete", "property_8c.html#a2d1e3112c24093cd95d775df557c5d4a", null ],
     [ "uecho_property_equals", "property_8c.html#a94fdaf21dcd2c293c5f4e1bf84ae165a", null ],
     [ "uecho_property_getattribute", "property_8c.html#a70a38d67cd7870b33be5eeb30e1c053f", null ],
@@ -13,7 +13,7 @@ var property_8c =
     [ "uecho_property_getcode", "property_8c.html#ad2284751371e3c7b6d83ac785196049f", null ],
     [ "uecho_property_getdata", "property_8c.html#aa9f441f6807768691fcbebddfbf4a7d9", null ],
     [ "uecho_property_getdatasize", "property_8c.html#a4c584d8864610fe1f9a6fadd09e2c4ca", null ],
-    [ "uecho_property_getintegerdata", "property_8c.html#a72c596379460633a20edbedca7895519", null ],
+    [ "uecho_property_getintegerdata", "property_8c.html#ab7181322ea1e32ff2dd35bef368e9306", null ],
     [ "uecho_property_getnode", "property_8c.html#a6299e5c0e4dce8e978e7750dd4e5d942", null ],
     [ "uecho_property_getparentobject", "property_8c.html#a494d30469a91331d42ede8d028125463", null ],
     [ "uecho_property_isannounceable", "property_8c.html#a5ebd5e077ff3372153c9f8bcb1d1d6b6", null ],
@@ -29,6 +29,6 @@ var property_8c =
     [ "uecho_property_setcode", "property_8c.html#a0d2778190a5127dfaa548360a54712c6", null ],
     [ "uecho_property_setcount", "property_8c.html#aa86a74e6cb45a7b7acc0d51f0ffc33a3", null ],
     [ "uecho_property_setdata", "property_8c.html#aa2200c4339895142d34f4b86de18c7b3", null ],
-    [ "uecho_property_setintegerdata", "property_8c.html#aa4af09180acefd3083d2bccd3495902d", null ],
+    [ "uecho_property_setintegerdata", "property_8c.html#a29b7217e862c5c81cd22c2b7ba6dd393", null ],
     [ "uecho_property_setparentobject", "property_8c.html#a5a8b9eb0acc969bde2ce0ac3e6a082ae", null ]
 ];
