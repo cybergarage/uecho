@@ -93,7 +93,7 @@ bool uecho_server_isrunning(uEchoServer* server);
 
 const char * uecho_server_getaddress(uEchoServer* server);
 
-bool uecho_server_postannounce(uEchoServer* server, const byte* msg, size_t msg_len);
+bool uecho_server_postannounce(uEchoServer* server, byte* msg, size_t msg_len);
 bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg, size_t msg_len);
 
 #define uecho_server_setoption(server, value) (server->option = value)
