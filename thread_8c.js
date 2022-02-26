@@ -1,6 +1,6 @@
 var thread_8c =
 [
-    [ "PosixThreadProc", "thread_8c.html#a278fe84bf38266895473168273b332a7", null ],
+    [ "posix_thread_proc", "thread_8c.html#a9f2ff5c7da7238bebf3e56d1e33a0f0d", null ],
     [ "uecho_sig_handler", "thread_8c.html#a821622a81941a0bd359aa5094c8f7be5", null ],
     [ "uecho_thread_delete", "thread_8c.html#a011effa22ab5a028f0be7cf1f07f9def", null ],
     [ "uecho_thread_getuserdata", "thread_8c.html#a4eb40369e46999388abc9b0e98ec4f89", null ],
