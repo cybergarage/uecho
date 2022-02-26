@@ -26,9 +26,9 @@ uEchoMutex* uecho_mutex_new(void)
     return NULL;
 
 #if defined(WIN32)
-  mutex->mutexID = CreateMutex(NULL, false, NULL);
+  mutex->mutex_id = CreateMutex(NULL, false, NULL);
 #else
-  pthread_mutex_init(&mutex->mutexID, NULL);
+  pthread_mutex_init(&mutex->mutex_id, NULL);
 #endif
 
   return mutex;
@@ -44,9 +44,9 @@ bool uecho_mutex_delete(uEchoMutex* mutex)
     return false;
 
 #if defined(WIN32)
-  CloseHandle(mutex->mutexID);
+  CloseHandle(mutex->mutex_id);
 #else
-  pthread_mutex_destroy(&mutex->mutexID);
+  pthread_mutex_destroy(&mutex->mutex_id);
 #endif
   free(mutex);
 
@@ -63,9 +63,9 @@ bool uecho_mutex_lock(uEchoMutex* mutex)
     return false;
 
 #if defined(WIN32)
-  WaitForSingleObject(mutex->mutexID, INFINITE);
+  WaitForSingleObject(mutex->mutex_id, INFINITE);
 #else
-  pthread_mutex_lock(&mutex->mutexID);
+  pthread_mutex_lock(&mutex->mutex_id);
 #endif
 
   return true;
@@ -81,9 +81,9 @@ bool uecho_mutex_unlock(uEchoMutex* mutex)
     return false;
 
 #if defined(WIN32)
-  ReleaseMutex(mutex->mutexID);
+  ReleaseMutex(mutex->mutex_id);
 #else
-  pthread_mutex_unlock(&mutex->mutexID);
+  pthread_mutex_unlock(&mutex->mutex_id);
 #endif
   return true;
 }

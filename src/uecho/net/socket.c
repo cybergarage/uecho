@@ -36,14 +36,14 @@
 * static variable
 ****************************************/
 
-static int socketCnt = 0;
+static int socket_cnt = 0;
 
 /****************************************
 * prototype
 ****************************************/
 
-bool uecho_socket_tosockaddrin(const char* addr, int port, struct sockaddr_in* sockaddr, bool isBindAddr);
-bool uecho_socket_tosockaddrinfo(int sockType, const char* addr, int port, struct addrinfo** addrInfo, bool isBindAddr);
+bool uecho_socket_tosockaddrin(const char* addr, int port, struct sockaddr_in* sockaddr, bool is_bind_addr);
+bool uecho_socket_tosockaddrinfo(int sock_type, const char* addr, int port, struct addrinfo** addr_info, bool is_bind_addr);
 
 #define uecho_socket_getrawtype(socket) (((socket->type & UECHO_NET_SOCKET_STREAM) == UECHO_NET_SOCKET_STREAM) ? SOCK_STREAM : SOCK_DGRAM)
 
@@ -59,7 +59,7 @@ bool uecho_socket_tosockaddrinfo(int sockType, const char* addr, int port, struc
 
 void uecho_socket_startup(void)
 {
-  if (socketCnt == 0) {
+  if (socket_cnt == 0) {
 #if defined(WIN32)
     WSADATA wsaData;
     int err;
@@ -76,7 +76,7 @@ void uecho_socket_startup(void)
     SSL_library_init();
 #endif
   }
-  socketCnt++;
+  socket_cnt++;
 }
 
 /****************************************
@@ -85,8 +85,8 @@ void uecho_socket_startup(void)
 
 void uecho_socket_cleanup(void)
 {
-  socketCnt--;
-  if (socketCnt <= 0) {
+  socket_cnt--;
+  if (socket_cnt <= 0) {
 #if defined(WIN32)
     WSACleanup();
 #endif
@@ -270,20 +270,20 @@ bool uecho_socket_listen(uEchoSocket* sock)
 * uecho_socket_bind
 ****************************************/
 
-bool uecho_socket_bind(uEchoSocket* sock, int bindPort, const char* bindAddr, uEchoSocketOption* opt)
+bool uecho_socket_bind(uEchoSocket* sock, int bind_port, const char* bind_addr, uEchoSocketOption* opt)
 {
-  struct addrinfo* addrInfo;
+  struct addrinfo* addr_info;
   int ret;
 
   if (!sock)
     return false;
 
-  if (bindPort <= 0 /* || bindAddr == NULL*/)
+  if (bind_port <= 0 /* || bindAddr == NULL*/)
     return false;
 
-  if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), bindAddr, bindPort, &addrInfo, uecho_socket_option_isbindinterface(opt)) == false)
+  if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), bind_addr, bind_port, &addr_info, uecho_socket_option_isbindinterface(opt)) == false)
     return false;
-  uecho_socket_setid(sock, socket(addrInfo->ai_family, addrInfo->ai_socktype, 0));
+  uecho_socket_setid(sock, socket(addr_info->ai_family, addr_info->ai_socktype, 0));
   if (sock->id == -1) {
     uecho_socket_close(sock);
     return false;
@@ -303,15 +303,15 @@ bool uecho_socket_bind(uEchoSocket* sock, int bindPort, const char* bindAddr, uE
     }
   }
 
-  ret = bind(sock->id, addrInfo->ai_addr, addrInfo->ai_addrlen);
-  freeaddrinfo(addrInfo);
+  ret = bind(sock->id, addr_info->ai_addr, addr_info->ai_addrlen);
+  freeaddrinfo(addr_info);
 
   if (ret != 0)
     return false;
 
   uecho_socket_setdirection(sock, UECHO_NET_SOCKET_SERVER);
-  uecho_socket_setaddress(sock, bindAddr);
-  uecho_socket_setport(sock, bindPort);
+  uecho_socket_setaddress(sock, bind_addr);
+  uecho_socket_setport(sock, bind_port);
 
   return true;
 }
@@ -320,32 +320,32 @@ bool uecho_socket_bind(uEchoSocket* sock, int bindPort, const char* bindAddr, uE
 * uecho_socket_accept
 ****************************************/
 
-bool uecho_socket_accept(uEchoSocket* serverSock, uEchoSocket* clientSock)
+bool uecho_socket_accept(uEchoSocket* server_sock, uEchoSocket* client_sock)
 {
   struct sockaddr_in sockaddr;
   socklen_t socklen;
-  char localAddr[UECHO_NET_SOCKET_MAXHOST];
-  char localPort[UECHO_NET_SOCKET_MAXSERV];
-  struct sockaddr_storage sockClientAddr;
-  socklen_t nLength = sizeof(sockClientAddr);
+  char local_addr[UECHO_NET_SOCKET_MAXHOST];
+  char local_port[UECHO_NET_SOCKET_MAXSERV];
+  struct sockaddr_storage sock_client_addr;
+  socklen_t n_length = sizeof(sock_client_addr);
 
-  uecho_socket_setid(clientSock, accept(serverSock->id, (struct sockaddr*)&sockClientAddr, &nLength));
+  uecho_socket_setid(client_sock, accept(server_sock->id, (struct sockaddr*)&sock_client_addr, &n_length));
 
 #if defined(WIN32)
   if (clientSock->id == INVALID_SOCKET)
     return false;
 #else
-  if (clientSock->id < 0)
+  if (client_sock->id < 0)
     return false;
 #endif
 
-  uecho_socket_setaddress(clientSock, uecho_socket_getaddress(serverSock));
-  uecho_socket_setport(clientSock, uecho_socket_getport(serverSock));
+  uecho_socket_setaddress(client_sock, uecho_socket_getaddress(server_sock));
+  uecho_socket_setport(client_sock, uecho_socket_getport(server_sock));
   socklen = sizeof(struct sockaddr_in);
 
-  if (getsockname(clientSock->id, (struct sockaddr*)&sockaddr, &socklen) == 0 && getnameinfo((struct sockaddr*)&sockaddr, socklen, localAddr, sizeof(localAddr), localPort, sizeof(localPort), NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
+  if (getsockname(client_sock->id, (struct sockaddr*)&sockaddr, &socklen) == 0 && getnameinfo((struct sockaddr*)&sockaddr, socklen, local_addr, sizeof(local_addr), local_port, sizeof(local_port), NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
     /* Set address for the sockaddr to real addr */
-    uecho_socket_setaddress(clientSock, localAddr);
+    uecho_socket_setaddress(client_sock, local_addr);
   }
 
   return true;
@@ -357,21 +357,21 @@ bool uecho_socket_accept(uEchoSocket* serverSock, uEchoSocket* clientSock)
 
 bool uecho_socket_connect(uEchoSocket* sock, const char* addr, int port)
 {
-  struct addrinfo* toaddrInfo;
+  struct addrinfo* toaddr_info;
   int ret;
 
   if (!sock)
     return false;
 
-  if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), addr, port, &toaddrInfo, true) == false)
+  if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), addr, port, &toaddr_info, true) == false)
     return false;
 
   if (uecho_socket_isbound(sock) == false) {
-    uecho_socket_setid(sock, socket(toaddrInfo->ai_family, toaddrInfo->ai_socktype, 0));
+    uecho_socket_setid(sock, socket(toaddr_info->ai_family, toaddr_info->ai_socktype, 0));
   }
 
-  ret = connect(sock->id, toaddrInfo->ai_addr, toaddrInfo->ai_addrlen);
-  freeaddrinfo(toaddrInfo);
+  ret = connect(sock->id, toaddr_info->ai_addr, toaddr_info->ai_addrlen);
+  freeaddrinfo(toaddr_info);
 
   uecho_socket_setdirection(sock, UECHO_NET_SOCKET_CLIENT);
 
@@ -397,9 +397,9 @@ bool uecho_socket_connect(uEchoSocket* sock, const char* addr, int port)
 * uecho_socket_read
 ****************************************/
 
-ssize_t uecho_socket_read(uEchoSocket* sock, char* buffer, size_t bufferLen)
+ssize_t uecho_socket_read(uEchoSocket* sock, char* buffer, size_t buffer_len)
 {
-  ssize_t recvLen;
+  ssize_t recv_len;
 
   if (!sock)
     return -1;
@@ -408,7 +408,7 @@ ssize_t uecho_socket_read(uEchoSocket* sock, char* buffer, size_t bufferLen)
   if (uecho_socket_isssl(sock) == false) {
 #endif
 
-    recvLen = recv(sock->id, buffer, bufferLen, 0);
+    recv_len = recv(sock->id, buffer, buffer_len, 0);
 
 #if defined(UECHO_USE_OPENSSL)
   }
@@ -417,7 +417,7 @@ ssize_t uecho_socket_read(uEchoSocket* sock, char* buffer, size_t bufferLen)
   }
 #endif
 
-  return recvLen;
+  return recv_len;
 }
 
 /****************************************
@@ -427,17 +427,17 @@ ssize_t uecho_socket_read(uEchoSocket* sock, char* buffer, size_t bufferLen)
 #define UECHO_NET_SOCKET_SEND_RETRY_CNT 10
 #define UECHO_NET_SOCKET_SEND_RETRY_WAIT_MSEC 20
 
-size_t uecho_socket_write(uEchoSocket* sock, const char* cmd, size_t cmdLen)
+size_t uecho_socket_write(uEchoSocket* sock, const char* cmd, size_t cmd_len)
 {
-  ssize_t nSent;
-  size_t nTotalSent = 0;
-  size_t cmdPos = 0;
-  int retryCnt = 0;
+  ssize_t n_sent;
+  size_t n_total_sent = 0;
+  size_t cmd_pos = 0;
+  int retry_cnt = 0;
 
   if (!sock)
     return 0;
 
-  if (cmdLen <= 0)
+  if (cmd_len <= 0)
     return 0;
 
   do {
@@ -445,7 +445,7 @@ size_t uecho_socket_write(uEchoSocket* sock, const char* cmd, size_t cmdLen)
     if (uecho_socket_isssl(sock) == false) {
 #endif
 
-      nSent = send(sock->id, cmd + cmdPos, cmdLen, 0);
+      n_sent = send(sock->id, cmd + cmd_pos, cmd_len, 0);
 
 #if defined(UECHO_USE_OPENSSL)
     }
@@ -454,160 +454,160 @@ size_t uecho_socket_write(uEchoSocket* sock, const char* cmd, size_t cmdLen)
     }
 #endif
 
-    if (nSent <= 0) {
-      retryCnt++;
-      if (UECHO_NET_SOCKET_SEND_RETRY_CNT < retryCnt) {
-        nTotalSent = 0;
+    if (n_sent <= 0) {
+      retry_cnt++;
+      if (UECHO_NET_SOCKET_SEND_RETRY_CNT < retry_cnt) {
+        n_total_sent = 0;
         break;
       }
 
       uecho_wait(UECHO_NET_SOCKET_SEND_RETRY_WAIT_MSEC);
     }
     else {
-      nTotalSent += nSent;
-      cmdPos += nSent;
-      cmdLen -= nSent;
-      retryCnt = 0;
+      n_total_sent += n_sent;
+      cmd_pos += n_sent;
+      cmd_len -= n_sent;
+      retry_cnt = 0;
     }
 
-  } while (0 < cmdLen);
+  } while (0 < cmd_len);
 
-  return nTotalSent;
+  return n_total_sent;
 }
 /****************************************
 * uecho_socket_readline
 ****************************************/
 
-ssize_t uecho_socket_readline(uEchoSocket* sock, char* buffer, size_t bufferLen)
+ssize_t uecho_socket_readline(uEchoSocket* sock, char* buffer, size_t buffer_len)
 {
-  ssize_t readCnt;
-  ssize_t readLen;
+  ssize_t read_cnt;
+  ssize_t read_len;
   char c;
 
   if (!sock)
     return -1;
 
-  readCnt = 0;
-  while (readCnt < (bufferLen - 1)) {
-    readLen = uecho_socket_read(sock, &buffer[readCnt], sizeof(char));
-    if (readLen <= 0)
+  read_cnt = 0;
+  while (read_cnt < (buffer_len - 1)) {
+    read_len = uecho_socket_read(sock, &buffer[read_cnt], sizeof(char));
+    if (read_len <= 0)
       return -1;
-    readCnt++;
-    if (buffer[readCnt - 1] == UECHO_SOCKET_LF)
+    read_cnt++;
+    if (buffer[read_cnt - 1] == UECHO_SOCKET_LF)
       break;
   }
-  buffer[readCnt] = '\0';
-  if (buffer[readCnt - 1] != UECHO_SOCKET_LF) {
+  buffer[read_cnt] = '\0';
+  if (buffer[read_cnt - 1] != UECHO_SOCKET_LF) {
     do {
-      readLen = uecho_socket_read(sock, &c, sizeof(char));
-      if (readLen <= 0)
+      read_len = uecho_socket_read(sock, &c, sizeof(char));
+      if (read_len <= 0)
         break;
     } while (c != UECHO_SOCKET_LF);
   }
 
-  return readCnt;
+  return read_cnt;
 }
 
 /****************************************
 * uecho_socket_skip
 ****************************************/
 
-size_t uecho_socket_skip(uEchoSocket* sock, size_t skipLen)
+size_t uecho_socket_skip(uEchoSocket* sock, size_t skip_len)
 {
-  ssize_t readCnt;
-  ssize_t readLen;
+  ssize_t read_cnt;
+  ssize_t read_len;
   char c;
 
   if (!sock)
     return 0;
 
-  readCnt = 0;
-  while (readCnt < skipLen) {
-    readLen = uecho_socket_read(sock, &c, sizeof(char));
-    if (readLen <= 0)
+  read_cnt = 0;
+  while (read_cnt < skip_len) {
+    read_len = uecho_socket_read(sock, &c, sizeof(char));
+    if (read_len <= 0)
       break;
-    readCnt++;
+    read_cnt++;
   }
 
-  return readCnt;
+  return read_cnt;
 }
 
 /****************************************
 * uecho_socket_sendto
 ****************************************/
 
-size_t uecho_socket_sendto(uEchoSocket* sock, const char* addr, int port, const byte* data, size_t dataLen)
+size_t uecho_socket_sendto(uEchoSocket* sock, const char* addr, int port, const byte* data, size_t data_len)
 {
-  struct addrinfo* addrInfo;
-  ssize_t sentLen;
-  bool isBoundFlag;
+  struct addrinfo* addr_info;
+  ssize_t sent_len;
+  bool is_bound_flag;
 
   if (!sock)
     return 0;
 
-  if (!data && (dataLen <= 0))
+  if (!data && (data_len <= 0))
     return 0;
 
-  isBoundFlag = uecho_socket_isbound(sock);
-  sentLen = -1;
+  is_bound_flag = uecho_socket_isbound(sock);
+  sent_len = -1;
 
-  if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), addr, port, &addrInfo, true) == false)
+  if (uecho_socket_tosockaddrinfo(uecho_socket_getrawtype(sock), addr, port, &addr_info, true) == false)
     return -1;
-  if (isBoundFlag == false)
-    uecho_socket_setid(sock, socket(addrInfo->ai_family, addrInfo->ai_socktype, 0));
+  if (is_bound_flag == false)
+    uecho_socket_setid(sock, socket(addr_info->ai_family, addr_info->ai_socktype, 0));
 
   /* Setting multicast time to live in any case to default */
   uecho_socket_setmulticastttl(sock, UECHO_NET_SOCKET_MULTICAST_DEFAULT_TTL);
 
   if (0 <= sock->id)
-    sentLen = sendto(sock->id, data, dataLen, 0, addrInfo->ai_addr, addrInfo->ai_addrlen);
-  freeaddrinfo(addrInfo);
+    sent_len = sendto(sock->id, data, data_len, 0, addr_info->ai_addr, addr_info->ai_addrlen);
+  freeaddrinfo(addr_info);
 
-  if (isBoundFlag == false)
+  if (is_bound_flag == false)
     uecho_socket_close(sock);
 
-  return sentLen;
+  return sent_len;
 }
 
 /****************************************
 * uecho_socket_recv
 ****************************************/
 
-ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgmPkt)
+ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgm_pkt)
 {
-  ssize_t recvLen = 0;
-  byte recvBuf[UECHO_NET_SOCKET_DGRAM_RECV_BUFSIZE + 1];
-  char remoteAddr[UECHO_NET_SOCKET_MAXHOST];
-  char remotePort[UECHO_NET_SOCKET_MAXSERV];
-  char* localAddr;
+  ssize_t recv_len = 0;
+  byte recv_buf[UECHO_NET_SOCKET_DGRAM_RECV_BUFSIZE + 1];
+  char remote_addr[UECHO_NET_SOCKET_MAXHOST];
+  char remote_port[UECHO_NET_SOCKET_MAXSERV];
+  char* local_addr;
   struct sockaddr_storage from;
-  socklen_t fromLen;
+  socklen_t from_len;
 
   if (!sock)
     return -1;
 
-  fromLen = sizeof(from);
-  recvLen = recvfrom(sock->id, recvBuf, sizeof(recvBuf) - 1, 0, (struct sockaddr*)&from, &fromLen);
+  from_len = sizeof(from);
+  recv_len = recvfrom(sock->id, recv_buf, sizeof(recv_buf) - 1, 0, (struct sockaddr*)&from, &from_len);
 
-  if (recvLen <= 0)
-    return recvLen;
+  if (recv_len <= 0)
+    return recv_len;
 
-  uecho_socket_datagram_packet_setdata(dgmPkt, recvBuf, recvLen);
+  uecho_socket_datagram_packet_setdata(dgm_pkt, recv_buf, recv_len);
 
-  uecho_socket_datagram_packet_setlocalport(dgmPkt, uecho_socket_getport(sock));
-  uecho_socket_datagram_packet_setremoteaddress(dgmPkt, "");
-  uecho_socket_datagram_packet_setremoteport(dgmPkt, 0);
+  uecho_socket_datagram_packet_setlocalport(dgm_pkt, uecho_socket_getport(sock));
+  uecho_socket_datagram_packet_setremoteaddress(dgm_pkt, "");
+  uecho_socket_datagram_packet_setremoteport(dgm_pkt, 0);
 
-  if (getnameinfo((struct sockaddr*)&from, fromLen, remoteAddr, sizeof(remoteAddr), remotePort, sizeof(remotePort), NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
-    uecho_socket_datagram_packet_setremoteaddress(dgmPkt, remoteAddr);
-    uecho_socket_datagram_packet_setremoteport(dgmPkt, uecho_str2int(remotePort));
+  if (getnameinfo((struct sockaddr*)&from, from_len, remote_addr, sizeof(remote_addr), remote_port, sizeof(remote_port), NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
+    uecho_socket_datagram_packet_setremoteaddress(dgm_pkt, remote_addr);
+    uecho_socket_datagram_packet_setremoteport(dgm_pkt, uecho_str2int(remote_port));
   }
 
-  localAddr = uecho_net_selectaddr((struct sockaddr*)&from);
-  uecho_socket_datagram_packet_setlocaladdress(dgmPkt, localAddr);
-  free(localAddr);
+  local_addr = uecho_net_selectaddr((struct sockaddr*)&from);
+  uecho_socket_datagram_packet_setlocaladdress(dgm_pkt, local_addr);
+  free(local_addr);
 
-  return recvLen;
+  return recv_len;
 }
 
 /****************************************
@@ -616,7 +616,7 @@ ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgmPkt)
 
 bool uecho_socket_setreuseaddress(uEchoSocket* sock, bool flag)
 {
-  int sockOptRet;
+  int sock_opt_ret;
 #if defined(WIN32)
   bool optval;
 #else
@@ -631,7 +631,7 @@ bool uecho_socket_setreuseaddress(uEchoSocket* sock, bool flag)
   sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_REUSEADDR, (const char*)&optval, sizeof(optval));
 #else
   optval = (flag == true) ? 1 : 0;
-  sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_REUSEADDR, (const char*)&optval, sizeof(optval));
+  sock_opt_ret = setsockopt(sock->id, SOL_SOCKET, SO_REUSEADDR, (const char*)&optval, sizeof(optval));
 #if defined(USE_SO_REUSEPORT) || defined(TARGET_OS_MAC) || defined(TARGET_OS_IPHONE)
   if (sockOptRet == 0) {
     sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_REUSEPORT, (const char*)&optval, sizeof(optval));
@@ -639,7 +639,7 @@ bool uecho_socket_setreuseaddress(uEchoSocket* sock, bool flag)
 #endif
 #endif
 
-  return (sockOptRet == 0) ? true : false;
+  return (sock_opt_ret == 0) ? true : false;
 }
 
 /****************************************
@@ -648,7 +648,7 @@ bool uecho_socket_setreuseaddress(uEchoSocket* sock, bool flag)
 
 bool uecho_socket_setmulticastloop(uEchoSocket* sock, bool flag)
 {
-  int sockOptRet;
+  int sock_opt_ret;
 #if defined(WIN32)
   bool optval;
 #else
@@ -663,36 +663,37 @@ bool uecho_socket_setmulticastloop(uEchoSocket* sock, bool flag)
   sockOptRet = setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, (const char*)&optval, sizeof(optval));
 #else
   optval = (flag == true) ? 1 : 0;
-  sockOptRet = setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, (const char*)&optval, sizeof(optval));
+  sock_opt_ret = setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, (const char*)&optval, sizeof(optval));
 #endif
 
-  return (sockOptRet == 0) ? true : false;
+  return (sock_opt_ret == 0) ? true : false;
 }
 
 /****************************************
 * uecho_socket_setmulticastttl
 ****************************************/
 
-bool uecho_socket_setmulticastttl(uEchoSocket* sock, int ttl)
+bool uecho_socket_setmulticastttl(uEchoSocket* sock, int val)
 {
-  int sockOptRet;
-  int ttl_;
+  int sock_opt_ret;
+  int ttl;
   unsigned int len = 0;
 
   if (!sock)
     return false;
 
+  ttl = val;
 #if defined(WIN32)
   sockOptRet = setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, (const char*)&ttl, sizeof(ttl));
 #else
-  sockOptRet = setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, (const unsigned char*)&ttl, sizeof(ttl));
-  if (sockOptRet == 0) {
-    len = sizeof(ttl_);
-    getsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, &ttl_, (socklen_t*)&len);
+  sock_opt_ret = setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, (const unsigned char*)&ttl, sizeof(ttl));
+  if (sock_opt_ret == 0) {
+    len = sizeof(ttl);
+    getsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_TTL, &ttl, (socklen_t*)&len);
   }
 #endif
 
-  return (sockOptRet == 0) ? true : false;
+  return (sock_opt_ret == 0) ? true : false;
 }
 
 /****************************************
@@ -701,7 +702,7 @@ bool uecho_socket_setmulticastttl(uEchoSocket* sock, int ttl)
 
 bool uecho_socket_settimeout(uEchoSocket* sock, int sec)
 {
-  int sockOptRet;
+  int sock_opt_ret;
 
 #if defined(WIN32)
   struct timeval timeout;
@@ -722,34 +723,34 @@ bool uecho_socket_settimeout(uEchoSocket* sock, int sec)
   if (!sock)
     return false;
 
-  sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
-  if (sockOptRet == 0)
-    sockOptRet = setsockopt(sock->id, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
+  sock_opt_ret = setsockopt(sock->id, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
+  if (sock_opt_ret == 0)
+    sock_opt_ret = setsockopt(sock->id, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
 #endif
 
-  return (sockOptRet == 0) ? true : false;
+  return (sock_opt_ret == 0) ? true : false;
 }
 
 /****************************************
 * uecho_socket_joingroup
 ****************************************/
 
-bool uecho_socket_joingroup(uEchoSocket* sock, const char* mcastAddr, const char* ifAddr)
+bool uecho_socket_joingroup(uEchoSocket* sock, const char* mcast_addr, const char* if_addr)
 {
   struct addrinfo hints;
-  struct addrinfo *mcastAddrInfo, *ifAddrInfo;
+  struct addrinfo *mcast_addr_info, *if_addr_info;
 
   /**** for IPv6 ****/
   struct ipv6_mreq ipv6mr;
   struct sockaddr_in6 toaddr6, ifaddr6;
-  int scopeID;
+  int scope_id;
 
   /**** for IPv4 ****/
   struct ip_mreq ipmr;
   struct sockaddr_in toaddr, ifaddr;
 
-  bool joinSuccess;
-  int sockOptRetCode;
+  bool join_success;
+  int sock_opt_ret_code;
 
   if (!sock)
     return false;
@@ -757,58 +758,58 @@ bool uecho_socket_joingroup(uEchoSocket* sock, const char* mcastAddr, const char
   memset(&hints, 0, sizeof(hints));
   hints.ai_flags = AI_NUMERICHOST | AI_PASSIVE;
 
-  if (getaddrinfo(mcastAddr, NULL, &hints, &mcastAddrInfo) != 0)
+  if (getaddrinfo(mcast_addr, NULL, &hints, &mcast_addr_info) != 0)
     return false;
 
-  if (getaddrinfo(ifAddr, NULL, &hints, &ifAddrInfo) != 0) {
-    freeaddrinfo(mcastAddrInfo);
+  if (getaddrinfo(if_addr, NULL, &hints, &if_addr_info) != 0) {
+    freeaddrinfo(mcast_addr_info);
     return false;
   }
 
-  joinSuccess = true;
+  join_success = true;
 
-  if (uecho_net_isipv6address(mcastAddr) == true) {
-    memcpy(&toaddr6, mcastAddrInfo->ai_addr, sizeof(struct sockaddr_in6));
-    memcpy(&ifaddr6, ifAddrInfo->ai_addr, sizeof(struct sockaddr_in6));
+  if (uecho_net_isipv6address(mcast_addr) == true) {
+    memcpy(&toaddr6, mcast_addr_info->ai_addr, sizeof(struct sockaddr_in6));
+    memcpy(&ifaddr6, if_addr_info->ai_addr, sizeof(struct sockaddr_in6));
     ipv6mr.ipv6mr_multiaddr = toaddr6.sin6_addr;
-    scopeID = uecho_net_getipv6scopeid(ifAddr);
-    ipv6mr.ipv6mr_interface = scopeID /*if_nametoindex*/;
+    scope_id = uecho_net_getipv6scopeid(if_addr);
+    ipv6mr.ipv6mr_interface = scope_id /*if_nametoindex*/;
 
-    sockOptRetCode = setsockopt(sock->id, IPPROTO_IPV6, IPV6_MULTICAST_IF, (char*)&scopeID, sizeof(scopeID));
+    sock_opt_ret_code = setsockopt(sock->id, IPPROTO_IPV6, IPV6_MULTICAST_IF, (char*)&scope_id, sizeof(scope_id));
 
-    if (sockOptRetCode != 0)
-      joinSuccess = false;
+    if (sock_opt_ret_code != 0)
+      join_success = false;
 
-    sockOptRetCode = setsockopt(sock->id, IPPROTO_IPV6, IPV6_JOIN_GROUP, (char*)&ipv6mr, sizeof(ipv6mr));
+    sock_opt_ret_code = setsockopt(sock->id, IPPROTO_IPV6, IPV6_JOIN_GROUP, (char*)&ipv6mr, sizeof(ipv6mr));
 
-    if (sockOptRetCode != 0)
-      joinSuccess = false;
+    if (sock_opt_ret_code != 0)
+      join_success = false;
   }
   else {
-    memcpy(&toaddr, mcastAddrInfo->ai_addr, sizeof(struct sockaddr_in));
-    memcpy(&ifaddr, ifAddrInfo->ai_addr, sizeof(struct sockaddr_in));
+    memcpy(&toaddr, mcast_addr_info->ai_addr, sizeof(struct sockaddr_in));
+    memcpy(&ifaddr, if_addr_info->ai_addr, sizeof(struct sockaddr_in));
     memcpy(&ipmr.imr_multiaddr.s_addr, &toaddr.sin_addr, sizeof(struct in_addr));
     memcpy(&ipmr.imr_interface.s_addr, &ifaddr.sin_addr, sizeof(struct in_addr));
-    sockOptRetCode = setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_IF, (char*)&ipmr.imr_interface.s_addr, sizeof(struct in_addr));
-    if (sockOptRetCode != 0)
-      joinSuccess = false;
-    sockOptRetCode = setsockopt(sock->id, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char*)&ipmr, sizeof(ipmr));
+    sock_opt_ret_code = setsockopt(sock->id, IPPROTO_IP, IP_MULTICAST_IF, (char*)&ipmr.imr_interface.s_addr, sizeof(struct in_addr));
+    if (sock_opt_ret_code != 0)
+      join_success = false;
+    sock_opt_ret_code = setsockopt(sock->id, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char*)&ipmr, sizeof(ipmr));
 
-    if (sockOptRetCode != 0)
-      joinSuccess = false;
+    if (sock_opt_ret_code != 0)
+      join_success = false;
   }
 
-  freeaddrinfo(mcastAddrInfo);
-  freeaddrinfo(ifAddrInfo);
+  freeaddrinfo(mcast_addr_info);
+  freeaddrinfo(if_addr_info);
 
-  return joinSuccess;
+  return join_success;
 }
 
 /****************************************
 * uecho_socket_tosockaddrin
 ****************************************/
 
-bool uecho_socket_tosockaddrin(const char* addr, int port, struct sockaddr_in* sockaddr, bool isBindAddr)
+bool uecho_socket_tosockaddrin(const char* addr, int port, struct sockaddr_in* sockaddr, bool is_bind_addr)
 {
   uecho_socket_startup();
 
@@ -818,7 +819,7 @@ bool uecho_socket_tosockaddrin(const char* addr, int port, struct sockaddr_in* s
   sockaddr->sin_addr.s_addr = htonl(INADDR_ANY);
   sockaddr->sin_port = htons((unsigned short)port);
 
-  if (isBindAddr == true) {
+  if (is_bind_addr == true) {
     sockaddr->sin_addr.s_addr = inet_addr(addr);
     if (sockaddr->sin_addr.s_addr == INADDR_NONE) {
       struct hostent* hent = gethostbyname(addr);
@@ -835,25 +836,25 @@ bool uecho_socket_tosockaddrin(const char* addr, int port, struct sockaddr_in* s
 * uecho_socket_tosockaddrinfo
 ****************************************/
 
-bool uecho_socket_tosockaddrinfo(int sockType, const char* addr, int port, struct addrinfo** addrInfo, bool isBindAddr)
+bool uecho_socket_tosockaddrinfo(int sock_type, const char* addr, int port, struct addrinfo** addr_info, bool is_bind_addr)
 {
   struct addrinfo hints;
-  char portStr[32];
+  char port_str[32];
   int errorn;
 
   uecho_socket_startup();
 
   memset(&hints, 0, sizeof(struct addrinfo));
-  hints.ai_socktype = sockType;
+  hints.ai_socktype = sock_type;
   hints.ai_flags = /*AI_NUMERICHOST | */ AI_PASSIVE;
-  sprintf(portStr, "%d", port);
-  if ((errorn = getaddrinfo(addr, portStr, &hints, addrInfo)) != 0)
+  sprintf(port_str, "%d", port);
+  if ((errorn = getaddrinfo(addr, port_str, &hints, addr_info)) != 0)
     return false;
-  if (isBindAddr == true)
+  if (is_bind_addr == true)
     return true;
-  hints.ai_family = (*addrInfo)->ai_family;
-  freeaddrinfo(*addrInfo);
-  if ((errorn = getaddrinfo(NULL, portStr, &hints, addrInfo)) != 0)
+  hints.ai_family = (*addr_info)->ai_family;
+  freeaddrinfo(*addr_info);
+  if ((errorn = getaddrinfo(NULL, port_str, &hints, addr_info)) != 0)
     return false;
   return true;
 }

@@ -19,7 +19,7 @@
 
 bool uecho_object_addmandatoryproperties(uEchoObject* obj)
 {
-  byte zeroPropMap[] = { 0 };
+  byte zero_prop_map[] = { 0 };
 
   if (!obj)
     return false;
@@ -32,13 +32,13 @@ bool uecho_object_addmandatoryproperties(uEchoObject* obj)
   // Property map properties
 
   uecho_object_setproperty(obj, uEchoObjectGetPropertyMap, uEchoPropertyAttrRead);
-  uecho_object_setpropertydata(obj, uEchoObjectGetPropertyMap, zeroPropMap, sizeof(zeroPropMap));
+  uecho_object_setpropertydata(obj, uEchoObjectGetPropertyMap, zero_prop_map, sizeof(zero_prop_map));
 
   uecho_object_setproperty(obj, uEchoObjectSetPropertyMap, uEchoPropertyAttrRead);
-  uecho_object_setpropertydata(obj, uEchoObjectSetPropertyMap, zeroPropMap, sizeof(zeroPropMap));
+  uecho_object_setpropertydata(obj, uEchoObjectSetPropertyMap, zero_prop_map, sizeof(zero_prop_map));
 
   uecho_object_setproperty(obj, uEchoObjectAnnoPropertyMap, uEchoPropertyAttrRead);
-  uecho_object_setpropertydata(obj, uEchoObjectAnnoPropertyMap, zeroPropMap, sizeof(zeroPropMap));
+  uecho_object_setpropertydata(obj, uEchoObjectAnnoPropertyMap, zero_prop_map, sizeof(zero_prop_map));
 
   return true;
 }
@@ -82,37 +82,37 @@ bool uecho_object_updatepropertymaps(uEchoObject* obj)
   for (prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
     // Get property map
     if (uecho_property_isreadable(prop)) {
-      obj->getPropMapSize++;
-      obj->getPropMapBytes = realloc(obj->getPropMapBytes, obj->getPropMapSize);
-      if (obj->getPropMapBytes) {
-        obj->getPropMapBytes[obj->getPropMapSize - 1] = uecho_property_getcode(prop);
+      obj->get_prop_map_size++;
+      obj->get_prop_map_bytes = realloc(obj->get_prop_map_bytes, obj->get_prop_map_size);
+      if (obj->get_prop_map_bytes) {
+        obj->get_prop_map_bytes[obj->get_prop_map_size - 1] = uecho_property_getcode(prop);
       }
     }
 
     // Set property map
     if (uecho_property_iswritable(prop)) {
-      obj->setPropMapSize++;
-      obj->setPropMapBytes = realloc(obj->setPropMapBytes, obj->setPropMapSize);
-      if (obj->setPropMapBytes) {
-        obj->setPropMapBytes[obj->setPropMapSize - 1] = uecho_property_getcode(prop);
+      obj->set_prop_map_size++;
+      obj->set_prop_map_bytes = realloc(obj->set_prop_map_bytes, obj->set_prop_map_size);
+      if (obj->set_prop_map_bytes) {
+        obj->set_prop_map_bytes[obj->set_prop_map_size - 1] = uecho_property_getcode(prop);
       }
     }
 
     // Announcement status changes property map
     if (uecho_property_isannounceable(prop)) {
-      obj->annoPropMapSize++;
-      obj->annoPropMapBytes = realloc(obj->annoPropMapBytes, obj->annoPropMapSize);
-      if (obj->annoPropMapBytes) {
-        obj->annoPropMapBytes[obj->annoPropMapSize - 1] = uecho_property_getcode(prop);
+      obj->anno_prop_map_size++;
+      obj->anno_prop_map_bytes = realloc(obj->anno_prop_map_bytes, obj->anno_prop_map_size);
+      if (obj->anno_prop_map_bytes) {
+        obj->anno_prop_map_bytes[obj->anno_prop_map_size - 1] = uecho_property_getcode(prop);
       }
     }
   }
 
   // Update property map properties
 
-  uecho_object_setpropertymap(obj, uEchoProfileGetPropertyMap, obj->getPropMapBytes, obj->getPropMapSize);
-  uecho_object_setpropertymap(obj, uEchoProfileSetPropertyMap, obj->setPropMapBytes, obj->setPropMapSize);
-  uecho_object_setpropertymap(obj, uEchoProfileAnnoPropertyMap, obj->annoPropMapBytes, obj->annoPropMapSize);
+  uecho_object_setpropertymap(obj, uEchoProfileGetPropertyMap, obj->get_prop_map_bytes, obj->get_prop_map_bytes);
+  uecho_object_setpropertymap(obj, uEchoProfileSetPropertyMap, obj->set_prop_map_bytes, obj->set_prop_map_size);
+  uecho_object_setpropertymap(obj, uEchoProfileAnnoPropertyMap, obj->anno_prop_map_bytes, obj->anno_prop_map_size);
 
   return true;
 }
@@ -126,21 +126,21 @@ void uecho_object_clearpropertymapcaches(uEchoObject* obj)
   if (!obj)
     return;
 
-  if (obj->annoPropMapBytes) {
-    free(obj->annoPropMapBytes);
-    obj->annoPropMapBytes = NULL;
+  if (obj->anno_prop_map_bytes) {
+    free(obj->anno_prop_map_bytes);
+    obj->anno_prop_map_bytes = NULL;
   }
-  obj->annoPropMapSize = 0;
+  obj->anno_prop_map_size = 0;
 
-  if (obj->setPropMapBytes) {
-    free(obj->setPropMapBytes);
-    obj->setPropMapBytes = NULL;
+  if (obj->set_prop_map_bytes) {
+    free(obj->set_prop_map_bytes);
+    obj->set_prop_map_bytes = NULL;
   }
-  obj->setPropMapSize = 0;
+  obj->set_prop_map_size = 0;
 
-  if (obj->getPropMapBytes) {
-    free(obj->getPropMapBytes);
-    obj->getPropMapBytes = NULL;
+  if (obj->get_prop_map_bytes) {
+    free(obj->get_prop_map_bytes);
+    obj->get_prop_map_bytes = NULL;
   }
-  obj->getPropMapSize = 0;
+  obj->get_prop_map_bytes = 0;
 }

@@ -9,4 +9,7 @@ do
 	fi
 done
 
-find . -name beringei -prune -o \( -name "*.h" -or -name "*.c" -or -name "*.cpp" \) -exec "$format" -i {} \;
+if [ -x "`which clang-tidy`" ]; then
+	find . -name "*.h" -or -name "*.c" -or -name "*.cpp" | xargs -L 1 -Ifname clang-tidy --fix fname -- -Iinclude -Isrc
+fi
+find . -prune -o \( -name "*.h" -or -name "*.c" -or -name "*.cpp" \) -exec "$format" -i {} \;

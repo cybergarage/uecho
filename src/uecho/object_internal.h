@@ -28,29 +28,29 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef struct _uEchoObject {
+typedef struct UEchoObject {
   UECHO_LIST_STRUCT_MEMBERS
 
   byte code[3];
   uEchoPropertyList* properties;
 
-  void* parentNode;
+  void* parent_node;
 
   // Property map caches
 
-  size_t annoPropMapSize;
-  uEchoPropertyCode* annoPropMapBytes;
+  size_t anno_prop_map_size;
+  uEchoPropertyCode* anno_prop_map_bytes;
 
-  size_t setPropMapSize;
-  uEchoPropertyCode* setPropMapBytes;
+  size_t set_prop_map_size;
+  uEchoPropertyCode* set_prop_map_bytes;
 
-  size_t getPropMapSize;
-  uEchoPropertyCode* getPropMapBytes;
+  size_t get_prop_map_size;
+  uEchoPropertyCode* get_prop_map_bytes;
 
   // Listener
 
-  void (*allMsgListener)(struct _uEchoObject*, uEchoMessage*); /* uEchoObjectMessageListener */
-  void* propListenerMgr;
+  void (*all_msg_listener)(struct UEchoObject*, uEchoMessage*); /* uEchoObjectMessageListener */
+  void* prop_listener_mgr;
 } uEchoObject, uEchoObjectList;
 
 /****************************************
@@ -75,9 +75,9 @@ bool uecho_object_addmandatoryproperties(uEchoObject* obj);
 bool uecho_object_updatepropertymaps(uEchoObject* obj);
 void uecho_object_clearpropertymapcaches(uEchoObject* obj);
 
-uEchoProperty* uecho_object_getpropertywait(uEchoObject* obj, uEchoPropertyCode code, clock_t waitMiliTime);
+uEchoProperty* uecho_object_getpropertywait(uEchoObject* obj, uEchoPropertyCode code, clock_t wait_mili_time);
 
-bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode mapCode, uEchoPropertyCode* propCodes, size_t propsCodeSize);
+bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, uEchoPropertyCode* prop_codes, size_t props_code_size);
 
 /****************************************
  * Function (Object List)

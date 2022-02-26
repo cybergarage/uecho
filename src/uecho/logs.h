@@ -13,8 +13,7 @@
 
 #include <uecho/message_internal.h>
 
-void uecho_message_packet_debug(const char* addr, const byte* msg, size_t msg_len);
-void uecho_socket_datagram_packet_debug(uEchoDatagramPacket* dpkt);
 void uecho_message_debug(uEchoMessage* msg);
+void uecho_message_packet_debug(const char* addr, const byte* msg, size_t msg_len);
 
 #endif /* _UECHO_LOG_FUNC_H_ */

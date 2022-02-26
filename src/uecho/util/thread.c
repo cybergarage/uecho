@@ -34,7 +34,7 @@ static DWORD WINAPI Win32ThreadProc(LPVOID lpParam)
   return 0;
 }
 #else
-static void* PosixThreadProc(void* param)
+static void* posix_thread_proc(void* param)
 {
   sigset_t set;
   struct sigaction actions;
@@ -72,9 +72,9 @@ uEchoThread* uecho_thread_new(void)
 
   uecho_list_node_init((uEchoList*)thread);
 
-  thread->runnableFlag = false;
+  thread->runnable_flag = false;
   thread->action = NULL;
-  thread->userData = NULL;
+  thread->user_data = NULL;
 
   return thread;
 }
@@ -88,7 +88,7 @@ bool uecho_thread_delete(uEchoThread* thread)
   if (!thread)
     return false;
 
-  if (thread->runnableFlag == true) {
+  if (thread->runnable_flag == true) {
     uecho_thread_stop(thread);
   }
 
@@ -108,25 +108,25 @@ bool uecho_thread_start(uEchoThread* thread)
   if (!thread)
     return false;
 
-  thread->runnableFlag = true;
+  thread->runnable_flag = true;
 
 #if defined(WIN32)
   thread->hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)thread, 0, &thread->threadID);
 #else
   pthread_attr_t thread_attr;
   if (pthread_attr_init(&thread_attr) != 0) {
-    thread->runnableFlag = false;
+    thread->runnable_flag = false;
     return false;
   }
 
   if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) != 0) {
-    thread->runnableFlag = false;
+    thread->runnable_flag = false;
     pthread_attr_destroy(&thread_attr);
     return false;
   }
 
-  if (pthread_create(&thread->pThread, &thread_attr, PosixThreadProc, thread) != 0) {
-    thread->runnableFlag = false;
+  if (pthread_create(&thread->p_thread, &thread_attr, posix_thread_proc, thread) != 0) {
+    thread->runnable_flag = false;
     pthread_attr_destroy(&thread_attr);
     return false;
   }
@@ -145,13 +145,13 @@ bool uecho_thread_stop(uEchoThread* thread)
   if (!thread)
     return false;
 
-  if (thread->runnableFlag == true) {
-    thread->runnableFlag = false;
+  if (thread->runnable_flag == true) {
+    thread->runnable_flag = false;
 #if defined(WIN32)
     TerminateThread(thread->hThread, 0);
     WaitForSingleObject(thread->hThread, INFINITE);
 #else
-    pthread_kill(thread->pThread, 0);
+    pthread_kill(thread->p_thread, 0);
     /* Now we wait one second for thread termination instead of using pthread_join */
     uecho_sleep(UECHO_THREAD_MIN_SLEEP);
 #endif
@@ -183,7 +183,7 @@ bool uecho_thread_isrunnable(uEchoThread* thread)
   pthread_testcancel();
 #endif
 
-  return thread->runnableFlag;
+  return thread->runnable_flag;
 }
 
 /****************************************
@@ -195,7 +195,7 @@ bool uecho_thread_isrunning(uEchoThread* thread)
   if (!thread)
     return false;
 
-  return thread->runnableFlag;
+  return thread->runnable_flag;
 }
 
 /****************************************
@@ -219,7 +219,7 @@ void uecho_thread_setuserdata(uEchoThread* thread, void* value)
   if (!thread)
     return;
 
-  thread->userData = value;
+  thread->user_data = value;
 }
 
 /****************************************
@@ -231,7 +231,7 @@ void* uecho_thread_getuserdata(uEchoThread* thread)
   if (!thread)
     return NULL;
 
-  return thread->userData;
+  return thread->user_data;
 }
 
 /****************************************

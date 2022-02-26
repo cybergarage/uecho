@@ -28,8 +28,8 @@ uEchoString* uecho_string_new(void)
 
   if (NULL != str) {
     str->value = NULL;
-    str->memSize = 0;
-    str->valueSize = 0;
+    str->mem_size = 0;
+    str->value_size = 0;
   }
 
   return str;
@@ -57,8 +57,8 @@ void uecho_string_clear(uEchoString* str)
     if (str->value != NULL) {
       free(str->value);
       str->value = NULL;
-      str->memSize = 0;
-      str->valueSize = 0;
+      str->mem_size = 0;
+      str->value_size = 0;
     }
   }
 }
@@ -106,9 +106,9 @@ void uecho_string_setnvalue(uEchoString* str, const char* value, size_t len)
   if (NULL != str) {
     uecho_string_clear(str);
     if (value != NULL) {
-      str->valueSize = len;
-      str->memSize = str->valueSize + 1;
-      str->value = (char*)malloc(str->memSize * sizeof(char));
+      str->value_size = len;
+      str->mem_size = str->value_size + 1;
+      str->value = (char*)malloc(str->mem_size * sizeof(char));
 
       if (NULL == str->value) {
         return;
@@ -130,8 +130,8 @@ void uecho_string_setpointervalue(uEchoString* str, char* value, size_t len)
   if (NULL != str) {
     uecho_string_clear(str);
     str->value = value;
-    str->valueSize = len;
-    str->memSize = str->valueSize + 1;
+    str->value_size = len;
+    str->mem_size = str->value_size + 1;
   }
 }
 
@@ -153,7 +153,7 @@ size_t uecho_string_getmemorysize(uEchoString* str)
   if (NULL == str)
     return 0;
 
-  return str->memSize;
+  return str->mem_size;
 }
 
 /****************************************
@@ -168,7 +168,7 @@ size_t uecho_string_length(uEchoString* str)
   if (str->value == NULL)
     return 0;
 
-  return str->valueSize;
+  return str->value_size;
 }
 
 /****************************************
@@ -184,43 +184,43 @@ char* uecho_string_addvalue(uEchoString* str, const char* value)
 * uecho_string_add
 ****************************************/
 
-char* uecho_string_naddvalue(uEchoString* str, const char* value, size_t valueLen)
+char* uecho_string_naddvalue(uEchoString* str, const char* value, size_t value_len)
 {
-  char* newValue = NULL;
-  size_t newMemSize = 0;
+  char* new_value = NULL;
+  size_t new_mem_size = 0;
 
   if (NULL == str)
     return NULL;
 
-  if (value == NULL || valueLen <= 0) {
+  if (value == NULL || value_len <= 0) {
     /* Empty string, nothing to add */
     return uecho_string_getvalue(str);
   }
 
   /* Check, if we need to allocate memory for the new data */
-  newMemSize = str->valueSize + valueLen + 1;
-  if (newMemSize > str->memSize || str->value == NULL) {
+  new_mem_size = str->value_size + value_len + 1;
+  if (new_mem_size > str->mem_size || str->value == NULL) {
     /* realloc also some extra in order to avoid multiple reallocs */
-    newMemSize += UECHO_STRING_REALLOC_EXTRA;
-    newValue = realloc(str->value, newMemSize * sizeof(char));
+    new_mem_size += UECHO_STRING_REALLOC_EXTRA;
+    new_value = realloc(str->value, new_mem_size * sizeof(char));
 
-    if (newValue == NULL) {
+    if (new_value == NULL) {
       /* Memory allocation failed, bail out */
       return NULL;
     }
 
-    str->memSize = newMemSize;
-    str->value = newValue;
+    str->mem_size = new_mem_size;
+    str->value = new_value;
   }
 
   /* memcpy works better with non-zero-terminated data
      than strncpy */
-  memcpy(str->value + str->valueSize, value, valueLen);
+  memcpy(str->value + str->value_size, value, value_len);
 
-  str->valueSize += valueLen;
+  str->value_size += value_len;
 
   /* In case this is a string, append a termination character */
-  str->value[str->valueSize] = '\0';
+  str->value[str->value_size] = '\0';
 
   return uecho_string_getvalue(str);
 }
@@ -229,11 +229,11 @@ char* uecho_string_naddvalue(uEchoString* str, const char* value, size_t valueLe
 * uecho_string_addrep
 ****************************************/
 
-char* uecho_string_addrepvalue(uEchoString* str, const char* value, size_t repeatCnt)
+char* uecho_string_addrepvalue(uEchoString* str, const char* value, size_t repeat_cnt)
 {
   int n;
 
-  for (n = 0; n < repeatCnt; n++)
+  for (n = 0; n < repeat_cnt; n++)
     uecho_string_addvalue(str, value);
 
   return uecho_string_getvalue(str);
@@ -243,12 +243,12 @@ char* uecho_string_addrepvalue(uEchoString* str, const char* value, size_t repea
 * uecho_string_naddrep
 ****************************************/
 
-char* uecho_string_naddrepvalue(uEchoString* str, const char* value, size_t valueLen, size_t repeatCnt)
+char* uecho_string_naddrepvalue(uEchoString* str, const char* value, size_t value_len, size_t repeat_cnt)
 {
   int n;
 
-  for (n = 0; n < repeatCnt; n++)
-    uecho_string_naddvalue(str, value, valueLen);
+  for (n = 0; n < repeat_cnt; n++)
+    uecho_string_naddvalue(str, value, value_len);
 
   return uecho_string_getvalue(str);
 }
@@ -257,56 +257,56 @@ char* uecho_string_naddrepvalue(uEchoString* str, const char* value, size_t valu
 * uecho_string_replace
 ****************************************/
 
-char* uecho_string_replace(uEchoString* str, char* fromStr[], char* toStr[], size_t fromStrCnt)
+char* uecho_string_replace(uEchoString* str, char* from_str[], char* to_str[], size_t from_str_cnt)
 {
-  char* orgValue = NULL;
-  size_t orgValueLen = 0;
+  char* org_value = NULL;
+  size_t org_value_len = 0;
   int n = 0;
-  int copyPos = 0;
-  size_t* fromStrLen = NULL;
-  uEchoString* repValue = NULL;
-  bool isReplaced = false;
+  int copy_pos = 0;
+  size_t* from_str_len = NULL;
+  uEchoString* rep_value = NULL;
+  bool is_replaced = false;
 
   if (NULL == str)
     return NULL;
 
-  repValue = uecho_string_new();
+  rep_value = uecho_string_new();
 
-  fromStrLen = (size_t*)malloc(sizeof(size_t) * fromStrCnt);
+  from_str_len = (size_t*)malloc(sizeof(size_t) * from_str_cnt);
 
-  if (NULL == fromStrLen) {
-    uecho_string_delete(repValue);
+  if (NULL == from_str_len) {
+    uecho_string_delete(rep_value);
     return NULL;
   }
 
-  for (n = 0; n < fromStrCnt; n++)
-    fromStrLen[n] = uecho_strlen(fromStr[n]);
+  for (n = 0; n < from_str_cnt; n++)
+    from_str_len[n] = uecho_strlen(from_str[n]);
 
-  orgValue = uecho_string_getvalue(str);
-  orgValueLen = uecho_string_length(str);
+  org_value = uecho_string_getvalue(str);
+  org_value_len = uecho_string_length(str);
 
-  copyPos = 0;
-  while (copyPos < orgValueLen) {
-    isReplaced = false;
-    for (n = 0; n < fromStrCnt; n++) {
-      if (strncmp(fromStr[n], orgValue + copyPos, fromStrLen[n]) == 0) {
-        uecho_string_addvalue(repValue, toStr[n]);
-        copyPos += fromStrLen[n];
-        isReplaced = true;
+  copy_pos = 0;
+  while (copy_pos < org_value_len) {
+    is_replaced = false;
+    for (n = 0; n < from_str_cnt; n++) {
+      if (strncmp(from_str[n], org_value + copy_pos, from_str_len[n]) == 0) {
+        uecho_string_addvalue(rep_value, to_str[n]);
+        copy_pos += from_str_len[n];
+        is_replaced = true;
         continue;
       }
     }
-    if (isReplaced == true)
+    if (is_replaced == true)
       continue;
-    uecho_string_naddvalue(repValue, orgValue + copyPos, 1);
-    copyPos++;
+    uecho_string_naddvalue(rep_value, org_value + copy_pos, 1);
+    copy_pos++;
   }
 
-  free(fromStrLen);
+  free(from_str_len);
 
-  uecho_string_setvalue(str, uecho_string_getvalue(repValue));
+  uecho_string_setvalue(str, uecho_string_getvalue(rep_value));
 
-  uecho_string_delete(repValue);
+  uecho_string_delete(rep_value);
 
   return uecho_string_getvalue(str);
 }

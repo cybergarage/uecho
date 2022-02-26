@@ -33,7 +33,7 @@ extern "C" {
 typedef struct {
   UECHO_LIST_STRUCT_MEMBERS
   UECHO_PROPERTY_DATA_STRUCT_MEMBERS
-  void* parentObj;
+  void* parent_obj;
 } uEchoProperty, uEchoPropertyList;
 
 typedef struct {
@@ -62,16 +62,16 @@ bool uecho_property_announce(uEchoProperty* prop);
 uEchoPropertyList* uecho_propertylist_new(void);
 void uecho_propertylist_delete(uEchoPropertyList* props);
 
-bool uecho_propertylist_set(uEchoPropertyList* props, uEchoPropertyCode code, uEchoPropertyAttr attr, byte* data, size_t dataLen);
-bool uecho_propertylist_setdata(uEchoPropertyList* props, uEchoPropertyCode code, byte* data, size_t dataLen);
-bool uecho_propertylist_setintegerdata(uEchoPropertyList* props, uEchoPropertyCode code, int data, size_t dataLen);
+bool uecho_propertylist_set(uEchoPropertyList* props, uEchoPropertyCode code, uEchoPropertyAttr attr, byte* data, size_t data_len);
+bool uecho_propertylist_setdata(uEchoPropertyList* props, uEchoPropertyCode code, byte* data, size_t data_len);
+bool uecho_propertylist_setintegerdata(uEchoPropertyList* props, uEchoPropertyCode code, int data, size_t data_len);
 bool uecho_propertylist_setbytedata(uEchoPropertyList* props, uEchoPropertyCode code, byte data);
 bool uecho_propertylist_setattribute(uEchoPropertyList* props, uEchoPropertyCode code, uEchoPropertyAttr attr);
 uEchoProperty* uecho_propertylist_findbycode(uEchoPropertyList* props, uEchoPropertyCode code);
 
 byte uecho_propertylist_getdatasize(uEchoPropertyList* props, uEchoPropertyCode code);
 byte* uecho_propertylist_getdata(uEchoPropertyList* props, uEchoPropertyCode code);
-bool uecho_propertylist_getintegerdata(uEchoPropertyList* props, uEchoPropertyCode code, size_t dataLen, int* data);
+bool uecho_propertylist_getintegerdata(uEchoPropertyList* props, uEchoPropertyCode code, size_t data_len, int* data);
 bool uecho_propertylist_getbytedata(uEchoPropertyList* props, uEchoPropertyCode code, byte* data);
 
 #define uecho_propertylist_clear(props) uecho_list_clear((uEchoList*)props, (UECHO_LIST_DESTRUCTORFUNC)uecho_property_delete)

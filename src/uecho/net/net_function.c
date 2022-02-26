@@ -18,8 +18,8 @@
 * global variables
 ****************************************/
 
-static bool uecho_NET_USE_ONLY_IPV4_ADDR = false;
-static bool uecho_NET_USE_ONLY_IPV6_ADDR = false;
+static bool uecho_net_use_only_ip_v4_addr = false;
+static bool uecho_net_use_only_ip_v6_addr = false;
 
 ////////////////////////////////////////////////
 // uecho_net_isuseaddress
@@ -27,11 +27,11 @@ static bool uecho_NET_USE_ONLY_IPV6_ADDR = false;
 
 bool uecho_net_isuseaddress(char* addr)
 {
-  if (uecho_NET_USE_ONLY_IPV6_ADDR == true) {
+  if (uecho_net_use_only_ip_v6_addr == true) {
     if (uecho_net_isipv6address(addr) == false)
       return false;
   }
-  if (uecho_NET_USE_ONLY_IPV4_ADDR == true) {
+  if (uecho_net_use_only_ip_v4_addr == true) {
     if (uecho_net_isipv6address(addr) == true)
       return false;
   }
@@ -59,18 +59,18 @@ bool uecho_net_isipv6address(const char* addr)
 
 int uecho_net_getipv6scopeid(const char* addr)
 {
-  ssize_t perIdx;
-  char scopeIDBuf[8 + 1];
+  ssize_t per_idx;
+  char scope_id_buf[8 + 1];
 
   if (uecho_net_isipv6address(addr) == false)
     return 0;
 
-  perIdx = uecho_strchr(addr, "%", 1);
-  if (perIdx < 0)
+  per_idx = uecho_strchr(addr, "%", 1);
+  if (per_idx < 0)
     return 0;
 
-  uecho_strncpy(scopeIDBuf, (addr + perIdx + 1), sizeof(scopeIDBuf) - 1);
-  scopeIDBuf[sizeof(scopeIDBuf) - 1] = '\0';
+  uecho_strncpy(scope_id_buf, (addr + per_idx + 1), sizeof(scope_id_buf) - 1);
+  scope_id_buf[sizeof(scope_id_buf) - 1] = '\0';
 
-  return atoi(scopeIDBuf);
+  return atoi(scope_id_buf);
 }

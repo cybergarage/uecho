@@ -110,13 +110,13 @@ uEchoObject* uecho_nodeprofileclass_new(void);
 bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject* obj);
 
 bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject* obj, bool stats);
-bool uecho_nodeprofileclass_setversion(uEchoObject* obj, int majorVer, int minorVer);
-bool uecho_nodeprofileclass_setid(uEchoObject* obj, byte* manCode, byte* uniqId);
+bool uecho_nodeprofileclass_setversion(uEchoObject* obj, int major_ver, int minor_ver);
+bool uecho_nodeprofileclass_setid(uEchoObject* obj, byte* man_code, byte* uniq_id);
 bool uecho_nodeprofileclass_setdefaultid(uEchoObject* obj);
 bool uecho_nodeprofileclass_setinstancecount(uEchoObject* obj, int count);
 bool uecho_nodeprofileclass_setclasscount(uEchoObject* obj, int count);
-bool uecho_nodeprofileclass_setinstancelist(uEchoObject* obj, int listCnt, byte* listBytes);
-bool uecho_nodeprofileclass_setclasslist(uEchoObject* obj, int listCnt, byte* listBytes);
+bool uecho_nodeprofileclass_setinstancelist(uEchoObject* obj, int list_cnt, byte* list_bytes);
+bool uecho_nodeprofileclass_setclasslist(uEchoObject* obj, int list_cnt, byte* list_bytes);
 
 bool uecho_nodeprofileclass_isoperatingstatus(uEchoObject* obj);
 int uecho_nodeprofileclass_getinstancecount(uEchoObject* obj);

@@ -55,7 +55,7 @@ bool uecho_mcast_server_delete(uEchoMcastServer* server)
 
 void uecho_mcast_server_setmessagelistener(uEchoMcastServer* server, uEchoMcastServerMessageListener listener)
 {
-  server->msgListener = listener;
+  server->msg_listener = listener;
 }
 
 /****************************************
@@ -64,7 +64,7 @@ void uecho_mcast_server_setmessagelistener(uEchoMcastServer* server, uEchoMcastS
 
 void uecho_mcast_server_setuserdata(uEchoMcastServer* server, void* data)
 {
-  server->userData = data;
+  server->user_data = data;
 }
 
 /****************************************
@@ -73,14 +73,14 @@ void uecho_mcast_server_setuserdata(uEchoMcastServer* server, void* data)
 
 void* uecho_mcast_server_getuserdata(uEchoMcastServer* server)
 {
-  return server->userData;
+  return server->user_data;
 }
 
 /****************************************
  * uecho_mcast_server_open
  ****************************************/
 
-bool uecho_mcast_server_open(uEchoMcastServer* server, const char* bindAddr)
+bool uecho_mcast_server_open(uEchoMcastServer* server, const char* bind_addr)
 {
   uEchoSocketOption opt;
 
@@ -95,12 +95,12 @@ bool uecho_mcast_server_open(uEchoMcastServer* server, const char* bindAddr)
   uecho_socket_option_setreuseaddress(&opt, true);
   uecho_socket_option_setmulticastloop(&opt, true);
 
-  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, &opt)) {
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bind_addr, &opt)) {
     uecho_mcast_server_close(server);
     return false;
   }
 
-  if (!uecho_socket_joingroup(server->socket, uEchoMulticastAddr, bindAddr)) {
+  if (!uecho_socket_joingroup(server->socket, uEchoMulticastAddr, bind_addr)) {
     uecho_mcast_server_close(server);
     return false;
   }
@@ -151,10 +151,10 @@ bool uecho_mcast_server_performlistener(uEchoMcastServer* server, uEchoMessage* 
   if (!server)
     return false;
 
-  if (!server->msgListener)
+  if (!server->msg_listener)
     return false;
 
-  server->msgListener(server, msg);
+  server->msg_listener(server, msg);
 
   return true;
 }
@@ -166,8 +166,8 @@ bool uecho_mcast_server_performlistener(uEchoMcastServer* server, uEchoMessage* 
 static void uecho_mcast_server_action(uEchoThread* thread)
 {
   uEchoMcastServer* server;
-  uEchoDatagramPacket* dgmPkt;
-  ssize_t dgmPktLen;
+  uEchoDatagramPacket* dgm_pkt;
+  ssize_t dgm_pkt_len;
   uEchoMessage* msg;
 
   server = (uEchoMcastServer*)uecho_thread_getuserdata(thread);
@@ -179,12 +179,12 @@ static void uecho_mcast_server_action(uEchoThread* thread)
     return;
 
   while (uecho_thread_isrunnable(thread)) {
-    dgmPkt = uecho_socket_datagram_packet_new();
-    if (!dgmPkt)
+    dgm_pkt = uecho_socket_datagram_packet_new();
+    if (!dgm_pkt)
       break;
 
-    dgmPktLen = uecho_socket_recv(server->socket, dgmPkt);
-    if (dgmPktLen < 0)
+    dgm_pkt_len = uecho_socket_recv(server->socket, dgm_pkt);
+    if (dgm_pkt_len < 0)
       break;
 
     if (!uecho_thread_isrunnable(thread) || !uecho_socket_isbound(server->socket))
@@ -194,7 +194,7 @@ static void uecho_mcast_server_action(uEchoThread* thread)
     if (!msg)
       continue;
 
-    if (uecho_message_parsepacket(msg, dgmPkt)) {
+    if (uecho_message_parsepacket(msg, dgm_pkt)) {
       uecho_mcast_server_performlistener(server, msg);
     }
 
@@ -266,9 +266,9 @@ bool uecho_mcast_server_isrunning(uEchoMcastServer* server)
  * uecho_mcast_server_post
  ****************************************/
 
-bool uecho_mcast_server_post(uEchoMcastServer* server, const byte* msg, size_t msgLen)
+bool uecho_mcast_server_post(uEchoMcastServer* server, const byte* msg, size_t msg_len)
 {
-  size_t sentLen = 0;
+  size_t sent_len = 0;
 
   if (!server)
     return false;
@@ -276,7 +276,7 @@ bool uecho_mcast_server_post(uEchoMcastServer* server, const byte* msg, size_t m
   if (!server->socket)
     return false;
 
-  sentLen = uecho_socket_sendto(server->socket, uEchoMulticastAddr, uEchoUdpPort, msg, msgLen);
+  sent_len = uecho_socket_sendto(server->socket, uEchoMulticastAddr, uEchoUdpPort, msg, msg_len);
 
-  return (sentLen == msgLen) ? true : false;
+  return (sent_len == msg_len) ? true : false;
 }

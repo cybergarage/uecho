@@ -38,22 +38,22 @@ enum {
  * Data Type
  ****************************************/
 
-typedef struct _uEchoMessage {
-  byte EHD1;
-  byte EHD2;
-  byte TID[uEchoTIDSize];
-  byte SEOJ[uEchoEOJSize];
-  byte DEOJ[uEchoEOJSize];
-  byte ESV;
-  byte OPC;
-  byte OPCSet;
-  byte OPCGet;
-  uEchoProperty** EP;
-  uEchoProperty** EPSet;
-  uEchoProperty** EPGet;
+typedef struct UEchoMessage {
+  byte ehd1;
+  byte ehd2;
+  byte tid[uEchoTIDSize];
+  byte seoj[uEchoEOJSize];
+  byte deoj[uEchoEOJSize];
+  byte esv;
+  byte opc;
+  byte opc_set;
+  byte opc_get;
+  uEchoProperty** ep;
+  uEchoProperty** ep_set;
+  uEchoProperty** ep_get;
   byte* bytes;
 
-  char* srcAddr;
+  char* src_addr;
 } uEchoMessage;
 
 /****************************************
@@ -73,10 +73,10 @@ bool uecho_message_setopc(uEchoMessage* msg, byte val);
 bool uecho_message_setopcset(uEchoMessage* msg, byte val);
 bool uecho_message_setopcget(uEchoMessage* msg, byte val);
 
-bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv* resEsv);
-bool uecho_message_requestesv2errorresponseesv(uEchoEsv reqEsv, uEchoEsv* resEsv);
+bool uecho_message_requestesv2responseesv(uEchoEsv req_esv, uEchoEsv* res_esv);
+bool uecho_message_requestesv2errorresponseesv(uEchoEsv req_esv, uEchoEsv* res_esv);
 
-bool uecho_message_parsepacket(uEchoMessage* msg, uEchoDatagramPacket* dgmPkt);
+bool uecho_message_parsepacket(uEchoMessage* msg, uEchoDatagramPacket* dgm_pkt);
 
 bool uecho_message_isreadwritemessage(uEchoMessage* msg);
 

@@ -63,19 +63,19 @@ void uecho_search_printdevices(uEchoController* ctrl)
 
 int main(int argc, char* argv[])
 {
-  bool verboseMode;
+  bool verbose_mode;
   uEchoController* ctrl;
-  size_t foundNodeCnt;
+  size_t found_node_cnt;
   int c;
 
   // Parse options
 
-  verboseMode = false;
+  verbose_mode = false;
 
   while ((c = getopt(argc, argv, "vh")) != -1) {
     switch (c) {
     case 'v': {
-      verboseMode = true;
+      verbose_mode = true;
     } break;
     case 'h': {
       usage();
@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
   if (!ctrl)
     return EXIT_FAILURE;
 
-  if (verboseMode) {
+  if (verbose_mode) {
     uecho_controller_setmessagelistener(ctrl, uecho_search_print_messages);
   }
 
@@ -107,8 +107,8 @@ int main(int argc, char* argv[])
   uecho_controller_searchallobjects(ctrl);
   uecho_sleep(UECHO_TEST_SEARCH_WAIT_MTIME);
 
-  foundNodeCnt = uecho_controller_getnodecount(ctrl);
-  if (0 < foundNodeCnt) {
+  found_node_cnt = uecho_controller_getnodecount(ctrl);
+  if (0 < found_node_cnt) {
     uecho_search_printdevices(ctrl);
   }
 
