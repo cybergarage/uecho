@@ -70,6 +70,8 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
 
   uEchoObject* found_obj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
   BOOST_CHECK(found_obj);
+  if (!found_obj)
+    return;
 
   // Send Message (NotificationRequest instead of ReadRequest)
 

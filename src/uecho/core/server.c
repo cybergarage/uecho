@@ -219,7 +219,7 @@ void uecho_mcast_server_msglistener(uEchoMcastServer* mcast_server, uEchoMessage
  * uecho_server_postannounce
  ****************************************/
 
-const char * uecho_server_getlocaladdress(uEchoServer* server)
+const char * uecho_server_getaddress(uEchoServer* server)
 {
   return "";
 }
