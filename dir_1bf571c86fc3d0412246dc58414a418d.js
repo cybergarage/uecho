@@ -4,6 +4,8 @@ var dir_1bf571c86fc3d0412246dc58414a418d =
     [ "list.h", "list_8h.html", "list_8h" ],
     [ "log.c", "log_8c.html", "log_8c" ],
     [ "log.h", "log_8h.html", "log_8h" ],
+    [ "logs.c", "util_2logs_8c.html", "util_2logs_8c" ],
+    [ "logs.h", "util_2logs_8h.html", "util_2logs_8h" ],
     [ "mutex.c", "mutex_8c.html", "mutex_8c" ],
     [ "mutex.h", "mutex_8h.html", "mutex_8h" ],
     [ "strings.c", "strings_8c.html", "strings_8c" ],
