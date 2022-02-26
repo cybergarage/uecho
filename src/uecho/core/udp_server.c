@@ -76,10 +76,10 @@ void* uecho_udp_server_getuserdata(uEchoUdpServer* server)
 }
 
 /****************************************
- * uecho_udp_server_getlocaladdress
+ * uecho_udp_server_getaddress
  ****************************************/
 
-const char * uecho_udp_server_getlocaladdress(uEchoUdpServer* server)
+const char * uecho_udp_server_getaddress(uEchoUdpServer* server)
 {
   if (!server->socket)
     return "";

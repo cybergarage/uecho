@@ -203,6 +203,17 @@ static void uecho_mcast_server_action(uEchoThread* thread)
 }
 
 /****************************************
+ * uecho_mcast_server_getaddress
+ ****************************************/
+
+const char * uecho_mcast_server_getaddress(uEchoMcastServer* server)
+{
+  if (!server->socket)
+    return "";
+  return uecho_socket_getaddress(server->socket);
+}
+
+/****************************************
  * uecho_mcast_server_start
  ****************************************/
 
