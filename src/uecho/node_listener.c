@@ -211,9 +211,9 @@ void uecho_node_servermessagelistener(uEchoServer* server, uEchoMessage* req_msg
 
   parent_node = uecho_object_getparentnode(msg_dest_obj);
   if (is_response_required && parent_node) {
+    uecho_message_setesv(res_msg, res_esv);
     res_msg_bytes = uecho_message_getbytes(res_msg);
     res_msg_len = uecho_message_size(res_msg);
-    uecho_message_setesv(res_msg, res_esv);
     if (uecho_message_getesv(res_msg) == uEchoEsvNotification) {
       uecho_node_announcemessagebytes(parent_node, res_msg_bytes, res_msg_len);
     }
