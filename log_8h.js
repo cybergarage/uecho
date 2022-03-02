@@ -10,6 +10,7 @@ var log_8h =
     [ "LOG_WARNING", "log_8h.html#adf4476a6a4ea6c74231c826e899d7189", null ],
     [ "LOG_WARNING_S", "log_8h.html#ae48b5e10919436d575968369a7d7628d", null ],
     [ "MAX_LOG_BUF", "log_8h.html#a296269817f840ab468eb0c880a971915", null ],
+    [ "uecho_log", "log_8h.html#a6765bd522990df5ae40648fa60b641be", null ],
     [ "uecho_log_debug", "log_8h.html#abe50a503f8cef85d64826d99a4bf622f", null ],
     [ "uecho_log_error", "log_8h.html#a4d76abffb336ef382cc6482aa7a6e51b", null ],
     [ "uecho_log_info", "log_8h.html#ae691abc3e8b559dcd231398efe4b7e31", null ],
