@@ -83,6 +83,10 @@ void uecho_message_setsourceaddress(uEchoMessage* msg, const char* addr);
 const char* uecho_message_getsourceaddress(uEchoMessage* msg);
 bool uecho_message_issourceaddress(uEchoMessage* msg, const char* addr);
 
+void uecho_message_setdestinationaddress(uEchoMessage* msg, const char* addr);
+const char* uecho_message_getdestinationaddress(uEchoMessage* msg);
+bool uecho_message_isdestinationaddress(uEchoMessage* msg, const char* addr);
+
 bool uecho_message_set(uEchoMessage* msg, uEchoMessage* src_msg);
 uEchoMessage* uecho_message_copy(uEchoMessage* msg);
 bool uecho_message_equals(uEchoMessage* msg1, uEchoMessage* msg2);

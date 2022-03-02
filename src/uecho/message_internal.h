@@ -54,6 +54,7 @@ typedef struct UEchoMessage {
   byte* bytes;
 
   char* from_addr;
+  char* to_addr;
 } uEchoMessage;
 
 /****************************************
