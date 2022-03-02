@@ -825,6 +825,7 @@ bool uecho_message_parsepacket(uEchoMessage* msg, uEchoDatagramPacket* dgm_pkt)
   if (!uecho_message_parse(msg, uecho_socket_datagram_packet_getdata(dgm_pkt), uecho_socket_datagram_packet_getlength(dgm_pkt)))
     return false;
 
+  uecho_message_setsourceaddress(msg, uecho_socket_datagram_packet_getlocaladdress(dgm_pkt));
   uecho_message_setsourceaddress(msg, uecho_socket_datagram_packet_getremoteaddress(dgm_pkt));
 
   return true;
