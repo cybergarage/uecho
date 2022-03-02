@@ -47,6 +47,7 @@ uEchoMessage* uecho_message_new(void)
 
   msg->bytes = NULL;
   msg->from_addr = NULL;
+  msg->to_addr = NULL;
 
   return msg;
 }
@@ -116,6 +117,11 @@ bool uecho_message_clear(uEchoMessage* msg)
   if (msg->from_addr) {
     free(msg->from_addr);
     msg->from_addr = NULL;
+  }
+
+  if (msg->to_addr) {
+    free(msg->to_addr);
+    msg->to_addr = NULL;
   }
 
   if (!uecho_message_clearproperties(msg))
@@ -448,6 +454,33 @@ const char* uecho_message_getsourceaddress(uEchoMessage* msg)
 bool uecho_message_issourceaddress(uEchoMessage* msg, const char* addr)
 {
   return uecho_streq(msg->from_addr, addr);
+}
+
+/****************************************
+ * uecho_message_setdestinationaddress
+ ****************************************/
+
+void uecho_message_setdestinationaddress(uEchoMessage* msg, const char* addr)
+{
+  uecho_strloc(addr, &msg->to_addr);
+}
+
+/****************************************
+ * uecho_message_getdestinationaddress
+ ****************************************/
+
+const char* uecho_message_getdestinationaddress(uEchoMessage* msg)
+{
+  return msg->to_addr;
+}
+
+/****************************************
+ * uecho_message_isdestinationaddress
+ ****************************************/
+
+bool uecho_message_isdestinationaddress(uEchoMessage* msg, const char* addr)
+{
+  return uecho_streq(msg->to_addr, addr);
 }
 
 /****************************************
@@ -922,6 +955,7 @@ bool uecho_message_set(uEchoMessage* msg, uEchoMessage* src_msg)
   uecho_message_setdestinationobjectcode(msg, uecho_message_getdestinationobjectcode(src_msg));
   uecho_message_setesv(msg, uecho_message_getesv(src_msg));
   uecho_message_setsourceaddress(msg, uecho_message_getsourceaddress(src_msg));
+  uecho_message_setdestinationaddress(msg, uecho_message_getdestinationaddress(src_msg));
 
   src_msg_opc = uecho_message_getopc(src_msg);
   for (n = 0; n < src_msg_opc; n++) {
