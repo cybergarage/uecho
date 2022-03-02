@@ -25,7 +25,7 @@ void uecho_message_debug(uEchoMessage* msg)
   return uecho_net_packet_debug(
       "",
       uecho_message_getsourceaddress(msg),
-      "",
+      uecho_message_getdestinationaddress(msg),
       uecho_message_getbytes(msg),
       uecho_message_size(msg));
 }
