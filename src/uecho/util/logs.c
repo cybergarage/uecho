@@ -51,15 +51,16 @@ void uecho_net_packet_debug(const char*prefix, const char* from_addr, const char
 }
 
 /****************************************
-* uecho_message_debug
+* uecho_message_error
 ****************************************/
 
-void uecho_message_debug(uEchoMessage* msg)
+void uecho_message_error(uEchoMessage* msg)
 {
   if (!msg)
     return;
 
-  return uecho_net_packet_debug(
+  return uecho_net_packet_log(
+      LOG_ERROR,
       "",
       uecho_message_getsourceaddress(msg),
       uecho_message_getdestinationaddress(msg),
