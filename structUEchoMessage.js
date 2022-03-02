@@ -8,10 +8,11 @@ var structUEchoMessage =
     [ "ep_get", "structUEchoMessage.html#a0383f2dcd846ca4056b415859e57bf25", null ],
     [ "ep_set", "structUEchoMessage.html#a3f2a555d4a25fed55626a6dbd88da373", null ],
     [ "esv", "structUEchoMessage.html#ac9dc427341e3410b7d3afc8e37596e18", null ],
+    [ "from_addr", "structUEchoMessage.html#a8f28159e9e32633a2bfa8f5d42bce94c", null ],
     [ "opc", "structUEchoMessage.html#a6d12c30c1c8a0cea0414c6a32ee0f442", null ],
     [ "opc_get", "structUEchoMessage.html#a56c02488170a2a2719157d05b5b3bbde", null ],
     [ "opc_set", "structUEchoMessage.html#ae2d69becb77a4491eec164363c615de1", null ],
     [ "seoj", "structUEchoMessage.html#ab1a09bd103a293980b2aebf6ef3206ca", null ],
-    [ "src_addr", "structUEchoMessage.html#a5c80c52d015908b98ae15ece22e9582e", null ],
-    [ "tid", "structUEchoMessage.html#a07aa35ecdb482deeea8a5820e209a238", null ]
+    [ "tid", "structUEchoMessage.html#a07aa35ecdb482deeea8a5820e209a238", null ],
+    [ "to_addr", "structUEchoMessage.html#a4acbcc9dd3255a3f38ed205a0b9e6a9f", null ]
 ];
