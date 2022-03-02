@@ -151,6 +151,12 @@ Functions</h2></td></tr>
 <tr class="separator:a5e28ec3aae46443188326de42a5f7658"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad6b9f9a5f2de69542ae4547a93e86a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#aad6b9f9a5f2de69542ae4547a93e86a2">uecho_message_issourceaddress</a> (<a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg, const char *addr)</td></tr>
 <tr class="separator:aad6b9f9a5f2de69542ae4547a93e86a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e7d7181ccf0810ff085b948dbb03930"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a9e7d7181ccf0810ff085b948dbb03930">uecho_message_setdestinationaddress</a> (<a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg, const char *addr)</td></tr>
+<tr class="separator:a9e7d7181ccf0810ff085b948dbb03930"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0dab4cd226ff9c65de6c375fa785da5"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#aa0dab4cd226ff9c65de6c375fa785da5">uecho_message_getdestinationaddress</a> (<a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
+<tr class="separator:aa0dab4cd226ff9c65de6c375fa785da5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86c70135b97e1eebac83c07a0a3e6a28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a86c70135b97e1eebac83c07a0a3e6a28">uecho_message_isdestinationaddress</a> (<a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg, const char *addr)</td></tr>
+<tr class="separator:a86c70135b97e1eebac83c07a0a3e6a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cbe1786def43060c49d027af02a3f76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#a5cbe1786def43060c49d027af02a3f76">uecho_message_set</a> (<a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *src_msg)</td></tr>
 <tr class="separator:a5cbe1786def43060c49d027af02a3f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc32b5c3c6c99c9a6fa0c226f3bf5862"><td class="memItemLeft" align="right" valign="top"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_8h.html#acc32b5c3c6c99c9a6fa0c226f3bf5862">uecho_message_copy</a> (<a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
@@ -384,6 +390,24 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> * uecho_message_getbytes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa0dab4cd226ff9c65de6c375fa785da5" name="aa0dab4cd226ff9c65de6c375fa785da5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0dab4cd226ff9c65de6c375fa785da5">&#9670;&nbsp;</a></span>uecho_message_getdestinationaddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * uecho_message_getdestinationaddress </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>msg</em></td><td>)</td>
@@ -736,6 +760,34 @@ Functions</h2></td></tr>
           <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>msg</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a86c70135b97e1eebac83c07a0a3e6a28" name="a86c70135b97e1eebac83c07a0a3e6a28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86c70135b97e1eebac83c07a0a3e6a28">&#9670;&nbsp;</a></span>uecho_message_isdestinationaddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_message_isdestinationaddress </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1103,6 +1155,34 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>src_msg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9e7d7181ccf0810ff085b948dbb03930" name="a9e7d7181ccf0810ff085b948dbb03930"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e7d7181ccf0810ff085b948dbb03930">&#9670;&nbsp;</a></span>uecho_message_setdestinationaddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uecho_message_setdestinationaddress </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
