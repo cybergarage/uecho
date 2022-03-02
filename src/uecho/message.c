@@ -46,7 +46,7 @@ uEchoMessage* uecho_message_new(void)
   msg->ep_get = NULL;
 
   msg->bytes = NULL;
-  msg->src_addr = NULL;
+  msg->from_addr = NULL;
 
   return msg;
 }
@@ -113,9 +113,9 @@ bool uecho_message_clear(uEchoMessage* msg)
     msg->bytes = NULL;
   }
 
-  if (msg->src_addr) {
-    free(msg->src_addr);
-    msg->src_addr = NULL;
+  if (msg->from_addr) {
+    free(msg->from_addr);
+    msg->from_addr = NULL;
   }
 
   if (!uecho_message_clearproperties(msg))
@@ -429,7 +429,7 @@ bool uecho_message_isresponsemessage(uEchoMessage* msg, uEchoMessage* res_meg)
 
 void uecho_message_setsourceaddress(uEchoMessage* msg, const char* addr)
 {
-  uecho_strloc(addr, &msg->src_addr);
+  uecho_strloc(addr, &msg->from_addr);
 }
 
 /****************************************
@@ -438,7 +438,7 @@ void uecho_message_setsourceaddress(uEchoMessage* msg, const char* addr)
 
 const char* uecho_message_getsourceaddress(uEchoMessage* msg)
 {
-  return msg->src_addr;
+  return msg->from_addr;
 }
 
 /****************************************
@@ -447,7 +447,7 @@ const char* uecho_message_getsourceaddress(uEchoMessage* msg)
 
 bool uecho_message_issourceaddress(uEchoMessage* msg, const char* addr)
 {
-  return uecho_streq(msg->src_addr, addr);
+  return uecho_streq(msg->from_addr, addr);
 }
 
 /****************************************

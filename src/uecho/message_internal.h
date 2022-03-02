@@ -53,7 +53,7 @@ typedef struct UEchoMessage {
   uEchoProperty** ep_get;
   byte* bytes;
 
-  char* src_addr;
+  char* from_addr;
 } uEchoMessage;
 
 /****************************************
