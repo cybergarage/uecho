@@ -43,7 +43,7 @@ void uecho_test_object_messagelitener(uEchoObject* obj, uEchoMessage* msg)
 #endif
 }
 
-bool uecho_test_property_requestlistener(uEchoObject* obj, uEchoEsv esv, uEchoProperty* prop)
+bool uecho_test_property_requestlistener(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte *edt)
 {
   byte status;
 
@@ -51,16 +51,17 @@ bool uecho_test_property_requestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPr
   printf("%02X %02X (%d)\n",
       esv,
       uecho_property_getcode(prop),
-      uecho_property_getdatasize(prop));
+      pdc);
 #endif
 
-  if (uecho_property_getdatasize(prop) != 1)
+  if (pdc != 1)
     return false;
 
-  if (!uecho_property_getbytedata(prop, &status))
+  if (!uecho_property_setdata(prop, edt, pdc))
     return false;
 
-  uecho_property_setdata(prop, , <#size_t count#>)
+  status = edt[0];
+  
 #if defined(UECHO_TEST_VERBOSE)
   switch (status) {
   case UECHO_TEST_PROPERTY_SWITCH_ON:

@@ -44,7 +44,7 @@ bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoProperty* obj_pro
       continue;
     if (uecho_property_getcode(msg_prop) != uecho_object_property_observer_getpropetycode(obs))
       continue;
-    are_all_handler_accepted &= obs->handler(obj, msg_esv, msg_prop);
+    are_all_handler_accepted &= obs->handler(obj, obj_prop, msg_esv, uecho_property_getdatasize(msg_prop),uecho_property_getdata(msg_prop));
   }
 
   return are_all_handler_accepted;
