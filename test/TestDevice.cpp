@@ -60,6 +60,7 @@ bool uecho_test_property_requestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPr
   if (!uecho_property_getbytedata(prop, &status))
     return false;
 
+  uecho_property_setdata(prop, , <#size_t count#>)
 #if defined(UECHO_TEST_VERBOSE)
   switch (status) {
   case UECHO_TEST_PROPERTY_SWITCH_ON:

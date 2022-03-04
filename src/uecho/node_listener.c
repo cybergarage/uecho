@@ -147,7 +147,7 @@ void uecho_node_servermessagelistener(uEchoServer* server, uEchoMessage* req_msg
   uecho_message_setdestinationobjectcode(res_msg, uecho_message_getsourceobjectcode(req_msg));
 
   accepted_request_cnt = 0;
-  if (uecho_message_iswriterequest(req_msg)) {
+  if (uecho_message_isreadwritemessage(req_msg)) {
     accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, uEchoEsvWriteRequest, req_msg->opc_set, req_msg->ep_set, res_msg);
     accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, uEchoEsvReadRequest, req_msg->opc_get, req_msg->ep_get, res_msg);
   }
