@@ -46,7 +46,7 @@ typedef void uEchoObject;
 #endif
 
 typedef void (*uEchoObjectMessageListener)(uEchoObject*, uEchoMessage*);
-typedef bool (*uEchoPropertyRequestHandler)(uEchoObject*, uEchoEsv, uEchoProperty*);
+typedef bool (*uEchoPropertyRequestHandler)(uEchoObject*, uEchoProperty*, uEchoEsv, size_t, byte *);
 
 /****************************************
  * Function (Object)
