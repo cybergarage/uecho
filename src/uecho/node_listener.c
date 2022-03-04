@@ -32,20 +32,19 @@ bool uecho_node_isselfobjectmessage(uEchoNode* node, uEchoMessage* msg)
  * uecho_object_notifyrequestproperty
  ****************************************/
 
-bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoEsv esv, uEchoProperty* msg_prop)
+bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoProperty* obj_prop, uEchoEsv msg_esv, uEchoProperty* msg_prop)
 {
-  uEchoObjectPropertyObserver* obs;
-  bool are_all_handler_accepted = true;
-
   if (!obj || !msg_prop)
     return false;
 
-  for (obs = uecho_object_property_observer_manager_getobservers(obj->prop_listener_mgr); obs; obs = uecho_object_property_observer_next(obs)) {
-    if (esv != uecho_object_property_observer_getesv(obs))
+  bool are_all_handler_accepted = true;
+
+  for (uEchoObjectPropertyObserver *obs = uecho_object_property_observer_manager_getobservers(obj->prop_listener_mgr); obs; obs = uecho_object_property_observer_next(obs)) {
+    if (msg_esv != uecho_object_property_observer_getesv(obs))
       continue;
     if (uecho_property_getcode(msg_prop) != uecho_object_property_observer_getpropetycode(obs))
       continue;
-    are_all_handler_accepted &= obs->handler(obj, esv, msg_prop);
+    are_all_handler_accepted &= obs->handler(obj, msg_esv, msg_prop);
   }
 
   return are_all_handler_accepted;
@@ -55,10 +54,10 @@ bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoEsv esv, uEchoPro
 * uecho_node_servermessagelistener
 ****************************************/
 
-int uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv req_esv, byte opc, uEchoProperty** ep, uEchoMessage* res_msg)
+int uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, byte opc, uEchoProperty** ep, uEchoMessage* res_msg)
 {
   uEchoPropertyCode msg_prop_code;
-  uEchoProperty *msg_prop, *obj_prop, *res_prop;
+  uEchoProperty *msg_prop, *dest_prop, *res_prop;
   int accepted_request_cnt, n;
 
   accepted_request_cnt = 0;
@@ -73,16 +72,16 @@ int uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv req_esv, byt
       continue;
     uecho_property_setcode(res_prop, msg_prop_code);
 
-    obj_prop = uecho_object_getproperty(dest_obj, msg_prop_code);
-    if (obj_prop) {
-      if (uecho_object_notifyrequestproperty(dest_obj, req_esv, obj_prop)) {
+    dest_prop = uecho_object_getproperty(dest_obj, msg_prop_code);
+    if (dest_prop) {
+      if (uecho_object_notifyrequestproperty(dest_obj, dest_prop, msg_esv, msg_prop)) {
         accepted_request_cnt++;
-        if (uecho_esv_isreadrequest(req_esv) || uecho_esv_isnotifyrequest(req_esv)) {
-          uecho_property_setdata(res_prop, uecho_property_getdata(obj_prop), uecho_property_getdatasize(obj_prop));
+        if (uecho_esv_isreadrequest(msg_esv) || uecho_esv_isnotifyrequest(msg_esv)) {
+          uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
         }
       }
       else {
-        if (uecho_esv_iswriterequest(req_esv)) {
+        if (uecho_esv_iswriterequest(msg_esv)) {
           uecho_property_setdata(res_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
         }
       }
