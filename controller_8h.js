@@ -7,6 +7,7 @@ var controller_8h =
     [ "uecho_controller_announcemessage", "controller_8h.html#ab63363365c52c373853f25d5822c1021", null ],
     [ "uecho_controller_delete", "controller_8h.html#a0f09445549710796d060f10c831b10b1", null ],
     [ "uecho_controller_disableudpserver", "controller_8h.html#a48b8f4a7bc6c78e3261f33b972f6a8d6", null ],
+    [ "uecho_controller_getlocalnode", "controller_8h.html#aee26005a831dc77f932faf5d27b45e0f", null ],
     [ "uecho_controller_getmessagelistener", "controller_8h.html#afdff0baaeeab83df05836ac0507ad8f1", null ],
     [ "uecho_controller_getnodebyaddress", "controller_8h.html#ae8bd429c3f734a3204632b09de97b8b1", null ],
     [ "uecho_controller_getnodecount", "controller_8h.html#a88a67721f5bc73a5147ce755cb82b59b", null ],
