@@ -8,6 +8,7 @@ var controller_8c =
     [ "uecho_controller_disableudpserver", "controller_8c.html#a48b8f4a7bc6c78e3261f33b972f6a8d6", null ],
     [ "uecho_controller_enableoption", "controller_8c.html#a90d33caf985fe58e6202acce3a29b5ea", null ],
     [ "uecho_controller_getlasttid", "controller_8c.html#ab7a6213a87bc9adb697f02ab636409c0", null ],
+    [ "uecho_controller_getlocalnode", "controller_8c.html#aee26005a831dc77f932faf5d27b45e0f", null ],
     [ "uecho_controller_getmessagelistener", "controller_8c.html#afdff0baaeeab83df05836ac0507ad8f1", null ],
     [ "uecho_controller_getnexttid", "controller_8c.html#ab79cc7ddbd125bca61f728d7bea6f699", null ],
     [ "uecho_controller_getnodebyaddress", "controller_8c.html#ae8bd429c3f734a3204632b09de97b8b1", null ],

@@ -1,5 +1,7 @@
 var NAVTREEINDEX5 =
 {
+"socket__opt_8h.html#a394f177be2708dd246cd841cbc120c36":[1,0,1,0,1,9,8],
+"socket__opt_8h.html#a4c046ddf6898d76f4c6b0b21327a3844":[1,0,1,0,1,9,9],
 "socket__opt_8h.html#a89ae7169b80e2e7b121ce06d21dd1659":[1,0,1,0,1,9,1],
 "socket__opt_8h.html#ac0274a0f111a7f6a68dccff060ee66f8":[1,0,1,0,1,9,3],
 "socket__opt_8h.html#acaf9207ff04d55c52005a9db1a5194fe":[1,0,1,0,1,9,7],
@@ -247,7 +249,5 @@ var NAVTREEINDEX5 =
 "structuEchoPropertyData.html":[0,0,13],
 "thread_8c.html":[1,0,1,0,3,12],
 "thread_8c.html#a011effa22ab5a028f0be7cf1f07f9def":[1,0,1,0,3,12,2],
-"thread_8c.html#a3942449a9d2bd52852adbdff243090d5":[1,0,1,0,3,12,5],
-"thread_8c.html#a4eb40369e46999388abc9b0e98ec4f89":[1,0,1,0,3,12,3],
-"thread_8c.html#a75750177d8aa625f2ac02c97b094081e":[1,0,1,0,3,12,11]
+"thread_8c.html#a3942449a9d2bd52852adbdff243090d5":[1,0,1,0,3,12,5]
 };
