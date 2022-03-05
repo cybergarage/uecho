@@ -70,6 +70,8 @@ bool uecho_controller_isrunning(uEchoController* ctrl);
 void uecho_controller_setuserdata(uEchoController* ctrl, void* data);
 void* uecho_controller_getuserdata(uEchoController* ctrl);
 
+uEchoNode* uecho_controller_getlocalnode(uEchoController* ctrl);
+
 #ifdef __cplusplus
 }
 #endif
