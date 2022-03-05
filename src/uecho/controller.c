@@ -151,6 +151,18 @@ bool uecho_controller_isrunning(uEchoController* ctrl)
 }
 
 /****************************************
+ * uecho_controller_getlocalnode
+ ****************************************/
+
+uEchoNode* uecho_controller_getlocalnode(uEchoController* ctrl)
+{
+  if (!ctrl)
+    return NULL;
+
+  return ctrl->node;
+}
+
+/****************************************
  * uecho_controller_addnode
  ****************************************/
 
