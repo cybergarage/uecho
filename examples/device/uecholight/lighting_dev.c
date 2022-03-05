@@ -65,16 +65,21 @@ void uecho_lighting_object_messagelitener(uEchoObject* obj, uEchoMessage* msg)
  * uecho_lighting_propertyrequestlistener
  ****************************************/
 
-bool uecho_lighting_propertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEchoProperty* prop)
+bool uecho_lighting_propertyrequestlistener(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte *edt)
 {
   byte status;
 
-  printf("ESV = %02X : %02X (%d), ", esv, uecho_property_getcode(prop), uecho_property_getdatasize(prop));
+  printf("ESV = %02X : %02X (%ld), ", esv, uecho_property_getcode(prop), pdc);
 
-  if ((uecho_property_getdatasize(prop) != 1) || !uecho_property_getbytedata(prop, &status)) {
+  if ((pdc != 1) || !edt) {
     printf("Bad Request\n");
     return false;
   }
+
+  if (!uecho_property_setdata(prop, edt, pdc))
+    return false;
+
+  status = edt[0];
 
   // TODO : Set the status to hardware
 
