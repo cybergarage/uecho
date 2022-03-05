@@ -157,32 +157,31 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   }
   BOOST_CHECK(prop_changed);
 
+/*
   // Send Message (WriteReadRequest:OFF)
-  /*
-
-  propByte = UECHO_TEST_PROPERTY_SWITCH_OFF;
+  prop_byte = UECHO_TEST_PROPERTY_SWITCH_OFF;
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvWriteReadRequest);
-  BOOST_CHECK(uecho_message_setpropertyset(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 1, &propByte));
+  BOOST_CHECK(uecho_message_setpropertyset(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 1, &prop_byte));
   BOOST_CHECK(uecho_message_setpropertyget(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
-  BOOST_CHECK(uecho_controller_sendmessage(ctrl, foundObj, msg));
+  BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_obj, msg));
   uecho_message_delete(msg);
 
   // Check Property Update (OFF)
 
-  propChanged = false;
+  prop_changed = false;
   for (int n = 0; n < uEchoWaitRetryCount; n++) {
     uecho_sleep(UECHO_TEST_RESPONSE_WAIT_MAX_MTIME / uEchoWaitRetryCount);
-    if (!uecho_property_getbytedata(foundProp, &propByte))
+    if (!uecho_property_getbytedata(found_prop, &prop_byte))
       continue;
-    if (propByte == UECHO_TEST_PROPERTY_SWITCH_OFF) {
-      propChanged = true;
+    if (prop_byte == UECHO_TEST_PROPERTY_SWITCH_OFF) {
+      prop_changed = true;
       break;
     }
   }
-  BOOST_CHECK(propChanged);
-   */
-
+  BOOST_CHECK(prop_changed);
+*/
+  
   // Teminate
 
   BOOST_CHECK(uecho_controller_stop(ctrl));
