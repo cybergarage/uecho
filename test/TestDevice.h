@@ -16,7 +16,7 @@
 #include <uecho/device.h>
 
 const uEchoObjectCode UECHO_TEST_MANCODE = 0x000000;
-const uEchoObjectCode UECHO_TEST_OBJECTCODE = 0xF00101;
+const uEchoObjectCode UECHO_TEST_OBJECTCODE = 0x888888;
 const uEchoPropertyCode UECHO_TEST_PROPERTY_SWITCHCODE = 0x80;
 const byte UECHO_TEST_PROPERTY_SWITCH_ON = 0x30;
 const byte UECHO_TEST_PROPERTY_SWITCH_OFF = 0x31;
