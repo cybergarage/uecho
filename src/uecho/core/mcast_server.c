@@ -10,6 +10,7 @@
 
 #include <uecho/const.h>
 #include <uecho/core/server.h>
+#include <uecho/util/logs.h>
 
 /****************************************
 * uecho_mcast_server_new
@@ -196,6 +197,8 @@ static void uecho_mcast_server_action(uEchoThread* thread)
 
     if (uecho_message_parsepacket(msg, dgm_pkt)) {
       uecho_mcast_server_performlistener(server, msg);
+    } else {
+      uecho_net_datagram_packet_error(UECHO_LOG_NET_PREFIX_RECV, dgm_pkt);
     }
 
     uecho_message_delete(msg);
