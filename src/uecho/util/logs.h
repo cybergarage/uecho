@@ -13,6 +13,9 @@
 
 #include <uecho/message_internal.h>
 
+#define UECHO_LOG_NET_PREFIX_SEND "S"
+#define UECHO_LOG_NET_PREFIX_RECV "R"
+
 void uecho_net_socket_error(const char*prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len);
 void uecho_net_socket_debug(const char*prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len);
 
