@@ -42,12 +42,47 @@ void uecho_net_socket_log(int severity, const char *prefix, const char* from_add
 }
 
 /****************************************
-* uecho_net_socket_debug
+* uecho_net_socket_*
 ****************************************/
 
 void uecho_net_socket_debug(const char*prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len)
 {
+  return uecho_net_socket_log(LOG_DEBUG, prefix, from_addr,to_addr, pkt_bytes, pkt_len);
+}
+
+void uecho_net_socket_error(const char*prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len)
+{
   return uecho_net_socket_log(LOG_ERROR, prefix, from_addr,to_addr, pkt_bytes, pkt_len);
+}
+
+/****************************************
+* uecho_net_datagram_packet_*
+****************************************/
+
+void uecho_net_datagram_packet_error(uEchoDatagramPacket* dpkt)
+{
+  if (!dpkt)
+    return;
+
+  return uecho_net_socket_error(
+      "",
+      uecho_socket_datagram_packet_getremoteaddress(dpkt),
+      uecho_socket_datagram_packet_getlocaladdress(dpkt),
+      uecho_socket_datagram_packet_getdata(dpkt),
+      uecho_socket_datagram_packet_getlength(dpkt));
+}
+
+void uecho_net_datagram_packet_debug(uEchoDatagramPacket* dpkt)
+{
+  if (!dpkt)
+    return;
+
+  return uecho_net_socket_debug(
+      "",
+      uecho_socket_datagram_packet_getremoteaddress(dpkt),
+      uecho_socket_datagram_packet_getlocaladdress(dpkt),
+      uecho_socket_datagram_packet_getdata(dpkt),
+      uecho_socket_datagram_packet_getlength(dpkt));
 }
 
 /****************************************
@@ -67,21 +102,3 @@ void uecho_message_error(uEchoMessage* msg)
       uecho_message_getbytes(msg),
       uecho_message_size(msg));
 }
-
-/****************************************
-* uecho_net_datagram_packet_debug
-****************************************/
-
-void uecho_net_datagram_packet_debug(uEchoDatagramPacket* dpkt)
-{
-  if (!dpkt)
-    return;
-
-  return uecho_net_socket_debug(
-      "",
-      uecho_socket_datagram_packet_getremoteaddress(dpkt),
-      uecho_socket_datagram_packet_getlocaladdress(dpkt),
-      uecho_socket_datagram_packet_getdata(dpkt),
-      uecho_socket_datagram_packet_getlength(dpkt));
-}
-
