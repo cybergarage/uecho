@@ -59,26 +59,26 @@ void uecho_net_socket_error(const char*prefix, const char* from_addr, const char
 * uecho_net_datagram_packet_*
 ****************************************/
 
-void uecho_net_datagram_packet_error(uEchoDatagramPacket* dpkt)
+void uecho_net_datagram_packet_error(const char*prefix, uEchoDatagramPacket* dpkt)
 {
   if (!dpkt)
     return;
 
   return uecho_net_socket_error(
-      "",
+      prefix,
       uecho_socket_datagram_packet_getremoteaddress(dpkt),
       uecho_socket_datagram_packet_getlocaladdress(dpkt),
       uecho_socket_datagram_packet_getdata(dpkt),
       uecho_socket_datagram_packet_getlength(dpkt));
 }
 
-void uecho_net_datagram_packet_debug(uEchoDatagramPacket* dpkt)
+void uecho_net_datagram_packet_debug(const char*prefix, uEchoDatagramPacket* dpkt)
 {
   if (!dpkt)
     return;
 
   return uecho_net_socket_debug(
-      "",
+      prefix,
       uecho_socket_datagram_packet_getremoteaddress(dpkt),
       uecho_socket_datagram_packet_getlocaladdress(dpkt),
       uecho_socket_datagram_packet_getdata(dpkt),
@@ -89,14 +89,14 @@ void uecho_net_datagram_packet_debug(uEchoDatagramPacket* dpkt)
 * uecho_message_error
 ****************************************/
 
-void uecho_message_error(uEchoMessage* msg)
+void uecho_message_error(const char*prefix, uEchoMessage* msg)
 {
   if (!msg)
     return;
 
   return uecho_net_socket_log(
       LOG_ERROR,
-      "",
+      prefix,
       uecho_message_getsourceaddress(msg),
       uecho_message_getdestinationaddress(msg),
       uecho_message_getbytes(msg),
