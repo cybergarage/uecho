@@ -52,16 +52,21 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   // Create Controller (Disable UDP Server)
 
   uEchoController* ctrl = uecho_controller_new();
-  uecho_controller_disableudpserver(ctrl);
+  // uecho_controller_disableudpserver(ctrl);
   BOOST_CHECK(uecho_controller_start(ctrl));
   BOOST_CHECK(uecho_controller_isrunning(ctrl));
 
-  // Start Device
+  // Add Device
 
-  uEchoNode* node = uecho_test_createtestnode();
-  BOOST_CHECK(uecho_node_start(node));
-  BOOST_CHECK(uecho_node_isrunning(node));
+  uEchoNode* node = uecho_controller_getlocalnode(ctrl);
+  uEchoObject* dev = uecho_test_createtestdevice();
+  BOOST_CHECK(uecho_node_addobject(node, dev));
 
+  // Start Controller and Device
+
+  BOOST_CHECK(uecho_controller_start(ctrl));
+  BOOST_CHECK(uecho_controller_isrunning(ctrl));
+  
   // Search (NotificationRequest instead of ReadRequest)
 
   BOOST_CHECK(uecho_controller_searchallobjectswithesv(ctrl, uEchoEsvNotificationRequest));
