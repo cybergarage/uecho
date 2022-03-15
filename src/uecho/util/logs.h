@@ -15,6 +15,6 @@
 
 void uecho_message_error(uEchoMessage* msg);
 void uecho_net_datagram_packet_debug(uEchoDatagramPacket* dpkt);
-void uecho_net_packet_debug(const char*prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len);
+void uecho_net_socket_debug(const char*prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len);
 
 #endif /* _UECHO_LOG_FUNC_H_ */
