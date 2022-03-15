@@ -56,8 +56,10 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
 
   prop_data = uecho_property_getdata(prop);
 
+  printf("%s\n", msg_addr);
   for (idx = 1; (idx + 2) < prop_size; idx += 3) {
     obj_code = uecho_byte2integer((prop_data + idx), 3);
+    printf("%X\n", obj_code);
     uecho_node_setobject(node, obj_code);
   }
 }
