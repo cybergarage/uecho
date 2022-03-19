@@ -11,12 +11,12 @@
 #ifndef _UECHO_SERVER_H_
 #define _UECHO_SERVER_H_
 
-#include <uecho/frame/option.h>
-#include <uecho/net/socket.h>
-#include <uecho/object_internal.h>
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
 #include <uecho/util/thread.h>
+#include <uecho/net/socket.h>
+#include <uecho/frame/option.h>
+#include <uecho/frame/observer.h>
 
 #ifdef __cplusplus
 extern "C" {

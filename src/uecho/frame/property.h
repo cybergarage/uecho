@@ -11,9 +11,9 @@
 #ifndef _UECHO_PROPERTY_OBSERVER_H_
 #define _UECHO_PROPERTY_OBSERVER_H_
 
-#include <uecho/object.h>
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
+#include <uecho/object_internal.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -50,7 +50,7 @@ void uecho_object_property_observer_sethandler(uEchoObjectPropertyObserver* obs,
 
 uEchoPropertyCode uecho_object_property_observer_getpropetycode(uEchoObjectPropertyObserver* obs);
 uEchoEsv uecho_object_property_observer_getesv(uEchoObjectPropertyObserver* obs);
-uEchoPropertyRequestHandler uecho_object_property_observer_getlistener(uEchoObjectPropertyObserver* obs);
+uEchoPropertyRequestHandler uecho_object_property_observer_handler(uEchoObjectPropertyObserver* obs);
 
 /****************************************
  * Function (Property Observer List)
