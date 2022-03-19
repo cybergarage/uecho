@@ -108,6 +108,10 @@ void uecho_node_servermessagelistener(uEchoNode* node, uEchoMessage* req_msg)
   if (!node || !req_msg)
     return;
 
+  if (node->msg_listener) {
+    node->msg_listener(node, req_msg);
+  }
+
   // 4.2.2 Basic Sequences for Object Control in General
   // (A) | Processing when the controlled object does not exist
 
