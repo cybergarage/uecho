@@ -147,16 +147,11 @@ void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage*
   if (!ctrl || !msg)
     return;
 
-  if (!uecho_node_hasobjectbycode(ctrl->node, uecho_message_getdestinationobjectcode(msg))) {
-    if (ctrl->msg_listener) {
-      ctrl->msg_listener(ctrl, msg);
-    }
-    return;
-  }
-
-  uecho_controller_handlerequestmessage(ctrl, msg);
-
   if (ctrl->msg_listener) {
     ctrl->msg_listener(ctrl, msg);
+  }
+
+  if (uecho_node_hasobjectbycode(ctrl->node, uecho_message_getdestinationobjectcode(msg))) {
+    uecho_controller_handlerequestmessage(ctrl, msg);
   }
 }
