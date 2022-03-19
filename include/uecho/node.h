@@ -68,14 +68,7 @@ bool uecho_node_sendmessage(uEchoNode* node, uEchoNode* dst_node, uEchoMessage* 
 bool uecho_node_sendmessagebytes(uEchoNode* node, const char* addr, byte* msg, size_t msg_len);
 
 void uecho_node_setmessagelistener(uEchoNode* node, uEchoNodeMessageListener listener);
-uEchoNodeMessageListener uecho_node_getmessagelistener(uEchoNode* node);
-bool uecho_node_hasmessagelistener(uEchoNode* node);
 
-/****************************************
- * Function (Object)
- ****************************************/
-
-bool uecho_object_setparentnode(uEchoObject* obj, uEchoNode* node);
 uEchoNode* uecho_object_getparentnode(uEchoObject* obj);
 
 /****************************************

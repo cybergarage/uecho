@@ -64,6 +64,15 @@ void uecho_node_servermessagelistener(uEchoNode* node, uEchoMessage* msg);
 bool uecho_node_announceproperty(uEchoNode* node, uEchoProperty* prop);
 bool uecho_node_announce(uEchoNode* node);
 
+uEchoNodeMessageListener uecho_node_getmessagelistener(uEchoNode* node);
+bool uecho_node_hasmessagelistener(uEchoNode* node);
+
+/****************************************
+ * Function (Object)
+ ****************************************/
+
+bool uecho_object_setparentnode(uEchoObject* obj, uEchoNode* node);
+
 /****************************************
  * Function (Property)
  ****************************************/

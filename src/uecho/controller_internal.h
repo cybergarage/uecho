@@ -66,11 +66,13 @@ uEchoObject* uecho_controller_getobjectbycodewithwait(uEchoController* ctrl, uEc
 void uecho_controller_enableoption(uEchoController* ctrl, uEchoOption param);
 void uecho_controller_disableoption(uEchoController* ctrl, uEchoOption param);
 bool uecho_controller_isoptionenabled(uEchoController* ctrl, uEchoOption param);
-
 void uecho_controller_disableudpserver(uEchoController* ctrl);
 
 #define uecho_controller_enableudpserver(ctrl) uecho_controller_disableoption(ctrl, uEchoControllerOptionDisableUdpServer)
 #define uecho_controller_isudpserverenabled(ctrl) (!uecho_controller_isoptionenabled(ctrl, uEchoControllerOptionDisableUdpServer))
+
+uEchoControllerMessageListener uecho_controller_getmessagelistener(uEchoController* ctrl);
+bool uecho_controller_hasmessagelistener(uEchoController* ctrl);
 
 void uecho_controller_setlasttid(uEchoController* ctrl, uEchoTID tid);
 uEchoTID uecho_controller_getlasttid(uEchoController* ctrl);
