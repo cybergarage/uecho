@@ -50,6 +50,8 @@ void uecho_message_observer_sethandler(uEchoMessageObserver* obs, uEchoMessageHa
 void *uecho_message_observer_getobjcet(uEchoMessageObserver* obs);
 uEchoMessageHandler uecho_message_observer_gethandler(uEchoMessageObserver* obs);
 
+uEchoMessageObserver* uecho_message_observer_copy(uEchoMessageObserver* obs);
+
 /****************************************
  * Function (Message Observer List)
  ****************************************/
@@ -69,7 +71,9 @@ void uecho_message_observerlist_delete(uEchoMessageObserverList* obs_list);
 uEchoMessageObserverManager* uecho_message_observer_manager_new(void);
 void uecho_message_observer_manager_delete(uEchoMessageObserverManager* mgr);
 
-bool uecho_message_observer_manager_addobserver(uEchoMessageObserverManager* obs_mgr, void *obj, uEchoMessageHandler handler);
+#define uecho_message_observer_manager_getobservers(mgr) uecho_message_observerlist_gets(mgr->observers)
+
+bool uecho_message_observer_manager_addobserver(uEchoMessageObserverManager* mgr, void *obj, uEchoMessageHandler handler);
 bool uecho_message_observer_manager_perform(uEchoMessageObserverManager* mgr, uEchoMessage* msg);
 
 #ifdef __cplusplus
