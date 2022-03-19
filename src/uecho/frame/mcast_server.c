@@ -29,6 +29,7 @@ uEchoMcastServer* uecho_mcast_server_new(void)
 
   server->socket = NULL;
   server->thread = NULL;
+  server->msg_mgr = uecho_message_observer_manager_new();
 
   return server;
 }
@@ -43,38 +44,12 @@ bool uecho_mcast_server_delete(uEchoMcastServer* server)
     return false;
 
   uecho_mcast_server_stop(server);
+  uecho_message_observer_manager_delete(server->msg_mgr);
   uecho_mcast_server_remove(server);
 
   free(server);
 
   return true;
-}
-
-/****************************************
- * uecho_mcast_server_setmessagelistener
- ****************************************/
-
-void uecho_mcast_server_setmessagelistener(uEchoMcastServer* server, uEchoMcastServerMessageListener listener)
-{
-  server->msg_listener = listener;
-}
-
-/****************************************
- * uecho_mcast_server_setuserdata
- ****************************************/
-
-void uecho_mcast_server_setuserdata(uEchoMcastServer* server, void* data)
-{
-  server->user_data = data;
-}
-
-/****************************************
- * uecho_mcast_server_getuserdata
- ****************************************/
-
-void* uecho_mcast_server_getuserdata(uEchoMcastServer* server)
-{
-  return server->user_data;
 }
 
 /****************************************
@@ -144,20 +119,12 @@ bool uecho_mcast_server_isopened(uEchoMcastServer* server)
 }
 
 /****************************************
- * uecho_mcast_server_performlistener
+ * uecho_mcast_server_addobserver
  ****************************************/
 
-bool uecho_mcast_server_performlistener(uEchoMcastServer* server, uEchoMessage* msg)
+bool uecho_mcast_server_addobserver(uEchoMcastServer* server, void *obj, uEchoMessageHandler handler)
 {
-  if (!server)
-    return false;
-
-  if (!server->msg_listener)
-    return false;
-
-  server->msg_listener(server, msg);
-
-  return true;
+  return uecho_message_observer_manager_addobserver(server->msg_mgr, obj, handler);
 }
 
 /****************************************
@@ -196,7 +163,7 @@ static void uecho_mcast_server_action(uEchoThread* thread)
       continue;
 
     if (uecho_message_parsepacket(msg, dgm_pkt)) {
-      uecho_mcast_server_performlistener(server, msg);
+      uecho_message_observer_manager_perform(server->msg_mgr, msg);
     } else {
       uecho_net_datagram_packet_error(UECHO_LOG_NET_PREFIX_RECV, dgm_pkt);
     }
