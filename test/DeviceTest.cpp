@@ -191,7 +191,4 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
 
   BOOST_CHECK(uecho_controller_stop(ctrl));
   uecho_controller_delete(ctrl);
-
-  BOOST_CHECK(uecho_node_stop(node));
-  uecho_node_delete(node);
 }
