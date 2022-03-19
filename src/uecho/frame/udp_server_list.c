@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/core/server.h>
+#include <uecho/frame/server.h>
 #include <uecho/net/interface.h>
 
 /****************************************

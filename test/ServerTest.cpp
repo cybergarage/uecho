@@ -9,7 +9,7 @@
  ******************************************************************/
 
 #include <boost/test/unit_test.hpp>
-#include <uecho/core/server.h>
+#include <uecho/frame/server.h>
 #include <uecho/net/interface.h>
 
 BOOST_AUTO_TEST_CASE(ServerTest)

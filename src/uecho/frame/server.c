@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/core/server.h>
+#include <uecho/frame/server.h>
 
 /****************************************
 * uecho_server_new
