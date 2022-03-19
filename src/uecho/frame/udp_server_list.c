@@ -42,32 +42,6 @@ void uecho_udp_serverlist_delete(uEchoUdpServerList* servers)
 }
 
 /****************************************
- * uecho_udp_serverlist_setmessagelistener
- ****************************************/
-
-void uecho_udp_serverlist_setmessagelistener(uEchoUdpServerList* servers, uEchoUdpServerMessageListener listener)
-{
-  uEchoUdpServer* server;
-
-  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
-    uecho_udp_server_setmessagelistener(server, listener);
-  }
-}
-
-/****************************************
- * uecho_udp_serverlist_setuserdata
- ****************************************/
-
-void uecho_udp_serverlist_setuserdata(uEchoUdpServerList* servers, void* data)
-{
-  uEchoUdpServer* server;
-
-  for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
-    uecho_udp_server_setuserdata(server, data);
-  }
-}
-
-/****************************************
  * uecho_udp_serverlist_open
  ****************************************/
 
