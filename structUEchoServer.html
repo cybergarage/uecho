@@ -73,10 +73,8 @@ Data Fields</h2></td></tr>
 <tr class="separator:a1cc0406254678f21e0c6ae0654439f6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af68f95cabd56a2f24b2f57acc497bd29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="server_8h.html#aee00330e6065400077a614f78a8f2f39">uEchoMcastServerList</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUEchoServer.html#af68f95cabd56a2f24b2f57acc497bd29">mcast_servers</a></td></tr>
 <tr class="separator:af68f95cabd56a2f24b2f57acc497bd29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacde5a38fc570798929d8968fb60955b"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUEchoServer.html#aacde5a38fc570798929d8968fb60955b">msg_listener</a> )(struct <a class="el" href="structUEchoServer.html">UEchoServer</a> *, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *)</td></tr>
-<tr class="separator:aacde5a38fc570798929d8968fb60955b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50f009d23135cf5aa7ff2afe66a8e3f9"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUEchoServer.html#a50f009d23135cf5aa7ff2afe66a8e3f9">user_data</a></td></tr>
-<tr class="separator:a50f009d23135cf5aa7ff2afe66a8e3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9c6beb08ef7af26c424c861b80a6010"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoMessageObserverManager.html">uEchoMessageObserverManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUEchoServer.html#ab9c6beb08ef7af26c424c861b80a6010">msg_mgr</a></td></tr>
+<tr class="separator:ab9c6beb08ef7af26c424c861b80a6010"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a3d39de902344783f7ece21ce10193c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="option_8h.html#a094a1fd7b043aa7e9d925d8a30300306">uEchoOption</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUEchoServer.html#a7a3d39de902344783f7ece21ce10193c">option</a></td></tr>
 <tr class="separator:a7a3d39de902344783f7ece21ce10193c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -95,14 +93,14 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="aacde5a38fc570798929d8968fb60955b" name="aacde5a38fc570798929d8968fb60955b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacde5a38fc570798929d8968fb60955b">&#9670;&nbsp;</a></span>msg_listener</h2>
+<a id="ab9c6beb08ef7af26c424c861b80a6010" name="ab9c6beb08ef7af26c424c861b80a6010"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9c6beb08ef7af26c424c861b80a6010">&#9670;&nbsp;</a></span>msg_mgr</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* UEchoServer::msg_listener) (struct <a class="el" href="structUEchoServer.html">UEchoServer</a> *, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *)</td>
+          <td class="memname"><a class="el" href="structuEchoMessageObserverManager.html">uEchoMessageObserverManager</a>* UEchoServer::msg_mgr</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -137,22 +135,8 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="a50f009d23135cf5aa7ff2afe66a8e3f9" name="a50f009d23135cf5aa7ff2afe66a8e3f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50f009d23135cf5aa7ff2afe66a8e3f9">&#9670;&nbsp;</a></span>user_data</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void* UEchoServer::user_data</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/uecho/core/<a class="el" href="server_8h.html">server.h</a></li>
+<li>src/uecho/frame/<a class="el" href="server_8h.html">server.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

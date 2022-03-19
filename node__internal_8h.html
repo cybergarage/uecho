@@ -70,7 +70,7 @@ $(document).ready(function(){initNavTree('node__internal_8h.html',''); initResiz
 <div class="textblock"><code>#include &lt;<a class="el" href="typedef_8h.html">uecho/typedef.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="class__internal_8h.html">uecho/class_internal.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="object__internal_8h.html">uecho/object_internal.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="server_8h.html">uecho/core/server.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="server_8h.html">uecho/frame/server.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="list_8h.html">uecho/util/list.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="mutex_8h.html">uecho/util/mutex.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="node_8h.html">uecho/node.h</a>&gt;</code><br />
@@ -108,8 +108,8 @@ Functions</h2></td></tr>
 <tr class="separator:a25bc9b37a4a63f2fd272c9bae22d7819"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af12c4a142cc3d5c89c2859c4ae0f87f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__internal_8h.html#af12c4a142cc3d5c89c2859c4ae0f87f8">uecho_node_setoption</a> (<a class="el" href="node__internal_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *node, <a class="el" href="option_8h.html#a094a1fd7b043aa7e9d925d8a30300306">uEchoOption</a> value)</td></tr>
 <tr class="separator:af12c4a142cc3d5c89c2859c4ae0f87f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a344362a63ac11d7dc01bed3b094eea34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__internal_8h.html#a344362a63ac11d7dc01bed3b094eea34">uecho_node_servermessagelistener</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
-<tr class="separator:a344362a63ac11d7dc01bed3b094eea34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df9f708103a921a463da8ec21ba3b47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__internal_8h.html#a2df9f708103a921a463da8ec21ba3b47">uecho_node_servermessagelistener</a> (<a class="el" href="node__internal_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *node, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
+<tr class="separator:a2df9f708103a921a463da8ec21ba3b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a8ccc8b259c38ac8fb86ebbb473b671"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__internal_8h.html#a0a8ccc8b259c38ac8fb86ebbb473b671">uecho_node_announceproperty</a> (<a class="el" href="node__internal_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *node, <a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
 <tr class="separator:a0a8ccc8b259c38ac8fb86ebbb473b671"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3cb9e346e56906a2318d3ad4cf5f27e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__internal_8h.html#af3cb9e346e56906a2318d3ad4cf5f27e">uecho_node_announce</a> (<a class="el" href="node__internal_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *node)</td></tr>
@@ -346,8 +346,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a344362a63ac11d7dc01bed3b094eea34" name="a344362a63ac11d7dc01bed3b094eea34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a344362a63ac11d7dc01bed3b094eea34">&#9670;&nbsp;</a></span>uecho_node_servermessagelistener()</h2>
+<a id="a2df9f708103a921a463da8ec21ba3b47" name="a2df9f708103a921a463da8ec21ba3b47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2df9f708103a921a463da8ec21ba3b47">&#9670;&nbsp;</a></span>uecho_node_servermessagelistener()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -355,8 +355,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_node_servermessagelistener </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
+          <td class="paramtype"><a class="el" href="node__internal_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

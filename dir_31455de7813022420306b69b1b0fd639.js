@@ -6,12 +6,12 @@ var dir_31455de7813022420306b69b1b0fd639 =
     [ "controller.h", "controller_8h.html", "controller_8h" ],
     [ "device.h", "device_8h.html", "device_8h" ],
     [ "esv.h", "esv_8h.html", "esv_8h" ],
-    [ "message.h", "message_8h.html", "message_8h" ],
+    [ "message.h", "include_2uecho_2message_8h.html", "include_2uecho_2message_8h" ],
     [ "misc.h", "misc_8h.html", "misc_8h" ],
     [ "node.h", "node_8h.html", "node_8h" ],
     [ "object.h", "object_8h.html", "object_8h" ],
     [ "profile.h", "profile_8h.html", "profile_8h" ],
-    [ "property.h", "property_8h.html", "property_8h" ],
+    [ "property.h", "include_2uecho_2property_8h.html", "include_2uecho_2property_8h" ],
     [ "typedef.h", "typedef_8h.html", "typedef_8h" ],
     [ "uecho.h", "uecho_8h.html", null ]
 ];
