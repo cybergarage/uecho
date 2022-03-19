@@ -57,15 +57,6 @@ bool uecho_message_observer_manager_addobserver(uEchoMessageObserverManager* mgr
 }
 
 /****************************************
- * uecho_message_observer_manager_getobservers
- ****************************************/
-
-uEchoMessageObserver* uecho_message_observer_manager_getobservers(uEchoMessageObserverManager* mgr)
-{
-  return uecho_message_observerlist_gets(mgr->observers);
-}
-
-/****************************************
  * uecho_message_observer_manager_perform
  ****************************************/
 
