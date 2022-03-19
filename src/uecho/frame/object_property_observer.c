@@ -88,10 +88,10 @@ void uecho_object_property_observer_sethandler(uEchoObjectPropertyObserver* obs,
 }
 
 /****************************************
- * uecho_object_property_observer_getlistener
+ * uecho_object_property_observer_handler
  ****************************************/
 
-uEchoPropertyRequestHandler uecho_object_property_observer_getlistener(uEchoObjectPropertyObserver* obs)
+uEchoPropertyRequestHandler uecho_object_property_observer_handler(uEchoObjectPropertyObserver* obs)
 {
   return obs->handler;
 }

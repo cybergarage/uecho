@@ -11,7 +11,7 @@
 #ifndef _UECHO_OBSERVER_H_
 #define _UECHO_OBSERVER_H_
 
-#include <uecho/frame/property.h>
 #include <uecho/frame/message.h>
+#include <uecho/frame/property.h>
 
 #endif /* _UECHO_OBSERVER_H_ */
