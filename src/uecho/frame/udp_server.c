@@ -28,6 +28,7 @@ uEchoUdpServer* uecho_udp_server_new(void)
 
   server->socket = NULL;
   server->thread = NULL;
+  server->msg_mgr = uecho_message_observer_manager_new();
 
   return server;
 }
@@ -42,38 +43,12 @@ bool uecho_udp_server_delete(uEchoUdpServer* server)
     return false;
 
   uecho_socket_delete(server->socket);
+  uecho_message_observer_manager_delete(server->msg_mgr);
   uecho_udp_server_remove(server);
 
   free(server);
 
   return true;
-}
-
-/****************************************
- * uecho_udp_server_setmessagelistener
- ****************************************/
-
-void uecho_udp_server_setmessagelistener(uEchoUdpServer* server, uEchoUdpServerMessageListener listener)
-{
-  server->msg_listener = listener;
-}
-
-/****************************************
- * uecho_udp_server_setuserdata
- ****************************************/
-
-void uecho_udp_server_setuserdata(uEchoUdpServer* server, void* data)
-{
-  server->user_data = data;
-}
-
-/****************************************
- * uecho_udp_server_getuserdata
- ****************************************/
-
-void* uecho_udp_server_getuserdata(uEchoUdpServer* server)
-{
-  return server->user_data;
 }
 
 /****************************************
@@ -149,20 +124,12 @@ bool uecho_udp_server_isopened(uEchoUdpServer* server)
 }
 
 /****************************************
- * uecho_udp_server_performlistener
+ * uecho_udp_server_addobserver
  ****************************************/
 
-bool uecho_udp_server_performlistener(uEchoUdpServer* server, uEchoMessage* msg)
+bool uecho_udp_server_addobserver(uEchoUdpServer* server, void *obj, uEchoMessageHandler handler)
 {
-  if (!server)
-    return false;
-
-  if (!server->msg_listener)
-    return false;
-
-  server->msg_listener(server, msg);
-
-  return true;
+  return uecho_message_observer_manager_addobserver(server->msg_mgr, obj, handler);
 }
 
 /****************************************
@@ -201,7 +168,7 @@ static void uecho_udp_server_action(uEchoThread* thread)
       continue;
 
     if (uecho_message_parsepacket(msg, dgm_pkt)) {
-      uecho_udp_server_performlistener(server, msg);
+      uecho_message_observer_manager_perform(server->msg_mgr, msg);
     } else {
       uecho_net_datagram_packet_error(UECHO_LOG_NET_PREFIX_RECV, dgm_pkt);
     }
