@@ -77,21 +77,3 @@ uEchoMessageHandler uecho_message_observer_gethandler(uEchoMessageObserver* obs)
 {
   return obs->handler;
 }
-
-/****************************************
- * uecho_message_observer_copy
- ****************************************/
-
-uEchoMessageObserver* uecho_message_observer_copy(uEchoMessageObserver* obs)
-{
-  uEchoMessageObserver* obs_copy;
-
-  obs_copy = uecho_message_observer_new();
-  if (!obs_copy)
-    return NULL;
-
-  uecho_message_observer_setobject(obs_copy, uecho_message_observer_getobjcet(obs));
-  uecho_message_observer_sethandler(obs_copy, uecho_message_observer_gethandler(obs));
-  
-  return obs_copy;
-}
