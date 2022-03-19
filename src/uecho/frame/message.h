@@ -55,25 +55,22 @@ uEchoMessageHandler uecho_message_observer_gethandler(uEchoMessageObserver* obs)
  ****************************************/
 
 uEchoMessageObserverList* uecho_message_observerlist_new(void);
-void uecho_message_observerlist_delete(uEchoMessageObserverList* obs_mgr);
-bool uecho_message_observerlist_setobserver(uEchoMessageObserverList* obs_mgr, uEchoPropertyCode code, uEchoMessageHandler handler);
-uEchoMessageObserver* uecho_message_observerlist_getobserver(uEchoMessageObserverList* obs_mgr, uEchoPropertyCode code);
+void uecho_message_observerlist_delete(uEchoMessageObserverList* obs_list);
 
-#define uecho_message_observerlist_clear(obsMgr) uecho_list_clear((uEchoList*)obsMgr, (UECHO_LIST_DESTRUCTORFUNC)uecho_message_observer_delete)
-#define uecho_message_observerlist_size(obsMgr) uecho_list_size((uEchoList*)obsMgr)
-#define uecho_message_observerlist_gets(obsMgr) (uEchoMessageObserver*)uecho_list_next((uEchoList*)obsMgr)
-#define uecho_message_observerlist_add(obsMgr, obs) uecho_list_add((uEchoList*)obsMgr, (uEchoList*)obs)
-#define uecho_message_observerlist_remove(obs) uecho_list_remove((uEchoList*)obs)
+#define uecho_message_observerlist_clear(obs_list) uecho_list_clear((uEchoList*)obs_list, (UECHO_LIST_DESTRUCTORFUNC)uecho_message_observer_delete)
+#define uecho_message_observerlist_size(obs_list) uecho_list_size((uEchoList*)obs_list)
+#define uecho_message_observerlist_gets(obs_list) (uEchoMessageObserver*)uecho_list_next((uEchoList*)obs_list)
+#define uecho_message_observerlist_add(obs_list, obs) uecho_list_add((uEchoList*)obs_list, (uEchoList*)obs)
 
 /****************************************
  * Function (Message Observer Manager)
  ****************************************/
 
 uEchoMessageObserverManager* uecho_message_observer_manager_new(void);
-void uecho_message_observer_manager_delete(uEchoMessageObserverManager* obs_mgr);
+void uecho_message_observer_manager_delete(uEchoMessageObserverManager* mgr);
 
 bool uecho_message_observer_manager_addobserver(uEchoMessageObserverManager* obs_mgr, void *obj, uEchoMessageHandler handler);
-uEchoMessageObserver* uecho_message_observer_manager_getobservers(uEchoMessageObserverManager* obs_mgr);
+bool uecho_message_observer_manager_perform(uEchoMessageObserverManager* mgr, uEchoMessage* msg);
 
 #ifdef __cplusplus
 } /* extern C */
