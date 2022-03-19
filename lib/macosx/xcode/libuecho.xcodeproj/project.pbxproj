@@ -69,6 +69,11 @@
 		218F5DBD27E5B35F00E79AC1 /* observer.h in Headers */ = {isa = PBXBuildFile; fileRef = 218F5DB227E5B35E00E79AC1 /* observer.h */; };
 		218F5DBE27E5B35F00E79AC1 /* server.h in Headers */ = {isa = PBXBuildFile; fileRef = 218F5DB327E5B35E00E79AC1 /* server.h */; };
 		218F5DBF27E5B35F00E79AC1 /* udp_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 218F5DB427E5B35E00E79AC1 /* udp_server.c */; };
+		218F5DC527E5C0DB00E79AC1 /* property.h in Headers */ = {isa = PBXBuildFile; fileRef = 218F5DC027E5C0DB00E79AC1 /* property.h */; };
+		218F5DC627E5C0DB00E79AC1 /* message_observer.c in Sources */ = {isa = PBXBuildFile; fileRef = 218F5DC127E5C0DB00E79AC1 /* message_observer.c */; };
+		218F5DC727E5C0DB00E79AC1 /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = 218F5DC227E5C0DB00E79AC1 /* message.h */; };
+		218F5DC827E5C0DB00E79AC1 /* message_observer_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 218F5DC327E5C0DB00E79AC1 /* message_observer_manager.c */; };
+		218F5DC927E5C0DB00E79AC1 /* message_observer_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 218F5DC427E5C0DB00E79AC1 /* message_observer_list.c */; };
 		21976AB31B897C1F00A154CE /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 21976AB21B897C1F00A154CE /* misc.c */; };
 		21976AB51B897C4F00A154CE /* misc.h in Headers */ = {isa = PBXBuildFile; fileRef = 21976AB41B897C4F00A154CE /* misc.h */; };
 		21B06C191B7C85B0004E9E09 /* object_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B06C181B7C85B0004E9E09 /* object_list.c */; };
@@ -153,6 +158,11 @@
 		218F5DB227E5B35E00E79AC1 /* observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = observer.h; path = frame/observer.h; sourceTree = "<group>"; };
 		218F5DB327E5B35E00E79AC1 /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = server.h; path = frame/server.h; sourceTree = "<group>"; };
 		218F5DB427E5B35E00E79AC1 /* udp_server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udp_server.c; path = frame/udp_server.c; sourceTree = "<group>"; };
+		218F5DC027E5C0DB00E79AC1 /* property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = property.h; path = frame/property.h; sourceTree = "<group>"; };
+		218F5DC127E5C0DB00E79AC1 /* message_observer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message_observer.c; path = frame/message_observer.c; sourceTree = "<group>"; };
+		218F5DC227E5C0DB00E79AC1 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = frame/message.h; sourceTree = "<group>"; };
+		218F5DC327E5C0DB00E79AC1 /* message_observer_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message_observer_manager.c; path = frame/message_observer_manager.c; sourceTree = "<group>"; };
+		218F5DC427E5C0DB00E79AC1 /* message_observer_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message_observer_list.c; path = frame/message_observer_list.c; sourceTree = "<group>"; };
 		21976AB21B897C1F00A154CE /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = misc.c; sourceTree = "<group>"; };
 		21976AB41B897C4F00A154CE /* misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misc.h; sourceTree = "<group>"; };
 		21B06C181B7C85B0004E9E09 /* object_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = object_list.c; sourceTree = "<group>"; };
@@ -325,6 +335,11 @@
 		218F5DA927E5B33200E79AC1 /* frame */ = {
 			isa = PBXGroup;
 			children = (
+				218F5DC427E5C0DB00E79AC1 /* message_observer_list.c */,
+				218F5DC327E5C0DB00E79AC1 /* message_observer_manager.c */,
+				218F5DC127E5C0DB00E79AC1 /* message_observer.c */,
+				218F5DC227E5C0DB00E79AC1 /* message.h */,
+				218F5DC027E5C0DB00E79AC1 /* property.h */,
 				218F5DB127E5B35E00E79AC1 /* mcast_server_list.c */,
 				218F5DAC27E5B35E00E79AC1 /* mcast_server.c */,
 				218F5DAE27E5B35E00E79AC1 /* object_property_observer_list.c */,
@@ -360,6 +375,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				218F5DC727E5C0DB00E79AC1 /* message.h in Headers */,
 				21070A5827C603AC00EE8917 /* esv.h in Headers */,
 				2111B1A11B940DAB005FDBD6 /* thread.h in Headers */,
 				21E280621B7BA82C004956BA /* profile.h in Headers */,
@@ -367,6 +383,7 @@
 				21EFF1A11B4A9A5E002B5E57 /* node.h in Headers */,
 				21678EF41A8D510100AE79AA /* timer.h in Headers */,
 				2111B1A01B940DAB005FDBD6 /* strings.h in Headers */,
+				218F5DC527E5C0DB00E79AC1 /* property.h in Headers */,
 				2185D9D11B68DEED00A5B0C3 /* property.h in Headers */,
 				2111B18F1B93F757005FDBD6 /* node_internal.h in Headers */,
 				21D8751321BD64CD00C98927 /* socket_opt.h in Headers */,
@@ -459,6 +476,7 @@
 				217142921B8865EF003ABA30 /* class_list.c in Sources */,
 				21976AB31B897C1F00A154CE /* misc.c in Sources */,
 				21678F0D1A8D512000AE79AA /* timer.c in Sources */,
+				218F5DC627E5C0DB00E79AC1 /* message_observer.c in Sources */,
 				21678F081A8D512000AE79AA /* list.c in Sources */,
 				21678F0A1A8D512000AE79AA /* strings.c in Sources */,
 				21678F041A8D512000AE79AA /* interface.c in Sources */,
@@ -470,6 +488,7 @@
 				2185D9CF1B68D5C600A5B0C3 /* object.c in Sources */,
 				218F5DBA27E5B35F00E79AC1 /* object_property_observer_manager.c in Sources */,
 				215B49481B858AEC002B20CE /* device_super_class.c in Sources */,
+				218F5DC827E5C0DB00E79AC1 /* message_observer_manager.c in Sources */,
 				21CF27591B917B25004A5AAD /* message.c in Sources */,
 				218F5DB927E5B35F00E79AC1 /* object_property_observer_list.c in Sources */,
 				21B06C191B7C85B0004E9E09 /* object_list.c in Sources */,
@@ -486,6 +505,7 @@
 				215B49451B8589D4002B20CE /* device.c in Sources */,
 				21F4EA5027C9F1840075E9DA /* logs.c in Sources */,
 				2185D9D31B68DF1E00A5B0C3 /* property.c in Sources */,
+				218F5DC927E5C0DB00E79AC1 /* message_observer_list.c in Sources */,
 				215B49491B858AEC002B20CE /* profile_super_class.c in Sources */,
 				2178B8311B7B3CC7007AA57B /* property_list.c in Sources */,
 				217142931B8865EF003ABA30 /* class.c in Sources */,
