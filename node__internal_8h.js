@@ -11,11 +11,14 @@ var node__internal_8h =
     [ "uEchoNodeList", "node__internal_8h.html#ae06a427f9bffed1aa7e90de0853ac9a4", null ],
     [ "uecho_node_announce", "node__internal_8h.html#af3cb9e346e56906a2318d3ad4cf5f27e", null ],
     [ "uecho_node_announceproperty", "node__internal_8h.html#a0a8ccc8b259c38ac8fb86ebbb473b671", null ],
+    [ "uecho_node_getmessagelistener", "node__internal_8h.html#a27453b0b3dfb64659d117eb9e2787fae", null ],
     [ "uecho_node_getserver", "node__internal_8h.html#a25bc9b37a4a63f2fd272c9bae22d7819", null ],
+    [ "uecho_node_hasmessagelistener", "node__internal_8h.html#a6ec4e94d86ec8e45ee22be58c0ec13d6", null ],
     [ "uecho_node_servermessagelistener", "node__internal_8h.html#a2df9f708103a921a463da8ec21ba3b47", null ],
     [ "uecho_node_setoption", "node__internal_8h.html#af12c4a142cc3d5c89c2859c4ae0f87f8", null ],
     [ "uecho_nodelist_delete", "node__internal_8h.html#aefbed20c84559a14d9b9c3c80fd0da01", null ],
     [ "uecho_nodelist_getbyaddress", "node__internal_8h.html#a1dd2b3a0fe065f75611939fb813eb7d2", null ],
     [ "uecho_nodelist_new", "node__internal_8h.html#a3ff1e043aec729ea869df79a31b9fa70", null ],
+    [ "uecho_object_setparentnode", "node__internal_8h.html#a3e2fe5b92fd2db26e817aa90beae8a1d", null ],
     [ "uecho_property_getnode", "node__internal_8h.html#a6299e5c0e4dce8e978e7750dd4e5d942", null ]
 ];
