@@ -25,6 +25,7 @@ uEchoServer* uecho_server_new(void)
 
   server->udp_servers = uecho_udp_serverlist_new();
   server->mcast_servers = uecho_mcast_serverlist_new();
+  server->msg_mgr = uecho_message_observer_manager_new();
 
   uecho_server_setoption(server, uEchoOptionNone);
 
@@ -42,37 +43,11 @@ bool uecho_server_delete(uEchoServer* server)
 
   uecho_udp_serverlist_delete(server->udp_servers);
   uecho_mcast_serverlist_delete(server->mcast_servers);
+  uecho_message_observer_manager_delete(server->msg_mgr);
 
   free(server);
 
   return true;
-}
-
-/****************************************
- * uecho_server_setmessagelistener
- ****************************************/
-
-void uecho_server_setmessagelistener(uEchoServer* server, uEchoServerMessageListener listener)
-{
-  server->msg_listener = listener;
-}
-
-/****************************************
- * uecho_server_setuserdata
- ****************************************/
-
-void uecho_server_setuserdata(uEchoServer* server, void* data)
-{
-  server->user_data = data;
-}
-
-/****************************************
- * uecho_server_getuserdata
- ****************************************/
-
-void* uecho_server_getuserdata(uEchoServer* server)
-{
-  return server->user_data;
 }
 
 /****************************************
@@ -100,6 +75,11 @@ bool uecho_server_isboundaddress(uEchoServer* server, const char* addr)
 bool uecho_server_start(uEchoServer* server)
 {
   bool all_actions_succeeded = true;
+  uEchoMessageObserver *observer;
+  uEchoMessageHandler handler;
+  void *obj;
+  uEchoUdpServer* udp_server;
+  uEchoMcastServer* mcast_server;
 
   if (!server)
     return false;
@@ -107,21 +87,35 @@ bool uecho_server_start(uEchoServer* server)
   uecho_server_stop(server);
 
   all_actions_succeeded &= uecho_mcast_serverlist_open(server->mcast_servers);
-  uecho_mcast_serverlist_setuserdata(server->mcast_servers, server);
-  uecho_mcast_serverlist_setmessagelistener(server->mcast_servers, uecho_mcast_server_msglistener);
-  all_actions_succeeded &= uecho_mcast_serverlist_start(server->mcast_servers);
-
   if (uecho_server_isudpserverenabled(server)) {
     all_actions_succeeded &= uecho_udp_serverlist_open(server->udp_servers);
-    uecho_udp_serverlist_setuserdata(server->udp_servers, server);
-    uecho_udp_serverlist_setmessagelistener(server->udp_servers, uecho_udp_server_msglistener);
+  }
+
+  // Add message observers
+  for (observer = uecho_message_observer_manager_getobservers(server->msg_mgr); observer; observer = uecho_message_observer_next(observer)) {
+    handler = uecho_message_observer_gethandler(observer);
+    obj = uecho_message_observer_getobjcet(observer);
+    if (!handler || !obj) {
+      all_actions_succeeded = false;
+      continue;
+    }
+    for (udp_server = uecho_udp_serverlist_gets(server->udp_servers); udp_server; udp_server = uecho_udp_server_next(udp_server)) {
+      all_actions_succeeded &= uecho_udp_server_addobserver(udp_server, obj, handler);
+    }
+    for (mcast_server = uecho_mcast_serverlist_gets(server->mcast_servers); mcast_server; mcast_server = uecho_mcast_server_next(mcast_server)) {
+      all_actions_succeeded &= uecho_mcast_server_addobserver(mcast_server, obj, handler);
+    }
+  }
+  
+  all_actions_succeeded &= uecho_mcast_serverlist_start(server->mcast_servers);
+  if (uecho_server_isudpserverenabled(server)) {
     all_actions_succeeded &= uecho_udp_serverlist_start(server->udp_servers);
   }
 
   if (!all_actions_succeeded) {
     uecho_server_stop(server);
   }
-
+  
   return all_actions_succeeded;
 }
 
@@ -168,51 +162,6 @@ bool uecho_server_isrunning(uEchoServer* server)
   }
 
   return all_actions_succeeded;
-}
-
-/****************************************
- * uecho_server_performlistener
- ****************************************/
-
-bool uecho_server_performlistener(uEchoServer* server, uEchoMessage* msg)
-{
-  if (!server)
-    return false;
-
-  if (!server->msg_listener)
-    return false;
-
-  server->msg_listener(server, msg);
-
-  return true;
-}
-
-/****************************************
- * uecho_udp_server_msglistener
- ****************************************/
-
-void uecho_udp_server_msglistener(uEchoUdpServer* udp_server, uEchoMessage* msg)
-{
-  uEchoServer* server = (uEchoServer*)uecho_udp_server_getuserdata(udp_server);
-
-  if (!server)
-    return;
-
-  uecho_server_performlistener(server, msg);
-}
-
-/****************************************
- * uecho_mcast_server_msglistener
- ****************************************/
-
-void uecho_mcast_server_msglistener(uEchoMcastServer* mcast_server, uEchoMessage* msg)
-{
-  uEchoServer* server = (uEchoServer*)uecho_mcast_server_getuserdata(mcast_server);
-
-  if (!server)
-    return;
-
-  uecho_server_performlistener(server, msg);
 }
 
 /****************************************
@@ -276,5 +225,14 @@ bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg,
     return true;
 
   return uecho_server_sendto(server, addr, uEchoUdpPort, msg, msg_len);
+}
+
+/****************************************
+ * uecho_server_addobserver
+ ****************************************/
+
+bool uecho_server_addobserver(uEchoServer* server, void *obj, uEchoMessageHandler handler)
+{
+  return uecho_message_observer_manager_addobserver(server->msg_mgr, obj, handler);
 }
 
