@@ -57,27 +57,26 @@ uEchoPropertyRequestHandler uecho_object_property_observer_handler(uEchoObjectPr
  ****************************************/
 
 uEchoObjectPropertyObserverList* uecho_object_property_observerlist_new(void);
-void uecho_object_property_observerlist_delete(uEchoObjectPropertyObserverList* obs_mgr);
-bool uecho_object_property_observerlist_setobserver(uEchoObjectPropertyObserverList* obs_mgr, uEchoPropertyCode code, uEchoPropertyRequestHandler handler);
-uEchoObjectPropertyObserver* uecho_object_property_observerlist_getobserver(uEchoObjectPropertyObserverList* obs_mgr, uEchoPropertyCode code);
+void uecho_object_property_observerlist_delete(uEchoObjectPropertyObserverList* obs_list);
+bool uecho_object_property_observerlist_setobserver(uEchoObjectPropertyObserverList* obs_list, uEchoPropertyCode code, uEchoPropertyRequestHandler handler);
+uEchoObjectPropertyObserver* uecho_object_property_observerlist_getobserver(uEchoObjectPropertyObserverList* obs_list, uEchoPropertyCode code);
 
-#define uecho_object_property_observerlist_clear(obsMgr) uecho_list_clear((uEchoList*)obsMgr, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_property_observer_delete)
-#define uecho_object_property_observerlist_size(obsMgr) uecho_list_size((uEchoList*)obsMgr)
-#define uecho_object_property_observerlist_gets(obsMgr) (uEchoObjectPropertyObserver*)uecho_list_next((uEchoList*)obsMgr)
-#define uecho_object_property_observerlist_add(obsMgr, obs) uecho_list_add((uEchoList*)obsMgr, (uEchoList*)obs)
-#define uecho_object_property_observerlist_remove(obs) uecho_list_remove((uEchoList*)obs)
+#define uecho_object_property_observerlist_clear(obs_list) uecho_list_clear((uEchoList*)obs_list, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_property_observer_delete)
+#define uecho_object_property_observerlist_size(obs_list) uecho_list_size((uEchoList*)obs_list)
+#define uecho_object_property_observerlist_gets(obs_list) (uEchoObjectPropertyObserver*)uecho_list_next((uEchoList*)obs_list)
+#define uecho_object_property_observerlist_add(obs_list, obs) uecho_list_add((uEchoList*)obs_list, (uEchoList*)obs)
 
 /****************************************
  * Function (Property Observer Manager)
  ****************************************/
 
 uEchoObjectPropertyObserverManager* uecho_object_property_observer_manager_new(void);
-void uecho_object_property_observer_manager_delete(uEchoObjectPropertyObserverManager* obs_mgr);
+void uecho_object_property_observer_manager_delete(uEchoObjectPropertyObserverManager* mgr);
 
-bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager* obs_mgr, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestHandler handler);
+bool uecho_object_property_observer_manager_setobserver(uEchoObjectPropertyObserverManager* mgr, uEchoEsv esv, uEchoPropertyCode code, uEchoPropertyRequestHandler handler);
 
-uEchoObjectPropertyObserver* uecho_object_property_observer_manager_getobservers(uEchoObjectPropertyObserverManager* obs_mgr);
-uEchoObjectPropertyObserver* uecho_object_property_observer_manager_getobserver(uEchoObjectPropertyObserverManager* obs_mgr, uEchoEsv esv, uEchoPropertyCode code);
+uEchoObjectPropertyObserver* uecho_object_property_observer_manager_getobservers(uEchoObjectPropertyObserverManager* mgr);
+uEchoObjectPropertyObserver* uecho_object_property_observer_manager_getobserver(uEchoObjectPropertyObserverManager* mgr, uEchoEsv esv, uEchoPropertyCode code);
 
 #ifdef __cplusplus
 } /* extern C */
