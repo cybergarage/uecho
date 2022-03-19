@@ -7,8 +7,6 @@ var mcast__server__list_8c =
     [ "uecho_mcast_serverlist_new", "mcast__server__list_8c.html#a98cba8949c2e210fa7175c1d30351955", null ],
     [ "uecho_mcast_serverlist_open", "mcast__server__list_8c.html#a9335562e6cb105a8aba107a4553a3a0c", null ],
     [ "uecho_mcast_serverlist_post", "mcast__server__list_8c.html#a918547e3311fcee89cdec091255cdead", null ],
-    [ "uecho_mcast_serverlist_setmessagelistener", "mcast__server__list_8c.html#abbc86cc5175d4a1fe478bcee4a95ff51", null ],
-    [ "uecho_mcast_serverlist_setuserdata", "mcast__server__list_8c.html#a4b4482e965a56e5d29c3644a574c010d", null ],
     [ "uecho_mcast_serverlist_start", "mcast__server__list_8c.html#acc54b32a8969f4ad7c75c00b6e0ac795", null ],
     [ "uecho_mcast_serverlist_stop", "mcast__server__list_8c.html#a028cbc3924dff27286b2858bf218b591", null ]
 ];

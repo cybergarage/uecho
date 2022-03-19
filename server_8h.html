@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEcho for C: src/uecho/core/server.h File Reference</title>
+<title>uEcho for C: src/uecho/frame/server.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,12 +68,12 @@ $(document).ready(function(){initNavTree('server_8h.html',''); initResizable(); 
   <div class="headertitle"><div class="title">server.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="option_8h.html">uecho/core/option.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="socket_8h.html">uecho/net/socket.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="object__internal_8h.html">uecho/object_internal.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="typedef_8h.html">uecho/typedef.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="typedef_8h.html">uecho/typedef.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="list_8h.html">uecho/util/list.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="thread_8h.html">uecho/util/thread.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="socket_8h.html">uecho/net/socket.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="option_8h.html">uecho/frame/option.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="observer_8h.html">uecho/frame/observer.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
@@ -127,18 +127,12 @@ Typedefs</h2></td></tr>
 <tr class="separator:a63853a3fefb0c38d418d6cc8c96f18af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6e4d656d96d97b834d6226ad7d534d2"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structUEchoUdpServer.html">UEchoUdpServer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#af6e4d656d96d97b834d6226ad7d534d2">uEchoUdpServerList</a></td></tr>
 <tr class="separator:af6e4d656d96d97b834d6226ad7d534d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af05261e5144404046fdf74ed6a3addfb"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#af05261e5144404046fdf74ed6a3addfb">uEchoUdpServerMessageListener</a>) (<a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *)</td></tr>
-<tr class="separator:af05261e5144404046fdf74ed6a3addfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af084999ed71eba8331c950261bbecc50"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structUEchoMcastServer.html">UEchoMcastServer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a></td></tr>
 <tr class="separator:af084999ed71eba8331c950261bbecc50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee00330e6065400077a614f78a8f2f39"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structUEchoMcastServer.html">UEchoMcastServer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#aee00330e6065400077a614f78a8f2f39">uEchoMcastServerList</a></td></tr>
 <tr class="separator:aee00330e6065400077a614f78a8f2f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a435ee84182f77f99dcaf548e5e09b37c"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a435ee84182f77f99dcaf548e5e09b37c">uEchoMcastServerMessageListener</a>) (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *)</td></tr>
-<tr class="separator:a435ee84182f77f99dcaf548e5e09b37c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec45b9570c3a4591da31a93b7d61bf7f"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structUEchoServer.html">UEchoServer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a></td></tr>
 <tr class="separator:aec45b9570c3a4591da31a93b7d61bf7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae81d0bfa327bae46a452b4c8172042f"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#aae81d0bfa327bae46a452b4c8172042f">uEchoServerMessageListener</a>) (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *)</td></tr>
-<tr class="separator:aae81d0bfa327bae46a452b4c8172042f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -152,14 +146,6 @@ Functions</h2></td></tr>
 <tr class="separator:ae26b2308d3d323b58dadb5c5a18491a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d6a12c2645f0914500ac2e45ba9adc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a6d6a12c2645f0914500ac2e45ba9adc4">uecho_server_delete</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server)</td></tr>
 <tr class="separator:a6d6a12c2645f0914500ac2e45ba9adc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad20f56590e83dab487567e5769bb035b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#ad20f56590e83dab487567e5769bb035b">uecho_server_setmessagelistener</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server, <a class="el" href="server_8h.html#aae81d0bfa327bae46a452b4c8172042f">uEchoServerMessageListener</a> listener)</td></tr>
-<tr class="separator:ad20f56590e83dab487567e5769bb035b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6c1e1c6f1783688ab9b362673a516c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#ac6c1e1c6f1783688ab9b362673a516c4">uecho_server_setuserdata</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server, void *data)</td></tr>
-<tr class="separator:ac6c1e1c6f1783688ab9b362673a516c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a024930554fb691d245fb74a578df14fa"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a024930554fb691d245fb74a578df14fa">uecho_server_getuserdata</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server)</td></tr>
-<tr class="separator:a024930554fb691d245fb74a578df14fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91bd6bc987ba007c55a8abd7e2902293"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a91bd6bc987ba007c55a8abd7e2902293">uecho_server_performlistener</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
-<tr class="separator:a91bd6bc987ba007c55a8abd7e2902293"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9386a5d91d7feb14dfc665b92f265565"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a9386a5d91d7feb14dfc665b92f265565">uecho_server_start</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server)</td></tr>
 <tr class="separator:a9386a5d91d7feb14dfc665b92f265565"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cec0a6a37c32c0553cca0d635ef9095"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a6cec0a6a37c32c0553cca0d635ef9095">uecho_server_stop</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server)</td></tr>
@@ -174,18 +160,12 @@ Functions</h2></td></tr>
 <tr class="separator:af3027fa9bc005706ef21d9b445ec4eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af062c73992c953219f2a6455a036052e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#af062c73992c953219f2a6455a036052e">uecho_server_isboundaddress</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server, const char *addr)</td></tr>
 <tr class="separator:af062c73992c953219f2a6455a036052e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a045134890d93f91c9003b56991d9fb59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a045134890d93f91c9003b56991d9fb59">uecho_server_addobserver</a> (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *server, void *obj, <a class="el" href="src_2uecho_2frame_2message_8h.html#a0b20961d49fba6583049ebd47a06052d">uEchoMessageHandler</a> handler)</td></tr>
+<tr class="separator:a045134890d93f91c9003b56991d9fb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf5ec84aeba793dbe85fdc3204c6f230"><td class="memItemLeft" align="right" valign="top"><a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#adf5ec84aeba793dbe85fdc3204c6f230">uecho_udp_server_new</a> (void)</td></tr>
 <tr class="separator:adf5ec84aeba793dbe85fdc3204c6f230"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23afc17060f33ffa538b79a178bf4b63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a23afc17060f33ffa538b79a178bf4b63">uecho_udp_server_delete</a> (<a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *server)</td></tr>
 <tr class="separator:a23afc17060f33ffa538b79a178bf4b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7e05cb73070e81311dca7e8e806afa3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#aa7e05cb73070e81311dca7e8e806afa3">uecho_udp_server_setmessagelistener</a> (<a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *server, <a class="el" href="server_8h.html#af05261e5144404046fdf74ed6a3addfb">uEchoUdpServerMessageListener</a> listener)</td></tr>
-<tr class="separator:aa7e05cb73070e81311dca7e8e806afa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a506533199b8cf7120bf2ad886cf9b751"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a506533199b8cf7120bf2ad886cf9b751">uecho_udp_server_setuserdata</a> (<a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *server, void *data)</td></tr>
-<tr class="separator:a506533199b8cf7120bf2ad886cf9b751"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8784908ed8d1239953cfd9c47b23985"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#ae8784908ed8d1239953cfd9c47b23985">uecho_udp_server_getuserdata</a> (<a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *server)</td></tr>
-<tr class="separator:ae8784908ed8d1239953cfd9c47b23985"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51399d6676e61bc7e2776c276fe9453e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a51399d6676e61bc7e2776c276fe9453e">uecho_udp_server_performlistener</a> (<a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *server, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
-<tr class="separator:a51399d6676e61bc7e2776c276fe9453e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3db0cfe9ef16527dcbb5388111e1732a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a3db0cfe9ef16527dcbb5388111e1732a">uecho_udp_server_open</a> (<a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *server, const char *bind_addr)</td></tr>
 <tr class="separator:a3db0cfe9ef16527dcbb5388111e1732a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec98864aa7f3ce74249cc3c6ef9a4557"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#aec98864aa7f3ce74249cc3c6ef9a4557">uecho_udp_server_close</a> (<a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *server)</td></tr>
@@ -200,18 +180,12 @@ Functions</h2></td></tr>
 <tr class="separator:a58d7ea412c6c461c0dc635866fb7a14e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8d52dbf03962071f2d500779e1e9e54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#ae8d52dbf03962071f2d500779e1e9e54">uecho_udp_server_isrunning</a> (<a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *server)</td></tr>
 <tr class="separator:ae8d52dbf03962071f2d500779e1e9e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec407691da4c9e5650f4a8068fb4fd4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#aec407691da4c9e5650f4a8068fb4fd4b">uecho_udp_server_addobserver</a> (<a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *server, void *obj, <a class="el" href="src_2uecho_2frame_2message_8h.html#a0b20961d49fba6583049ebd47a06052d">uEchoMessageHandler</a> handler)</td></tr>
+<tr class="separator:aec407691da4c9e5650f4a8068fb4fd4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a354da1c3a5c07e07b72f0b0b31ca1d44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a354da1c3a5c07e07b72f0b0b31ca1d44">uecho_mcast_server_new</a> (void)</td></tr>
 <tr class="separator:a354da1c3a5c07e07b72f0b0b31ca1d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a798c3a8f0985e41682d9fd0c484e5bff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a798c3a8f0985e41682d9fd0c484e5bff">uecho_mcast_server_delete</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server)</td></tr>
 <tr class="separator:a798c3a8f0985e41682d9fd0c484e5bff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79ea864bea4a4b8e33e912b79068e549"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a79ea864bea4a4b8e33e912b79068e549">uecho_mcast_server_setmessagelistener</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server, <a class="el" href="server_8h.html#a435ee84182f77f99dcaf548e5e09b37c">uEchoMcastServerMessageListener</a> listener)</td></tr>
-<tr class="separator:a79ea864bea4a4b8e33e912b79068e549"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c79a66860cfd658be5cb0b4205eec21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a6c79a66860cfd658be5cb0b4205eec21">uecho_mcast_server_setuserdata</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server, void *data)</td></tr>
-<tr class="separator:a6c79a66860cfd658be5cb0b4205eec21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af07545235ad58d7e5753260c77f2dc0e"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#af07545235ad58d7e5753260c77f2dc0e">uecho_mcast_server_getuserdata</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server)</td></tr>
-<tr class="separator:af07545235ad58d7e5753260c77f2dc0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afaf2cca9fd56c7079ebb6af42378fe93"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#afaf2cca9fd56c7079ebb6af42378fe93">uecho_mcast_server_performlistener</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
-<tr class="separator:afaf2cca9fd56c7079ebb6af42378fe93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33a6f39bc6d25a6022388368ff97f8dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a33a6f39bc6d25a6022388368ff97f8dd">uecho_mcast_server_open</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server, const char *bind_addr)</td></tr>
 <tr class="separator:a33a6f39bc6d25a6022388368ff97f8dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16fa55f00a4e8441b93e10b18a9f8201"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a16fa55f00a4e8441b93e10b18a9f8201">uecho_mcast_server_close</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server)</td></tr>
@@ -228,10 +202,8 @@ Functions</h2></td></tr>
 <tr class="separator:a727e30cdf671b35ec43e22cfce16d21e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d55568cd864a0638ab0377f830dfb03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a2d55568cd864a0638ab0377f830dfb03">uecho_mcast_server_post</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server, const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *msg, size_t msg_len)</td></tr>
 <tr class="separator:a2d55568cd864a0638ab0377f830dfb03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a372425223c120bc7b761dbaebfd05ae1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a372425223c120bc7b761dbaebfd05ae1">uecho_udp_server_msglistener</a> (<a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *server, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
-<tr class="separator:a372425223c120bc7b761dbaebfd05ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58e2ac985159368e4455462bb18c2b2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a58e2ac985159368e4455462bb18c2b2f">uecho_mcast_server_msglistener</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
-<tr class="separator:a58e2ac985159368e4455462bb18c2b2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ef1fb1a0a0ca8549d33c80d4eb7a87b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a4ef1fb1a0a0ca8549d33c80d4eb7a87b">uecho_mcast_server_addobserver</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server, void *obj, <a class="el" href="src_2uecho_2frame_2message_8h.html#a0b20961d49fba6583049ebd47a06052d">uEchoMessageHandler</a> handler)</td></tr>
+<tr class="separator:a4ef1fb1a0a0ca8549d33c80d4eb7a87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a375147d67adb25d7cd7e1e659da37379"><td class="memItemLeft" align="right" valign="top"><a class="el" href="server_8h.html#af6e4d656d96d97b834d6226ad7d534d2">uEchoUdpServerList</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a375147d67adb25d7cd7e1e659da37379">uecho_udp_serverlist_new</a> (void)</td></tr>
 <tr class="separator:a375147d67adb25d7cd7e1e659da37379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3debd625a90d4a93385afd566f8bbb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#ad3debd625a90d4a93385afd566f8bbb9">uecho_udp_serverlist_delete</a> (<a class="el" href="server_8h.html#af6e4d656d96d97b834d6226ad7d534d2">uEchoUdpServerList</a> *servers)</td></tr>
@@ -246,10 +218,6 @@ Functions</h2></td></tr>
 <tr class="separator:aeeb906fbc9e0c3d962ec8dd64738af32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ed97090dbdc27de620a333e1504cdfe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a9ed97090dbdc27de620a333e1504cdfe">uecho_udp_serverlist_isrunning</a> (<a class="el" href="server_8h.html#af6e4d656d96d97b834d6226ad7d534d2">uEchoUdpServerList</a> *servers)</td></tr>
 <tr class="separator:a9ed97090dbdc27de620a333e1504cdfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b2984d3520221d785ba4d15e096102a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a2b2984d3520221d785ba4d15e096102a">uecho_udp_serverlist_setmessagelistener</a> (<a class="el" href="server_8h.html#af6e4d656d96d97b834d6226ad7d534d2">uEchoUdpServerList</a> *servers, <a class="el" href="server_8h.html#af05261e5144404046fdf74ed6a3addfb">uEchoUdpServerMessageListener</a> listener)</td></tr>
-<tr class="separator:a2b2984d3520221d785ba4d15e096102a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5137434724e0e4bdca0da4f32bd9a859"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a5137434724e0e4bdca0da4f32bd9a859">uecho_udp_serverlist_setuserdata</a> (<a class="el" href="server_8h.html#af6e4d656d96d97b834d6226ad7d534d2">uEchoUdpServerList</a> *servers, void *data)</td></tr>
-<tr class="separator:a5137434724e0e4bdca0da4f32bd9a859"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab130bde1804c1693823e8c1fdc6662b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#ab130bde1804c1693823e8c1fdc6662b8">uecho_udp_serverlist_post</a> (<a class="el" href="server_8h.html#aee00330e6065400077a614f78a8f2f39">uEchoMcastServerList</a> *servers, char *addr)</td></tr>
 <tr class="separator:ab130bde1804c1693823e8c1fdc6662b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af53db6c90682f2f1653a20b8927423ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#af53db6c90682f2f1653a20b8927423ba">uecho_udp_serverlist_isboundaddress</a> (<a class="el" href="server_8h.html#af6e4d656d96d97b834d6226ad7d534d2">uEchoUdpServerList</a> *servers, const char *addr)</td></tr>
@@ -268,10 +236,6 @@ Functions</h2></td></tr>
 <tr class="separator:a028cbc3924dff27286b2858bf218b591"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca438d8253be5740c9700a71f0d7a438"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#aca438d8253be5740c9700a71f0d7a438">uecho_mcast_serverlist_isrunning</a> (<a class="el" href="server_8h.html#aee00330e6065400077a614f78a8f2f39">uEchoMcastServerList</a> *servers)</td></tr>
 <tr class="separator:aca438d8253be5740c9700a71f0d7a438"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbc86cc5175d4a1fe478bcee4a95ff51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#abbc86cc5175d4a1fe478bcee4a95ff51">uecho_mcast_serverlist_setmessagelistener</a> (<a class="el" href="server_8h.html#aee00330e6065400077a614f78a8f2f39">uEchoMcastServerList</a> *servers, <a class="el" href="server_8h.html#a435ee84182f77f99dcaf548e5e09b37c">uEchoMcastServerMessageListener</a> listener)</td></tr>
-<tr class="separator:abbc86cc5175d4a1fe478bcee4a95ff51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b4482e965a56e5d29c3644a574c010d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a4b4482e965a56e5d29c3644a574c010d">uecho_mcast_serverlist_setuserdata</a> (<a class="el" href="server_8h.html#aee00330e6065400077a614f78a8f2f39">uEchoMcastServerList</a> *servers, void *data)</td></tr>
-<tr class="separator:a4b4482e965a56e5d29c3644a574c010d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a918547e3311fcee89cdec091255cdead"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a918547e3311fcee89cdec091255cdead">uecho_mcast_serverlist_post</a> (<a class="el" href="server_8h.html#aee00330e6065400077a614f78a8f2f39">uEchoMcastServerList</a> *servers, const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *msg, size_t msg_len)</td></tr>
 <tr class="separator:a918547e3311fcee89cdec091255cdead"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affc70a91c4093c210334ae631202851d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#affc70a91c4093c210334ae631202851d">uecho_mcast_serverlist_isboundaddress</a> (<a class="el" href="server_8h.html#aee00330e6065400077a614f78a8f2f39">uEchoMcastServerList</a> *servers, const char *addr)</td></tr>
@@ -653,20 +617,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a435ee84182f77f99dcaf548e5e09b37c" name="a435ee84182f77f99dcaf548e5e09b37c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a435ee84182f77f99dcaf548e5e09b37c">&#9670;&nbsp;</a></span>uEchoMcastServerMessageListener</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void(* uEchoMcastServerMessageListener) (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aec45b9570c3a4591da31a93b7d61bf7f" name="aec45b9570c3a4591da31a93b7d61bf7f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aec45b9570c3a4591da31a93b7d61bf7f">&#9670;&nbsp;</a></span>uEchoServer</h2>
 
@@ -675,20 +625,6 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">typedef struct <a class="el" href="structUEchoServer.html">UEchoServer</a> <a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aae81d0bfa327bae46a452b4c8172042f" name="aae81d0bfa327bae46a452b4c8172042f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae81d0bfa327bae46a452b4c8172042f">&#9670;&nbsp;</a></span>uEchoServerMessageListener</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void(* uEchoServerMessageListener) (<a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -723,20 +659,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af05261e5144404046fdf74ed6a3addfb" name="af05261e5144404046fdf74ed6a3addfb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af05261e5144404046fdf74ed6a3addfb">&#9670;&nbsp;</a></span>uEchoUdpServerMessageListener</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void(* uEchoUdpServerMessageListener) (<a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="abc6126af1d45847bc59afa0aa3216b04" name="abc6126af1d45847bc59afa0aa3216b04"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abc6126af1d45847bc59afa0aa3216b04">&#9670;&nbsp;</a></span>anonymous enum</h2>
@@ -756,6 +678,40 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a4ef1fb1a0a0ca8549d33c80d4eb7a87b" name="a4ef1fb1a0a0ca8549d33c80d4eb7a87b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ef1fb1a0a0ca8549d33c80d4eb7a87b">&#9670;&nbsp;</a></span>uecho_mcast_server_addobserver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_mcast_server_addobserver </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="src_2uecho_2frame_2message_8h.html#a0b20961d49fba6583049ebd47a06052d">uEchoMessageHandler</a>&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a16fa55f00a4e8441b93e10b18a9f8201" name="a16fa55f00a4e8441b93e10b18a9f8201"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a16fa55f00a4e8441b93e10b18a9f8201">&#9670;&nbsp;</a></span>uecho_mcast_server_close()</h2>
 
@@ -810,24 +766,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af07545235ad58d7e5753260c77f2dc0e" name="af07545235ad58d7e5753260c77f2dc0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af07545235ad58d7e5753260c77f2dc0e">&#9670;&nbsp;</a></span>uecho_mcast_server_getuserdata()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void * uecho_mcast_server_getuserdata </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a9ab2714c3af8d54010cf4cf14997f3c5" name="a9ab2714c3af8d54010cf4cf14997f3c5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ab2714c3af8d54010cf4cf14997f3c5">&#9670;&nbsp;</a></span>uecho_mcast_server_isopened()</h2>
 
@@ -858,34 +796,6 @@ Functions</h2></td></tr>
           <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
           <td class="paramname"><em>server</em></td><td>)</td>
           <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a58e2ac985159368e4455462bb18c2b2f" name="a58e2ac985159368e4455462bb18c2b2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58e2ac985159368e4455462bb18c2b2f">&#9670;&nbsp;</a></span>uecho_mcast_server_msglistener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_mcast_server_msglistener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
-          <td class="paramname"><em>msg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -938,34 +848,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afaf2cca9fd56c7079ebb6af42378fe93" name="afaf2cca9fd56c7079ebb6af42378fe93"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afaf2cca9fd56c7079ebb6af42378fe93">&#9670;&nbsp;</a></span>uecho_mcast_server_performlistener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_mcast_server_performlistener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
-          <td class="paramname"><em>msg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a2d55568cd864a0638ab0377f830dfb03" name="a2d55568cd864a0638ab0377f830dfb03"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2d55568cd864a0638ab0377f830dfb03">&#9670;&nbsp;</a></span>uecho_mcast_server_post()</h2>
 
@@ -989,62 +871,6 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>msg_len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a79ea864bea4a4b8e33e912b79068e549" name="a79ea864bea4a4b8e33e912b79068e549"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79ea864bea4a4b8e33e912b79068e549">&#9670;&nbsp;</a></span>uecho_mcast_server_setmessagelistener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_mcast_server_setmessagelistener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="server_8h.html#a435ee84182f77f99dcaf548e5e09b37c">uEchoMcastServerMessageListener</a>&#160;</td>
-          <td class="paramname"><em>listener</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6c79a66860cfd658be5cb0b4205eec21" name="a6c79a66860cfd658be5cb0b4205eec21"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c79a66860cfd658be5cb0b4205eec21">&#9670;&nbsp;</a></span>uecho_mcast_server_setuserdata()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_mcast_server_setuserdata </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1244,62 +1070,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abbc86cc5175d4a1fe478bcee4a95ff51" name="abbc86cc5175d4a1fe478bcee4a95ff51"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abbc86cc5175d4a1fe478bcee4a95ff51">&#9670;&nbsp;</a></span>uecho_mcast_serverlist_setmessagelistener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_mcast_serverlist_setmessagelistener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#aee00330e6065400077a614f78a8f2f39">uEchoMcastServerList</a> *&#160;</td>
-          <td class="paramname"><em>servers</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="server_8h.html#a435ee84182f77f99dcaf548e5e09b37c">uEchoMcastServerMessageListener</a>&#160;</td>
-          <td class="paramname"><em>listener</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4b4482e965a56e5d29c3644a574c010d" name="a4b4482e965a56e5d29c3644a574c010d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b4482e965a56e5d29c3644a574c010d">&#9670;&nbsp;</a></span>uecho_mcast_serverlist_setuserdata()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_mcast_serverlist_setuserdata </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#aee00330e6065400077a614f78a8f2f39">uEchoMcastServerList</a> *&#160;</td>
-          <td class="paramname"><em>servers</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="acc54b32a8969f4ad7c75c00b6e0ac795" name="acc54b32a8969f4ad7c75c00b6e0ac795"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acc54b32a8969f4ad7c75c00b6e0ac795">&#9670;&nbsp;</a></span>uecho_mcast_serverlist_start()</h2>
 
@@ -1336,6 +1106,40 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a045134890d93f91c9003b56991d9fb59" name="a045134890d93f91c9003b56991d9fb59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a045134890d93f91c9003b56991d9fb59">&#9670;&nbsp;</a></span>uecho_server_addobserver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_server_addobserver </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="src_2uecho_2frame_2message_8h.html#a0b20961d49fba6583049ebd47a06052d">uEchoMessageHandler</a>&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a6d6a12c2645f0914500ac2e45ba9adc4" name="a6d6a12c2645f0914500ac2e45ba9adc4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6d6a12c2645f0914500ac2e45ba9adc4">&#9670;&nbsp;</a></span>uecho_server_delete()</h2>
 
@@ -1362,24 +1166,6 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">const char * uecho_server_getaddress </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a024930554fb691d245fb74a578df14fa" name="a024930554fb691d245fb74a578df14fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a024930554fb691d245fb74a578df14fa">&#9670;&nbsp;</a></span>uecho_server_getuserdata()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void * uecho_server_getuserdata </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *&#160;</td>
           <td class="paramname"><em>server</em></td><td>)</td>
@@ -1448,34 +1234,6 @@ Functions</h2></td></tr>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a91bd6bc987ba007c55a8abd7e2902293" name="a91bd6bc987ba007c55a8abd7e2902293"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91bd6bc987ba007c55a8abd7e2902293">&#9670;&nbsp;</a></span>uecho_server_performlistener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_server_performlistener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
-          <td class="paramname"><em>msg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1556,62 +1314,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad20f56590e83dab487567e5769bb035b" name="ad20f56590e83dab487567e5769bb035b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad20f56590e83dab487567e5769bb035b">&#9670;&nbsp;</a></span>uecho_server_setmessagelistener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_server_setmessagelistener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="server_8h.html#aae81d0bfa327bae46a452b4c8172042f">uEchoServerMessageListener</a>&#160;</td>
-          <td class="paramname"><em>listener</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac6c1e1c6f1783688ab9b362673a516c4" name="ac6c1e1c6f1783688ab9b362673a516c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6c1e1c6f1783688ab9b362673a516c4">&#9670;&nbsp;</a></span>uecho_server_setuserdata()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_server_setuserdata </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a9386a5d91d7feb14dfc665b92f265565" name="a9386a5d91d7feb14dfc665b92f265565"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9386a5d91d7feb14dfc665b92f265565">&#9670;&nbsp;</a></span>uecho_server_start()</h2>
 
@@ -1642,6 +1344,40 @@ Functions</h2></td></tr>
           <td class="paramtype"><a class="el" href="server_8h.html#aec45b9570c3a4591da31a93b7d61bf7f">uEchoServer</a> *&#160;</td>
           <td class="paramname"><em>server</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aec407691da4c9e5650f4a8068fb4fd4b" name="aec407691da4c9e5650f4a8068fb4fd4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec407691da4c9e5650f4a8068fb4fd4b">&#9670;&nbsp;</a></span>uecho_udp_server_addobserver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_udp_server_addobserver </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="src_2uecho_2frame_2message_8h.html#a0b20961d49fba6583049ebd47a06052d">uEchoMessageHandler</a>&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1702,24 +1438,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae8784908ed8d1239953cfd9c47b23985" name="ae8784908ed8d1239953cfd9c47b23985"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8784908ed8d1239953cfd9c47b23985">&#9670;&nbsp;</a></span>uecho_udp_server_getuserdata()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void * uecho_udp_server_getuserdata </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ae8d52dbf03962071f2d500779e1e9e54" name="ae8d52dbf03962071f2d500779e1e9e54"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8d52dbf03962071f2d500779e1e9e54">&#9670;&nbsp;</a></span>uecho_udp_server_isrunning()</h2>
 
@@ -1732,34 +1450,6 @@ Functions</h2></td></tr>
           <td class="paramtype"><a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *&#160;</td>
           <td class="paramname"><em>server</em></td><td>)</td>
           <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a372425223c120bc7b761dbaebfd05ae1" name="a372425223c120bc7b761dbaebfd05ae1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a372425223c120bc7b761dbaebfd05ae1">&#9670;&nbsp;</a></span>uecho_udp_server_msglistener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_udp_server_msglistener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
-          <td class="paramname"><em>msg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1801,90 +1491,6 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>bind_addr</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a51399d6676e61bc7e2776c276fe9453e" name="a51399d6676e61bc7e2776c276fe9453e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51399d6676e61bc7e2776c276fe9453e">&#9670;&nbsp;</a></span>uecho_udp_server_performlistener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_udp_server_performlistener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
-          <td class="paramname"><em>msg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aa7e05cb73070e81311dca7e8e806afa3" name="aa7e05cb73070e81311dca7e8e806afa3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7e05cb73070e81311dca7e8e806afa3">&#9670;&nbsp;</a></span>uecho_udp_server_setmessagelistener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_udp_server_setmessagelistener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af05261e5144404046fdf74ed6a3addfb">uEchoUdpServerMessageListener</a>&#160;</td>
-          <td class="paramname"><em>listener</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a506533199b8cf7120bf2ad886cf9b751" name="a506533199b8cf7120bf2ad886cf9b751"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a506533199b8cf7120bf2ad886cf9b751">&#9670;&nbsp;</a></span>uecho_udp_server_setuserdata()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_udp_server_setuserdata </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#a63853a3fefb0c38d418d6cc8c96f18af">uEchoUdpServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2118,62 +1724,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2b2984d3520221d785ba4d15e096102a" name="a2b2984d3520221d785ba4d15e096102a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b2984d3520221d785ba4d15e096102a">&#9670;&nbsp;</a></span>uecho_udp_serverlist_setmessagelistener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_udp_serverlist_setmessagelistener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af6e4d656d96d97b834d6226ad7d534d2">uEchoUdpServerList</a> *&#160;</td>
-          <td class="paramname"><em>servers</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af05261e5144404046fdf74ed6a3addfb">uEchoUdpServerMessageListener</a>&#160;</td>
-          <td class="paramname"><em>listener</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5137434724e0e4bdca0da4f32bd9a859" name="a5137434724e0e4bdca0da4f32bd9a859"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5137434724e0e4bdca0da4f32bd9a859">&#9670;&nbsp;</a></span>uecho_udp_serverlist_setuserdata()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_udp_serverlist_setuserdata </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af6e4d656d96d97b834d6226ad7d534d2">uEchoUdpServerList</a> *&#160;</td>
-          <td class="paramname"><em>servers</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ab1cf0104dd3645d5c08c723473113fcb" name="ab1cf0104dd3645d5c08c723473113fcb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab1cf0104dd3645d5c08c723473113fcb">&#9670;&nbsp;</a></span>uecho_udp_serverlist_start()</h2>
 
@@ -2215,7 +1765,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_508e66744f0a9abc7e902f1f95d57bd2.html">uecho</a></li><li class="navelem"><a class="el" href="dir_b8f49b4c60a398a52602e76f4839b927.html">core</a></li><li class="navelem"><a class="el" href="server_8h.html">server.h</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_508e66744f0a9abc7e902f1f95d57bd2.html">uecho</a></li><li class="navelem"><a class="el" href="dir_9a8cb93c7e519aa8948db1eb009a35cb.html">frame</a></li><li class="navelem"><a class="el" href="server_8h.html">server.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>

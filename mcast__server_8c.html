@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEcho for C: src/uecho/core/mcast_server.c File Reference</title>
+<title>uEcho for C: src/uecho/frame/mcast_server.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -65,7 +65,8 @@ $(document).ready(function(){initNavTree('mcast__server_8c.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="const_8h.html">uecho/const.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="server_8h.html">uecho/core/server.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="server_8h.html">uecho/frame/server.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="util_2logs_8h.html">uecho/util/logs.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -73,20 +74,14 @@ Functions</h2></td></tr>
 <tr class="separator:a354da1c3a5c07e07b72f0b0b31ca1d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a798c3a8f0985e41682d9fd0c484e5bff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcast__server_8c.html#a798c3a8f0985e41682d9fd0c484e5bff">uecho_mcast_server_delete</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server)</td></tr>
 <tr class="separator:a798c3a8f0985e41682d9fd0c484e5bff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79ea864bea4a4b8e33e912b79068e549"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcast__server_8c.html#a79ea864bea4a4b8e33e912b79068e549">uecho_mcast_server_setmessagelistener</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server, <a class="el" href="server_8h.html#a435ee84182f77f99dcaf548e5e09b37c">uEchoMcastServerMessageListener</a> listener)</td></tr>
-<tr class="separator:a79ea864bea4a4b8e33e912b79068e549"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c79a66860cfd658be5cb0b4205eec21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcast__server_8c.html#a6c79a66860cfd658be5cb0b4205eec21">uecho_mcast_server_setuserdata</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server, void *data)</td></tr>
-<tr class="separator:a6c79a66860cfd658be5cb0b4205eec21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af07545235ad58d7e5753260c77f2dc0e"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcast__server_8c.html#af07545235ad58d7e5753260c77f2dc0e">uecho_mcast_server_getuserdata</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server)</td></tr>
-<tr class="separator:af07545235ad58d7e5753260c77f2dc0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33a6f39bc6d25a6022388368ff97f8dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcast__server_8c.html#a33a6f39bc6d25a6022388368ff97f8dd">uecho_mcast_server_open</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server, const char *bind_addr)</td></tr>
 <tr class="separator:a33a6f39bc6d25a6022388368ff97f8dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16fa55f00a4e8441b93e10b18a9f8201"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcast__server_8c.html#a16fa55f00a4e8441b93e10b18a9f8201">uecho_mcast_server_close</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server)</td></tr>
 <tr class="separator:a16fa55f00a4e8441b93e10b18a9f8201"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ab2714c3af8d54010cf4cf14997f3c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcast__server_8c.html#a9ab2714c3af8d54010cf4cf14997f3c5">uecho_mcast_server_isopened</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server)</td></tr>
 <tr class="separator:a9ab2714c3af8d54010cf4cf14997f3c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afaf2cca9fd56c7079ebb6af42378fe93"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcast__server_8c.html#afaf2cca9fd56c7079ebb6af42378fe93">uecho_mcast_server_performlistener</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
-<tr class="separator:afaf2cca9fd56c7079ebb6af42378fe93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ef1fb1a0a0ca8549d33c80d4eb7a87b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcast__server_8c.html#a4ef1fb1a0a0ca8549d33c80d4eb7a87b">uecho_mcast_server_addobserver</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server, void *obj, <a class="el" href="src_2uecho_2frame_2message_8h.html#a0b20961d49fba6583049ebd47a06052d">uEchoMessageHandler</a> handler)</td></tr>
+<tr class="separator:a4ef1fb1a0a0ca8549d33c80d4eb7a87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7d1676ff91f959fcc5d2b10db9fd814"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcast__server_8c.html#ae7d1676ff91f959fcc5d2b10db9fd814">uecho_mcast_server_action</a> (<a class="el" href="thread_8h.html#abc9bfc27da79c5067e046e8dc84573e5">uEchoThread</a> *thread)</td></tr>
 <tr class="separator:ae7d1676ff91f959fcc5d2b10db9fd814"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeaedaa368c4c0d055d9d5c88b5b2c705"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mcast__server_8c.html#aeaedaa368c4c0d055d9d5c88b5b2c705">uecho_mcast_server_getaddress</a> (<a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *server)</td></tr>
@@ -123,6 +118,40 @@ Functions</h2></td></tr>
 <span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4ef1fb1a0a0ca8549d33c80d4eb7a87b" name="a4ef1fb1a0a0ca8549d33c80d4eb7a87b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ef1fb1a0a0ca8549d33c80d4eb7a87b">&#9670;&nbsp;</a></span>uecho_mcast_server_addobserver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_mcast_server_addobserver </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="src_2uecho_2frame_2message_8h.html#a0b20961d49fba6583049ebd47a06052d">uEchoMessageHandler</a>&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>
@@ -171,24 +200,6 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">const char * uecho_mcast_server_getaddress </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af07545235ad58d7e5753260c77f2dc0e" name="af07545235ad58d7e5753260c77f2dc0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af07545235ad58d7e5753260c77f2dc0e">&#9670;&nbsp;</a></span>uecho_mcast_server_getuserdata()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void * uecho_mcast_server_getuserdata </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
           <td class="paramname"><em>server</em></td><td>)</td>
@@ -281,34 +292,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afaf2cca9fd56c7079ebb6af42378fe93" name="afaf2cca9fd56c7079ebb6af42378fe93"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afaf2cca9fd56c7079ebb6af42378fe93">&#9670;&nbsp;</a></span>uecho_mcast_server_performlistener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_mcast_server_performlistener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
-          <td class="paramname"><em>msg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a2d55568cd864a0638ab0377f830dfb03" name="a2d55568cd864a0638ab0377f830dfb03"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2d55568cd864a0638ab0377f830dfb03">&#9670;&nbsp;</a></span>uecho_mcast_server_post()</h2>
 
@@ -332,62 +315,6 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>msg_len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a79ea864bea4a4b8e33e912b79068e549" name="a79ea864bea4a4b8e33e912b79068e549"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79ea864bea4a4b8e33e912b79068e549">&#9670;&nbsp;</a></span>uecho_mcast_server_setmessagelistener()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_mcast_server_setmessagelistener </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="server_8h.html#a435ee84182f77f99dcaf548e5e09b37c">uEchoMcastServerMessageListener</a>&#160;</td>
-          <td class="paramname"><em>listener</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6c79a66860cfd658be5cb0b4205eec21" name="a6c79a66860cfd658be5cb0b4205eec21"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c79a66860cfd658be5cb0b4205eec21">&#9670;&nbsp;</a></span>uecho_mcast_server_setuserdata()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_mcast_server_setuserdata </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="server_8h.html#af084999ed71eba8331c950261bbecc50">uEchoMcastServer</a> *&#160;</td>
-          <td class="paramname"><em>server</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -440,7 +367,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_508e66744f0a9abc7e902f1f95d57bd2.html">uecho</a></li><li class="navelem"><a class="el" href="dir_b8f49b4c60a398a52602e76f4839b927.html">core</a></li><li class="navelem"><a class="el" href="mcast__server_8c.html">mcast_server.c</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_508e66744f0a9abc7e902f1f95d57bd2.html">uecho</a></li><li class="navelem"><a class="el" href="dir_9a8cb93c7e519aa8948db1eb009a35cb.html">frame</a></li><li class="navelem"><a class="el" href="mcast__server_8c.html">mcast_server.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
