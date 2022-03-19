@@ -33,8 +33,7 @@ uEchoController* uecho_controller_new(void)
   ctrl->option = uEchoOptionNone;
 
   server = uecho_node_getserver(ctrl->node);
-  uecho_server_setuserdata(server, ctrl);
-  uecho_server_setmessagelistener(server, uecho_controller_servermessagelistener);
+  uecho_server_addobserver(server, ctrl, (uEchoMessageHandler)uecho_controller_servermessagelistener);
 
   uecho_controller_setuserdata(ctrl, NULL);
   uecho_controller_setlasttid(ctrl, 0);

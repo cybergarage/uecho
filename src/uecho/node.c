@@ -34,8 +34,7 @@ uEchoNode* uecho_node_new(void)
   node->objects = uecho_objectlist_new();
 
   node->server = uecho_server_new();
-  uecho_server_setuserdata(node->server, node);
-  uecho_server_setmessagelistener(node->server, uecho_node_servermessagelistener);
+  uecho_server_addobserver(node->server, node, (uEchoMessageHandler)uecho_node_servermessagelistener);
 
   node->address = NULL;
   uecho_node_setmessagelistener(node, NULL);
