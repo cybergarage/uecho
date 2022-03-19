@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/frame/observer.h>
+#include <uecho/frame/property.h>
 
 /****************************************
 * uecho_object_property_observerlist_new
