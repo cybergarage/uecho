@@ -16,33 +16,33 @@
 
 uEchoMessageObserverManager* uecho_message_observer_manager_new(void)
 {
-  uEchoMessageObserverManager* obs_mgr;
+  uEchoMessageObserverManager* mgr;
 
-  obs_mgr = (uEchoMessageObserverManager*)malloc(sizeof(uEchoMessageObserverManager));
-  if (!obs_mgr)
+  mgr = (uEchoMessageObserverManager*)malloc(sizeof(uEchoMessageObserverManager));
+  if (!mgr)
     return NULL;
 
-  obs_mgr->observers = uecho_message_observerlist_new();
+  mgr->observers = uecho_message_observerlist_new();
 
-  return obs_mgr;
+  return mgr;
 }
 
 /****************************************
 * uecho_message_observer_manager_delete
 ****************************************/
 
-void uecho_message_observer_manager_delete(uEchoMessageObserverManager* obs_mgr)
+void uecho_message_observer_manager_delete(uEchoMessageObserverManager* mgr)
 {
-  uecho_message_observerlist_delete(obs_mgr->observers);
+  uecho_message_observerlist_delete(mgr->observers);
 
-  free(obs_mgr);
+  free(mgr);
 }
 
 /****************************************
  * uecho_message_observer_manager_setobserver
  ****************************************/
 
-bool uecho_message_observer_manager_addobserver(uEchoMessageObserverManager* obs_mgr, void *obj, uEchoMessageHandler handler)
+bool uecho_message_observer_manager_addobserver(uEchoMessageObserverManager* mgr, void *obj, uEchoMessageHandler handler)
 {
   uEchoMessageObserver* obs;
 
@@ -53,14 +53,35 @@ bool uecho_message_observer_manager_addobserver(uEchoMessageObserverManager* obs
   uecho_message_observer_setobject(obs, obj);
   uecho_message_observer_sethandler(obs, handler);
 
-  return uecho_message_observerlist_add(obs_mgr->observers, obs);
+  return uecho_message_observerlist_add(mgr->observers, obs);
 }
 
 /****************************************
  * uecho_message_observer_manager_getobservers
  ****************************************/
 
-uEchoMessageObserver* uecho_message_observer_manager_getobservers(uEchoMessageObserverManager* obs_mgr)
+uEchoMessageObserver* uecho_message_observer_manager_getobservers(uEchoMessageObserverManager* mgr)
 {
-  return uecho_message_observerlist_gets(obs_mgr->observers);
+  return uecho_message_observerlist_gets(mgr->observers);
+}
+
+/****************************************
+ * uecho_message_observer_manager_perform
+ ****************************************/
+
+bool uecho_message_observer_manager_perform(uEchoMessageObserverManager* mgr, uEchoMessage* msg)
+{
+  uEchoMessageObserver *obs;
+  uEchoMessageHandler handler;
+  void *obj;
+  
+  for (obs = uecho_message_observer_manager_getobservers(mgr); obs; obs = uecho_message_observer_next(obs)) {
+    handler = uecho_message_observer_gethandler(obs);
+    obj = uecho_message_observer_getobjcet(obs);
+    if (!handler || !obj)
+      continue;
+    handler(obj, msg);
+  }
+
+  return true;
 }
