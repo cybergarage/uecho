@@ -10,8 +10,8 @@
 
 #include <uecho/node_internal.h>
 
-#include <uecho/core/observer.h>
-#include <uecho/core/server.h>
+#include <uecho/frame/observer.h>
+#include <uecho/frame/server.h>
 
 /****************************************
  * uecho_node_isselfobjectmessage

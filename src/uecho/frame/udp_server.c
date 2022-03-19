@@ -8,19 +8,18 @@
  *
  ******************************************************************/
 
-#include <uecho/const.h>
-#include <uecho/core/server.h>
+#include <uecho/frame/server.h>
 #include <uecho/util/logs.h>
 
 /****************************************
-* uecho_mcast_server_new
+* uecho_udp_server_new
 ****************************************/
 
-uEchoMcastServer* uecho_mcast_server_new(void)
+uEchoUdpServer* uecho_udp_server_new(void)
 {
-  uEchoMcastServer* server;
+  uEchoUdpServer* server;
 
-  server = (uEchoMcastServer*)malloc(sizeof(uEchoMcastServer));
+  server = (uEchoUdpServer*)malloc(sizeof(uEchoUdpServer));
 
   if (!server)
     return NULL;
@@ -34,16 +33,16 @@ uEchoMcastServer* uecho_mcast_server_new(void)
 }
 
 /****************************************
-* uecho_mcast_server_delete
-****************************************/
+ * uecho_udp_server_delete
+ ****************************************/
 
-bool uecho_mcast_server_delete(uEchoMcastServer* server)
+bool uecho_udp_server_delete(uEchoUdpServer* server)
 {
   if (!server)
     return false;
 
-  uecho_mcast_server_stop(server);
-  uecho_mcast_server_remove(server);
+  uecho_socket_delete(server->socket);
+  uecho_udp_server_remove(server);
 
   free(server);
 
@@ -51,58 +50,64 @@ bool uecho_mcast_server_delete(uEchoMcastServer* server)
 }
 
 /****************************************
- * uecho_mcast_server_setmessagelistener
+ * uecho_udp_server_setmessagelistener
  ****************************************/
 
-void uecho_mcast_server_setmessagelistener(uEchoMcastServer* server, uEchoMcastServerMessageListener listener)
+void uecho_udp_server_setmessagelistener(uEchoUdpServer* server, uEchoUdpServerMessageListener listener)
 {
   server->msg_listener = listener;
 }
 
 /****************************************
- * uecho_mcast_server_setuserdata
+ * uecho_udp_server_setuserdata
  ****************************************/
 
-void uecho_mcast_server_setuserdata(uEchoMcastServer* server, void* data)
+void uecho_udp_server_setuserdata(uEchoUdpServer* server, void* data)
 {
   server->user_data = data;
 }
 
 /****************************************
- * uecho_mcast_server_getuserdata
+ * uecho_udp_server_getuserdata
  ****************************************/
 
-void* uecho_mcast_server_getuserdata(uEchoMcastServer* server)
+void* uecho_udp_server_getuserdata(uEchoUdpServer* server)
 {
   return server->user_data;
 }
 
 /****************************************
- * uecho_mcast_server_open
+ * uecho_udp_server_getaddress
  ****************************************/
 
-bool uecho_mcast_server_open(uEchoMcastServer* server, const char* bind_addr)
+const char * uecho_udp_server_getaddress(uEchoUdpServer* server)
+{
+  if (!server->socket)
+    return "";
+  return uecho_socket_getaddress(server->socket);
+}
+
+/****************************************
+ * uecho_udp_server_open
+ ****************************************/
+
+bool uecho_udp_server_open(uEchoUdpServer* server, const char* bind_addr)
 {
   uEchoSocketOption opt;
 
   if (!server)
     return false;
 
-  uecho_mcast_server_close(server);
+  uecho_udp_server_close(server);
 
   server->socket = uecho_socket_dgram_new();
 
-  uecho_socket_option_setbindinterface(&opt, false);
+  uecho_socket_option_setbindinterface(&opt, true);
   uecho_socket_option_setreuseaddress(&opt, true);
-  uecho_socket_option_setmulticastloop(&opt, true);
+  uecho_socket_option_setmulticastloop(&opt, false);
 
   if (!uecho_socket_bind(server->socket, uEchoUdpPort, bind_addr, &opt)) {
-    uecho_mcast_server_close(server);
-    return false;
-  }
-
-  if (!uecho_socket_joingroup(server->socket, uEchoMulticastAddr, bind_addr)) {
-    uecho_mcast_server_close(server);
+    uecho_udp_server_close(server);
     return false;
   }
 
@@ -110,10 +115,10 @@ bool uecho_mcast_server_open(uEchoMcastServer* server, const char* bind_addr)
 }
 
 /****************************************
- * uecho_mcast_server_close
+ * uecho_udp_server_close
  ****************************************/
 
-bool uecho_mcast_server_close(uEchoMcastServer* server)
+bool uecho_udp_server_close(uEchoUdpServer* server)
 {
   if (!server)
     return false;
@@ -129,10 +134,10 @@ bool uecho_mcast_server_close(uEchoMcastServer* server)
 }
 
 /****************************************
- * uecho_mcast_server_isopened
+ * uecho_udp_server_isopened
  ****************************************/
 
-bool uecho_mcast_server_isopened(uEchoMcastServer* server)
+bool uecho_udp_server_isopened(uEchoUdpServer* server)
 {
   if (!server)
     return false;
@@ -144,10 +149,10 @@ bool uecho_mcast_server_isopened(uEchoMcastServer* server)
 }
 
 /****************************************
- * uecho_mcast_server_performlistener
+ * uecho_udp_server_performlistener
  ****************************************/
 
-bool uecho_mcast_server_performlistener(uEchoMcastServer* server, uEchoMessage* msg)
+bool uecho_udp_server_performlistener(uEchoUdpServer* server, uEchoMessage* msg)
 {
   if (!server)
     return false;
@@ -161,17 +166,17 @@ bool uecho_mcast_server_performlistener(uEchoMcastServer* server, uEchoMessage* 
 }
 
 /****************************************
- * uecho_mcast_server_action
+ * uecho_udp_server_action
  ****************************************/
 
-static void uecho_mcast_server_action(uEchoThread* thread)
+static void uecho_udp_server_action(uEchoThread* thread)
 {
-  uEchoMcastServer* server;
+  uEchoUdpServer* server;
   uEchoDatagramPacket* dgm_pkt;
   ssize_t dgm_pkt_len;
   uEchoMessage* msg;
 
-  server = (uEchoMcastServer*)uecho_thread_getuserdata(thread);
+  server = (uEchoUdpServer*)uecho_thread_getuserdata(thread);
 
   if (!server)
     return;
@@ -196,7 +201,7 @@ static void uecho_mcast_server_action(uEchoThread* thread)
       continue;
 
     if (uecho_message_parsepacket(msg, dgm_pkt)) {
-      uecho_mcast_server_performlistener(server, msg);
+      uecho_udp_server_performlistener(server, msg);
     } else {
       uecho_net_datagram_packet_error(UECHO_LOG_NET_PREFIX_RECV, dgm_pkt);
     }
@@ -206,35 +211,24 @@ static void uecho_mcast_server_action(uEchoThread* thread)
 }
 
 /****************************************
- * uecho_mcast_server_getaddress
+ * uecho_udp_server_start
  ****************************************/
 
-const char * uecho_mcast_server_getaddress(uEchoMcastServer* server)
-{
-  if (!server->socket)
-    return "";
-  return uecho_socket_getaddress(server->socket);
-}
-
-/****************************************
- * uecho_mcast_server_start
- ****************************************/
-
-bool uecho_mcast_server_start(uEchoMcastServer* server)
+bool uecho_udp_server_start(uEchoUdpServer* server)
 {
   if (!server)
     return false;
 
-  uecho_mcast_server_stop(server);
+  uecho_udp_server_stop(server);
 
-  if (!uecho_mcast_server_isopened(server))
+  if (!uecho_udp_server_isopened(server))
     return false;
 
   server->thread = uecho_thread_new();
-  uecho_thread_setaction(server->thread, uecho_mcast_server_action);
+  uecho_thread_setaction(server->thread, uecho_udp_server_action);
   uecho_thread_setuserdata(server->thread, server);
   if (!uecho_thread_start(server->thread)) {
-    uecho_mcast_server_stop(server);
+    uecho_udp_server_stop(server);
     return false;
   }
 
@@ -242,10 +236,10 @@ bool uecho_mcast_server_start(uEchoMcastServer* server)
 }
 
 /****************************************
- * uecho_mcast_server_stop
+ * uecho_udp_server_stop
  ****************************************/
 
-bool uecho_mcast_server_stop(uEchoMcastServer* server)
+bool uecho_udp_server_stop(uEchoUdpServer* server)
 {
   if (!server)
     return false;
@@ -253,7 +247,7 @@ bool uecho_mcast_server_stop(uEchoMcastServer* server)
   if (!server->thread)
     return true;
 
-  uecho_mcast_server_close(server);
+  uecho_udp_server_close(server);
   uecho_thread_stop(server->thread);
   uecho_thread_delete(server->thread);
   server->thread = NULL;
@@ -262,10 +256,10 @@ bool uecho_mcast_server_stop(uEchoMcastServer* server)
 }
 
 /****************************************
- * uecho_mcast_server_isrunning
+ * uecho_udp_server_isrunning
  ****************************************/
 
-bool uecho_mcast_server_isrunning(uEchoMcastServer* server)
+bool uecho_udp_server_isrunning(uEchoUdpServer* server)
 {
   if (!server)
     return false;
@@ -274,23 +268,4 @@ bool uecho_mcast_server_isrunning(uEchoMcastServer* server)
     return false;
 
   return uecho_thread_isrunning(server->thread);
-}
-
-/****************************************
- * uecho_mcast_server_post
- ****************************************/
-
-bool uecho_mcast_server_post(uEchoMcastServer* server, const byte* msg, size_t msg_len)
-{
-  size_t sent_len = 0;
-
-  if (!server)
-    return false;
-
-  if (!server->socket)
-    return false;
-
-  sent_len = uecho_socket_sendto(server->socket, uEchoMulticastAddr, uEchoUdpPort, msg, msg_len);
-
-  return (sent_len == msg_len) ? true : false;
 }

@@ -16,7 +16,7 @@
 #include <uecho/class_internal.h>
 #include <uecho/object_internal.h>
 
-#include <uecho/core/server.h>
+#include <uecho/frame/server.h>
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
 

@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/core/observer.h>
+#include <uecho/frame/observer.h>
 
 /****************************************
 * uecho_obsect_property_observer_new
