@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <uecho/core/observer.h>
+#include <uecho/frame/observer.h>
 
 BOOST_AUTO_TEST_CASE(ObjserverListAdd)
 {

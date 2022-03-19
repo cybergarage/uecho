@@ -11,7 +11,7 @@
 #ifndef _UECHO_SERVER_H_
 #define _UECHO_SERVER_H_
 
-#include <uecho/core/option.h>
+#include <uecho/frame/option.h>
 #include <uecho/net/socket.h>
 #include <uecho/object_internal.h>
 #include <uecho/typedef.h>
