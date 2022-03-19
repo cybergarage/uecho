@@ -8,10 +8,10 @@
  *
  ******************************************************************/
 
-#include <uecho/frame/observer.h>
+#include <uecho/frame/property.h>
 
 /****************************************
-* uecho_obsect_property_observer_new
+* uecho_message_observer_new
 ****************************************/
 
 uEchoObjectPropertyObserver* uecho_object_property_observer_new(void)
@@ -32,7 +32,7 @@ uEchoObjectPropertyObserver* uecho_object_property_observer_new(void)
 }
 
 /****************************************
-* uecho_obsect_property_observer_delete
+* uecho_message_observer_delete
 ****************************************/
 
 void uecho_object_property_observer_delete(uEchoObjectPropertyObserver* obs)
