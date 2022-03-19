@@ -11,9 +11,9 @@
 #ifndef _UECHO_MESSAGE_OBSERVER_H_
 #define _UECHO_MESSAGE_OBSERVER_H_
 
-#include <uecho/object.h>
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
+#include <uecho/message_internal.h>
 
 #ifdef __cplusplus
 extern "C" {
