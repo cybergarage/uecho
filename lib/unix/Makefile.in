@@ -167,11 +167,14 @@ am__objects_1 = ../../src/uecho/libuecho_a-controller.$(OBJEXT) \
 	../../src/uecho/std/libuecho_a-device.$(OBJEXT) \
 	../../src/uecho/std/libuecho_a-device_super_class.$(OBJEXT) \
 	../../src/uecho/frame/libuecho_a-object_property_observer.$(OBJEXT) \
+	../../src/uecho/frame/libuecho_a-message_observer_manager.$(OBJEXT) \
 	../../src/uecho/frame/libuecho_a-mcast_server.$(OBJEXT) \
 	../../src/uecho/frame/libuecho_a-udp_server_list.$(OBJEXT) \
 	../../src/uecho/frame/libuecho_a-udp_server.$(OBJEXT) \
 	../../src/uecho/frame/libuecho_a-server.$(OBJEXT) \
 	../../src/uecho/frame/libuecho_a-mcast_server_list.$(OBJEXT) \
+	../../src/uecho/frame/libuecho_a-message_observer.$(OBJEXT) \
+	../../src/uecho/frame/libuecho_a-message_observer_list.$(OBJEXT) \
 	../../src/uecho/frame/libuecho_a-object_property_observer_list.$(OBJEXT) \
 	../../src/uecho/frame/libuecho_a-object_property_observer_manager.$(OBJEXT) \
 	../../src/uecho/libuecho_a-class_list.$(OBJEXT) \
@@ -219,6 +222,9 @@ am__depfiles_remade = ../../src/uecho/$(DEPDIR)/libuecho_a-class.Po \
 	../../src/uecho/$(DEPDIR)/libuecho_a-property_list.Po \
 	../../src/uecho/frame/$(DEPDIR)/libuecho_a-mcast_server.Po \
 	../../src/uecho/frame/$(DEPDIR)/libuecho_a-mcast_server_list.Po \
+	../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer.Po \
+	../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_list.Po \
+	../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_manager.Po \
 	../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer.Po \
 	../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer_list.Po \
 	../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer_manager.Po \
@@ -432,11 +438,14 @@ uecho_sources = \
 	../../src/uecho/std/device.c \
 	../../src/uecho/std/device_super_class.c \
 	../../src/uecho/frame/object_property_observer.c \
+	../../src/uecho/frame/message_observer_manager.c \
 	../../src/uecho/frame/mcast_server.c \
 	../../src/uecho/frame/udp_server_list.c \
 	../../src/uecho/frame/udp_server.c \
 	../../src/uecho/frame/server.c \
 	../../src/uecho/frame/mcast_server_list.c \
+	../../src/uecho/frame/message_observer.c \
+	../../src/uecho/frame/message_observer_list.c \
 	../../src/uecho/frame/object_property_observer_list.c \
 	../../src/uecho/frame/object_property_observer_manager.c \
 	../../src/uecho/class_list.c \
@@ -648,6 +657,9 @@ clean-libLIBRARIES:
 ../../src/uecho/frame/libuecho_a-object_property_observer.$(OBJEXT):  \
 	../../src/uecho/frame/$(am__dirstamp) \
 	../../src/uecho/frame/$(DEPDIR)/$(am__dirstamp)
+../../src/uecho/frame/libuecho_a-message_observer_manager.$(OBJEXT):  \
+	../../src/uecho/frame/$(am__dirstamp) \
+	../../src/uecho/frame/$(DEPDIR)/$(am__dirstamp)
 ../../src/uecho/frame/libuecho_a-mcast_server.$(OBJEXT):  \
 	../../src/uecho/frame/$(am__dirstamp) \
 	../../src/uecho/frame/$(DEPDIR)/$(am__dirstamp)
@@ -661,6 +673,12 @@ clean-libLIBRARIES:
 	../../src/uecho/frame/$(am__dirstamp) \
 	../../src/uecho/frame/$(DEPDIR)/$(am__dirstamp)
 ../../src/uecho/frame/libuecho_a-mcast_server_list.$(OBJEXT):  \
+	../../src/uecho/frame/$(am__dirstamp) \
+	../../src/uecho/frame/$(DEPDIR)/$(am__dirstamp)
+../../src/uecho/frame/libuecho_a-message_observer.$(OBJEXT):  \
+	../../src/uecho/frame/$(am__dirstamp) \
+	../../src/uecho/frame/$(DEPDIR)/$(am__dirstamp)
+../../src/uecho/frame/libuecho_a-message_observer_list.$(OBJEXT):  \
 	../../src/uecho/frame/$(am__dirstamp) \
 	../../src/uecho/frame/$(DEPDIR)/$(am__dirstamp)
 ../../src/uecho/frame/libuecho_a-object_property_observer_list.$(OBJEXT):  \
@@ -734,6 +752,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/$(DEPDIR)/libuecho_a-property_list.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/frame/$(DEPDIR)/libuecho_a-mcast_server.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/frame/$(DEPDIR)/libuecho_a-mcast_server_list.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_list.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_manager.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer_list.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer_manager.Po@am__quote@ # am--include-marker
@@ -1206,6 +1227,20 @@ am--depfiles: $(am__depfiles_remade)
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -c -o ../../src/uecho/frame/libuecho_a-object_property_observer.obj `if test -f '../../src/uecho/frame/object_property_observer.c'; then $(CYGPATH_W) '../../src/uecho/frame/object_property_observer.c'; else $(CYGPATH_W) '$(srcdir)/../../src/uecho/frame/object_property_observer.c'; fi`
 
+../../src/uecho/frame/libuecho_a-message_observer_manager.o: ../../src/uecho/frame/message_observer_manager.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -MT ../../src/uecho/frame/libuecho_a-message_observer_manager.o -MD -MP -MF ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_manager.Tpo -c -o ../../src/uecho/frame/libuecho_a-message_observer_manager.o `test -f '../../src/uecho/frame/message_observer_manager.c' || echo '$(srcdir)/'`../../src/uecho/frame/message_observer_manager.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_manager.Tpo ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_manager.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/uecho/frame/message_observer_manager.c' object='../../src/uecho/frame/libuecho_a-message_observer_manager.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -c -o ../../src/uecho/frame/libuecho_a-message_observer_manager.o `test -f '../../src/uecho/frame/message_observer_manager.c' || echo '$(srcdir)/'`../../src/uecho/frame/message_observer_manager.c
+
+../../src/uecho/frame/libuecho_a-message_observer_manager.obj: ../../src/uecho/frame/message_observer_manager.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -MT ../../src/uecho/frame/libuecho_a-message_observer_manager.obj -MD -MP -MF ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_manager.Tpo -c -o ../../src/uecho/frame/libuecho_a-message_observer_manager.obj `if test -f '../../src/uecho/frame/message_observer_manager.c'; then $(CYGPATH_W) '../../src/uecho/frame/message_observer_manager.c'; else $(CYGPATH_W) '$(srcdir)/../../src/uecho/frame/message_observer_manager.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_manager.Tpo ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_manager.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/uecho/frame/message_observer_manager.c' object='../../src/uecho/frame/libuecho_a-message_observer_manager.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -c -o ../../src/uecho/frame/libuecho_a-message_observer_manager.obj `if test -f '../../src/uecho/frame/message_observer_manager.c'; then $(CYGPATH_W) '../../src/uecho/frame/message_observer_manager.c'; else $(CYGPATH_W) '$(srcdir)/../../src/uecho/frame/message_observer_manager.c'; fi`
+
 ../../src/uecho/frame/libuecho_a-mcast_server.o: ../../src/uecho/frame/mcast_server.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -MT ../../src/uecho/frame/libuecho_a-mcast_server.o -MD -MP -MF ../../src/uecho/frame/$(DEPDIR)/libuecho_a-mcast_server.Tpo -c -o ../../src/uecho/frame/libuecho_a-mcast_server.o `test -f '../../src/uecho/frame/mcast_server.c' || echo '$(srcdir)/'`../../src/uecho/frame/mcast_server.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/uecho/frame/$(DEPDIR)/libuecho_a-mcast_server.Tpo ../../src/uecho/frame/$(DEPDIR)/libuecho_a-mcast_server.Po
@@ -1275,6 +1310,34 @@ am--depfiles: $(am__depfiles_remade)
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/uecho/frame/mcast_server_list.c' object='../../src/uecho/frame/libuecho_a-mcast_server_list.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -c -o ../../src/uecho/frame/libuecho_a-mcast_server_list.obj `if test -f '../../src/uecho/frame/mcast_server_list.c'; then $(CYGPATH_W) '../../src/uecho/frame/mcast_server_list.c'; else $(CYGPATH_W) '$(srcdir)/../../src/uecho/frame/mcast_server_list.c'; fi`
+
+../../src/uecho/frame/libuecho_a-message_observer.o: ../../src/uecho/frame/message_observer.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -MT ../../src/uecho/frame/libuecho_a-message_observer.o -MD -MP -MF ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer.Tpo -c -o ../../src/uecho/frame/libuecho_a-message_observer.o `test -f '../../src/uecho/frame/message_observer.c' || echo '$(srcdir)/'`../../src/uecho/frame/message_observer.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer.Tpo ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/uecho/frame/message_observer.c' object='../../src/uecho/frame/libuecho_a-message_observer.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -c -o ../../src/uecho/frame/libuecho_a-message_observer.o `test -f '../../src/uecho/frame/message_observer.c' || echo '$(srcdir)/'`../../src/uecho/frame/message_observer.c
+
+../../src/uecho/frame/libuecho_a-message_observer.obj: ../../src/uecho/frame/message_observer.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -MT ../../src/uecho/frame/libuecho_a-message_observer.obj -MD -MP -MF ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer.Tpo -c -o ../../src/uecho/frame/libuecho_a-message_observer.obj `if test -f '../../src/uecho/frame/message_observer.c'; then $(CYGPATH_W) '../../src/uecho/frame/message_observer.c'; else $(CYGPATH_W) '$(srcdir)/../../src/uecho/frame/message_observer.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer.Tpo ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/uecho/frame/message_observer.c' object='../../src/uecho/frame/libuecho_a-message_observer.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -c -o ../../src/uecho/frame/libuecho_a-message_observer.obj `if test -f '../../src/uecho/frame/message_observer.c'; then $(CYGPATH_W) '../../src/uecho/frame/message_observer.c'; else $(CYGPATH_W) '$(srcdir)/../../src/uecho/frame/message_observer.c'; fi`
+
+../../src/uecho/frame/libuecho_a-message_observer_list.o: ../../src/uecho/frame/message_observer_list.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -MT ../../src/uecho/frame/libuecho_a-message_observer_list.o -MD -MP -MF ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_list.Tpo -c -o ../../src/uecho/frame/libuecho_a-message_observer_list.o `test -f '../../src/uecho/frame/message_observer_list.c' || echo '$(srcdir)/'`../../src/uecho/frame/message_observer_list.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_list.Tpo ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_list.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/uecho/frame/message_observer_list.c' object='../../src/uecho/frame/libuecho_a-message_observer_list.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -c -o ../../src/uecho/frame/libuecho_a-message_observer_list.o `test -f '../../src/uecho/frame/message_observer_list.c' || echo '$(srcdir)/'`../../src/uecho/frame/message_observer_list.c
+
+../../src/uecho/frame/libuecho_a-message_observer_list.obj: ../../src/uecho/frame/message_observer_list.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -MT ../../src/uecho/frame/libuecho_a-message_observer_list.obj -MD -MP -MF ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_list.Tpo -c -o ../../src/uecho/frame/libuecho_a-message_observer_list.obj `if test -f '../../src/uecho/frame/message_observer_list.c'; then $(CYGPATH_W) '../../src/uecho/frame/message_observer_list.c'; else $(CYGPATH_W) '$(srcdir)/../../src/uecho/frame/message_observer_list.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_list.Tpo ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_list.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/uecho/frame/message_observer_list.c' object='../../src/uecho/frame/libuecho_a-message_observer_list.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -c -o ../../src/uecho/frame/libuecho_a-message_observer_list.obj `if test -f '../../src/uecho/frame/message_observer_list.c'; then $(CYGPATH_W) '../../src/uecho/frame/message_observer_list.c'; else $(CYGPATH_W) '$(srcdir)/../../src/uecho/frame/message_observer_list.c'; fi`
 
 ../../src/uecho/frame/libuecho_a-object_property_observer_list.o: ../../src/uecho/frame/object_property_observer_list.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -MT ../../src/uecho/frame/libuecho_a-object_property_observer_list.o -MD -MP -MF ../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer_list.Tpo -c -o ../../src/uecho/frame/libuecho_a-object_property_observer_list.o `test -f '../../src/uecho/frame/object_property_observer_list.c' || echo '$(srcdir)/'`../../src/uecho/frame/object_property_observer_list.c
@@ -1622,6 +1685,9 @@ distclean: distclean-am
 	-rm -f ../../src/uecho/$(DEPDIR)/libuecho_a-property_list.Po
 	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-mcast_server.Po
 	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-mcast_server_list.Po
+	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer.Po
+	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_list.Po
+	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_manager.Po
 	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer.Po
 	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer_list.Po
 	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer_manager.Po
@@ -1714,6 +1780,9 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ../../src/uecho/$(DEPDIR)/libuecho_a-property_list.Po
 	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-mcast_server.Po
 	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-mcast_server_list.Po
+	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer.Po
+	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_list.Po
+	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-message_observer_manager.Po
 	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer.Po
 	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer_list.Po
 	-rm -f ../../src/uecho/frame/$(DEPDIR)/libuecho_a-object_property_observer_manager.Po

@@ -46,11 +46,14 @@ uecho_sources = \
 	../../src/uecho/std/device.c \
 	../../src/uecho/std/device_super_class.c \
 	../../src/uecho/frame/object_property_observer.c \
+	../../src/uecho/frame/message_observer_manager.c \
 	../../src/uecho/frame/mcast_server.c \
 	../../src/uecho/frame/udp_server_list.c \
 	../../src/uecho/frame/udp_server.c \
 	../../src/uecho/frame/server.c \
 	../../src/uecho/frame/mcast_server_list.c \
+	../../src/uecho/frame/message_observer.c \
+	../../src/uecho/frame/message_observer_list.c \
 	../../src/uecho/frame/object_property_observer_list.c \
 	../../src/uecho/frame/object_property_observer_manager.c \
 	../../src/uecho/class_list.c \
