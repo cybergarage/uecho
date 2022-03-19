@@ -93,10 +93,9 @@ int uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, byt
   return accepted_request_cnt;
 }
 
-void uecho_node_servermessagelistener(uEchoServer* server, uEchoMessage* req_msg)
+void uecho_node_servermessagelistener(uEchoNode* node, uEchoMessage* req_msg)
 {
   uEchoEsv req_esv, res_esv;
-  uEchoNode* node;
   uEchoObjectCode msg_dst_obj_code;
   uEchoObject* msg_dest_obj;
   int all_request_cnt, accepted_request_cnt;
@@ -106,16 +105,8 @@ void uecho_node_servermessagelistener(uEchoServer* server, uEchoMessage* req_msg
   size_t res_msg_len;
   uEchoNode* parent_node;
 
-  if (!server || !req_msg)
+  if (!node || !req_msg)
     return;
-
-  node = (uEchoNode*)uecho_server_getuserdata(server);
-  if (!node)
-    return;
-
-  if (node->msg_listener) {
-    node->msg_listener(node, req_msg);
-  }
 
   // 4.2.2 Basic Sequences for Object Control in General
   // (A) | Processing when the controlled object does not exist

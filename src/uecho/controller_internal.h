@@ -11,11 +11,11 @@
 #ifndef _UECHO_CONTROLLER_INTERNAL_H_
 #define _UECHO_CONTROLLER_INTERNAL_H_
 
-#include <uecho/node_internal.h>
-
 #include <uecho/const.h>
 #include <uecho/typedef.h>
 #include <uecho/util/mutex.h>
+#include <uecho/node_internal.h>
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -88,7 +88,7 @@ bool uecho_controller_ispostresponsemessage(uEchoController* ctrl, uEchoMessage*
 bool uecho_controller_ispostresponsereceived(uEchoController* ctrl);
 bool uecho_controller_ispostresponsewaiting(uEchoController* ctrl);
 
-void uecho_controller_servermessagelistener(uEchoServer* server, uEchoMessage* msg);
+void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage* msg);
 
 #ifdef __cplusplus
 }

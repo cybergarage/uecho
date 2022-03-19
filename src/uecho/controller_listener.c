@@ -56,10 +56,8 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
 
   prop_data = uecho_property_getdata(prop);
 
-  printf("%s\n", msg_addr);
   for (idx = 1; (idx + 2) < prop_size; idx += 3) {
     obj_code = uecho_byte2integer((prop_data + idx), 3);
-    printf("%X\n", obj_code);
     uecho_node_setobject(node, obj_code);
   }
 }
@@ -144,15 +142,9 @@ void uecho_controller_handlerequestmessage(uEchoController* ctrl, uEchoMessage* 
 * uecho_controller_servermessagelistener
 ****************************************/
 
-void uecho_controller_servermessagelistener(uEchoServer* server, uEchoMessage* msg)
+void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage* msg)
 {
-  uEchoController* ctrl;
-
-  if (!server || !msg)
-    return;
-
-  ctrl = (uEchoController*)uecho_server_getuserdata(server);
-  if (!ctrl)
+  if (!ctrl || !msg)
     return;
 
   if (!uecho_node_hasobjectbycode(ctrl->node, uecho_message_getdestinationobjectcode(msg))) {

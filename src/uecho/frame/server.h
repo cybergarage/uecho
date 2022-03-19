@@ -41,11 +41,8 @@ typedef struct UEchoUdpServer {
 
   uEchoSocket* socket;
   uEchoThread* thread;
-  void (*msg_listener)(struct UEchoUdpServer*, uEchoMessage*); /* uEchoUdpServerMessageListener */
-  void* user_data;
+  uEchoMessageObserverManager* msg_mgr;
 } uEchoUdpServer, uEchoUdpServerList;
-
-typedef void (*uEchoUdpServerMessageListener)(uEchoUdpServer*, uEchoMessage*);
 
 // Multicast Server
 
@@ -54,23 +51,17 @@ typedef struct UEchoMcastServer {
 
   uEchoSocket* socket;
   uEchoThread* thread;
-  void (*msg_listener)(struct UEchoMcastServer*, uEchoMessage*); /* uEchoMcastServerMessageListener */
-  void* user_data;
+  uEchoMessageObserverManager* msg_mgr;
 } uEchoMcastServer, uEchoMcastServerList;
-
-typedef void (*uEchoMcastServerMessageListener)(uEchoMcastServer*, uEchoMessage*);
 
 // Server
 
 typedef struct UEchoServer {
   uEchoUdpServerList* udp_servers;
   uEchoMcastServerList* mcast_servers;
-  void (*msg_listener)(struct UEchoServer*, uEchoMessage*); /* uEchoServerMessageListener */
-  void* user_data;
+  uEchoMessageObserverManager* msg_mgr;
   uEchoOption option;
 } uEchoServer;
-
-typedef void (*uEchoServerMessageListener)(uEchoServer*, uEchoMessage*);
 
 /****************************************
  * Function
@@ -80,12 +71,6 @@ typedef void (*uEchoServerMessageListener)(uEchoServer*, uEchoMessage*);
 
 uEchoServer* uecho_server_new(void);
 bool uecho_server_delete(uEchoServer* server);
-
-void uecho_server_setmessagelistener(uEchoServer* server, uEchoServerMessageListener listener);
-void uecho_server_setuserdata(uEchoServer* server, void* data);
-void* uecho_server_getuserdata(uEchoServer* server);
-
-bool uecho_server_performlistener(uEchoServer* server, uEchoMessage* msg);
 
 bool uecho_server_start(uEchoServer* server);
 bool uecho_server_stop(uEchoServer* server);
@@ -102,6 +87,8 @@ bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg,
 
 bool uecho_server_isboundaddress(uEchoServer* server, const char* addr);
 
+bool uecho_server_addobserver(uEchoServer* server, void *obj, uEchoMessageHandler handler);
+
 // UDP Server
 
 uEchoUdpServer* uecho_udp_server_new(void);
@@ -111,12 +98,6 @@ bool uecho_udp_server_delete(uEchoUdpServer* server);
 
 #define uecho_udp_server_next(server) (uEchoUdpServer*)uecho_list_next((uEchoList*)server)
 #define uecho_udp_server_remove(server) uecho_list_remove((uEchoList*)server)
-
-void uecho_udp_server_setmessagelistener(uEchoUdpServer* server, uEchoUdpServerMessageListener listener);
-void uecho_udp_server_setuserdata(uEchoUdpServer* server, void* data);
-void* uecho_udp_server_getuserdata(uEchoUdpServer* server);
-
-bool uecho_udp_server_performlistener(uEchoUdpServer* server, uEchoMessage* msg);
 
 bool uecho_udp_server_open(uEchoUdpServer* server, const char* bind_addr);
 bool uecho_udp_server_close(uEchoUdpServer* server);
@@ -128,6 +109,8 @@ bool uecho_udp_server_start(uEchoUdpServer* server);
 bool uecho_udp_server_stop(uEchoUdpServer* server);
 bool uecho_udp_server_isrunning(uEchoUdpServer* server);
 
+bool uecho_udp_server_addobserver(uEchoUdpServer* server, void *obj, uEchoMessageHandler handler);
+
 // Multicast Server
 
 uEchoMcastServer* uecho_mcast_server_new(void);
@@ -137,12 +120,6 @@ bool uecho_mcast_server_delete(uEchoMcastServer* server);
 
 #define uecho_mcast_server_next(server) (uEchoMcastServer*)uecho_list_next((uEchoList*)server)
 #define uecho_mcast_server_remove(server) uecho_list_remove((uEchoList*)server)
-
-void uecho_mcast_server_setmessagelistener(uEchoMcastServer* server, uEchoMcastServerMessageListener listener);
-void uecho_mcast_server_setuserdata(uEchoMcastServer* server, void* data);
-void* uecho_mcast_server_getuserdata(uEchoMcastServer* server);
-
-bool uecho_mcast_server_performlistener(uEchoMcastServer* server, uEchoMessage* msg);
 
 bool uecho_mcast_server_open(uEchoMcastServer* server, const char* bind_addr);
 bool uecho_mcast_server_close(uEchoMcastServer* server);
@@ -156,12 +133,7 @@ bool uecho_mcast_server_isrunning(uEchoMcastServer* server);
 
 bool uecho_mcast_server_post(uEchoMcastServer* server, const byte* msg, size_t msg_len);
 
-/****************************************
- * Listener
- ****************************************/
-
-void uecho_udp_server_msglistener(uEchoUdpServer* server, uEchoMessage* msg);
-void uecho_mcast_server_msglistener(uEchoMcastServer* server, uEchoMessage* msg);
+bool uecho_mcast_server_addobserver(uEchoMcastServer* server, void *obj, uEchoMessageHandler handler);
 
 /****************************************
  * Function (ServerList)
@@ -176,8 +148,6 @@ bool uecho_udp_serverlist_close(uEchoUdpServerList* servers);
 bool uecho_udp_serverlist_start(uEchoUdpServerList* servers);
 bool uecho_udp_serverlist_stop(uEchoUdpServerList* servers);
 bool uecho_udp_serverlist_isrunning(uEchoUdpServerList* servers);
-void uecho_udp_serverlist_setmessagelistener(uEchoUdpServerList* servers, uEchoUdpServerMessageListener listener);
-void uecho_udp_serverlist_setuserdata(uEchoUdpServerList* servers, void* data);
 bool uecho_udp_serverlist_post(uEchoMcastServerList* servers, char* addr);
 bool uecho_udp_serverlist_isboundaddress(uEchoUdpServerList* servers, const char* addr);
 
@@ -195,8 +165,6 @@ bool uecho_mcast_serverlist_close(uEchoMcastServerList* servers);
 bool uecho_mcast_serverlist_start(uEchoMcastServerList* servers);
 bool uecho_mcast_serverlist_stop(uEchoMcastServerList* servers);
 bool uecho_mcast_serverlist_isrunning(uEchoMcastServerList* servers);
-void uecho_mcast_serverlist_setmessagelistener(uEchoMcastServerList* servers, uEchoMcastServerMessageListener listener);
-void uecho_mcast_serverlist_setuserdata(uEchoMcastServerList* servers, void* data);
 bool uecho_mcast_serverlist_post(uEchoMcastServerList* servers, const byte* msg, size_t msg_len);
 bool uecho_mcast_serverlist_isboundaddress(uEchoMcastServerList* servers, const char* addr);
 
