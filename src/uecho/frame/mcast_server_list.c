@@ -42,32 +42,6 @@ void uecho_mcast_serverlist_delete(uEchoMcastServerList* servers)
 }
 
 /****************************************
- * uecho_mcast_serverlist_setmessagelistener
- ****************************************/
-
-void uecho_mcast_serverlist_setmessagelistener(uEchoMcastServerList* servers, uEchoMcastServerMessageListener listener)
-{
-  uEchoMcastServer* server;
-
-  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
-    uecho_mcast_server_setmessagelistener(server, listener);
-  }
-}
-
-/****************************************
- * uecho_mcast_serverlist_setuserdata
- ****************************************/
-
-void uecho_mcast_serverlist_setuserdata(uEchoMcastServerList* servers, void* data)
-{
-  uEchoMcastServer* server;
-
-  for (server = uecho_mcast_serverlist_gets(servers); server; server = uecho_mcast_server_next(server)) {
-    uecho_mcast_server_setuserdata(server, data);
-  }
-}
-
-/****************************************
  * uecho_mcast_serverlist_open
  ****************************************/
 
