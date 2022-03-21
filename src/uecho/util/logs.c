@@ -47,12 +47,12 @@ void uecho_net_socket_log(int severity, const char *prefix, const char* from_add
 
 void uecho_net_socket_debug(const char*prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len)
 {
-  return uecho_net_socket_log(LOG_DEBUG, prefix, from_addr,to_addr, pkt_bytes, pkt_len);
+  return uecho_net_socket_log(UECHO_LOG_DEBUG, prefix, from_addr,to_addr, pkt_bytes, pkt_len);
 }
 
 void uecho_net_socket_error(const char*prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len)
 {
-  return uecho_net_socket_log(LOG_ERROR, prefix, from_addr,to_addr, pkt_bytes, pkt_len);
+  return uecho_net_socket_log(UECHO_LOG_ERROR, prefix, from_addr,to_addr, pkt_bytes, pkt_len);
 }
 
 /****************************************
@@ -95,7 +95,7 @@ void uecho_message_error(const char*prefix, uEchoMessage* msg)
     return;
 
   return uecho_net_socket_log(
-      LOG_ERROR,
+      UECHO_LOG_ERROR,
       prefix,
       uecho_message_getsourceaddress(msg),
       uecho_message_getdestinationaddress(msg),

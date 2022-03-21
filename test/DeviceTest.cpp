@@ -10,9 +10,10 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "TestDevice.h"
 #include <uecho/controller_internal.h>
 #include <uecho/device.h>
+
+#include "TestDevice.h"
 
 BOOST_AUTO_TEST_CASE(DeviceSuperClassMandatoryProperties)
 {
