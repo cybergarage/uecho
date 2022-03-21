@@ -22,18 +22,12 @@
 extern "C" {
 #endif
 
-
 #define MAX_LOG_BUF 2048
 
-#define LOG_ERROR 1
-#define LOG_WARNING 2
-#define LOG_INFO 4
-#define LOG_DEBUG 8
-
-#define LOG_ALL (LOG_ERROR | LOG_WARNING | LOG_INFO | LOG_DEBUG)
-
-void uecho_log_output(int severity, const char* file, int line_n, const char* function, const char* format, ...);
-
+#define LOG_ERROR_S "ERROR"
+#define LOG_WARNING_S "WARN"
+#define LOG_INFO_S "INFO"
+#define LOG_DEBUG_S "DEBUG"
 
 #ifdef __cplusplus
 } /* extern "C" */
