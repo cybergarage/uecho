@@ -14,7 +14,7 @@
 #include <string.h>
 #include <time.h>
 
-#include <uecho/util/log.h>
+#include <uecho/util/log_internal.h>
 #include <uecho/util/mutex.h>
 
 #if defined(WIN32)
