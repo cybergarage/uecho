@@ -1,10 +1,10 @@
 ![logo](img/logo.png)
 
-# Overview of uEcho Device
+# Overview of The uEcho Device
 
 ## Making Devices
 
-uEcho supports your original standard devices of [ECHONET Lite][enet] specification easily. This document explains to create your original  [ECHONET Lite][enet] device step by step.
+The `uecho` supports your original standard devices of [ECHONET Lite][enet] specification easily. This document explains to create your original  [ECHONET Lite][enet] device step by step.
 
 ## Creating Devices
 
@@ -41,31 +41,33 @@ uecho_object_setpropertydata(obj, 0xXX, ....., ....);
 uecho_node_addobject(node, obj);
 ```
 
-### 3. Setting Observers
+### 3. Setting 
 
-To implement the device, you have only to handle write requests from other nodes because uEcho handles other standard read and notification requests automatically. To handle the write requests, use `uecho_object_setpropertywriterequesthandler()` as the following:
+To implement the device, you have only to handle write requests from other nodes because The `uecho` handles other standard read and notification requests automatically. To handle the write requests, use `uecho_object_setpropertywriterequesthandler()` as the following:
 
 ```
-void object_propertywriterequestlistener(uEchoObject *obj, uEchoEsv esv, uEchoProperty *prop)
+bool object_propertywriterequesthandler(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte *edt)
 {
-  size_t dataSize;
-  byte *data;
+  if ((pdc != 1) || !edt) {
+　  ....
+    return false;
+  }
 
-  dataSize = uecho_property_getdatasize(prop);
-  data = uecho_property_getdata(prop);
-
+  if (!uecho_property_setdata(prop, edt, pdc))
+    return false;
   ....
+  return true;
 }
 ....
 {
   uEchoObject *obj;
   byte prop_code;
   ....
-  uecho_object_setpropertywriterequesthandler(obj, prop_code, object_propertywriterequestlistener)  
+  uecho_object_setpropertywriterequesthandler(obj, prop_code, object_propertywriterequesthandler)  
 }
 ```
 
-`uecho_object_setpropertywriterequesthandler()` sets the handler for all write request ESV types, Write (0x60) , Write Response Required (0x61) and Write & read Request (0x6E). To set handlers for each ESV, use `uecho_object_setpropertyrequeslistener()`.
+The `uecho_object_setpropertywriterequesthandler()` sets the handler for all write request types, Write (0x60) , Write Response Required (0x61) and Write & read Request (0x6E). To set handlers for each (ECHONET Lite Service) of [ECHONET Lite][enet], use `uecho_object_setpropertyrequeslistener()`, and The `uecho_object_setpropertywriterequesthandler()` is a sugar function of the `uecho_object_setpropertyrequeslistener()`.
 
 ### 4. Start Node
 
@@ -79,7 +81,7 @@ uecho_node_start(node);
 
 ## Next Steps
 
-Let's check the following documentation to know the device functions of uEcho in more detail.
+Let's check the following documentation to know the device functions of the `uecho` in more detail.
 
 - [uEcho Examples](./examples.md)
 - [Inside of uEcho Device](./device_inside.md)
