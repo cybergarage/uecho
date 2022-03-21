@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <uecho/util/log.h>
+#include <uecho/util/log_internal.h>
 #include <uecho/util/logs.h>
 
 /****************************************
