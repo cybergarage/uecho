@@ -18,7 +18,7 @@ The `uecho` updates the node profile class objects automatically when the childr
 
 ## Device Object Super Class
 
-[ECHONETLite][enet] device node must have some mandatory properties [\[2\]][enet-spec]. The `uecho_device_new()` addes the following mandatory properties into the device object as default, and the developer should update the properties according to the device status.
+[ECHONETLite][enet] device node must have some mandatory properties [\[2\]][enet-spec]. The `uecho_device_new()` addes the following mandatory properties into the device object as default, and the developer should update the properties according to the device status.
 
 | EPC | Property name | Default value |
 |---|---|---|
@@ -48,7 +48,7 @@ After a node is received a message from other nodes, the node's listeners are ca
 
 ![Node Observers](img/node_msg_handler.png)
 
-The developer can handle all request messages using the node message listener, and they can handle only valid messages using the object and property message listeners.
+The developer can handle all request messages using the node message listener, and they can handle only valid messages using the object and property message listeners.
 
 ### Node Message Listener
 
