@@ -36,19 +36,41 @@ The `uecho` add the following mandatory properties too. However, the developer d
 | 0x9E | Set property map  |
 | 0x9F | Get property map |
 
-## Device Message Listener and Handler
+## Device Message Handler and Listener
 
-Basically, the `uecho` handles all messages from other nodes automatically. However, developer can set some user listeners into the node, objects and properties to handle the messages from other nodes.
-
-Using the user listeners, the developer can handle the write requests and update the internal status. To set the listeners, use `uecho_node_setmessagelistener()`, `uecho_object_setmessagelistener()` or `uecho_object_setpropertyrequesthandler()`.
-
-### Message Listener Sequences
-
-After a node is received a message from other nodes, the node's listeners are called as the following sequences:
+The `uecho` handles all request messages from other nodes automatically, the developer need only control request message permissions from other nodes and controllers to the target object properties using the object property handlers of the 'uecho'. However, the developer can set some request message listeners into the node and objects to listen the raw messages of [ECHONET Lite][enet] too. The following figure shows the message handling sequence of 'uecho'.
 
 ![Node Observers](img/node_msg_handler.png)
 
-The developer can handle all request messages using the node message listener, and they can handle only valid messages using the object and property message listeners.
+The request message listeners of the node and object can listen all request messages, but the object property handlers receives only valid request messages.
+
+### Property Message Handler
+
+The `uecho_object_setpropertyrequesthandler()` can set the following permission handler to an object property to handle valid request messages from other nodes. 
+
+```
+typedef bool (*uEchoPropertyRequestHandler)(uEchoObject*, uEchoProperty*, uEchoEsv, size_t, byte *);
+```
+
+The developer handles the request messages from other nodes. The developer should return a true if the request messages is valid, otherwise false. In addtiation, the developer should update the target property data by the passed property data when the write request message is valid. The following example shows to check a write request message and set the valid property data to the target property.
+
+```
+bool object_property_handler(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte *edt)
+{
+  if (pdc != 1)
+    return false;
+  if (!uecho_property_setdata(prop, edt, pdc))
+    return false;
+  return true;
+}
+```
+
+The `uecho_object_setpropertyrequesthandler()` sets the permission handlers each ESV (ECHONET Lite Service) of [ECHONET Lite][enet]. Terefore `uecho` offers the following sugar fuctions to set the  permission handlers more easily for the read and write request messages.
+
+- uecho_object_setpropertyreadrequesthandler()
+- uecho_object_setpropertywriterequesthandler()
+
+The `uecho` handles the read and notification request messages automatically. Threfore, the developer can create a device of [ECHONET Lite][enet] only to handle write message requests using the `uecho_object_setpropertywriterequesthandler()`.
 
 ### Node Message Listener
 
@@ -60,20 +82,10 @@ typedef void (*uEchoNodeMessageListener)(uEchoNode*, uEchoMessage*);
 
 ### Object Message Listener
 
-The `uecho` verifies the messages form other nodes using the objects and properties information of the node, and returns an error response when the message is invalid automatically. 
-
 The `uecho_object_setmessagelistener()` can set the following listener to get only valid messages for the object from other nodes.
 
 ```
 typedef void (*uEchoObjectMessageListener)(uEchoObject*, uEchoMessage*);
-```
-
-### Property Message Handler
-
-The `uecho_object_setpropertyrequesthandler()` can set the following listener to get only valid request message for the object property from other nodes.
-
-```
-typedef bool (*uEchoPropertyRequestHandler)(uEchoObject*, uEchoEsv, uEchoProperty*);
 ```
 
 ## Supported Basic Sequences
