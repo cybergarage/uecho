@@ -85,7 +85,6 @@ void uechopost_controlpoint_listener(uEchoController* ctrl, uEchoMessage* msg)
 int main(int argc, char* argv[])
 {
   bool verbose_mode;
-  bool nobind_mode;
   uEchoController* ctrl;
   uEchoNode* dst_node;
   char* dst_node_addr;
@@ -105,15 +104,11 @@ int main(int argc, char* argv[])
   // Parse options
 
   verbose_mode = false;
-  nobind_mode = false;
 
-  while ((c = getopt(argc, argv, "vnh")) != -1) {
+  while ((c = getopt(argc, argv, "vh")) != -1) {
     switch (c) {
     case 'v': {
       verbose_mode = true;
-    } break;
-    case 'n': {
-      nobind_mode = true;
     } break;
     case 'h': {
       usage();
@@ -142,10 +137,6 @@ int main(int argc, char* argv[])
 
   if (verbose_mode) {
     uecho_controller_setmessagelistener(ctrl, uechopost_controlpoint_listener);
-  }
-
-  if (nobind_mode) {
-    uecho_controller_disableudpserver(ctrl);
   }
 
   // Start controller and search objects
