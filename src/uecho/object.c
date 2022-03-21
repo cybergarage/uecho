@@ -594,6 +594,7 @@ bool uecho_object_setpropertyreadhandler(uEchoObject* obj, uEchoPropertyCode cod
   bool is_seccess = true;
 
   is_seccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvReadRequest, code, handler);
+  is_seccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvNotificationRequest, code, handler);
   is_seccess &= uecho_object_setpropertyrequesthandler(obj, uEchoEsvWriteReadRequest, code, handler);
 
   return is_seccess;
