@@ -24,10 +24,10 @@ extern "C" {
 
 #define MAX_LOG_BUF 2048
 
-#define LOG_ERROR_S "ERROR"
-#define LOG_WARNING_S "WARN"
-#define LOG_INFO_S "INFO"
-#define LOG_DEBUG_S "DEBUG"
+#define UECHO_LOG_ERROR_S "ERROR"
+#define UECHO_LOG_WARN_S "WARN"
+#define UECHO_LOG_INFO_S "INFO"
+#define UECHO_LOG_DEBUG_S "DEBUG"
 
 #ifdef __cplusplus
 } /* extern "C" */
