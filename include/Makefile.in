@@ -272,6 +272,7 @@ uechoheaders = \
 	./uecho/esv.h \
 	./uecho/device.h \
 	./uecho/util/timer.h \
+	./uecho/util/log.h \
 	./uecho/misc.h \
 	./uecho/message.h \
 	./uecho/node.h \
