@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEcho for C: src/uecho/logs.h File Reference</title>
+<title>uEcho for C: src/uecho/util/logs.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -60,61 +60,228 @@ $(document).ready(function(){initNavTree('logs_8h.html',''); initResizable(); })
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">logs.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="message__internal_8h.html">uecho/message_internal.h</a>&gt;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a160287e11bd76094cfd437f1bc22af71"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logs_8h.html#a160287e11bd76094cfd437f1bc22af71">UECHO_LOG_NET_PREFIX_SEND</a>&#160;&#160;&#160;&quot;S&quot;</td></tr>
+<tr class="separator:a160287e11bd76094cfd437f1bc22af71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12620c6d66df65b9d606abc4d5b09258"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logs_8h.html#a12620c6d66df65b9d606abc4d5b09258">UECHO_LOG_NET_PREFIX_RECV</a>&#160;&#160;&#160;&quot;R&quot;</td></tr>
+<tr class="separator:a12620c6d66df65b9d606abc4d5b09258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1f1a8b5fc0675642a5b26196657ea86e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logs_8h.html#a1f1a8b5fc0675642a5b26196657ea86e">uecho_message_debug</a> (<a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
-<tr class="separator:a1f1a8b5fc0675642a5b26196657ea86e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afeaac10e8c07e402aa5edb3d6eecdd6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logs_8h.html#afeaac10e8c07e402aa5edb3d6eecdd6a">uecho_message_packet_debug</a> (const char *addr, const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *msg, size_t msg_len)</td></tr>
-<tr class="separator:afeaac10e8c07e402aa5edb3d6eecdd6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a705be0cd222996c5f24625abb7d51d87"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logs_8h.html#a705be0cd222996c5f24625abb7d51d87">uecho_net_socket_error</a> (const char *prefix, const char *from_addr, const char *to_addr, const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *pkt_bytes, size_t pkt_len)</td></tr>
+<tr class="separator:a705be0cd222996c5f24625abb7d51d87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4881e02dea9659efccfc4e620b7a157"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logs_8h.html#ad4881e02dea9659efccfc4e620b7a157">uecho_net_socket_debug</a> (const char *prefix, const char *from_addr, const char *to_addr, const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *pkt_bytes, size_t pkt_len)</td></tr>
+<tr class="separator:ad4881e02dea9659efccfc4e620b7a157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affa9634e165d9a56301c03062fb122ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logs_8h.html#affa9634e165d9a56301c03062fb122ee">uecho_net_datagram_packet_error</a> (const char *prefix, <a class="el" href="socket_8h.html#a4f4dff4ef7b22fdfc58ab6cca2d76984">uEchoDatagramPacket</a> *dpkt)</td></tr>
+<tr class="separator:affa9634e165d9a56301c03062fb122ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5d231b209db25a88f81bd58e6631b90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logs_8h.html#ab5d231b209db25a88f81bd58e6631b90">uecho_net_datagram_packet_debug</a> (const char *prefix, <a class="el" href="socket_8h.html#a4f4dff4ef7b22fdfc58ab6cca2d76984">uEchoDatagramPacket</a> *dpkt)</td></tr>
+<tr class="separator:ab5d231b209db25a88f81bd58e6631b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af986936958955eff4cc0e8d4e632b55c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logs_8h.html#af986936958955eff4cc0e8d4e632b55c">uecho_message_error</a> (const char *prefix, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
+<tr class="separator:af986936958955eff4cc0e8d4e632b55c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a1f1a8b5fc0675642a5b26196657ea86e" name="a1f1a8b5fc0675642a5b26196657ea86e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f1a8b5fc0675642a5b26196657ea86e">&#9670;&nbsp;</a></span>uecho_message_debug()</h2>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a12620c6d66df65b9d606abc4d5b09258" name="a12620c6d66df65b9d606abc4d5b09258"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12620c6d66df65b9d606abc4d5b09258">&#9670;&nbsp;</a></span>UECHO_LOG_NET_PREFIX_RECV</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void uecho_message_debug </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
-          <td class="paramname"><em>msg</em></td><td>)</td>
-          <td></td>
+          <td class="memname">#define UECHO_LOG_NET_PREFIX_RECV&#160;&#160;&#160;&quot;R&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="afeaac10e8c07e402aa5edb3d6eecdd6a" name="afeaac10e8c07e402aa5edb3d6eecdd6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afeaac10e8c07e402aa5edb3d6eecdd6a">&#9670;&nbsp;</a></span>uecho_message_packet_debug()</h2>
+<a id="a160287e11bd76094cfd437f1bc22af71" name="a160287e11bd76094cfd437f1bc22af71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a160287e11bd76094cfd437f1bc22af71">&#9670;&nbsp;</a></span>UECHO_LOG_NET_PREFIX_SEND</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void uecho_message_packet_debug </td>
+          <td class="memname">#define UECHO_LOG_NET_PREFIX_SEND&#160;&#160;&#160;&quot;S&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="af986936958955eff4cc0e8d4e632b55c" name="af986936958955eff4cc0e8d4e632b55c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af986936958955eff4cc0e8d4e632b55c">&#9670;&nbsp;</a></span>uecho_message_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uecho_message_error </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>addr</em>, </td>
+          <td class="paramname"><em>prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
+          <td class="paramname"><em>msg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab5d231b209db25a88f81bd58e6631b90" name="ab5d231b209db25a88f81bd58e6631b90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5d231b209db25a88f81bd58e6631b90">&#9670;&nbsp;</a></span>uecho_net_datagram_packet_debug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uecho_net_datagram_packet_debug </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="socket_8h.html#a4f4dff4ef7b22fdfc58ab6cca2d76984">uEchoDatagramPacket</a> *&#160;</td>
+          <td class="paramname"><em>dpkt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="affa9634e165d9a56301c03062fb122ee" name="affa9634e165d9a56301c03062fb122ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affa9634e165d9a56301c03062fb122ee">&#9670;&nbsp;</a></span>uecho_net_datagram_packet_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uecho_net_datagram_packet_error </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="socket_8h.html#a4f4dff4ef7b22fdfc58ab6cca2d76984">uEchoDatagramPacket</a> *&#160;</td>
+          <td class="paramname"><em>dpkt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad4881e02dea9659efccfc4e620b7a157" name="ad4881e02dea9659efccfc4e620b7a157"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4881e02dea9659efccfc4e620b7a157">&#9670;&nbsp;</a></span>uecho_net_socket_debug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uecho_net_socket_debug </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>from_addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>to_addr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td>
-          <td class="paramname"><em>msg</em>, </td>
+          <td class="paramname"><em>pkt_bytes</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>msg_len</em>&#160;</td>
+          <td class="paramname"><em>pkt_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a705be0cd222996c5f24625abb7d51d87" name="a705be0cd222996c5f24625abb7d51d87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a705be0cd222996c5f24625abb7d51d87">&#9670;&nbsp;</a></span>uecho_net_socket_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uecho_net_socket_error </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>from_addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>to_addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td>
+          <td class="paramname"><em>pkt_bytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>pkt_len</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -131,7 +298,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_508e66744f0a9abc7e902f1f95d57bd2.html">uecho</a></li><li class="navelem"><a class="el" href="logs_8h.html">logs.h</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_508e66744f0a9abc7e902f1f95d57bd2.html">uecho</a></li><li class="navelem"><a class="el" href="dir_1bf571c86fc3d0412246dc58414a418d.html">util</a></li><li class="navelem"><a class="el" href="logs_8h.html">logs.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>

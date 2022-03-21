@@ -1,5 +1,14 @@
 var NAVTREEINDEX6 =
 {
+"structuEchoClass.html#ab430ab1418555edf687e66a7329a53a7":[0,0,1,0],
+"structuEchoMessageObserver.html":[0,0,6],
+"structuEchoMessageObserver.html#a4c8e514a4835fe62d5185b1b6d8bdf9f":[0,0,6,1],
+"structuEchoMessageObserver.html#aca4e7e22ea5803634ee760619e8d8acb":[0,0,6,0],
+"structuEchoMessageObserverManager.html":[0,0,7],
+"structuEchoMessageObserverManager.html#aa0b0c554c145465478f3c8ae9549aa33":[0,0,7,0],
+"structuEchoNetworkInterface.html":[0,0,9],
+"structuEchoNetworkInterface.html#a92d3464f6c71916cb712f94495399bec":[0,0,9,2],
+"structuEchoNetworkInterface.html#ab9a31f2eb5f2e5348a34fe301c4adc84":[0,0,9,4],
 "structuEchoNetworkInterface.html#aeaec5e78c46f83eaa97f6a07e9c1d7f3":[0,0,9,1],
 "structuEchoNetworkInterface.html#af1a86fdeb4f00887cc6f602482d44231":[0,0,9,3],
 "structuEchoNetworkInterface.html#af8d1e9bd22853d9f977f8d971153e9ef":[0,0,9,0],
@@ -96,20 +105,5 @@ var NAVTREEINDEX6 =
 "udp__server__list_8c.html#aeeb906fbc9e0c3d962ec8dd64738af32":[1,0,1,0,0,15,8],
 "udp__server__list_8c.html#af53db6c90682f2f1653a20b8927423ba":[1,0,1,0,0,15,2],
 "uecho_8h.html":[1,0,0,0,13],
-"uecho__internal_8h.html":[1,0,1,0,28],
-"util_2logs_8c.html":[1,0,1,0,3,4],
-"util_2logs_8c.html#a705be0cd222996c5f24625abb7d51d87":[1,0,1,0,3,4,4],
-"util_2logs_8c.html#ab5d231b209db25a88f81bd58e6631b90":[1,0,1,0,3,4,1],
-"util_2logs_8c.html#ad4881e02dea9659efccfc4e620b7a157":[1,0,1,0,3,4,3],
-"util_2logs_8c.html#ae4e289fddb922daba6ce36b1bf46fa22":[1,0,1,0,3,4,5],
-"util_2logs_8c.html#af986936958955eff4cc0e8d4e632b55c":[1,0,1,0,3,4,0],
-"util_2logs_8c.html#affa9634e165d9a56301c03062fb122ee":[1,0,1,0,3,4,2],
-"util_2logs_8h.html":[1,0,1,0,3,5],
-"util_2logs_8h.html#a12620c6d66df65b9d606abc4d5b09258":[1,0,1,0,3,5,0],
-"util_2logs_8h.html#a160287e11bd76094cfd437f1bc22af71":[1,0,1,0,3,5,1],
-"util_2logs_8h.html#a705be0cd222996c5f24625abb7d51d87":[1,0,1,0,3,5,6],
-"util_2logs_8h.html#ab5d231b209db25a88f81bd58e6631b90":[1,0,1,0,3,5,3],
-"util_2logs_8h.html#ad4881e02dea9659efccfc4e620b7a157":[1,0,1,0,3,5,5],
-"util_2logs_8h.html#af986936958955eff4cc0e8d4e632b55c":[1,0,1,0,3,5,2],
-"util_2logs_8h.html#affa9634e165d9a56301c03062fb122ee":[1,0,1,0,3,5,4]
+"uecho__internal_8h.html":[1,0,1,0,26]
 };
