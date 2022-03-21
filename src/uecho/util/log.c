@@ -22,32 +22,38 @@
 #define vsnprintf _vsnprintf
 #endif
 
-static const char* log_error_s = LOG_ERROR_S;
-static const char* log_warning_s = LOG_WARNING_S;
-static const char* log_info_s = LOG_INFO_S;
-static const char* log_debug_s = LOG_DEBUG_S;
+static uEchoLogLevel log_level = UECHO_LOG_NONE;
+static const char* log_error_s = UECHO_LOG_ERROR_S;
+static const char* log_warning_s = UECHO_LOG_WARN_S;
+static const char* log_info_s = UECHO_LOG_INFO_S;
+static const char* log_debug_s = UECHO_LOG_DEBUG_S;
 
 static const char* uecho_log_type2string(int type)
 {
   switch (type) {
-  case LOG_ERROR:
+  case UECHO_LOG_ERROR:
     return log_error_s;
     break;
 
-  case LOG_WARNING:
+  case UECHO_LOG_WARN:
     return log_warning_s;
     break;
 
-  case LOG_INFO:
+  case UECHO_LOG_INFO:
     return log_info_s;
     break;
 
-  case LOG_DEBUG:
+  case UECHO_LOG_DEBUG:
     return log_debug_s;
     break;
   }
 
   return "";
+}
+
+void uecho_log_setlevel(uEchoLogLevel level)
+{
+  log_level = level;
 }
 
 void uecho_log_output(int severity, const char* file, int line_n, const char* function, const char* format, ...)
@@ -59,6 +65,9 @@ void uecho_log_output(int severity, const char* file, int line_n, const char* fu
   struct tm* localts;
   size_t prefix_len = -1;
 
+  if (log_level < severity)
+    return;
+  
   ts = time(NULL);
   localts = localtime(&ts);
 
