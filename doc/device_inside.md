@@ -46,7 +46,7 @@ Using the user listeners, the developer can handle the write requests and update
 
 After a node is received a message from other nodes, the node's listeners are called as the following sequences:
 
-![Node Observers](img/node_msg_listener.png)
+![Node Observers](img/node_msg_handler.png)
 
 The developer can handle all request messages using the node message listener, and they can handle only valid messages using the object and property message listeners.
 
