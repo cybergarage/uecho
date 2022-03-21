@@ -13,3 +13,15 @@
 #define BOOST_TEST_MAIN
 
 #include <boost/test/unit_test.hpp>
+
+#include <uecho/util/log.h>
+
+struct uEchoFixture {
+  uEchoFixture() {
+    uecho_log_setlevel(UECHO_LOG_DEBUG);
+  }
+  ~uEchoFixture() {
+  }
+};
+
+BOOST_GLOBAL_FIXTURE( uEchoFixture );
