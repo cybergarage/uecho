@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="949.7959"
+   height="578.90912"
+   id="svg2"
+   version="1.1"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   sodipodi:docname="node_msg_listener.svg"
+   inkscape:export-filename="/Users/skonno/Src/uecho/doc/img/node_msg_listener.png"
+   inkscape:export-xdpi="75.790001"
+   inkscape:export-ydpi="75.790001"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="TriangleInL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleInL"
+       style="overflow:visible">
+      <path
+         id="path3957"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="scale(-0.8)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutL"
+       style="overflow:visible">
+      <path
+         id="path3966"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="scale(0.8)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <linearGradient
+       id="linearGradient900">
+      <stop
+         style="stop-color: #000000;stop-opacity: 1.0;"
+         id="stop901"
+         offset="0" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         id="stop902"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient900"
+       id="linearGradient903" />
+    <linearGradient
+       xlink:href="#linearGradient900"
+       id="linearGradient904" />
+    <linearGradient
+       xlink:href="#linearGradient900"
+       id="linearGradient905" />
+    <linearGradient
+       xlink:href="#linearGradient900"
+       id="linearGradient906" />
+    <linearGradient
+       xlink:href="#linearGradient900"
+       id="linearGradient907" />
+    <linearGradient
+       id="linearGradient5205"
+       inkscape:swatch="solid">
+      <stop
+         id="stop5207"
+         offset="0"
+         style="stop-color:#370000;stop-opacity:1;" />
+    </linearGradient>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Send"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path3912" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         id="path3918" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path3900" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path3906" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutS"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutS">
+      <path
+         inkscape:connector-curvature="0"
+         transform="scale(0.2)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path4045" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="436.89098"
+     inkscape:cy="429.81991"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="2268"
+     inkscape:window-height="1317"
+     inkscape:window-x="66"
+     inkscape:window-y="123"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:pagecheckerboard="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3004"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       originx="-40.704102"
+       originy="-311.59087" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-40.704102,57.957894)">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5616"
+       width="400"
+       height="528.63489"
+       x="280"
+       y="-8.1836386" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5616-9"
+       width="280"
+       height="528.63489"
+       x="710"
+       y="-9.5487642" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-opacity:1"
+       d="M 910,52.362183 V 500.45123"
+       id="path3096"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-opacity:1"
+       d="M 580,52.362183 V 500.45123"
+       id="path3046"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutL)"
+       d="M 126,132.36218 H 290"
+       id="path3006"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="40"
+       y="32.362183"
+       id="text3008"><tspan
+         sodipodi:role="line"
+         id="tspan3010"
+         x="40"
+         y="32.362183"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start">Other nodes</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="296"
+       y="32.362183"
+       id="text3012"><tspan
+         sodipodi:role="line"
+         id="tspan3014"
+         x="296"
+         y="32.362183"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start">Node</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="540"
+       y="32.362183"
+       id="text3016"><tspan
+         sodipodi:role="line"
+         id="tspan3018"
+         x="540"
+         y="32.362183"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start">Objects</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path3020"
+       d="M 340,252.36218 H 840"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutL)" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3038"
+       d="M 606,400.36218 H 850"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:2, 2;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#TriangleInL)" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3040"
+       d="M 130,444.36218 H 290"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:2, 2;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#TriangleInL)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-opacity:1"
+       d="M 100,52.362183 V 500.45123"
+       id="path3042"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-opacity:1"
+       d="M 320,52.362183 V 500.45123"
+       id="path3044"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3816"
+       width="20"
+       height="348.08905"
+       x="310"
+       y="112.36218" />
+    <rect
+       y="90.451233"
+       x="90"
+       height="388.08905"
+       width="20"
+       id="rect3818"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="140"
+       y="122.36218"
+       id="text4638"><tspan
+         sodipodi:role="line"
+         id="tspan4640"
+         x="140"
+         y="122.36218"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start">Request Message</tspan></text>
+    <text
+       id="text4642"
+       y="468.36218"
+       x="140"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         y="468.36218"
+         x="140"
+         id="tspan4644"
+         sodipodi:role="line">Response Message</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="400"
+       y="350.36218"
+       id="text4650"><tspan
+         sodipodi:role="line"
+         id="tspan4652"
+         x="400"
+         y="350.36218"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start">Request Message</tspan></text>
+    <text
+       id="text5218"
+       y="420.36218"
+       x="616"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         y="420.36218"
+         x="616"
+         id="tspan5220"
+         sodipodi:role="line">Update Property</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path3043"
+       d="M 790,52.362183 V 500.45123"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.58114;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3047"
+       width="100"
+       height="50"
+       x="862"
+       y="252.36218" />
+    <text
+       id="text3049"
+       y="22.362183"
+       x="772"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         sodipodi:role="line"
+         id="tspan3106"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         x="772"
+         y="22.362183">Node</tspan></text>
+    <text
+       id="text3053"
+       y="272.36218"
+       x="882"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         y="272.36218"
+         x="882"
+         id="tspan3055"
+         sodipodi:role="line">Message</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3061"
+       width="20"
+       height="40"
+       x="570"
+       y="270.36218" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:2, 2;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#TriangleInL)"
+       d="M 610,292.36218 H 850"
+       id="path3847"
+       inkscape:connector-curvature="0" />
+    <rect
+       y="378.36218"
+       x="570"
+       height="40"
+       width="20"
+       id="rect3849"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="616"
+       y="316.36218"
+       id="text3851"><tspan
+         sodipodi:role="line"
+         id="tspan3853"
+         x="616"
+         y="316.36218"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start">Update Property</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutL)"
+       d="M 340,358.36218 H 840"
+       id="path3859"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="884"
+       y="290.36218"
+       id="text3045"><tspan
+         sodipodi:role="line"
+         id="tspan3049"
+         x="884"
+         y="290.36218">Listener</tspan></text>
+    <rect
+       y="360.36218"
+       x="862"
+       height="50"
+       width="100"
+       id="rect3051"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.58114;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="882"
+       y="380.36218"
+       id="text3054"><tspan
+         sodipodi:role="line"
+         id="tspan3062"
+         x="882"
+         y="380.36218">Property</tspan></text>
+    <text
+       id="text3058"
+       y="398.36218"
+       x="884"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="398.36218"
+         x="884"
+         id="tspan3060"
+         sodipodi:role="line">Handler</tspan></text>
+    <rect
+       y="132.36218"
+       x="742"
+       height="50"
+       width="100"
+       id="rect3068"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.58114;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="762"
+       y="152.36218"
+       id="text3070"><tspan
+         sodipodi:role="line"
+         id="tspan3072"
+         x="762"
+         y="152.36218"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start">Message</tspan></text>
+    <text
+       id="text3074"
+       y="170.36218"
+       x="764"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         y="170.36218"
+         x="764"
+         id="tspan3076"
+         sodipodi:role="line">Listener</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutL)"
+       d="M 340,132.36218 H 720"
+       id="path3078"
+       inkscape:connector-curvature="0" />
+    <rect
+       y="162.36218"
+       x="570"
+       height="40"
+       width="20"
+       id="rect3080"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:3.98818;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.98818;stroke-dasharray:2, 2;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#TriangleInL)"
+       d="M 610,182.36218 H 730"
+       id="path3084"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="872"
+       y="42.362183"
+       id="text3098"><tspan
+         sodipodi:role="line"
+         id="tspan3100"
+         x="872"
+         y="42.362183"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start">Observers</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="748"
+       y="42.362183"
+       id="text3102"
+       inkscape:export-xdpi="156.98"
+       inkscape:export-ydpi="156.98"><tspan
+         sodipodi:role="line"
+         id="tspan3104"
+         x="748"
+         y="42.362183"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start">Observers</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="882"
+       y="22.362183"
+       id="text3108"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         id="tspan3110"
+         sodipodi:role="line"
+         x="882"
+         y="22.362183">Object</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="390"
+       y="122.36218"
+       id="text3114"><tspan
+         sodipodi:role="line"
+         id="tspan3116"
+         x="390"
+         y="122.36218"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start">Request Message</tspan></text>
+    <text
+       id="text3910"
+       y="202.36218"
+       x="620"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         y="202.36218"
+         x="620"
+         id="tspan3912"
+         sodipodi:role="line">Update Property</tspan></text>
+    <text
+       id="text3858"
+       y="242.36218"
+       x="400"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         y="242.36218"
+         x="400"
+         id="tspan3860"
+         sodipodi:role="line">Request Message</tspan></text>
+    <g
+       id="g3205"
+       transform="matrix(0.20580026,0,0,0.20580026,404.02455,-57.957895)">
+      <g
+         transform="translate(-137.69364,48.407942)"
+         id="layer1-3"
+         inkscape:label="Layer 1">
+        <text
+           id="text3013"
+           y="107.97291"
+           x="334.39694"
+           style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:200px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Heavy';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+           xml:space="preserve"><tspan
+             style="font-size:180px"
+             y="107.97291"
+             x="334.39694"
+             id="tspan3021"
+             sodipodi:role="line">uEcho</tspan></text>
+        <flowRoot
+           style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+           id="flowRoot3817"
+           xml:space="preserve"><flowRegion
+             id="flowRegion3819"><rect
+               y="-28.962269"
+               x="-38.55352"
+               height="290.06937"
+               width="287.31552"
+               id="rect3821" /></flowRegion><flowPara
+             id="flowPara3823" /></flowRoot>
+      </g>
+      <g
+         transform="translate(277.31595,199.77013)"
+         inkscape:label="Node"
+         id="layer2">
+        <path
+           transform="matrix(2.1647418,0,0,2.1647418,409.71206,150.78806)"
+           id="path4090"
+           style="fill:none;stroke:#000000;stroke-width:6.92923;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           cx="-282.50958"
+           cy="-111.5"
+           r="27.5" />
+        <path
+           transform="matrix(1.26063,0,0,1.26063,142.76629,65.560277)"
+           id="path4138"
+           style="fill:none;stroke:#000000;stroke-width:11.8988;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           cx="-287.50958"
+           cy="-111.5"
+           r="27.5" />
+        <path
+           transform="matrix(3.0643694,0,0,3.0643694,680.16793,233.67722)"
+           id="path3815"
+           style="fill:none;stroke:#000000;stroke-width:4.89497;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           cx="-282.50958"
+           cy="-111.5"
+           r="27.5" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="805.10681"
+       y="-22.186054"
+       id="text6819"><tspan
+         sodipodi:role="line"
+         id="tspan6817"
+         x="805.10681"
+         y="-22.186054"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14px;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro Bold';text-align:start;writing-mode:lr-tb;text-anchor:start">User Functions</tspan></text>
+  </g>
+</svg>
