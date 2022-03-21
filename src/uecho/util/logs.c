@@ -38,7 +38,7 @@ void uecho_net_socket_log(int severity, const char *prefix, const char* from_add
     offset += 2;
   }
 
-  uecho_log_debug(buf);
+  uecho_log_debug("%s", buf);
 }
 
 /****************************************
