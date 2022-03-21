@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #include <uecho/object_internal.h>
+#include <uecho/node_internal.h>
 
 #include <uecho/frame/observer.h>
 #include <uecho/misc.h>
