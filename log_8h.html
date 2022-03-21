@@ -61,6 +61,7 @@ $(document).ready(function(){initNavTree('log_8h.html',''); initResizable(); });
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">log.h File Reference</div></div>
 </div><!--header-->
@@ -68,185 +69,41 @@ $(document).ready(function(){initNavTree('log_8h.html',''); initResizable(); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a296269817f840ab468eb0c880a971915"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a296269817f840ab468eb0c880a971915">MAX_LOG_BUF</a>&#160;&#160;&#160;2048</td></tr>
-<tr class="separator:a296269817f840ab468eb0c880a971915"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aced66975c154ea0e2a8ec3bc818b4e08"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#aced66975c154ea0e2a8ec3bc818b4e08">LOG_ERROR</a>&#160;&#160;&#160;1</td></tr>
-<tr class="separator:aced66975c154ea0e2a8ec3bc818b4e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf4476a6a4ea6c74231c826e899d7189"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#adf4476a6a4ea6c74231c826e899d7189">LOG_WARNING</a>&#160;&#160;&#160;2</td></tr>
-<tr class="separator:adf4476a6a4ea6c74231c826e899d7189"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb4f36db01bd128c7afeac5889dac311"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#aeb4f36db01bd128c7afeac5889dac311">LOG_INFO</a>&#160;&#160;&#160;4</td></tr>
-<tr class="separator:aeb4f36db01bd128c7afeac5889dac311"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ff63e8955665c4a58b1598f2b07c51a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a6ff63e8955665c4a58b1598f2b07c51a">LOG_DEBUG</a>&#160;&#160;&#160;8</td></tr>
-<tr class="separator:a6ff63e8955665c4a58b1598f2b07c51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a869e13d38a14388c77018138eb480ad5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a869e13d38a14388c77018138eb480ad5">LOG_ERROR_S</a>&#160;&#160;&#160;&quot;ERROR&quot;</td></tr>
-<tr class="separator:a869e13d38a14388c77018138eb480ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae48b5e10919436d575968369a7d7628d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#ae48b5e10919436d575968369a7d7628d">LOG_WARNING_S</a>&#160;&#160;&#160;&quot;WARN&quot;</td></tr>
-<tr class="separator:ae48b5e10919436d575968369a7d7628d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28d4d51a64e29b87c59c10f86615f4bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a28d4d51a64e29b87c59c10f86615f4bf">LOG_INFO_S</a>&#160;&#160;&#160;&quot;INFO&quot;</td></tr>
-<tr class="separator:a28d4d51a64e29b87c59c10f86615f4bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b58a6e7c97c1f4ca2fddf21b5e47251"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a1b58a6e7c97c1f4ca2fddf21b5e47251">LOG_DEBUG_S</a>&#160;&#160;&#160;&quot;DEBUG&quot;</td></tr>
-<tr class="separator:a1b58a6e7c97c1f4ca2fddf21b5e47251"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7574ce4aa047de1f4a564c9b441e69dc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a7574ce4aa047de1f4a564c9b441e69dc">LOG_ALL</a>&#160;&#160;&#160;(<a class="el" href="log_8h.html#aced66975c154ea0e2a8ec3bc818b4e08">LOG_ERROR</a> | <a class="el" href="log_8h.html#adf4476a6a4ea6c74231c826e899d7189">LOG_WARNING</a> | <a class="el" href="log_8h.html#aeb4f36db01bd128c7afeac5889dac311">LOG_INFO</a> | <a class="el" href="log_8h.html#a6ff63e8955665c4a58b1598f2b07c51a">LOG_DEBUG</a>)</td></tr>
-<tr class="separator:a7574ce4aa047de1f4a564c9b441e69dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6765bd522990df5ae40648fa60b641be"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a6765bd522990df5ae40648fa60b641be">uecho_log</a>(severity,  format, ...)</td></tr>
-<tr class="separator:a6765bd522990df5ae40648fa60b641be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d76abffb336ef382cc6482aa7a6e51b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a4d76abffb336ef382cc6482aa7a6e51b">uecho_log_error</a>(format...)</td></tr>
+<tr class="memitem:ac844ba6da88d2e563d77d2faa99357ce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#ac844ba6da88d2e563d77d2faa99357ce">uecho_log</a>(severity,  format...)&#160;&#160;&#160;<a class="el" href="log_8h.html#abc0400c6b821950978cf6ddfff329a85">uecho_log_output</a>(severity, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)</td></tr>
+<tr class="separator:ac844ba6da88d2e563d77d2faa99357ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d76abffb336ef382cc6482aa7a6e51b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a4d76abffb336ef382cc6482aa7a6e51b">uecho_log_error</a>(format...)&#160;&#160;&#160;<a class="el" href="log_8h.html#abc0400c6b821950978cf6ddfff329a85">uecho_log_output</a>(<a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7aac268434af1a31505582bb8cde50012a">UECHO_LOG_ERROR</a>, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)</td></tr>
 <tr class="separator:a4d76abffb336ef382cc6482aa7a6e51b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a049cdcec06eba692966025b73be32c42"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a049cdcec06eba692966025b73be32c42">uecho_log_warn</a>(format...)</td></tr>
+<tr class="memitem:a049cdcec06eba692966025b73be32c42"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a049cdcec06eba692966025b73be32c42">uecho_log_warn</a>(format...)&#160;&#160;&#160;<a class="el" href="log_8h.html#abc0400c6b821950978cf6ddfff329a85">uecho_log_output</a>(<a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7a70cdebb11778e07d24582740f881ef33">UECHO_LOG_WARN</a>, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)</td></tr>
 <tr class="separator:a049cdcec06eba692966025b73be32c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae691abc3e8b559dcd231398efe4b7e31"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#ae691abc3e8b559dcd231398efe4b7e31">uecho_log_info</a>(format...)</td></tr>
+<tr class="memitem:ae691abc3e8b559dcd231398efe4b7e31"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#ae691abc3e8b559dcd231398efe4b7e31">uecho_log_info</a>(format...)&#160;&#160;&#160;<a class="el" href="log_8h.html#abc0400c6b821950978cf6ddfff329a85">uecho_log_output</a>(<a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7a321d219e37f0667241bf144daf51752e">UECHO_LOG_INFO</a>, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)</td></tr>
 <tr class="separator:ae691abc3e8b559dcd231398efe4b7e31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe50a503f8cef85d64826d99a4bf622f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#abe50a503f8cef85d64826d99a4bf622f">uecho_log_debug</a>(format...)</td></tr>
+<tr class="memitem:abe50a503f8cef85d64826d99a4bf622f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#abe50a503f8cef85d64826d99a4bf622f">uecho_log_debug</a>(format...)&#160;&#160;&#160;<a class="el" href="log_8h.html#abc0400c6b821950978cf6ddfff329a85">uecho_log_output</a>(<a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7a9e80b5d9c83c0dae5afd6be45cb86163">UECHO_LOG_DEBUG</a>, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)</td></tr>
 <tr class="separator:abe50a503f8cef85d64826d99a4bf622f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ae3f414b23a15e3e65aa2eb72dceaabe7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7">uEchoLogLevel</a> { <br />
+&#160;&#160;<a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7aa9519589ac9f9c9623d1870b1d897df2">UECHO_LOG_NONE</a> = 0x00
+, <a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7aac268434af1a31505582bb8cde50012a">UECHO_LOG_ERROR</a> = 0x01
+, <a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7a70cdebb11778e07d24582740f881ef33">UECHO_LOG_WARN</a> = 0x02
+, <a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7a321d219e37f0667241bf144daf51752e">UECHO_LOG_INFO</a> = 0x04
+, <br />
+&#160;&#160;<a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7a9e80b5d9c83c0dae5afd6be45cb86163">UECHO_LOG_DEBUG</a> = 0x08
+, <a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7a6545b88be38810b46034469aee5d91a3">UECHO_LOG_ALL</a> = 0xFF
+<br />
+ }</td></tr>
+<tr class="separator:ae3f414b23a15e3e65aa2eb72dceaabe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a842cbd33b36311898b84435bc95d8f95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a842cbd33b36311898b84435bc95d8f95">uecho_log_setlevel</a> (<a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7">uEchoLogLevel</a> level)</td></tr>
+<tr class="separator:a842cbd33b36311898b84435bc95d8f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc0400c6b821950978cf6ddfff329a85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#abc0400c6b821950978cf6ddfff329a85">uecho_log_output</a> (int severity, const char *file, int line_n, const char *function, const char *format,...)</td></tr>
 <tr class="separator:abc0400c6b821950978cf6ddfff329a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a7574ce4aa047de1f4a564c9b441e69dc" name="a7574ce4aa047de1f4a564c9b441e69dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7574ce4aa047de1f4a564c9b441e69dc">&#9670;&nbsp;</a></span>LOG_ALL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_ALL&#160;&#160;&#160;(<a class="el" href="log_8h.html#aced66975c154ea0e2a8ec3bc818b4e08">LOG_ERROR</a> | <a class="el" href="log_8h.html#adf4476a6a4ea6c74231c826e899d7189">LOG_WARNING</a> | <a class="el" href="log_8h.html#aeb4f36db01bd128c7afeac5889dac311">LOG_INFO</a> | <a class="el" href="log_8h.html#a6ff63e8955665c4a58b1598f2b07c51a">LOG_DEBUG</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6ff63e8955665c4a58b1598f2b07c51a" name="a6ff63e8955665c4a58b1598f2b07c51a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ff63e8955665c4a58b1598f2b07c51a">&#9670;&nbsp;</a></span>LOG_DEBUG</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_DEBUG&#160;&#160;&#160;8</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1b58a6e7c97c1f4ca2fddf21b5e47251" name="a1b58a6e7c97c1f4ca2fddf21b5e47251"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b58a6e7c97c1f4ca2fddf21b5e47251">&#9670;&nbsp;</a></span>LOG_DEBUG_S</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_DEBUG_S&#160;&#160;&#160;&quot;DEBUG&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aced66975c154ea0e2a8ec3bc818b4e08" name="aced66975c154ea0e2a8ec3bc818b4e08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aced66975c154ea0e2a8ec3bc818b4e08">&#9670;&nbsp;</a></span>LOG_ERROR</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_ERROR&#160;&#160;&#160;1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a869e13d38a14388c77018138eb480ad5" name="a869e13d38a14388c77018138eb480ad5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a869e13d38a14388c77018138eb480ad5">&#9670;&nbsp;</a></span>LOG_ERROR_S</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_ERROR_S&#160;&#160;&#160;&quot;ERROR&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aeb4f36db01bd128c7afeac5889dac311" name="aeb4f36db01bd128c7afeac5889dac311"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb4f36db01bd128c7afeac5889dac311">&#9670;&nbsp;</a></span>LOG_INFO</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_INFO&#160;&#160;&#160;4</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a28d4d51a64e29b87c59c10f86615f4bf" name="a28d4d51a64e29b87c59c10f86615f4bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28d4d51a64e29b87c59c10f86615f4bf">&#9670;&nbsp;</a></span>LOG_INFO_S</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_INFO_S&#160;&#160;&#160;&quot;INFO&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="adf4476a6a4ea6c74231c826e899d7189" name="adf4476a6a4ea6c74231c826e899d7189"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf4476a6a4ea6c74231c826e899d7189">&#9670;&nbsp;</a></span>LOG_WARNING</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_WARNING&#160;&#160;&#160;2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae48b5e10919436d575968369a7d7628d" name="ae48b5e10919436d575968369a7d7628d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae48b5e10919436d575968369a7d7628d">&#9670;&nbsp;</a></span>LOG_WARNING_S</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LOG_WARNING_S&#160;&#160;&#160;&quot;WARN&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a296269817f840ab468eb0c880a971915" name="a296269817f840ab468eb0c880a971915"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a296269817f840ab468eb0c880a971915">&#9670;&nbsp;</a></span>MAX_LOG_BUF</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MAX_LOG_BUF&#160;&#160;&#160;2048</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6765bd522990df5ae40648fa60b641be" name="a6765bd522990df5ae40648fa60b641be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6765bd522990df5ae40648fa60b641be">&#9670;&nbsp;</a></span>uecho_log</h2>
+<a id="ac844ba6da88d2e563d77d2faa99357ce" name="ac844ba6da88d2e563d77d2faa99357ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac844ba6da88d2e563d77d2faa99357ce">&#9670;&nbsp;</a></span>uecho_log</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,18 +118,12 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">format, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
+          <td class="paramname">format...&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="log_8h.html#abc0400c6b821950978cf6ddfff329a85">uecho_log_output</a>(severity, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -290,7 +141,7 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">format...</td><td>)</td>
-          <td></td>
+          <td>&#160;&#160;&#160;<a class="el" href="log_8h.html#abc0400c6b821950978cf6ddfff329a85">uecho_log_output</a>(<a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7a9e80b5d9c83c0dae5afd6be45cb86163">UECHO_LOG_DEBUG</a>, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -308,7 +159,7 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">format...</td><td>)</td>
-          <td></td>
+          <td>&#160;&#160;&#160;<a class="el" href="log_8h.html#abc0400c6b821950978cf6ddfff329a85">uecho_log_output</a>(<a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7aac268434af1a31505582bb8cde50012a">UECHO_LOG_ERROR</a>, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -326,7 +177,7 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">format...</td><td>)</td>
-          <td></td>
+          <td>&#160;&#160;&#160;<a class="el" href="log_8h.html#abc0400c6b821950978cf6ddfff329a85">uecho_log_output</a>(<a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7a321d219e37f0667241bf144daf51752e">UECHO_LOG_INFO</a>, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -344,10 +195,33 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">format...</td><td>)</td>
-          <td></td>
+          <td>&#160;&#160;&#160;<a class="el" href="log_8h.html#abc0400c6b821950978cf6ddfff329a85">uecho_log_output</a>(<a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7a70cdebb11778e07d24582740f881ef33">UECHO_LOG_WARN</a>, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ae3f414b23a15e3e65aa2eb72dceaabe7" name="ae3f414b23a15e3e65aa2eb72dceaabe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3f414b23a15e3e65aa2eb72dceaabe7">&#9670;&nbsp;</a></span>uEchoLogLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7">uEchoLogLevel</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae3f414b23a15e3e65aa2eb72dceaabe7aa9519589ac9f9c9623d1870b1d897df2" name="ae3f414b23a15e3e65aa2eb72dceaabe7aa9519589ac9f9c9623d1870b1d897df2"></a>UECHO_LOG_NONE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae3f414b23a15e3e65aa2eb72dceaabe7aac268434af1a31505582bb8cde50012a" name="ae3f414b23a15e3e65aa2eb72dceaabe7aac268434af1a31505582bb8cde50012a"></a>UECHO_LOG_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae3f414b23a15e3e65aa2eb72dceaabe7a70cdebb11778e07d24582740f881ef33" name="ae3f414b23a15e3e65aa2eb72dceaabe7a70cdebb11778e07d24582740f881ef33"></a>UECHO_LOG_WARN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae3f414b23a15e3e65aa2eb72dceaabe7a321d219e37f0667241bf144daf51752e" name="ae3f414b23a15e3e65aa2eb72dceaabe7a321d219e37f0667241bf144daf51752e"></a>UECHO_LOG_INFO&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae3f414b23a15e3e65aa2eb72dceaabe7a9e80b5d9c83c0dae5afd6be45cb86163" name="ae3f414b23a15e3e65aa2eb72dceaabe7a9e80b5d9c83c0dae5afd6be45cb86163"></a>UECHO_LOG_DEBUG&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae3f414b23a15e3e65aa2eb72dceaabe7a6545b88be38810b46034469aee5d91a3" name="ae3f414b23a15e3e65aa2eb72dceaabe7a6545b88be38810b46034469aee5d91a3"></a>UECHO_LOG_ALL&#160;</td><td class="fielddoc"></td></tr>
+</table>
 
 </div>
 </div>
@@ -398,6 +272,24 @@ Functions</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a842cbd33b36311898b84435bc95d8f95" name="a842cbd33b36311898b84435bc95d8f95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a842cbd33b36311898b84435bc95d8f95">&#9670;&nbsp;</a></span>uecho_log_setlevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uecho_log_setlevel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7">uEchoLogLevel</a>&#160;</td>
+          <td class="paramname"><em>level</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">

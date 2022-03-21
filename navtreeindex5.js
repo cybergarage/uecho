@@ -1,7 +1,5 @@
 var NAVTREEINDEX5 =
 {
-"src_2uecho_2frame_2property_8h.html#a28e18af9e88009a29f93eb1753b3046d":[1,0,1,0,0,11,5],
-"src_2uecho_2frame_2property_8h.html#a294c74dd5c226549aaeffc09d7b0d46b":[1,0,1,0,0,11,20],
 "src_2uecho_2frame_2property_8h.html#a2e108de320683fa89de7c9a24cb084bd":[1,0,1,0,0,11,19],
 "src_2uecho_2frame_2property_8h.html#a3ec65bd5f15005a5f372fe2fa0f8c7d2":[1,0,1,0,0,11,15],
 "src_2uecho_2frame_2property_8h.html#a4115296d241ec2cea8afc8684818c828":[1,0,1,0,0,11,13],
@@ -249,5 +247,7 @@ var NAVTREEINDEX5 =
 "structuEchoMessageObserver.html#aca4e7e22ea5803634ee760619e8d8acb":[0,0,6,0],
 "structuEchoMessageObserverManager.html":[0,0,7],
 "structuEchoMessageObserverManager.html#aa0b0c554c145465478f3c8ae9549aa33":[0,0,7,0],
-"structuEchoNetworkInterface.html":[0,0,9]
+"structuEchoNetworkInterface.html":[0,0,9],
+"structuEchoNetworkInterface.html#a92d3464f6c71916cb712f94495399bec":[0,0,9,2],
+"structuEchoNetworkInterface.html#ab9a31f2eb5f2e5348a34fe301c4adc84":[0,0,9,4]
 };
