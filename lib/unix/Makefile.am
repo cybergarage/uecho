@@ -44,7 +44,6 @@ uecho_sources = \
 	../../src/uecho/message_search.c \
 	../../src/uecho/object.c \
 	../../src/uecho/class.c \
-	../../src/uecho/logs.c \
 	../../src/uecho/message.c \
 	../../src/uecho/std/device_super_class.c \
 	../../src/uecho/std/profile_super_class.c \
