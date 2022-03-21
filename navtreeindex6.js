@@ -1,7 +1,5 @@
 var NAVTREEINDEX6 =
 {
-"structuEchoNetworkInterface.html#a92d3464f6c71916cb712f94495399bec":[0,0,9,2],
-"structuEchoNetworkInterface.html#ab9a31f2eb5f2e5348a34fe301c4adc84":[0,0,9,4],
 "structuEchoNetworkInterface.html#aeaec5e78c46f83eaa97f6a07e9c1d7f3":[0,0,9,1],
 "structuEchoNetworkInterface.html#af1a86fdeb4f00887cc6f602482d44231":[0,0,9,3],
 "structuEchoNetworkInterface.html#af8d1e9bd22853d9f977f8d971153e9ef":[0,0,9,0],
