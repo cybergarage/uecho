@@ -62,10 +62,10 @@ void uecho_lighting_object_messagelitener(uEchoObject* obj, uEchoMessage* msg)
 }
 
 /****************************************
- * uecho_lighting_propertyrequestlistener
+ * uecho_lighting_propertyrequesthandler
  ****************************************/
 
-bool uecho_lighting_propertyrequestlistener(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte *edt)
+bool uecho_lighting_propertyrequesthandler(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte *edt)
 {
   byte status;
 
@@ -131,7 +131,7 @@ uEchoObject* uecho_light_new(void)
 
   // Set property observer
 
-  uecho_object_setpropertywriterequesthandler(obj, LIGHT_PROPERTY_POWER_CODE, uecho_lighting_propertyrequestlistener);
+  uecho_object_setpropertywriterequesthandler(obj, LIGHT_PROPERTY_POWER_CODE, uecho_lighting_propertyrequesthandler);
 
   // Set Raspbian GPIO
 
