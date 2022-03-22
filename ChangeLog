@@ -1,6 +1,7 @@
 2022-03-21 The uecho Authors <skonno@cybergarage.org>
 	* v1.1.0
-	* Update to support OPCSet and OPCGet message
+	* Update object property handler interfaces
+	* Improve internal request message handlers to support OPCSet and OPCGet message
 	* Addd uecho_log_setlevel()
 
 2019-02-24 The uecho Authors <skonno@cybergarage.org>
