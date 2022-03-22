@@ -43,7 +43,7 @@ uecho_node_addobject(node, obj);
 
 ### 3. Setting 
 
-To implement the device, you have only to handle write requests from other nodes because The `uecho` handles other standard read and notification requests automatically. To handle the write requests, use `uecho_object_setpropertywriterequesthandler()` as the following:
+To implement the device, you have only to handle write requests from other nodes because The `uecho` handles other standard read and notification requests automatically. To grant the write requests and get the property data, use `uecho_object_setpropertywriterequesthandler()` as the following:
 
 ```
 bool object_propertywriterequesthandler(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte *edt)
@@ -52,9 +52,6 @@ bool object_propertywriterequesthandler(uEchoObject* obj, uEchoProperty* prop, u
 　  ....
     return false;
   }
-
-  if (!uecho_property_setdata(prop, edt, pdc))
-    return false;
   ....
   return true;
 }
@@ -66,6 +63,8 @@ bool object_propertywriterequesthandler(uEchoObject* obj, uEchoProperty* prop, u
   uecho_object_setpropertywriterequesthandler(obj, prop_code, object_propertywriterequesthandler)  
 }
 ```
+
+The `uecho` updates the target property by the request property data if the hander grants the request, and returns a response when the request message requires the response. Otherwise, the `uecho` returns an error response.
 
 The `uecho_object_setpropertywriterequesthandler()` sets the handler for all write request types, Write (0x60) , Write Response Required (0x61) and Write & read Request (0x6E). To set handlers for each (ECHONET Lite Service) of [ECHONET Lite][enet], use `uecho_object_setpropertyrequeslistener()`, and The `uecho_object_setpropertywriterequesthandler()` is a sugar function of the `uecho_object_setpropertyrequeslistener()`.
 
