@@ -52,14 +52,12 @@ The `uecho_object_setpropertyrequesthandler()` can set the following permission 
 typedef bool (*uEchoPropertyRequestHandler)(uEchoObject*, uEchoProperty*, uEchoEsv, size_t, byte *);
 ```
 
-The developer handles the request messages from other nodes. The developer should return a true if the request messages is valid, otherwise false. In addtiation, the developer should update the target property data by the passed property data when the write request message is valid. The following example shows to check a write request message and set the valid property data to the target property.
+The developer handles the request messages from other nodes. The developer should return a true if the request message is valid, otherwise false. In addition, the developer does not need to update the target property data by the request property data because the `uecho` updates the target property by the request property data automatically when the handler returns true. The following example shows to check a write request message and set the valid property data to the target property.
 
 ```
 bool object_property_handler(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte *edt)
 {
   if (pdc != 1)
-    return false;
-  if (!uecho_property_setdata(prop, edt, pdc))
     return false;
   return true;
 }
