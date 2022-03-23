@@ -1,8 +1,8 @@
-2022-03-21 The uecho Authors <skonno@cybergarage.org>
+2022-03-23 The uecho Authors <skonno@cybergarage.org>
 	* v1.1.0
+	* Improve internal request message handlers to support property value write and read request (0x6E)
 	* Update object property handler interfaces
-	* Improve internal request message handlers to support OPCSet and OPCGet message
-	* Addd uecho_log_setlevel()
+	* Addd uecho_log_setlevel()	
 
 2019-02-24 The uecho Authors <skonno@cybergarage.org>
 	* v1.0.0
