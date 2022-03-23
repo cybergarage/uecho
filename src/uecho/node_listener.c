@@ -54,7 +54,9 @@ bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoProperty* obj_pro
 * uecho_node_servermessagelistener
 ****************************************/
 
-int uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, byte opc, uEchoProperty** ep, uEchoMessage* res_msg)
+typedef bool (*uEchoMessageAddPropertyFunc)(uEchoMessage* msg, uEchoProperty* prop);
+
+bool uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, byte opc, uEchoProperty** ep, uEchoMessageAddPropertyFunc message_addproperty_func, uEchoMessage* res_msg)
 {
   uEchoPropertyCode msg_prop_code;
   uEchoProperty *msg_prop, *dest_prop, *res_prop;
@@ -77,23 +79,9 @@ int uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, byt
       if (uecho_object_notifyrequestproperty(dest_obj, dest_prop, msg_esv, msg_prop)) {
         accepted_request_cnt++;
         switch (msg_esv) {
-          case uEchoEsvWriteRequest:
-            // (A) Basic sequence for receiving a request (no response required)
-            break;
           case uEchoEsvReadRequest:
-            // (B) Basic sequence for receiving a request (response required)
-            uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
-            break;
-          case uEchoEsvWriteRequestResponseRequired:
-            // (B) Basic sequence for receiving a request (response required)
-            uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
-            break;
           case uEchoEsvNotificationRequest:
-            // (C) Basic sequence for processing a notification request
-            uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
-            break;
           case uEchoEsvNotificationResponseRequired:
-            // (E) Basic sequence for processing a request requiring a notification response
             uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
             break;
         }
@@ -101,7 +89,6 @@ int uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, byt
       else {
         switch (msg_esv) {
           case uEchoEsvWriteRequestResponseRequired:
-            // (B) Basic sequence for receiving a request (response required)
             uecho_property_setdata(res_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
             break;
         }
@@ -109,13 +96,12 @@ int uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, byt
     } else {
       switch (msg_esv) {
         case uEchoEsvWriteRequestResponseRequired:
-          // (B) Basic sequence for receiving a request (response required)
           uecho_property_setdata(res_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
           break;
       }
     }
 
-    uecho_message_addproperty(res_msg, res_prop);
+    message_addproperty_func(res_msg, res_prop);
   }
 
   return accepted_request_cnt;
@@ -170,11 +156,11 @@ void uecho_node_servermessagelistener(uEchoNode* node, uEchoMessage* req_msg)
 
   accepted_request_cnt = 0;
   if (uecho_message_isreadwritemessage(req_msg)) {
-    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, uEchoEsvWriteRequestResponseRequired, req_msg->opc_set, req_msg->ep_set, res_msg);
-    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, uEchoEsvReadRequest, req_msg->opc_get, req_msg->ep_get, res_msg);
+    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, uEchoEsvWriteRequestResponseRequired, req_msg->opc_set, req_msg->ep_set, uecho_message_addpropertyset, res_msg);
+    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, uEchoEsvReadRequest, req_msg->opc_get, req_msg->ep_get, uecho_message_addpropertyget, res_msg);
   }
   else {
-    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, req_esv, req_msg->opc, req_msg->ep, res_msg);
+    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, req_esv, req_msg->opc, req_msg->ep, uecho_message_addproperty, res_msg);
   }
 
   all_request_cnt = req_msg->opc + req_msg->opc_set + req_msg->opc_get;
