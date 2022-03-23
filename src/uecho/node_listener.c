@@ -76,14 +76,42 @@ int uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, byt
     if (dest_prop) {
       if (uecho_object_notifyrequestproperty(dest_obj, dest_prop, msg_esv, msg_prop)) {
         accepted_request_cnt++;
-        if (uecho_esv_isreadrequest(msg_esv) || uecho_esv_isnotifyrequest(msg_esv)) {
-          uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
+        switch (msg_esv) {
+          case uEchoEsvWriteRequest:
+            // (A) Basic sequence for receiving a request (no response required)
+            break;
+          case uEchoEsvReadRequest:
+            // (B) Basic sequence for receiving a request (response required)
+            uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
+            break;
+          case uEchoEsvWriteRequestResponseRequired:
+            // (B) Basic sequence for receiving a request (response required)
+            uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
+            break;
+          case uEchoEsvNotificationRequest:
+            // (C) Basic sequence for processing a notification request
+            uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
+            break;
+          case uEchoEsvNotificationResponseRequired:
+            // (E) Basic sequence for processing a request requiring a notification response
+            uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
+            break;
         }
       }
       else {
-        if (uecho_esv_iswriterequest(msg_esv)) {
-          uecho_property_setdata(res_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
+        switch (msg_esv) {
+          case uEchoEsvWriteRequestResponseRequired:
+            // (B) Basic sequence for receiving a request (response required)
+            uecho_property_setdata(res_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
+            break;
         }
+      }
+    } else {
+      switch (msg_esv) {
+        case uEchoEsvWriteRequestResponseRequired:
+          // (B) Basic sequence for receiving a request (response required)
+          uecho_property_setdata(res_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
+          break;
       }
     }
 
