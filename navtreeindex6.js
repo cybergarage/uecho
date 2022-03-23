@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"structuEchoClass.html":[0,0,1],
 "structuEchoClass.html#ab430ab1418555edf687e66a7329a53a7":[0,0,1,0],
 "structuEchoMessageObserver.html":[0,0,6],
 "structuEchoMessageObserver.html#a4c8e514a4835fe62d5185b1b6d8bdf9f":[0,0,6,1],
