@@ -57,9 +57,6 @@ bool uecho_test_property_requesthandler(uEchoObject* obj, uEchoProperty* prop, u
   if (pdc != 1)
     return false;
 
-  if (!uecho_property_setdata(prop, edt, pdc))
-    return false;
-
   status = edt[0];
   
 #if defined(UECHO_TEST_VERBOSE)
