@@ -80,19 +80,19 @@ BOOST_AUTO_TEST_CASE(ControllerUdpOption)
   uecho_controller_delete(ctrl);
 }
 
-BOOST_AUTO_TEST_CASE(ControllerSearchAll)
+BOOST_AUTO_TEST_CASE(ControllerRequest)
 {
   // Create Controller (Disable UDP Server)
 
   uEchoController* ctrl = uecho_controller_new();
-  uecho_controller_disableudpserver(ctrl);
   BOOST_CHECK(uecho_controller_start(ctrl));
   BOOST_CHECK(uecho_controller_isrunning(ctrl));
 
-  // Start Device
+  // Add Device
 
-  uEchoNode* node = uecho_test_createtestnode();
-  BOOST_CHECK(uecho_node_start(node));
+  uEchoNode* node = uecho_controller_getlocalnode(ctrl);
+  uEchoObject* dev = uecho_test_createtestdevice();
+  BOOST_CHECK(uecho_node_addobject(node, dev));
 
   // Search (NotificationRequest instead of ReadRequest)
 
@@ -103,11 +103,75 @@ BOOST_AUTO_TEST_CASE(ControllerSearchAll)
   uEchoObject* found_obj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
   BOOST_CHECK(found_obj);
 
+  // Post Message (ReadRequest)
+
+  uEchoMessage* msg = uecho_message_new();
+  uecho_message_setesv(msg, uEchoEsvReadRequest);
+  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
+
+  uEchoMessage* res = uecho_message_new();
+
+  BOOST_CHECK(uecho_controller_postmessage(ctrl, found_obj, msg, res));
+
+  BOOST_CHECK_EQUAL(uecho_message_getopc(res), 1);
+  BOOST_CHECK_EQUAL(uecho_message_getesv(res), uEchoEsvReadResponse);
+  uEchoProperty* prop = uecho_message_getproperty(res, 0);
+  BOOST_CHECK(prop);
+  BOOST_CHECK_EQUAL(uecho_property_getcode(prop), UECHO_TEST_PROPERTY_SWITCHCODE);
+  BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), 1);
+  byte* prop_data = uecho_property_getdata(prop);
+  BOOST_CHECK(prop_data);
+  BOOST_CHECK_EQUAL(prop_data[0], UECHO_TEST_PROPERTY_SWITCH_DEFAULT);
+
+  uecho_message_delete(res);
+  uecho_message_delete(msg);
+
+  // Post Write Message (WriteRequest:OFF)
+
+  msg = uecho_message_new();
+  uecho_message_setesv(msg, uEchoEsvWriteRequestResponseRequired);
+  byte post_data[UECHO_TEST_PROPERTY_SWITCH_OFF];
+  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 1, post_data));
+
+  res = uecho_message_new();
+
+  BOOST_CHECK(uecho_controller_postmessage(ctrl, found_obj, msg, res));
+
+  BOOST_CHECK_EQUAL(uecho_message_getopc(res), 1);
+  BOOST_CHECK_EQUAL(uecho_message_getesv(res), uEchoEsvWriteResponse);
+  prop = uecho_message_getproperty(res, 0);
+  BOOST_CHECK(prop);
+  BOOST_CHECK_EQUAL(uecho_property_getcode(prop), UECHO_TEST_PROPERTY_SWITCHCODE);
+  BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), 0);
+
+  uecho_message_delete(res);
+  uecho_message_delete(msg);
+
+  // Post Message (ReadRequest)
+
+  msg = uecho_message_new();
+  uecho_message_setesv(msg, uEchoEsvReadRequest);
+  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
+
+  res = uecho_message_new();
+
+  BOOST_CHECK(uecho_controller_postmessage(ctrl, found_obj, msg, res));
+
+  BOOST_CHECK_EQUAL(uecho_message_getopc(res), 1);
+  BOOST_CHECK_EQUAL(uecho_message_getesv(res), uEchoEsvReadResponse);
+  prop = uecho_message_getproperty(res, 0);
+  BOOST_CHECK(prop);
+  BOOST_CHECK_EQUAL(uecho_property_getcode(prop), UECHO_TEST_PROPERTY_SWITCHCODE);
+  BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), 1);
+  prop_data = uecho_property_getdata(prop);
+  BOOST_CHECK(prop_data);
+  BOOST_CHECK_EQUAL(prop_data[0], UECHO_TEST_PROPERTY_SWITCH_OFF);
+
+  uecho_message_delete(res);
+  uecho_message_delete(msg);
+
   // Teminate
 
   BOOST_CHECK(uecho_controller_stop(ctrl));
   uecho_controller_delete(ctrl);
-
-  BOOST_CHECK(uecho_node_stop(node));
-  uecho_node_delete(node);
 }
