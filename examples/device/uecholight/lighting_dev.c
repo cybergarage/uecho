@@ -76,9 +76,6 @@ bool uecho_lighting_propertyrequesthandler(uEchoObject* obj, uEchoProperty* prop
     return false;
   }
 
-  if (!uecho_property_setdata(prop, edt, pdc))
-    return false;
-
   status = edt[0];
 
   // TODO : Set the status to hardware
