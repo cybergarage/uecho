@@ -29,7 +29,7 @@ uecho_controller_searchallobjects(ctrl);
 
 ### 3. Getting Nodes and Objects
 
-After the searching, use `uecho_controller_getnodes` and `uecho_node_next` to get all found nodes. [ECHONETLite](http://www.echonet.gr.jp/english/index.htm) node can have multiple objects, use `uecho_node_getobjects` and `uecho_object_next` to get the all objects in the node.
+After the searching, use `uecho_controller_getnodes` and `uecho_node_next` to get all found nodes. The [ECHONETLite](http://www.echonet.gr.jp/english/index.htm) node might have multiple objects such as the device or profile objects, use `uecho_node_getobjects` and `uecho_object_next` to get the all objects in the node.
 
 ```
 uEchoController *ctrl;
@@ -44,9 +44,9 @@ for (node = uecho_controller_getnodes(ctrl); node; node = uecho_node_next(node))
 }
 ```
 
-### 4. Creating Control Message
+### 4. Creating Request Message
 
-To control the found objects, create the control message using uecho_message_new() as the following.
+To control the found objects, create the request message using uecho_message_new() as the following.
 
 ```
 uEchoMessage *msg;
@@ -75,7 +75,7 @@ The uEcho controller sets the following message objects automatically when the m
 
 ### 5. Sending Messages
 
-To send the created message, use `uecho_controller_sendmessage` as the following:
+To send the created request message, use `uecho_controller_sendmessage` as the following:
 
 ```
 uEchoController *ctrl;
