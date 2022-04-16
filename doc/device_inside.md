@@ -14,7 +14,7 @@ The node profile object is a standard profile object, [ECHONET Lite][enet] node 
 - Class code: 0xF0
 - Instance code: 0x01 (general node)
 
-The `uecho` updates the node profile class objects automatically when the children node is changed, and so the developer doesn't need to update the node profile object yourself.
+The `uecho` updates the node profile class objects automatically when the children objects in the node are changed, and so the developer doesn't need to update the node profile object yourself.
 
 ## Device Object Super Class
 
