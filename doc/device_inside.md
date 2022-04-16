@@ -38,7 +38,7 @@ The `uecho` add the following mandatory properties too. However, the developer d
 
 ## Device Message Handler and Listener
 
-The `uecho` handles all request messages from other nodes automatically, the developer need only control request message permissions from other nodes and controllers to the target object properties using the object property handlers of the 'uecho'. However, the developer can set some request message listeners into the node and objects to listen the raw messages of [ECHONET Lite][enet] too. The following figure shows the message handling sequence of 'uecho'.
+The `uecho` handles all request messages from other nodes automatically, the developer need only control request message permissions from other nodes and controllers to the target object properties using the object property handlers of the `uecho`. However, the developer can set some request message listeners into the node and objects to listen the raw messages of [ECHONET Lite][enet] too. The following figure shows the message handling sequence of `uecho`.
 
 ![Node Observers](img/node_msg_handler.png)
 
