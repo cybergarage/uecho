@@ -10,7 +10,7 @@ The `uecho` supports your original standard devices of [ECHONET Lite][enet] spec
 
 ### 1. Creating Node
 
-To create your original device, use `uecho_node_new()` as the following at first.
+All devices of [ECHONET Lite][enet] belong to a node. To create your original device, use `uecho_node_new()` as the following at first.
 
 ```
 #include <uecho/uecho.h>
