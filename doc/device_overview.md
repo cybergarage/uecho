@@ -22,7 +22,7 @@ The new node has only a node profile class object, and it has no device object. 
 
 ### 2. Creating Device Object
 
-The new node has no device object. To add your device objects, create a new device object using `uecho_device_new()`.  `uecho_device_new()` create a new device object which is added some mandatory properties of ECHONET device object super class requirements [\[1\]][enet-spec].
+To add your device objects into the created node, create a new device object using `uecho_device_new()`.  `uecho_device_new()` create a new device object which is added some mandatory properties of ECHONET device object super class requirements [\[1\]][enet-spec].
 
 Next, according to ECHONET standard device specification [\[1\]][enet-spec], set the manufacturer code using `uecho_object_setmanufacturercode()` and the object code using `uecho_object_setcode()`.
 The created device has only mandatory properties, and so you should add other stadard properties of ECHONET standard device specification [\[1\]][enet-spec] or your extra properties using `uecho_object_setproperty()` and `uecho_object_setpropertydata()`.
