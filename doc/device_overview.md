@@ -68,7 +68,7 @@ The `uecho` updates the target property by the request property data if the hand
 
 The `uecho_object_setpropertywriterequesthandler()` sets the handler for all write request types, Write (0x60) , Write Response Required (0x61) and Write & read Request (0x6E). To set handlers for each (ECHONET Lite Service) of [ECHONET Lite][enet], use `uecho_object_setpropertyrequeslistener()`, and The `uecho_object_setpropertywriterequesthandler()` is a sugar function of the `uecho_object_setpropertyrequeslistener()`.
 
-### 4. Start Node
+### 4. Starting Node
 
 Finally, start the node to use `uecho_node_start` as the following:
 
