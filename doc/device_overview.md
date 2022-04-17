@@ -41,7 +41,7 @@ uecho_object_setpropertydata(obj, 0xXX, ....., ....);
 uecho_node_addobject(node, obj);
 ```
 
-### 3. Setting 
+### 3. Handling Request Messages 
 
 To implement the device, you have only to handle write requests from other nodes because The `uecho` handles other standard read and notification requests automatically. To grant the write requests and get the property data, use `uecho_object_setpropertywriterequesthandler()` as the following:
 
