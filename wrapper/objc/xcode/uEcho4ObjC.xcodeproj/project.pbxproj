@@ -10,7 +10,8 @@
 		213DBACB281FE61F0017D1BD /* uEcho4ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 213DBAC0281FE61F0017D1BD /* uEcho4ObjC.framework */; };
 		21D5B656281FE8D80034B6AB /* uEcho.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D5B655281FE8D80034B6AB /* uEcho.h */; };
 		21D5B658281FE8E50034B6AB /* uEchoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B657281FE8E50034B6AB /* uEchoTests.m */; };
-		21D5B65D281FEB0F0034B6AB /* CGEchoControlPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B65B281FEB0F0034B6AB /* CGEchoControlPoint.m */; };
+		21D5B65D281FEB0F0034B6AB /* CGEchoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B65B281FEB0F0034B6AB /* CGEchoController.m */; };
+		21D5B6672820156A0034B6AB /* libuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D5B6662820153C0034B6AB /* libuecho.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -21,6 +22,20 @@
 			remoteGlobalIDString = 213DBABF281FE61F0017D1BD;
 			remoteInfo = uecho;
 		};
+		21D5B6652820153C0034B6AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21D5B6612820153B0034B6AB /* libuecho.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 212ADD881A8D4F000054EC0F;
+			remoteInfo = libuecho;
+		};
+		21D5B6682820158E0034B6AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21D5B6612820153B0034B6AB /* libuecho.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 212ADD871A8D4F000054EC0F;
+			remoteInfo = libuecho;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -28,8 +43,9 @@
 		213DBACA281FE61F0017D1BD /* uEcho4ObjCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uEcho4ObjCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D5B655281FE8D80034B6AB /* uEcho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uEcho.h; sourceTree = "<group>"; };
 		21D5B657281FE8E50034B6AB /* uEchoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = uEchoTests.m; sourceTree = "<group>"; };
-		21D5B65B281FEB0F0034B6AB /* CGEchoControlPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGEchoControlPoint.m; path = ../../uEcho/CGEchoControlPoint.m; sourceTree = "<group>"; };
-		21D5B65C281FEB0F0034B6AB /* CGEchoControlPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEchoControlPoint.h; path = ../../uEcho/CGEchoControlPoint.h; sourceTree = "<group>"; };
+		21D5B65B281FEB0F0034B6AB /* CGEchoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGEchoController.m; path = ../../uEcho/CGEchoController.m; sourceTree = "<group>"; };
+		21D5B65C281FEB0F0034B6AB /* CGEchoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEchoController.h; path = ../../uEcho/CGEchoController.h; sourceTree = "<group>"; };
+		21D5B6612820153B0034B6AB /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21D5B6672820156A0034B6AB /* libuecho.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +74,7 @@
 				21D5B65A281FEADF0034B6AB /* uEcho */,
 				21D5B654281FE8740034B6AB /* uEcho4ObjCTests */,
 				21D5B653281FE85F0034B6AB /* uEcho4ObjC */,
+				21D5B6602820150D0034B6AB /* Frameworks */,
 				213DBAC1281FE61F0017D1BD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,10 +107,26 @@
 		21D5B65A281FEADF0034B6AB /* uEcho */ = {
 			isa = PBXGroup;
 			children = (
-				21D5B65C281FEB0F0034B6AB /* CGEchoControlPoint.h */,
-				21D5B65B281FEB0F0034B6AB /* CGEchoControlPoint.m */,
+				21D5B65C281FEB0F0034B6AB /* CGEchoController.h */,
+				21D5B65B281FEB0F0034B6AB /* CGEchoController.m */,
 			);
 			path = uEcho;
+			sourceTree = "<group>";
+		};
+		21D5B6602820150D0034B6AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21D5B6612820153B0034B6AB /* libuecho.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21D5B6622820153B0034B6AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21D5B6662820153C0034B6AB /* libuecho.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,6 +155,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				21D5B6692820158E0034B6AB /* PBXTargetDependency */,
 			);
 			name = uEcho4ObjC;
 			productName = uecho;
@@ -173,6 +208,12 @@
 			mainGroup = 213DBAB6281FE61F0017D1BD;
 			productRefGroup = 213DBAC1281FE61F0017D1BD /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 21D5B6622820153B0034B6AB /* Products */;
+					ProjectRef = 21D5B6612820153B0034B6AB /* libuecho.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				213DBABF281FE61F0017D1BD /* uEcho4ObjC */,
@@ -180,6 +221,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		21D5B6662820153C0034B6AB /* libuecho.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libuecho.a;
+			remoteRef = 21D5B6652820153C0034B6AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		213DBABE281FE61F0017D1BD /* Resources */ = {
@@ -211,7 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D5B658281FE8E50034B6AB /* uEchoTests.m in Sources */,
-				21D5B65D281FEB0F0034B6AB /* CGEchoControlPoint.m in Sources */,
+				21D5B65D281FEB0F0034B6AB /* CGEchoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +273,11 @@
 			isa = PBXTargetDependency;
 			target = 213DBABF281FE61F0017D1BD /* uEcho4ObjC */;
 			targetProxy = 213DBACC281FE61F0017D1BD /* PBXContainerItemProxy */;
+		};
+		21D5B6692820158E0034B6AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libuecho;
+			targetProxy = 21D5B6682820158E0034B6AB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -277,6 +333,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../include/;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -332,6 +389,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../include/;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

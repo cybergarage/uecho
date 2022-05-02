@@ -11,9 +11,14 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSArray.h>
 
-@interface CGUpnpControlPoint : NSObject {
+#if !defined(_UECHO_CONTROLLER_H_)
+typedef void uEchoController;
+#endif
+
+@interface CGEchoController : NSObject {
 }
+@property (assign, readonly) uEchoController* cObject;
 - (BOOL)start;
 - (BOOL)stop;
-- (void)search;
+- (BOOL)search;
 @end
