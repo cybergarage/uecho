@@ -19,6 +19,7 @@
 #include <uecho/frame/server.h>
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
+#include <uecho/util/strings.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -38,7 +39,7 @@ typedef struct UEchoNode {
   uEchoObjectList* objects;
 
   void (*msg_listener)(struct UEchoNode*, uEchoMessage*); /* uEchoNodeMessageListener */
-  char* address;
+  uEchoString *address;
   uEchoOption option;
 } uEchoNode, uEchoNodeList;
 
