@@ -36,7 +36,7 @@ uEchoNode* uecho_node_new(void)
   node->server = uecho_server_new();
   uecho_server_addobserver(node->server, node, (uEchoMessageHandler)uecho_node_servermessagelistener);
 
-  node->address = NULL;
+  node->address = uecho_string_new();
   uecho_node_setmessagelistener(node, NULL);
 
   obj = uecho_nodeprofileclass_new();
@@ -60,6 +60,7 @@ bool uecho_node_delete(uEchoNode* node)
   uecho_classlist_delete(node->classes);
   uecho_objectlist_delete(node->objects);
   uecho_server_delete(node->server);
+  uecho_string_delete(node->address);
 
   free(node);
 
@@ -147,7 +148,7 @@ void uecho_node_setaddress(uEchoNode* node, const char* addr)
 {
   if (!node)
     return;
-  uecho_strloc(addr, &node->address);
+  uecho_string_setvalue(node->address, addr);
 }
 
 /****************************************
@@ -158,8 +159,7 @@ const char* uecho_node_getaddress(uEchoNode* node)
 {
   if (!node)
     return NULL;
-
-  return node->address;
+  return uecho_string_getvalue(node->address);
 }
 
 /****************************************
@@ -172,7 +172,7 @@ bool uecho_node_isaddress(uEchoNode* node, const char* addr)
     return false;
 
   if (node->address) {
-    if (uecho_streq(node->address, addr))
+    if (uecho_streq(uecho_string_getvalue(node->address), addr))
       return true;
   }
 
