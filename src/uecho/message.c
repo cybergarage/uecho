@@ -588,7 +588,7 @@ bool uecho_message_addpropertyget(uEchoMessage* msg, uEchoProperty* prop)
 
 uEchoProperty* uecho_property_get(byte opc, uEchoProperty** ep, size_t n)
 {
-  if ((opc - 1) < n)
+  if (!(*ep) || ((opc - 1) < n))
     return NULL;
   return ep[n];
 }
