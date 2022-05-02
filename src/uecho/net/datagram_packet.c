@@ -26,11 +26,10 @@ uEchoDatagramPacket* uecho_socket_datagram_packet_new(void)
   dgm_pkt->data = NULL;
   dgm_pkt->data_len = 0;
 
-  uecho_string_new();
   dgm_pkt->local_address = uecho_string_new();
-  dgm_pkt->remote_address = uecho_string_new();
-
   uecho_socket_datagram_packet_setlocalport(dgm_pkt, 0);
+
+  dgm_pkt->remote_address = uecho_string_new();
   uecho_socket_datagram_packet_setremoteport(dgm_pkt, 0);
 
   return dgm_pkt;
