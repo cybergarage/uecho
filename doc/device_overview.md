@@ -1,6 +1,6 @@
 ![logo](img/logo.png)
 
-# Overview of The uEcho Device
+# Overview of uEcho Device
 
 ## Making Devices
 
@@ -10,7 +10,7 @@ The `uecho` supports your original standard devices of [ECHONET Lite][enet] spec
 
 ### 1. Creating Node
 
-To create your original device, use `uecho_node_new()` as the following at first.
+All devices of [ECHONET Lite][enet] belong to a node. To create your original device, use `uecho_node_new()` as the following at first.
 
 ```
 #include <uecho/uecho.h>
@@ -22,7 +22,7 @@ The new node has only a node profile class object, and it has no device object. 
 
 ### 2. Creating Device Object
 
-The new node has no device object. To add your device objects, create a new device object using `uecho_device_new()`.  `uecho_device_new()` create a new device object which is added some mandatory properties of ECHONET device object super class requirements [\[1\]][enet-spec].
+To add your device objects into the created node, create a new device object using `uecho_device_new()`.  `uecho_device_new()` create a new device object which is added some mandatory properties of ECHONET device object super class requirements [\[1\]][enet-spec].
 
 Next, according to ECHONET standard device specification [\[1\]][enet-spec], set the manufacturer code using `uecho_object_setmanufacturercode()` and the object code using `uecho_object_setcode()`.
 The created device has only mandatory properties, and so you should add other stadard properties of ECHONET standard device specification [\[1\]][enet-spec] or your extra properties using `uecho_object_setproperty()` and `uecho_object_setpropertydata()`.
@@ -41,7 +41,7 @@ uecho_object_setpropertydata(obj, 0xXX, ....., ....);
 uecho_node_addobject(node, obj);
 ```
 
-### 3. Setting 
+### 3. Handling Request Messages 
 
 To implement the device, you have only to handle write requests from other nodes because The `uecho` handles other standard read and notification requests automatically. To grant the write requests and get the property data, use `uecho_object_setpropertywriterequesthandler()` as the following:
 
@@ -68,7 +68,7 @@ The `uecho` updates the target property by the request property data if the hand
 
 The `uecho_object_setpropertywriterequesthandler()` sets the handler for all write request types, Write (0x60) , Write Response Required (0x61) and Write & read Request (0x6E). To set handlers for each (ECHONET Lite Service) of [ECHONET Lite][enet], use `uecho_object_setpropertyrequeslistener()`, and The `uecho_object_setpropertywriterequesthandler()` is a sugar function of the `uecho_object_setpropertyrequeslistener()`.
 
-### 4. Start Node
+### 4. Starting Node
 
 Finally, start the node to use `uecho_node_start` as the following:
 
