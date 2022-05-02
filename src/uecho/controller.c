@@ -566,13 +566,17 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoObject* obj, uEcho
 bool uecho_controller_searchallobjectswithesv(uEchoController* ctrl, uEchoEsv esv)
 {
   uEchoMessage* msg;
+  bool is_success;
 
   msg = uecho_message_search_new();
   if (!msg)
     return false;
 
   uecho_message_setesv(msg, esv);
-  return uecho_controller_announcemessage(ctrl, msg);
+  is_success = uecho_controller_announcemessage(ctrl, msg);
+  uecho_message_delete(msg);
+
+  return is_success;
 }
 
 /****************************************
