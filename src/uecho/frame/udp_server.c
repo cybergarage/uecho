@@ -157,11 +157,15 @@ static void uecho_udp_server_action(uEchoThread* thread)
       break;
 
     dgm_pkt_len = uecho_socket_recv(server->socket, dgm_pkt);
-    if (dgm_pkt_len < 0)
+    if (dgm_pkt_len < 0) {
+      uecho_socket_datagram_packet_delete(dgm_pkt);
       break;
+    }
 
-    if (!uecho_thread_isrunnable(thread) || !uecho_socket_isbound(server->socket))
+    if (!uecho_thread_isrunnable(thread) || !uecho_socket_isbound(server->socket)) {
+      uecho_socket_datagram_packet_delete(dgm_pkt);
       break;
+    }
 
     msg = uecho_message_new();
     if (!msg)
@@ -173,6 +177,7 @@ static void uecho_udp_server_action(uEchoThread* thread)
       uecho_net_datagram_packet_error(UECHO_LOG_NET_PREFIX_RECV, dgm_pkt);
     }
 
+    uecho_socket_datagram_packet_delete(dgm_pkt);
     uecho_message_delete(msg);
   }
 }
