@@ -595,6 +595,7 @@ bool uecho_controller_searchallobjects(uEchoController* ctrl)
 bool uecho_controller_searchobjectwithesv(uEchoController* ctrl, byte obj_code, uEchoEsv esv)
 {
   uEchoMessage* msg;
+  bool is_success;
 
   if (!ctrl)
     return false;
@@ -606,8 +607,10 @@ bool uecho_controller_searchobjectwithesv(uEchoController* ctrl, byte obj_code, 
 
   uecho_message_setesv(msg, esv);
   uecho_message_setdestinationobjectcode(msg, obj_code);
+  is_success = uecho_controller_announcemessage(ctrl, msg);
+  uecho_message_delete(msg);
 
-  return uecho_controller_announcemessage(ctrl, msg);
+  return is_success;
 }
 
 /****************************************
