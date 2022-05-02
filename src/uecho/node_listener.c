@@ -79,6 +79,12 @@ bool uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, by
       if (uecho_object_notifyrequestproperty(dest_obj, dest_prop, msg_esv, msg_prop)) {
         accepted_request_cnt++;
         switch (msg_esv) {
+          case uEchoEsvWriteRequest:
+          case uEchoEsvWriteRequestResponseRequired:
+            uecho_property_setdata(dest_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
+            break;
+        }
+        switch (msg_esv) {
           case uEchoEsvReadRequest:
           case uEchoEsvNotificationRequest:
           case uEchoEsvNotificationResponseRequired:
