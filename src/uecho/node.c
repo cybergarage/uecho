@@ -446,17 +446,20 @@ bool uecho_node_sendmessage(uEchoNode* node, uEchoNode* dst_node, uEchoMessage* 
  * uecho_node_announceproperty
  ****************************************/
 
-bool uecho_node_announceproperty(uEchoNode* node, uEchoProperty* prop)
+bool uecho_node_announceproperty(uEchoNode* node, uEchoObject* obj, uEchoProperty* prop)
 {
   uEchoMessage* msg;
   bool is_success;
 
+  if (!node || !obj || !prop)
+    return false;
+  
   msg = uecho_message_new();
   if (!msg)
     return false;
 
   uecho_message_setesv(msg, uEchoEsvNotification);
-  uecho_message_setsourceobjectcode(msg, uEchoNodeProfileObject);
+  uecho_message_setsourceobjectcode(msg, uecho_object_getcode(obj));
   uecho_message_setdestinationobjectcode(msg, uEchoNodeProfileObject);
   uecho_message_addproperty(msg, uecho_property_copy(prop));
 
@@ -484,5 +487,5 @@ bool uecho_node_announce(uEchoNode* node)
   if (!node_prop)
     return false;
 
-  return uecho_node_announceproperty(node, node_prop);
+  return uecho_node_announceproperty(node, node_obj, node_prop);
 }

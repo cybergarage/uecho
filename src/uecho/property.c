@@ -497,10 +497,15 @@ uEchoNode* uecho_property_getnode(uEchoProperty* prop)
 bool uecho_property_announce(uEchoProperty* prop)
 {
   uEchoNode* node;
+  uEchoObject* obj;
 
   node = uecho_property_getnode(prop);
   if (!node)
     return false;
 
-  return uecho_node_announceproperty(node, prop);
+  obj = uecho_property_getparentobject(prop);
+  if (!obj)
+    return false;
+
+  return uecho_node_announceproperty(node, obj, prop);
 }
