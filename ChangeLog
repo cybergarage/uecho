@@ -1,3 +1,7 @@
+2022-XX-XX The uecho Authors <skonno@cybergarage.org>
+	* v1.1.1
+	* Fix memory leak bugs
+
 2022-03-23 The uecho Authors <skonno@cybergarage.org>
 	* v1.1.0
 	* Improve internal request message handlers to support property value write and read request (0x6E)
