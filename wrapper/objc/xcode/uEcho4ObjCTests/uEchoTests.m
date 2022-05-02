@@ -1,17 +1,17 @@
 //
-//  uechoTests.m
-//  uechoTests
+//  uEchoTests.m
+//  uEchoTests
 //
 //  Created by The uecho Authors on 2022/05/02.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface uechoTests : XCTestCase
+@interface uEchoTests : XCTestCase
 
 @end
 
-@implementation uechoTests
+@implementation uEchoTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
