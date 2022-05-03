@@ -19,12 +19,12 @@ uecho_controller_start(ctrl);
 
 ### 2. Searching Nodes
 
-Next, use `uecho_controller_searchallobjects` to search other nodes in the local area network as the following:
+Next, use `uecho_controller_search` to search other nodes in the local area network as the following:
 
 ```
 uEchoController *ctrl;
 ....
-uecho_controller_searchallobjects(ctrl);
+uecho_controller_search(ctrl);
 ```
 
 ### 3. Getting Nodes and Objects

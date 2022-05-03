@@ -49,7 +49,7 @@ size_t uecho_controller_getnodecount(uEchoController* ctrl);
 
 void uecho_controller_setmessagelistener(uEchoController* ctrl, uEchoControllerMessageListener listener);
 
-bool uecho_controller_searchallobjects(uEchoController* ctrl);
+bool uecho_controller_search(uEchoController* ctrl);
 bool uecho_controller_searchobject(uEchoController* ctrl, byte obj_code);
 
 bool uecho_controller_announcemessage(uEchoController* ctrl, uEchoMessage* msg);

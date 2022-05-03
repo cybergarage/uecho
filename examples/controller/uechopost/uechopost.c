@@ -144,7 +144,7 @@ int main(int argc, char* argv[])
   if (!uecho_controller_start(ctrl))
     return EXIT_FAILURE;
 
-  uecho_controller_searchallobjects(ctrl);
+  uecho_controller_search(ctrl);
 
   // Find destination node
 
