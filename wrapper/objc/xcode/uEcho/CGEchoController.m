@@ -21,12 +21,9 @@
   if ((self = [super init]) == nil)
     return nil;
   cObject = uecho_controller_new();
-  if (cObject) {
-    if (![self start])
+  if (!cObject) {
       self = nil;
   }
-  else
-    self = nil;
   return self;
 }
 
