@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		213DBACB281FE61F0017D1BD /* CGEcho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 213DBAC0281FE61F0017D1BD /* CGEcho.framework */; };
-		21C8071F282130AD00E33B1C /* CGEchoController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C8071D282130AD00E33B1C /* CGEchoController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		21C80720282130AD00E33B1C /* CGEchoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C8071E282130AD00E33B1C /* CGEchoController.m */; };
+		21403F2F282168FE00DB7B22 /* CGEcho.h in Headers */ = {isa = PBXBuildFile; fileRef = 21403F2A282168FE00DB7B22 /* CGEcho.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21403F30282168FE00DB7B22 /* CGEchoController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21403F2B282168FE00DB7B22 /* CGEchoController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21403F31282168FE00DB7B22 /* CGEchoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21403F2C282168FE00DB7B22 /* CGEchoController.m */; };
 		21C807232821341A00E33B1C /* uEchoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C807222821341A00E33B1C /* uEchoTests.m */; };
-		21C807252821344E00E33B1C /* CGEcho.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C807242821344E00E33B1C /* CGEcho.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21D5B6672820156A0034B6AB /* libuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D5B6662820153C0034B6AB /* libuecho.a */; };
 /* End PBXBuildFile section */
 
@@ -42,10 +42,10 @@
 /* Begin PBXFileReference section */
 		213DBAC0281FE61F0017D1BD /* CGEcho.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGEcho.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		213DBACA281FE61F0017D1BD /* CGEchoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGEchoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		21C8071D282130AD00E33B1C /* CGEchoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGEchoController.h; sourceTree = "<group>"; };
-		21C8071E282130AD00E33B1C /* CGEchoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGEchoController.m; sourceTree = "<group>"; };
+		21403F2A282168FE00DB7B22 /* CGEcho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEcho.h; path = ../uEcho/CGEcho.h; sourceTree = "<group>"; };
+		21403F2B282168FE00DB7B22 /* CGEchoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEchoController.h; path = ../uEcho/CGEchoController.h; sourceTree = "<group>"; };
+		21403F2C282168FE00DB7B22 /* CGEchoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGEchoController.m; path = ../uEcho/CGEchoController.m; sourceTree = "<group>"; };
 		21C807222821341A00E33B1C /* uEchoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = uEchoTests.m; path = Tests/uEchoTests.m; sourceTree = "<group>"; };
-		21C807242821344E00E33B1C /* CGEcho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGEcho.h; sourceTree = "<group>"; };
 		21D5B6612820153B0034B6AB /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +72,7 @@
 		213DBAB6281FE61F0017D1BD = {
 			isa = PBXGroup;
 			children = (
-				21D5B653281FE85F0034B6AB /* uEcho */,
+				21403F1D282168A100DB7B22 /* uEcho */,
 				21C80721282133FE00E33B1C /* Tests */,
 				21D5B6602820150D0034B6AB /* Frameworks */,
 				213DBAC1281FE61F0017D1BD /* Products */,
@@ -88,22 +88,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		21403F1D282168A100DB7B22 /* uEcho */ = {
+			isa = PBXGroup;
+			children = (
+				21403F2A282168FE00DB7B22 /* CGEcho.h */,
+				21403F2B282168FE00DB7B22 /* CGEchoController.h */,
+				21403F2C282168FE00DB7B22 /* CGEchoController.m */,
+			);
+			name = uEcho;
+			sourceTree = "<group>";
+		};
 		21C80721282133FE00E33B1C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				21C807222821341A00E33B1C /* uEchoTests.m */,
 			);
 			name = Tests;
-			sourceTree = "<group>";
-		};
-		21D5B653281FE85F0034B6AB /* uEcho */ = {
-			isa = PBXGroup;
-			children = (
-				21C807242821344E00E33B1C /* CGEcho.h */,
-				21C8071D282130AD00E33B1C /* CGEchoController.h */,
-				21C8071E282130AD00E33B1C /* CGEchoController.m */,
-			);
-			path = uEcho;
 			sourceTree = "<group>";
 		};
 		21D5B6602820150D0034B6AB /* Frameworks */ = {
@@ -129,8 +129,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21C8071F282130AD00E33B1C /* CGEchoController.h in Headers */,
-				21C807252821344E00E33B1C /* CGEcho.h in Headers */,
+				21403F30282168FE00DB7B22 /* CGEchoController.h in Headers */,
+				21403F2F282168FE00DB7B22 /* CGEcho.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21C80720282130AD00E33B1C /* CGEchoController.m in Sources */,
+				21403F31282168FE00DB7B22 /* CGEchoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
