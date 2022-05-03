@@ -560,10 +560,10 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoObject* obj, uEcho
 }
 
 /****************************************
- * uecho_controller_searchallobjectswithesv
+ * uecho_controller_searchwithesv
  ****************************************/
 
-bool uecho_controller_searchallobjectswithesv(uEchoController* ctrl, uEchoEsv esv)
+bool uecho_controller_searchwithesv(uEchoController* ctrl, uEchoEsv esv)
 {
   uEchoMessage* msg;
   bool is_success;
@@ -580,12 +580,12 @@ bool uecho_controller_searchallobjectswithesv(uEchoController* ctrl, uEchoEsv es
 }
 
 /****************************************
- * uecho_controller_searchallobjects
+ * uecho_controller_search
  ****************************************/
 
-bool uecho_controller_searchallobjects(uEchoController* ctrl)
+bool uecho_controller_search(uEchoController* ctrl)
 {
-  return uecho_controller_searchallobjectswithesv(ctrl, uEchoEsvReadRequest);
+  return uecho_controller_searchwithesv(ctrl, uEchoEsvReadRequest);
 }
 
 /****************************************

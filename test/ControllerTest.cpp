@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
 
   // Search (NotificationRequest instead of ReadRequest)
 
-  BOOST_CHECK(uecho_controller_searchallobjectswithesv(ctrl, uEchoEsvNotificationRequest));
+  BOOST_CHECK(uecho_controller_searchwithesv(ctrl, uEchoEsvNotificationRequest));
 
   // Find device
 
