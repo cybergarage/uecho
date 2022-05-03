@@ -18,6 +18,8 @@ typedef void uEchoController;
 @interface CGEchoController : NSObject {
 }
 @property (assign, readonly) uEchoController* cObject;
+- (id)init;
+- (NSArray*)nodes;
 - (BOOL)start;
 - (BOOL)stop;
 - (BOOL)search;

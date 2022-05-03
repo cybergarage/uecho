@@ -15,3 +15,4 @@ FOUNDATION_EXPORT const unsigned char uechoVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <uecho/PublicHeader.h>
 
 #import <CGEcho/CGEchoController.h>
+#import <CGEcho/CGEchoNode.h>

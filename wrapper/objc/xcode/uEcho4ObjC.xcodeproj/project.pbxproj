@@ -11,6 +11,8 @@
 		21403F2F282168FE00DB7B22 /* CGEcho.h in Headers */ = {isa = PBXBuildFile; fileRef = 21403F2A282168FE00DB7B22 /* CGEcho.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21403F30282168FE00DB7B22 /* CGEchoController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21403F2B282168FE00DB7B22 /* CGEchoController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21403F31282168FE00DB7B22 /* CGEchoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21403F2C282168FE00DB7B22 /* CGEchoController.m */; };
+		21403F3428216A1B00DB7B22 /* CGEchoNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 21403F3228216A1A00DB7B22 /* CGEchoNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21403F3528216A1B00DB7B22 /* CGEchoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 21403F3328216A1A00DB7B22 /* CGEchoNode.m */; };
 		21C807232821341A00E33B1C /* uEchoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C807222821341A00E33B1C /* uEchoTests.m */; };
 		21D5B6672820156A0034B6AB /* libuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D5B6662820153C0034B6AB /* libuecho.a */; };
 /* End PBXBuildFile section */
@@ -45,6 +47,8 @@
 		21403F2A282168FE00DB7B22 /* CGEcho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEcho.h; path = ../uEcho/CGEcho.h; sourceTree = "<group>"; };
 		21403F2B282168FE00DB7B22 /* CGEchoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEchoController.h; path = ../uEcho/CGEchoController.h; sourceTree = "<group>"; };
 		21403F2C282168FE00DB7B22 /* CGEchoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGEchoController.m; path = ../uEcho/CGEchoController.m; sourceTree = "<group>"; };
+		21403F3228216A1A00DB7B22 /* CGEchoNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEchoNode.h; path = ../uEcho/CGEchoNode.h; sourceTree = "<group>"; };
+		21403F3328216A1A00DB7B22 /* CGEchoNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGEchoNode.m; path = ../uEcho/CGEchoNode.m; sourceTree = "<group>"; };
 		21C807222821341A00E33B1C /* uEchoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = uEchoTests.m; path = Tests/uEchoTests.m; sourceTree = "<group>"; };
 		21D5B6612820153B0034B6AB /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +95,8 @@
 		21403F1D282168A100DB7B22 /* uEcho */ = {
 			isa = PBXGroup;
 			children = (
+				21403F3228216A1A00DB7B22 /* CGEchoNode.h */,
+				21403F3328216A1A00DB7B22 /* CGEchoNode.m */,
 				21403F2A282168FE00DB7B22 /* CGEcho.h */,
 				21403F2B282168FE00DB7B22 /* CGEchoController.h */,
 				21403F2C282168FE00DB7B22 /* CGEchoController.m */,
@@ -129,6 +135,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21403F3428216A1B00DB7B22 /* CGEchoNode.h in Headers */,
 				21403F30282168FE00DB7B22 /* CGEchoController.h in Headers */,
 				21403F2F282168FE00DB7B22 /* CGEcho.h in Headers */,
 			);
@@ -248,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21403F3528216A1B00DB7B22 /* CGEchoNode.m in Sources */,
 				21403F31282168FE00DB7B22 /* CGEchoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

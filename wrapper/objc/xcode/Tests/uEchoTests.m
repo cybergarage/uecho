@@ -6,7 +6,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <CGEcho/CGEchoController.h>
+#import <CGEcho/CGEcho.h>
 
 @interface uEchoTests : XCTestCase
 
@@ -22,7 +22,13 @@
 
 - (void)testController {
   CGEchoController *ctrl = [[CGEchoController alloc] init];
+
   XCTAssertTrue([ctrl start]);
+
+  for (CGEchoNode *node in [ctrl nodes]) {
+    XCTAssertTrue(node);
+  }
+  
   XCTAssertTrue([ctrl stop]);
 }
 
