@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		213DBACB281FE61F0017D1BD /* uEcho4ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 213DBAC0281FE61F0017D1BD /* uEcho4ObjC.framework */; };
-		21D5B656281FE8D80034B6AB /* uEcho.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D5B655281FE8D80034B6AB /* uEcho.h */; };
-		21D5B658281FE8E50034B6AB /* uEchoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B657281FE8E50034B6AB /* uEchoTests.m */; };
-		21D5B65D281FEB0F0034B6AB /* CGEchoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B65B281FEB0F0034B6AB /* CGEchoController.m */; };
+		213DBACB281FE61F0017D1BD /* CGEcho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 213DBAC0281FE61F0017D1BD /* CGEcho.framework */; };
+		21C8071F282130AD00E33B1C /* CGEchoController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C8071D282130AD00E33B1C /* CGEchoController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21C80720282130AD00E33B1C /* CGEchoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C8071E282130AD00E33B1C /* CGEchoController.m */; };
+		21C807232821341A00E33B1C /* uEchoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C807222821341A00E33B1C /* uEchoTests.m */; };
+		21C807252821344E00E33B1C /* CGEcho.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C807242821344E00E33B1C /* CGEcho.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21D5B6672820156A0034B6AB /* libuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D5B6662820153C0034B6AB /* libuecho.a */; };
 /* End PBXBuildFile section */
 
@@ -39,12 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		213DBAC0281FE61F0017D1BD /* uEcho4ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = uEcho4ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		213DBACA281FE61F0017D1BD /* uEcho4ObjCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uEcho4ObjCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		21D5B655281FE8D80034B6AB /* uEcho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uEcho.h; sourceTree = "<group>"; };
-		21D5B657281FE8E50034B6AB /* uEchoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = uEchoTests.m; sourceTree = "<group>"; };
-		21D5B65B281FEB0F0034B6AB /* CGEchoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGEchoController.m; path = ../../uEcho/CGEchoController.m; sourceTree = "<group>"; };
-		21D5B65C281FEB0F0034B6AB /* CGEchoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEchoController.h; path = ../../uEcho/CGEchoController.h; sourceTree = "<group>"; };
+		213DBAC0281FE61F0017D1BD /* CGEcho.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGEcho.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		213DBACA281FE61F0017D1BD /* CGEchoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGEchoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21C8071D282130AD00E33B1C /* CGEchoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGEchoController.h; sourceTree = "<group>"; };
+		21C8071E282130AD00E33B1C /* CGEchoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGEchoController.m; sourceTree = "<group>"; };
+		21C807222821341A00E33B1C /* uEchoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = uEchoTests.m; path = Tests/uEchoTests.m; sourceTree = "<group>"; };
+		21C807242821344E00E33B1C /* CGEcho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGEcho.h; sourceTree = "<group>"; };
 		21D5B6612820153B0034B6AB /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				213DBACB281FE61F0017D1BD /* uEcho4ObjC.framework in Frameworks */,
+				213DBACB281FE61F0017D1BD /* CGEcho.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,9 +72,8 @@
 		213DBAB6281FE61F0017D1BD = {
 			isa = PBXGroup;
 			children = (
-				21D5B65A281FEADF0034B6AB /* uEcho */,
-				21D5B654281FE8740034B6AB /* uEcho4ObjCTests */,
-				21D5B653281FE85F0034B6AB /* uEcho4ObjC */,
+				21D5B653281FE85F0034B6AB /* uEcho */,
+				21C80721282133FE00E33B1C /* Tests */,
 				21D5B6602820150D0034B6AB /* Frameworks */,
 				213DBAC1281FE61F0017D1BD /* Products */,
 			);
@@ -82,33 +82,26 @@
 		213DBAC1281FE61F0017D1BD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				213DBAC0281FE61F0017D1BD /* uEcho4ObjC.framework */,
-				213DBACA281FE61F0017D1BD /* uEcho4ObjCTests.xctest */,
+				213DBAC0281FE61F0017D1BD /* CGEcho.framework */,
+				213DBACA281FE61F0017D1BD /* CGEchoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		21D5B653281FE85F0034B6AB /* uEcho4ObjC */ = {
+		21C80721282133FE00E33B1C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				21D5B655281FE8D80034B6AB /* uEcho.h */,
+				21C807222821341A00E33B1C /* uEchoTests.m */,
 			);
-			path = uEcho4ObjC;
+			name = Tests;
 			sourceTree = "<group>";
 		};
-		21D5B654281FE8740034B6AB /* uEcho4ObjCTests */ = {
+		21D5B653281FE85F0034B6AB /* uEcho */ = {
 			isa = PBXGroup;
 			children = (
-				21D5B657281FE8E50034B6AB /* uEchoTests.m */,
-			);
-			path = uEcho4ObjCTests;
-			sourceTree = "<group>";
-		};
-		21D5B65A281FEADF0034B6AB /* uEcho */ = {
-			isa = PBXGroup;
-			children = (
-				21D5B65C281FEB0F0034B6AB /* CGEchoController.h */,
-				21D5B65B281FEB0F0034B6AB /* CGEchoController.m */,
+				21C807242821344E00E33B1C /* CGEcho.h */,
+				21C8071D282130AD00E33B1C /* CGEchoController.h */,
+				21C8071E282130AD00E33B1C /* CGEchoController.m */,
 			);
 			path = uEcho;
 			sourceTree = "<group>";
@@ -136,16 +129,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21D5B656281FE8D80034B6AB /* uEcho.h in Headers */,
+				21C8071F282130AD00E33B1C /* CGEchoController.h in Headers */,
+				21C807252821344E00E33B1C /* CGEcho.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		213DBABF281FE61F0017D1BD /* uEcho4ObjC */ = {
+		213DBABF281FE61F0017D1BD /* CGEcho */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 213DBAD4281FE61F0017D1BD /* Build configuration list for PBXNativeTarget "uEcho4ObjC" */;
+			buildConfigurationList = 213DBAD4281FE61F0017D1BD /* Build configuration list for PBXNativeTarget "CGEcho" */;
 			buildPhases = (
 				213DBABB281FE61F0017D1BD /* Headers */,
 				213DBABC281FE61F0017D1BD /* Sources */,
@@ -157,14 +151,14 @@
 			dependencies = (
 				21D5B6692820158E0034B6AB /* PBXTargetDependency */,
 			);
-			name = uEcho4ObjC;
+			name = CGEcho;
 			productName = uecho;
-			productReference = 213DBAC0281FE61F0017D1BD /* uEcho4ObjC.framework */;
+			productReference = 213DBAC0281FE61F0017D1BD /* CGEcho.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		213DBAC9281FE61F0017D1BD /* uEcho4ObjCTests */ = {
+		213DBAC9281FE61F0017D1BD /* CGEchoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 213DBAD7281FE61F0017D1BD /* Build configuration list for PBXNativeTarget "uEcho4ObjCTests" */;
+			buildConfigurationList = 213DBAD7281FE61F0017D1BD /* Build configuration list for PBXNativeTarget "CGEchoTests" */;
 			buildPhases = (
 				213DBAC6281FE61F0017D1BD /* Sources */,
 				213DBAC7281FE61F0017D1BD /* Frameworks */,
@@ -175,9 +169,9 @@
 			dependencies = (
 				213DBACD281FE61F0017D1BD /* PBXTargetDependency */,
 			);
-			name = uEcho4ObjCTests;
+			name = CGEchoTests;
 			productName = uechoTests;
-			productReference = 213DBACA281FE61F0017D1BD /* uEcho4ObjCTests.xctest */;
+			productReference = 213DBACA281FE61F0017D1BD /* CGEchoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -216,8 +210,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				213DBABF281FE61F0017D1BD /* uEcho4ObjC */,
-				213DBAC9281FE61F0017D1BD /* uEcho4ObjCTests */,
+				213DBABF281FE61F0017D1BD /* CGEcho */,
+				213DBAC9281FE61F0017D1BD /* CGEchoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -254,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21C80720282130AD00E33B1C /* CGEchoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,8 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21D5B658281FE8E50034B6AB /* uEchoTests.m in Sources */,
-				21D5B65D281FEB0F0034B6AB /* CGEchoController.m in Sources */,
+				21C807232821341A00E33B1C /* uEchoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +265,7 @@
 /* Begin PBXTargetDependency section */
 		213DBACD281FE61F0017D1BD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 213DBABF281FE61F0017D1BD /* uEcho4ObjC */;
+			target = 213DBABF281FE61F0017D1BD /* CGEcho */;
 			targetProxy = 213DBACC281FE61F0017D1BD /* PBXContainerItemProxy */;
 		};
 		21D5B6692820158E0034B6AB /* PBXTargetDependency */ = {
@@ -404,7 +398,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1.1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -430,7 +424,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1.1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -492,7 +486,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		213DBAD4281FE61F0017D1BD /* Build configuration list for PBXNativeTarget "uEcho4ObjC" */ = {
+		213DBAD4281FE61F0017D1BD /* Build configuration list for PBXNativeTarget "CGEcho" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				213DBAD5281FE61F0017D1BD /* Debug */,
@@ -501,7 +495,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		213DBAD7281FE61F0017D1BD /* Build configuration list for PBXNativeTarget "uEcho4ObjCTests" */ = {
+		213DBAD7281FE61F0017D1BD /* Build configuration list for PBXNativeTarget "CGEchoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				213DBAD8281FE61F0017D1BD /* Debug */,
