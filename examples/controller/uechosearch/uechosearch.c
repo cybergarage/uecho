@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
   if (!uecho_controller_start(ctrl))
     return EXIT_FAILURE;
 
-  uecho_controller_searchallobjects(ctrl);
+  uecho_controller_search(ctrl);
   uecho_sleep(UECHO_TEST_SEARCH_WAIT_MTIME);
 
   found_node_cnt = uecho_controller_getnodecount(ctrl);

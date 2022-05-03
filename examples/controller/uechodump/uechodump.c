@@ -103,7 +103,7 @@ int main(int argc, char* argv[])
 
     switch (tolower(key)) {
     case 's':
-      uecho_controller_searchallobjects(ctrl);
+      uecho_controller_search(ctrl);
       break;
     default:
       key_usage();

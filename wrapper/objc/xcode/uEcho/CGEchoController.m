@@ -52,7 +52,7 @@
 {
   if (!cObject)
     return NO;
-  uecho_controller_searchallobjects(cObject);
+  uecho_controller_search(cObject);
   return YES;
 }
 
