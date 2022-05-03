@@ -11,6 +11,7 @@
 #include <uecho/controller.h>
 
 #import "CGEchoController.h"
+#import "CGEchoNode.h"
 
 @implementation CGEchoController
 
@@ -32,6 +33,18 @@
   if (cObject) {
     uecho_controller_delete(cObject);
   }
+}
+
+- (NSArray*)nodes
+{
+  if (!cObject)
+    return [NSArray array];
+  NSMutableArray* nodes = [NSMutableArray array];
+  for (uEchoNode *cNode = uecho_controller_getnodes(cObject); cNode; cNode = uecho_node_next(cNode)) {
+    CGEchoNode* node = [[CGEchoNode alloc] initWithCObject:cNode];
+    [nodes addObject:node];
+  }
+  return nodes;
 }
 
 - (BOOL)start

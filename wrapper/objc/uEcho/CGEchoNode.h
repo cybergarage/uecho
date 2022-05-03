@@ -21,5 +21,4 @@ typedef void uEchoNode;
 }
 @property (assign) uEchoNode* cObject;
 - (id)initWithCObject:(uEchoNode*)cobj;
-- (NSArray*)nodes;
 @end
