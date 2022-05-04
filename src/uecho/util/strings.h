@@ -45,7 +45,7 @@ size_t uecho_strlen(const char* str);
 char* uecho_strcpy(char* dst, const char* src);
 char* uecho_strcat(char* dst, const char* src);
 int uecho_strcmp(const char* str1, const char* str2);
-int uecho_strncmp(const char* str1, const char* str2, int nchars);
+int uecho_strncmp(const char* str1, const char* str2, size_t nchars);
 int uecho_strcasecmp(const char* str1, const char* str2);
 bool uecho_streq(const char* str1, const char* str2);
 bool uecho_strcaseeq(const char* str1, const char* str2);

@@ -106,13 +106,12 @@ int uecho_strcmp(const char* str1, const char* str2)
 * uecho_strncmp
 ****************************************/
 
-int uecho_strncmp(const char* str1, const char* str2, int nchars)
+int uecho_strncmp(const char* str1, const char* str2, size_t nchars)
 {
   if (str1 == NULL)
     return -1;
   if (str2 == NULL)
     return 1;
-
   return strncmp(str1, str2, nchars);
 }
 
