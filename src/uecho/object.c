@@ -696,10 +696,10 @@ bool uecho_object_sendmessage(uEchoObject* obj, uEchoObject* dst_obj, uEchoMessa
 }
 
 /****************************************
- * uecho_object_copyobjectproperties
+ * uecho_object_addmissingobjectproperties
  ****************************************/
 
-bool uecho_object_copyobjectproperties(uEchoObject* obj, uEchoObject* src_obj)
+bool uecho_object_addmissingobjectproperties(uEchoObject* obj, uEchoObject* src_obj)
 {
   uEchoProperty *src_prop, *copy_prop;
 
@@ -707,6 +707,8 @@ bool uecho_object_copyobjectproperties(uEchoObject* obj, uEchoObject* src_obj)
     return false;
 
   for (src_prop = uecho_object_getproperties(src_obj); src_prop; src_prop = uecho_property_next(src_prop)) {
+    if (uecho_object_hasproperty(obj, uecho_property_getcode(src_prop)))
+        continue;
     copy_prop = uecho_property_copy(src_prop);
     if (!copy_prop)
       return false;
