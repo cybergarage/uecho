@@ -66,3 +66,14 @@ bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture *man)
     return false;
   return uecho_manufacturelist_add(db->mans, man);
 }
+
+/****************************************
+* uecho_database_addobject
+****************************************/
+
+bool uecho_database_addobject(uEchoDatabase* db, uEchoObject *obj)
+{
+  if (!db)
+    return false;
+  return uecho_objectlist_add(db->objs, obj);
+}

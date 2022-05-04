@@ -36,6 +36,7 @@ typedef struct UEchoDatabase {
 #include <uecho/std/database.h>
 
 void uecho_database_addstandardmanufactures(uEchoDatabase* db);
+void uecho_database_addstandardobjects(uEchoDatabase* db);
 
 #ifdef __cplusplus
 } /* extern C */
