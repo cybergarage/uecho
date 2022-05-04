@@ -31,6 +31,7 @@ uechotest_SOURCES = \
 	../SocketTest.cpp \
 	../InterfaceTest.cpp \
 	../ObjectListTest.cpp \
+	../DatabaseTest.cpp \
 	../LogTest.cpp \
 	../DeviceTest.cpp \
 	../uEchoTest.cpp \

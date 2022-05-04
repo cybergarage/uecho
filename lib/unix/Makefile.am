@@ -31,6 +31,7 @@ uecho_sources = \
 	../../src/uecho/controller_listener.c \
 	../../src/uecho/esv.c \
 	../../src/uecho/property.c \
+	../../src/uecho/manufacture_list.c \
 	../../src/uecho/util/list.c \
 	../../src/uecho/util/strings_tokenizer.c \
 	../../src/uecho/util/strings.c \
@@ -45,12 +46,17 @@ uecho_sources = \
 	../../src/uecho/object.c \
 	../../src/uecho/class.c \
 	../../src/uecho/message.c \
+	../../src/uecho/manufacture.c \
+	../../src/uecho/std/database.c \
+	../../src/uecho/std/standard.c \
 	../../src/uecho/std/device_super_class.c \
 	../../src/uecho/std/profile_super_class.c \
+	../../src/uecho/std/manufacturers.c \
 	../../src/uecho/std/device.c \
 	../../src/uecho/std/node_profile_class.c \
 	../../src/uecho/std/profile.c \
 	../../src/uecho/std/object_super_class.c \
+	../../src/uecho/std/objects_mra.c \
 	../../src/uecho/node_listener.c \
 	../../src/uecho/net/interface_function.c \
 	../../src/uecho/net/socket_opt.c \
