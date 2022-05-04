@@ -1,9 +1,10 @@
 var object_8c =
 [
+    [ "uecho_object_addmissingobjectproperties", "object_8c.html#af7e9c4c351a75e82f2964f8fb50878c6", null ],
     [ "uecho_object_addproperty", "object_8c.html#a27c62ece36b7ac60fbdcf1025b12cba5", null ],
+    [ "uecho_object_addstandardproperties", "object_8c.html#aaed12981872298260e4af37a3f51d634", null ],
     [ "uecho_object_announcemessage", "object_8c.html#a37fab1c9649967383e353996faa96797", null ],
     [ "uecho_object_clearproperties", "object_8c.html#a22d14688139df33d669cab2842b4f696", null ],
-    [ "uecho_object_copyobjectproperties", "object_8c.html#aa60e16d0e9f2a6832f53360ad16e26a5", null ],
     [ "uecho_object_delete", "object_8c.html#af8ee5425a96cb96c671f13fc89b8fa84", null ],
     [ "uecho_object_getclasscode", "object_8c.html#adbb17f31299c378e1ca2c17b72df6802", null ],
     [ "uecho_object_getcode", "object_8c.html#a606e18e84735ebe4f88b77e87a8aad8f", null ],
