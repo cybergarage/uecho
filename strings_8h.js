@@ -63,7 +63,7 @@ var strings_8h =
     [ "uecho_strloc", "strings_8h.html#a5fb8a58dc178f9792ab3b0f26047702e", null ],
     [ "uecho_strltrim", "strings_8h.html#a0291fb76b0f3ce33969e8927603a2565", null ],
     [ "uecho_strncat", "strings_8h.html#a220d9b695b55e7a664486aa9e4879e35", null ],
-    [ "uecho_strncmp", "strings_8h.html#a8175764eeef9ed4603fbe00d52d8d409", null ],
+    [ "uecho_strncmp", "strings_8h.html#ac4ac15a3aea9ddd8522f06d27281cda2", null ],
     [ "uecho_strncpy", "strings_8h.html#ae7a00a6b0a1b823625011d0d29ca1d78", null ],
     [ "uecho_strrchr", "strings_8h.html#a6caab23e6a9043029885280576afc097", null ],
     [ "uecho_strrtrim", "strings_8h.html#ac2aa2160cf8753d82d3aab91a044acf8", null ],

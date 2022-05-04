@@ -64,58 +64,61 @@ $(document).ready(function(){initNavTree('node__profile__class_8c.html',''); ini
   <div class="headertitle"><div class="title">node_profile_class.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="__object_8h.html">uecho/_object.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="const_8h.html">uecho/const.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="misc_8h.html">uecho/misc.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="node_8h.html">uecho/node.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="profile_8h.html">uecho/profile.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="database_8h.html">uecho/std/database.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a784e51a639e95fbcfd5a6ef5256eba6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a784e51a639e95fbcfd5a6ef5256eba6b">uecho_nodeprofileclass_new</a> (void)</td></tr>
-<tr class="separator:a784e51a639e95fbcfd5a6ef5256eba6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cfa722db793555b4ff58bfd11b59c86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a0cfa722db793555b4ff58bfd11b59c86">uecho_nodeprofileclass_addmandatoryproperties</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
-<tr class="separator:a0cfa722db793555b4ff58bfd11b59c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5cc3b440fd1de7de49174dff59115a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#ad5cc3b440fd1de7de49174dff59115a3">uecho_nodeprofileclass_setoperatingstatus</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> stats)</td></tr>
-<tr class="separator:ad5cc3b440fd1de7de49174dff59115a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad64fe170b1013d15aa4e56b62cf66c1f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#ad64fe170b1013d15aa4e56b62cf66c1f">uecho_nodeprofileclass_setversion</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, int major_ver, int minor_ver)</td></tr>
-<tr class="separator:ad64fe170b1013d15aa4e56b62cf66c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c3381372caf4f20a303e9980c00c49b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a6c3381372caf4f20a303e9980c00c49b">uecho_nodeprofileclass_setid</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *man_code, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *uniq_id)</td></tr>
-<tr class="separator:a6c3381372caf4f20a303e9980c00c49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e3c0fb4c4b2cfd5e419ff067ce4a05f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a2e3c0fb4c4b2cfd5e419ff067ce4a05f">uecho_nodeprofileclass_setdefaultid</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
-<tr class="separator:a2e3c0fb4c4b2cfd5e419ff067ce4a05f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a387a12d4ce97139cbd729c9f26389e76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a387a12d4ce97139cbd729c9f26389e76">uecho_nodeprofileclass_setclasscount</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, int count)</td></tr>
-<tr class="separator:a387a12d4ce97139cbd729c9f26389e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac102081e5bffb27e4bde23c1a73ab2c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#ac102081e5bffb27e4bde23c1a73ab2c2">uecho_nodeprofileclass_setinstancecount</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, int count)</td></tr>
-<tr class="separator:ac102081e5bffb27e4bde23c1a73ab2c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01c1868285a69e2ae0ad3e9abe2c2a98"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a01c1868285a69e2ae0ad3e9abe2c2a98">uecho_nodeprofileclass_setclasslist</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, int list_cnt, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *list_bytes)</td></tr>
-<tr class="separator:a01c1868285a69e2ae0ad3e9abe2c2a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a384b83fe14e96a0d9fda1ae51a905791"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a384b83fe14e96a0d9fda1ae51a905791">uecho_nodeprofileclass_setinstancelist</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, int list_cnt, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *list_bytes)</td></tr>
-<tr class="separator:a384b83fe14e96a0d9fda1ae51a905791"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a237f0dea29bb214c90a9b3e209b8d315"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a237f0dea29bb214c90a9b3e209b8d315">uecho_nodeprofileclass_isoperatingstatus</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
-<tr class="separator:a237f0dea29bb214c90a9b3e209b8d315"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81729ca1096996ea4286408daa07f372"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a81729ca1096996ea4286408daa07f372">uecho_nodeprofileclass_getinstancecount</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
-<tr class="separator:a81729ca1096996ea4286408daa07f372"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5e8b4d3ed6b2d6d1d4613679c8fe002"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#ac5e8b4d3ed6b2d6d1d4613679c8fe002">uecho_nodeprofileclass_getclasscount</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
-<tr class="separator:ac5e8b4d3ed6b2d6d1d4613679c8fe002"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa11e90a89b4fe7a39166479655d53911"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#aa11e90a89b4fe7a39166479655d53911">uecho_nodeprofileclass_getnotificationinstancelist</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
-<tr class="separator:aa11e90a89b4fe7a39166479655d53911"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c0b4fc70ea15b01de10fdded210af23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a8c0b4fc70ea15b01de10fdded210af23">uecho_nodeprofileclass_getinstancelist</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
-<tr class="separator:a8c0b4fc70ea15b01de10fdded210af23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc5fe30b06f02efdbd5d82a592a3c72a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#acc5fe30b06f02efdbd5d82a592a3c72a">uecho_nodeprofileclass_getclasslist</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
-<tr class="separator:acc5fe30b06f02efdbd5d82a592a3c72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3cf5bfdd1d9bbc55d05c04ad0bffff5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#af3cf5bfdd1d9bbc55d05c04ad0bffff5">uecho_nodeprofileclass_updateinstanceproperties</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
-<tr class="separator:af3cf5bfdd1d9bbc55d05c04ad0bffff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9543d8b24e8bbaae417176e6e7c511b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#ae9543d8b24e8bbaae417176e6e7c511b">uecho_nodeprofile_new</a> (void)</td></tr>
+<tr class="separator:ae9543d8b24e8bbaae417176e6e7c511b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7604c0716d8f083cb1606efacb4a80c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#ae7604c0716d8f083cb1606efacb4a80c">uecho_nodeprofile_addmandatoryproperties</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="separator:ae7604c0716d8f083cb1606efacb4a80c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57370299a823f0b00f8dbcb86a10ab9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a57370299a823f0b00f8dbcb86a10ab9e">uecho_nodeprofile_setoperatingstatus</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> stats)</td></tr>
+<tr class="separator:a57370299a823f0b00f8dbcb86a10ab9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaa3ae6a19b121cd186a3fbbb7b4036a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#aeaa3ae6a19b121cd186a3fbbb7b4036a">uecho_nodeprofile_setversion</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, int major_ver, int minor_ver)</td></tr>
+<tr class="separator:aeaa3ae6a19b121cd186a3fbbb7b4036a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad237518ab7d62a39abea0677dbd16185"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#ad237518ab7d62a39abea0677dbd16185">uecho_nodeprofile_setid</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *man_code, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *uniq_id)</td></tr>
+<tr class="separator:ad237518ab7d62a39abea0677dbd16185"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae72ea34876a8abeacf6cea71a823f087"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#ae72ea34876a8abeacf6cea71a823f087">uecho_nodeprofile_setdefaultid</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="separator:ae72ea34876a8abeacf6cea71a823f087"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cce8993b4b10f6e87fcaa065b2d9464"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a6cce8993b4b10f6e87fcaa065b2d9464">uecho_nodeprofile_setclasscount</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, int count)</td></tr>
+<tr class="separator:a6cce8993b4b10f6e87fcaa065b2d9464"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a68e21cad0f8a031772dc7a21ab25bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a3a68e21cad0f8a031772dc7a21ab25bb">uecho_nodeprofile_setinstancecount</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, int count)</td></tr>
+<tr class="separator:a3a68e21cad0f8a031772dc7a21ab25bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31d7e98774548bc6e2caf16704b7dad7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a31d7e98774548bc6e2caf16704b7dad7">uecho_nodeprofile_setclasslist</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, int list_cnt, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *list_bytes)</td></tr>
+<tr class="separator:a31d7e98774548bc6e2caf16704b7dad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90d162647cbc2424f3119161c78cf202"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a90d162647cbc2424f3119161c78cf202">uecho_nodeprofile_setinstancelist</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, int list_cnt, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *list_bytes)</td></tr>
+<tr class="separator:a90d162647cbc2424f3119161c78cf202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f325594697e26d6ad643986fad0d169"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a0f325594697e26d6ad643986fad0d169">uecho_nodeprofile_isoperatingstatus</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="separator:a0f325594697e26d6ad643986fad0d169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6139e13cc74776fcd93016cef1ac2598"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a6139e13cc74776fcd93016cef1ac2598">uecho_nodeprofile_getinstancecount</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="separator:a6139e13cc74776fcd93016cef1ac2598"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2509f19948cd15237bd9d7acfef3dc4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a2509f19948cd15237bd9d7acfef3dc4f">uecho_nodeprofile_getclasscount</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="separator:a2509f19948cd15237bd9d7acfef3dc4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7d4ff72d3060e0f13467264527ecfbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#ad7d4ff72d3060e0f13467264527ecfbe">uecho_nodeprofile_getnotificationinstancelist</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="separator:ad7d4ff72d3060e0f13467264527ecfbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb6a93bee5051bd7be756c0ed0af3c2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#aeb6a93bee5051bd7be756c0ed0af3c2c">uecho_nodeprofile_getinstancelist</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="separator:aeb6a93bee5051bd7be756c0ed0af3c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31b6a0e1b456deefeef8253b0e6ea6c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#a31b6a0e1b456deefeef8253b0e6ea6c5">uecho_nodeprofile_getclasslist</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="separator:a31b6a0e1b456deefeef8253b0e6ea6c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9d1c7cd96f54b1e9a37eaac82b7aa86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node__profile__class_8c.html#aa9d1c7cd96f54b1e9a37eaac82b7aa86">uecho_nodeprofile_updateinstanceproperties</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="separator:aa9d1c7cd96f54b1e9a37eaac82b7aa86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a0cfa722db793555b4ff58bfd11b59c86" name="a0cfa722db793555b4ff58bfd11b59c86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0cfa722db793555b4ff58bfd11b59c86">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_addmandatoryproperties()</h2>
+<a id="ae7604c0716d8f083cb1606efacb4a80c" name="ae7604c0716d8f083cb1606efacb4a80c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7604c0716d8f083cb1606efacb4a80c">&#9670;&nbsp;</a></span>uecho_nodeprofile_addmandatoryproperties()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofileclass_addmandatoryproperties </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofile_addmandatoryproperties </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
@@ -126,14 +129,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac5e8b4d3ed6b2d6d1d4613679c8fe002" name="ac5e8b4d3ed6b2d6d1d4613679c8fe002"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5e8b4d3ed6b2d6d1d4613679c8fe002">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_getclasscount()</h2>
+<a id="a2509f19948cd15237bd9d7acfef3dc4f" name="a2509f19948cd15237bd9d7acfef3dc4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2509f19948cd15237bd9d7acfef3dc4f">&#9670;&nbsp;</a></span>uecho_nodeprofile_getclasscount()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int uecho_nodeprofileclass_getclasscount </td>
+          <td class="memname">int uecho_nodeprofile_getclasscount </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
@@ -144,14 +147,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="acc5fe30b06f02efdbd5d82a592a3c72a" name="acc5fe30b06f02efdbd5d82a592a3c72a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc5fe30b06f02efdbd5d82a592a3c72a">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_getclasslist()</h2>
+<a id="a31b6a0e1b456deefeef8253b0e6ea6c5" name="a31b6a0e1b456deefeef8253b0e6ea6c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31b6a0e1b456deefeef8253b0e6ea6c5">&#9670;&nbsp;</a></span>uecho_nodeprofile_getclasslist()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> * uecho_nodeprofileclass_getclasslist </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> * uecho_nodeprofile_getclasslist </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
@@ -162,14 +165,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a81729ca1096996ea4286408daa07f372" name="a81729ca1096996ea4286408daa07f372"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81729ca1096996ea4286408daa07f372">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_getinstancecount()</h2>
+<a id="a6139e13cc74776fcd93016cef1ac2598" name="a6139e13cc74776fcd93016cef1ac2598"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6139e13cc74776fcd93016cef1ac2598">&#9670;&nbsp;</a></span>uecho_nodeprofile_getinstancecount()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int uecho_nodeprofileclass_getinstancecount </td>
+          <td class="memname">int uecho_nodeprofile_getinstancecount </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
@@ -180,14 +183,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8c0b4fc70ea15b01de10fdded210af23" name="a8c0b4fc70ea15b01de10fdded210af23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c0b4fc70ea15b01de10fdded210af23">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_getinstancelist()</h2>
+<a id="aeb6a93bee5051bd7be756c0ed0af3c2c" name="aeb6a93bee5051bd7be756c0ed0af3c2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb6a93bee5051bd7be756c0ed0af3c2c">&#9670;&nbsp;</a></span>uecho_nodeprofile_getinstancelist()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> * uecho_nodeprofileclass_getinstancelist </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> * uecho_nodeprofile_getinstancelist </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
@@ -198,14 +201,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa11e90a89b4fe7a39166479655d53911" name="aa11e90a89b4fe7a39166479655d53911"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa11e90a89b4fe7a39166479655d53911">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_getnotificationinstancelist()</h2>
+<a id="ad7d4ff72d3060e0f13467264527ecfbe" name="ad7d4ff72d3060e0f13467264527ecfbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7d4ff72d3060e0f13467264527ecfbe">&#9670;&nbsp;</a></span>uecho_nodeprofile_getnotificationinstancelist()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> * uecho_nodeprofileclass_getnotificationinstancelist </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> * uecho_nodeprofile_getnotificationinstancelist </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
@@ -216,14 +219,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a237f0dea29bb214c90a9b3e209b8d315" name="a237f0dea29bb214c90a9b3e209b8d315"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a237f0dea29bb214c90a9b3e209b8d315">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_isoperatingstatus()</h2>
+<a id="a0f325594697e26d6ad643986fad0d169" name="a0f325594697e26d6ad643986fad0d169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f325594697e26d6ad643986fad0d169">&#9670;&nbsp;</a></span>uecho_nodeprofile_isoperatingstatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofileclass_isoperatingstatus </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofile_isoperatingstatus </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
@@ -234,14 +237,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a784e51a639e95fbcfd5a6ef5256eba6b" name="a784e51a639e95fbcfd5a6ef5256eba6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a784e51a639e95fbcfd5a6ef5256eba6b">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_new()</h2>
+<a id="ae9543d8b24e8bbaae417176e6e7c511b" name="ae9543d8b24e8bbaae417176e6e7c511b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9543d8b24e8bbaae417176e6e7c511b">&#9670;&nbsp;</a></span>uecho_nodeprofile_new()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_nodeprofileclass_new </td>
+          <td class="memname"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_nodeprofile_new </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -252,14 +255,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a387a12d4ce97139cbd729c9f26389e76" name="a387a12d4ce97139cbd729c9f26389e76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a387a12d4ce97139cbd729c9f26389e76">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_setclasscount()</h2>
+<a id="a6cce8993b4b10f6e87fcaa065b2d9464" name="a6cce8993b4b10f6e87fcaa065b2d9464"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cce8993b4b10f6e87fcaa065b2d9464">&#9670;&nbsp;</a></span>uecho_nodeprofile_setclasscount()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofileclass_setclasscount </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofile_setclasscount </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
@@ -280,14 +283,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a01c1868285a69e2ae0ad3e9abe2c2a98" name="a01c1868285a69e2ae0ad3e9abe2c2a98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01c1868285a69e2ae0ad3e9abe2c2a98">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_setclasslist()</h2>
+<a id="a31d7e98774548bc6e2caf16704b7dad7" name="a31d7e98774548bc6e2caf16704b7dad7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31d7e98774548bc6e2caf16704b7dad7">&#9670;&nbsp;</a></span>uecho_nodeprofile_setclasslist()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofileclass_setclasslist </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofile_setclasslist </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
@@ -314,14 +317,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2e3c0fb4c4b2cfd5e419ff067ce4a05f" name="a2e3c0fb4c4b2cfd5e419ff067ce4a05f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e3c0fb4c4b2cfd5e419ff067ce4a05f">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_setdefaultid()</h2>
+<a id="ae72ea34876a8abeacf6cea71a823f087" name="ae72ea34876a8abeacf6cea71a823f087"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae72ea34876a8abeacf6cea71a823f087">&#9670;&nbsp;</a></span>uecho_nodeprofile_setdefaultid()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofileclass_setdefaultid </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofile_setdefaultid </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
@@ -332,14 +335,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6c3381372caf4f20a303e9980c00c49b" name="a6c3381372caf4f20a303e9980c00c49b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c3381372caf4f20a303e9980c00c49b">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_setid()</h2>
+<a id="ad237518ab7d62a39abea0677dbd16185" name="ad237518ab7d62a39abea0677dbd16185"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad237518ab7d62a39abea0677dbd16185">&#9670;&nbsp;</a></span>uecho_nodeprofile_setid()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofileclass_setid </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofile_setid </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
@@ -366,14 +369,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac102081e5bffb27e4bde23c1a73ab2c2" name="ac102081e5bffb27e4bde23c1a73ab2c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac102081e5bffb27e4bde23c1a73ab2c2">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_setinstancecount()</h2>
+<a id="a3a68e21cad0f8a031772dc7a21ab25bb" name="a3a68e21cad0f8a031772dc7a21ab25bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a68e21cad0f8a031772dc7a21ab25bb">&#9670;&nbsp;</a></span>uecho_nodeprofile_setinstancecount()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofileclass_setinstancecount </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofile_setinstancecount </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
@@ -394,14 +397,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a384b83fe14e96a0d9fda1ae51a905791" name="a384b83fe14e96a0d9fda1ae51a905791"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a384b83fe14e96a0d9fda1ae51a905791">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_setinstancelist()</h2>
+<a id="a90d162647cbc2424f3119161c78cf202" name="a90d162647cbc2424f3119161c78cf202"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90d162647cbc2424f3119161c78cf202">&#9670;&nbsp;</a></span>uecho_nodeprofile_setinstancelist()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofileclass_setinstancelist </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofile_setinstancelist </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
@@ -428,14 +431,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad5cc3b440fd1de7de49174dff59115a3" name="ad5cc3b440fd1de7de49174dff59115a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5cc3b440fd1de7de49174dff59115a3">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_setoperatingstatus()</h2>
+<a id="a57370299a823f0b00f8dbcb86a10ab9e" name="a57370299a823f0b00f8dbcb86a10ab9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57370299a823f0b00f8dbcb86a10ab9e">&#9670;&nbsp;</a></span>uecho_nodeprofile_setoperatingstatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofileclass_setoperatingstatus </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofile_setoperatingstatus </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
@@ -456,14 +459,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad64fe170b1013d15aa4e56b62cf66c1f" name="ad64fe170b1013d15aa4e56b62cf66c1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad64fe170b1013d15aa4e56b62cf66c1f">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_setversion()</h2>
+<a id="aeaa3ae6a19b121cd186a3fbbb7b4036a" name="aeaa3ae6a19b121cd186a3fbbb7b4036a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaa3ae6a19b121cd186a3fbbb7b4036a">&#9670;&nbsp;</a></span>uecho_nodeprofile_setversion()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofileclass_setversion </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofile_setversion </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
@@ -490,14 +493,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af3cf5bfdd1d9bbc55d05c04ad0bffff5" name="af3cf5bfdd1d9bbc55d05c04ad0bffff5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3cf5bfdd1d9bbc55d05c04ad0bffff5">&#9670;&nbsp;</a></span>uecho_nodeprofileclass_updateinstanceproperties()</h2>
+<a id="aa9d1c7cd96f54b1e9a37eaac82b7aa86" name="aa9d1c7cd96f54b1e9a37eaac82b7aa86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9d1c7cd96f54b1e9a37eaac82b7aa86">&#9670;&nbsp;</a></span>uecho_nodeprofile_updateinstanceproperties()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofileclass_updateinstanceproperties </td>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_nodeprofile_updateinstanceproperties </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
