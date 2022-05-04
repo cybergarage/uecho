@@ -408,7 +408,16 @@ bool uecho_property_isreadrequired(uEchoProperty* prop)
 
 bool uecho_property_iswritable(uEchoProperty* prop)
 {
-  return (prop->attr & uEchoPropertyAttrWrite) ? true : false;
+  return (prop->attr & (uEchoPropertyAttrWrite | uEchoPropertyAttrWriteRequired)) ? true : false;
+}
+
+/****************************************
+ * uecho_property_iswriterequired
+ ****************************************/
+
+bool uecho_property_iswriterequired(uEchoProperty* prop)
+{
+  return (prop->attr & uEchoPropertyAttrWriteRequired) ? true : false;
 }
 
 /****************************************
@@ -437,7 +446,7 @@ bool uecho_property_iswriteonly(uEchoProperty* prop)
   if (!prop)
     return false;
 
-  if (!(prop->attr & uEchoPropertyAttrWrite))
+  if (!(prop->attr & (uEchoPropertyAttrWrite | uEchoPropertyAttrWriteRequired)))
     return false;
   if ((prop->attr & uEchoPropertyAttrRead))
     return false;
