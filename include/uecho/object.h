@@ -121,11 +121,11 @@ typedef enum {
 } uEchoObjectEPCSize;
 
 enum {
-  uEchoManufactureCodeDefault = uEchoManufacturerCodeTestMin,
+  uEchoManufactureCodeDefault = uEchoManufactureCodeTestMin,
 };
 
-bool uecho_object_setmanufacturercode(uEchoObject* obj, uEchoManufacturerCode code);
-uEchoManufacturerCode uecho_object_getmanufacturercode(uEchoObject* obj);
+bool uecho_object_setmanufacturercode(uEchoObject* obj, uEchoManufactureCode code);
+uEchoManufactureCode uecho_object_getmanufacturercode(uEchoObject* obj);
 
 /****************************************
  * Function (Property)

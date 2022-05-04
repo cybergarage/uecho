@@ -31,6 +31,8 @@
 		2146D08528223A7600DE4245 /* manufacture.c in Sources */ = {isa = PBXBuildFile; fileRef = 2146D08428223A7600DE4245 /* manufacture.c */; };
 		2146D08728223B2F00DE4245 /* manufacture_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2146D08628223B2E00DE4245 /* manufacture_internal.h */; };
 		2146D08928223DA400DE4245 /* manufacture_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 2146D08828223DA400DE4245 /* manufacture_list.c */; };
+		2146D08B28224EC300DE4245 /* database.c in Sources */ = {isa = PBXBuildFile; fileRef = 2146D08A28224EC300DE4245 /* database.c */; };
+		2146D08D2822517500DE4245 /* database_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2146D08C2822517500DE4245 /* database_internal.h */; };
 		215B493D1B85831E002B20CE /* profile.c in Sources */ = {isa = PBXBuildFile; fileRef = 215B493C1B85831E002B20CE /* profile.c */; };
 		215B49431B85895F002B20CE /* device.h in Headers */ = {isa = PBXBuildFile; fileRef = 215B49421B85895F002B20CE /* device.h */; };
 		215B49451B8589D4002B20CE /* device.c in Sources */ = {isa = PBXBuildFile; fileRef = 215B49441B8589D4002B20CE /* device.c */; };
@@ -126,6 +128,8 @@
 		2146D08428223A7600DE4245 /* manufacture.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = manufacture.c; sourceTree = "<group>"; };
 		2146D08628223B2E00DE4245 /* manufacture_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = manufacture_internal.h; sourceTree = "<group>"; };
 		2146D08828223DA400DE4245 /* manufacture_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = manufacture_list.c; sourceTree = "<group>"; };
+		2146D08A28224EC300DE4245 /* database.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = database.c; path = std/database.c; sourceTree = "<group>"; };
+		2146D08C2822517500DE4245 /* database_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = database_internal.h; path = std/database_internal.h; sourceTree = "<group>"; };
 		215B493C1B85831E002B20CE /* profile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = profile.c; path = std/profile.c; sourceTree = "<group>"; };
 		215B49421B85895F002B20CE /* device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = device.h; sourceTree = "<group>"; };
 		215B49441B8589D4002B20CE /* device.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = device.c; path = std/device.c; sourceTree = "<group>"; };
@@ -384,6 +388,8 @@
 		21D68B0C1B7C1D700032552C /* std */ = {
 			isa = PBXGroup;
 			children = (
+				2146D08C2822517500DE4245 /* database_internal.h */,
+				2146D08A28224EC300DE4245 /* database.c */,
 				215B494A1B85970D002B20CE /* object_super_class.c */,
 				215B49461B858AEC002B20CE /* device_super_class.c */,
 				215B49471B858AEC002B20CE /* profile_super_class.c */,
@@ -441,6 +447,7 @@
 				2142A5EB1B9572A2008B1AF0 /* interface.h in Headers */,
 				2185D9CD1B68D5BC00A5B0C3 /* object.h in Headers */,
 				218F5DBD27E5B35F00E79AC1 /* observer.h in Headers */,
+				2146D08D2822517500DE4245 /* database_internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +516,7 @@
 				218F5DC627E5C0DB00E79AC1 /* message_observer.c in Sources */,
 				21678F081A8D512000AE79AA /* list.c in Sources */,
 				21678F0A1A8D512000AE79AA /* strings.c in Sources */,
+				2146D08B28224EC300DE4245 /* database.c in Sources */,
 				21678F041A8D512000AE79AA /* interface.c in Sources */,
 				21EFF1A41B4A9A76002B5E57 /* controller.c in Sources */,
 				218F56911B8C09E100C03219 /* node_listener.c in Sources */,
