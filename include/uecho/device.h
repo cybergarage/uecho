@@ -104,13 +104,13 @@ bool uecho_device_setoperatingstatus(uEchoObject* obj, bool stats);
 bool uecho_device_setinstallationlocation(uEchoObject* obj, byte location);
 bool uecho_device_setstandardversion(uEchoObject* obj, char ver);
 bool uecho_device_setfaultstatus(uEchoObject* obj, bool stats);
-bool uecho_device_setmanufacturercode(uEchoObject* obj, uEchoManufacturerCode code);
+bool uecho_device_setmanufacturercode(uEchoObject* obj, uEchoManufactureCode code);
 
 bool uecho_device_isoperatingstatus(uEchoObject* obj);
 byte uecho_device_getinstallationlocation(uEchoObject* obj);
 char uecho_device_getstandardversion(uEchoObject* obj);
 bool uecho_device_isfaultstatus(uEchoObject* obj);
-uEchoManufacturerCode uecho_device_getmanufacturercode(uEchoObject* obj);
+uEchoManufactureCode uecho_device_getmanufacturercode(uEchoObject* obj);
 
 #ifdef __cplusplus
 } /* extern C */

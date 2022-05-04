@@ -34,8 +34,8 @@ typedef enum {
 } uEchoMessageFormatType;
 
 enum {
-  uEchoManufacturerCodeTestMin = 0xFFFFF0,
-  uEchoManufacturerCodeTestMax = 0xFFFFFF,
+  uEchoManufactureCodeTestMin = 0xFFFFF0,
+  uEchoManufactureCodeTestMax = 0xFFFFFF,
 };
 
 #ifdef __cplusplus

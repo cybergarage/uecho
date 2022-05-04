@@ -47,7 +47,7 @@ bool uecho_object_addmandatoryproperties(uEchoObject* obj)
  * uecho_object_setmanufacturercode
  ****************************************/
 
-bool uecho_object_setmanufacturercode(uEchoObject* obj, uEchoManufacturerCode code)
+bool uecho_object_setmanufacturercode(uEchoObject* obj, uEchoManufactureCode code)
 {
   return uecho_object_setpropertyintegerdata(obj, uEchoObjectManufacturerCode, code, uEchoObjectManufacturerCodeLen);
 }
@@ -56,9 +56,9 @@ bool uecho_object_setmanufacturercode(uEchoObject* obj, uEchoManufacturerCode co
  * uecho_object_getmanufacturercode
  ****************************************/
 
-uEchoManufacturerCode uecho_object_getmanufacturercode(uEchoObject* obj)
+uEchoManufactureCode uecho_object_getmanufacturercode(uEchoObject* obj)
 {
-  uEchoManufacturerCode code;
+  uEchoManufactureCode code;
   if (!uecho_object_getpropertyintegerdata(obj, uEchoObjectManufacturerCode, uEchoObjectManufacturerCodeLen, &code))
     return uEchoManufactureCodeDefault;
   return code;

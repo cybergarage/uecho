@@ -59,7 +59,7 @@ bool uecho_node_start(uEchoNode* node);
 bool uecho_node_stop(uEchoNode* node);
 bool uecho_node_isrunning(uEchoNode* node);
 
-bool uecho_node_setmanufacturercode(uEchoNode* node, uEchoManufacturerCode code);
+bool uecho_node_setmanufacturercode(uEchoNode* node, uEchoManufactureCode code);
 
 bool uecho_node_announcemessage(uEchoNode* node, uEchoMessage* msg);
 bool uecho_node_announcemessagebytes(uEchoNode* node, byte* msg, size_t msg_len);

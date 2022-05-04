@@ -161,7 +161,7 @@ bool uecho_device_isfaultstatus(uEchoObject* obj)
  * uecho_device_setmanufacturercode
  ****************************************/
 
-bool uecho_device_setmanufacturercode(uEchoObject* obj, uEchoManufacturerCode code)
+bool uecho_device_setmanufacturercode(uEchoObject* obj, uEchoManufactureCode code)
 {
   return uecho_object_setmanufacturercode(obj, code);
 }
@@ -170,7 +170,7 @@ bool uecho_device_setmanufacturercode(uEchoObject* obj, uEchoManufacturerCode co
  * uecho_device_getmanufacturercode
  ****************************************/
 
-uEchoManufacturerCode uecho_device_getmanufacturercode(uEchoObject* obj)
+uEchoManufactureCode uecho_device_getmanufacturercode(uEchoObject* obj)
 {
   return uecho_object_getmanufacturercode(obj);
 }

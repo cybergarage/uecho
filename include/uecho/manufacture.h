@@ -11,8 +11,6 @@
 #ifndef _UECHO_MANUFACTURE_H_
 #define _UECHO_MANUFACTURE_H_
 
-#include <uecho/message.h>
-#include <uecho/property.h>
 #include <uecho/typedef.h>
 
 #ifdef __cplusplus
@@ -23,7 +21,6 @@ extern "C" {
  * Data Type
  ****************************************/
 
-typedef int uEchoManufacturerCode;
 typedef int uEchoManufactureCode;
 
 #if !defined(_UECHO_MANUFACTURE_INTERNAL_H_)
