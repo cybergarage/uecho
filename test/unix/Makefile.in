@@ -116,10 +116,10 @@ am_uechotest_OBJECTS = ../MessageTest.$(OBJEXT) \
 	../MutexTest.$(OBJEXT) ../ClassListTest.$(OBJEXT) \
 	../ControllerTest.$(OBJEXT) ../SocketTest.$(OBJEXT) \
 	../InterfaceTest.$(OBJEXT) ../ObjectListTest.$(OBJEXT) \
-	../LogTest.$(OBJEXT) ../DeviceTest.$(OBJEXT) \
-	../uEchoTest.$(OBJEXT) ../MiscTest.$(OBJEXT) \
-	../ProfileTest.$(OBJEXT) ../ObjectTest.$(OBJEXT) \
-	../ServerTest.$(OBJEXT)
+	../DatabaseTest.$(OBJEXT) ../LogTest.$(OBJEXT) \
+	../DeviceTest.$(OBJEXT) ../uEchoTest.$(OBJEXT) \
+	../MiscTest.$(OBJEXT) ../ProfileTest.$(OBJEXT) \
+	../ObjectTest.$(OBJEXT) ../ServerTest.$(OBJEXT)
 uechotest_OBJECTS = $(am_uechotest_OBJECTS)
 uechotest_DEPENDENCIES = ../../lib/unix/libuecho.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -139,16 +139,16 @@ depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ../$(DEPDIR)/ClassListTest.Po \
 	../$(DEPDIR)/ClassTest.Po ../$(DEPDIR)/ControllerTest.Po \
-	../$(DEPDIR)/DeviceTest.Po ../$(DEPDIR)/InterfaceTest.Po \
-	../$(DEPDIR)/LogTest.Po ../$(DEPDIR)/MessageTest.Po \
-	../$(DEPDIR)/MiscTest.Po ../$(DEPDIR)/MutexTest.Po \
-	../$(DEPDIR)/NodeListTest.Po ../$(DEPDIR)/NodeTest.Po \
-	../$(DEPDIR)/ObjectListTest.Po ../$(DEPDIR)/ObjectTest.Po \
-	../$(DEPDIR)/ObserverTest.Po ../$(DEPDIR)/ProfileTest.Po \
-	../$(DEPDIR)/PropertyListTest.Po ../$(DEPDIR)/PropertyTest.Po \
-	../$(DEPDIR)/ServerTest.Po ../$(DEPDIR)/SocketTest.Po \
-	../$(DEPDIR)/TestDevice.Po ../$(DEPDIR)/ThreadTest.Po \
-	../$(DEPDIR)/uEchoTest.Po
+	../$(DEPDIR)/DatabaseTest.Po ../$(DEPDIR)/DeviceTest.Po \
+	../$(DEPDIR)/InterfaceTest.Po ../$(DEPDIR)/LogTest.Po \
+	../$(DEPDIR)/MessageTest.Po ../$(DEPDIR)/MiscTest.Po \
+	../$(DEPDIR)/MutexTest.Po ../$(DEPDIR)/NodeListTest.Po \
+	../$(DEPDIR)/NodeTest.Po ../$(DEPDIR)/ObjectListTest.Po \
+	../$(DEPDIR)/ObjectTest.Po ../$(DEPDIR)/ObserverTest.Po \
+	../$(DEPDIR)/ProfileTest.Po ../$(DEPDIR)/PropertyListTest.Po \
+	../$(DEPDIR)/PropertyTest.Po ../$(DEPDIR)/ServerTest.Po \
+	../$(DEPDIR)/SocketTest.Po ../$(DEPDIR)/TestDevice.Po \
+	../$(DEPDIR)/ThreadTest.Po ../$(DEPDIR)/uEchoTest.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -506,6 +506,7 @@ uechotest_SOURCES = \
 	../SocketTest.cpp \
 	../InterfaceTest.cpp \
 	../ObjectListTest.cpp \
+	../DatabaseTest.cpp \
 	../LogTest.cpp \
 	../DeviceTest.cpp \
 	../uEchoTest.cpp \
@@ -590,6 +591,8 @@ clean-checkPROGRAMS:
 	../$(DEPDIR)/$(am__dirstamp)
 ../ObjectListTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
+../DatabaseTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
 ../LogTest.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
 ../DeviceTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
@@ -617,6 +620,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ClassListTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ClassTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ControllerTest.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/DatabaseTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/DeviceTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/InterfaceTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/LogTest.Po@am__quote@ # am--include-marker
@@ -956,6 +960,7 @@ distclean: distclean-am
 		-rm -f ../$(DEPDIR)/ClassListTest.Po
 	-rm -f ../$(DEPDIR)/ClassTest.Po
 	-rm -f ../$(DEPDIR)/ControllerTest.Po
+	-rm -f ../$(DEPDIR)/DatabaseTest.Po
 	-rm -f ../$(DEPDIR)/DeviceTest.Po
 	-rm -f ../$(DEPDIR)/InterfaceTest.Po
 	-rm -f ../$(DEPDIR)/LogTest.Po
@@ -1023,6 +1028,7 @@ maintainer-clean: maintainer-clean-am
 		-rm -f ../$(DEPDIR)/ClassListTest.Po
 	-rm -f ../$(DEPDIR)/ClassTest.Po
 	-rm -f ../$(DEPDIR)/ControllerTest.Po
+	-rm -f ../$(DEPDIR)/DatabaseTest.Po
 	-rm -f ../$(DEPDIR)/DeviceTest.Po
 	-rm -f ../$(DEPDIR)/InterfaceTest.Po
 	-rm -f ../$(DEPDIR)/LogTest.Po

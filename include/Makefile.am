@@ -13,8 +13,10 @@ uechoheaders = \
 	./uecho/util/log.h \
 	./uecho/util/timer.h \
 	./uecho/esv.h \
+	./uecho/manufacture.h \
 	./uecho/object.h \
 	./uecho/const.h \
+	./uecho/std/database.h \
 	./uecho/misc.h \
 	./uecho/profile.h \
 	./uecho/device.h \
