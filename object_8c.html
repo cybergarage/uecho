@@ -64,8 +64,8 @@ $(document).ready(function(){initNavTree('object_8c.html',''); initResizable(); 
   <div class="headertitle"><div class="title">object.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="object__internal_8h.html">uecho/object_internal.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="node__internal_8h.html">uecho/node_internal.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="__object_8h.html">uecho/_object.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="__node_8h.html">uecho/_node.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="observer_8h.html">uecho/frame/observer.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="misc_8h.html">uecho/misc.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="node_8h.html">uecho/node.h</a>&gt;</code><br />
@@ -74,92 +74,126 @@ $(document).ready(function(){initNavTree('object_8c.html',''); initResizable(); 
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab3c8ea3c4bf3e5070f2887beae86502d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#ab3c8ea3c4bf3e5070f2887beae86502d">uecho_object_new</a> (void)</td></tr>
+<tr class="memitem:ab3c8ea3c4bf3e5070f2887beae86502d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#ab3c8ea3c4bf3e5070f2887beae86502d">uecho_object_new</a> (void)</td></tr>
 <tr class="separator:ab3c8ea3c4bf3e5070f2887beae86502d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8ee5425a96cb96c671f13fc89b8fa84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#af8ee5425a96cb96c671f13fc89b8fa84">uecho_object_delete</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:af8ee5425a96cb96c671f13fc89b8fa84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#af8ee5425a96cb96c671f13fc89b8fa84">uecho_object_delete</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:af8ee5425a96cb96c671f13fc89b8fa84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a081e55804f70837a833c4db63244179f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a081e55804f70837a833c4db63244179f">uecho_object_next</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:a081e55804f70837a833c4db63244179f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a081e55804f70837a833c4db63244179f">uecho_object_next</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:a081e55804f70837a833c4db63244179f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e2fe5b92fd2db26e817aa90beae8a1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a3e2fe5b92fd2db26e817aa90beae8a1d">uecho_object_setparentnode</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="node__internal_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *node)</td></tr>
+<tr class="memitem:a3e2fe5b92fd2db26e817aa90beae8a1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a3e2fe5b92fd2db26e817aa90beae8a1d">uecho_object_setparentnode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="__node_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *node)</td></tr>
 <tr class="separator:a3e2fe5b92fd2db26e817aa90beae8a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaadafb154dffbb284f7340ee30cd355b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="node__internal_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aaadafb154dffbb284f7340ee30cd355b">uecho_object_getparentnode</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:aaadafb154dffbb284f7340ee30cd355b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__node_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aaadafb154dffbb284f7340ee30cd355b">uecho_object_getparentnode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:aaadafb154dffbb284f7340ee30cd355b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e5526b45feb3deba0d3328cef24ea3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a4e5526b45feb3deba0d3328cef24ea3e">uecho_object_setcode</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69">uEchoObjectCode</a> val)</td></tr>
+<tr class="memitem:a20b838d41059954da365368627ed4efe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a20b838d41059954da365368627ed4efe">uecho_object_setname</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, const char *name)</td></tr>
+<tr class="separator:a20b838d41059954da365368627ed4efe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3db5c901e6ad02f917958be706028352"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a3db5c901e6ad02f917958be706028352">uecho_object_getname</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="separator:a3db5c901e6ad02f917958be706028352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e5526b45feb3deba0d3328cef24ea3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a4e5526b45feb3deba0d3328cef24ea3e">uecho_object_setcode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69">uEchoObjectCode</a> val)</td></tr>
 <tr class="separator:a4e5526b45feb3deba0d3328cef24ea3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a606e18e84735ebe4f88b77e87a8aad8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69">uEchoObjectCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a606e18e84735ebe4f88b77e87a8aad8f">uecho_object_getcode</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:a606e18e84735ebe4f88b77e87a8aad8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69">uEchoObjectCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a606e18e84735ebe4f88b77e87a8aad8f">uecho_object_getcode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:a606e18e84735ebe4f88b77e87a8aad8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15840625674809abe13333aff50fe955"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a15840625674809abe13333aff50fe955">uecho_object_iscode</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69">uEchoObjectCode</a> code)</td></tr>
+<tr class="memitem:a15840625674809abe13333aff50fe955"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a15840625674809abe13333aff50fe955">uecho_object_iscode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69">uEchoObjectCode</a> code)</td></tr>
 <tr class="separator:a15840625674809abe13333aff50fe955"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91f940c7c6b59f1a4f7654eb21531c29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a91f940c7c6b59f1a4f7654eb21531c29">uecho_object_setclassgroupcode</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> val)</td></tr>
+<tr class="memitem:a91f940c7c6b59f1a4f7654eb21531c29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a91f940c7c6b59f1a4f7654eb21531c29">uecho_object_setclassgroupcode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> val)</td></tr>
 <tr class="separator:a91f940c7c6b59f1a4f7654eb21531c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d548af334a6093acd396dae34be15b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a5d548af334a6093acd396dae34be15b5">uecho_object_getclassgroupcode</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:a5d548af334a6093acd396dae34be15b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a5d548af334a6093acd396dae34be15b5">uecho_object_getclassgroupcode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:a5d548af334a6093acd396dae34be15b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a949694294c0823fa690d0f849eacbc8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a949694294c0823fa690d0f849eacbc8c">uecho_object_setclasscode</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> val)</td></tr>
+<tr class="memitem:a949694294c0823fa690d0f849eacbc8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a949694294c0823fa690d0f849eacbc8c">uecho_object_setclasscode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> val)</td></tr>
 <tr class="separator:a949694294c0823fa690d0f849eacbc8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbb17f31299c378e1ca2c17b72df6802"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#adbb17f31299c378e1ca2c17b72df6802">uecho_object_getclasscode</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:adbb17f31299c378e1ca2c17b72df6802"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#adbb17f31299c378e1ca2c17b72df6802">uecho_object_getclasscode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:adbb17f31299c378e1ca2c17b72df6802"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e9fc856bb8f7c2f418b9a6b95411248"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a0e9fc856bb8f7c2f418b9a6b95411248">uecho_object_setinstancecode</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> val)</td></tr>
+<tr class="memitem:a0e9fc856bb8f7c2f418b9a6b95411248"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a0e9fc856bb8f7c2f418b9a6b95411248">uecho_object_setinstancecode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> val)</td></tr>
 <tr class="separator:a0e9fc856bb8f7c2f418b9a6b95411248"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51a4dc8c62ba4db02b3a66ae402171b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a51a4dc8c62ba4db02b3a66ae402171b4">uecho_object_getinstancecode</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:a51a4dc8c62ba4db02b3a66ae402171b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a51a4dc8c62ba4db02b3a66ae402171b4">uecho_object_getinstancecode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:a51a4dc8c62ba4db02b3a66ae402171b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2990a34fd426a817e1f1fcdb4fef29c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a2990a34fd426a817e1f1fcdb4fef29c6">uecho_object_isdevice</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:a2990a34fd426a817e1f1fcdb4fef29c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a2990a34fd426a817e1f1fcdb4fef29c6">uecho_object_isdevice</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:a2990a34fd426a817e1f1fcdb4fef29c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acce9e7ed60f4183c748c55a1c9dd610b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#acce9e7ed60f4183c748c55a1c9dd610b">uecho_object_isprofile</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:acce9e7ed60f4183c748c55a1c9dd610b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#acce9e7ed60f4183c748c55a1c9dd610b">uecho_object_isprofile</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:acce9e7ed60f4183c748c55a1c9dd610b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba7351830807b9645875532b34587505"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aba7351830807b9645875532b34587505">uecho_object_setpropertymap</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> map_code, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> *prop_codes, size_t props_code_size)</td></tr>
+<tr class="memitem:aba7351830807b9645875532b34587505"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aba7351830807b9645875532b34587505">uecho_object_setpropertymap</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> map_code, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> *prop_codes, size_t props_code_size)</td></tr>
 <tr class="separator:aba7351830807b9645875532b34587505"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c67db98b105fdbac1b46041182920da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a0c67db98b105fdbac1b46041182920da">uecho_object_setproperty</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="include_2uecho_2property_8h.html#af9fdcc8e23fd281b3a30b50fec2804a9">uEchoPropertyAttr</a> attr)</td></tr>
+<tr class="memitem:a27c62ece36b7ac60fbdcf1025b12cba5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a27c62ece36b7ac60fbdcf1025b12cba5">uecho_object_addproperty</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
+<tr class="separator:a27c62ece36b7ac60fbdcf1025b12cba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c67db98b105fdbac1b46041182920da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a0c67db98b105fdbac1b46041182920da">uecho_object_setproperty</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="include_2uecho_2property_8h.html#af9fdcc8e23fd281b3a30b50fec2804a9">uEchoPropertyAttr</a> attr)</td></tr>
 <tr class="separator:a0c67db98b105fdbac1b46041182920da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad551b6ddc45e1101433a9a498e8be56d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#ad551b6ddc45e1101433a9a498e8be56d">uecho_object_setpropertydata</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *data, size_t data_len)</td></tr>
+<tr class="memitem:ad551b6ddc45e1101433a9a498e8be56d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#ad551b6ddc45e1101433a9a498e8be56d">uecho_object_setpropertydata</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *data, size_t data_len)</td></tr>
 <tr class="separator:ad551b6ddc45e1101433a9a498e8be56d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a920399164f94a498fddce8c19f3ebb1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a920399164f94a498fddce8c19f3ebb1b">uecho_object_setpropertyintegerdata</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, int data, size_t data_len)</td></tr>
+<tr class="memitem:a920399164f94a498fddce8c19f3ebb1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a920399164f94a498fddce8c19f3ebb1b">uecho_object_setpropertyintegerdata</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, int data, size_t data_len)</td></tr>
 <tr class="separator:a920399164f94a498fddce8c19f3ebb1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e66f1e64946c37e9d7805405ac9a426"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a8e66f1e64946c37e9d7805405ac9a426">uecho_object_setpropertybytedata</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> data)</td></tr>
+<tr class="memitem:a8e66f1e64946c37e9d7805405ac9a426"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a8e66f1e64946c37e9d7805405ac9a426">uecho_object_setpropertybytedata</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> data)</td></tr>
 <tr class="separator:a8e66f1e64946c37e9d7805405ac9a426"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5ec88f2bf27d7bf03753d7868066934"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#af5ec88f2bf27d7bf03753d7868066934">uecho_object_setpropertyattribute</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="include_2uecho_2property_8h.html#af9fdcc8e23fd281b3a30b50fec2804a9">uEchoPropertyAttr</a> attr)</td></tr>
+<tr class="memitem:af5ec88f2bf27d7bf03753d7868066934"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#af5ec88f2bf27d7bf03753d7868066934">uecho_object_setpropertyattribute</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="include_2uecho_2property_8h.html#af9fdcc8e23fd281b3a30b50fec2804a9">uEchoPropertyAttr</a> attr)</td></tr>
 <tr class="separator:af5ec88f2bf27d7bf03753d7868066934"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b1875fe1f224d0a390bdfef4bd9d8d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a8b1875fe1f224d0a390bdfef4bd9d8d8">uecho_object_getproperties</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:a8b1875fe1f224d0a390bdfef4bd9d8d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a8b1875fe1f224d0a390bdfef4bd9d8d8">uecho_object_getproperties</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:a8b1875fe1f224d0a390bdfef4bd9d8d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c7e30e77c1c926a19ce470d9d420844"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a5c7e30e77c1c926a19ce470d9d420844">uecho_object_hasproperty</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
+<tr class="memitem:a5c7e30e77c1c926a19ce470d9d420844"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a5c7e30e77c1c926a19ce470d9d420844">uecho_object_hasproperty</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
 <tr class="separator:a5c7e30e77c1c926a19ce470d9d420844"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67b9087c9fd990d44a4e5d9bc7f64ad2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a67b9087c9fd990d44a4e5d9bc7f64ad2">uecho_object_getproperty</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
+<tr class="memitem:a67b9087c9fd990d44a4e5d9bc7f64ad2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a67b9087c9fd990d44a4e5d9bc7f64ad2">uecho_object_getproperty</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
 <tr class="separator:a67b9087c9fd990d44a4e5d9bc7f64ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e775543a777699e57dfbbdc9a763958"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a3e775543a777699e57dfbbdc9a763958">uecho_object_getpropertywait</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, clock_t wait_mili_time)</td></tr>
+<tr class="memitem:a3e775543a777699e57dfbbdc9a763958"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a3e775543a777699e57dfbbdc9a763958">uecho_object_getpropertywait</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, clock_t wait_mili_time)</td></tr>
 <tr class="separator:a3e775543a777699e57dfbbdc9a763958"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa576b89fd7777e9b484c8f85b17ba2a5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aa576b89fd7777e9b484c8f85b17ba2a5">uecho_object_getpropertycount</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:aa576b89fd7777e9b484c8f85b17ba2a5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aa576b89fd7777e9b484c8f85b17ba2a5">uecho_object_getpropertycount</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:aa576b89fd7777e9b484c8f85b17ba2a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22d14688139df33d669cab2842b4f696"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a22d14688139df33d669cab2842b4f696">uecho_object_clearproperties</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:a22d14688139df33d669cab2842b4f696"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a22d14688139df33d669cab2842b4f696">uecho_object_clearproperties</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:a22d14688139df33d669cab2842b4f696"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0833e912f45a6650abeb667461eed3a0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a0833e912f45a6650abeb667461eed3a0">uecho_object_getpropertydatasize</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
+<tr class="memitem:a0833e912f45a6650abeb667461eed3a0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a0833e912f45a6650abeb667461eed3a0">uecho_object_getpropertydatasize</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
 <tr class="separator:a0833e912f45a6650abeb667461eed3a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c43165b7be23f5587fa2368807658ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a3c43165b7be23f5587fa2368807658ae">uecho_object_getpropertydata</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
+<tr class="memitem:a3c43165b7be23f5587fa2368807658ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a3c43165b7be23f5587fa2368807658ae">uecho_object_getpropertydata</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
 <tr class="separator:a3c43165b7be23f5587fa2368807658ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec21e1aa768160432e43c838f5c4df60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aec21e1aa768160432e43c838f5c4df60">uecho_object_getpropertyintegerdata</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, size_t data_len, int *data)</td></tr>
+<tr class="memitem:aec21e1aa768160432e43c838f5c4df60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aec21e1aa768160432e43c838f5c4df60">uecho_object_getpropertyintegerdata</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, size_t data_len, int *data)</td></tr>
 <tr class="separator:aec21e1aa768160432e43c838f5c4df60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab431c903af490966984fb66fc3e0f01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aab431c903af490966984fb66fc3e0f01">uecho_object_getpropertybytedata</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *data)</td></tr>
+<tr class="memitem:aab431c903af490966984fb66fc3e0f01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aab431c903af490966984fb66fc3e0f01">uecho_object_getpropertybytedata</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> *data)</td></tr>
 <tr class="separator:aab431c903af490966984fb66fc3e0f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae6114456b8331a3bbaf87f0e97cafa3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aae6114456b8331a3bbaf87f0e97cafa3">uecho_object_setmessagelistener</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="object_8h.html#a7b3559527b627479fa3429a020a963e3">uEchoObjectMessageListener</a> listener)</td></tr>
+<tr class="memitem:aae6114456b8331a3bbaf87f0e97cafa3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aae6114456b8331a3bbaf87f0e97cafa3">uecho_object_setmessagelistener</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="object_8h.html#a7b3559527b627479fa3429a020a963e3">uEchoObjectMessageListener</a> listener)</td></tr>
 <tr class="separator:aae6114456b8331a3bbaf87f0e97cafa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb171f1e93c812922a06a0c6d8b8e48c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="object_8h.html#a7b3559527b627479fa3429a020a963e3">uEchoObjectMessageListener</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#acb171f1e93c812922a06a0c6d8b8e48c">uecho_object_getmessagelistener</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:acb171f1e93c812922a06a0c6d8b8e48c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="object_8h.html#a7b3559527b627479fa3429a020a963e3">uEchoObjectMessageListener</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#acb171f1e93c812922a06a0c6d8b8e48c">uecho_object_getmessagelistener</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:acb171f1e93c812922a06a0c6d8b8e48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad54ca32c82a5ab410f661f3b2798c538"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#ad54ca32c82a5ab410f661f3b2798c538">uecho_object_hasmessagelistener</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:ad54ca32c82a5ab410f661f3b2798c538"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#ad54ca32c82a5ab410f661f3b2798c538">uecho_object_hasmessagelistener</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:ad54ca32c82a5ab410f661f3b2798c538"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08efa74bf1a6dd8fb8ef5b81d4de6c12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a08efa74bf1a6dd8fb8ef5b81d4de6c12">uecho_object_setpropertyrequesthandler</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a> esv, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="object_8h.html#a9a71ee36a52a94b7bd18e2273bafaa66">uEchoPropertyRequestHandler</a> handler)</td></tr>
+<tr class="memitem:a08efa74bf1a6dd8fb8ef5b81d4de6c12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a08efa74bf1a6dd8fb8ef5b81d4de6c12">uecho_object_setpropertyrequesthandler</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a> esv, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="object_8h.html#a9a71ee36a52a94b7bd18e2273bafaa66">uEchoPropertyRequestHandler</a> handler)</td></tr>
 <tr class="separator:a08efa74bf1a6dd8fb8ef5b81d4de6c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3054313f425771f406e4662e8e26e121"><td class="memItemLeft" align="right" valign="top"><a class="el" href="object_8h.html#a9a71ee36a52a94b7bd18e2273bafaa66">uEchoPropertyRequestHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a3054313f425771f406e4662e8e26e121">uecho_object_getpropertyrequestlistener</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a> esv, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
+<tr class="memitem:a3054313f425771f406e4662e8e26e121"><td class="memItemLeft" align="right" valign="top"><a class="el" href="object_8h.html#a9a71ee36a52a94b7bd18e2273bafaa66">uEchoPropertyRequestHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a3054313f425771f406e4662e8e26e121">uecho_object_getpropertyrequestlistener</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a> esv, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
 <tr class="separator:a3054313f425771f406e4662e8e26e121"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81ffe749f5f1270862f90adeb2ace2f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a81ffe749f5f1270862f90adeb2ace2f4">uecho_object_haspropertyrequestlistener</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a> esv, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
+<tr class="memitem:a81ffe749f5f1270862f90adeb2ace2f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a81ffe749f5f1270862f90adeb2ace2f4">uecho_object_haspropertyrequestlistener</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a> esv, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code)</td></tr>
 <tr class="separator:a81ffe749f5f1270862f90adeb2ace2f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af58c5117790f80da5c2dc6f306433708"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#af58c5117790f80da5c2dc6f306433708">uecho_object_setpropertywriterequesthandler</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="object_8h.html#a9a71ee36a52a94b7bd18e2273bafaa66">uEchoPropertyRequestHandler</a> handler)</td></tr>
+<tr class="memitem:af58c5117790f80da5c2dc6f306433708"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#af58c5117790f80da5c2dc6f306433708">uecho_object_setpropertywriterequesthandler</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="object_8h.html#a9a71ee36a52a94b7bd18e2273bafaa66">uEchoPropertyRequestHandler</a> handler)</td></tr>
 <tr class="separator:af58c5117790f80da5c2dc6f306433708"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b11d51c134d83e2d0dd428cbaa63062"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a8b11d51c134d83e2d0dd428cbaa63062">uecho_object_setpropertyreadhandler</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="object_8h.html#a9a71ee36a52a94b7bd18e2273bafaa66">uEchoPropertyRequestHandler</a> handler)</td></tr>
+<tr class="memitem:a8b11d51c134d83e2d0dd428cbaa63062"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a8b11d51c134d83e2d0dd428cbaa63062">uecho_object_setpropertyreadhandler</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> code, <a class="el" href="object_8h.html#a9a71ee36a52a94b7bd18e2273bafaa66">uEchoPropertyRequestHandler</a> handler)</td></tr>
 <tr class="separator:a8b11d51c134d83e2d0dd428cbaa63062"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37fab1c9649967383e353996faa96797"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a37fab1c9649967383e353996faa96797">uecho_object_announcemessage</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
+<tr class="memitem:a37fab1c9649967383e353996faa96797"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a37fab1c9649967383e353996faa96797">uecho_object_announcemessage</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
 <tr class="separator:a37fab1c9649967383e353996faa96797"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4f6b0050d246343fee6e51edd0d1343"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#ac4f6b0050d246343fee6e51edd0d1343">uecho_object_sendmessage</a> (<a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *dst_obj, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
+<tr class="memitem:ac4f6b0050d246343fee6e51edd0d1343"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#ac4f6b0050d246343fee6e51edd0d1343">uecho_object_sendmessage</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *dst_obj, <a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
 <tr class="separator:ac4f6b0050d246343fee6e51edd0d1343"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a27c62ece36b7ac60fbdcf1025b12cba5" name="a27c62ece36b7ac60fbdcf1025b12cba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27c62ece36b7ac60fbdcf1025b12cba5">&#9670;&nbsp;</a></span>uecho_object_addproperty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_addproperty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
+          <td class="paramname"><em>prop</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a37fab1c9649967383e353996faa96797" name="a37fab1c9649967383e353996faa96797"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a37fab1c9649967383e353996faa96797">&#9670;&nbsp;</a></span>uecho_object_announcemessage()</h2>
 
@@ -169,13 +203,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_announcemessage </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>msg</em>&#160;</td>
         </tr>
         <tr>
@@ -197,7 +231,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_object_clearproperties </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -215,7 +249,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_delete </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -233,7 +267,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> uecho_object_getclasscode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -251,7 +285,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> uecho_object_getclassgroupcode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -269,7 +303,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69">uEchoObjectCode</a> uecho_object_getcode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -287,7 +321,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> uecho_object_getinstancecode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -305,7 +339,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="object_8h.html#a7b3559527b627479fa3429a020a963e3">uEchoObjectMessageListener</a> uecho_object_getmessagelistener </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3db5c901e6ad02f917958be706028352" name="a3db5c901e6ad02f917958be706028352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3db5c901e6ad02f917958be706028352">&#9670;&nbsp;</a></span>uecho_object_getname()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * uecho_object_getname </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -321,9 +373,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="node__internal_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> * uecho_object_getparentnode </td>
+          <td class="memname"><a class="el" href="__node_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> * uecho_object_getparentnode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -341,7 +393,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> * uecho_object_getproperties </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -359,7 +411,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> * uecho_object_getproperty </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -387,7 +439,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_getpropertybytedata </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -421,7 +473,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">size_t uecho_object_getpropertycount </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -439,7 +491,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> * uecho_object_getpropertydata </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -467,7 +519,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int uecho_object_getpropertydatasize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -495,7 +547,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_getpropertyintegerdata </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -535,7 +587,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="object_8h.html#a9a71ee36a52a94b7bd18e2273bafaa66">uEchoPropertyRequestHandler</a> uecho_object_getpropertyrequestlistener </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -569,7 +621,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> * uecho_object_getpropertywait </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -603,7 +655,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_hasmessagelistener </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -621,7 +673,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_hasproperty </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -649,7 +701,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_haspropertyrequestlistener </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -683,7 +735,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_iscode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -711,7 +763,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_isdevice </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -729,7 +781,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_isprofile </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -745,7 +797,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_object_new </td>
+          <td class="memname"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_object_new </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -763,9 +815,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_object_next </td>
+          <td class="memname"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_object_next </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
           <td></td>
         </tr>
@@ -783,19 +835,19 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_sendmessage </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>dst_obj</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>msg</em>&#160;</td>
         </tr>
         <tr>
@@ -817,7 +869,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_object_setclasscode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -845,7 +897,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_object_setclassgroupcode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -873,7 +925,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_object_setcode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -901,7 +953,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_object_setinstancecode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -929,7 +981,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_object_setmessagelistener </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -937,6 +989,34 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="object_8h.html#a7b3559527b627479fa3429a020a963e3">uEchoObjectMessageListener</a>&#160;</td>
           <td class="paramname"><em>listener</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20b838d41059954da365368627ed4efe" name="a20b838d41059954da365368627ed4efe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20b838d41059954da365368627ed4efe">&#9670;&nbsp;</a></span>uecho_object_setname()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uecho_object_setname </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -957,13 +1037,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_setparentnode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="node__internal_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__node_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *&#160;</td>
           <td class="paramname"><em>node</em>&#160;</td>
         </tr>
         <tr>
@@ -985,7 +1065,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_setproperty </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -1019,7 +1099,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_setpropertyattribute </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -1053,7 +1133,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_setpropertybytedata </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -1087,7 +1167,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_setpropertydata </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -1127,7 +1207,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_setpropertyintegerdata </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -1167,7 +1247,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_setpropertymap </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -1207,7 +1287,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_setpropertyreadhandler </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -1241,7 +1321,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_setpropertyrequesthandler </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
@@ -1281,7 +1361,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_setpropertywriterequesthandler </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>

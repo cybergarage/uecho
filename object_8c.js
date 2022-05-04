@@ -1,5 +1,6 @@
 var object_8c =
 [
+    [ "uecho_object_addproperty", "object_8c.html#a27c62ece36b7ac60fbdcf1025b12cba5", null ],
     [ "uecho_object_announcemessage", "object_8c.html#a37fab1c9649967383e353996faa96797", null ],
     [ "uecho_object_clearproperties", "object_8c.html#a22d14688139df33d669cab2842b4f696", null ],
     [ "uecho_object_delete", "object_8c.html#af8ee5425a96cb96c671f13fc89b8fa84", null ],
@@ -8,6 +9,7 @@ var object_8c =
     [ "uecho_object_getcode", "object_8c.html#a606e18e84735ebe4f88b77e87a8aad8f", null ],
     [ "uecho_object_getinstancecode", "object_8c.html#a51a4dc8c62ba4db02b3a66ae402171b4", null ],
     [ "uecho_object_getmessagelistener", "object_8c.html#acb171f1e93c812922a06a0c6d8b8e48c", null ],
+    [ "uecho_object_getname", "object_8c.html#a3db5c901e6ad02f917958be706028352", null ],
     [ "uecho_object_getparentnode", "object_8c.html#aaadafb154dffbb284f7340ee30cd355b", null ],
     [ "uecho_object_getproperties", "object_8c.html#a8b1875fe1f224d0a390bdfef4bd9d8d8", null ],
     [ "uecho_object_getproperty", "object_8c.html#a67b9087c9fd990d44a4e5d9bc7f64ad2", null ],
@@ -32,6 +34,7 @@ var object_8c =
     [ "uecho_object_setcode", "object_8c.html#a4e5526b45feb3deba0d3328cef24ea3e", null ],
     [ "uecho_object_setinstancecode", "object_8c.html#a0e9fc856bb8f7c2f418b9a6b95411248", null ],
     [ "uecho_object_setmessagelistener", "object_8c.html#aae6114456b8331a3bbaf87f0e97cafa3", null ],
+    [ "uecho_object_setname", "object_8c.html#a20b838d41059954da365368627ed4efe", null ],
     [ "uecho_object_setparentnode", "object_8c.html#a3e2fe5b92fd2db26e817aa90beae8a1d", null ],
     [ "uecho_object_setproperty", "object_8c.html#a0c67db98b105fdbac1b46041182920da", null ],
     [ "uecho_object_setpropertyattribute", "object_8c.html#af5ec88f2bf27d7bf03753d7868066934", null ],

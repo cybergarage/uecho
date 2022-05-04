@@ -1,6 +1,5 @@
 var object_8h =
 [
-    [ "uEchoManufacturerCode", "object_8h.html#ad23959618d58e1f0bfb4ca8c51a040be", null ],
     [ "uEchoObject", "object_8h.html#a5a4d5255ef76c105187415bfccb54650", null ],
     [ "uEchoObjectCode", "object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69", null ],
     [ "uEchoObjectMessageListener", "object_8h.html#a7b3559527b627479fa3429a020a963e3", null ],
@@ -18,6 +17,7 @@ var object_8h =
       [ "uEchoObjectSetPropertyMapMaxLen", "object_8h.html#a2cc8cb03891ab5f78b42a76bbb9fe209aea1a539b7aa9045b5111ee6d2d87d25c", null ],
       [ "uEchoObjectGetPropertyMapMaxLen", "object_8h.html#a2cc8cb03891ab5f78b42a76bbb9fe209ac1b53fa01113779876df106de453de75", null ]
     ] ],
+    [ "uecho_object_addproperty", "object_8h.html#a27c62ece36b7ac60fbdcf1025b12cba5", null ],
     [ "uecho_object_announcemessage", "object_8h.html#a37fab1c9649967383e353996faa96797", null ],
     [ "uecho_object_clearproperties", "object_8h.html#a22d14688139df33d669cab2842b4f696", null ],
     [ "uecho_object_delete", "object_8h.html#af8ee5425a96cb96c671f13fc89b8fa84", null ],
@@ -25,7 +25,8 @@ var object_8h =
     [ "uecho_object_getclassgroupcode", "object_8h.html#a5d548af334a6093acd396dae34be15b5", null ],
     [ "uecho_object_getcode", "object_8h.html#a606e18e84735ebe4f88b77e87a8aad8f", null ],
     [ "uecho_object_getinstancecode", "object_8h.html#a51a4dc8c62ba4db02b3a66ae402171b4", null ],
-    [ "uecho_object_getmanufacturercode", "object_8h.html#a2939b8d984b71169b6b62d50cfa2c8f6", null ],
+    [ "uecho_object_getmanufacturercode", "object_8h.html#ad8fb52fb9118b29f9a9cffca8b728c3c", null ],
+    [ "uecho_object_getname", "object_8h.html#a3db5c901e6ad02f917958be706028352", null ],
     [ "uecho_object_getproperties", "object_8h.html#a8b1875fe1f224d0a390bdfef4bd9d8d8", null ],
     [ "uecho_object_getproperty", "object_8h.html#a67b9087c9fd990d44a4e5d9bc7f64ad2", null ],
     [ "uecho_object_getpropertybytedata", "object_8h.html#aab431c903af490966984fb66fc3e0f01", null ],
@@ -45,8 +46,9 @@ var object_8h =
     [ "uecho_object_setclassgroupcode", "object_8h.html#a91f940c7c6b59f1a4f7654eb21531c29", null ],
     [ "uecho_object_setcode", "object_8h.html#a4c6fcf3d8928aac20ac5cd59dd0cdf56", null ],
     [ "uecho_object_setinstancecode", "object_8h.html#a0e9fc856bb8f7c2f418b9a6b95411248", null ],
-    [ "uecho_object_setmanufacturercode", "object_8h.html#a4e2e64e10dff39cf59760d210a4f1465", null ],
+    [ "uecho_object_setmanufacturercode", "object_8h.html#a82e1d1c675ed993833e1a488f89d145d", null ],
     [ "uecho_object_setmessagelistener", "object_8h.html#aae6114456b8331a3bbaf87f0e97cafa3", null ],
+    [ "uecho_object_setname", "object_8h.html#a20b838d41059954da365368627ed4efe", null ],
     [ "uecho_object_setproperty", "object_8h.html#a0c67db98b105fdbac1b46041182920da", null ],
     [ "uecho_object_setpropertyattribute", "object_8h.html#af5ec88f2bf27d7bf03753d7868066934", null ],
     [ "uecho_object_setpropertybytedata", "object_8h.html#a8e66f1e64946c37e9d7805405ac9a426", null ],

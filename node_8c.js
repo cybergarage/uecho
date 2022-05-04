@@ -26,7 +26,7 @@ var node_8c =
     [ "uecho_node_sendmessage", "node_8c.html#ac9ee4b95703c47141d2ed575a739bd72", null ],
     [ "uecho_node_sendmessagebytes", "node_8c.html#a36583c779d5ede05aa42b30479c8c430", null ],
     [ "uecho_node_setaddress", "node_8c.html#a2b08f7d4eb8a77801e94a5b6c979ca8d", null ],
-    [ "uecho_node_setmanufacturercode", "node_8c.html#a96e74084c1110bf8b2b37abd5e1a6ab7", null ],
+    [ "uecho_node_setmanufacturercode", "node_8c.html#a7c8bf45931f9a27b941886a449d982f2", null ],
     [ "uecho_node_setmessagelistener", "node_8c.html#a49c7994d1b5eb05ba4a0ac39d41aecbc", null ],
     [ "uecho_node_setobject", "node_8c.html#a9890e7cfcbd4acc885617ff3e8a3772d", null ],
     [ "uecho_node_setoption", "node_8c.html#af12c4a142cc3d5c89c2859c4ae0f87f8", null ],

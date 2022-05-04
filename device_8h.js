@@ -54,14 +54,14 @@ var device_8h =
     ] ],
     [ "uecho_device_addmandatoryproperties", "device_8h.html#a61f6ca7aef295f678a1f9fd10f4a91de", null ],
     [ "uecho_device_getinstallationlocation", "device_8h.html#aae6754b0c7744e5069acd9eb46adee6a", null ],
-    [ "uecho_device_getmanufacturercode", "device_8h.html#a7cf27b52e8091f77405e0bd4d08d2a84", null ],
+    [ "uecho_device_getmanufacturercode", "device_8h.html#a992530cfa257cf55169e1d25227fa90c", null ],
     [ "uecho_device_getstandardversion", "device_8h.html#ab9d66b66627fd207425db1e817e7df4c", null ],
     [ "uecho_device_isfaultstatus", "device_8h.html#a84082dc0e8844166ab5f2355c02692b2", null ],
     [ "uecho_device_isoperatingstatus", "device_8h.html#a5e75ee9478705f5af6531725768abb05", null ],
     [ "uecho_device_new", "device_8h.html#a02dded630518cf2ab02b7e6413308136", null ],
     [ "uecho_device_setfaultstatus", "device_8h.html#aa284f7eef2620c8ca20ab556772c7575", null ],
     [ "uecho_device_setinstallationlocation", "device_8h.html#af587b53815d19aad790b00d36df13b46", null ],
-    [ "uecho_device_setmanufacturercode", "device_8h.html#a5089f6fe798d8acc599e59f7a2922433", null ],
+    [ "uecho_device_setmanufacturercode", "device_8h.html#aafb39c63b4909ffccd96c22a5d8520d9", null ],
     [ "uecho_device_setoperatingstatus", "device_8h.html#ad36b2fd9580443bf342e7aadca61c1f4", null ],
     [ "uecho_device_setstandardversion", "device_8h.html#aef6dc952992efc7338502b73fcc4ecb0", null ]
 ];
