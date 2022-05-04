@@ -11,9 +11,8 @@
 #ifndef _UECHO_STD_DATABASE_H_
 #define _UECHO_STD_DATABASE_H_
 
-#include <uecho/message.h>
-#include <uecho/property.h>
 #include <uecho/typedef.h>
+#include <uecho/manufacture.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,6 +32,8 @@ typedef void uEchoDatabase;
 
 uEchoDatabase* uecho_database_new(void);
 bool uecho_database_delete(uEchoDatabase* db);
+
+bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture *man);
 
 #ifdef __cplusplus
 } /* extern C */

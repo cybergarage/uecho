@@ -55,3 +55,14 @@ bool uecho_database_delete(uEchoDatabase* db)
 
   return true;
 }
+
+/****************************************
+* uecho_database_addmanufacture
+****************************************/
+
+bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture *man)
+{
+  if (!db)
+    return false;
+  return uecho_manufacturelist_add(db->mans, man);
+}
