@@ -323,7 +323,7 @@ bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject* obj)
     node_instance_list_cnt++;
     node_instance_list = (byte*)realloc(node_instance_list, ((3 * node_instance_list_cnt) + 1));
     idx = (3 * (node_instance_list_cnt - 1)) + 1;
-    node_instance_list[idx + 0] = uecho_object_getclassgroupcode(node_obj);
+    node_instance_list[idx + 0] = uecho_object_getgroupcode(node_obj);
     node_instance_list[idx + 1] = uecho_object_getclasscode(node_obj);
     node_instance_list[idx + 2] = uecho_object_getinstancecode(node_obj);
   }

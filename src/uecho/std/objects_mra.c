@@ -21,7 +21,7 @@ uEchoObject *uecho_standard_object_new(const char *name, int grp_code, int cls_c
   uEchoObject *obj;
   obj = uecho_object_new();
   uecho_object_setname(obj, name);
-  uecho_object_setclassgroupcode(obj, grp_code);
+  uecho_object_setgroupcode(obj, grp_code);
   uecho_object_setclasscode(obj, cls_code);
   return obj;
 }

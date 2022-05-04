@@ -36,7 +36,7 @@ uEchoObject* uecho_object_new(void)
 
   uecho_object_setparentnode(obj, NULL);
 
-  uecho_object_setclassgroupcode(obj, 0);
+  uecho_object_setgroupcode(obj, 0);
   uecho_object_setclasscode(obj, 0);
   uecho_object_setinstancecode(obj, 0);
 
@@ -200,10 +200,10 @@ bool uecho_object_iscode(uEchoObject* obj, uEchoObjectCode code)
 }
 
 /****************************************
- * uecho_object_setclassgroupcode
+ * uecho_object_setgroupcode
  ****************************************/
 
-void uecho_object_setclassgroupcode(uEchoObject* obj, byte val)
+void uecho_object_setgroupcode(uEchoObject* obj, byte val)
 {
   if (!obj)
     return;
@@ -212,10 +212,10 @@ void uecho_object_setclassgroupcode(uEchoObject* obj, byte val)
 }
 
 /****************************************
- * uecho_object_getclassgroupcode
+ * uecho_object_getgroupcode
  ****************************************/
 
-byte uecho_object_getclassgroupcode(uEchoObject* obj)
+byte uecho_object_getgroupcode(uEchoObject* obj)
 {
   if (!obj)
     return 0;
