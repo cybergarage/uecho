@@ -56,8 +56,8 @@ BOOST_AUTO_TEST_CASE(ObjectSetCodes)
     byte code;
 
     code = rand() % 255;
-    uecho_object_setclassgroupcode(obj, code);
-    BOOST_CHECK_EQUAL(uecho_object_getclassgroupcode(obj), code);
+    uecho_object_setgroupcode(obj, code);
+    BOOST_CHECK_EQUAL(uecho_object_getgroupcode(obj), code);
 
     code = rand() % 255;
     uecho_object_setclasscode(obj, code);
