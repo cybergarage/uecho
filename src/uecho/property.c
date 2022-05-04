@@ -525,6 +525,7 @@ uEchoProperty* uecho_property_copy(uEchoProperty* src_prop)
     return NULL;
 
   uecho_property_setcode(new_prop, uecho_property_getcode(src_prop));
+  uecho_property_setname(new_prop, uecho_property_getname(src_prop));
   uecho_property_setattribute(new_prop, uecho_property_getattribute(src_prop));
   uecho_property_setdata(new_prop, uecho_property_getdata(src_prop), uecho_property_getdatasize(src_prop));
 
