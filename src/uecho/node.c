@@ -186,7 +186,7 @@ bool uecho_node_isaddress(uEchoNode* node, const char* addr)
  * uecho_node_setmanufacturercode
  ****************************************/
 
-bool uecho_node_setmanufacturercode(uEchoNode* node, uEchoManufacturerCode code)
+bool uecho_node_setmanufacturercode(uEchoNode* node, uEchoManufactureCode code)
 {
   uEchoObject* obj;
 
