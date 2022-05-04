@@ -79,6 +79,7 @@ byte uecho_object_getinstancecode(uEchoObject* obj);
 bool uecho_object_isdevice(uEchoObject* obj);
 bool uecho_object_isprofile(uEchoObject* obj);
 
+bool uecho_object_addproperty(uEchoObject* obj, uEchoProperty *prop);
 bool uecho_object_setproperty(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyAttr attr);
 bool uecho_object_setpropertydata(uEchoObject* obj, uEchoPropertyCode code, byte* data, size_t data_len);
 bool uecho_object_setpropertyintegerdata(uEchoObject* obj, uEchoPropertyCode code, int data, size_t data_len);
