@@ -27,6 +27,26 @@ uEchoObject* uecho_device_new(void);
  * Device Object Super Class
  ****************************************/
 
+enum {
+  uEchoDeviceVersionAppendixA = 'A',
+  uEchoDeviceVersionAppendixB = 'B',
+  uEchoDeviceVersionAppendixC = 'C',
+  uEchoDeviceVersionAppendixD = 'D',
+  uEchoDeviceVersionAppendixE = 'E',
+  uEchoDeviceVersionAppendixF = 'F',
+  uEchoDeviceVersionAppendixG = 'G',
+  uEchoDeviceVersionAppendixH = 'H',
+  uEchoDeviceVersionAppendixI = 'I',
+  uEchoDeviceVersionAppendixJ = 'J',
+  uEchoDeviceVersionAppendixK = 'K',
+  uEchoDeviceVersionAppendixL = 'L',
+  uEchoDeviceVersionAppendixM = 'M',
+  uEchoDeviceVersionAppendixN = 'N',
+  uEchoDeviceVersionUnknown = 0,
+  uEchoDeviceVersionAppendixDefault = uEchoDeviceVersionAppendixN,
+};
+
+
 typedef enum {
   uEchoDeviceOperatingStatus = 0x80,
   uEchoDeviceInstallationLocation = 0x81,
