@@ -64,6 +64,7 @@ bool uecho_property_announce(uEchoProperty* prop);
 uEchoPropertyList* uecho_propertylist_new(void);
 void uecho_propertylist_delete(uEchoPropertyList* props);
 
+bool uecho_propertylist_add(uEchoPropertyList* props, uEchoProperty *prop);
 bool uecho_propertylist_set(uEchoPropertyList* props, uEchoPropertyCode code, uEchoPropertyAttr attr, byte* data, size_t data_len);
 bool uecho_propertylist_setdata(uEchoPropertyList* props, uEchoPropertyCode code, byte* data, size_t data_len);
 bool uecho_propertylist_setintegerdata(uEchoPropertyList* props, uEchoPropertyCode code, int data, size_t data_len);
@@ -79,7 +80,6 @@ bool uecho_propertylist_getbytedata(uEchoPropertyList* props, uEchoPropertyCode 
 #define uecho_propertylist_clear(props) uecho_list_clear((uEchoList*)props, (UECHO_LIST_DESTRUCTORFUNC)uecho_property_delete)
 #define uecho_propertylist_size(props) uecho_list_size((uEchoList*)props)
 #define uecho_propertylist_gets(props) (uEchoProperty*)uecho_list_next((uEchoList*)props)
-#define uecho_propertylist_add(props, prop) uecho_list_add((uEchoList*)props, (uEchoList*)prop)
 
 #ifdef __cplusplus
 } /* extern C */

@@ -86,6 +86,25 @@ uEchoProperty* uecho_propertylist_getbycode(uEchoPropertyList* props, uEchoPrope
 }
 
 /****************************************
+ * uecho_propertylist_add
+ ****************************************/
+
+bool uecho_propertylist_add(uEchoPropertyList* props, uEchoProperty *prop)
+{
+  uEchoProperty* added_prop;
+  
+  if (!props || !prop)
+    return false;
+
+  added_prop = uecho_propertylist_findbycode(props, uecho_property_getcode(prop));
+  if (added_prop) {
+    uecho_property_remove(added_prop);
+  }
+
+  return uecho_list_add((uEchoList*)props, (uEchoList*)prop);
+}
+
+/****************************************
  * uecho_propertylist_set
  ****************************************/
 
