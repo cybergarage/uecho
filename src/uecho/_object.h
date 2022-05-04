@@ -80,7 +80,7 @@ uEchoProperty* uecho_object_getpropertywait(uEchoObject* obj, uEchoPropertyCode 
 
 bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, uEchoPropertyCode* prop_codes, size_t props_code_size);
 
-bool uecho_object_copyobjectproperties(uEchoObject* obj, uEchoObject* src_obj);
+bool uecho_object_addmissingobjectproperties(uEchoObject* obj, uEchoObject* src_obj);
 
 /****************************************
  * Function (Object List)
