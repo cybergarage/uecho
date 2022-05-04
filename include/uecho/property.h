@@ -62,6 +62,9 @@ bool uecho_property_cleardata(uEchoProperty* prop);
 uEchoProperty* uecho_property_next(uEchoProperty* prop);
 void uecho_property_remove(uEchoProperty* prop);
 
+void uecho_property_setname(uEchoProperty* prop, const char *name);
+const char *uecho_property_getname(uEchoProperty* prop);
+
 void uecho_property_setcode(uEchoProperty* prop, uEchoPropertyCode val);
 uEchoPropertyCode uecho_property_getcode(uEchoProperty* prop);
 

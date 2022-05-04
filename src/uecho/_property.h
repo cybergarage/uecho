@@ -15,6 +15,7 @@
 
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
+#include <uecho/util/strings.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -25,6 +26,7 @@ extern "C" {
  ****************************************/
 
 #define UECHO_PROPERTY_DATA_STRUCT_MEMBERS \
+  uEchoString *name;                       \
   byte code;                               \
   int attr;                                \
   byte* data;                              \
