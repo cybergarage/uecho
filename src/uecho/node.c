@@ -39,7 +39,7 @@ uEchoNode* uecho_node_new(void)
   node->address = uecho_string_new();
   uecho_node_setmessagelistener(node, NULL);
 
-  obj = uecho_nodeprofileclass_new();
+  obj = uecho_nodeprofile_new();
   uecho_node_addobject(node, obj);
 
   return node;
@@ -302,7 +302,7 @@ bool uecho_node_updatenodeprofileclass(uEchoNode* node)
   if (!obj)
     return false;
 
-  return uecho_nodeprofileclass_updateinstanceproperties(obj);
+  return uecho_nodeprofile_updateinstanceproperties(obj);
 }
 
 /****************************************
