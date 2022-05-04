@@ -73,7 +73,6 @@ bool uecho_object_hasmessagelistener(uEchoObject* obj);
 uEchoPropertyRequestHandler uecho_object_getpropertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPropertyCode code);
 bool uecho_object_haspropertyrequestlistener(uEchoObject* obj, uEchoEsv esv, uEchoPropertyCode code);
 
-bool uecho_object_addmandatoryproperties(uEchoObject* obj);
 bool uecho_object_updatepropertymaps(uEchoObject* obj);
 void uecho_object_clearpropertymapcaches(uEchoObject* obj);
 

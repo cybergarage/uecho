@@ -58,8 +58,6 @@ uEchoObject* uecho_object_new(void)
 
   // Mandatory Properties
 
-  uecho_object_addmandatoryproperties(obj);
-
   if (!obj->name || !obj->properties || !obj->prop_listener_mgr) {
     uecho_object_delete(obj);
     return NULL;
