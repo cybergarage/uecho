@@ -14,36 +14,6 @@
 #include <uecho/profile.h>
 
 /****************************************
- * uecho_object_addmandatoryproperties
- ****************************************/
-
-bool uecho_object_addmandatoryproperties(uEchoObject* obj)
-{
-  byte zero_prop_map[] = { 0 };
-
-  if (!obj)
-    return false;
-
-  // Manufacture Code
-
-  uecho_object_setproperty(obj, uEchoObjectManufacturerCode, uEchoPropertyAttrRead);
-  uecho_object_setmanufacturercode(obj, uEchoManufactureCodeDefault);
-
-  // Property map properties
-
-  uecho_object_setproperty(obj, uEchoObjectGetPropertyMap, uEchoPropertyAttrRead);
-  uecho_object_setpropertydata(obj, uEchoObjectGetPropertyMap, zero_prop_map, sizeof(zero_prop_map));
-
-  uecho_object_setproperty(obj, uEchoObjectSetPropertyMap, uEchoPropertyAttrRead);
-  uecho_object_setpropertydata(obj, uEchoObjectSetPropertyMap, zero_prop_map, sizeof(zero_prop_map));
-
-  uecho_object_setproperty(obj, uEchoObjectAnnoPropertyMap, uEchoPropertyAttrRead);
-  uecho_object_setpropertydata(obj, uEchoObjectAnnoPropertyMap, zero_prop_map, sizeof(zero_prop_map));
-
-  return true;
-}
-
-/****************************************
  * uecho_object_setmanufacturercode
  ****************************************/
 
