@@ -336,6 +336,18 @@ bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, u
 }
 
 /****************************************
+ * uecho_object_addproperty
+ ****************************************/
+
+bool uecho_object_addproperty(uEchoObject* obj, uEchoProperty *prop)
+{
+  if (!obj || !prop)
+    return false;
+
+  return uecho_propertylist_add(obj->properties, prop);
+}
+
+/****************************************
  * uecho_object_setproperty
  ****************************************/
 
