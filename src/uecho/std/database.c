@@ -43,7 +43,7 @@ bool uecho_database_delete(uEchoDatabase* db)
   if (!db)
     return false;
 
-  if (db->mans ) {
+  if (db->mans) {
     uecho_manufacturelist_delete(db->mans);
   }
   
