@@ -17,6 +17,7 @@
 BOOST_AUTO_TEST_CASE(ObjectNew)
 {
   uEchoObject* obj = uecho_object_new();
+  BOOST_CHECK(obj);
 
   BOOST_CHECK_EQUAL(uecho_object_getcode(obj), (uEchoObjectCode)uEchoObjectCodeMin);
   BOOST_CHECK(!uecho_object_getparentnode(obj));
@@ -27,6 +28,7 @@ BOOST_AUTO_TEST_CASE(ObjectNew)
 BOOST_AUTO_TEST_CASE(ObjectSetCode)
 {
   uEchoObject* obj = uecho_object_new();
+  BOOST_CHECK(obj);
 
   uecho_object_setcode(obj, uEchoObjectCodeMin);
   BOOST_CHECK_EQUAL(uecho_object_getcode(obj), (uEchoObjectCode)uEchoObjectCodeMin);
@@ -49,6 +51,7 @@ BOOST_AUTO_TEST_CASE(ObjectSetCode)
 BOOST_AUTO_TEST_CASE(ObjectSetCodes)
 {
   uEchoObject* obj = uecho_object_new();
+  BOOST_CHECK(obj);
 
   srand((int)time(NULL));
 
@@ -74,6 +77,7 @@ BOOST_AUTO_TEST_CASE(ObjectSetCodes)
 BOOST_AUTO_TEST_CASE(ObjectSetProperty)
 {
   uEchoObject* obj = uecho_object_new();
+  BOOST_CHECK(obj);
 
   uecho_object_clearproperties(obj);
 
@@ -103,13 +107,6 @@ BOOST_AUTO_TEST_CASE(ObjectSetProperty)
 BOOST_AUTO_TEST_CASE(ObjectMandatoryProperties)
 {
   uEchoObject* obj = uecho_object_new();
-
-  // Propery mandatory properties
-
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileManufacturerCode));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileAnnoPropertyMap));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileSetPropertyMap));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileGetPropertyMap));
-
+  BOOST_CHECK(obj);
   uecho_object_delete(obj);
 }
