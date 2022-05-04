@@ -429,9 +429,9 @@ bool uecho_property_isreadonly(uEchoProperty* prop)
   if (!prop)
     return false;
 
-  if (!(prop->attr & (uEchoPropertyAttrRead | uEchoPropertyAttrReadRequired)))
+  if (!uecho_property_isreadable(prop))
     return false;
-  if ((prop->attr & uEchoPropertyAttrWrite))
+  if (uecho_property_iswritable(prop))
     return false;
 
   return true;
