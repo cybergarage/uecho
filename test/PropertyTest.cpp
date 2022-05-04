@@ -78,24 +78,35 @@ BOOST_AUTO_TEST_CASE(PropertyPermission)
 
   uecho_property_setattribute(prop, uEchoPropertyAttrNone);
   BOOST_CHECK_EQUAL(uecho_property_isreadable(prop), false);
+  BOOST_CHECK_EQUAL(uecho_property_isreadrequired(prop), false);
   BOOST_CHECK_EQUAL(uecho_property_iswritable(prop), false);
   BOOST_CHECK_EQUAL(uecho_property_isreadonly(prop), false);
   BOOST_CHECK_EQUAL(uecho_property_iswriteonly(prop), false);
 
   uecho_property_setattribute(prop, uEchoPropertyAttrRead);
   BOOST_CHECK_EQUAL(uecho_property_isreadable(prop), true);
+  BOOST_CHECK_EQUAL(uecho_property_isreadrequired(prop), false);
+  BOOST_CHECK_EQUAL(uecho_property_iswritable(prop), false);
+  BOOST_CHECK_EQUAL(uecho_property_isreadonly(prop), true);
+  BOOST_CHECK_EQUAL(uecho_property_iswriteonly(prop), false);
+
+  uecho_property_setattribute(prop, uEchoPropertyAttrReadRequired);
+  BOOST_CHECK_EQUAL(uecho_property_isreadable(prop), true);
+  BOOST_CHECK_EQUAL(uecho_property_isreadrequired(prop), true);
   BOOST_CHECK_EQUAL(uecho_property_iswritable(prop), false);
   BOOST_CHECK_EQUAL(uecho_property_isreadonly(prop), true);
   BOOST_CHECK_EQUAL(uecho_property_iswriteonly(prop), false);
 
   uecho_property_setattribute(prop, uEchoPropertyAttrWrite);
   BOOST_CHECK_EQUAL(uecho_property_isreadable(prop), false);
+  BOOST_CHECK_EQUAL(uecho_property_isreadrequired(prop), false);
   BOOST_CHECK_EQUAL(uecho_property_iswritable(prop), true);
   BOOST_CHECK_EQUAL(uecho_property_isreadonly(prop), false);
   BOOST_CHECK_EQUAL(uecho_property_iswriteonly(prop), true);
 
   uecho_property_setattribute(prop, uEchoPropertyAttrReadWrite);
   BOOST_CHECK_EQUAL(uecho_property_isreadable(prop), true);
+  BOOST_CHECK_EQUAL(uecho_property_isreadrequired(prop), false);
   BOOST_CHECK_EQUAL(uecho_property_iswritable(prop), true);
   BOOST_CHECK_EQUAL(uecho_property_isreadonly(prop), false);
   BOOST_CHECK_EQUAL(uecho_property_iswriteonly(prop), false);
