@@ -463,7 +463,22 @@ bool uecho_property_isannounceable(uEchoProperty* prop)
   if (!prop)
     return false;
 
-  if ((prop->attr & uEchoPropertyAttrAnno))
+  if ((prop->attr & (uEchoPropertyAttrAnno | uEchoPropertyAttrAnnoRequired)))
+    return true;
+
+  return false;
+}
+
+/****************************************
+ * uecho_property_isannouncerequired
+ ****************************************/
+
+bool uecho_property_isannouncerequired(uEchoProperty* prop)
+{
+  if (!prop)
+    return false;
+
+  if ((prop->attr & uEchoPropertyAttrAnnoRequired))
     return true;
 
   return false;
