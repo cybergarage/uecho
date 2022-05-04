@@ -86,8 +86,8 @@ bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, u
 uEchoObjectList* uecho_objectlist_new(void);
 void uecho_objectlist_delete(uEchoObjectList* objs);
 
-bool uecho_objectlist_set(uEchoObjectList* props, uEchoObjectCode code);
-uEchoObject* uecho_objectlist_getbycode(uEchoObjectList* props, uEchoObjectCode code);
+bool uecho_objectlist_set(uEchoObjectList* objs, uEchoObjectCode code);
+uEchoObject* uecho_objectlist_getbycode(uEchoObjectList* objs, uEchoObjectCode code);
 
 #define uecho_objectlist_clear(objs) uecho_list_clear((uEchoList*)objs, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_delete)
 #define uecho_objectlist_size(objs) uecho_list_size((uEchoList*)objs)
