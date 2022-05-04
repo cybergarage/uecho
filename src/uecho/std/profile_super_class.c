@@ -22,8 +22,6 @@ bool uecho_profile_addmandatoryproperties(uEchoObject* obj)
   if (!obj)
     return false;
 
-  uecho_object_addmandatoryproperties(obj);
-
   return true;
 }
 
