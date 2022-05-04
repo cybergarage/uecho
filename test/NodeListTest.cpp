@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <uecho/node_internal.h>
+#include <uecho/_node.h>
 
 BOOST_AUTO_TEST_CASE(NodeListAdd)
 {
