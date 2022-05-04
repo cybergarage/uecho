@@ -13,6 +13,7 @@
 
 #include <uecho/typedef.h>
 #include <uecho/manufacture.h>
+#include <uecho/object.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -35,6 +36,8 @@ bool uecho_database_delete(uEchoDatabase* db);
 
 bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture *man);
 bool uecho_database_addobject(uEchoDatabase* db, uEchoObject *obj);
+
+uEchoDatabase* uecho_standard_getdatabase(void);
 
 #ifdef __cplusplus
 } /* extern C */

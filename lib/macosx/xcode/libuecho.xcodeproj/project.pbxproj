@@ -35,6 +35,7 @@
 		2146D08D2822517500DE4245 /* _database.h in Headers */ = {isa = PBXBuildFile; fileRef = 2146D08C2822517500DE4245 /* _database.h */; };
 		2146D08F2822625900DE4245 /* manufacturers.c in Sources */ = {isa = PBXBuildFile; fileRef = 2146D08E2822625900DE4245 /* manufacturers.c */; };
 		2146D0912822800700DE4245 /* objects_mra.c in Sources */ = {isa = PBXBuildFile; fileRef = 2146D0902822800700DE4245 /* objects_mra.c */; };
+		2146D0932822882200DE4245 /* standard.c in Sources */ = {isa = PBXBuildFile; fileRef = 2146D0922822882100DE4245 /* standard.c */; };
 		215B493D1B85831E002B20CE /* profile.c in Sources */ = {isa = PBXBuildFile; fileRef = 215B493C1B85831E002B20CE /* profile.c */; };
 		215B49431B85895F002B20CE /* device.h in Headers */ = {isa = PBXBuildFile; fileRef = 215B49421B85895F002B20CE /* device.h */; };
 		215B49451B8589D4002B20CE /* device.c in Sources */ = {isa = PBXBuildFile; fileRef = 215B49441B8589D4002B20CE /* device.c */; };
@@ -134,6 +135,7 @@
 		2146D08C2822517500DE4245 /* _database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _database.h; path = std/_database.h; sourceTree = "<group>"; };
 		2146D08E2822625900DE4245 /* manufacturers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = manufacturers.c; path = std/manufacturers.c; sourceTree = "<group>"; };
 		2146D0902822800700DE4245 /* objects_mra.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = objects_mra.c; path = std/objects_mra.c; sourceTree = "<group>"; };
+		2146D0922822882100DE4245 /* standard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = standard.c; path = std/standard.c; sourceTree = "<group>"; };
 		215B493C1B85831E002B20CE /* profile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = profile.c; path = std/profile.c; sourceTree = "<group>"; };
 		215B49421B85895F002B20CE /* device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = device.h; sourceTree = "<group>"; };
 		215B49441B8589D4002B20CE /* device.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = device.c; path = std/device.c; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 		21D68B0C1B7C1D700032552C /* std */ = {
 			isa = PBXGroup;
 			children = (
+				2146D0922822882100DE4245 /* standard.c */,
 				2146D0902822800700DE4245 /* objects_mra.c */,
 				2146D08A28224EC300DE4245 /* database.c */,
 				215B49461B858AEC002B20CE /* device_super_class.c */,
@@ -533,6 +536,7 @@
 				218F5DBA27E5B35F00E79AC1 /* object_property_observer_manager.c in Sources */,
 				215B49481B858AEC002B20CE /* device_super_class.c in Sources */,
 				2146D08528223A7600DE4245 /* manufacture.c in Sources */,
+				2146D0932822882200DE4245 /* standard.c in Sources */,
 				218F5DC827E5C0DB00E79AC1 /* message_observer_manager.c in Sources */,
 				21CF27591B917B25004A5AAD /* message.c in Sources */,
 				218F5DB927E5B35F00E79AC1 /* object_property_observer_list.c in Sources */,
