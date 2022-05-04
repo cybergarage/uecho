@@ -11,9 +11,10 @@
 #ifndef _UECHO_OBJECT_H_
 #define _UECHO_OBJECT_H_
 
+#include <uecho/typedef.h>
 #include <uecho/message.h>
 #include <uecho/property.h>
-#include <uecho/typedef.h>
+#include <uecho/manufacture.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -38,7 +39,6 @@ enum {
  * Data Type
  ****************************************/
 
-typedef int uEchoManufacturerCode;
 typedef int uEchoObjectCode;
 
 #if !defined(_UECHO_OBJECT_INTERNAL_H_)
