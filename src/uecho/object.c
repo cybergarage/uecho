@@ -344,6 +344,9 @@ bool uecho_object_addproperty(uEchoObject* obj, uEchoProperty *prop)
   if (!obj || !prop)
     return false;
 
+  if (!uecho_property_setparentobject(prop, obj))
+    return false;
+
   return uecho_propertylist_add(obj->properties, prop);
 }
 
