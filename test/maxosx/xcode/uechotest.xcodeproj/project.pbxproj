@@ -11,8 +11,9 @@
 		210E7BA61BA191DB00343445 /* SocketTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E7BA51BA191DB00343445 /* SocketTest.cpp */; };
 		21205A121B95EEEC008A941C /* InterfaceTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21205A111B95EEEC008A941C /* InterfaceTest.cpp */; };
 		21205A141B95FACC008A941C /* ServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21205A131B95FACC008A941C /* ServerTest.cpp */; };
-		213C5BFD1B4A548B0013DDD9 /* liblibuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 213C5BFA1B4A54630013DDD9 /* liblibuecho.a */; };
+		213C5BFD1B4A548B0013DDD9 /* libuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 213C5BFA1B4A54630013DDD9 /* libuecho.a */; };
 		214376311B705EAE003F2E5E /* PropertyTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214376301B705EAE003F2E5E /* PropertyTest.cpp */; };
+		2146D09528228A6500DE4245 /* DatabaseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2146D09428228A6500DE4245 /* DatabaseTest.cpp */; };
 		2153A5E31B8EB40D00FAE69A /* TestDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2153A5E21B8EB40D00FAE69A /* TestDevice.cpp */; };
 		215B493F1B85851A002B20CE /* ProfileTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215B493E1B85851A002B20CE /* ProfileTest.cpp */; };
 		215B49411B858916002B20CE /* DeviceTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215B49401B858916002B20CE /* DeviceTest.cpp */; };
@@ -69,6 +70,7 @@
 		21205A131B95FACC008A941C /* ServerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ServerTest.cpp; path = ../../ServerTest.cpp; sourceTree = "<group>"; };
 		213C5BF51B4A54630013DDD9 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
 		214376301B705EAE003F2E5E /* PropertyTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PropertyTest.cpp; path = ../../PropertyTest.cpp; sourceTree = "<group>"; };
+		2146D09428228A6500DE4245 /* DatabaseTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DatabaseTest.cpp; path = ../../DatabaseTest.cpp; sourceTree = "<group>"; };
 		2153A5E11B8EB40D00FAE69A /* TestDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestDevice.h; path = ../../TestDevice.h; sourceTree = "<group>"; };
 		2153A5E21B8EB40D00FAE69A /* TestDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestDevice.cpp; path = ../../TestDevice.cpp; sourceTree = "<group>"; };
 		215B493E1B85851A002B20CE /* ProfileTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ProfileTest.cpp; path = ../../ProfileTest.cpp; sourceTree = "<group>"; };
@@ -94,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				213C5BFD1B4A548B0013DDD9 /* liblibuecho.a in Frameworks */,
+				213C5BFD1B4A548B0013DDD9 /* libuecho.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +131,7 @@
 		213C5BF61B4A54630013DDD9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				213C5BFA1B4A54630013DDD9 /* liblibuecho.a */,
+				213C5BFA1B4A54630013DDD9 /* libuecho.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +142,7 @@
 				217142941B886682003ABA30 /* ClassListTest.cpp */,
 				217142951B886682003ABA30 /* ClassTest.cpp */,
 				216F1DFB1B4A5BB8003C7B6A /* ControllerTest.cpp */,
+				2146D09428228A6500DE4245 /* DatabaseTest.cpp */,
 				215B49401B858916002B20CE /* DeviceTest.cpp */,
 				21205A111B95EEEC008A941C /* InterfaceTest.cpp */,
 				210CC7A621BEBCE900EEEB58 /* LogTest.cpp */,
@@ -224,10 +227,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		213C5BFA1B4A54630013DDD9 /* liblibuecho.a */ = {
+		213C5BFA1B4A54630013DDD9 /* libuecho.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibuecho.a;
+			path = libuecho.a;
 			remoteRef = 213C5BF91B4A54630013DDD9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -247,6 +250,7 @@
 				21EFF1A71B4AA06D002B5E57 /* NodeTest.cpp in Sources */,
 				21E7743F1B888FB0000086A0 /* MiscTest.cpp in Sources */,
 				210E7BA61BA191DB00343445 /* SocketTest.cpp in Sources */,
+				2146D09528228A6500DE4245 /* DatabaseTest.cpp in Sources */,
 				21E703C41B8B32D5000F6CD1 /* ObserverTest.cpp in Sources */,
 				2183CDA71B6D0E1400EE7E49 /* MessageTest.cpp in Sources */,
 				216F1DFA1B4A5BAA003C7B6A /* uEchoTest.cpp in Sources */,
