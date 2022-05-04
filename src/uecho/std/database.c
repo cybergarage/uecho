@@ -89,3 +89,14 @@ uEchoManufacture *uecho_database_getmanufacture(uEchoDatabase* db, uEchoManufact
   return uecho_manufacturelist_getbycode(db->mans, code);
 }
 
+/****************************************
+* uecho_database_getobject
+****************************************/
+
+uEchoObject *uecho_database_getobject(uEchoDatabase* db, byte grp_code, byte cls_code)
+{
+  if (!db)
+    return NULL;
+  return uecho_objectlist_getbygroupclasscode(db->objs, grp_code, cls_code);
+}
+
