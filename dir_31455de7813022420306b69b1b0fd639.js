@@ -1,11 +1,13 @@
 var dir_31455de7813022420306b69b1b0fd639 =
 [
+    [ "std", "dir_c47416d0d35324d91cc1111c781fc5be.html", "dir_c47416d0d35324d91cc1111c781fc5be" ],
     [ "util", "dir_7842ba8199c99c7031fdce7bb94d102c.html", "dir_7842ba8199c99c7031fdce7bb94d102c" ],
     [ "class.h", "class_8h.html", "class_8h" ],
     [ "const.h", "const_8h.html", "const_8h" ],
     [ "controller.h", "controller_8h.html", "controller_8h" ],
     [ "device.h", "device_8h.html", "device_8h" ],
     [ "esv.h", "esv_8h.html", "esv_8h" ],
+    [ "manufacture.h", "manufacture_8h.html", "manufacture_8h" ],
     [ "message.h", "include_2uecho_2message_8h.html", "include_2uecho_2message_8h" ],
     [ "misc.h", "misc_8h.html", "misc_8h" ],
     [ "node.h", "node_8h.html", "node_8h" ],

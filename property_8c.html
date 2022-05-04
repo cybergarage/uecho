@@ -65,8 +65,8 @@ $(document).ready(function(){initNavTree('property_8c.html',''); initResizable()
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="node__internal_8h.html">uecho/node_internal.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="property__internal_8h.html">uecho/property_internal.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="__node_8h.html">uecho/_node.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="__property_8h.html">uecho/_property.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="misc_8h.html">uecho/misc.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -75,9 +75,9 @@ Functions</h2></td></tr>
 <tr class="separator:a5274ffb5db8c177635b6b0dcc223636c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d1e3112c24093cd95d775df557c5d4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a2d1e3112c24093cd95d775df557c5d4a">uecho_property_delete</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
 <tr class="separator:a2d1e3112c24093cd95d775df557c5d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a8b9eb0acc969bde2ce0ac3e6a082ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a5a8b9eb0acc969bde2ce0ac3e6a082ae">uecho_property_setparentobject</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop, <a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
+<tr class="memitem:a5a8b9eb0acc969bde2ce0ac3e6a082ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a5a8b9eb0acc969bde2ce0ac3e6a082ae">uecho_property_setparentobject</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop, <a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:a5a8b9eb0acc969bde2ce0ac3e6a082ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a494d30469a91331d42ede8d028125463"><td class="memItemLeft" align="right" valign="top"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a494d30469a91331d42ede8d028125463">uecho_property_getparentobject</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
+<tr class="memitem:a494d30469a91331d42ede8d028125463"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a494d30469a91331d42ede8d028125463">uecho_property_getparentobject</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
 <tr class="separator:a494d30469a91331d42ede8d028125463"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa86a74e6cb45a7b7acc0d51f0ffc33a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#aa86a74e6cb45a7b7acc0d51f0ffc33a3">uecho_property_setcount</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop, size_t count)</td></tr>
 <tr class="separator:aa86a74e6cb45a7b7acc0d51f0ffc33a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,6 +103,10 @@ Functions</h2></td></tr>
 <tr class="separator:a628293bdd7ea2ccbf510f2fb8d7f5d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a943d91e6e8d096a31dc29e43fcc4ca3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a943d91e6e8d096a31dc29e43fcc4ca3a">uecho_property_remove</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
 <tr class="separator:a943d91e6e8d096a31dc29e43fcc4ca3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac54892603be87e2c9e476f2f060b7fec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#ac54892603be87e2c9e476f2f060b7fec">uecho_property_setname</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop, const char *name)</td></tr>
+<tr class="separator:ac54892603be87e2c9e476f2f060b7fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f2ea18b24412f6fd8f0421762549424"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a6f2ea18b24412f6fd8f0421762549424">uecho_property_getname</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
+<tr class="separator:a6f2ea18b24412f6fd8f0421762549424"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d2778190a5127dfaa548360a54712c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a0d2778190a5127dfaa548360a54712c6">uecho_property_setcode</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop, <a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a> val)</td></tr>
 <tr class="separator:a0d2778190a5127dfaa548360a54712c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2284751371e3c7b6d83ac785196049f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="include_2uecho_2property_8h.html#a211e9ebfd2db9f271786feabfb3f3b35">uEchoPropertyCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#ad2284751371e3c7b6d83ac785196049f">uecho_property_getcode</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
@@ -117,19 +121,25 @@ Functions</h2></td></tr>
 <tr class="separator:a70a38d67cd7870b33be5eeb30e1c053f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a931608cd273d095fa71ef7e3bde78cb0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a931608cd273d095fa71ef7e3bde78cb0">uecho_property_isreadable</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
 <tr class="separator:a931608cd273d095fa71ef7e3bde78cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeebe091baaebf7762aa05ae0133fcdb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#aeebe091baaebf7762aa05ae0133fcdb9">uecho_property_isreadrequired</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
+<tr class="separator:aeebe091baaebf7762aa05ae0133fcdb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69d7159dfdc2b5dbe68d67fef963e82d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a69d7159dfdc2b5dbe68d67fef963e82d">uecho_property_iswritable</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
 <tr class="separator:a69d7159dfdc2b5dbe68d67fef963e82d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac996bdffba833e814424fd9f0c7ad548"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#ac996bdffba833e814424fd9f0c7ad548">uecho_property_iswriterequired</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
+<tr class="separator:ac996bdffba833e814424fd9f0c7ad548"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39b704e2ae0b34ecad22c498586fb220"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a39b704e2ae0b34ecad22c498586fb220">uecho_property_isreadonly</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
 <tr class="separator:a39b704e2ae0b34ecad22c498586fb220"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a070eca35c312a568f72c990d3ac1c624"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a070eca35c312a568f72c990d3ac1c624">uecho_property_iswriteonly</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
 <tr class="separator:a070eca35c312a568f72c990d3ac1c624"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ebd5e077ff3372153c9f8bcb1d1d6b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a5ebd5e077ff3372153c9f8bcb1d1d6b6">uecho_property_isannounceable</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
 <tr class="separator:a5ebd5e077ff3372153c9f8bcb1d1d6b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac58334afad901159189e2b8f24bcc5ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#ac58334afad901159189e2b8f24bcc5ce">uecho_property_isannouncerequired</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
+<tr class="separator:ac58334afad901159189e2b8f24bcc5ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ca058dc0ecde97de36fc944dede39d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a9ca058dc0ecde97de36fc944dede39d0">uecho_property_copy</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *src_prop)</td></tr>
 <tr class="separator:a9ca058dc0ecde97de36fc944dede39d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94fdaf21dcd2c293c5f4e1bf84ae165a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a94fdaf21dcd2c293c5f4e1bf84ae165a">uecho_property_equals</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop1, <a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop2)</td></tr>
 <tr class="separator:a94fdaf21dcd2c293c5f4e1bf84ae165a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6299e5c0e4dce8e978e7750dd4e5d942"><td class="memItemLeft" align="right" valign="top"><a class="el" href="node__internal_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a6299e5c0e4dce8e978e7750dd4e5d942">uecho_property_getnode</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
+<tr class="memitem:a6299e5c0e4dce8e978e7750dd4e5d942"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__node_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#a6299e5c0e4dce8e978e7750dd4e5d942">uecho_property_getnode</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
 <tr class="separator:a6299e5c0e4dce8e978e7750dd4e5d942"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4e3e5fe5a30833eda4beee5ec2d4c13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="property_8c.html#ab4e3e5fe5a30833eda4beee5ec2d4c13">uecho_property_announce</a> (<a class="el" href="structuEchoProperty.html">uEchoProperty</a> *prop)</td></tr>
 <tr class="separator:ab4e3e5fe5a30833eda4beee5ec2d4c13"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -459,6 +469,24 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a6f2ea18b24412f6fd8f0421762549424" name="a6f2ea18b24412f6fd8f0421762549424"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f2ea18b24412f6fd8f0421762549424">&#9670;&nbsp;</a></span>uecho_property_getname()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * uecho_property_getname </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
+          <td class="paramname"><em>prop</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a6299e5c0e4dce8e978e7750dd4e5d942" name="a6299e5c0e4dce8e978e7750dd4e5d942"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6299e5c0e4dce8e978e7750dd4e5d942">&#9670;&nbsp;</a></span>uecho_property_getnode()</h2>
 
@@ -466,7 +494,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="node__internal_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> * uecho_property_getnode </td>
+          <td class="memname"><a class="el" href="__node_8h.html#a14965b41f91e1498af70d6a18b6e87fc">uEchoNode</a> * uecho_property_getnode </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
           <td class="paramname"><em>prop</em></td><td>)</td>
@@ -484,7 +512,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_property_getparentobject </td>
+          <td class="memname"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_property_getparentobject </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
           <td class="paramname"><em>prop</em></td><td>)</td>
@@ -503,6 +531,24 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_property_isannounceable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
+          <td class="paramname"><em>prop</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac58334afad901159189e2b8f24bcc5ce" name="ac58334afad901159189e2b8f24bcc5ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac58334afad901159189e2b8f24bcc5ce">&#9670;&nbsp;</a></span>uecho_property_isannouncerequired()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_property_isannouncerequired </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
           <td class="paramname"><em>prop</em></td><td>)</td>
@@ -549,6 +595,24 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aeebe091baaebf7762aa05ae0133fcdb9" name="aeebe091baaebf7762aa05ae0133fcdb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeebe091baaebf7762aa05ae0133fcdb9">&#9670;&nbsp;</a></span>uecho_property_isreadrequired()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_property_isreadrequired </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
+          <td class="paramname"><em>prop</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a69d7159dfdc2b5dbe68d67fef963e82d" name="a69d7159dfdc2b5dbe68d67fef963e82d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a69d7159dfdc2b5dbe68d67fef963e82d">&#9670;&nbsp;</a></span>uecho_property_iswritable()</h2>
 
@@ -575,6 +639,24 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_property_iswriteonly </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
+          <td class="paramname"><em>prop</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac996bdffba833e814424fd9f0c7ad548" name="ac996bdffba833e814424fd9f0c7ad548"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac996bdffba833e814424fd9f0c7ad548">&#9670;&nbsp;</a></span>uecho_property_iswriterequired()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_property_iswriterequired </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
           <td class="paramname"><em>prop</em></td><td>)</td>
@@ -819,6 +901,34 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ac54892603be87e2c9e476f2f060b7fec" name="ac54892603be87e2c9e476f2f060b7fec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac54892603be87e2c9e476f2f060b7fec">&#9670;&nbsp;</a></span>uecho_property_setname()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uecho_property_setname </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
+          <td class="paramname"><em>prop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a5a8b9eb0acc969bde2ce0ac3e6a082ae" name="a5a8b9eb0acc969bde2ce0ac3e6a082ae"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5a8b9eb0acc969bde2ce0ac3e6a082ae">&#9670;&nbsp;</a></span>uecho_property_setparentobject()</h2>
 
@@ -834,7 +944,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
           <td class="paramname"><em>obj</em>&#160;</td>
         </tr>
         <tr>

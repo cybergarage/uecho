@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEcho for C: src/uecho/controller_internal.h File Reference</title>
+<title>uEcho for C: src/uecho/_controller.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -54,7 +54,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('controller__internal_8h.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('__controller_8h.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -65,13 +65,13 @@ $(document).ready(function(){initNavTree('controller__internal_8h.html',''); ini
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">controller_internal.h File Reference</div></div>
+  <div class="headertitle"><div class="title">_controller.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="const_8h.html">uecho/const.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="typedef_8h.html">uecho/typedef.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="mutex_8h.html">uecho/util/mutex.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="node__internal_8h.html">uecho/node_internal.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="__node_8h.html">uecho/_node.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="controller_8h.html">uecho/controller.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -81,69 +81,69 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ae7383f465df996b7ebb3de6652f1752d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#ae7383f465df996b7ebb3de6652f1752d">uecho_controller_enableudpserver</a>(ctrl)&#160;&#160;&#160;<a class="el" href="controller__internal_8h.html#abc02140438118e4e9ab0aa4bdb94ec1b">uecho_controller_disableoption</a>(ctrl, <a class="el" href="controller__internal_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a315e9f4f4f614f5f849721e94b265e90">uEchoControllerOptionDisableUdpServer</a>)</td></tr>
+<tr class="memitem:ae7383f465df996b7ebb3de6652f1752d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#ae7383f465df996b7ebb3de6652f1752d">uecho_controller_enableudpserver</a>(ctrl)&#160;&#160;&#160;<a class="el" href="controller_8c.html#abc02140438118e4e9ab0aa4bdb94ec1b">uecho_controller_disableoption</a>(ctrl, <a class="el" href="__controller_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a315e9f4f4f614f5f849721e94b265e90">uEchoControllerOptionDisableUdpServer</a>)</td></tr>
 <tr class="separator:ae7383f465df996b7ebb3de6652f1752d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00054bc04a45fdbbdb4ec2466ae2da8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a00054bc04a45fdbbdb4ec2466ae2da8b">uecho_controller_isudpserverenabled</a>(ctrl)&#160;&#160;&#160;(!<a class="el" href="controller__internal_8h.html#a8b6a65066125cbda0fecc46464e8e540">uecho_controller_isoptionenabled</a>(ctrl, <a class="el" href="controller__internal_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a315e9f4f4f614f5f849721e94b265e90">uEchoControllerOptionDisableUdpServer</a>))</td></tr>
+<tr class="memitem:a00054bc04a45fdbbdb4ec2466ae2da8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a00054bc04a45fdbbdb4ec2466ae2da8b">uecho_controller_isudpserverenabled</a>(ctrl)&#160;&#160;&#160;(!<a class="el" href="controller_8c.html#a8b6a65066125cbda0fecc46464e8e540">uecho_controller_isoptionenabled</a>(ctrl, <a class="el" href="__controller_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a315e9f4f4f614f5f849721e94b265e90">uEchoControllerOptionDisableUdpServer</a>))</td></tr>
 <tr class="separator:a00054bc04a45fdbbdb4ec2466ae2da8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aa71c5a22b0d52334ec5a7fb252417eb6"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structUEchoController.html">UEchoController</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a></td></tr>
+<tr class="memitem:aa71c5a22b0d52334ec5a7fb252417eb6"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structUEchoController.html">UEchoController</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a></td></tr>
 <tr class="separator:aa71c5a22b0d52334ec5a7fb252417eb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:adf764cbdea00d65edcd07bb9953ad2b7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="controller__internal_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a315e9f4f4f614f5f849721e94b265e90">uEchoControllerOptionDisableUdpServer</a> = uEchoServerOptionDisableUdpServer
+<tr class="memitem:adf764cbdea00d65edcd07bb9953ad2b7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="__controller_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a315e9f4f4f614f5f849721e94b265e90">uEchoControllerOptionDisableUdpServer</a> = uEchoServerOptionDisableUdpServer
  }</td></tr>
 <tr class="separator:adf764cbdea00d65edcd07bb9953ad2b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a387ed28a5191cb46d441fc92e58f2a53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a387ed28a5191cb46d441fc92e58f2a53">uecho_controller_searchwithesv</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a> esv)</td></tr>
+<tr class="memitem:a387ed28a5191cb46d441fc92e58f2a53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a387ed28a5191cb46d441fc92e58f2a53">uecho_controller_searchwithesv</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a> esv)</td></tr>
 <tr class="separator:a387ed28a5191cb46d441fc92e58f2a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e47fa97531a7d3220cc97c3a9a84624"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a3e47fa97531a7d3220cc97c3a9a84624">uecho_controller_searchobjectwithesv</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> obj_code, <a class="el" href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a> esv)</td></tr>
+<tr class="memitem:a3e47fa97531a7d3220cc97c3a9a84624"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a3e47fa97531a7d3220cc97c3a9a84624">uecho_controller_searchobjectwithesv</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> obj_code, <a class="el" href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a> esv)</td></tr>
 <tr class="separator:a3e47fa97531a7d3220cc97c3a9a84624"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a963065ea27424b4104c76c82744a1643"><td class="memItemLeft" align="right" valign="top"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a963065ea27424b4104c76c82744a1643">uecho_controller_getobjectbycode</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69">uEchoObjectCode</a> code)</td></tr>
+<tr class="memitem:a963065ea27424b4104c76c82744a1643"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a963065ea27424b4104c76c82744a1643">uecho_controller_getobjectbycode</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69">uEchoObjectCode</a> code)</td></tr>
 <tr class="separator:a963065ea27424b4104c76c82744a1643"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb1aa0c3415f2139a179fd3059d8fb37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#acb1aa0c3415f2139a179fd3059d8fb37">uecho_controller_getobjectbycodewithwait</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69">uEchoObjectCode</a> code, clock_t wait_mili_time)</td></tr>
+<tr class="memitem:acb1aa0c3415f2139a179fd3059d8fb37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#acb1aa0c3415f2139a179fd3059d8fb37">uecho_controller_getobjectbycodewithwait</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69">uEchoObjectCode</a> code, clock_t wait_mili_time)</td></tr>
 <tr class="separator:acb1aa0c3415f2139a179fd3059d8fb37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90d33caf985fe58e6202acce3a29b5ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a90d33caf985fe58e6202acce3a29b5ea">uecho_controller_enableoption</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="option_8h.html#a094a1fd7b043aa7e9d925d8a30300306">uEchoOption</a> param)</td></tr>
+<tr class="memitem:a90d33caf985fe58e6202acce3a29b5ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a90d33caf985fe58e6202acce3a29b5ea">uecho_controller_enableoption</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="option_8h.html#a094a1fd7b043aa7e9d925d8a30300306">uEchoOption</a> param)</td></tr>
 <tr class="separator:a90d33caf985fe58e6202acce3a29b5ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc02140438118e4e9ab0aa4bdb94ec1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#abc02140438118e4e9ab0aa4bdb94ec1b">uecho_controller_disableoption</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="option_8h.html#a094a1fd7b043aa7e9d925d8a30300306">uEchoOption</a> param)</td></tr>
+<tr class="memitem:abc02140438118e4e9ab0aa4bdb94ec1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#abc02140438118e4e9ab0aa4bdb94ec1b">uecho_controller_disableoption</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="option_8h.html#a094a1fd7b043aa7e9d925d8a30300306">uEchoOption</a> param)</td></tr>
 <tr class="separator:abc02140438118e4e9ab0aa4bdb94ec1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b6a65066125cbda0fecc46464e8e540"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a8b6a65066125cbda0fecc46464e8e540">uecho_controller_isoptionenabled</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="option_8h.html#a094a1fd7b043aa7e9d925d8a30300306">uEchoOption</a> param)</td></tr>
+<tr class="memitem:a8b6a65066125cbda0fecc46464e8e540"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a8b6a65066125cbda0fecc46464e8e540">uecho_controller_isoptionenabled</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="option_8h.html#a094a1fd7b043aa7e9d925d8a30300306">uEchoOption</a> param)</td></tr>
 <tr class="separator:a8b6a65066125cbda0fecc46464e8e540"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48b8f4a7bc6c78e3261f33b972f6a8d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a48b8f4a7bc6c78e3261f33b972f6a8d6">uecho_controller_disableudpserver</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
+<tr class="memitem:a48b8f4a7bc6c78e3261f33b972f6a8d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a48b8f4a7bc6c78e3261f33b972f6a8d6">uecho_controller_disableudpserver</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
 <tr class="separator:a48b8f4a7bc6c78e3261f33b972f6a8d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdff0baaeeab83df05836ac0507ad8f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="controller_8h.html#a9a44c1d7e4ad490ce3447d6203590699">uEchoControllerMessageListener</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#afdff0baaeeab83df05836ac0507ad8f1">uecho_controller_getmessagelistener</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
+<tr class="memitem:afdff0baaeeab83df05836ac0507ad8f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="controller_8h.html#a9a44c1d7e4ad490ce3447d6203590699">uEchoControllerMessageListener</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#afdff0baaeeab83df05836ac0507ad8f1">uecho_controller_getmessagelistener</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
 <tr class="separator:afdff0baaeeab83df05836ac0507ad8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43afb743b7061285b7aac22fa7d7498b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a43afb743b7061285b7aac22fa7d7498b">uecho_controller_hasmessagelistener</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
+<tr class="memitem:a43afb743b7061285b7aac22fa7d7498b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a43afb743b7061285b7aac22fa7d7498b">uecho_controller_hasmessagelistener</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
 <tr class="separator:a43afb743b7061285b7aac22fa7d7498b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab26f71af681fa303bcb7960483ff47a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#ab26f71af681fa303bcb7960483ff47a2">uecho_controller_setlasttid</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="include_2uecho_2message_8h.html#a143375877639247d76da805348f40462">uEchoTID</a> tid)</td></tr>
+<tr class="memitem:ab26f71af681fa303bcb7960483ff47a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#ab26f71af681fa303bcb7960483ff47a2">uecho_controller_setlasttid</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="include_2uecho_2message_8h.html#a143375877639247d76da805348f40462">uEchoTID</a> tid)</td></tr>
 <tr class="separator:ab26f71af681fa303bcb7960483ff47a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7a6213a87bc9adb697f02ab636409c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="include_2uecho_2message_8h.html#a143375877639247d76da805348f40462">uEchoTID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#ab7a6213a87bc9adb697f02ab636409c0">uecho_controller_getlasttid</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
+<tr class="memitem:ab7a6213a87bc9adb697f02ab636409c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="include_2uecho_2message_8h.html#a143375877639247d76da805348f40462">uEchoTID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#ab7a6213a87bc9adb697f02ab636409c0">uecho_controller_getlasttid</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
 <tr class="separator:ab7a6213a87bc9adb697f02ab636409c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab79cc7ddbd125bca61f728d7bea6f699"><td class="memItemLeft" align="right" valign="top"><a class="el" href="include_2uecho_2message_8h.html#a143375877639247d76da805348f40462">uEchoTID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#ab79cc7ddbd125bca61f728d7bea6f699">uecho_controller_getnexttid</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
+<tr class="memitem:ab79cc7ddbd125bca61f728d7bea6f699"><td class="memItemLeft" align="right" valign="top"><a class="el" href="include_2uecho_2message_8h.html#a143375877639247d76da805348f40462">uEchoTID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#ab79cc7ddbd125bca61f728d7bea6f699">uecho_controller_getnexttid</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
 <tr class="separator:ab79cc7ddbd125bca61f728d7bea6f699"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a366acf16ee4bdd98f3ea902be91a1621"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a366acf16ee4bdd98f3ea902be91a1621">uecho_controller_setpostrequestmessage</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
+<tr class="memitem:a366acf16ee4bdd98f3ea902be91a1621"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a366acf16ee4bdd98f3ea902be91a1621">uecho_controller_setpostrequestmessage</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
 <tr class="separator:a366acf16ee4bdd98f3ea902be91a1621"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87dae2bec907e3d49c65f3bf40a4bb1f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a87dae2bec907e3d49c65f3bf40a4bb1f">uecho_controller_getpostrequestmessage</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
+<tr class="memitem:a87dae2bec907e3d49c65f3bf40a4bb1f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a87dae2bec907e3d49c65f3bf40a4bb1f">uecho_controller_getpostrequestmessage</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
 <tr class="separator:a87dae2bec907e3d49c65f3bf40a4bb1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa35b19fcb2de371ba015ece09c5490c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#aa35b19fcb2de371ba015ece09c5490c2">uecho_controller_haspostrequestmessage</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
+<tr class="memitem:aa35b19fcb2de371ba015ece09c5490c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#aa35b19fcb2de371ba015ece09c5490c2">uecho_controller_haspostrequestmessage</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
 <tr class="separator:aa35b19fcb2de371ba015ece09c5490c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fe0d96292d3428d868d00853a6a62ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a9fe0d96292d3428d868d00853a6a62ac">uecho_controller_setpostresponsemessage</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
+<tr class="memitem:a9fe0d96292d3428d868d00853a6a62ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a9fe0d96292d3428d868d00853a6a62ac">uecho_controller_setpostresponsemessage</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
 <tr class="separator:a9fe0d96292d3428d868d00853a6a62ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11c641e40aea7e797c3cbae8316e7985"><td class="memItemLeft" align="right" valign="top"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a11c641e40aea7e797c3cbae8316e7985">uecho_controller_getpostresponsemessage</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
+<tr class="memitem:a11c641e40aea7e797c3cbae8316e7985"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a11c641e40aea7e797c3cbae8316e7985">uecho_controller_getpostresponsemessage</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
 <tr class="separator:a11c641e40aea7e797c3cbae8316e7985"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8afad51a5b193c55d9a333cc027494d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a8afad51a5b193c55d9a333cc027494d6">uecho_controller_haspostresponsemessage</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
+<tr class="memitem:a8afad51a5b193c55d9a333cc027494d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a8afad51a5b193c55d9a333cc027494d6">uecho_controller_haspostresponsemessage</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
 <tr class="separator:a8afad51a5b193c55d9a333cc027494d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44abf1734718874f8160f33bf102959d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a44abf1734718874f8160f33bf102959d">uecho_controller_ispostresponsemessage</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
+<tr class="memitem:a44abf1734718874f8160f33bf102959d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a44abf1734718874f8160f33bf102959d">uecho_controller_ispostresponsemessage</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
 <tr class="separator:a44abf1734718874f8160f33bf102959d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a203016e8f3dd533bdf3f08b1c14a3eb0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a203016e8f3dd533bdf3f08b1c14a3eb0">uecho_controller_ispostresponsereceived</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
+<tr class="memitem:a203016e8f3dd533bdf3f08b1c14a3eb0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a203016e8f3dd533bdf3f08b1c14a3eb0">uecho_controller_ispostresponsereceived</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
 <tr class="separator:a203016e8f3dd533bdf3f08b1c14a3eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa33e76d1ea4a9f9f1840087e5a0f16c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#aa33e76d1ea4a9f9f1840087e5a0f16c5">uecho_controller_ispostresponsewaiting</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
+<tr class="memitem:aa33e76d1ea4a9f9f1840087e5a0f16c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#aa33e76d1ea4a9f9f1840087e5a0f16c5">uecho_controller_ispostresponsewaiting</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl)</td></tr>
 <tr class="separator:aa33e76d1ea4a9f9f1840087e5a0f16c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83ad557437329c82361f1fdf325fd636"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller__internal_8h.html#a83ad557437329c82361f1fdf325fd636">uecho_controller_servermessagelistener</a> (<a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
+<tr class="memitem:a83ad557437329c82361f1fdf325fd636"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__controller_8h.html#a83ad557437329c82361f1fdf325fd636">uecho_controller_servermessagelistener</a> (<a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *ctrl, <a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *msg)</td></tr>
 <tr class="separator:a83ad557437329c82361f1fdf325fd636"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -158,7 +158,7 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">ctrl</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="controller__internal_8h.html#abc02140438118e4e9ab0aa4bdb94ec1b">uecho_controller_disableoption</a>(ctrl, <a class="el" href="controller__internal_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a315e9f4f4f614f5f849721e94b265e90">uEchoControllerOptionDisableUdpServer</a>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="controller_8c.html#abc02140438118e4e9ab0aa4bdb94ec1b">uecho_controller_disableoption</a>(ctrl, <a class="el" href="__controller_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a315e9f4f4f614f5f849721e94b265e90">uEchoControllerOptionDisableUdpServer</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -176,7 +176,7 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">ctrl</td><td>)</td>
-          <td>&#160;&#160;&#160;(!<a class="el" href="controller__internal_8h.html#a8b6a65066125cbda0fecc46464e8e540">uecho_controller_isoptionenabled</a>(ctrl, <a class="el" href="controller__internal_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a315e9f4f4f614f5f849721e94b265e90">uEchoControllerOptionDisableUdpServer</a>))</td>
+          <td>&#160;&#160;&#160;(!<a class="el" href="controller_8c.html#a8b6a65066125cbda0fecc46464e8e540">uecho_controller_isoptionenabled</a>(ctrl, <a class="el" href="__controller_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a315e9f4f4f614f5f849721e94b265e90">uEchoControllerOptionDisableUdpServer</a>))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -191,7 +191,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="structUEchoController.html">UEchoController</a> <a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a></td>
+          <td class="memname">typedef struct <a class="el" href="structUEchoController.html">UEchoController</a> <a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -226,7 +226,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_controller_disableoption </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em>, </td>
         </tr>
         <tr>
@@ -254,7 +254,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_controller_disableudpserver </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em></td><td>)</td>
           <td></td>
         </tr>
@@ -272,7 +272,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_controller_enableoption </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em>, </td>
         </tr>
         <tr>
@@ -300,7 +300,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="include_2uecho_2message_8h.html#a143375877639247d76da805348f40462">uEchoTID</a> uecho_controller_getlasttid </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em></td><td>)</td>
           <td></td>
         </tr>
@@ -318,7 +318,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="controller_8h.html#a9a44c1d7e4ad490ce3447d6203590699">uEchoControllerMessageListener</a> uecho_controller_getmessagelistener </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em></td><td>)</td>
           <td></td>
         </tr>
@@ -336,7 +336,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="include_2uecho_2message_8h.html#a143375877639247d76da805348f40462">uEchoTID</a> uecho_controller_getnexttid </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em></td><td>)</td>
           <td></td>
         </tr>
@@ -352,9 +352,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_controller_getobjectbycode </td>
+          <td class="memname"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_controller_getobjectbycode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em>, </td>
         </tr>
         <tr>
@@ -380,9 +380,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="object__internal_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_controller_getobjectbycodewithwait </td>
+          <td class="memname"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_controller_getobjectbycodewithwait </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em>, </td>
         </tr>
         <tr>
@@ -414,9 +414,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> * uecho_controller_getpostrequestmessage </td>
+          <td class="memname"><a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> * uecho_controller_getpostrequestmessage </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em></td><td>)</td>
           <td></td>
         </tr>
@@ -432,9 +432,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> * uecho_controller_getpostresponsemessage </td>
+          <td class="memname"><a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> * uecho_controller_getpostresponsemessage </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em></td><td>)</td>
           <td></td>
         </tr>
@@ -452,7 +452,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_controller_hasmessagelistener </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em></td><td>)</td>
           <td></td>
         </tr>
@@ -470,7 +470,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_controller_haspostrequestmessage </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em></td><td>)</td>
           <td></td>
         </tr>
@@ -488,7 +488,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_controller_haspostresponsemessage </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em></td><td>)</td>
           <td></td>
         </tr>
@@ -506,7 +506,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_controller_isoptionenabled </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em>, </td>
         </tr>
         <tr>
@@ -534,13 +534,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_controller_ispostresponsemessage </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>msg</em>&#160;</td>
         </tr>
         <tr>
@@ -562,7 +562,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_controller_ispostresponsereceived </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em></td><td>)</td>
           <td></td>
         </tr>
@@ -580,7 +580,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_controller_ispostresponsewaiting </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em></td><td>)</td>
           <td></td>
         </tr>
@@ -598,7 +598,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_controller_searchobjectwithesv </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em>, </td>
         </tr>
         <tr>
@@ -632,7 +632,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_controller_searchwithesv </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em>, </td>
         </tr>
         <tr>
@@ -660,13 +660,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_controller_servermessagelistener </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>msg</em>&#160;</td>
         </tr>
         <tr>
@@ -688,7 +688,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_controller_setlasttid </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em>, </td>
         </tr>
         <tr>
@@ -716,13 +716,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_controller_setpostrequestmessage </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>msg</em>&#160;</td>
         </tr>
         <tr>
@@ -744,13 +744,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uecho_controller_setpostresponsemessage </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="controller__internal_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6">uEchoController</a> *&#160;</td>
           <td class="paramname"><em>ctrl</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="message__internal_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="__message_8h.html#a9f534e21a35c713a5a5b76780e662217">uEchoMessage</a> *&#160;</td>
           <td class="paramname"><em>msg</em>&#160;</td>
         </tr>
         <tr>
@@ -768,7 +768,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_508e66744f0a9abc7e902f1f95d57bd2.html">uecho</a></li><li class="navelem"><a class="el" href="controller__internal_8h.html">controller_internal.h</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_508e66744f0a9abc7e902f1f95d57bd2.html">uecho</a></li><li class="navelem"><a class="el" href="__controller_8h.html">_controller.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
