@@ -106,26 +106,26 @@ enum {
   uEchoLowerCommunicationLayerProtocolType = 0xFE,
 };
 
-uEchoObject* uecho_nodeprofileclass_new(void);
-bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject* obj);
+uEchoObject* uecho_nodeprofile_new(void);
+bool uecho_nodeprofile_addmandatoryproperties(uEchoObject* obj);
 
-bool uecho_nodeprofileclass_setoperatingstatus(uEchoObject* obj, bool stats);
-bool uecho_nodeprofileclass_setversion(uEchoObject* obj, int major_ver, int minor_ver);
-bool uecho_nodeprofileclass_setid(uEchoObject* obj, byte* man_code, byte* uniq_id);
-bool uecho_nodeprofileclass_setdefaultid(uEchoObject* obj);
-bool uecho_nodeprofileclass_setinstancecount(uEchoObject* obj, int count);
-bool uecho_nodeprofileclass_setclasscount(uEchoObject* obj, int count);
-bool uecho_nodeprofileclass_setinstancelist(uEchoObject* obj, int list_cnt, byte* list_bytes);
-bool uecho_nodeprofileclass_setclasslist(uEchoObject* obj, int list_cnt, byte* list_bytes);
+bool uecho_nodeprofile_setoperatingstatus(uEchoObject* obj, bool stats);
+bool uecho_nodeprofile_setversion(uEchoObject* obj, int major_ver, int minor_ver);
+bool uecho_nodeprofile_setid(uEchoObject* obj, byte* man_code, byte* uniq_id);
+bool uecho_nodeprofile_setdefaultid(uEchoObject* obj);
+bool uecho_nodeprofile_setinstancecount(uEchoObject* obj, int count);
+bool uecho_nodeprofile_setclasscount(uEchoObject* obj, int count);
+bool uecho_nodeprofile_setinstancelist(uEchoObject* obj, int list_cnt, byte* list_bytes);
+bool uecho_nodeprofile_setclasslist(uEchoObject* obj, int list_cnt, byte* list_bytes);
 
-bool uecho_nodeprofileclass_isoperatingstatus(uEchoObject* obj);
-int uecho_nodeprofileclass_getinstancecount(uEchoObject* obj);
-int uecho_nodeprofileclass_getclasscount(uEchoObject* obj);
-byte* uecho_nodeprofileclass_getnotificationinstancelist(uEchoObject* obj);
-byte* uecho_nodeprofileclass_getinstancelist(uEchoObject* obj);
-byte* uecho_nodeprofileclass_getclasslist(uEchoObject* obj);
+bool uecho_nodeprofile_isoperatingstatus(uEchoObject* obj);
+int uecho_nodeprofile_getinstancecount(uEchoObject* obj);
+int uecho_nodeprofile_getclasscount(uEchoObject* obj);
+byte* uecho_nodeprofile_getnotificationinstancelist(uEchoObject* obj);
+byte* uecho_nodeprofile_getinstancelist(uEchoObject* obj);
+byte* uecho_nodeprofile_getclasslist(uEchoObject* obj);
 
-bool uecho_nodeprofileclass_updateinstanceproperties(uEchoObject* obj);
+bool uecho_nodeprofile_updateinstanceproperties(uEchoObject* obj);
 
 #ifdef __cplusplus
 } /* extern C */
