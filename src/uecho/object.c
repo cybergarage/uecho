@@ -696,3 +696,24 @@ bool uecho_object_sendmessage(uEchoObject* obj, uEchoObject* dst_obj, uEchoMessa
 
   return uecho_node_sendmessage(parent_node, dst_parent_node, msg);
 }
+
+/****************************************
+ * uecho_object_copyobjectproperties
+ ****************************************/
+
+bool uecho_object_copyobjectproperties(uEchoObject* obj, uEchoObject* src_obj)
+{
+  uEchoProperty *src_prop, *copy_prop;
+
+  if (!obj)
+    return false;
+
+  for (src_prop = uecho_object_getproperties(src_obj); src_prop; src_prop = uecho_property_next(src_prop)) {
+    copy_prop = uecho_property_copy(src_prop);
+    if (!copy_prop)
+      return false;
+    uecho_object_addproperty(obj, copy_prop);
+  }
+
+  return true;
+}
