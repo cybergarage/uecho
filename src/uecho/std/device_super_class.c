@@ -34,7 +34,7 @@ bool uecho_device_addmandatoryproperties(uEchoObject* obj)
   if (!super_obj)
     return false;
 
-  if (!uecho_object_copyobjectproperties(obj, super_obj))
+  if (!uecho_object_addmissingobjectproperties(obj, super_obj))
     return false;
   
   uecho_device_setoperatingstatus(obj, true);
