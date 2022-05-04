@@ -30,11 +30,17 @@ uEchoProperty* uecho_property_new(void)
 
   uecho_list_node_init((uEchoList*)prop);
 
+  prop->name = uecho_string_new();
   prop->data = NULL;
   prop->dataSize = 0;
 
   uecho_property_setparentobject(prop, NULL);
   uecho_property_setattribute(prop, uEchoPropertyAttrReadWrite);
+
+  if (!prop->name) {
+    uecho_property_delete(prop);
+    return NULL;
+  }
 
   return prop;
 }
@@ -47,6 +53,10 @@ bool uecho_property_delete(uEchoProperty* prop)
 {
   if (!prop)
     return false;
+
+  if (prop->name) {
+    uecho_string_delete(prop->name);
+  }
 
   uecho_property_cleardata(prop);
   uecho_property_remove(prop);
@@ -300,6 +310,24 @@ uEchoProperty* uecho_property_next(uEchoProperty* prop)
 void uecho_property_remove(uEchoProperty* prop)
 {
   uecho_list_remove((uEchoList*)prop);
+}
+
+/****************************************
+ * uecho_property_setname
+ ****************************************/
+
+void uecho_property_setname(uEchoProperty* prop, const char *name)
+{
+  uecho_string_setvalue(prop->name, name);
+}
+
+/****************************************
+ * uecho_property_getname
+ ****************************************/
+
+const char *uecho_property_getname(uEchoProperty* prop)
+{
+  return uecho_string_getvalue(prop->name);
 }
 
 /****************************************
