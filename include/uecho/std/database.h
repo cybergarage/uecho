@@ -34,6 +34,7 @@ uEchoDatabase* uecho_database_new(void);
 bool uecho_database_delete(uEchoDatabase* db);
 
 bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture *man);
+bool uecho_database_addobject(uEchoDatabase* db, uEchoObject *obj);
 
 #ifdef __cplusplus
 } /* extern C */
