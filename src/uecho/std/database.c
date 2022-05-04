@@ -77,3 +77,15 @@ bool uecho_database_addobject(uEchoDatabase* db, uEchoObject *obj)
     return false;
   return uecho_objectlist_add(db->objs, obj);
 }
+
+/****************************************
+* uecho_database_getmanufacture
+****************************************/
+
+uEchoManufacture *uecho_database_getmanufacture(uEchoDatabase* db, uEchoManufactureCode code)
+{
+  if (!db)
+    return NULL;
+  return uecho_manufacturelist_getbycode(db->mans, code);
+}
+
