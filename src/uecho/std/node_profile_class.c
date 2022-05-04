@@ -8,6 +8,7 @@
  *
  ******************************************************************/
 
+#include <stdlib.h>
 #include <string.h>
 
 #include <uecho/_object.h>
@@ -124,9 +125,15 @@ bool uecho_nodeprofile_setdefaultid(uEchoObject* obj)
 {
   byte man_code[uEchoNodeProfileClassIdentificationManufacturerCodeLen];
   byte uniq_id[uEchoNodeProfileClassIdentificationUniqueIdLen];
+  size_t n;
+  
+  for (n=0; n<sizeof(man_code); n++) {
+    man_code[n] = (byte)(rand() & 0xFF);
+  }
 
-  memset(man_code, 0, sizeof(man_code));
-  memset(uniq_id, 0, sizeof(uniq_id));
+  for (n=0; n<sizeof(uniq_id); n++) {
+    uniq_id[n] = (byte)(rand() & 0xFF);
+  }
 
   return uecho_nodeprofile_setid(obj, man_code, uniq_id);
 }
