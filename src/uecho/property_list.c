@@ -99,6 +99,7 @@ bool uecho_propertylist_add(uEchoPropertyList* props, uEchoProperty *prop)
   added_prop = uecho_propertylist_findbycode(props, uecho_property_getcode(prop));
   if (added_prop) {
     uecho_property_remove(added_prop);
+    uecho_property_delete(added_prop);
   }
 
   return uecho_list_add((uEchoList*)props, (uEchoList*)prop);
