@@ -446,9 +446,9 @@ bool uecho_property_iswriteonly(uEchoProperty* prop)
   if (!prop)
     return false;
 
-  if (!(prop->attr & (uEchoPropertyAttrWrite | uEchoPropertyAttrWriteRequired)))
+  if (!uecho_property_iswritable(prop))
     return false;
-  if ((prop->attr & uEchoPropertyAttrRead))
+  if (uecho_property_isreadable(prop))
     return false;
 
   return true;
