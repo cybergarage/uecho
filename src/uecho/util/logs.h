@@ -11,7 +11,7 @@
 #ifndef _UECHO_LOG_FUNC_H_
 #define _UECHO_LOG_FUNC_H_
 
-#include <uecho/message_internal.h>
+#include <uecho/_message.h>
 
 #define UECHO_LOG_NET_PREFIX_SEND "S"
 #define UECHO_LOG_NET_PREFIX_RECV "R"

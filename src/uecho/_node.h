@@ -13,8 +13,8 @@
 
 #include <uecho/typedef.h>
 
-#include <uecho/class_internal.h>
-#include <uecho/object_internal.h>
+#include <uecho/_class.h>
+#include <uecho/_object.h>
 
 #include <uecho/frame/server.h>
 #include <uecho/util/list.h>

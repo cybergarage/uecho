@@ -13,7 +13,7 @@
 
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
-#include <uecho/object_internal.h>
+#include <uecho/_object.h>
 
 #ifdef __cplusplus
 extern "C" {

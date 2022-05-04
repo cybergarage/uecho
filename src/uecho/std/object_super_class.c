@@ -10,7 +10,7 @@
 
 #include <string.h>
 
-#include <uecho/object_internal.h>
+#include <uecho/_object.h>
 #include <uecho/profile.h>
 
 /****************************************

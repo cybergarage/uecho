@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/property_internal.h>
+#include <uecho/_property.h>
 
 /****************************************
 * uecho_propertylist_new

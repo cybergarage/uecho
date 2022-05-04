@@ -11,7 +11,7 @@
 #ifndef _UECHO_MESSAGE_INTERNAL_H_
 #define _UECHO_MESSAGE_INTERNAL_H_
 
-#include <uecho/property_internal.h>
+#include <uecho/_property.h>
 
 #include <uecho/const.h>
 #include <uecho/net/socket.h>

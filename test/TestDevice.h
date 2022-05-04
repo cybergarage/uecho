@@ -11,7 +11,7 @@
 #ifndef _UECHO_TEST_TESTDEVICE_H_
 #define _UECHO_TEST_TESTDEVICE_H_
 
-#include <uecho/node_internal.h>
+#include <uecho/_node.h>
 
 #include <uecho/device.h>
 
