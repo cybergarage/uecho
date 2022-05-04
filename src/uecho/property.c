@@ -10,8 +10,8 @@
 
 #include <string.h>
 
-#include <uecho/node_internal.h>
-#include <uecho/property_internal.h>
+#include <uecho/_node.h>
+#include <uecho/_property.h>
 
 #include <uecho/misc.h>
 

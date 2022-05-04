@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/manufacture_internal.h>
+#include <uecho/_manufacture.h>
 
 /****************************************
 * uecho_manufacture_new

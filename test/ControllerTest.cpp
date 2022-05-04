@@ -10,7 +10,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <uecho/controller_internal.h>
+#include <uecho/_controller.h>
 #include <uecho/util/timer.h>
 
 #include "TestDevice.h"

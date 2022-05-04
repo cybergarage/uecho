@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/std/database_internal.h>
+#include <uecho/std/_database.h>
 
 /****************************************
 * uecho_database_new

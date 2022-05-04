@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#include <uecho/node_internal.h>
+#include <uecho/_node.h>
 
 #include <uecho/frame/observer.h>
 #include <uecho/frame/server.h>
