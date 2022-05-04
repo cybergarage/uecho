@@ -47,6 +47,7 @@ void uecho_objectlist_delete(uEchoObjectList* objs)
 
 uEchoObject* uecho_objectlist_getbycode(uEchoObjectList* objs, uEchoObjectCode code)
 {
+  
   uEchoObject* obj;
 
   if (!objs)
@@ -72,7 +73,7 @@ uEchoObject* uecho_objectlist_getbygroupclasscode(uEchoObjectList* objs, byte gr
     return NULL;
 
   for (obj = uecho_objectlist_gets(objs); obj; obj = uecho_object_next(obj)) {
-    if (uecho_object_getclassgroupcode(obj) != grp_code)
+    if (uecho_object_getgroupcode(obj) != grp_code)
       continue;
     if (uecho_object_getclasscode(obj) != cls_code)
       continue;

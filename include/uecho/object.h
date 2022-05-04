@@ -67,8 +67,8 @@ bool uecho_object_start(uEchoObject* obj);
 bool uecho_object_stop(uEchoObject* obj);
 bool uecho_object_isrunning(uEchoObject* obj);
 
-void uecho_object_setclassgroupcode(uEchoObject* obj, byte val);
-byte uecho_object_getclassgroupcode(uEchoObject* obj);
+void uecho_object_setgroupcode(uEchoObject* obj, byte val);
+byte uecho_object_getgroupcode(uEchoObject* obj);
 
 void uecho_object_setclasscode(uEchoObject* obj, byte val);
 byte uecho_object_getclasscode(uEchoObject* obj);
