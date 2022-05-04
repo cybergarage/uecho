@@ -23,7 +23,10 @@ uEchoObject* uecho_device_new(void)
   if (!obj)
     return NULL;
 
-  uecho_device_addmandatoryproperties(obj);
+  if (!uecho_device_addmandatoryproperties(obj)) {
+    uecho_object_delete(obj);
+    return NULL;
+  }
 
   return obj;
 }

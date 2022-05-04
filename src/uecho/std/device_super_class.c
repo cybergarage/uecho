@@ -10,7 +10,9 @@
 
 #include <string.h>
 
+#include <uecho/_object.h>
 #include <uecho/device.h>
+#include <uecho/std/database.h>
 
 /****************************************
  * uecho_device_addmandatoryproperties
@@ -18,30 +20,21 @@
 
 bool uecho_device_addmandatoryproperties(uEchoObject* obj)
 {
+  uEchoDatabase* db;
+  uEchoObject *super_obj;
+
   if (!obj)
     return false;
 
-  // Operation Status
+  db = uecho_standard_getdatabase();
+  if (!db)
+    return false;
 
-  uecho_object_setproperty(obj, uEchoDeviceOperatingStatus, uEchoPropertyAttrReadAnno);
-  uecho_device_setoperatingstatus(obj, true);
+  super_obj = uecho_database_getobject(db, 0x00, 0x00);
+  if (!super_obj)
+    return false;
 
-  // Installation Location
-
-  uecho_object_setproperty(obj, uEchoDeviceInstallationLocation, uEchoPropertyAttrReadAnno);
-  uecho_device_setinstallationlocation(obj, uEchoDeviceInstallationLocationUnknown);
-
-  // Standard Version Infomation
-
-  uecho_object_setproperty(obj, uEchoDeviceStandardVersion, uEchoPropertyAttrRead);
-  uecho_device_setstandardversion(obj, uEchoDeviceDefaultVersionAppendix);
-
-  // Fault Status
-
-  uecho_object_setproperty(obj, uEchoDeviceFaultStatus, uEchoPropertyAttrReadAnno);
-  uecho_device_setfaultstatus(obj, false);
-
-  return true;
+  return uecho_object_copyobjectproperties(obj, super_obj);
 }
 
 /****************************************
