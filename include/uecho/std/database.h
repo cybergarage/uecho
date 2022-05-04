@@ -38,6 +38,7 @@ bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture *man);
 bool uecho_database_addobject(uEchoDatabase* db, uEchoObject *obj);
 
 uEchoManufacture *uecho_database_getmanufacture(uEchoDatabase* db, uEchoManufactureCode code);
+uEchoObject *uecho_database_getobject(uEchoDatabase* db, byte grp_code, byte cls_code);
 
 uEchoDatabase* uecho_standard_getdatabase(void);
 
