@@ -35,18 +35,6 @@ enum {
   uEchoNodeProfileObjectReadOnly = 0x0EF002,
 };
 
-enum {
-  uEchoObjectVersionAppendixA = 'A',
-  uEchoObjectVersionAppendixB = 'B',
-  uEchoObjectVersionAppendixC = 'C',
-  uEchoObjectVersionAppendixD = 'D',
-  uEchoObjectVersionAppendixE = 'E',
-  uEchoObjectVersionAppendixF = 'F',
-  uEchoObjectVersionAppendixG = 'G',
-  uEchoObjectVersionUnknown = 0,
-  uEchoObjectDefaultVersionAppendix = uEchoObjectVersionAppendixG,
-};
-
 /****************************************
  * Data Type
  ****************************************/

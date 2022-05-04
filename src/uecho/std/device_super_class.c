@@ -40,7 +40,7 @@ bool uecho_device_addmandatoryproperties(uEchoObject* obj)
   if (!uecho_device_setoperatingstatus(obj, true))
     return false;
   
-  if (!uecho_device_setstandardversion(obj, uEchoDeviceDefaultVersionAppendix))
+  if (!uecho_device_setstandardversion(obj, uEchoDeviceVersionAppendixDefault))
     return false;
   
   return true;
