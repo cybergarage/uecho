@@ -64,6 +64,9 @@ bool uecho_nodeprofile_addmandatoryproperties(uEchoObject* obj)
   if (!uecho_nodeprofile_setoperatingstatus(obj, true))
     return false;
 
+  if (!uecho_nodeprofile_setversion(obj, uEchoDeviceVersionAppendixDefault))
+    return false;
+
   return true;
 }
 

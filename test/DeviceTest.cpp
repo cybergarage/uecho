@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(DeviceDefaultProperties)
   BOOST_CHECK_EQUAL(uecho_device_isoperatingstatus(obj), true);
   BOOST_CHECK_EQUAL(uecho_device_isfaultstatus(obj), false);
   BOOST_CHECK_EQUAL(uecho_device_getinstallationlocation(obj), (byte)uEchoDeviceInstallationLocationUnknown);
-  BOOST_CHECK_EQUAL(uecho_device_getstandardversion(obj), (char)uEchoObjectDefaultVersionAppendix);
+  BOOST_CHECK_EQUAL(uecho_device_getstandardversion(obj), (char)uEchoDeviceVersionAppendixDefault);
   BOOST_CHECK_EQUAL(uecho_device_getmanufacturercode(obj), (uEchoManufactureCode)uEchoManufactureCodeDefault);
 
   uecho_object_delete(obj);
