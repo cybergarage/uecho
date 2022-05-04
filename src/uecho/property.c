@@ -390,7 +390,16 @@ uEchoPropertyAttr uecho_property_getattribute(uEchoProperty* prop)
 
 bool uecho_property_isreadable(uEchoProperty* prop)
 {
-  return (prop->attr & uEchoPropertyAttrRead) ? true : false;
+  return (prop->attr & (uEchoPropertyAttrRead | uEchoPropertyAttrReadRequired)) ? true : false;
+}
+
+/****************************************
+ * uecho_property_isreadrequired
+ ****************************************/
+
+bool uecho_property_isreadrequired(uEchoProperty* prop)
+{
+  return (prop->attr & uEchoPropertyAttrReadRequired) ? true : false;
 }
 
 /****************************************
@@ -411,7 +420,7 @@ bool uecho_property_isreadonly(uEchoProperty* prop)
   if (!prop)
     return false;
 
-  if (!(prop->attr & uEchoPropertyAttrRead))
+  if (!(prop->attr & (uEchoPropertyAttrRead | uEchoPropertyAttrReadRequired)))
     return false;
   if ((prop->attr & uEchoPropertyAttrWrite))
     return false;

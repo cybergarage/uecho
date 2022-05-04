@@ -36,9 +36,12 @@ typedef enum {
   uEchoPropertyAttrNone = 0x00,
   uEchoPropertyAttrRead = 0x01,
   uEchoPropertyAttrWrite = 0x02,
-  uEchoPropertyAttrAnno = 0x10,
+  uEchoPropertyAttrAnno = 0x04,
   uEchoPropertyAttrReadWrite = uEchoPropertyAttrRead | uEchoPropertyAttrWrite,
   uEchoPropertyAttrReadAnno = uEchoPropertyAttrRead | uEchoPropertyAttrAnno,
+  uEchoPropertyAttrReadRequired = 0x10,
+  uEchoPropertyAttrWriteRequired = 0x20,
+  uEchoPropertyAttrAnnoRequired = 0x40,
 } uEchoPropertyAttr;
 
 #if !defined(_UECHO_PROPERTY_INTERNAL_H_)
@@ -76,6 +79,7 @@ bool uecho_property_getbytedata(uEchoProperty* prop, byte* data);
 void uecho_property_setattribute(uEchoProperty* prop, uEchoPropertyAttr val);
 uEchoPropertyAttr uecho_property_getattribute(uEchoProperty* prop);
 bool uecho_property_isreadable(uEchoProperty* prop);
+bool uecho_property_isreadrequired(uEchoProperty* prop);
 bool uecho_property_iswritable(uEchoProperty* prop);
 bool uecho_property_isreadonly(uEchoProperty* prop);
 bool uecho_property_iswriteonly(uEchoProperty* prop);
