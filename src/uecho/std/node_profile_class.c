@@ -10,10 +10,12 @@
 
 #include <string.h>
 
+#include <uecho/_object.h>
 #include <uecho/const.h>
 #include <uecho/misc.h>
 #include <uecho/node.h>
 #include <uecho/profile.h>
+#include <uecho/std/database.h>
 
 /****************************************
 * uecho_property_new
@@ -42,42 +44,21 @@ bool uecho_nodeprofileclass_addmandatoryproperties(uEchoObject* obj)
   if (!obj)
     return false;
 
-  // Operation Status
+  uEchoDatabase* db;
+  uEchoObject *super_obj;
 
-  uecho_object_setproperty(obj, uEchoNodeProfileClassOperatingStatus, uEchoPropertyAttrReadAnno);
-  uecho_nodeprofileclass_setoperatingstatus(obj, true);
+  if (!obj)
+    return false;
 
-  // Version Information
+  db = uecho_standard_getdatabase();
+  if (!db)
+    return false;
 
-  uecho_object_setproperty(obj, uEchoNodeProfileClassVersionInformation, uEchoPropertyAttrRead);
-  uecho_nodeprofileclass_setversion(obj, uEchoMajorVersion, uEchoMinorVersion);
+  super_obj = uecho_database_getobject(db, 0x0E, 0xF0);
+  if (!super_obj)
+    return false;
 
-  // Identification Number
-
-  uecho_object_setproperty(obj, uEchoNodeProfileClassIdentificationNumber, uEchoPropertyAttrRead);
-  uecho_nodeprofileclass_setdefaultid(obj);
-
-  // Number Of Self Node Instances
-
-  uecho_object_setproperty(obj, uEchoNodeProfileClassNumberOfSelfNodeInstances, uEchoPropertyAttrRead);
-
-  // Number Of Self Node Classes
-
-  uecho_object_setproperty(obj, uEchoNodeProfileClassNumberOfSelfNodeClasses, uEchoPropertyAttrRead);
-
-  // Instance List Notification
-
-  uecho_object_setproperty(obj, uEchoNodeProfileClassInstanceListNotification, uEchoPropertyAttrAnno);
-
-  // Self Node Instance ListS
-
-  uecho_object_setproperty(obj, uEchoNodeProfileClassSelfNodeInstanceListS, uEchoPropertyAttrRead);
-
-  // Self Node Class List S
-
-  uecho_object_setproperty(obj, uEchoNodeProfileClassSelfNodeClassListS, uEchoPropertyAttrRead);
-
-  return true;
+  return uecho_object_copyobjectproperties(obj, super_obj);
 }
 
 /****************************************
