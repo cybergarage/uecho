@@ -56,6 +56,9 @@ uEchoObject* uecho_object_new(void);
 bool uecho_object_delete(uEchoObject* obj);
 uEchoObject* uecho_object_next(uEchoObject* obj);
 
+void uecho_object_setname(uEchoObject* obj, const char *name);
+const char *uecho_object_getname(uEchoObject* obj);
+
 void uecho_object_setcode(uEchoObject* obj, uEchoObjectCode code);
 uEchoObjectCode uecho_object_getcode(uEchoObject* obj);
 bool uecho_object_iscode(uEchoObject* obj, uEchoObjectCode code);

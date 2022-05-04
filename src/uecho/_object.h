@@ -19,6 +19,7 @@
 
 #include <uecho/util/list.h>
 #include <uecho/util/mutex.h>
+#include <uecho/util/strings.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,6 +32,7 @@ extern "C" {
 typedef struct UEchoObject {
   UECHO_LIST_STRUCT_MEMBERS
 
+  uEchoString *name;
   byte code[3];
   uEchoPropertyList* properties;
 
