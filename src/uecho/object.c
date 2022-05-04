@@ -32,6 +32,8 @@ uEchoObject* uecho_object_new(void)
 
   uecho_list_node_init((uEchoList*)obj);
 
+  obj->name = uecho_string_new();
+
   uecho_object_setparentnode(obj, NULL);
 
   uecho_object_setclassgroupcode(obj, 0);
@@ -58,6 +60,11 @@ uEchoObject* uecho_object_new(void)
 
   uecho_object_addmandatoryproperties(obj);
 
+  if (!obj->name || !obj->properties || !obj->prop_listener_mgr) {
+    uecho_object_delete(obj);
+    return NULL;
+  }
+
   return obj;
 }
 
@@ -72,10 +79,19 @@ bool uecho_object_delete(uEchoObject* obj)
 
   uecho_list_remove((uEchoList*)obj);
 
+  if (obj->name) {
+    uecho_string_delete(obj->name);
+  }
+  
   uecho_object_clearpropertymapcaches(obj);
 
-  uecho_propertylist_delete(obj->properties);
-  uecho_object_property_observer_manager_delete(obj->prop_listener_mgr);
+  if (obj->properties) {
+    uecho_propertylist_delete(obj->properties);
+  }
+
+  if (obj->prop_listener_mgr) {
+    uecho_object_property_observer_manager_delete(obj->prop_listener_mgr);
+  }
 
   free(obj);
 
@@ -115,6 +131,30 @@ uEchoNode* uecho_object_getparentnode(uEchoObject* obj)
     return NULL;
 
   return (uEchoNode*)obj->parent_node;
+}
+
+/****************************************
+ * uecho_object_setname
+ ****************************************/
+
+void uecho_object_setname(uEchoObject* obj, const char *name)
+{
+  if (!obj)
+    return;
+
+  uecho_string_setvalue(obj->name, name);
+}
+
+/****************************************
+ * uecho_object_getname
+ ****************************************/
+
+const char *uecho_object_getname(uEchoObject* obj)
+{
+  if (!obj)
+    return NULL;
+
+  return uecho_string_getvalue(obj->name);
 }
 
 /****************************************
