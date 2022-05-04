@@ -81,6 +81,7 @@ uEchoPropertyAttr uecho_property_getattribute(uEchoProperty* prop);
 bool uecho_property_isreadable(uEchoProperty* prop);
 bool uecho_property_isreadrequired(uEchoProperty* prop);
 bool uecho_property_iswritable(uEchoProperty* prop);
+bool uecho_property_iswriterequired(uEchoProperty* prop);
 bool uecho_property_isreadonly(uEchoProperty* prop);
 bool uecho_property_iswriteonly(uEchoProperty* prop);
 bool uecho_property_isannounceable(uEchoProperty* prop);
