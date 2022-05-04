@@ -61,11 +61,9 @@ bool uecho_nodeprofile_addmandatoryproperties(uEchoObject* obj)
   if (!uecho_object_copyobjectproperties(obj, super_obj))
     return false;
   
-  if (!uecho_nodeprofile_setoperatingstatus(obj, true))
-    return false;
-
-  if (!uecho_nodeprofile_setversion(obj, uEchoSupportedMajorVersion, uEchoSupportedMinorVersion))
-    return false;
+  uecho_nodeprofile_setoperatingstatus(obj, true);
+  uecho_nodeprofile_setversion(obj, uEchoSupportedMajorVersion, uEchoSupportedMinorVersion);
+  uecho_nodeprofile_setdefaultid(obj);
 
   return true;
 }
