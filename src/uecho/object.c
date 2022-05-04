@@ -16,6 +16,7 @@
 #include <uecho/node.h>
 #include <uecho/profile.h>
 #include <uecho/util/timer.h>
+#include <uecho/std/database.h>
 
 /****************************************
 * uecho_object_new
@@ -36,9 +37,9 @@ uEchoObject* uecho_object_new(void)
 
   uecho_object_setparentnode(obj, NULL);
 
-  uecho_object_setgroupcode(obj, 0);
-  uecho_object_setclasscode(obj, 0);
-  uecho_object_setinstancecode(obj, 0);
+  obj->code[0] = 0;
+  obj->code[1] = 0;
+  obj->code[2] = 0;
 
   obj->properties = uecho_propertylist_new();
 
@@ -156,6 +157,32 @@ const char *uecho_object_getname(uEchoObject* obj)
 }
 
 /****************************************
+ * uecho_object_addstandardproperties
+ ****************************************/
+
+bool uecho_object_addstandardproperties(uEchoObject* obj)
+{
+  uEchoDatabase* db;
+  uEchoObject *std_obj;
+
+  if (!obj)
+    return false;
+
+  db = uecho_standard_getdatabase();
+  if (!db)
+    return false;
+
+  std_obj = uecho_database_getobject(db, uecho_object_getgroupcode(obj), uecho_object_getclasscode(obj));
+  if (!std_obj)
+    return false;
+
+  if (!uecho_object_addmissingobjectproperties(obj, std_obj))
+    return false;
+  
+  return true;
+}
+
+/****************************************
  * uecho_object_setcode
  ****************************************/
 
@@ -167,6 +194,8 @@ void uecho_object_setcode(uEchoObject* obj, uEchoObjectCode val)
   obj->code[0] = (val & 0xFF0000) >> 16;
   obj->code[1] = (val & 0x00FF00) >> 8;
   obj->code[2] = (val & 0x0000FF);
+  
+  uecho_object_addstandardproperties(obj);
 }
 
 /****************************************
@@ -207,6 +236,8 @@ void uecho_object_setgroupcode(uEchoObject* obj, byte val)
     return;
 
   obj->code[0] = val;
+
+  uecho_object_addstandardproperties(obj);
 }
 
 /****************************************
@@ -231,6 +262,8 @@ void uecho_object_setclasscode(uEchoObject* obj, byte val)
     return;
 
   obj->code[1] = val;
+  
+  uecho_object_addstandardproperties(obj);
 }
 
 /****************************************
