@@ -64,7 +64,7 @@ bool uecho_nodeprofile_addmandatoryproperties(uEchoObject* obj)
   if (!uecho_nodeprofile_setoperatingstatus(obj, true))
     return false;
 
-  if (!uecho_nodeprofile_setversion(obj, uEchoDeviceVersionAppendixDefault))
+  if (!uecho_nodeprofile_setversion(obj, uEchoSupportedMajorVersion, uEchoSupportedMinorVersion))
     return false;
 
   return true;
@@ -90,10 +90,10 @@ bool uecho_nodeprofile_setversion(uEchoObject* obj, int major_ver, int minor_ver
 {
   byte ver_bytes[uEchoNodeProfileClassVersionInformationLen];
 
-  ver_bytes[0] = uEchoMajorVersion;
-  ver_bytes[1] = uEchoMinorVersion;
-  ver_bytes[2] = 0x01;
-  ver_bytes[3] = 0x00;
+  ver_bytes[0] = major_ver;
+  ver_bytes[1] = minor_ver;
+  ver_bytes[2] = 0x00;
+  ver_bytes[3] = 0x10;
 
   return uecho_object_setpropertydata(obj, uEchoNodeProfileClassVersionInformation, ver_bytes, uEchoNodeProfileClassVersionInformationLen);
 }
