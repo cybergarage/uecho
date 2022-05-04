@@ -61,6 +61,28 @@ uEchoObject* uecho_objectlist_getbycode(uEchoObjectList* objs, uEchoObjectCode c
 }
 
 /****************************************
+ * uecho_objectlist_getbygroupclasscode
+ ****************************************/
+
+uEchoObject* uecho_objectlist_getbygroupclasscode(uEchoObjectList* objs, byte grp_code, byte cls_code)
+{
+  uEchoObject* obj;
+
+  if (!objs)
+    return NULL;
+
+  for (obj = uecho_objectlist_gets(objs); obj; obj = uecho_object_next(obj)) {
+    if (uecho_object_getclassgroupcode(obj) != grp_code)
+      continue;
+    if (uecho_object_getclasscode(obj) != cls_code)
+      continue;
+    return obj;
+  }
+
+  return NULL;
+}
+
+/****************************************
  * uecho_objectlist_set
  ****************************************/
 

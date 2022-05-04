@@ -90,6 +90,7 @@ void uecho_objectlist_delete(uEchoObjectList* objs);
 
 bool uecho_objectlist_set(uEchoObjectList* objs, uEchoObjectCode code);
 uEchoObject* uecho_objectlist_getbycode(uEchoObjectList* objs, uEchoObjectCode code);
+uEchoObject* uecho_objectlist_getbygroupclasscode(uEchoObjectList* objs, byte grp_code, byte cls_code);
 
 #define uecho_objectlist_clear(objs) uecho_list_clear((uEchoList*)objs, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_delete)
 #define uecho_objectlist_size(objs) uecho_list_size((uEchoList*)objs)
