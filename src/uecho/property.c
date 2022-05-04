@@ -318,6 +318,8 @@ void uecho_property_remove(uEchoProperty* prop)
 
 void uecho_property_setname(uEchoProperty* prop, const char *name)
 {
+  if (!prop)
+    return;
   uecho_string_setvalue(prop->name, name);
 }
 
@@ -327,6 +329,8 @@ void uecho_property_setname(uEchoProperty* prop, const char *name)
 
 const char *uecho_property_getname(uEchoProperty* prop)
 {
+  if (!prop)
+    return NULL;
   return uecho_string_getvalue(prop->name);
 }
 
@@ -336,6 +340,8 @@ const char *uecho_property_getname(uEchoProperty* prop)
 
 void uecho_property_setcode(uEchoProperty* prop, uEchoPropertyCode val)
 {
+  if (!prop)
+    return;
   prop->code = val;
 }
 
@@ -345,6 +351,8 @@ void uecho_property_setcode(uEchoProperty* prop, uEchoPropertyCode val)
 
 uEchoPropertyCode uecho_property_getcode(uEchoProperty* prop)
 {
+  if (!prop)
+    return 0;
   return prop->code;
 }
 
@@ -354,6 +362,8 @@ uEchoPropertyCode uecho_property_getcode(uEchoProperty* prop)
 
 byte* uecho_property_getdata(uEchoProperty* prop)
 {
+  if (!prop)
+    return NULL;
   return prop->data;
 }
 
@@ -363,6 +373,8 @@ byte* uecho_property_getdata(uEchoProperty* prop)
 
 byte uecho_property_getdatasize(uEchoProperty* prop)
 {
+  if (!prop)
+    return 0;
   return prop->dataSize;
 }
 
@@ -372,6 +384,8 @@ byte uecho_property_getdatasize(uEchoProperty* prop)
 
 void uecho_property_setattribute(uEchoProperty* prop, uEchoPropertyAttr val)
 {
+  if (!prop)
+    return;
   prop->attr = val;
 }
 
@@ -381,6 +395,8 @@ void uecho_property_setattribute(uEchoProperty* prop, uEchoPropertyAttr val)
 
 uEchoPropertyAttr uecho_property_getattribute(uEchoProperty* prop)
 {
+  if (!prop)
+    return uEchoPropertyAttrNone;
   return prop->attr;
 }
 
@@ -390,6 +406,8 @@ uEchoPropertyAttr uecho_property_getattribute(uEchoProperty* prop)
 
 bool uecho_property_isreadable(uEchoProperty* prop)
 {
+  if (!prop)
+    return false;
   return (prop->attr & (uEchoPropertyAttrRead | uEchoPropertyAttrReadRequired)) ? true : false;
 }
 
@@ -399,6 +417,8 @@ bool uecho_property_isreadable(uEchoProperty* prop)
 
 bool uecho_property_isreadrequired(uEchoProperty* prop)
 {
+  if (!prop)
+    return false;
   return (prop->attr & uEchoPropertyAttrReadRequired) ? true : false;
 }
 
@@ -408,6 +428,8 @@ bool uecho_property_isreadrequired(uEchoProperty* prop)
 
 bool uecho_property_iswritable(uEchoProperty* prop)
 {
+  if (!prop)
+    return false;
   return (prop->attr & (uEchoPropertyAttrWrite | uEchoPropertyAttrWriteRequired)) ? true : false;
 }
 
@@ -417,6 +439,8 @@ bool uecho_property_iswritable(uEchoProperty* prop)
 
 bool uecho_property_iswriterequired(uEchoProperty* prop)
 {
+  if (!prop)
+    return false;
   return (prop->attr & uEchoPropertyAttrWriteRequired) ? true : false;
 }
 
@@ -540,6 +564,9 @@ uEchoNode* uecho_property_getnode(uEchoProperty* prop)
   uEchoObject* parent_obj;
   uEchoNode* parent_node;
 
+  if (!prop)
+    return NULL;
+
   parent_obj = uecho_property_getparentobject(prop);
   if (!parent_obj)
     return NULL;
@@ -560,6 +587,9 @@ bool uecho_property_announce(uEchoProperty* prop)
   uEchoNode* node;
   uEchoObject* obj;
 
+  if (!prop)
+    return false;
+  
   node = uecho_property_getnode(prop);
   if (!node)
     return false;
