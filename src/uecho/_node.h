@@ -35,6 +35,8 @@ typedef struct UEchoNode {
   uEchoMutex* mutex;
   uEchoServer* server;
 
+  void* controller;
+  
   uEchoClassList* classes;
   uEchoObjectList* objects;
 
