@@ -14,13 +14,14 @@ var controller_8h =
     [ "uecho_controller_getuserdata", "controller_8h.html#a447e09771dab9c889ab96639a55e5746", null ],
     [ "uecho_controller_isrunning", "controller_8h.html#a840a7cf67170ae4cc6b9a099a9942aff", null ],
     [ "uecho_controller_new", "controller_8h.html#a254fdc230ad924ff8c3de20e44520e2e", null ],
-    [ "uecho_controller_postmessage", "controller_8h.html#a1936073c2f89124773a07bb2e62ef959", null ],
+    [ "uecho_controller_postmessage", "controller_8h.html#a098e66e0f685141f7d2cffa545c1cb34", null ],
     [ "uecho_controller_search", "controller_8h.html#a5e2e72ff4ce4aad59075863687ddca64", null ],
     [ "uecho_controller_searchobject", "controller_8h.html#ab30753174baa6137fb02ee18e0d8b8f3", null ],
-    [ "uecho_controller_sendmessage", "controller_8h.html#ad1d47398fab6e418b6ee03a43ed43baa", null ],
+    [ "uecho_controller_sendmessage", "controller_8h.html#a8f7bcc9c1708e90af881dc51b9ad9568", null ],
     [ "uecho_controller_setmessagelistener", "controller_8h.html#a75d7d91dbd707849cadc7cee15ce7dcf", null ],
     [ "uecho_controller_setpostwaitemilitime", "controller_8h.html#a708e2a4313de2c4bef0cd0d76fe3be97", null ],
     [ "uecho_controller_setuserdata", "controller_8h.html#a34ee7e2ef6bac2f7a74160453117493b", null ],
     [ "uecho_controller_start", "controller_8h.html#ae960567b4dd1fc4a7f0a77081590f298", null ],
-    [ "uecho_controller_stop", "controller_8h.html#afdbe8dcf5a33c05093d6bc9c72da31ce", null ]
+    [ "uecho_controller_stop", "controller_8h.html#afdbe8dcf5a33c05093d6bc9c72da31ce", null ],
+    [ "uecho_node_getcontroller", "controller_8h.html#acebb4300d0cb5e99233f144de3a2078c", null ]
 ];

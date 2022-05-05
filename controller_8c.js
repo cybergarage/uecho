@@ -29,12 +29,12 @@ var controller_8c =
     [ "uecho_controller_ispostresponsewaiting", "controller_8c.html#aa33e76d1ea4a9f9f1840087e5a0f16c5", null ],
     [ "uecho_controller_isrunning", "controller_8c.html#a840a7cf67170ae4cc6b9a099a9942aff", null ],
     [ "uecho_controller_new", "controller_8c.html#a254fdc230ad924ff8c3de20e44520e2e", null ],
-    [ "uecho_controller_postmessage", "controller_8c.html#a1936073c2f89124773a07bb2e62ef959", null ],
+    [ "uecho_controller_postmessage", "controller_8c.html#a098e66e0f685141f7d2cffa545c1cb34", null ],
     [ "uecho_controller_search", "controller_8c.html#a5e2e72ff4ce4aad59075863687ddca64", null ],
     [ "uecho_controller_searchobject", "controller_8c.html#ab30753174baa6137fb02ee18e0d8b8f3", null ],
     [ "uecho_controller_searchobjectwithesv", "controller_8c.html#a3e47fa97531a7d3220cc97c3a9a84624", null ],
     [ "uecho_controller_searchwithesv", "controller_8c.html#a387ed28a5191cb46d441fc92e58f2a53", null ],
-    [ "uecho_controller_sendmessage", "controller_8c.html#ad1d47398fab6e418b6ee03a43ed43baa", null ],
+    [ "uecho_controller_sendmessage", "controller_8c.html#a8f7bcc9c1708e90af881dc51b9ad9568", null ],
     [ "uecho_controller_setlasttid", "controller_8c.html#ab26f71af681fa303bcb7960483ff47a2", null ],
     [ "uecho_controller_setmessagelistener", "controller_8c.html#a75d7d91dbd707849cadc7cee15ce7dcf", null ],
     [ "uecho_controller_setpostrequestmessage", "controller_8c.html#a366acf16ee4bdd98f3ea902be91a1621", null ],
@@ -42,5 +42,7 @@ var controller_8c =
     [ "uecho_controller_setpostwaitemilitime", "controller_8c.html#a708e2a4313de2c4bef0cd0d76fe3be97", null ],
     [ "uecho_controller_setuserdata", "controller_8c.html#a34ee7e2ef6bac2f7a74160453117493b", null ],
     [ "uecho_controller_start", "controller_8c.html#ae960567b4dd1fc4a7f0a77081590f298", null ],
-    [ "uecho_controller_stop", "controller_8c.html#afdbe8dcf5a33c05093d6bc9c72da31ce", null ]
+    [ "uecho_controller_stop", "controller_8c.html#afdbe8dcf5a33c05093d6bc9c72da31ce", null ],
+    [ "uecho_node_getcontroller", "controller_8c.html#acebb4300d0cb5e99233f144de3a2078c", null ],
+    [ "uecho_node_setcontroller", "controller_8c.html#a3c718c268326d7b77d78e0b62bf6fc98", null ]
 ];
