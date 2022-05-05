@@ -181,6 +181,7 @@ int main(int argc, char* argv[])
   msg = uecho_message_new();
   sscanf(argv[2], "%x", &esv);
   uecho_message_setesv(msg, esv);
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(dst_obj));
 
 #if defined(DEBUG)
   printf("%s %06X %01X\n", dst_node_addr, dst_obj_code, esv);
@@ -225,13 +226,13 @@ int main(int argc, char* argv[])
   is_response_required = uecho_message_isresponserequired(msg);
   if (is_response_required) {
     res_msg = uecho_message_new();
-    if (uecho_controller_postmessage(ctrl, dst_obj, msg, res_msg)) {
+    if (uecho_controller_postmessage(ctrl, dst_node, msg, res_msg)) {
       uechopost_print_objectresponse(ctrl, res_msg);
     }
     uecho_message_delete(res_msg);
   }
   else {
-    uecho_controller_sendmessage(ctrl, dst_obj, msg);
+    uecho_controller_sendmessage(ctrl, dst_node, msg);
   }
 
   uecho_message_delete(msg);

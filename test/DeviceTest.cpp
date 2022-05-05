@@ -78,12 +78,18 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   if (!found_obj)
     return;
 
+  uEchoNode *found_node = uecho_object_getparentnode(found_obj);
+  BOOST_CHECK(found_node);
+  if (!found_node)
+    return;
+
   // Send Message (ReadRequest)
 
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvReadRequest);
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
   BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, NULL, 0));
-  BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_obj, msg));
+  BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_node, msg));
   uecho_message_delete(msg);
 
   // Check Property (Defult:ON)
@@ -105,16 +111,18 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   prop_byte = UECHO_TEST_PROPERTY_SWITCH_OFF;
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvWriteRequest);
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
   BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, &prop_byte, 1));
-  BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_obj, msg));
+  BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_node, msg));
   uecho_message_delete(msg);
 
   // Send Message (ReadRequest)
 
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvReadRequest);
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
   BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, NULL, 0));
-  BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_obj, msg));
+  BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_node, msg));
   uecho_message_delete(msg);
 
   // Check Property Update (OFF)
@@ -136,9 +144,10 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   prop_byte = UECHO_TEST_PROPERTY_SWITCH_ON;
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvWriteReadRequest);
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
   BOOST_CHECK(uecho_message_setpropertyset(msg, UECHO_TEST_PROPERTY_SWITCHCODE, &prop_byte, 1));
   BOOST_CHECK(uecho_message_setpropertyget(msg, UECHO_TEST_PROPERTY_SWITCHCODE, NULL, 0));
-  BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_obj, msg));
+  BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_node, msg));
   uecho_message_delete(msg);
 
   // Check Property Update (ON)

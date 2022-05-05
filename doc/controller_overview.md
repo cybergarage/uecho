@@ -51,16 +51,16 @@ To control the found objects, create the request message using uecho_message_new
 ```
 uEchoMessage *msg;
 msg = uecho_message_new();
-uecho_message_setdestinationobjectcode(msg, 0xXXXXXX);
 uecho_message_setesv(msg, 0xXX);
+uecho_message_setdestinationobjectcode(msg, 0xXXXXXX);
 uecho_message_setproperty(msg, epc, ..., ...);
 ....
 ```
 
 To create the message, developer should only set the following message objects using the message functions.
 
-- DEOJ : Destination ECHONET Lite object specification
 - ESV : ECHONET Lite service
+- DEOJ : Destination ECHONET Lite object specification
 - EPC : ECHONET Lite Property
 - PDC : Property data counter
 - EDT : Property value data
@@ -79,21 +79,21 @@ To send the created request message, use `uecho_controller_sendmessage` as the f
 
 ```
 uEchoController *ctrl;
-uEchoObject *dstObj;
+uEchoNode *dstNode;
 uEchoMessage *msg;
 ....
-uecho_controller_sendmessage(ctrl, dstObj, msg);
+uecho_controller_sendmessage(ctrl, dstNode, msg);
 ```
 
 Basically, all messages of [ECHONETLite](http://www.echonet.gr.jp/english/index.htm) is async. To handle the async response of the message request, use `uecho_controller_postmessage` as the following:
 
 ```
 uEchoController *ctrl;
-uEchoObject *dstObj;
+uEchoNode *dstNode;
 uEchoMessage *msg, *resMsg;
 ....
 resMsg = uecho_message_new();
-if (uecho_controller_postmessage(ctrl, dstObj, msg, resMsg)) {
+if (uecho_controller_postmessage(ctrl, dstNode, msg, resMsg)) {
   ....  
 }
 uecho_message_delete(resMsg);
