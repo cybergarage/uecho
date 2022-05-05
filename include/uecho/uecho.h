@@ -21,6 +21,9 @@
 #include <uecho/device.h>
 #include <uecho/profile.h>
 
+#include <uecho/std/database.h>
+
+#include <uecho/util/log.h>
 #include <uecho/util/timer.h>
 
 #endif /* _UECHO_UECHO_H_ */
