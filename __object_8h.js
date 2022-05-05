@@ -21,5 +21,6 @@ var __object_8h =
     [ "uecho_objectlist_getbycode", "__object_8h.html#a24604daf0c936c834b11a3f42da685be", null ],
     [ "uecho_objectlist_getbygroupclasscode", "__object_8h.html#a30d111164db299f5ace6f8fc95bd25c2", null ],
     [ "uecho_objectlist_new", "__object_8h.html#a14a35af93bd959bf6b8818c2f17802bd", null ],
-    [ "uecho_objectlist_set", "__object_8h.html#ae39748c87625d1799a3d83bcc992ef2c", null ]
+    [ "uecho_objectlist_set", "__object_8h.html#ae39748c87625d1799a3d83bcc992ef2c", null ],
+    [ "uecho_property_setparentobject", "__object_8h.html#a5a8b9eb0acc969bde2ce0ac3e6a082ae", null ]
 ];

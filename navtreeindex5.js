@@ -1,5 +1,9 @@
 var NAVTREEINDEX5 =
 {
+"socket_8h.html#a1d8e8a920d98d2d9ea71d5d885090adf":[1,0,1,0,1,7,5],
+"socket_8h.html#a2d4977b907e18c824fb281a871044afb":[1,0,1,0,1,7,52],
+"socket_8h.html#a385dd49670c48c129788a1e97e9f9581":[1,0,1,0,1,7,55],
+"socket_8h.html#a3a831b516fb426585d7ab7efdbd9a7f6":[1,0,1,0,1,7,26],
 "socket_8h.html#a3b9ab4681db642c122b1b2e491fdd095":[1,0,1,0,1,7,42],
 "socket_8h.html#a3c456f771138ee74778ed4d43e805370":[1,0,1,0,1,7,4],
 "socket_8h.html#a408e718a0c1175afb6a889a0dbca57a2":[1,0,1,0,1,7,59],
@@ -245,9 +249,5 @@ var NAVTREEINDEX5 =
 "strings__tokenizer_8c.html#a7dffb3f831164a30bc4b15a747cb5a5a":[1,0,1,0,3,11,4],
 "strings__tokenizer_8c.html#aaafbd03a9a05d7ced7e453032f332e4e":[1,0,1,0,3,11,3],
 "structUEchoController.html":[0,0,2],
-"structUEchoController.html#a0be29fc07e61888434ca77c3e3a666a3":[0,0,2,3],
-"structUEchoController.html#a257960c77506e44d1e37cc890c11b2ca":[0,0,2,0],
-"structUEchoController.html#a36a6f57709890ea324d1b2766a098536":[0,0,2,5],
-"structUEchoController.html#a5b9af25dd3970dc600459a0afb398798":[0,0,2,8],
-"structUEchoController.html#a73c3358311fa0ff6c5a081239c7cd48c":[0,0,2,9]
+"structUEchoController.html#a0be29fc07e61888434ca77c3e3a666a3":[0,0,2,3]
 };

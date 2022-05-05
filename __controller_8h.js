@@ -26,5 +26,6 @@ var __controller_8h =
     [ "uecho_controller_servermessagelistener", "__controller_8h.html#a83ad557437329c82361f1fdf325fd636", null ],
     [ "uecho_controller_setlasttid", "__controller_8h.html#ab26f71af681fa303bcb7960483ff47a2", null ],
     [ "uecho_controller_setpostrequestmessage", "__controller_8h.html#a366acf16ee4bdd98f3ea902be91a1621", null ],
-    [ "uecho_controller_setpostresponsemessage", "__controller_8h.html#a9fe0d96292d3428d868d00853a6a62ac", null ]
+    [ "uecho_controller_setpostresponsemessage", "__controller_8h.html#a9fe0d96292d3428d868d00853a6a62ac", null ],
+    [ "uecho_node_setcontroller", "__controller_8h.html#a3c718c268326d7b77d78e0b62bf6fc98", null ]
 ];

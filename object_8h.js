@@ -59,6 +59,5 @@ var object_8h =
     [ "uecho_object_setpropertywriterequesthandler", "object_8h.html#af58c5117790f80da5c2dc6f306433708", null ],
     [ "uecho_object_start", "object_8h.html#a67141ea1f2f550c762b7b1ff34ddbcdb", null ],
     [ "uecho_object_stop", "object_8h.html#ab93831a2847b2421ae02d7d431fe3651", null ],
-    [ "uecho_property_getparentobject", "object_8h.html#a494d30469a91331d42ede8d028125463", null ],
-    [ "uecho_property_setparentobject", "object_8h.html#a5a8b9eb0acc969bde2ce0ac3e6a082ae", null ]
+    [ "uecho_property_getparentobject", "object_8h.html#a494d30469a91331d42ede8d028125463", null ]
 ];
