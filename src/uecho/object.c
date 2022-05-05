@@ -177,6 +177,8 @@ bool uecho_object_addstandardproperties(uEchoObject* obj)
   if (!std_obj)
     return false;
 
+  uecho_object_setname(obj, uecho_object_getname(std_obj));
+  
   if (!uecho_object_addmissingobjectproperties(obj, std_obj))
     return false;
   
