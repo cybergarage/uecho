@@ -447,8 +447,16 @@ bool uecho_node_announcemessage(uEchoNode* node, uEchoMessage* msg)
 
 bool uecho_node_sendmessage(uEchoNode* node, uEchoNode* dst_node, uEchoMessage* msg)
 {
+  uEchoObject* node_prof_obj;
+
   if (!node || !dst_node || !msg)
     return false;
+
+  node_prof_obj = uecho_node_getnodeprofileclassobject(node);
+  if (!node_prof_obj)
+    return false;
+  uecho_message_setsourceobjectcode(msg, uecho_object_getcode(node_prof_obj));
+
   return uecho_node_sendmessagebytes(node, uecho_node_getaddress(dst_node), uecho_message_getbytes(msg), uecho_message_size(msg));
 }
 

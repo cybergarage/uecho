@@ -387,19 +387,12 @@ bool uecho_controller_announcemessage(uEchoController* ctrl, uEchoMessage* msg)
 
 bool uecho_controller_sendmessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* msg)
 {
-  uEchoObject* node_prof_obj;
-
   if (!ctrl || !node || !msg || !ctrl->node)
     return false;
 
   uecho_message_settid(msg, uecho_controller_getnexttid(ctrl));
 
-  node_prof_obj = uecho_node_getnodeprofileclassobject(ctrl->node);
-  if (!node_prof_obj)
-    return false;
-  uecho_message_setsourceobjectcode(msg, uecho_object_getcode(node_prof_obj));
-
-  return uecho_node_sendmessagebytes(ctrl->node, uecho_node_getaddress(node), uecho_message_getbytes(msg), uecho_message_size(msg));
+  return uecho_node_sendmessage(ctrl->node, node, msg);
 }
 
 /****************************************
