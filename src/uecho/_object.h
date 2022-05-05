@@ -98,6 +98,12 @@ uEchoObject* uecho_objectlist_getbygroupclasscode(uEchoObjectList* objs, byte gr
 #define uecho_objectlist_gets(objs) (uEchoObject*)uecho_list_next((uEchoList*)objs)
 #define uecho_objectlist_add(objs, obj) uecho_list_add((uEchoList*)objs, (uEchoList*)obj)
 
+/****************************************
+ * Function (Property)
+ ****************************************/
+
+bool uecho_property_setparentobject(uEchoProperty* prop, uEchoObject* obj);
+
 #ifdef __cplusplus
 } /* extern C */
 #endif
