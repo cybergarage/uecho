@@ -44,6 +44,8 @@ uEchoNode* uecho_node_new(void)
   obj = uecho_nodeprofile_new();
   uecho_node_addobject(node, obj);
 
+  uecho_node_setlasttid(node, 0);
+
   return node;
 }
 
@@ -409,6 +411,48 @@ bool uecho_node_isrunning(uEchoNode* node)
 }
 
 /****************************************
+ * uecho_node_setlasttid
+ ****************************************/
+
+void uecho_node_setlasttid(uEchoNode* node, uEchoTID tid)
+{
+  if (!node)
+    return;
+
+  node->last_tid = tid;
+}
+
+/****************************************
+ * uecho_node_gettid
+ ****************************************/
+
+uEchoTID uecho_node_getlasttid(uEchoNode* node)
+{
+  if (!node)
+    return 0;
+
+  return node->last_tid;
+}
+
+/****************************************
+ * uecho_node_getnexttid
+ ****************************************/
+
+uEchoTID uecho_node_getnexttid(uEchoNode* node)
+{
+  if (!node)
+    return 0;
+
+  if (uEchoTidMax <= node->last_tid) {
+    node->last_tid = 1;
+  }
+  else {
+    node->last_tid++;
+  }
+  return node->last_tid;
+}
+
+/****************************************
  * uecho_node_announcemessagebytes
  ****************************************/
 
@@ -441,6 +485,8 @@ bool uecho_node_announcemessage(uEchoNode* node, uEchoMessage* msg)
   if (!node || !msg)
     return false;
 
+  uecho_message_settid(msg, uecho_node_getnexttid(node));
+
   node_prof_obj = uecho_node_getnodeprofileclassobject(node);
   if (!node_prof_obj)
     return false;
@@ -459,6 +505,8 @@ bool uecho_node_sendmessage(uEchoNode* node, uEchoNode* dst_node, uEchoMessage* 
 
   if (!node || !dst_node || !msg)
     return false;
+
+  uecho_message_settid(msg, uecho_node_getnexttid(node));
 
   node_prof_obj = uecho_node_getnodeprofileclassobject(node);
   if (!node_prof_obj)
