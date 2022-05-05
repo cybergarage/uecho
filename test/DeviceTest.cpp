@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
 
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvReadRequest);
-  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
+  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, NULL, 0));
   BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_obj, msg));
   uecho_message_delete(msg);
 
@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   prop_byte = UECHO_TEST_PROPERTY_SWITCH_OFF;
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvWriteRequest);
-  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 1, &prop_byte));
+  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, &prop_byte, 1));
   BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_obj, msg));
   uecho_message_delete(msg);
 
@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
 
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvReadRequest);
-  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
+  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, NULL, 0));
   BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_obj, msg));
   uecho_message_delete(msg);
 
@@ -136,8 +136,8 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   prop_byte = UECHO_TEST_PROPERTY_SWITCH_ON;
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvWriteReadRequest);
-  BOOST_CHECK(uecho_message_setpropertyset(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 1, &prop_byte));
-  BOOST_CHECK(uecho_message_setpropertyget(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
+  BOOST_CHECK(uecho_message_setpropertyset(msg, UECHO_TEST_PROPERTY_SWITCHCODE, &prop_byte, 1));
+  BOOST_CHECK(uecho_message_setpropertyget(msg, UECHO_TEST_PROPERTY_SWITCHCODE, NULL, 0));
   BOOST_CHECK(uecho_controller_sendmessage(ctrl, found_obj, msg));
   uecho_message_delete(msg);
 

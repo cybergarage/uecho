@@ -9,8 +9,9 @@
  ******************************************************************/
 
 #include <stdio.h>
-#include <uecho/uecho.h>
 #include <unistd.h>
+
+#include <uecho/uecho.h>
 
 const int UECHO_TEST_SEARCH_WAIT_MTIME = 5000;
 
@@ -21,31 +22,16 @@ void usage()
   printf(" -h : Print this message\n");
 }
 
-void uecho_search_print_messages(uEchoController* ctrl, uEchoMessage* msg)
+uEchoMessage *create_readmessage(uEchoController* ctrl, byte prop_code)
 {
-  uEchoProperty* prop;
-  size_t opc, n;
-
-  opc = uecho_message_getopc(msg);
-  printf("%s %1X %1X %02X %03X %03X %02X %ld ",
-      uecho_message_getsourceaddress(msg),
-      uecho_message_getehd1(msg),
-      uecho_message_getehd2(msg),
-      uecho_message_gettid(msg),
-      uecho_message_getsourceobjectcode(msg),
-      uecho_message_getdestinationobjectcode(msg),
-      uecho_message_getesv(msg),
-      opc);
-
-  for (n = 0; n < opc; n++) {
-    prop = uecho_message_getproperty(msg, n);
-    printf("%02X", uecho_property_getcode(prop));
-  }
-
-  printf("\n");
+  uEchoMessage* msg;
+  msg = uecho_message_new();
+  uecho_message_setesv(msg, uEchoEsvReadRequest);
+  uecho_message_setproperty(msg, prop_code, NULL, 0);
+  return msg;
 }
 
-void uecho_search_printdevices(uEchoController* ctrl)
+void print_founddevices(uEchoController* ctrl, bool verbose)
 {
   uEchoNode* node;
   uEchoObject* obj;
@@ -97,10 +83,6 @@ int main(int argc, char* argv[])
   if (!ctrl)
     return EXIT_FAILURE;
 
-  if (verbose_mode) {
-    uecho_controller_setmessagelistener(ctrl, uecho_search_print_messages);
-  }
-
   if (!uecho_controller_start(ctrl))
     return EXIT_FAILURE;
 
@@ -109,7 +91,7 @@ int main(int argc, char* argv[])
 
   found_node_cnt = uecho_controller_getnodecount(ctrl);
   if (0 < found_node_cnt) {
-    uecho_search_printdevices(ctrl);
+    print_founddevices(ctrl, verbose_mode);
   }
 
   uecho_controller_stop(ctrl);

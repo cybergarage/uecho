@@ -197,7 +197,7 @@ int main(int argc, char* argv[])
 #endif
 
     if (pdc == 0) {
-      uecho_message_setproperty(msg, epc, 0, NULL);
+      uecho_message_setproperty(msg, epc, NULL, 0);
       continue;
     }
 
@@ -213,7 +213,7 @@ int main(int argc, char* argv[])
       prop_data[n] = edt_byte & 0xFF;
       edt += 2;
     }
-    uecho_message_setproperty(msg, epc, pdc, prop_data);
+    uecho_message_setproperty(msg, epc, prop_data, pdc);
     free(prop_data);
   }
 #if defined(DEBUG)

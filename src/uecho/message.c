@@ -657,7 +657,7 @@ uEchoProperty* uecho_message_getpropertygetbycode(uEchoMessage* msg, uEchoProper
  * uecho_message_setproperty
  ****************************************/
 
-bool uecho_property_set(byte* opc, uEchoProperty*** ep, uEchoPropertyCode prop_code, size_t prop_data_size, const byte* prop_data)
+bool uecho_property_set(byte* opc, uEchoProperty*** ep, uEchoPropertyCode prop_code, const byte* prop_data, size_t prop_data_size)
 {
   uEchoProperty* prop;
   prop = uecho_property_getbycode(*opc, *ep, prop_code);
@@ -674,25 +674,25 @@ bool uecho_property_set(byte* opc, uEchoProperty*** ep, uEchoPropertyCode prop_c
   return uecho_property_setdata(prop, prop_data, prop_data_size);
 }
 
-bool uecho_message_setproperty(uEchoMessage* msg, uEchoPropertyCode prop_code, size_t prop_data_size, const byte* prop_data)
+bool uecho_message_setproperty(uEchoMessage* msg, uEchoPropertyCode prop_code, const byte* prop_data, size_t prop_data_size)
 {
   if (!msg)
     return false;
-  return uecho_property_set(&msg->opc, &msg->ep, prop_code, prop_data_size, prop_data);
+  return uecho_property_set(&msg->opc, &msg->ep, prop_code, prop_data, prop_data_size);
 }
 
-bool uecho_message_setpropertyset(uEchoMessage* msg, uEchoPropertyCode prop_code, size_t prop_data_size, const byte* prop_data)
+bool uecho_message_setpropertyset(uEchoMessage* msg, uEchoPropertyCode prop_code, const byte* prop_data, size_t prop_data_size)
 {
   if (!msg)
     return false;
-  return uecho_property_set(&msg->opc_set, &msg->ep_set, prop_code, prop_data_size, prop_data);
+  return uecho_property_set(&msg->opc_set, &msg->ep_set, prop_code, prop_data, prop_data_size);
 }
 
-bool uecho_message_setpropertyget(uEchoMessage* msg, uEchoPropertyCode prop_code, size_t prop_data_size, const byte* prop_data)
+bool uecho_message_setpropertyget(uEchoMessage* msg, uEchoPropertyCode prop_code, const byte* prop_data, size_t prop_data_size)
 {
   if (!msg)
     return false;
-  return uecho_property_set(&msg->opc_get, &msg->ep_get, prop_code, prop_data_size, prop_data);
+  return uecho_property_set(&msg->opc_get, &msg->ep_get, prop_code, prop_data, prop_data_size);
 }
 
 /****************************************
