@@ -385,22 +385,21 @@ bool uecho_controller_announcemessage(uEchoController* ctrl, uEchoMessage* msg)
  * uecho_controller_sendmessage
  ****************************************/
 
-bool uecho_controller_sendmessage(uEchoController* ctrl, uEchoObject* obj, uEchoMessage* msg)
+bool uecho_controller_sendmessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* msg)
 {
   uEchoObject* node_prof_obj;
 
-  if (!ctrl || !obj || !msg)
-    return false;
-
-  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(obj));
-
-  node_prof_obj = uecho_node_getnodeprofileclassobject(ctrl->node);
-  if (!node_prof_obj)
+  if (!ctrl || !node || !msg || !ctrl->node)
     return false;
 
   uecho_message_settid(msg, uecho_controller_getnexttid(ctrl));
 
-  return uecho_object_sendmessage(node_prof_obj, obj, msg);
+  node_prof_obj = uecho_node_getnodeprofileclassobject(ctrl->node);
+  if (!node_prof_obj)
+    return false;
+  uecho_message_setsourceobjectcode(msg, uecho_object_getcode(node_prof_obj));
+
+  return uecho_node_sendmessagebytes(ctrl->node, uecho_node_getaddress(node), uecho_message_getbytes(msg), uecho_message_size(msg));
 }
 
 /****************************************
@@ -527,7 +526,7 @@ clock_t uecho_controller_getpostwaitemilitime(uEchoController* ctrl)
  * uecho_controller_postmessage
  ****************************************/
 
-bool uecho_controller_postmessage(uEchoController* ctrl, uEchoObject* obj, uEchoMessage* req_msg, uEchoMessage* res_msg)
+bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* req_msg, uEchoMessage* res_msg)
 {
   bool is_responce_received;
   int n;
@@ -540,7 +539,7 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoObject* obj, uEcho
   uecho_controller_setpostrequestmessage(ctrl, req_msg);
   uecho_controller_setpostresponsemessage(ctrl, res_msg);
 
-  if (!uecho_controller_sendmessage(ctrl, obj, req_msg)) {
+  if (!uecho_controller_sendmessage(ctrl, node, req_msg)) {
     uecho_mutex_unlock(ctrl->mutex);
     return false;
   }

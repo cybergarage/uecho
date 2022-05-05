@@ -105,15 +105,21 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
   if (!found_obj)
     return;
 
+  uEchoNode *found_node = uecho_object_getparentnode(found_obj);
+  BOOST_CHECK(found_node);
+  if (!found_node)
+    return;
+
   // Post Message (ReadRequest)
 
   uEchoMessage* msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvReadRequest);
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
   BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
 
   uEchoMessage* res = uecho_message_new();
 
-  BOOST_CHECK(uecho_controller_postmessage(ctrl, found_obj, msg, res));
+  BOOST_CHECK(uecho_controller_postmessage(ctrl, found_node, msg, res));
 
   BOOST_CHECK_EQUAL(uecho_message_getopc(res), 1);
   BOOST_CHECK_EQUAL(uecho_message_getesv(res), uEchoEsvReadResponse);
@@ -134,12 +140,13 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
 
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvWriteRequestResponseRequired);
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
   byte post_byte = UECHO_TEST_PROPERTY_SWITCH_OFF;
   BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, &post_byte, 1));
 
   res = uecho_message_new();
 
-  BOOST_CHECK(uecho_controller_postmessage(ctrl, found_obj, msg, res));
+  BOOST_CHECK(uecho_controller_postmessage(ctrl, found_node, msg, res));
 
   BOOST_CHECK_EQUAL(uecho_message_getopc(res), 1);
   BOOST_CHECK_EQUAL(uecho_message_getesv(res), uEchoEsvWriteResponse);
@@ -157,11 +164,12 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
 
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvReadRequest);
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
   BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 0, NULL));
 
   res = uecho_message_new();
 
-  BOOST_CHECK(uecho_controller_postmessage(ctrl, found_obj, msg, res));
+  BOOST_CHECK(uecho_controller_postmessage(ctrl, found_node, msg, res));
 
   BOOST_CHECK_EQUAL(uecho_message_getopc(res), 1);
   BOOST_CHECK_EQUAL(uecho_message_getesv(res), uEchoEsvReadResponse);
