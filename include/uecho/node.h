@@ -69,13 +69,17 @@ bool uecho_node_sendmessagebytes(uEchoNode* node, const char* addr, byte* msg, s
 
 void uecho_node_setmessagelistener(uEchoNode* node, uEchoNodeMessageListener listener);
 
-uEchoNode* uecho_object_getparentnode(uEchoObject* obj);
-
 /****************************************
  * Macro
  ****************************************/
 
 #define uecho_node_getnodeprofileclassobject(node) uecho_node_getobjectbycode(node, uEchoNodeProfileObject)
+
+/****************************************
+ * Function (Object)
+ ****************************************/
+
+uEchoNode* uecho_object_getparentnode(uEchoObject* obj);
 
 #ifdef __cplusplus
 } /* extern C */
