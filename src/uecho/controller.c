@@ -367,18 +367,12 @@ uEchoTID uecho_controller_getnexttid(uEchoController* ctrl)
 
 bool uecho_controller_announcemessage(uEchoController* ctrl, uEchoMessage* msg)
 {
-  uEchoObject* node_prof_obj;
-
   if (!ctrl || !msg)
-    return false;
-
-  node_prof_obj = uecho_node_getnodeprofileclassobject(ctrl->node);
-  if (!node_prof_obj)
     return false;
 
   uecho_message_settid(msg, uecho_controller_getnexttid(ctrl));
 
-  return uecho_object_announcemessage(node_prof_obj, msg);
+  return uecho_node_announcemessage(ctrl->node, msg);
 }
 
 /****************************************
