@@ -36,7 +36,6 @@ enum {
 typedef struct UEchoController {
   uEchoMutex* mutex;
   uEchoNode* node;
-  uEchoTID last_tid;
   uEchoNodeList* nodes;
   void (*msg_listener)(struct UEchoController*, uEchoMessage*); /* uEchoControllerMessageListener */
   uEchoOption option;
@@ -73,10 +72,6 @@ void uecho_controller_disableudpserver(uEchoController* ctrl);
 
 uEchoControllerMessageListener uecho_controller_getmessagelistener(uEchoController* ctrl);
 bool uecho_controller_hasmessagelistener(uEchoController* ctrl);
-
-void uecho_controller_setlasttid(uEchoController* ctrl, uEchoTID tid);
-uEchoTID uecho_controller_getlasttid(uEchoController* ctrl);
-uEchoTID uecho_controller_getnexttid(uEchoController* ctrl);
 
 void uecho_controller_setpostrequestmessage(uEchoController* ctrl, uEchoMessage* msg);
 uEchoMessage* uecho_controller_getpostrequestmessage(uEchoController* ctrl);
