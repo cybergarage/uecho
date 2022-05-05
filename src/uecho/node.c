@@ -423,6 +423,8 @@ bool uecho_node_announcemessagebytes(uEchoNode* node, byte* msg_bytes, size_t ms
 
 bool uecho_node_sendmessagebytes(uEchoNode* node, const char* addr, byte* msg, size_t msg_len)
 {
+  if (!node)
+    return false;
   return uecho_server_postresponse(node->server, addr, msg, msg_len);
 }
 
