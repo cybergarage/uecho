@@ -414,7 +414,7 @@ bool uecho_node_isrunning(uEchoNode* node)
 
 bool uecho_node_announcemessagebytes(uEchoNode* node, byte* msg_bytes, size_t msg_len)
 {
-  if (!node)
+  if (!node || !msg_bytes || (msg_len <= 0))
     return false;
   return uecho_server_postannounce(node->server, msg_bytes, msg_len);
 }
@@ -423,11 +423,11 @@ bool uecho_node_announcemessagebytes(uEchoNode* node, byte* msg_bytes, size_t ms
  * uecho_node_sendmessagebytes
  ****************************************/
 
-bool uecho_node_sendmessagebytes(uEchoNode* node, const char* addr, byte* msg, size_t msg_len)
+bool uecho_node_sendmessagebytes(uEchoNode* node, const char* addr, byte* msg_bytes, size_t msg_len)
 {
-  if (!node || !addr || !msg || (msg_len <= 0))
+  if (!node || !addr || !msg_bytes || (msg_len <= 0))
     return false;
-  return uecho_server_postresponse(node->server, addr, msg, msg_len);
+  return uecho_server_postresponse(node->server, addr, msg_bytes, msg_len);
 }
 
 /****************************************
