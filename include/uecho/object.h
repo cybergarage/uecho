@@ -103,7 +103,7 @@ bool uecho_object_setpropertywriterequesthandler(uEchoObject* obj, uEchoProperty
 bool uecho_object_setpropertyreadhandler(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyRequestHandler handler);
 
 bool uecho_object_announcemessage(uEchoObject* obj, uEchoMessage* msg);
-bool uecho_object_sendmessage(uEchoObject* obj, uEchoObject* dst_obj, uEchoMessage* msg);
+bool uecho_object_sendmessage(uEchoObject* obj, uEchoMessage* msg);
 
 /****************************************
  * Object Super Class

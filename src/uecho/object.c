@@ -12,6 +12,7 @@
 #include <uecho/_node.h>
 
 #include <uecho/frame/observer.h>
+#include <uecho/controller.h>
 #include <uecho/misc.h>
 #include <uecho/node.h>
 #include <uecho/profile.h>
@@ -710,22 +711,25 @@ bool uecho_object_announcemessage(uEchoObject* obj, uEchoMessage* msg)
  * uecho_object_sendmessage
  ****************************************/
 
-bool uecho_object_sendmessage(uEchoObject* obj, uEchoObject* dst_obj, uEchoMessage* msg)
+bool uecho_object_sendmessage(uEchoObject* obj, uEchoMessage* msg)
 {
-  uEchoNode *parent_node, *dst_parent_node;
+  uEchoNode *obj_node;
+  uEchoController *ctrl;
 
-  if (!obj || !dst_obj)
+  if (!obj || !msg)
     return false;
 
-  parent_node = uecho_object_getparentnode(obj);
-  dst_parent_node = uecho_object_getparentnode(dst_obj);
-  if (!parent_node || !dst_parent_node)
+  obj_node = uecho_object_getparentnode(obj);
+  if (!obj_node)
     return false;
 
-  uecho_message_setsourceobjectcode(msg, uecho_object_getcode(obj));
-  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(dst_obj));
+  ctrl = uecho_node_getcontroller(obj_node);
+  if (!ctrl)
+    return false;
 
-  return uecho_node_sendmessage(parent_node, dst_parent_node, msg);
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(obj));
+
+  return uecho_controller_sendmessage(ctrl, obj_node, msg);
 }
 
 /****************************************
