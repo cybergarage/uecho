@@ -26,7 +26,7 @@ uEchoObject* uecho_nodeprofile_new(void)
 {
   uEchoObject* obj;
 
-  obj = uecho_object_new();
+  obj = uecho_profile_new();
   if (!obj)
     return NULL;
 
