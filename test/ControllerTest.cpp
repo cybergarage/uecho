@@ -102,6 +102,8 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
 
   uEchoObject* found_obj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
   BOOST_CHECK(found_obj);
+  if (!found_obj)
+    return;
 
   // Post Message (ReadRequest)
 
@@ -117,6 +119,8 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
   BOOST_CHECK_EQUAL(uecho_message_getesv(res), uEchoEsvReadResponse);
   uEchoProperty* prop = uecho_message_getproperty(res, 0);
   BOOST_CHECK(prop);
+  if (!prop)
+    return;
   BOOST_CHECK_EQUAL(uecho_property_getcode(prop), UECHO_TEST_PROPERTY_SWITCHCODE);
   BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), 1);
   byte* prop_data = uecho_property_getdata(prop);
@@ -141,6 +145,8 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
   BOOST_CHECK_EQUAL(uecho_message_getesv(res), uEchoEsvWriteResponse);
   prop = uecho_message_getproperty(res, 0);
   BOOST_CHECK(prop);
+  if (!prop)
+    return;
   BOOST_CHECK_EQUAL(uecho_property_getcode(prop), UECHO_TEST_PROPERTY_SWITCHCODE);
   BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), 0);
 
@@ -161,6 +167,8 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
   BOOST_CHECK_EQUAL(uecho_message_getesv(res), uEchoEsvReadResponse);
   prop = uecho_message_getproperty(res, 0);
   BOOST_CHECK(prop);
+  if (!prop)
+    return;
   BOOST_CHECK_EQUAL(uecho_property_getcode(prop), UECHO_TEST_PROPERTY_SWITCHCODE);
   BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), 1);
   prop_data = uecho_property_getdata(prop);
