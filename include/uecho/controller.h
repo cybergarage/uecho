@@ -68,6 +68,12 @@ void* uecho_controller_getuserdata(uEchoController* ctrl);
 
 uEchoNode* uecho_controller_getlocalnode(uEchoController* ctrl);
 
+/****************************************
+ * Function (Node)
+ ****************************************/
+
+uEchoController* uecho_node_getcontroller(uEchoNode* node);
+
 #ifdef __cplusplus
 }
 #endif

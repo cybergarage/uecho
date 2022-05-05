@@ -92,6 +92,12 @@ bool uecho_controller_ispostresponsewaiting(uEchoController* ctrl);
 
 void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage* msg);
 
+/****************************************
+ * Function (Node)
+ ****************************************/
+
+void uecho_node_setcontroller(uEchoNode* node, uEchoController* ctrl);
+
 #ifdef __cplusplus
 }
 #endif

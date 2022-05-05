@@ -621,3 +621,25 @@ bool uecho_controller_searchobject(uEchoController* ctrl, byte obj_code)
 {
   return uecho_controller_searchobjectwithesv(ctrl, obj_code, uEchoEsvReadRequest);
 }
+
+/****************************************
+ * uecho_node_setcontroller
+ ****************************************/
+
+void uecho_node_setcontroller(uEchoNode* node, uEchoController* ctrl)
+{
+  if (!node)
+    return;
+  node->controller = ctrl;
+}
+
+/****************************************
+ * uecho_node_getcontroller
+ ****************************************/
+
+uEchoController* uecho_node_getcontroller(uEchoNode* node)
+{
+  if (!node)
+    return NULL;
+  return node->controller;
+}
