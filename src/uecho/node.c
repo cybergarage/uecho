@@ -436,8 +436,16 @@ bool uecho_node_sendmessagebytes(uEchoNode* node, const char* addr, byte* msg_by
 
 bool uecho_node_announcemessage(uEchoNode* node, uEchoMessage* msg)
 {
+  uEchoObject* node_prof_obj;
+
   if (!node || !msg)
     return false;
+
+  node_prof_obj = uecho_node_getnodeprofileclassobject(node);
+  if (!node_prof_obj)
+    return false;
+  uecho_message_setsourceobjectcode(msg, uecho_object_getcode(node_prof_obj));
+
   return uecho_node_announcemessagebytes(node, uecho_message_getbytes(msg), uecho_message_size(msg));
 }
 
