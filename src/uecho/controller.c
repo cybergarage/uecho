@@ -167,7 +167,10 @@ uEchoNode* uecho_controller_getlocalnode(uEchoController* ctrl)
 
 bool uecho_controller_addnode(uEchoController* ctrl, uEchoNode* node)
 {
-  return uecho_nodelist_add(ctrl->nodes, node);
+  if (!uecho_nodelist_add(ctrl->nodes, node))
+    return false;
+  uecho_node_setcontroller(node, ctrl);
+  return true;
 }
 
 /****************************************
