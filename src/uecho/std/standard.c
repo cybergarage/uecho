@@ -12,13 +12,13 @@
 
 #include <uecho/std/_database.h>
 
-static uEchoDatabase* _uecho_std_database = NULL;
+static uEchoDatabase* g_shared_std_database = NULL;
 
 void uecho_standard_freedatabase(void)
 {
-  if (!_uecho_std_database)
+  if (!g_shared_std_database)
     return;
-  uecho_database_delete(_uecho_std_database);
+  uecho_database_delete(g_shared_std_database);
 }
 
 /****************************************
@@ -27,13 +27,13 @@ void uecho_standard_freedatabase(void)
 
 uEchoDatabase* uecho_standard_getdatabase(void)
 {
-  if (!_uecho_std_database) {
-    _uecho_std_database = uecho_database_new();
-    if (!_uecho_std_database)
+  if (!g_shared_std_database) {
+    g_shared_std_database = uecho_database_new();
+    if (!g_shared_std_database)
       return NULL;
-    uecho_database_addstandardmanufactures(_uecho_std_database);
-    uecho_database_addstandardobjects(_uecho_std_database);
+    uecho_database_addstandardmanufactures(g_shared_std_database);
+    uecho_database_addstandardobjects(g_shared_std_database);
     atexit(uecho_standard_freedatabase);
   }
-  return _uecho_std_database;
+  return g_shared_std_database;
 }
