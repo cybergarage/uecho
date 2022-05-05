@@ -447,6 +447,8 @@ bool uecho_node_announcemessage(uEchoNode* node, uEchoMessage* msg)
 
 bool uecho_node_sendmessage(uEchoNode* node, uEchoNode* dst_node, uEchoMessage* msg)
 {
+  if (!node || !dst_node || !msg)
+    return false;
   return uecho_node_sendmessagebytes(node, uecho_node_getaddress(dst_node), uecho_message_getbytes(msg), uecho_message_size(msg));
 }
 
