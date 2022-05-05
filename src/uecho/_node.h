@@ -34,6 +34,7 @@ typedef struct UEchoNode {
 
   uEchoMutex* mutex;
   uEchoServer* server;
+  uEchoTID last_tid;
 
   void* controller;
   
@@ -69,6 +70,10 @@ bool uecho_node_announce(uEchoNode* node);
 
 uEchoNodeMessageListener uecho_node_getmessagelistener(uEchoNode* node);
 bool uecho_node_hasmessagelistener(uEchoNode* node);
+
+void uecho_node_setlasttid(uEchoNode* node, uEchoTID tid);
+uEchoTID uecho_node_getlasttid(uEchoNode* node);
+uEchoTID uecho_node_getnexttid(uEchoNode* node);
 
 /****************************************
  * Function (Object)

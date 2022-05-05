@@ -36,7 +36,6 @@ uEchoController* uecho_controller_new(void)
   uecho_server_addobserver(server, ctrl, (uEchoMessageHandler)uecho_controller_servermessagelistener);
 
   uecho_controller_setuserdata(ctrl, NULL);
-  uecho_controller_setlasttid(ctrl, 0);
   uecho_controller_setmessagelistener(ctrl, NULL);
   uecho_controller_setpostrequestmessage(ctrl, NULL);
   uecho_controller_setpostresponsemessage(ctrl, NULL);
@@ -320,48 +319,6 @@ void* uecho_controller_getuserdata(uEchoController* ctrl)
 }
 
 /****************************************
- * uecho_controller_setlasttid
- ****************************************/
-
-void uecho_controller_setlasttid(uEchoController* ctrl, uEchoTID tid)
-{
-  if (!ctrl)
-    return;
-
-  ctrl->last_tid = tid;
-}
-
-/****************************************
- * uecho_controller_gettid
- ****************************************/
-
-uEchoTID uecho_controller_getlasttid(uEchoController* ctrl)
-{
-  if (!ctrl)
-    return 0;
-
-  return ctrl->last_tid;
-}
-
-/****************************************
- * uecho_controller_getnexttid
- ****************************************/
-
-uEchoTID uecho_controller_getnexttid(uEchoController* ctrl)
-{
-  if (!ctrl)
-    return 0;
-
-  if (uEchoTidMax <= ctrl->last_tid) {
-    ctrl->last_tid = 1;
-  }
-  else {
-    ctrl->last_tid++;
-  }
-  return ctrl->last_tid;
-}
-
-/****************************************
  * uecho_controller_announcemessage
  ****************************************/
 
@@ -369,9 +326,6 @@ bool uecho_controller_announcemessage(uEchoController* ctrl, uEchoMessage* msg)
 {
   if (!ctrl || !msg)
     return false;
-
-  uecho_message_settid(msg, uecho_controller_getnexttid(ctrl));
-
   return uecho_node_announcemessage(ctrl->node, msg);
 }
 
@@ -383,9 +337,6 @@ bool uecho_controller_sendmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
 {
   if (!ctrl || !node || !msg || !ctrl->node)
     return false;
-
-  uecho_message_settid(msg, uecho_controller_getnexttid(ctrl));
-
   return uecho_node_sendmessage(ctrl->node, node, msg);
 }
 

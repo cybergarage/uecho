@@ -9,7 +9,7 @@
  ******************************************************************/
 
 #include <boost/test/unit_test.hpp>
-#include <uecho/node.h>
+#include <uecho/_node.h>
 #include <uecho/profile.h>
 
 BOOST_AUTO_TEST_CASE(NodeDefault)
@@ -34,6 +34,25 @@ BOOST_AUTO_TEST_CASE(NodeAddress)
 
   uecho_node_setaddress(node, test_addr);
   BOOST_CHECK_EQUAL(uecho_node_isaddress(node, test_addr), true);
+
+  uecho_node_delete(node);
+}
+
+BOOST_AUTO_TEST_CASE(NodeTID)
+{
+  uEchoNode* node = uecho_node_new();
+
+  uEchoTID first_tid = uecho_node_getnexttid(node);
+  BOOST_CHECK(uEchoTidMin <= first_tid);
+  BOOST_CHECK(first_tid <= uEchoTidMax);
+
+  uEchoTID prev_tid = first_tid;
+  for (int n = 0; n < 100; n++) {
+    uEchoTID tid = uecho_node_getnexttid(node);
+    BOOST_CHECK(uEchoTidMin <= tid);
+    BOOST_CHECK(prev_tid < tid);
+    BOOST_CHECK(tid <= uEchoTidMax);
+  }
 
   uecho_node_delete(node);
 }
