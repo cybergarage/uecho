@@ -30,6 +30,8 @@ uEchoNode* uecho_node_new(void)
   uecho_list_node_init((uEchoList*)node);
 
   node->mutex = uecho_mutex_new();
+  
+  node->controller = NULL;
   node->classes = uecho_classlist_new();
   node->objects = uecho_objectlist_new();
 
