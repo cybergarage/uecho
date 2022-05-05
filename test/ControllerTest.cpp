@@ -131,7 +131,7 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvWriteRequestResponseRequired);
   byte post_byte = UECHO_TEST_PROPERTY_SWITCH_OFF;
-  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, 1, &post_byte));
+  BOOST_CHECK(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, &post_byte, 1));
 
   res = uecho_message_new();
 

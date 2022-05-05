@@ -62,17 +62,17 @@ bool uecho_message_setesv(uEchoMessage* msg, uEchoEsv val);
 uEchoEsv uecho_message_getesv(uEchoMessage* msg);
 
 bool uecho_message_addproperty(uEchoMessage* msg, uEchoProperty* prop);
-bool uecho_message_setproperty(uEchoMessage* msg, uEchoPropertyCode prop_code, size_t prop_data_size, const byte* prop_data);
+bool uecho_message_setproperty(uEchoMessage* msg, uEchoPropertyCode prop_code, const byte* prop_data, size_t prop_data_size);
 uEchoProperty* uecho_message_getproperty(uEchoMessage* msg, size_t n);
 uEchoProperty* uecho_message_getpropertybycode(uEchoMessage* msg, uEchoPropertyCode code);
 
 bool uecho_message_addpropertyset(uEchoMessage* msg, uEchoProperty* prop);
-bool uecho_message_setpropertyset(uEchoMessage* msg, uEchoPropertyCode prop_code, size_t prop_data_size, const byte* prop_data);
+bool uecho_message_setpropertyset(uEchoMessage* msg, uEchoPropertyCode prop_code, const byte* prop_data, size_t prop_data_size);
 uEchoProperty* uecho_message_getpropertyset(uEchoMessage* msg, size_t n);
 uEchoProperty* uecho_message_getpropertysetbycode(uEchoMessage* msg, uEchoPropertyCode code);
 
 bool uecho_message_addpropertyget(uEchoMessage* msg, uEchoProperty* prop);
-bool uecho_message_setpropertyget(uEchoMessage* msg, uEchoPropertyCode prop_code, size_t prop_data_size, const byte* prop_data);
+bool uecho_message_setpropertyget(uEchoMessage* msg, uEchoPropertyCode prop_code, const byte* prop_data, size_t prop_data_size);
 uEchoProperty* uecho_message_getpropertyget(uEchoMessage* msg, size_t n);
 uEchoProperty* uecho_message_getpropertygetbycode(uEchoMessage* msg, uEchoPropertyCode code);
 
