@@ -20,7 +20,7 @@ The `uechosearch` searches all [ECHONET Lite][enet] device and profile objects i
 ```
 $ uechosearch
 192.168.xxx.aaa [0] 0EF001 [1] 05FF01 --> (Node Profile Object, Controller Object)
-192.168.xxx.bb [0] 0EF001 [1] 0F2001 [2] 029101  --> (Node Profile Object, User Define Class Mono Functional Lighting)
+192.168.xxx.bb [0] 0EF001 [1] 029101  --> (Node Profile Object, Mono Functional Lighting)
 ```
 
 In the verbose mode, the `uechosearch` prints all required read property data of the found objects as the following:
@@ -40,9 +40,8 @@ $ uechosearch -v
 [0] [15] D4 (Number of self-node classes) 0003
 [0] [17] D6 (Self-node instance list S) 020F2001029101
 [0] [18] D7 (Self-node class list S) 020F200291
-[1] 0F2001 (?)
-[2] 029101 (Mono functional lighting)
-[2] [0] 80 (Operation status) 30
+[1] 029101 (Mono functional lighting)
+[1] [0] 80 (Operation status) 30
 ```
 
 ## uechopost
