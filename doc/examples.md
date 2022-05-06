@@ -11,6 +11,7 @@ The `uechosearch` is a sample controller to search all [ECHONET Lite][enet] node
 ```
 Usage : uechosearch [options]
  -v : Enable verbose output
+ -d : Enable debug output
  -h : Print this message
 ```
 
@@ -34,6 +35,7 @@ The `uechopost` is a sample controller to post a message to a [ECHONET Lite][ene
 Usage : uechopost [options] <address> <obj> <esv> <property (epc, pdc, edt) ...>
  -v : Enable verbose output
  -n : Disable unicast server
+ -d : Enable debug output
  -h : Print this message
 ```
 
@@ -66,6 +68,7 @@ The `uechodump` is a sample controller to print all multicast messages of [ECHON
 ```
 Usage : uechodump [options]
  -n : Disable unicast server
+ -d : Enable debug output
  -h : Print this message
 ```
 
