@@ -87,6 +87,8 @@
 		218F5DC927E5C0DB00E79AC1 /* message_observer_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 218F5DC427E5C0DB00E79AC1 /* message_observer_list.c */; };
 		21976AB31B897C1F00A154CE /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 21976AB21B897C1F00A154CE /* misc.c */; };
 		21976AB51B897C4F00A154CE /* misc.h in Headers */ = {isa = PBXBuildFile; fileRef = 21976AB41B897C4F00A154CE /* misc.h */; };
+		21AC0802282515AF00FE907E /* bytes.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AC0801282515AF00FE907E /* bytes.h */; };
+		21AC0804282515D000FE907E /* bytes.c in Sources */ = {isa = PBXBuildFile; fileRef = 21AC0803282515D000FE907E /* bytes.c */; };
 		21B06C191B7C85B0004E9E09 /* object_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21B06C181B7C85B0004E9E09 /* object_list.c */; };
 		21CF27551B917B03004A5AAD /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CF27541B917B03004A5AAD /* message.h */; };
 		21CF27581B917B25004A5AAD /* message_search.c in Sources */ = {isa = PBXBuildFile; fileRef = 21CF27561B917B25004A5AAD /* message_search.c */; };
@@ -187,6 +189,8 @@
 		218F5DC427E5C0DB00E79AC1 /* message_observer_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message_observer_list.c; path = frame/message_observer_list.c; sourceTree = "<group>"; };
 		21976AB21B897C1F00A154CE /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = misc.c; sourceTree = "<group>"; };
 		21976AB41B897C4F00A154CE /* misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misc.h; sourceTree = "<group>"; };
+		21AC0801282515AF00FE907E /* bytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bytes.h; sourceTree = "<group>"; };
+		21AC0803282515D000FE907E /* bytes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bytes.c; sourceTree = "<group>"; };
 		21B06C181B7C85B0004E9E09 /* object_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = object_list.c; sourceTree = "<group>"; };
 		21CF27541B917B03004A5AAD /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message.h; sourceTree = "<group>"; };
 		21CF27561B917B25004A5AAD /* message_search.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = message_search.c; sourceTree = "<group>"; };
@@ -276,6 +280,7 @@
 		21678EE61A8D510100AE79AA /* util */ = {
 			isa = PBXGroup;
 			children = (
+				21AC0801282515AF00FE907E /* bytes.h */,
 				21217CE127E8142E0075C16B /* log.h */,
 				21678EEC1A8D510100AE79AA /* timer.h */,
 			);
@@ -348,22 +353,23 @@
 		21678EFC1A8D512000AE79AA /* util */ = {
 			isa = PBXGroup;
 			children = (
-				21217CE327E815120075C16B /* _log.h */,
-				21F4EA4E27C9F1840075E9DA /* logs.c */,
-				21F4EA4F27C9F1840075E9DA /* logs.h */,
+				21AC0803282515D000FE907E /* bytes.c */,
 				21678EFD1A8D512000AE79AA /* list.c */,
-				2111B19A1B940DAB005FDBD6 /* list.h */,
 				210CC7A221BEB18100EEEB58 /* log.c */,
+				21F4EA4E27C9F1840075E9DA /* logs.c */,
 				21678EFE1A8D512000AE79AA /* mutex.c */,
-				2111B19B1B940DAB005FDBD6 /* mutex.h */,
 				21678F001A8D512000AE79AA /* strings_function.c */,
 				21678F011A8D512000AE79AA /* strings_tokenizer.c */,
 				21678EFF1A8D512000AE79AA /* strings.c */,
-				2111B19C1B940DAB005FDBD6 /* strings.h */,
 				21EEC8561B7204D80012AB57 /* thread_list.c */,
 				21EEC8571B7204D80012AB57 /* thread.c */,
-				2111B19D1B940DAB005FDBD6 /* thread.h */,
 				21678F021A8D512000AE79AA /* timer.c */,
+				21217CE327E815120075C16B /* _log.h */,
+				2111B19A1B940DAB005FDBD6 /* list.h */,
+				21F4EA4F27C9F1840075E9DA /* logs.h */,
+				2111B19B1B940DAB005FDBD6 /* mutex.h */,
+				2111B19C1B940DAB005FDBD6 /* strings.h */,
+				2111B19D1B940DAB005FDBD6 /* thread.h */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21AC0802282515AF00FE907E /* bytes.h in Headers */,
 				218F5DC727E5C0DB00E79AC1 /* message.h in Headers */,
 				2146D081282239FA00DE4245 /* database.h in Headers */,
 				21070A5827C603AC00EE8917 /* esv.h in Headers */,
@@ -572,6 +579,7 @@
 				2146D0912822800700DE4245 /* objects_mra.c in Sources */,
 				218F5DB527E5B35F00E79AC1 /* server.c in Sources */,
 				218F56931B8C425D00C03219 /* controller_listener.c in Sources */,
+				21AC0804282515D000FE907E /* bytes.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
