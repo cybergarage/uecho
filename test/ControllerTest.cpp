@@ -86,7 +86,7 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
   if (!found_obj)
     return;
 
-  uEchoNode *found_node = uecho_object_getparentnode(found_obj);
+  uEchoNode* found_node = uecho_object_getparentnode(found_obj);
   BOOST_CHECK(found_node);
   if (!found_node)
     return;

@@ -42,7 +42,7 @@ void uecho_message_observer_manager_delete(uEchoMessageObserverManager* mgr)
  * uecho_message_observer_manager_setobserver
  ****************************************/
 
-bool uecho_message_observer_manager_addobserver(uEchoMessageObserverManager* mgr, void *obj, uEchoMessageHandler handler)
+bool uecho_message_observer_manager_addobserver(uEchoMessageObserverManager* mgr, void* obj, uEchoMessageHandler handler)
 {
   uEchoMessageObserver* obs;
 
@@ -62,10 +62,10 @@ bool uecho_message_observer_manager_addobserver(uEchoMessageObserverManager* mgr
 
 bool uecho_message_observer_manager_perform(uEchoMessageObserverManager* mgr, uEchoMessage* msg)
 {
-  uEchoMessageObserver *obs;
+  uEchoMessageObserver* obs;
   uEchoMessageHandler handler;
-  void *obj;
-  
+  void* obj;
+
   for (obs = uecho_message_observer_manager_getobservers(mgr); obs; obs = uecho_message_observer_next(obs)) {
     handler = uecho_message_observer_gethandler(obs);
     obj = uecho_message_observer_getobjcet(obs);

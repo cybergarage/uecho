@@ -46,7 +46,7 @@ bool uecho_database_delete(uEchoDatabase* db)
   if (db->mans) {
     uecho_manufacturelist_delete(db->mans);
   }
-  
+
   if (db->objs) {
     uecho_objectlist_delete(db->objs);
   }
@@ -60,7 +60,7 @@ bool uecho_database_delete(uEchoDatabase* db)
 * uecho_database_addmanufacture
 ****************************************/
 
-bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture *man)
+bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture* man)
 {
   if (!db)
     return false;
@@ -71,7 +71,7 @@ bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture *man)
 * uecho_database_addobject
 ****************************************/
 
-bool uecho_database_addobject(uEchoDatabase* db, uEchoObject *obj)
+bool uecho_database_addobject(uEchoDatabase* db, uEchoObject* obj)
 {
   if (!db)
     return false;
@@ -82,7 +82,7 @@ bool uecho_database_addobject(uEchoDatabase* db, uEchoObject *obj)
 * uecho_database_getmanufacture
 ****************************************/
 
-uEchoManufacture *uecho_database_getmanufacture(uEchoDatabase* db, uEchoManufactureCode code)
+uEchoManufacture* uecho_database_getmanufacture(uEchoDatabase* db, uEchoManufactureCode code)
 {
   if (!db)
     return NULL;
@@ -93,10 +93,9 @@ uEchoManufacture *uecho_database_getmanufacture(uEchoDatabase* db, uEchoManufact
 * uecho_database_getobject
 ****************************************/
 
-uEchoObject *uecho_database_getobject(uEchoDatabase* db, byte grp_code, byte cls_code)
+uEchoObject* uecho_database_getobject(uEchoDatabase* db, byte grp_code, byte cls_code)
 {
   if (!db)
     return NULL;
   return uecho_objectlist_getbygroupclasscode(db->objs, grp_code, cls_code);
 }
-

@@ -39,12 +39,12 @@ bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoProperty* obj_pro
 
   bool are_all_handler_accepted = true;
 
-  for (uEchoObjectPropertyObserver *obs = uecho_object_property_observer_manager_getobservers(obj->prop_listener_mgr); obs; obs = uecho_object_property_observer_next(obs)) {
+  for (uEchoObjectPropertyObserver* obs = uecho_object_property_observer_manager_getobservers(obj->prop_listener_mgr); obs; obs = uecho_object_property_observer_next(obs)) {
     if (msg_esv != uecho_object_property_observer_getesv(obs))
       continue;
     if (uecho_property_getcode(msg_prop) != uecho_object_property_observer_getpropetycode(obs))
       continue;
-    are_all_handler_accepted &= obs->handler(obj, obj_prop, msg_esv, uecho_property_getdatasize(msg_prop),uecho_property_getdata(msg_prop));
+    are_all_handler_accepted &= obs->handler(obj, obj_prop, msg_esv, uecho_property_getdatasize(msg_prop), uecho_property_getdata(msg_prop));
   }
 
   return are_all_handler_accepted;
@@ -79,31 +79,32 @@ bool uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, by
       if (uecho_object_notifyrequestproperty(dest_obj, dest_prop, msg_esv, msg_prop)) {
         accepted_request_cnt++;
         switch (msg_esv) {
-          case uEchoEsvWriteRequest:
-          case uEchoEsvWriteRequestResponseRequired:
-            uecho_property_setdata(dest_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
-            break;
+        case uEchoEsvWriteRequest:
+        case uEchoEsvWriteRequestResponseRequired:
+          uecho_property_setdata(dest_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
+          break;
         }
         switch (msg_esv) {
-          case uEchoEsvReadRequest:
-          case uEchoEsvNotificationRequest:
-          case uEchoEsvNotificationResponseRequired:
-            uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
-            break;
+        case uEchoEsvReadRequest:
+        case uEchoEsvNotificationRequest:
+        case uEchoEsvNotificationResponseRequired:
+          uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
+          break;
         }
       }
       else {
         switch (msg_esv) {
-          case uEchoEsvWriteRequestResponseRequired:
-            uecho_property_setdata(res_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
-            break;
-        }
-      }
-    } else {
-      switch (msg_esv) {
         case uEchoEsvWriteRequestResponseRequired:
           uecho_property_setdata(res_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
           break;
+        }
+      }
+    }
+    else {
+      switch (msg_esv) {
+      case uEchoEsvWriteRequestResponseRequired:
+        uecho_property_setdata(res_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
+        break;
       }
     }
 

@@ -17,7 +17,7 @@
 * uecho_net_socket_log
 ****************************************/
 
-void uecho_net_socket_log(int severity, const char *prefix, const char* from_addr, const char* to_addr, const byte* msg_bytes, size_t msg_len)
+void uecho_net_socket_log(int severity, const char* prefix, const char* from_addr, const char* to_addr, const byte* msg_bytes, size_t msg_len)
 {
   char buf[256];
   size_t offset;
@@ -45,21 +45,21 @@ void uecho_net_socket_log(int severity, const char *prefix, const char* from_add
 * uecho_net_socket_*
 ****************************************/
 
-void uecho_net_socket_debug(const char*prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len)
+void uecho_net_socket_debug(const char* prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len)
 {
-  return uecho_net_socket_log(UECHO_LOG_DEBUG, prefix, from_addr,to_addr, pkt_bytes, pkt_len);
+  return uecho_net_socket_log(UECHO_LOG_DEBUG, prefix, from_addr, to_addr, pkt_bytes, pkt_len);
 }
 
-void uecho_net_socket_error(const char*prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len)
+void uecho_net_socket_error(const char* prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len)
 {
-  return uecho_net_socket_log(UECHO_LOG_ERROR, prefix, from_addr,to_addr, pkt_bytes, pkt_len);
+  return uecho_net_socket_log(UECHO_LOG_ERROR, prefix, from_addr, to_addr, pkt_bytes, pkt_len);
 }
 
 /****************************************
 * uecho_net_datagram_packet_*
 ****************************************/
 
-void uecho_net_datagram_packet_error(const char*prefix, uEchoDatagramPacket* dpkt)
+void uecho_net_datagram_packet_error(const char* prefix, uEchoDatagramPacket* dpkt)
 {
   if (!dpkt)
     return;
@@ -72,7 +72,7 @@ void uecho_net_datagram_packet_error(const char*prefix, uEchoDatagramPacket* dpk
       uecho_socket_datagram_packet_getlength(dpkt));
 }
 
-void uecho_net_datagram_packet_debug(const char*prefix, uEchoDatagramPacket* dpkt)
+void uecho_net_datagram_packet_debug(const char* prefix, uEchoDatagramPacket* dpkt)
 {
   if (!dpkt)
     return;
@@ -89,7 +89,7 @@ void uecho_net_datagram_packet_debug(const char*prefix, uEchoDatagramPacket* dpk
 * uecho_message_error
 ****************************************/
 
-void uecho_message_error(const char*prefix, uEchoMessage* msg)
+void uecho_message_error(const char* prefix, uEchoMessage* msg)
 {
   if (!msg)
     return;

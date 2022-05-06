@@ -23,8 +23,8 @@
 
 #include <uecho/std/database.h>
 
+#include <uecho/util/bytes.h>
 #include <uecho/util/log.h>
 #include <uecho/util/timer.h>
-#include <uecho/util/bytes.h>
 
 #endif /* _UECHO_UECHO_H_ */

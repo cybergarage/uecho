@@ -37,12 +37,12 @@ typedef struct UEchoNode {
   uEchoTID last_tid;
 
   void* controller;
-  
+
   uEchoClassList* classes;
   uEchoObjectList* objects;
 
   void (*msg_listener)(struct UEchoNode*, uEchoMessage*); /* uEchoNodeMessageListener */
-  uEchoString *address;
+  uEchoString* address;
   uEchoOption option;
 } uEchoNode, uEchoNodeList;
 

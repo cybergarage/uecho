@@ -11,11 +11,10 @@
 #ifndef _UECHO_CONTROLLER_INTERNAL_H_
 #define _UECHO_CONTROLLER_INTERNAL_H_
 
+#include <uecho/_node.h>
 #include <uecho/const.h>
 #include <uecho/typedef.h>
 #include <uecho/util/mutex.h>
-#include <uecho/_node.h>
-
 
 #ifdef __cplusplus
 extern "C" {

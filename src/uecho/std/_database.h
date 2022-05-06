@@ -25,8 +25,8 @@ extern "C" {
  ****************************************/
 
 typedef struct UEchoDatabase {
-  uEchoManufactureList *mans;
-  uEchoObjectList *objs;
+  uEchoManufactureList* mans;
+  uEchoObjectList* objs;
 } uEchoDatabase;
 
 /****************************************

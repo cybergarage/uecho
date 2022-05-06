@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
 
   BOOST_CHECK(uecho_controller_start(ctrl));
   BOOST_CHECK(uecho_controller_isrunning(ctrl));
-  
+
   // Search (NotificationRequest instead of ReadRequest)
 
   BOOST_CHECK(uecho_controller_searchwithesv(ctrl, uEchoEsvNotificationRequest));
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
   if (!found_obj)
     return;
 
-  uEchoNode *found_node = uecho_object_getparentnode(found_obj);
+  uEchoNode* found_node = uecho_object_getparentnode(found_obj);
   BOOST_CHECK(found_node);
   if (!found_node)
     return;
@@ -163,7 +163,7 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
     }
   }
   BOOST_CHECK(prop_changed);
-  
+
   // Teminate
 
   BOOST_CHECK(uecho_controller_stop(ctrl));
