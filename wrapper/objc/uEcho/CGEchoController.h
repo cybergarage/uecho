@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#import <Foundation/NSString.h>
 #import <Foundation/NSArray.h>
+#import <Foundation/NSString.h>
 
 #if !defined(_UECHO_CONTROLLER_H_)
 typedef void uEchoController;
