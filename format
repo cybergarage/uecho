@@ -12,4 +12,4 @@ done
 if [ -x "`which clang-tidy`" ]; then
 	find . -name "*.h" -or -name "*.c" -or -name "*.cpp" -or -name "*.m" | xargs -L 1 -Ifname clang-tidy --fix fname -- -Iinclude -Isrc
 fi
-find . -prune -o \( -name "*.h" -or -name "*.c" -or -name "*.cpp" -or -name "*.m" \) -exec "$format" -i {} \;
+find . -name "*.h" -or -name "*.c" -or -name "*.cpp" -or -name "*.m" | xargs -L 1 -Ifname $format -i fname
