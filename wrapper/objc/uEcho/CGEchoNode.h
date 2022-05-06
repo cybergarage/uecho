@@ -11,8 +11,6 @@
 #import <Foundation/NSArray.h>
 #import <Foundation/NSString.h>
 
-#import "CGEchoNode.h"
-
 typedef void uEchoNode;
 
 @interface CGEchoNode : NSObject {
