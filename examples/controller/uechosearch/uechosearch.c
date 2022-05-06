@@ -13,14 +13,15 @@
 
 #include <uecho/uecho.h>
 
-const int SEARCH_WAIT_MTIME = 2000;
-const char* unknown_string = "?";
+#define UNKNOWN_STRING "?"
+#define SEARCH_WAIT_MTIME 200
 
 void usage()
 {
   printf("Usage : uechosearch [options]\n");
   printf(" -v : Enable verbose output\n");
   printf(" -h : Print this message\n");
+  printf(" -d : Enable debug output\n");
 }
 
 uEchoMessage* create_readpropertymessagebycode(int obj_code, byte prop_code)
@@ -90,6 +91,7 @@ void print_founddevices(uEchoController* ctrl, bool verbose)
   int n;
   const char* manufacture_name;
   byte* res_prop_bytes;
+  bool has_res_prop;
 
   db = uecho_standard_getdatabase();
 
@@ -106,18 +108,19 @@ void print_founddevices(uEchoController* ctrl, bool verbose)
     }
 
     manufacture_name = get_nodemanufacturename(ctrl, db, node);
-    printf("%-15s (%s)\n", uecho_node_getaddress(node), (manufacture_name ? manufacture_name : unknown_string));
+    printf("%-15s (%s)\n", uecho_node_getaddress(node), (manufacture_name ? manufacture_name : UNKNOWN_STRING));
 
     obj_no = 0;
     for (obj = uecho_node_getobjects(node); obj; obj = uecho_object_next(obj)) {
-      printf("[%d] %06X (%s)\n", obj_no, uecho_object_getcode(obj), (uecho_object_getname(obj) ? uecho_object_getname(obj) : unknown_string));
+      printf("[%d] %06X (%s)\n", obj_no, uecho_object_getcode(obj), (uecho_object_getname(obj) ? uecho_object_getname(obj) : UNKNOWN_STRING));
       prop_no = 0;
       for (prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
         if (uecho_property_isreadrequired(prop)) {
           req_msg = create_readpropertymessage(prop);
           res_msg = uecho_message_new();
+          has_res_prop = uecho_controller_postmessage(ctrl, node, req_msg, res_msg);
           printf("[%d] [%d] %02X (%s) ", obj_no, prop_no, uecho_property_getcode(prop), uecho_property_getname(prop));
-          if (uecho_controller_postmessage(ctrl, node, req_msg, res_msg)) {
+          if (has_res_prop) {
             for (res_prop_no = 0; res_prop_no < uecho_message_getopc(res_msg); res_prop_no++) {
               res_prop = uecho_message_getproperty(res_msg, res_prop_no);
               if (!res_prop)
@@ -145,6 +148,7 @@ void print_founddevices(uEchoController* ctrl, bool verbose)
 int main(int argc, char* argv[])
 {
   bool verbose_mode;
+  bool debug_mode;
   uEchoController* ctrl;
   size_t found_node_cnt;
   int c;
@@ -152,11 +156,15 @@ int main(int argc, char* argv[])
   // Parse options
 
   verbose_mode = false;
+  debug_mode = false;
 
-  while ((c = getopt(argc, argv, "vh")) != -1) {
+  while ((c = getopt(argc, argv, "vhd")) != -1) {
     switch (c) {
     case 'v': {
       verbose_mode = true;
+    } break;
+    case 'd': {
+      debug_mode = true;
     } break;
     case 'h': {
       usage();
@@ -171,6 +179,12 @@ int main(int argc, char* argv[])
 
   argc -= optind;
   argv += optind;
+
+  // Debug mode
+
+  if (debug_mode) {
+    uecho_log_setlevel(UECHO_LOG_DEBUG);
+  }
 
   // Start controller
 
