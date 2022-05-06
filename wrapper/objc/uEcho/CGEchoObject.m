@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #import "CGEchoObject.h"
+#import "CGEchoProperty.h"
 
 #include <uecho/object.h>
 
@@ -26,6 +27,18 @@
 
 - (void)dealloc
 {
+}
+
+- (NSArray*)properties;
+{
+  if (!cObject)
+    return [NSArray array];
+  NSMutableArray* props = [NSMutableArray array];
+  for (uEchoProperty* cProp = uecho_object_getproperties(cObject); cProp; cProp = uecho_property_next(cProp)) {
+    CGEchoProperty* prop = [[CGEchoProperty alloc] initWithCObject:cProp];
+    [props addObject:prop];
+  }
+  return props;
 }
 
 @end
