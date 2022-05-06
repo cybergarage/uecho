@@ -36,6 +36,9 @@
     NSString* addr = [node address];
     XCTAssertNotNil(addr);
     XCTAssertGreaterThan([addr length], 0);
+    for (CGEchoObject* obj in [node objects]) {
+      XCTAssertTrue(obj);
+    }
   }
 
   XCTAssertTrue([ctrl stop]);
