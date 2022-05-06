@@ -1,3 +1,10 @@
+2022-05-06 The uecho Authors <skonno@cybergarage.org>
+	* v1.2.0
+	* Add a manufacture database based on Manufacturer code List of ECHONET Consortium
+	* Add a standard ECHONET Lite device database based on Machine Readable Appendix of ECHONET Consortium
+	* Update uecho_object_setcode() to add the standard object properties of the specified object code automatically
+	* Update a controller example (uechosearch) to output required read property data in verbose mode
+
 2022-05-02 The uecho Authors <skonno@cybergarage.org>
 	* v1.1.1
 	* Fix write request message handler to update the internal property data
@@ -24,6 +31,5 @@
 	* Fix uecho_nodeprofileclass_setversion() to set the transmission type correctly
 
 2015-09-15 The uecho Authors <skonno@cybergarage.org>
-
 	* v0.9
         * The first release.
