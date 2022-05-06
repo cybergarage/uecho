@@ -19,17 +19,15 @@ The `uechosearch` searches all [ECHONET Lite][enet] device and profile objects i
 
 ```
 $ uechosearch
-192.168.xxx.aaa 0EF001 --> (Node Profile Object)
-192.168.xxx.aaa 05FF01 --> (Controller Object)
-192.168.xxx.bb 0EF001  --> (Node Profile Object)
-192.168.xxx.bb 0F2001  --> (User definition Class)
-192.168.xxx.bb 029101  --> (Mono Functional Lighting)
+192.168.xxx.aaa [0] 0EF001 [1] 05FF01 --> (Node Profile Object, Controller Object)
+192.168.xxx.bb [0] 0EF001 [1] 0F2001 [2] 029101  --> (Node Profile Object, User Define Class Mono Functional Lighting)
 ```
+
 In the verbose mode, the `uechosearch` prints all required read property data of the found objects as the following:
 
 ```
 $ uechosearch -v
-192.168.xxx.aa  (xxxxxxxxxx)
+192.168.xxx.bb  (xxxxxxxxxx)
 [0] 0EF001 (Node profile)
 [0] [0] 80 (Operating status) 30
 [0] [1] 82 (Version information) 010A0100
