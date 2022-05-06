@@ -26,23 +26,24 @@ print<<HEADER;
  ******************************************************************/
 
 #include <uecho/std/_database.h>
-#include <uecho/property.h>
 
 #define PROP_REQUIRED "required"
 #define PROP_MANDATORY "mandatory"
 #define PROP_OPTIONAL "optional"
 
-uEchoObject *uecho_standard_object_new(const char *name, int grp_code, int cls_code) {
-  uEchoObject *obj;
+uEchoObject* uecho_standard_object_new(const char* name, int grp_code, int cls_code)
+{
+  uEchoObject* obj;
   obj = uecho_object_new();
   uecho_object_setname(obj, name);
-  uecho_object_setclassgroupcode(obj, grp_code);
-  uecho_object_setclasscode(obj, cls_code);
+  obj->code[0] = grp_code;
+  obj->code[1] = cls_code;
   return obj;
 }
 
-uEchoProperty *uecho_standard_object_property_new(int epc, const char *name, const char *data_type, int data_size, const char *get_rule, const char *set_rule, const char *anno_rule) {
-  uEchoProperty *prop;
+uEchoProperty* uecho_standard_object_property_new(int epc, const char* name, const char* data_type, int data_size, const char* get_rule, const char* set_rule, const char* anno_rule)
+{
+  uEchoProperty* prop;
   uEchoPropertyAttr attr = uEchoPropertyAttrNone;
 
   prop = uecho_property_new();
@@ -66,8 +67,9 @@ uEchoProperty *uecho_standard_object_property_new(int epc, const char *name, con
   return prop;
 }
 
-void uecho_database_addstandardobjects(uEchoDatabase* db) {
-  uEchoObject *obj;
+void uecho_database_addstandardobjects(uEchoDatabase* db)
+{
+  uEchoObject* obj;
 
 HEADER
 
@@ -125,7 +127,6 @@ foreach my $device_json_file(@device_json_files){
    }
   printf("  uecho_database_addobject(db, obj);\n\n");
 }
-
 print<<FOTTER;
 }
 FOTTER
