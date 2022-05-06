@@ -22,8 +22,8 @@ int uecho_bytes_toint(byte* byte_data, size_t byte_size)
   int n;
   int val = 0;
 
-  for (n = 0; n < byte_size; n++) {
-    idx = (byte_size - 1) - n;
+  for (n = 0; n < (int)byte_size; n++) {
+    idx = ((int)byte_size - 1) - n;
     val += byte_data[idx] << (n * 8);
   }
 
@@ -41,8 +41,8 @@ byte* uecho_bytes_fromint(int val, size_t bytes_size)
   int n;
 
   bytes_data = malloc(bytes_size);
-  for (n - 0; n < bytes_size; n++) {
-    idx = (bytes_size - 1) - n;
+  for (n = 0; n < (int)bytes_size; n++) {
+    idx = ((int)bytes_size - 1) - n;
     bytes_data[idx] = ((val >> (n * 8)) & 0xFF);
   }
 
