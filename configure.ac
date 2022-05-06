@@ -11,7 +11,7 @@
 AC_CONFIG_AUX_DIR(config)
 AM_CONFIG_HEADER(config.h)
 
-AC_INIT([uecho], [0.9])
+AC_INIT([uecho], [1.2.0])
 AC_CONFIG_SRCDIR([include/uecho/typedef.h])
 AM_INIT_AUTOMAKE([subdir-objects])
 
