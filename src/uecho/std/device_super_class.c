@@ -21,7 +21,7 @@
 bool uecho_device_addmandatoryproperties(uEchoObject* obj)
 {
   uEchoDatabase* db;
-  uEchoObject *super_obj;
+  uEchoObject* super_obj;
 
   if (!obj)
     return false;
@@ -36,7 +36,7 @@ bool uecho_device_addmandatoryproperties(uEchoObject* obj)
 
   if (!uecho_object_addmissingobjectproperties(obj, super_obj))
     return false;
-  
+
   uecho_device_setoperatingstatus(obj, true);
   uecho_device_setfaultstatus(obj, false);
   uecho_device_setstandardversion(obj, uEchoDeviceVersionAppendixDefault);

@@ -65,7 +65,7 @@ void uecho_lighting_object_messagelitener(uEchoObject* obj, uEchoMessage* msg)
  * uecho_lighting_propertyrequesthandler
  ****************************************/
 
-bool uecho_lighting_propertyrequesthandler(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte *edt)
+bool uecho_lighting_propertyrequesthandler(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte* edt)
 {
   byte status;
 

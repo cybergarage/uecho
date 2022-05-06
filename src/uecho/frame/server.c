@@ -75,9 +75,9 @@ bool uecho_server_isboundaddress(uEchoServer* server, const char* addr)
 bool uecho_server_start(uEchoServer* server)
 {
   bool all_actions_succeeded = true;
-  uEchoMessageObserver *observer;
+  uEchoMessageObserver* observer;
   uEchoMessageHandler handler;
-  void *obj;
+  void* obj;
   uEchoUdpServer* udp_server;
   uEchoMcastServer* mcast_server;
 
@@ -106,7 +106,7 @@ bool uecho_server_start(uEchoServer* server)
       all_actions_succeeded &= uecho_mcast_server_addobserver(mcast_server, obj, handler);
     }
   }
-  
+
   all_actions_succeeded &= uecho_mcast_serverlist_start(server->mcast_servers);
   if (uecho_server_isudpserverenabled(server)) {
     all_actions_succeeded &= uecho_udp_serverlist_start(server->udp_servers);
@@ -115,7 +115,7 @@ bool uecho_server_start(uEchoServer* server)
   if (!all_actions_succeeded) {
     uecho_server_stop(server);
   }
-  
+
   return all_actions_succeeded;
 }
 
@@ -168,7 +168,7 @@ bool uecho_server_isrunning(uEchoServer* server)
  * uecho_server_postannounce
  ****************************************/
 
-const char * uecho_server_getaddress(uEchoServer* server)
+const char* uecho_server_getaddress(uEchoServer* server)
 {
   uEchoMcastServer* mcast_server;
 
@@ -231,8 +231,7 @@ bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg,
  * uecho_server_addobserver
  ****************************************/
 
-bool uecho_server_addobserver(uEchoServer* server, void *obj, uEchoMessageHandler handler)
+bool uecho_server_addobserver(uEchoServer* server, void* obj, uEchoMessageHandler handler)
 {
   return uecho_message_observer_manager_addobserver(server->msg_mgr, obj, handler);
 }
-

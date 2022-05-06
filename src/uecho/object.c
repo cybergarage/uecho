@@ -8,16 +8,16 @@
  *
  ******************************************************************/
 
-#include <uecho/_object.h>
 #include <uecho/_node.h>
+#include <uecho/_object.h>
 
-#include <uecho/frame/observer.h>
 #include <uecho/controller.h>
+#include <uecho/frame/observer.h>
 #include <uecho/misc.h>
 #include <uecho/node.h>
 #include <uecho/profile.h>
-#include <uecho/util/timer.h>
 #include <uecho/std/database.h>
+#include <uecho/util/timer.h>
 
 /****************************************
 * uecho_object_new
@@ -82,7 +82,7 @@ bool uecho_object_delete(uEchoObject* obj)
   if (obj->name) {
     uecho_string_delete(obj->name);
   }
-  
+
   uecho_object_clearpropertymapcaches(obj);
 
   if (obj->properties) {
@@ -137,7 +137,7 @@ uEchoNode* uecho_object_getparentnode(uEchoObject* obj)
  * uecho_object_setname
  ****************************************/
 
-void uecho_object_setname(uEchoObject* obj, const char *name)
+void uecho_object_setname(uEchoObject* obj, const char* name)
 {
   if (!obj)
     return;
@@ -149,7 +149,7 @@ void uecho_object_setname(uEchoObject* obj, const char *name)
  * uecho_object_getname
  ****************************************/
 
-const char *uecho_object_getname(uEchoObject* obj)
+const char* uecho_object_getname(uEchoObject* obj)
 {
   if (!obj)
     return NULL;
@@ -164,7 +164,7 @@ const char *uecho_object_getname(uEchoObject* obj)
 bool uecho_object_addstandardproperties(uEchoObject* obj)
 {
   uEchoDatabase* db;
-  uEchoObject *std_obj;
+  uEchoObject* std_obj;
 
   if (!obj)
     return false;
@@ -178,10 +178,10 @@ bool uecho_object_addstandardproperties(uEchoObject* obj)
     return false;
 
   uecho_object_setname(obj, uecho_object_getname(std_obj));
-  
+
   if (!uecho_object_addmissingobjectproperties(obj, std_obj))
     return false;
-  
+
   return true;
 }
 
@@ -197,7 +197,7 @@ void uecho_object_setcode(uEchoObject* obj, uEchoObjectCode val)
   obj->code[0] = (val & 0xFF0000) >> 16;
   obj->code[1] = (val & 0x00FF00) >> 8;
   obj->code[2] = (val & 0x0000FF);
-  
+
   uecho_object_addstandardproperties(obj);
 }
 
@@ -265,7 +265,7 @@ void uecho_object_setclasscode(uEchoObject* obj, byte val)
     return;
 
   obj->code[1] = val;
-  
+
   uecho_object_addstandardproperties(obj);
 }
 
@@ -373,7 +373,7 @@ bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, u
  * uecho_object_addproperty
  ****************************************/
 
-bool uecho_object_addproperty(uEchoObject* obj, uEchoProperty *prop)
+bool uecho_object_addproperty(uEchoObject* obj, uEchoProperty* prop)
 {
   if (!obj || !prop)
     return false;
@@ -715,8 +715,8 @@ bool uecho_object_announcemessage(uEchoObject* obj, uEchoMessage* msg)
 
 bool uecho_object_sendmessage(uEchoObject* obj, uEchoMessage* msg)
 {
-  uEchoNode *obj_node;
-  uEchoController *ctrl;
+  uEchoNode* obj_node;
+  uEchoController* ctrl;
 
   if (!obj || !msg)
     return false;
@@ -747,7 +747,7 @@ bool uecho_object_addmissingobjectproperties(uEchoObject* obj, uEchoObject* src_
 
   for (src_prop = uecho_object_getproperties(src_obj); src_prop; src_prop = uecho_property_next(src_prop)) {
     if (uecho_object_hasproperty(obj, uecho_property_getcode(src_prop)))
-        continue;
+      continue;
     copy_prop = uecho_property_copy(src_prop);
     if (!copy_prop)
       return false;

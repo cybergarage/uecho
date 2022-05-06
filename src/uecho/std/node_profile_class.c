@@ -46,7 +46,7 @@ bool uecho_nodeprofile_addmandatoryproperties(uEchoObject* obj)
     return false;
 
   uEchoDatabase* db;
-  uEchoObject *super_obj;
+  uEchoObject* super_obj;
 
   if (!obj)
     return false;
@@ -61,7 +61,7 @@ bool uecho_nodeprofile_addmandatoryproperties(uEchoObject* obj)
 
   if (!uecho_object_addmissingobjectproperties(obj, super_obj))
     return false;
-  
+
   uecho_nodeprofile_setoperatingstatus(obj, true);
   uecho_nodeprofile_setversion(obj, uEchoSupportedMajorVersion, uEchoSupportedMinorVersion);
   uecho_nodeprofile_setdefaultid(obj);
@@ -126,12 +126,12 @@ bool uecho_nodeprofile_setdefaultid(uEchoObject* obj)
   byte man_code[uEchoNodeProfileClassIdentificationManufacturerCodeLen];
   byte uniq_id[uEchoNodeProfileClassIdentificationUniqueIdLen];
   size_t n;
-  
-  for (n=0; n<sizeof(man_code); n++) {
+
+  for (n = 0; n < sizeof(man_code); n++) {
     man_code[n] = (byte)(rand() & 0xFF);
   }
 
-  for (n=0; n<sizeof(uniq_id); n++) {
+  for (n = 0; n < sizeof(uniq_id); n++) {
     uniq_id[n] = (byte)(rand() & 0xFF);
   }
 

@@ -10,15 +10,16 @@
  *
  ******************************************************************/
 
-#include <uecho/std/_database.h>
 #include <uecho/property.h>
+#include <uecho/std/_database.h>
 
 #define PROP_REQUIRED "required"
 #define PROP_MANDATORY "mandatory"
 #define PROP_OPTIONAL "optional"
 
-uEchoObject *uecho_standard_object_new(const char *name, int grp_code, int cls_code) {
-  uEchoObject *obj;
+uEchoObject* uecho_standard_object_new(const char* name, int grp_code, int cls_code)
+{
+  uEchoObject* obj;
   obj = uecho_object_new();
   uecho_object_setname(obj, name);
   obj->code[0] = grp_code;
@@ -26,8 +27,9 @@ uEchoObject *uecho_standard_object_new(const char *name, int grp_code, int cls_c
   return obj;
 }
 
-uEchoProperty *uecho_standard_object_property_new(int epc, const char *name, const char *data_type, int data_size, const char *get_rule, const char *set_rule, const char *anno_rule) {
-  uEchoProperty *prop;
+uEchoProperty* uecho_standard_object_property_new(int epc, const char* name, const char* data_type, int data_size, const char* get_rule, const char* set_rule, const char* anno_rule)
+{
+  uEchoProperty* prop;
   uEchoPropertyAttr attr = uEchoPropertyAttrNone;
 
   prop = uecho_property_new();
@@ -51,8 +53,9 @@ uEchoProperty *uecho_standard_object_property_new(int epc, const char *name, con
   return prop;
 }
 
-void uecho_database_addstandardobjects(uEchoDatabase* db) {
-  uEchoObject *obj;
+void uecho_database_addstandardobjects(uEchoDatabase* db)
+{
+  uEchoObject* obj;
 
   // Super class (0x0000)
   obj = uecho_standard_object_new("Super class", 0x00, 0x00);
@@ -1003,5 +1006,4 @@ void uecho_database_addstandardobjects(uEchoDatabase* db) {
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xEC, "Historical data of measured cumulative amounts of electric energy 2 (normal and reverse directions)", "", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xED, "Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved 2", "", 0, "optional", "optional", "optional"));
   uecho_database_addobject(db, obj);
-
 }

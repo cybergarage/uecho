@@ -55,7 +55,7 @@ bool uecho_udp_server_delete(uEchoUdpServer* server)
  * uecho_udp_server_getaddress
  ****************************************/
 
-const char * uecho_udp_server_getaddress(uEchoUdpServer* server)
+const char* uecho_udp_server_getaddress(uEchoUdpServer* server)
 {
   if (!server->socket)
     return "";
@@ -127,7 +127,7 @@ bool uecho_udp_server_isopened(uEchoUdpServer* server)
  * uecho_udp_server_addobserver
  ****************************************/
 
-bool uecho_udp_server_addobserver(uEchoUdpServer* server, void *obj, uEchoMessageHandler handler)
+bool uecho_udp_server_addobserver(uEchoUdpServer* server, void* obj, uEchoMessageHandler handler)
 {
   return uecho_message_observer_manager_addobserver(server->msg_mgr, obj, handler);
 }
@@ -173,7 +173,8 @@ static void uecho_udp_server_action(uEchoThread* thread)
 
     if (uecho_message_parsepacket(msg, dgm_pkt)) {
       uecho_message_observer_manager_perform(server->msg_mgr, msg);
-    } else {
+    }
+    else {
       uecho_net_datagram_packet_error(UECHO_LOG_NET_PREFIX_RECV, dgm_pkt);
     }
 

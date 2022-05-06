@@ -21,8 +21,8 @@ extern "C" {
 * Function
 ****************************************/
 
-int uecho_bytes_toint(byte *byte_data, size_t byte_size);
-byte *uecho_bytes_fromint(int val, size_t bytes_size);
+int uecho_bytes_toint(byte* byte_data, size_t byte_size);
+byte* uecho_bytes_fromint(int val, size_t bytes_size);
 
 #ifdef __cplusplus
 }

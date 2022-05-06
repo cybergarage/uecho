@@ -32,7 +32,7 @@ extern "C" {
 typedef struct UEchoObject {
   UECHO_LIST_STRUCT_MEMBERS
 
-  uEchoString *name;
+  uEchoString* name;
   byte code[3];
   uEchoPropertyList* properties;
 

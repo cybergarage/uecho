@@ -316,7 +316,7 @@ void uecho_property_remove(uEchoProperty* prop)
  * uecho_property_setname
  ****************************************/
 
-void uecho_property_setname(uEchoProperty* prop, const char *name)
+void uecho_property_setname(uEchoProperty* prop, const char* name)
 {
   if (!prop)
     return;
@@ -327,7 +327,7 @@ void uecho_property_setname(uEchoProperty* prop, const char *name)
  * uecho_property_getname
  ****************************************/
 
-const char *uecho_property_getname(uEchoProperty* prop)
+const char* uecho_property_getname(uEchoProperty* prop)
 {
   if (!prop)
     return NULL;
@@ -590,7 +590,7 @@ bool uecho_property_announce(uEchoProperty* prop)
 
   if (!prop)
     return false;
-  
+
   node = uecho_property_getnode(prop);
   if (!node)
     return false;

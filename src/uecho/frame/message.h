@@ -11,9 +11,9 @@
 #ifndef _UECHO_MESSAGE_OBSERVER_H_
 #define _UECHO_MESSAGE_OBSERVER_H_
 
+#include <uecho/_message.h>
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
-#include <uecho/_message.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -27,7 +27,7 @@ typedef void (*uEchoMessageHandler)(void*, uEchoMessage*);
 
 typedef struct {
   UECHO_LIST_STRUCT_MEMBERS
-  void *object;
+  void* object;
   uEchoMessageHandler handler;
 } uEchoMessageObserver, uEchoMessageObserverList;
 
@@ -44,10 +44,10 @@ void uecho_message_observer_delete(uEchoMessageObserver* obs);
 #define uecho_message_observer_next(obs) (uEchoMessageObserver*)uecho_list_next((uEchoList*)obs)
 #define uecho_message_observer_remove(obs) uecho_list_remove((uEchoList*)obs)
 
-void uecho_message_observer_setobject(uEchoMessageObserver* obs, void*obj);
+void uecho_message_observer_setobject(uEchoMessageObserver* obs, void* obj);
 void uecho_message_observer_sethandler(uEchoMessageObserver* obs, uEchoMessageHandler handler);
 
-void *uecho_message_observer_getobjcet(uEchoMessageObserver* obs);
+void* uecho_message_observer_getobjcet(uEchoMessageObserver* obs);
 uEchoMessageHandler uecho_message_observer_gethandler(uEchoMessageObserver* obs);
 
 /****************************************
@@ -71,7 +71,7 @@ void uecho_message_observer_manager_delete(uEchoMessageObserverManager* mgr);
 
 #define uecho_message_observer_manager_getobservers(mgr) uecho_message_observerlist_gets(mgr->observers)
 
-bool uecho_message_observer_manager_addobserver(uEchoMessageObserverManager* mgr, void *obj, uEchoMessageHandler handler);
+bool uecho_message_observer_manager_addobserver(uEchoMessageObserverManager* mgr, void* obj, uEchoMessageHandler handler);
 bool uecho_message_observer_manager_perform(uEchoMessageObserverManager* mgr, uEchoMessage* msg);
 
 #ifdef __cplusplus

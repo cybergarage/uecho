@@ -26,7 +26,7 @@ extern "C" {
  ****************************************/
 
 #define UECHO_PROPERTY_DATA_STRUCT_MEMBERS \
-  uEchoString *name;                       \
+  uEchoString* name;                       \
   byte code;                               \
   int attr;                                \
   byte* data;                              \
@@ -64,7 +64,7 @@ bool uecho_property_announce(uEchoProperty* prop);
 uEchoPropertyList* uecho_propertylist_new(void);
 void uecho_propertylist_delete(uEchoPropertyList* props);
 
-bool uecho_propertylist_add(uEchoPropertyList* props, uEchoProperty *prop);
+bool uecho_propertylist_add(uEchoPropertyList* props, uEchoProperty* prop);
 bool uecho_propertylist_set(uEchoPropertyList* props, uEchoPropertyCode code, uEchoPropertyAttr attr, byte* data, size_t data_len);
 bool uecho_propertylist_setdata(uEchoPropertyList* props, uEchoPropertyCode code, byte* data, size_t data_len);
 bool uecho_propertylist_setintegerdata(uEchoPropertyList* props, uEchoPropertyCode code, int data, size_t data_len);

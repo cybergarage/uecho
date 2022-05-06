@@ -43,7 +43,7 @@ void uecho_test_object_messagelitener(uEchoObject* obj, uEchoMessage* msg)
 #endif
 }
 
-bool uecho_test_property_requesthandler(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte *edt)
+bool uecho_test_property_requesthandler(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte* edt)
 {
   byte status;
 
@@ -58,7 +58,7 @@ bool uecho_test_property_requesthandler(uEchoObject* obj, uEchoProperty* prop, u
     return false;
 
   status = edt[0];
-  
+
 #if defined(UECHO_TEST_VERBOSE)
   switch (status) {
   case UECHO_TEST_PROPERTY_SWITCH_ON:
