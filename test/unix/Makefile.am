@@ -19,6 +19,7 @@ uechotest_SOURCES = \
 	../MessageTest.cpp \
 	../NodeListTest.cpp \
 	../ObserverTest.cpp \
+	../BytesTest.cpp \
 	../NodeTest.cpp \
 	../TestDevice.cpp \
 	../PropertyListTest.cpp \
