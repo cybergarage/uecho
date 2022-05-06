@@ -8,9 +8,10 @@
  *
  ******************************************************************/
 
-#include <uecho/controller.h>
+#include <uecho/node.h>
 
 #import "CGEchoNode.h"
+#import "CGEchoObject.h"
 
 @implementation CGEchoNode
 
@@ -36,6 +37,18 @@
   if (!addr)
     return nil;
   return [NSString stringWithUTF8String:addr];
+}
+
+- (NSArray*)objects;
+{
+  if (!cObject)
+    return [NSArray array];
+  NSMutableArray* objs = [NSMutableArray array];
+  for (uEchoNode* cObj = uecho_node_getobjects(cObject); cObj; cObj = uecho_object_next(cObj)) {
+    CGEchoObject* obj = [[CGEchoObject alloc] initWithCObject:cObj];
+    [objs addObject:obj];
+  }
+  return objs;
 }
 
 @end

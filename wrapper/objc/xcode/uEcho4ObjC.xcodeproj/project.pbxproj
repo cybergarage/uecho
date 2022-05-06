@@ -13,7 +13,7 @@
 		21403F31282168FE00DB7B22 /* CGEchoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21403F2C282168FE00DB7B22 /* CGEchoController.m */; };
 		21403F3428216A1B00DB7B22 /* CGEchoNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 21403F3228216A1A00DB7B22 /* CGEchoNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21403F3528216A1B00DB7B22 /* CGEchoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 21403F3328216A1A00DB7B22 /* CGEchoNode.m */; };
-		219F952A2825855C00F28636 /* CGEchoObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 219F95282825855B00F28636 /* CGEchoObject.h */; };
+		219F952A2825855C00F28636 /* CGEchoObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 219F95282825855B00F28636 /* CGEchoObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		219F952B2825855C00F28636 /* CGEchoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 219F95292825855C00F28636 /* CGEchoObject.m */; };
 		21C807232821341A00E33B1C /* uEchoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C807222821341A00E33B1C /* uEchoTests.m */; };
 		21D5B6672820156A0034B6AB /* libuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D5B6662820153C0034B6AB /* libuecho.a */; };

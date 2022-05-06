@@ -16,3 +16,4 @@ FOUNDATION_EXPORT const unsigned char uechoVersionString[];
 
 #import <CGEcho/CGEchoController.h>
 #import <CGEcho/CGEchoNode.h>
+#import <CGEcho/CGEchoObject.h>
