@@ -7,9 +7,7 @@ var __controller_8h =
     [ "uecho_controller_disableoption", "__controller_8h.html#abc02140438118e4e9ab0aa4bdb94ec1b", null ],
     [ "uecho_controller_disableudpserver", "__controller_8h.html#a48b8f4a7bc6c78e3261f33b972f6a8d6", null ],
     [ "uecho_controller_enableoption", "__controller_8h.html#a90d33caf985fe58e6202acce3a29b5ea", null ],
-    [ "uecho_controller_getlasttid", "__controller_8h.html#ab7a6213a87bc9adb697f02ab636409c0", null ],
     [ "uecho_controller_getmessagelistener", "__controller_8h.html#afdff0baaeeab83df05836ac0507ad8f1", null ],
-    [ "uecho_controller_getnexttid", "__controller_8h.html#ab79cc7ddbd125bca61f728d7bea6f699", null ],
     [ "uecho_controller_getobjectbycode", "__controller_8h.html#a963065ea27424b4104c76c82744a1643", null ],
     [ "uecho_controller_getobjectbycodewithwait", "__controller_8h.html#acb1aa0c3415f2139a179fd3059d8fb37", null ],
     [ "uecho_controller_getpostrequestmessage", "__controller_8h.html#a87dae2bec907e3d49c65f3bf40a4bb1f", null ],
@@ -24,7 +22,6 @@ var __controller_8h =
     [ "uecho_controller_searchobjectwithesv", "__controller_8h.html#a3e47fa97531a7d3220cc97c3a9a84624", null ],
     [ "uecho_controller_searchwithesv", "__controller_8h.html#a387ed28a5191cb46d441fc92e58f2a53", null ],
     [ "uecho_controller_servermessagelistener", "__controller_8h.html#a83ad557437329c82361f1fdf325fd636", null ],
-    [ "uecho_controller_setlasttid", "__controller_8h.html#ab26f71af681fa303bcb7960483ff47a2", null ],
     [ "uecho_controller_setpostrequestmessage", "__controller_8h.html#a366acf16ee4bdd98f3ea902be91a1621", null ],
     [ "uecho_controller_setpostresponsemessage", "__controller_8h.html#a9fe0d96292d3428d868d00853a6a62ac", null ],
     [ "uecho_node_setcontroller", "__controller_8h.html#a3c718c268326d7b77d78e0b62bf6fc98", null ]
