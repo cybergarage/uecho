@@ -67,7 +67,7 @@ void uecho_log_output(int severity, const char* file, int line_n, const char* fu
 
   if (log_level < severity)
     return;
-  
+
   ts = time(NULL);
   localts = localtime(&ts);
 

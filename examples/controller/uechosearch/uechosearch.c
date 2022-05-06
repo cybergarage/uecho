@@ -14,7 +14,7 @@
 #include <uecho/uecho.h>
 
 const int SEARCH_WAIT_MTIME = 2000;
-const char *UNKNOWN_STRING = "?";
+const char* unknown_string = "?";
 
 void usage()
 {
@@ -23,7 +23,7 @@ void usage()
   printf(" -h : Print this message\n");
 }
 
-uEchoMessage *create_readpropertymessagebycode(int obj_code, byte prop_code)
+uEchoMessage* create_readpropertymessagebycode(int obj_code, byte prop_code)
 {
   uEchoMessage* msg;
   msg = uecho_message_new();
@@ -33,29 +33,27 @@ uEchoMessage *create_readpropertymessagebycode(int obj_code, byte prop_code)
   return msg;
 }
 
-uEchoMessage *create_readpropertymessage(uEchoProperty* prop)
+uEchoMessage* create_readpropertymessage(uEchoProperty* prop)
 {
   return create_readpropertymessagebycode(
-    uecho_object_getcode(uecho_property_getparentobject(prop)),
-    uecho_property_getcode(prop)
-  );
+      uecho_object_getcode(uecho_property_getparentobject(prop)),
+      uecho_property_getcode(prop));
 }
 
-uEchoMessage *create_readmanufacturecodemessage()
+uEchoMessage* create_readmanufacturecodemessage()
 {
   return create_readpropertymessagebycode(
-    0x0EF001,
-    0x8A
-  );
+      0x0EF001,
+      0x8A);
 }
 
-const char *get_nodemanufacturename(uEchoController *ctrl, uEchoDatabase* db, uEchoNode *node)
+const char* get_nodemanufacturename(uEchoController* ctrl, uEchoDatabase* db, uEchoNode* node)
 {
   uEchoMessage* req_msg;
   uEchoMessage* res_msg;
   uEchoProperty* res_prop;
-  uEchoManufacture *manufacture;
-  const char *manufacture_name;
+  uEchoManufacture* manufacture;
+  const char* manufacture_name;
   int manufacture_code;
 
   manufacture_name = NULL;
@@ -90,8 +88,8 @@ void print_founddevices(uEchoController* ctrl, bool verbose)
   int prop_no;
   int res_prop_no;
   int n;
-  const char *manufacture_name;
-  byte *res_prop_bytes;
+  const char* manufacture_name;
+  byte* res_prop_bytes;
 
   db = uecho_standard_getdatabase();
 
@@ -108,11 +106,11 @@ void print_founddevices(uEchoController* ctrl, bool verbose)
     }
 
     manufacture_name = get_nodemanufacturename(ctrl, db, node);
-    printf("%-15s (%s)\n", uecho_node_getaddress(node), (manufacture_name ? manufacture_name : UNKNOWN_STRING));
+    printf("%-15s (%s)\n", uecho_node_getaddress(node), (manufacture_name ? manufacture_name : unknown_string));
 
     obj_no = 0;
     for (obj = uecho_node_getobjects(node); obj; obj = uecho_object_next(obj)) {
-      printf("[%d] %06X (%s)\n", obj_no, uecho_object_getcode(obj), (uecho_object_getname(obj) ? uecho_object_getname(obj) : UNKNOWN_STRING));
+      printf("[%d] %06X (%s)\n", obj_no, uecho_object_getcode(obj), (uecho_object_getname(obj) ? uecho_object_getname(obj) : unknown_string));
       prop_no = 0;
       for (prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
         if (uecho_property_isreadrequired(prop)) {
@@ -120,12 +118,12 @@ void print_founddevices(uEchoController* ctrl, bool verbose)
           res_msg = uecho_message_new();
           printf("[%d] [%d] %02X (%s) ", obj_no, prop_no, uecho_property_getcode(prop), uecho_property_getname(prop));
           if (uecho_controller_postmessage(ctrl, node, req_msg, res_msg)) {
-            for (res_prop_no=0; res_prop_no<uecho_message_getopc(res_msg); res_prop_no++) {
+            for (res_prop_no = 0; res_prop_no < uecho_message_getopc(res_msg); res_prop_no++) {
               res_prop = uecho_message_getproperty(res_msg, res_prop_no);
               if (!res_prop)
                 continue;
               res_prop_bytes = uecho_property_getdata(res_prop);
-              for (n=0; n<uecho_property_getdatasize(res_prop); n++) {
+              for (n = 0; n < uecho_property_getdatasize(res_prop); n++) {
                 printf("%02X", res_prop_bytes[n]);
               }
             }

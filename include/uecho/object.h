@@ -11,10 +11,10 @@
 #ifndef _UECHO_OBJECT_H_
 #define _UECHO_OBJECT_H_
 
-#include <uecho/typedef.h>
+#include <uecho/manufacture.h>
 #include <uecho/message.h>
 #include <uecho/property.h>
-#include <uecho/manufacture.h>
+#include <uecho/typedef.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -46,7 +46,7 @@ typedef void uEchoObject;
 #endif
 
 typedef void (*uEchoObjectMessageListener)(uEchoObject*, uEchoMessage*);
-typedef bool (*uEchoPropertyRequestHandler)(uEchoObject*, uEchoProperty*, uEchoEsv, size_t, byte *);
+typedef bool (*uEchoPropertyRequestHandler)(uEchoObject*, uEchoProperty*, uEchoEsv, size_t, byte*);
 
 /****************************************
  * Function (Object)
@@ -56,8 +56,8 @@ uEchoObject* uecho_object_new(void);
 bool uecho_object_delete(uEchoObject* obj);
 uEchoObject* uecho_object_next(uEchoObject* obj);
 
-void uecho_object_setname(uEchoObject* obj, const char *name);
-const char *uecho_object_getname(uEchoObject* obj);
+void uecho_object_setname(uEchoObject* obj, const char* name);
+const char* uecho_object_getname(uEchoObject* obj);
 
 void uecho_object_setcode(uEchoObject* obj, uEchoObjectCode code);
 uEchoObjectCode uecho_object_getcode(uEchoObject* obj);
@@ -79,7 +79,7 @@ byte uecho_object_getinstancecode(uEchoObject* obj);
 bool uecho_object_isdevice(uEchoObject* obj);
 bool uecho_object_isprofile(uEchoObject* obj);
 
-bool uecho_object_addproperty(uEchoObject* obj, uEchoProperty *prop);
+bool uecho_object_addproperty(uEchoObject* obj, uEchoProperty* prop);
 bool uecho_object_setproperty(uEchoObject* obj, uEchoPropertyCode code, uEchoPropertyAttr attr);
 bool uecho_object_setpropertydata(uEchoObject* obj, uEchoPropertyCode code, byte* data, size_t data_len);
 bool uecho_object_setpropertyintegerdata(uEchoObject* obj, uEchoPropertyCode code, int data, size_t data_len);

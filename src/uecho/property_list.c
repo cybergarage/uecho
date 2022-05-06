@@ -89,10 +89,10 @@ uEchoProperty* uecho_propertylist_getbycode(uEchoPropertyList* props, uEchoPrope
  * uecho_propertylist_add
  ****************************************/
 
-bool uecho_propertylist_add(uEchoPropertyList* props, uEchoProperty *prop)
+bool uecho_propertylist_add(uEchoPropertyList* props, uEchoProperty* prop)
 {
   uEchoProperty* added_prop;
-  
+
   if (!props || !prop)
     return false;
 

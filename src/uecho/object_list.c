@@ -47,7 +47,7 @@ void uecho_objectlist_delete(uEchoObjectList* objs)
 
 uEchoObject* uecho_objectlist_getbycode(uEchoObjectList* objs, uEchoObjectCode code)
 {
-  
+
   uEchoObject* obj;
 
   if (!objs)

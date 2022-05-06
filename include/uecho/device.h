@@ -46,7 +46,6 @@ enum {
   uEchoDeviceVersionAppendixDefault = uEchoDeviceVersionAppendixN,
 };
 
-
 typedef enum {
   uEchoDeviceOperatingStatus = 0x80,
   uEchoDeviceInstallationLocation = 0x81,

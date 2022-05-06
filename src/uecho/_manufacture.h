@@ -27,7 +27,7 @@ typedef struct UEchoManufacture {
   UECHO_LIST_STRUCT_MEMBERS
 
   int code;
-  uEchoString *name;
+  uEchoString* name;
 } uEchoManufacture, uEchoManufactureList;
 
 /****************************************

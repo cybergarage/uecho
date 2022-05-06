@@ -11,9 +11,9 @@
 #ifndef _UECHO_STD_DATABASE_H_
 #define _UECHO_STD_DATABASE_H_
 
-#include <uecho/typedef.h>
 #include <uecho/manufacture.h>
 #include <uecho/object.h>
+#include <uecho/typedef.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -34,11 +34,11 @@ typedef void uEchoDatabase;
 uEchoDatabase* uecho_database_new(void);
 bool uecho_database_delete(uEchoDatabase* db);
 
-bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture *man);
-bool uecho_database_addobject(uEchoDatabase* db, uEchoObject *obj);
+bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture* man);
+bool uecho_database_addobject(uEchoDatabase* db, uEchoObject* obj);
 
-uEchoManufacture *uecho_database_getmanufacture(uEchoDatabase* db, uEchoManufactureCode code);
-uEchoObject *uecho_database_getobject(uEchoDatabase* db, byte grp_code, byte cls_code);
+uEchoManufacture* uecho_database_getmanufacture(uEchoDatabase* db, uEchoManufactureCode code);
+uEchoObject* uecho_database_getobject(uEchoDatabase* db, byte grp_code, byte cls_code);
 
 uEchoDatabase* uecho_standard_getdatabase(void);
 

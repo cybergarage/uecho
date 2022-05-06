@@ -11,12 +11,12 @@
 #ifndef _UECHO_SERVER_H_
 #define _UECHO_SERVER_H_
 
+#include <uecho/frame/observer.h>
+#include <uecho/frame/option.h>
+#include <uecho/net/socket.h>
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
 #include <uecho/util/thread.h>
-#include <uecho/net/socket.h>
-#include <uecho/frame/option.h>
-#include <uecho/frame/observer.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -76,7 +76,7 @@ bool uecho_server_start(uEchoServer* server);
 bool uecho_server_stop(uEchoServer* server);
 bool uecho_server_isrunning(uEchoServer* server);
 
-const char * uecho_server_getaddress(uEchoServer* server);
+const char* uecho_server_getaddress(uEchoServer* server);
 
 bool uecho_server_postannounce(uEchoServer* server, byte* msg, size_t msg_len);
 bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg, size_t msg_len);
@@ -87,7 +87,7 @@ bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg,
 
 bool uecho_server_isboundaddress(uEchoServer* server, const char* addr);
 
-bool uecho_server_addobserver(uEchoServer* server, void *obj, uEchoMessageHandler handler);
+bool uecho_server_addobserver(uEchoServer* server, void* obj, uEchoMessageHandler handler);
 
 // UDP Server
 
@@ -102,14 +102,14 @@ bool uecho_udp_server_delete(uEchoUdpServer* server);
 bool uecho_udp_server_open(uEchoUdpServer* server, const char* bind_addr);
 bool uecho_udp_server_close(uEchoUdpServer* server);
 
-const char * uecho_udp_server_getaddress(uEchoUdpServer* server);
+const char* uecho_udp_server_getaddress(uEchoUdpServer* server);
 bool uecho_udp_serverlist_sendto(uEchoUdpServerList* servers, const char* addr, byte* msg, size_t msg_len);
 
 bool uecho_udp_server_start(uEchoUdpServer* server);
 bool uecho_udp_server_stop(uEchoUdpServer* server);
 bool uecho_udp_server_isrunning(uEchoUdpServer* server);
 
-bool uecho_udp_server_addobserver(uEchoUdpServer* server, void *obj, uEchoMessageHandler handler);
+bool uecho_udp_server_addobserver(uEchoUdpServer* server, void* obj, uEchoMessageHandler handler);
 
 // Multicast Server
 
@@ -125,7 +125,7 @@ bool uecho_mcast_server_open(uEchoMcastServer* server, const char* bind_addr);
 bool uecho_mcast_server_close(uEchoMcastServer* server);
 bool uecho_mcast_server_isopened(uEchoMcastServer* server);
 
-const char * uecho_mcast_server_getaddress(uEchoMcastServer* server);
+const char* uecho_mcast_server_getaddress(uEchoMcastServer* server);
 
 bool uecho_mcast_server_start(uEchoMcastServer* server);
 bool uecho_mcast_server_stop(uEchoMcastServer* server);
@@ -133,7 +133,7 @@ bool uecho_mcast_server_isrunning(uEchoMcastServer* server);
 
 bool uecho_mcast_server_post(uEchoMcastServer* server, const byte* msg, size_t msg_len);
 
-bool uecho_mcast_server_addobserver(uEchoMcastServer* server, void *obj, uEchoMessageHandler handler);
+bool uecho_mcast_server_addobserver(uEchoMcastServer* server, void* obj, uEchoMessageHandler handler);
 
 /****************************************
  * Function (ServerList)

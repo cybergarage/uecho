@@ -10,8 +10,8 @@
 
 #include <uecho/net/interface.h>
 #include <uecho/net/socket.h>
-#include <uecho/util/timer.h>
 #include <uecho/util/logs.h>
+#include <uecho/util/timer.h>
 
 #include <string.h>
 
@@ -613,7 +613,7 @@ ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgm_pkt)
   uecho_net_socket_debug(UECHO_LOG_NET_PREFIX_RECV, remote_addr, local_addr, recv_buf, recv_len);
 
   free(local_addr);
-  
+
   return recv_len;
 }
 

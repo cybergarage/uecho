@@ -46,7 +46,7 @@ void uecho_message_observer_delete(uEchoMessageObserver* obs)
  * uecho_message_observer_setobject
  ****************************************/
 
-void uecho_message_observer_setobject(uEchoMessageObserver* obs, void *obj)
+void uecho_message_observer_setobject(uEchoMessageObserver* obs, void* obj)
 {
   obs->object = obj;
 }
@@ -55,7 +55,7 @@ void uecho_message_observer_setobject(uEchoMessageObserver* obs, void *obj)
  * uecho_message_observer_getobjcet
  ****************************************/
 
-void *uecho_message_observer_getobjcet(uEchoMessageObserver* obs)
+void* uecho_message_observer_getobjcet(uEchoMessageObserver* obs)
 {
   return obs->object;
 }

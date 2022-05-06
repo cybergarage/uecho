@@ -39,8 +39,8 @@ void uecho_manufacture_setcode(uEchoManufacture* man, uEchoManufactureCode code)
 uEchoManufactureCode uecho_manufacture_getcode(uEchoManufacture* man);
 bool uecho_manufacture_iscode(uEchoManufacture* man, uEchoManufactureCode code);
 
-void uecho_manufacture_setname(uEchoManufacture* man, const char *name);
-const char *uecho_manufacture_getname(uEchoManufacture* man);
+void uecho_manufacture_setname(uEchoManufacture* man, const char* name);
+const char* uecho_manufacture_getname(uEchoManufacture* man);
 
 #ifdef __cplusplus
 } /* extern C */

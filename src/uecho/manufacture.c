@@ -65,7 +65,7 @@ void uecho_manufacture_setcode(uEchoManufacture* man, uEchoManufactureCode val)
 {
   if (!man)
     return;
-  man ->code = val;
+  man->code = val;
 }
 
 /****************************************
@@ -94,7 +94,7 @@ bool uecho_manufacture_iscode(uEchoManufacture* man, uEchoManufactureCode code)
  * uecho_manufacture_setname
  ****************************************/
 
-void uecho_manufacture_setname(uEchoManufacture* man, const char * val)
+void uecho_manufacture_setname(uEchoManufacture* man, const char* val)
 {
   if (!man)
     return;
@@ -105,7 +105,7 @@ void uecho_manufacture_setname(uEchoManufacture* man, const char * val)
  * uecho_manufacture_getname
  ****************************************/
 
-const char *uecho_manufacture_getname(uEchoManufacture* man)
+const char* uecho_manufacture_getname(uEchoManufacture* man)
 {
   if (!man)
     return NULL;

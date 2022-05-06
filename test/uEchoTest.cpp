@@ -17,11 +17,13 @@
 #include <uecho/util/log.h>
 
 struct uEchoFixture {
-  uEchoFixture() {
+  uEchoFixture()
+  {
     uecho_log_setlevel(UECHO_LOG_DEBUG);
   }
-  ~uEchoFixture() {
+  ~uEchoFixture()
+  {
   }
 };
 
-BOOST_GLOBAL_FIXTURE( uEchoFixture );
+BOOST_GLOBAL_FIXTURE(uEchoFixture);

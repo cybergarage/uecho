@@ -11,9 +11,9 @@
 #ifndef _UECHO_PROPERTY_OBSERVER_H_
 #define _UECHO_PROPERTY_OBSERVER_H_
 
+#include <uecho/_object.h>
 #include <uecho/typedef.h>
 #include <uecho/util/list.h>
-#include <uecho/_object.h>
 
 #ifdef __cplusplus
 extern "C" {

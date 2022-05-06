@@ -30,7 +30,7 @@ uEchoNode* uecho_node_new(void)
   uecho_list_node_init((uEchoList*)node);
 
   node->mutex = uecho_mutex_new();
-  
+
   node->controller = NULL;
   node->classes = uecho_classlist_new();
   node->objects = uecho_objectlist_new();
@@ -527,7 +527,7 @@ bool uecho_node_announceproperty(uEchoNode* node, uEchoObject* obj, uEchoPropert
 
   if (!node || !obj || !prop)
     return false;
-  
+
   msg = uecho_message_new();
   if (!msg)
     return false;
