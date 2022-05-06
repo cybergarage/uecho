@@ -21,6 +21,7 @@ void usage()
   printf("Usage : uechodump [options]\n");
   printf(" -n : Disable unicast server\n");
   printf(" -h : Print this message\n");
+  printf(" -d : Enable debug output\n");
 }
 
 void key_usage()
@@ -56,17 +57,22 @@ void uecho_print_multicastmessages(uEchoController* ctrl, uEchoMessage* msg)
 int main(int argc, char* argv[])
 {
   bool nobind_mode;
+  bool debug_mode;
   uEchoController* ctrl;
   int c, key;
 
   // Parse options
 
   nobind_mode = false;
+  debug_mode = false;
 
-  while ((c = getopt(argc, argv, "nh")) != -1) {
+  while ((c = getopt(argc, argv, "nhd")) != -1) {
     switch (c) {
     case 'n': {
       nobind_mode = true;
+    } break;
+    case 'd': {
+      debug_mode = true;
     } break;
     case 'h': {
       usage();
@@ -81,6 +87,12 @@ int main(int argc, char* argv[])
 
   argc -= optind;
   argv += optind;
+
+  // Debug mode
+
+  if (debug_mode) {
+    uecho_log_setlevel(UECHO_LOG_DEBUG);
+  }
 
   // Start controller
 
