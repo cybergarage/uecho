@@ -11,9 +11,7 @@
 #import <Foundation/NSArray.h>
 #import <Foundation/NSString.h>
 
-#if !defined(_UECHO_OBJECT_H_)
 typedef void uEchoObject;
-#endif
 
 @interface CGEchoObject : NSObject {
 }

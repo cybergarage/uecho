@@ -10,6 +10,8 @@
 
 #import "CGEchoMessage.h"
 
+#include <uecho/message.h>
+
 @implementation CGEchoMessage
 
 @synthesize cObject;

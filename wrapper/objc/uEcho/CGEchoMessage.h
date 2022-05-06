@@ -11,7 +11,7 @@
 #import <Foundation/NSArray.h>
 #import <Foundation/NSString.h>
 
-#include <uecho/message.h>
+typedef void uEchoMessage;
 
 @interface CGEchoMessage : NSObject {
 }
