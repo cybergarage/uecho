@@ -13,7 +13,8 @@
 
 #include <uecho/uecho.h>
 
-const int UECHO_TEST_SEARCH_WAIT_MTIME = 2000;
+const int SEARCH_WAIT_MTIME = 2000;
+const char *UNKNOWN_STRING = "?";
 
 void usage()
 {
@@ -40,8 +41,45 @@ uEchoMessage *create_readpropertymessage(uEchoProperty* prop)
   );
 }
 
+uEchoMessage *create_readmanufacturecodemessage()
+{
+  return create_readpropertymessagebycode(
+    0x0EF001,
+    0x8A
+  );
+}
+
+const char *get_nodemanufacturename(uEchoController *ctrl, uEchoDatabase* db, uEchoNode *node)
+{
+  uEchoMessage* req_msg;
+  uEchoMessage* res_msg;
+  uEchoProperty* res_prop;
+  uEchoManufacture *manufacture;
+  const char *manufacture_name;
+  int manufacture_code;
+
+  manufacture_name = NULL;
+  req_msg = create_readmanufacturecodemessage();
+  res_msg = uecho_message_new();
+  if (uecho_controller_postmessage(ctrl, node, req_msg, res_msg) && (uecho_message_getopc(res_msg) == 1)) {
+    res_prop = uecho_message_getproperty(res_msg, 0);
+    if (res_prop) {
+      manufacture_code = uecho_bytes_toint(uecho_property_getdata(res_prop), uecho_property_getdatasize(res_prop));
+      manufacture = uecho_database_getmanufacture(db, manufacture_code);
+      if (manufacture) {
+        manufacture_name = uecho_manufacture_getname(manufacture);
+      }
+    }
+  }
+  uecho_message_delete(req_msg);
+  uecho_message_delete(res_msg);
+
+  return manufacture_name;
+}
+
 void print_founddevices(uEchoController* ctrl, bool verbose)
 {
+  uEchoDatabase* db;
   uEchoNode* node;
   uEchoObject* obj;
   uEchoProperty* prop;
@@ -52,13 +90,14 @@ void print_founddevices(uEchoController* ctrl, bool verbose)
   int prop_no;
   int res_prop_no;
   int n;
-  byte *res_prop_bytes;
   const char *manufacture_name;
+  byte *res_prop_bytes;
+
+  db = uecho_standard_getdatabase();
 
   for (node = uecho_controller_getnodes(ctrl); node; node = uecho_node_next(node)) {
-    printf("%-15s ", uecho_node_getaddress(node));
-
     if (!verbose) {
+      printf("%-15s ", uecho_node_getaddress(node));
       obj_no = 0;
       for (obj = uecho_node_getobjects(node); obj; obj = uecho_object_next(obj)) {
         printf("[%d] %06X ", obj_no, uecho_object_getcode(obj));
@@ -68,11 +107,12 @@ void print_founddevices(uEchoController* ctrl, bool verbose)
       continue;
     }
 
-    printf("\n");
+    manufacture_name = get_nodemanufacturename(ctrl, db, node);
+    printf("%-15s (%s)\n", uecho_node_getaddress(node), (manufacture_name ? manufacture_name : UNKNOWN_STRING));
+
     obj_no = 0;
     for (obj = uecho_node_getobjects(node); obj; obj = uecho_object_next(obj)) {
-      printf("[%d] %06X (%s)\n", obj_no, uecho_object_getcode(obj), uecho_object_getname(obj));
-
+      printf("[%d] %06X (%s)\n", obj_no, uecho_object_getcode(obj), (uecho_object_getname(obj) ? uecho_object_getname(obj) : UNKNOWN_STRING));
       prop_no = 0;
       for (prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
         if (uecho_property_isreadrequired(prop)) {
@@ -98,6 +138,9 @@ void print_founddevices(uEchoController* ctrl, bool verbose)
       }
       obj_no++;
     }
+
+    if (uecho_node_next(node))
+      printf("\n");
   }
 }
 
@@ -141,7 +184,7 @@ int main(int argc, char* argv[])
     return EXIT_FAILURE;
 
   uecho_controller_search(ctrl);
-  uecho_sleep(UECHO_TEST_SEARCH_WAIT_MTIME);
+  uecho_sleep(SEARCH_WAIT_MTIME);
 
   found_node_cnt = uecho_controller_getnodecount(ctrl);
   if (0 < found_node_cnt) {
