@@ -19,8 +19,8 @@ void usage()
 {
   printf("Usage : uechopost [options] <address> <obj> <esv> <property (epc, pdc, edt) ...>\n");
   printf(" -v : Enable verbose output\n");
-  printf(" -n : Disable unicast server\n");
   printf(" -h : Print this message\n");
+  printf(" -d : Enable debug output\n");
 }
 
 void uechopost_print_messages(uEchoController* ctrl, uEchoMessage* msg)
@@ -85,6 +85,7 @@ void uechopost_controlpoint_listener(uEchoController* ctrl, uEchoMessage* msg)
 int main(int argc, char* argv[])
 {
   bool verbose_mode;
+  bool debug_mode;
   uEchoController* ctrl;
   uEchoNode* dst_node;
   char* dst_node_addr;
@@ -105,10 +106,13 @@ int main(int argc, char* argv[])
 
   verbose_mode = false;
 
-  while ((c = getopt(argc, argv, "vh")) != -1) {
+  while ((c = getopt(argc, argv, "vhd")) != -1) {
     switch (c) {
     case 'v': {
       verbose_mode = true;
+    } break;
+    case 'd': {
+      debug_mode = true;
     } break;
     case 'h': {
       usage();
@@ -127,6 +131,12 @@ int main(int argc, char* argv[])
   if (argc < 4) {
     usage();
     return EXIT_FAILURE;
+  }
+
+  // Debug mode
+
+  if (debug_mode) {
+    uecho_log_setlevel(UECHO_LOG_DEBUG);
   }
 
   // Start controller
