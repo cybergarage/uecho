@@ -22,4 +22,5 @@ typedef void uEchoNode;
 @property (assign) uEchoNode* cObject;
 - (id)initWithCObject:(uEchoNode*)cobj;
 - (NSString*)address;
+- (NSArray*)objects;
 @end
