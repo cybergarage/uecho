@@ -11,6 +11,7 @@
 uechoheaders = \
 	./uecho/property.h \
 	./uecho/util/log.h \
+	./uecho/util/bytes.h \
 	./uecho/util/timer.h \
 	./uecho/esv.h \
 	./uecho/manufacture.h \

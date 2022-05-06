@@ -25,5 +25,6 @@
 
 #include <uecho/util/log.h>
 #include <uecho/util/timer.h>
+#include <uecho/util/bytes.h>
 
 #endif /* _UECHO_UECHO_H_ */

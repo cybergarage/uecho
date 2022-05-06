@@ -110,16 +110,17 @@ CONFIG_CLEAN_VPATH_FILES =
 am__dirstamp = $(am__leading_dot)dirstamp
 am_uechotest_OBJECTS = ../MessageTest.$(OBJEXT) \
 	../NodeListTest.$(OBJEXT) ../ObserverTest.$(OBJEXT) \
-	../NodeTest.$(OBJEXT) ../TestDevice.$(OBJEXT) \
-	../PropertyListTest.$(OBJEXT) ../ThreadTest.$(OBJEXT) \
-	../PropertyTest.$(OBJEXT) ../ClassTest.$(OBJEXT) \
-	../MutexTest.$(OBJEXT) ../ClassListTest.$(OBJEXT) \
-	../ControllerTest.$(OBJEXT) ../SocketTest.$(OBJEXT) \
-	../InterfaceTest.$(OBJEXT) ../ObjectListTest.$(OBJEXT) \
-	../DatabaseTest.$(OBJEXT) ../LogTest.$(OBJEXT) \
-	../DeviceTest.$(OBJEXT) ../uEchoTest.$(OBJEXT) \
-	../MiscTest.$(OBJEXT) ../ProfileTest.$(OBJEXT) \
-	../ObjectTest.$(OBJEXT) ../ServerTest.$(OBJEXT)
+	../BytesTest.$(OBJEXT) ../NodeTest.$(OBJEXT) \
+	../TestDevice.$(OBJEXT) ../PropertyListTest.$(OBJEXT) \
+	../ThreadTest.$(OBJEXT) ../PropertyTest.$(OBJEXT) \
+	../ClassTest.$(OBJEXT) ../MutexTest.$(OBJEXT) \
+	../ClassListTest.$(OBJEXT) ../ControllerTest.$(OBJEXT) \
+	../SocketTest.$(OBJEXT) ../InterfaceTest.$(OBJEXT) \
+	../ObjectListTest.$(OBJEXT) ../DatabaseTest.$(OBJEXT) \
+	../LogTest.$(OBJEXT) ../DeviceTest.$(OBJEXT) \
+	../uEchoTest.$(OBJEXT) ../MiscTest.$(OBJEXT) \
+	../ProfileTest.$(OBJEXT) ../ObjectTest.$(OBJEXT) \
+	../ServerTest.$(OBJEXT)
 uechotest_OBJECTS = $(am_uechotest_OBJECTS)
 uechotest_DEPENDENCIES = ../../lib/unix/libuecho.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -137,18 +138,19 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ../$(DEPDIR)/ClassListTest.Po \
-	../$(DEPDIR)/ClassTest.Po ../$(DEPDIR)/ControllerTest.Po \
-	../$(DEPDIR)/DatabaseTest.Po ../$(DEPDIR)/DeviceTest.Po \
-	../$(DEPDIR)/InterfaceTest.Po ../$(DEPDIR)/LogTest.Po \
-	../$(DEPDIR)/MessageTest.Po ../$(DEPDIR)/MiscTest.Po \
-	../$(DEPDIR)/MutexTest.Po ../$(DEPDIR)/NodeListTest.Po \
-	../$(DEPDIR)/NodeTest.Po ../$(DEPDIR)/ObjectListTest.Po \
-	../$(DEPDIR)/ObjectTest.Po ../$(DEPDIR)/ObserverTest.Po \
-	../$(DEPDIR)/ProfileTest.Po ../$(DEPDIR)/PropertyListTest.Po \
-	../$(DEPDIR)/PropertyTest.Po ../$(DEPDIR)/ServerTest.Po \
-	../$(DEPDIR)/SocketTest.Po ../$(DEPDIR)/TestDevice.Po \
-	../$(DEPDIR)/ThreadTest.Po ../$(DEPDIR)/uEchoTest.Po
+am__depfiles_remade = ../$(DEPDIR)/BytesTest.Po \
+	../$(DEPDIR)/ClassListTest.Po ../$(DEPDIR)/ClassTest.Po \
+	../$(DEPDIR)/ControllerTest.Po ../$(DEPDIR)/DatabaseTest.Po \
+	../$(DEPDIR)/DeviceTest.Po ../$(DEPDIR)/InterfaceTest.Po \
+	../$(DEPDIR)/LogTest.Po ../$(DEPDIR)/MessageTest.Po \
+	../$(DEPDIR)/MiscTest.Po ../$(DEPDIR)/MutexTest.Po \
+	../$(DEPDIR)/NodeListTest.Po ../$(DEPDIR)/NodeTest.Po \
+	../$(DEPDIR)/ObjectListTest.Po ../$(DEPDIR)/ObjectTest.Po \
+	../$(DEPDIR)/ObserverTest.Po ../$(DEPDIR)/ProfileTest.Po \
+	../$(DEPDIR)/PropertyListTest.Po ../$(DEPDIR)/PropertyTest.Po \
+	../$(DEPDIR)/ServerTest.Po ../$(DEPDIR)/SocketTest.Po \
+	../$(DEPDIR)/TestDevice.Po ../$(DEPDIR)/ThreadTest.Po \
+	../$(DEPDIR)/uEchoTest.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -494,6 +496,7 @@ uechotest_SOURCES = \
 	../MessageTest.cpp \
 	../NodeListTest.cpp \
 	../ObserverTest.cpp \
+	../BytesTest.cpp \
 	../NodeTest.cpp \
 	../TestDevice.cpp \
 	../PropertyListTest.cpp \
@@ -568,6 +571,8 @@ clean-checkPROGRAMS:
 	../$(DEPDIR)/$(am__dirstamp)
 ../ObserverTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
+../BytesTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
 ../NodeTest.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
 ../TestDevice.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
@@ -617,6 +622,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/BytesTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ClassListTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ClassTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ControllerTest.Po@am__quote@ # am--include-marker
@@ -957,7 +963,8 @@ clean: clean-am
 clean-am: clean-checkPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ../$(DEPDIR)/ClassListTest.Po
+		-rm -f ../$(DEPDIR)/BytesTest.Po
+	-rm -f ../$(DEPDIR)/ClassListTest.Po
 	-rm -f ../$(DEPDIR)/ClassTest.Po
 	-rm -f ../$(DEPDIR)/ControllerTest.Po
 	-rm -f ../$(DEPDIR)/DatabaseTest.Po
@@ -1025,7 +1032,8 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ../$(DEPDIR)/ClassListTest.Po
+		-rm -f ../$(DEPDIR)/BytesTest.Po
+	-rm -f ../$(DEPDIR)/ClassListTest.Po
 	-rm -f ../$(DEPDIR)/ClassTest.Po
 	-rm -f ../$(DEPDIR)/ControllerTest.Po
 	-rm -f ../$(DEPDIR)/DatabaseTest.Po
