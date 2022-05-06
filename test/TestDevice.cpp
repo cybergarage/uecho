@@ -45,9 +45,9 @@ void uecho_test_object_messagelitener(uEchoObject* obj, uEchoMessage* msg)
 
 bool uecho_test_property_requesthandler(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte* edt)
 {
+#if defined(UECHO_TEST_VERBOSE)
   byte status;
 
-#if defined(UECHO_TEST_VERBOSE)
   printf("%02X %02X (%d)\n",
       esv,
       uecho_property_getcode(prop),
@@ -57,9 +57,8 @@ bool uecho_test_property_requesthandler(uEchoObject* obj, uEchoProperty* prop, u
   if (pdc != 1)
     return false;
 
-  status = edt[0];
-
 #if defined(UECHO_TEST_VERBOSE)
+  status = edt[0];
   switch (status) {
   case UECHO_TEST_PROPERTY_SWITCH_ON:
     printf("POWER = %02X\n", status);
