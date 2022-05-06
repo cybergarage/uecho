@@ -25,6 +25,27 @@ $ uechosearch
 192.168.xxx.bb 0F2001  --> (User definition Class)
 192.168.xxx.bb 029101  --> (Mono Functional Lighting)
 ```
+In the verbose mode, the `uechosearch` prints all required read property data of the found objects as the following:
+
+```
+$ uechosearch -v
+192.168.xxx.aa  (xxxxxxxxxx)
+[0] 0EF001 (Node profile)
+[0] [0] 80 (Operating status) 30
+[0] [1] 82 (Version information) 010A0100
+[0] [2] 83 (Identification number) FE00000B00000EF00100C08FFFFE5E20D3
+[0] [5] 8A (Manufacturer code) 00000B
+[0] [10] 9D (Status change announcement property map) 0480D5F0FA
+[0] [11] 9E (Set property map) 09F1F2F4F5F6F7F8F9FF
+[0] [12] 9F (Get property map) 19818081A1A080A0A08080018081820202
+[0] [14] D3 (Number of self-node instances) 000002
+[0] [15] D4 (Number of self-node classes) 0003
+[0] [17] D6 (Self-node instance list S) 020F2001029101
+[0] [18] D7 (Self-node class list S) 020F200291
+[1] 0F2001 (?)
+[2] 029101 (Mono functional lighting)
+[2] [0] 80 (Operation status) 30
+```
 
 ## uechopost
 
