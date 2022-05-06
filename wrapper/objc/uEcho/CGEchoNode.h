@@ -8,8 +8,8 @@
  *
  ******************************************************************/
 
-#import <Foundation/NSString.h>
 #import <Foundation/NSArray.h>
+#import <Foundation/NSString.h>
 
 #import "CGEchoNode.h"
 

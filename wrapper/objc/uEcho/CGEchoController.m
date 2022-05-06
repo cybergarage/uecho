@@ -23,7 +23,7 @@
     return nil;
   cObject = uecho_controller_new();
   if (!cObject) {
-      self = nil;
+    self = nil;
   }
   return self;
 }
@@ -40,7 +40,7 @@
   if (!cObject)
     return [NSArray array];
   NSMutableArray* nodes = [NSMutableArray array];
-  for (uEchoNode *cNode = uecho_controller_getnodes(cObject); cNode; cNode = uecho_node_next(cNode)) {
+  for (uEchoNode* cNode = uecho_controller_getnodes(cObject); cNode; cNode = uecho_node_next(cNode)) {
     CGEchoNode* node = [[CGEchoNode alloc] initWithCObject:cNode];
     [nodes addObject:node];
   }
