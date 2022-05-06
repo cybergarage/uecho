@@ -71,7 +71,7 @@ void uecho_log_output(int severity, const char* file, int line_n, const char* fu
   ts = time(NULL);
   localts = localtime(&ts);
 
-  strftime(ts_prefix, MAX_LOG_BUF, "%c", localts);
+  strftime(ts_prefix, MAX_LOG_BUF, "%F %T", localts);
 
   prefix_len = snprintf(msg, MAX_LOG_BUF, "%s : %s ", ts_prefix, uecho_log_type2string(severity));
 
