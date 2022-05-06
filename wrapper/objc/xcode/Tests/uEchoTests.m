@@ -27,9 +27,15 @@
   CGEchoController* ctrl = [[CGEchoController alloc] init];
 
   XCTAssertTrue([ctrl start]);
+  XCTAssertTrue([ctrl search]);
+
+  sleep(2);
 
   for (CGEchoNode* node in [ctrl nodes]) {
     XCTAssertTrue(node);
+    NSString* addr = [node address];
+    XCTAssertNotNil(addr);
+    XCTAssertGreaterThan([addr length], 0);
   }
 
   XCTAssertTrue([ctrl stop]);

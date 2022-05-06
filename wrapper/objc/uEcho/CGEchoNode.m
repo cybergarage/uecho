@@ -28,4 +28,14 @@
 {
 }
 
+- (NSString*)address
+{
+  if (!cObject)
+    return nil;
+  const char* addr = uecho_node_getaddress(cObject);
+  if (!addr)
+    return nil;
+  return [NSString stringWithUTF8String:addr];
+}
+
 @end
