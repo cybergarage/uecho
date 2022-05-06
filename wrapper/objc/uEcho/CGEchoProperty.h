@@ -11,9 +11,7 @@
 #import <Foundation/NSArray.h>
 #import <Foundation/NSString.h>
 
-#if !defined(_UECHO_PROPERTY_INTERNAL_H_)
-typedef void uEchoProperty;
-#endif
+#include <uecho/property.h>
 
 @interface CGEchoProperty : NSObject {
 }

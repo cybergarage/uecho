@@ -8,8 +8,6 @@
  *
  ******************************************************************/
 
-#include <uecho/property.h>
-
 #import "CGEchoProperty.h"
 
 @implementation CGEchoProperty
