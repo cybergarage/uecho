@@ -38,6 +38,9 @@
     XCTAssertGreaterThan([addr length], 0);
     for (CGEchoObject* obj in [node objects]) {
       XCTAssertTrue(obj);
+      for (CGEchoProperty* prop in [obj properties]) {
+        XCTAssertTrue(prop);
+      }
     }
   }
 

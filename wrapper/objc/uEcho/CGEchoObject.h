@@ -17,4 +17,5 @@ typedef void uEchoObject;
 }
 @property (assign) uEchoObject* cObject;
 - (id)initWithCObject:(uEchoObject*)cobj;
+- (NSArray*)properties;
 @end
