@@ -105,6 +105,7 @@ int main(int argc, char* argv[])
   // Parse options
 
   verbose_mode = false;
+  debug_mode = false;
 
   while ((c = getopt(argc, argv, "vhd")) != -1) {
     switch (c) {
