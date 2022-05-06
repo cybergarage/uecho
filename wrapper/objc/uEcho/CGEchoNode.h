@@ -13,9 +13,7 @@
 
 #import "CGEchoNode.h"
 
-#if !defined(_UECHO_NODE_H_)
 typedef void uEchoNode;
-#endif
 
 @interface CGEchoNode : NSObject {
 }

@@ -10,6 +10,8 @@
 
 #import "CGEchoProperty.h"
 
+#include <uecho/property.h>
+
 @implementation CGEchoProperty
 
 @synthesize cObject;

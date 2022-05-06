@@ -8,9 +8,9 @@
  *
  ******************************************************************/
 
-#include <uecho/object.h>
-
 #import "CGEchoObject.h"
+
+#include <uecho/object.h>
 
 @implementation CGEchoObject
 

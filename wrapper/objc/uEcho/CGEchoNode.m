@@ -8,10 +8,10 @@
  *
  ******************************************************************/
 
-#include <uecho/node.h>
-
 #import "CGEchoNode.h"
 #import "CGEchoObject.h"
+
+#include <uecho/node.h>
 
 @implementation CGEchoNode
 
