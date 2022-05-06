@@ -15,6 +15,7 @@
 
 #include <uecho/_manufacture.h>
 #include <uecho/_object.h>
+#include <uecho/_property.h>
 
 #ifdef __cplusplus
 extern "C" {

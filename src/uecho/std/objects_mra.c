@@ -10,7 +10,6 @@
  *
  ******************************************************************/
 
-#include <uecho/property.h>
 #include <uecho/std/_database.h>
 
 #define PROP_REQUIRED "required"
