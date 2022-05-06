@@ -11,6 +11,8 @@
 #import "CGEchoController.h"
 #import "CGEchoNode.h"
 
+#include <uecho/controller.h>
+
 @implementation CGEchoController
 
 @synthesize cObject;
