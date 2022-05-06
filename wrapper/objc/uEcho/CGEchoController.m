@@ -8,8 +8,6 @@
  *
  ******************************************************************/
 
-#include <uecho/controller.h>
-
 #import "CGEchoController.h"
 #import "CGEchoNode.h"
 
