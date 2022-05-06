@@ -11,9 +11,7 @@
 #import <Foundation/NSArray.h>
 #import <Foundation/NSString.h>
 
-#if !defined(_UECHO_CONTROLLER_H_)
-typedef void uEchoController;
-#endif
+#include <uecho/controller.h>
 
 @interface CGEchoController : NSObject {
 }
