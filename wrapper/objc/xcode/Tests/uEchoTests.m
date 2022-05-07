@@ -66,4 +66,10 @@
   }
 }
 
+- (void)testMessage
+{
+  CGEchoMessage* msg = [[CGEchoMessage alloc] init];
+  XCTAssertNotNil(msg);
+}
+
 @end
