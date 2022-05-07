@@ -18,7 +18,6 @@
 }
 
 @synthesize cObject;
-
 - (id)init
 {
   if ((self = [super init]) == nil)
