@@ -41,6 +41,16 @@
   return props;
 }
 
+- (NSString*)name
+{
+  if (!cObject)
+    return nil;
+  const char* name = uecho_object_getname(cObject);
+  if (!name)
+    return nil;
+  return [NSString stringWithUTF8String:name];
+}
+
 - (int)code
 {
   if (!cObject)
