@@ -11,6 +11,10 @@
 #import <Foundation/NSArray.h>
 #import <Foundation/NSString.h>
 
+#import <CGEcho/CGEchoMessage.h>
+#import <CGEcho/CGEchoNode.h>
+#import <CGEcho/CGEchoObject.h>
+
 @interface CGEchoController : NSObject {
 }
 - (id)init;
@@ -18,4 +22,5 @@
 - (BOOL)start;
 - (BOOL)stop;
 - (BOOL)search;
+- (CGEchoMessage*)postMessage:(CGEchoNode*)node object:(CGEchoObject*)object message:(CGEchoMessage*)message;
 @end

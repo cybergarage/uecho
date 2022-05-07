@@ -68,4 +68,22 @@
   return YES;
 }
 
+- (CGEchoMessage*)postMessage:(CGEchoNode*)node object:(CGEchoObject*)obj message:(CGEchoMessage*)msg
+{
+  if (!cObject)
+    return nil;
+
+  uEchoMessage* res_msg = uecho_message_new();
+  if (!res_msg)
+    return nil;
+
+  msg.destination = obj.code;
+  if (!uecho_controller_postmessage(cObject, node.cObject, msg.cObject, res_msg)) {
+    uecho_message_delete(res_msg);
+    return nil;
+  }
+
+  return [[CGEchoMessage alloc] initWithCObject:res_msg];
+}
+
 @end
