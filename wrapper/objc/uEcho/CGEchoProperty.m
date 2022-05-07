@@ -92,4 +92,25 @@
   return uecho_property_getdata(cObject);
 }
 
+- (BOOL)isReadRequired
+{
+  if (!cObject)
+    return NO;
+  return uecho_property_isreadrequired(cObject);
+}
+
+- (BOOL)isWriteRequired
+{
+  if (!cObject)
+    return NO;
+  return uecho_property_iswriterequired(cObject);
+}
+
+- (BOOL)isAnnoRequired
+{
+  if (!cObject)
+    return NO;
+  return uecho_property_isannouncerequired(cObject);
+}
+
 @end
