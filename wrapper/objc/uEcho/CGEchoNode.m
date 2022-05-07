@@ -13,9 +13,9 @@
 
 #include <uecho/node.h>
 
-@implementation CGEchoNode
-
-@synthesize cObject;
+@implementation CGEchoNode {
+  uEchoNode* cObject;
+}
 
 - (id)initWithCObject:(uEchoNode*)cobj
 {
