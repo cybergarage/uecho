@@ -25,4 +25,7 @@ typedef void uEchoProperty;
 - (Byte)code;
 - (Byte*)data;
 - (size_t)size;
+- (BOOL)isReadRequired;
+- (BOOL)isWriteRequired;
+- (BOOL)isAnnoRequired;
 @end
