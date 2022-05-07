@@ -19,4 +19,5 @@ typedef void uEchoObject;
 - (NSArray*)properties;
 - (NSString*)name;
 - (int)code;
+- (Byte)group;
 @end
