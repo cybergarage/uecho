@@ -80,9 +80,6 @@
   msg.ESV = CGEchoESVReadRequest;
   XCTAssertEqual(msg.ESV, CGEchoESVReadRequest);
 
-  msg.destination = 0x029101;
-  XCTAssertEqual(msg.destination, 0x029101);
-
   XCTAssertTrue([msg addProperty:0x8A data:nil size:0]);
   XCTAssertEqual(msg.properties.count, 1);
   XCTAssertEqual(((CGEchoProperty*)msg.properties[0]).code, 0x8A);

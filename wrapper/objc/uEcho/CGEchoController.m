@@ -80,7 +80,7 @@
   if (!cObject)
     return NO;
 
-  msg.destination = obj.code;
+  uecho_message_setdestinationobjectcode(msg.cObject, obj.code);
   return uecho_controller_sendmessage(cObject, node.cObject, msg.cObject);
 }
 
@@ -93,7 +93,7 @@
   if (!res_msg)
     return nil;
 
-  msg.destination = obj.code;
+  uecho_message_setdestinationobjectcode(msg.cObject, obj.code);
   if (!uecho_controller_postmessage(cObject, node.cObject, msg.cObject, res_msg)) {
     uecho_message_delete(res_msg);
     return nil;
