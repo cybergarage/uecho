@@ -45,6 +45,16 @@
   }
 }
 
+- (NSString*)name
+{
+  if (!cObject)
+    return nil;
+  const char* name = uecho_property_getname(cObject);
+  if (!name)
+    return nil;
+  return [NSString stringWithUTF8String:name];
+}
+
 - (BOOL)setCode:(Byte)code
 {
   if (!cObject)

@@ -19,6 +19,7 @@ typedef void uEchoProperty;
 }
 - (id)init;
 - (id)initWithCObject:(uEchoProperty*)cobj;
+- (NSString*)name;
 - (BOOL)setCode:(Byte)code;
 - (BOOL)setData:(Byte*)data size:(size_t)size;
 - (Byte)code;
