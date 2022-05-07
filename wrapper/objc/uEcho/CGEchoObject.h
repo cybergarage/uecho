@@ -21,4 +21,5 @@ typedef void uEchoObject;
 - (int)code;
 - (Byte)group;
 - (Byte)class;
+- (Byte)instance;
 @end

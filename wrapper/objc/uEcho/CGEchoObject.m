@@ -72,4 +72,11 @@
   return uecho_object_getclasscode(cObject);
 }
 
+- (Byte)instance
+{
+  if (!cObject)
+    return 0;
+  return uecho_object_getinstancecode(cObject);
+}
+
 @end
