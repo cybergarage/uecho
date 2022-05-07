@@ -14,4 +14,5 @@
 @interface CGEchoDatabase : NSObject {
 }
 - (id)init;
+- (NSString*)findManufactureName:(int)code;
 @end

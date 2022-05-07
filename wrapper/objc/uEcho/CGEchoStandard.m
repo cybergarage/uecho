@@ -28,4 +28,14 @@
 {
 }
 
+- (NSString*)findManufactureName:(int)code
+{
+  if (!cObject)
+    return nil;
+  uEchoManufacture* man = uecho_database_getmanufacture(cObject, code);
+  if (!man)
+    return nil;
+  return [NSString stringWithUTF8String:uecho_manufacture_getname(man)];
+}
+
 @end
