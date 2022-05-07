@@ -82,6 +82,18 @@
 
   msg.destination = 0x029101;
   XCTAssertEqual(msg.destination, 0x029101);
+
+  XCTAssertTrue([msg addProperty:0x8A data:nil size:0]);
+  XCTAssertEqual(msg.properties.count, 1);
+  XCTAssertEqual(((CGEchoProperty*)msg.properties[0]).code, 0x8A);
+
+  XCTAssertTrue([msg addGetProperty:0x8B data:nil size:0]);
+  XCTAssertEqual(msg.getproperties.count, 1);
+  XCTAssertEqual(((CGEchoProperty*)msg.getproperties[0]).code, 0x8B);
+
+  XCTAssertTrue([msg addSetProperty:0x8C data:nil size:0]);
+  XCTAssertEqual(msg.setproperties.count, 1);
+  XCTAssertEqual(((CGEchoProperty*)msg.setproperties[0]).code, 0x8C);
 }
 
 @end
