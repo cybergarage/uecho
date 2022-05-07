@@ -40,7 +40,7 @@
 
 - (void)dealloc
 {
-  if (isWeakObject) {
+  if (!isWeakObject) {
     uecho_property_delete(cObject);
   }
 }
