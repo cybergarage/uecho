@@ -38,7 +38,7 @@
 
 - (void)dealloc
 {
-  if (isWeakObject) {
+  if (!isWeakObject) {
     uecho_message_delete(cObject);
   }
 }
@@ -113,6 +113,27 @@
   if (!cObject)
     return 0;
   return uecho_message_getdestinationobjectcode(cObject);
+}
+
+- (BOOL)addProperty:(Byte)code data:(Byte*)data size:(size_t)size
+{
+  if (!cObject)
+    return 0;
+  return uecho_message_setproperty(cObject, code, data, size);
+}
+
+- (BOOL)addGetProperty:(Byte)code data:(Byte*)data size:(size_t)size
+{
+  if (!cObject)
+    return 0;
+  return uecho_message_setpropertyget(cObject, code, data, size);
+}
+
+- (BOOL)addSetProperty:(Byte)code data:(Byte*)data size:(size_t)size
+{
+  if (!cObject)
+    return 0;
+  return uecho_message_setpropertyset(cObject, code, data, size);
 }
 
 @end
