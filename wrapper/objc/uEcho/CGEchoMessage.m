@@ -14,9 +14,10 @@
 #include <uecho/message.h>
 
 @implementation CGEchoMessage {
-  uEchoMessage* cObject;
   BOOL isWeakObject;
 }
+
+@synthesize cObject;
 
 - (id)init
 {
