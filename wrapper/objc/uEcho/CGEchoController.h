@@ -22,5 +22,6 @@
 - (BOOL)start;
 - (BOOL)stop;
 - (BOOL)search;
-- (CGEchoMessage*)postMessage:(CGEchoNode*)node object:(CGEchoObject*)object message:(CGEchoMessage*)message;
+- (BOOL)sendMessage:(CGEchoNode*)node object:(CGEchoObject*)obj message:(CGEchoMessage*)msg;
+- (CGEchoMessage*)postMessage:(CGEchoNode*)node object:(CGEchoObject*)obj message:(CGEchoMessage*)msg;
 @end
