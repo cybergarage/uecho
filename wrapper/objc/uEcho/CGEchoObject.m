@@ -13,9 +13,9 @@
 
 #include <uecho/object.h>
 
-@implementation CGEchoObject
-
-@synthesize cObject;
+@implementation CGEchoObject {
+  uEchoObject* cObject;
+}
 
 - (id)initWithCObject:(uEchoObject*)cobj
 {
