@@ -22,6 +22,9 @@
   if ((self = [super init]) == nil)
     return nil;
   cObject = uecho_property_new();
+  if (!cObject) {
+    self = nil;
+  }
   isWeakObject = NO;
   return self;
 }
