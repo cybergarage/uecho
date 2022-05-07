@@ -68,6 +68,13 @@
   return YES;
 }
 
+- (BOOL)announceMessage:(CGEchoNode*)node message:(CGEchoMessage*)msg
+{
+  if (!cObject)
+    return NO;
+  return uecho_controller_announcemessage(cObject, msg.cObject);
+}
+
 - (BOOL)sendMessage:(CGEchoNode*)node object:(CGEchoObject*)obj message:(CGEchoMessage*)msg
 {
   if (!cObject)
