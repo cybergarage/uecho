@@ -22,6 +22,12 @@
 {
 }
 
+- (void)testDatabase
+{
+  CGEchoDatabase* db = [[CGEchoDatabase alloc] init];
+  XCTAssertNotNil(db);
+}
+
 - (void)testController
 {
   CGEchoController* ctrl = [[CGEchoController alloc] init];
