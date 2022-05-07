@@ -44,8 +44,6 @@ typedef void uEchoMessage;
 - (NSArray*)getproperties;
 - (BOOL)setESV:(CGEchoESV)esv;
 - (CGEchoESV)ESV;
-- (BOOL)setDestination:(int)code;
-- (int)destination;
 - (BOOL)addProperty:(Byte)code data:(Byte*)data size:(size_t)size;
 - (BOOL)addGetProperty:(Byte)code data:(Byte*)data size:(size_t)size;
 - (BOOL)addSetProperty:(Byte)code data:(Byte*)data size:(size_t)size;
