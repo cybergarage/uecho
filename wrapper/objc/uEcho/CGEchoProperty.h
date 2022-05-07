@@ -11,6 +11,8 @@
 #import <Foundation/NSArray.h>
 #import <Foundation/NSString.h>
 
+#import <stdio.h>
+
 typedef void uEchoProperty;
 
 @interface CGEchoProperty : NSObject {
@@ -18,7 +20,7 @@ typedef void uEchoProperty;
 - (id)init;
 - (id)initWithCObject:(uEchoProperty*)cobj;
 - (BOOL)setCode:(Byte)code;
-- (BOOL)setData:(Byte*)data size_t:data_size;
+- (BOOL)setData:(Byte*)data size:(size_t)size;
 - (Byte)code;
 - (Byte*)data;
 - (size_t)size;

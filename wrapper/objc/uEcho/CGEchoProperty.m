@@ -50,11 +50,11 @@
   return YES;
 }
 
-- (BOOL)setData:(Byte*)data size_t:data_size
+- (BOOL)setData:(Byte*)data size:(size_t)size;
 {
   if (!cObject)
     return NO;
-  uecho_property_setdata(cObject, (const byte* )data, data_size);
+  uecho_property_setdata(cObject, (const byte*)data, size);
   return YES;
 }
 
