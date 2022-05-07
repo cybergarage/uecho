@@ -55,7 +55,14 @@
 {
   if (!cObject)
     return 0;
-  return uecho_property_getcode(cObject);
+  return uecho_object_getcode(cObject);
+}
+
+- (Byte)group
+{
+  if (!cObject)
+    return 0;
+  return uecho_object_getgroupcode(cObject);
 }
 
 @end
