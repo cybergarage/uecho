@@ -36,6 +36,7 @@ typedef void uEchoMessage;
 
 @interface CGEchoMessage : NSObject {
 }
+@property (assign) uEchoMessage* cObject;
 - (id)init;
 - (id)initWithCObject:(uEchoMessage*)cobj;
 - (NSArray*)properties;
