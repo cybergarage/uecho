@@ -100,4 +100,19 @@
   return uecho_message_getesv(cObject);
 }
 
+- (BOOL)setDestination:(int)code
+{
+  if (!cObject)
+    return NO;
+  uecho_message_setdestinationobjectcode(cObject, code);
+  return YES;
+}
+
+- (int)destination
+{
+  if (!cObject)
+    return 0;
+  return uecho_message_getdestinationobjectcode(cObject);
+}
+
 @end

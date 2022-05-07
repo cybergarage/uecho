@@ -79,6 +79,9 @@
 
   msg.ESV = CGEchoESVReadRequest;
   XCTAssertEqual(msg.ESV, CGEchoESVReadRequest);
+
+  msg.destination = 0x029101;
+  XCTAssertEqual(msg.destination, 0x029101);
 }
 
 @end

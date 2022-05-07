@@ -43,4 +43,6 @@ typedef NS_ENUM(Byte, CGEchoESV) {
 - (NSArray*)getproperties;
 - (BOOL)setESV:(CGEchoESV)esv;
 - (CGEchoESV)ESV;
+- (BOOL)setDestination:(int)code;
+- (int)destination;
 @end
