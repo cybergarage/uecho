@@ -57,6 +57,13 @@
 
   prop.code = 0xFF;
   XCTAssertEqual(prop.code, 0xFF);
+
+  Byte data[] = { 0x01, 0x02 };
+  [prop setData:data size:2];
+  XCTAssertEqual(prop.size, 2);
+  for (int n = 0; n < prop.size; n++) {
+    XCTAssertEqual(prop.data[n], data[n]);
+  }
 }
 
 @end
