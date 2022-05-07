@@ -37,14 +37,22 @@
     XCTAssertNotNil(addr);
     XCTAssertGreaterThan([addr length], 0);
     for (CGEchoObject* obj in [node objects]) {
-      XCTAssertTrue(obj);
+      XCTAssertNotNil(obj);
       for (CGEchoProperty* prop in [obj properties]) {
-        XCTAssertTrue(prop);
+        XCTAssertNotNil(prop);
       }
     }
   }
 
   XCTAssertTrue([ctrl stop]);
+}
+
+- (void)testProperty
+{
+  CGEchoProperty* prop = [[CGEchoProperty alloc] init];
+  XCTAssertNotNil(prop);
+  prop.code = 0xFF;
+  XCTAssertEqual(prop.code, 0xFF);
 }
 
 @end
