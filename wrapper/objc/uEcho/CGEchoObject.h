@@ -15,7 +15,6 @@ typedef void uEchoObject;
 
 @interface CGEchoObject : NSObject {
 }
-@property (assign) uEchoObject* cObject;
 - (id)initWithCObject:(uEchoObject*)cobj;
 - (NSArray*)properties;
 @end
