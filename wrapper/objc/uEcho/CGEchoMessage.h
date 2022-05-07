@@ -11,10 +11,14 @@
 #import <Foundation/NSArray.h>
 #import <Foundation/NSString.h>
 
+#import "CGEchoESV.h"
+
 typedef void uEchoMessage;
 
 @interface CGEchoMessage : NSObject {
 }
 - (id)init;
 - (id)initWithCObject:(uEchoMessage*)cobj;
+- (BOOL)setESV:(CGEchoESV)esv;
+- (CGEchoESV)ESV;
 @end

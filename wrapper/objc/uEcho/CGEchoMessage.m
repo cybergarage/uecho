@@ -42,4 +42,19 @@
   }
 }
 
+- (BOOL)setESV:(CGEchoESV)esv
+{
+  if (!cObject)
+    return NO;
+  uecho_message_setesv(cObject, esv);
+  return YES;
+}
+
+- (CGEchoESV)ESV;
+{
+  if (!cObject)
+    return 0;
+  return uecho_message_getesv(cObject);
+}
+
 @end
