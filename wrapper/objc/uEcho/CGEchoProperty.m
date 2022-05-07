@@ -12,20 +12,48 @@
 
 #include <uecho/property.h>
 
-@implementation CGEchoProperty
+@implementation CGEchoProperty {
+  uEchoProperty* cObject;
+  BOOL isWeakObject;
+}
 
-@synthesize cObject;
+- (id)init
+{
+  if ((self = [super init]) == nil)
+    return nil;
+  cObject = uecho_property_new();
+  isWeakObject = NO;
+  return self;
+}
 
 - (id)initWithCObject:(uEchoProperty*)cobj
 {
   if ((self = [super init]) == nil)
     return nil;
   cObject = cobj;
+  isWeakObject = YES;
   return self;
 }
 
 - (void)dealloc
 {
+  if (isWeakObject) {
+    uecho_property_delete(cObject);
+  }
+}
+
+- (void)setCode:(Byte)code
+{
+  if (!cObject)
+    return;
+  uecho_property_setcode(cObject, code);
+}
+
+- (Byte)code
+{
+  if (!cObject)
+    return 0;
+  return uecho_property_getcode(cObject);
 }
 
 @end

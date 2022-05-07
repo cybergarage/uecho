@@ -15,6 +15,8 @@ typedef void uEchoProperty;
 
 @interface CGEchoProperty : NSObject {
 }
-@property (assign) uEchoProperty* cObject;
+- (id)init;
 - (id)initWithCObject:(uEchoProperty*)cobj;
+- (void)setCode:(Byte)code;
+- (Byte)code;
 @end
