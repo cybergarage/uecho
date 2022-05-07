@@ -12,20 +12,34 @@
 
 #include <uecho/message.h>
 
-@implementation CGEchoMessage
+@implementation CGEchoMessage {
+  uEchoMessage* cObject;
+  BOOL isWeakObject;
+}
 
-@synthesize cObject;
+- (id)init
+{
+  if ((self = [super init]) == nil)
+    return nil;
+  cObject = uecho_message_new();
+  isWeakObject = NO;
+  return self;
+}
 
 - (id)initWithCObject:(uEchoMessage*)cobj
 {
   if ((self = [super init]) == nil)
     return nil;
   cObject = cobj;
+  isWeakObject = YES;
   return self;
 }
 
 - (void)dealloc
 {
+  if (isWeakObject) {
+    uecho_message_delete(cObject);
+  }
 }
 
 @end
