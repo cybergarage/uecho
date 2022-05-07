@@ -9,6 +9,7 @@
  ******************************************************************/
 
 #import "CGEchoMessage.h"
+#import "CGEchoProperty.h"
 
 #include <uecho/message.h>
 
@@ -40,6 +41,48 @@
   if (isWeakObject) {
     uecho_message_delete(cObject);
   }
+}
+
+- (NSArray*)properties;
+{
+  if (!cObject)
+    return [NSArray array];
+  NSMutableArray* props = [NSMutableArray array];
+  for (int n = 0; n < (int)uecho_message_getopc(cObject); n++) {
+    uEchoProperty* cProp = uecho_message_getproperty(cObject, n);
+    if (!cProp)
+      continue;
+    [props addObject:[[CGEchoProperty alloc] initWithCObject:cProp]];
+  }
+  return props;
+}
+
+- (NSArray*)setproperties;
+{
+  if (!cObject)
+    return [NSArray array];
+  NSMutableArray* props = [NSMutableArray array];
+  for (int n = 0; n < (int)uecho_message_getopcset(cObject); n++) {
+    uEchoProperty* cProp = uecho_message_getpropertyset(cObject, n);
+    if (!cProp)
+      continue;
+    [props addObject:[[CGEchoProperty alloc] initWithCObject:cProp]];
+  }
+  return props;
+}
+
+- (NSArray*)getproperties;
+{
+  if (!cObject)
+    return [NSArray array];
+  NSMutableArray* props = [NSMutableArray array];
+  for (int n = 0; n < (int)uecho_message_getopcget(cObject); n++) {
+    uEchoProperty* cProp = uecho_message_getpropertyget(cObject, n);
+    if (!cProp)
+      continue;
+    [props addObject:[[CGEchoProperty alloc] initWithCObject:cProp]];
+  }
+  return props;
 }
 
 - (BOOL)setESV:(CGEchoESV)esv

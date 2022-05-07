@@ -38,6 +38,9 @@ typedef NS_ENUM(Byte, CGEchoESV) {
 }
 - (id)init;
 - (id)initWithCObject:(uEchoMessage*)cobj;
+- (NSArray*)properties;
+- (NSArray*)setproperties;
+- (NSArray*)getproperties;
 - (BOOL)setESV:(CGEchoESV)esv;
 - (CGEchoESV)ESV;
 @end
