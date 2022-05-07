@@ -42,11 +42,20 @@
   }
 }
 
-- (void)setCode:(Byte)code
+- (BOOL)setCode:(Byte)code
 {
   if (!cObject)
-    return;
+    return NO;
   uecho_property_setcode(cObject, code);
+  return YES;
+}
+
+- (BOOL)setData:(Byte*)data size_t:data_size
+{
+  if (!cObject)
+    return NO;
+  uecho_property_setdata(cObject, (const byte* )data, data_size);
+  return YES;
 }
 
 - (Byte)code
@@ -56,11 +65,18 @@
   return uecho_property_getcode(cObject);
 }
 
-- (int)size
+- (size_t)size
 {
   if (!cObject)
     return 0;
   return uecho_property_getdatasize(cObject);
+}
+
+- (Byte*)data;
+{
+  if (!cObject)
+    return NULL;
+  return uecho_property_getdata(cObject);
 }
 
 @end

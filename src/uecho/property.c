@@ -31,6 +31,7 @@ uEchoProperty* uecho_property_new(void)
   uecho_list_node_init((uEchoList*)prop);
 
   prop->name = uecho_string_new();
+  prop->code = 0x00;
   prop->data = NULL;
   prop->dataSize = 0;
 
