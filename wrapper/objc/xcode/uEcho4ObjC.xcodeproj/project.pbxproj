@@ -19,7 +19,6 @@
 		219F952F28258AC000F28636 /* CGEchoProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 219F952D28258AC000F28636 /* CGEchoProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		219F953228258C3400F28636 /* CGEchoMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 219F953028258C3300F28636 /* CGEchoMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		219F953328258C3400F28636 /* CGEchoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 219F953128258C3300F28636 /* CGEchoMessage.m */; };
-		219F9535282611F600F28636 /* CGEchoESV.h in Headers */ = {isa = PBXBuildFile; fileRef = 219F9534282611F600F28636 /* CGEchoESV.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		219F95382826190C00F28636 /* CGEchoStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 219F95362826190B00F28636 /* CGEchoStandard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		219F95392826190C00F28636 /* CGEchoStandard.m in Sources */ = {isa = PBXBuildFile; fileRef = 219F95372826190B00F28636 /* CGEchoStandard.m */; };
 		21C807232821341A00E33B1C /* uEchoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C807222821341A00E33B1C /* uEchoTests.m */; };
@@ -64,7 +63,6 @@
 		219F952D28258AC000F28636 /* CGEchoProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEchoProperty.h; path = ../uEcho/CGEchoProperty.h; sourceTree = "<group>"; };
 		219F953028258C3300F28636 /* CGEchoMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEchoMessage.h; path = ../uEcho/CGEchoMessage.h; sourceTree = "<group>"; };
 		219F953128258C3300F28636 /* CGEchoMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGEchoMessage.m; path = ../uEcho/CGEchoMessage.m; sourceTree = "<group>"; };
-		219F9534282611F600F28636 /* CGEchoESV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEchoESV.h; path = ../uEcho/CGEchoESV.h; sourceTree = "<group>"; };
 		219F95362826190B00F28636 /* CGEchoStandard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEchoStandard.h; path = ../uEcho/CGEchoStandard.h; sourceTree = "<group>"; };
 		219F95372826190B00F28636 /* CGEchoStandard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGEchoStandard.m; path = ../uEcho/CGEchoStandard.m; sourceTree = "<group>"; };
 		21C807222821341A00E33B1C /* uEchoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = uEchoTests.m; path = Tests/uEchoTests.m; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 				21403F2C282168FE00DB7B22 /* CGEchoController.m */,
 				219F95362826190B00F28636 /* CGEchoStandard.h */,
 				219F95372826190B00F28636 /* CGEchoStandard.m */,
-				219F9534282611F600F28636 /* CGEchoESV.h */,
 				219F953028258C3300F28636 /* CGEchoMessage.h */,
 				219F953128258C3300F28636 /* CGEchoMessage.m */,
 				21403F3228216A1A00DB7B22 /* CGEchoNode.h */,
@@ -163,7 +160,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				219F95382826190C00F28636 /* CGEchoStandard.h in Headers */,
-				219F9535282611F600F28636 /* CGEchoESV.h in Headers */,
 				219F953228258C3400F28636 /* CGEchoMessage.h in Headers */,
 				219F952F28258AC000F28636 /* CGEchoProperty.h in Headers */,
 				219F952A2825855C00F28636 /* CGEchoObject.h in Headers */,
