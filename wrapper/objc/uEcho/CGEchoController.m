@@ -13,10 +13,9 @@
 
 #include <uecho/controller.h>
 
-@implementation CGEchoController
-
-@synthesize cObject;
-
+@implementation CGEchoController {
+  uEchoController* cObject;
+}
 - (id)init
 {
   if ((self = [super init]) == nil)
