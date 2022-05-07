@@ -51,6 +51,10 @@
 {
   CGEchoProperty* prop = [[CGEchoProperty alloc] init];
   XCTAssertNotNil(prop);
+  XCTAssertEqual(prop.code, 0x00);
+  XCTAssertEqual(prop.size, 0);
+  XCTAssertEqual(prop.data, NULL);
+
   prop.code = 0xFF;
   XCTAssertEqual(prop.code, 0xFF);
 }
