@@ -21,6 +21,8 @@
 		219F953328258C3400F28636 /* CGEchoMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 219F953128258C3300F28636 /* CGEchoMessage.m */; };
 		219F95382826190C00F28636 /* CGEchoStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 219F95362826190B00F28636 /* CGEchoStandard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		219F95392826190C00F28636 /* CGEchoStandard.m in Sources */ = {isa = PBXBuildFile; fileRef = 219F95372826190B00F28636 /* CGEchoStandard.m */; };
+		219F953C282622AD00F28636 /* CGEchoManufacture.h in Headers */ = {isa = PBXBuildFile; fileRef = 219F953A282622AD00F28636 /* CGEchoManufacture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		219F953D282622AD00F28636 /* CGEchoManufacture.m in Sources */ = {isa = PBXBuildFile; fileRef = 219F953B282622AD00F28636 /* CGEchoManufacture.m */; };
 		21C807232821341A00E33B1C /* uEchoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C807222821341A00E33B1C /* uEchoTests.m */; };
 		21D5B6672820156A0034B6AB /* libuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D5B6662820153C0034B6AB /* libuecho.a */; };
 /* End PBXBuildFile section */
@@ -65,6 +67,8 @@
 		219F953128258C3300F28636 /* CGEchoMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGEchoMessage.m; path = ../uEcho/CGEchoMessage.m; sourceTree = "<group>"; };
 		219F95362826190B00F28636 /* CGEchoStandard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEchoStandard.h; path = ../uEcho/CGEchoStandard.h; sourceTree = "<group>"; };
 		219F95372826190B00F28636 /* CGEchoStandard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGEchoStandard.m; path = ../uEcho/CGEchoStandard.m; sourceTree = "<group>"; };
+		219F953A282622AD00F28636 /* CGEchoManufacture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGEchoManufacture.h; path = ../uEcho/CGEchoManufacture.h; sourceTree = "<group>"; };
+		219F953B282622AD00F28636 /* CGEchoManufacture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGEchoManufacture.m; path = ../uEcho/CGEchoManufacture.m; sourceTree = "<group>"; };
 		21C807222821341A00E33B1C /* uEchoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = uEchoTests.m; path = Tests/uEchoTests.m; sourceTree = "<group>"; };
 		21D5B6612820153B0034B6AB /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,8 +118,8 @@
 				21403F2A282168FE00DB7B22 /* CGEcho.h */,
 				21403F2B282168FE00DB7B22 /* CGEchoController.h */,
 				21403F2C282168FE00DB7B22 /* CGEchoController.m */,
-				219F95362826190B00F28636 /* CGEchoStandard.h */,
-				219F95372826190B00F28636 /* CGEchoStandard.m */,
+				219F953A282622AD00F28636 /* CGEchoManufacture.h */,
+				219F953B282622AD00F28636 /* CGEchoManufacture.m */,
 				219F953028258C3300F28636 /* CGEchoMessage.h */,
 				219F953128258C3300F28636 /* CGEchoMessage.m */,
 				21403F3228216A1A00DB7B22 /* CGEchoNode.h */,
@@ -124,6 +128,8 @@
 				219F95292825855C00F28636 /* CGEchoObject.m */,
 				219F952D28258AC000F28636 /* CGEchoProperty.h */,
 				219F952C28258AC000F28636 /* CGEchoProperty.m */,
+				219F95362826190B00F28636 /* CGEchoStandard.h */,
+				219F95372826190B00F28636 /* CGEchoStandard.m */,
 			);
 			name = uEcho;
 			sourceTree = "<group>";
@@ -159,6 +165,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				219F953C282622AD00F28636 /* CGEchoManufacture.h in Headers */,
 				219F95382826190C00F28636 /* CGEchoStandard.h in Headers */,
 				219F953228258C3400F28636 /* CGEchoMessage.h in Headers */,
 				219F952F28258AC000F28636 /* CGEchoProperty.h in Headers */,
@@ -286,6 +293,7 @@
 				21403F3528216A1B00DB7B22 /* CGEchoNode.m in Sources */,
 				219F952E28258AC000F28636 /* CGEchoProperty.m in Sources */,
 				219F953328258C3400F28636 /* CGEchoMessage.m in Sources */,
+				219F953D282622AD00F28636 /* CGEchoManufacture.m in Sources */,
 				219F95392826190C00F28636 /* CGEchoStandard.m in Sources */,
 				21403F31282168FE00DB7B22 /* CGEchoController.m in Sources */,
 				219F952B2825855C00F28636 /* CGEchoObject.m in Sources */,
