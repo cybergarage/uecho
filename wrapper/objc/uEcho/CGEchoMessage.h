@@ -11,8 +11,6 @@
 #import <Foundation/NSArray.h>
 #import <Foundation/NSString.h>
 
-typedef void uEchoMessage;
-
 typedef NS_ENUM(Byte, CGEchoESV) {
   CGEchoESVWriteRequest = 0x60,
   CGEchoESVWriteRequestResponseRequired = 0x61,
@@ -34,6 +32,8 @@ typedef NS_ENUM(Byte, CGEchoESV) {
   CGEchoESVWriteReadRequestError = 0x5E,
 };
 
+typedef void uEchoMessage;
+
 @interface CGEchoMessage : NSObject {
 }
 - (id)init;
@@ -45,4 +45,7 @@ typedef NS_ENUM(Byte, CGEchoESV) {
 - (CGEchoESV)ESV;
 - (BOOL)setDestination:(int)code;
 - (int)destination;
+- (BOOL)addProperty:(Byte)code data:(Byte*)data size:(size_t)size;
+- (BOOL)addGetProperty:(Byte)code data:(Byte*)data size:(size_t)size;
+- (BOOL)addSetProperty:(Byte)code data:(Byte*)data size:(size_t)size;
 @end
