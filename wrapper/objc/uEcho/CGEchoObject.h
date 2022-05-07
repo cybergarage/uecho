@@ -20,4 +20,5 @@ typedef void uEchoObject;
 - (NSString*)name;
 - (int)code;
 - (Byte)group;
+- (Byte)class;
 @end

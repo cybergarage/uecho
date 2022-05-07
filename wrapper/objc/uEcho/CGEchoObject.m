@@ -65,4 +65,11 @@
   return uecho_object_getgroupcode(cObject);
 }
 
+- (Byte)class
+{
+  if (!cObject)
+    return 0;
+  return uecho_object_getclasscode(cObject);
+}
+
 @end
