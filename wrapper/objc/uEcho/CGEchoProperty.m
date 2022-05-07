@@ -56,4 +56,11 @@
   return uecho_property_getcode(cObject);
 }
 
+- (int)size
+{
+  if (!cObject)
+    return 0;
+  return uecho_property_getdatasize(cObject);
+}
+
 @end

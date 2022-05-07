@@ -19,4 +19,5 @@ typedef void uEchoProperty;
 - (id)initWithCObject:(uEchoProperty*)cobj;
 - (void)setCode:(Byte)code;
 - (Byte)code;
+- (int)size;
 @end
