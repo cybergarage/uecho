@@ -3,6 +3,7 @@ var structUEchoController =
     [ "msg_listener", "structUEchoController.html#abe42463b90467be24445a90de1a0e0ff", null ],
     [ "mutex", "structUEchoController.html#ab14dd69b64f3217f2adb46aff3e95136", null ],
     [ "node", "structUEchoController.html#a0be29fc07e61888434ca77c3e3a666a3", null ],
+    [ "node_listener", "structUEchoController.html#a0028b06aefaea777b5e535a4328e54b0", null ],
     [ "nodes", "structUEchoController.html#a8b92caa5b3dfe9732200ba9233de491f", null ],
     [ "option", "structUEchoController.html#a36a6f57709890ea324d1b2766a098536", null ],
     [ "post_req_msg", "structUEchoController.html#add82a6b9164d0f2746ffa6bb8d47fe0f", null ],

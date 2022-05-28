@@ -71,7 +71,8 @@ var menudata={children:[
 {text:"File List",url:"files.html"},
 {text:"Globals",url:"globals.html",children:[
 {text:"All",url:"globals.html",children:[
-{text:"b",url:"globals.html#index_b"},
+{text:"_",url:"globals.html#index__5F"},
+{text:"b",url:"globals_b.html#index_b"},
 {text:"f",url:"globals_f.html#index_f"},
 {text:"g",url:"globals_g.html#index_g"},
 {text:"l",url:"globals_l.html#index_l"},

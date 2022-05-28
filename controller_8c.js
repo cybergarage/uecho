@@ -34,6 +34,7 @@ var controller_8c =
     [ "uecho_controller_searchwithesv", "controller_8c.html#a387ed28a5191cb46d441fc92e58f2a53", null ],
     [ "uecho_controller_sendmessage", "controller_8c.html#a8f7bcc9c1708e90af881dc51b9ad9568", null ],
     [ "uecho_controller_setmessagelistener", "controller_8c.html#a75d7d91dbd707849cadc7cee15ce7dcf", null ],
+    [ "uecho_controller_setnodelistener", "controller_8c.html#a62837e231c3090f2ae368efaf6c6c32e", null ],
     [ "uecho_controller_setpostrequestmessage", "controller_8c.html#a366acf16ee4bdd98f3ea902be91a1621", null ],
     [ "uecho_controller_setpostresponsemessage", "controller_8c.html#a9fe0d96292d3428d868d00853a6a62ac", null ],
     [ "uecho_controller_setpostwaitemilitime", "controller_8c.html#a708e2a4313de2c4bef0cd0d76fe3be97", null ],

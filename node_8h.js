@@ -3,6 +3,13 @@ var node_8h =
     [ "uecho_node_getnodeprofileclassobject", "node_8h.html#a45e9ee8377f79a3208e7b1cb1a7689f2", null ],
     [ "uEchoNode", "node_8h.html#a5d299d67dccbc009bb9519adcd4452b8", null ],
     [ "uEchoNodeMessageListener", "node_8h.html#a4d352ffb927bf58650aa40fd79749987", null ],
+    [ "uEchoNodeStatus", "node_8h.html#a1045a6488e762d515fb4122e7e8ff845", null ],
+    [ "_uEchoNodeStatus", "node_8h.html#aefd7c36dee7b815a8735b0b4d091ef3e", [
+      [ "uEchoNodeStatusAdded", "node_8h.html#aefd7c36dee7b815a8735b0b4d091ef3ea2a6f51b27ae5a4db222becd42615d74c", null ],
+      [ "uEchoNodeStatusUpdated", "node_8h.html#aefd7c36dee7b815a8735b0b4d091ef3ea969d06afd3af751ec6657e01ddb28ee6", null ],
+      [ "uEchoNodeStatusAnnounced", "node_8h.html#aefd7c36dee7b815a8735b0b4d091ef3ea81bf275d0acb2a6f99c36ec7f27ef35e", null ],
+      [ "uEchoNodeStatusResponded", "node_8h.html#aefd7c36dee7b815a8735b0b4d091ef3eaf7437c53303d513dad281687aab5f542", null ]
+    ] ],
     [ "uecho_node_addobject", "node_8h.html#a8cefb0f1e4d972a4a1269b2b6b8c27b0", null ],
     [ "uecho_node_announcemessage", "node_8h.html#aec1108068ef92c42a5e889914ac7213d", null ],
     [ "uecho_node_announcemessagebytes", "node_8h.html#ae721396820138e15f9fe18a6048aecee", null ],
