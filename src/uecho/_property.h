@@ -30,7 +30,7 @@ extern "C" {
   byte code;                               \
   int attr;                                \
   byte* data;                              \
-  size_t dataSize;
+  size_t data_size;
 
 typedef struct {
   UECHO_LIST_STRUCT_MEMBERS
