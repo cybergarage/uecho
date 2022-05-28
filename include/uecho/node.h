@@ -25,6 +25,7 @@ extern "C" {
 
 typedef enum _uEchoNodeStatus {
   uEchoNodeStatusAdded = 0,
+  uEchoNodeStatusUpdated,
   uEchoNodeStatusAnnounced,
   uEchoNodeStatusResponded,
 } uEchoNodeStatus;
