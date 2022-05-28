@@ -53,6 +53,7 @@ BOOST_AUTO_TEST_CASE(PropertySetData)
     size_t test_data_len = strlen(test_data);
     uecho_property_setdata(prop, (const byte*)test_data, test_data_len);
     BOOST_CHECK_EQUAL(uecho_property_getdatasize(prop), test_data_len);
+    BOOST_CHECK(uecho_property_isdataequal(prop, (const byte*)test_data, test_data_len));
     byte* prop_data = uecho_property_getdata(prop);
     BOOST_CHECK(prop_data);
     for (int n = 0; n < test_data_len; n++) {
