@@ -579,13 +579,7 @@ bool uecho_message_isresponse(uEchoMessage* msg)
 {
   if (!msg)
     return false;
-  if (uecho_message_isreadresponse(msg))
-    return true;
-  if (uecho_message_iswriteresponse(msg))
-    return true;
-  if (uecho_message_isnotifyresponse(msg))
-    return true;
-  return false;
+  return uecho_esv_isresponse(msg->esv);
 }
 
 /****************************************
