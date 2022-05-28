@@ -567,6 +567,23 @@ bool uecho_message_isrequest(uEchoMessage* msg)
 }
 
 /****************************************
+ * uecho_message_isresponse
+ ****************************************/
+
+bool uecho_message_isresponse(uEchoMessage* msg)
+{
+  if (!msg)
+    return false;
+  if (uecho_message_isreadresponse(msg))
+    return true;
+  if (uecho_message_iswriteresponse(msg))
+    return true;
+  if (uecho_message_isnotifyresponse(msg))
+    return true;
+  return false;
+}
+
+/****************************************
  * uecho_message_addproperty
  ****************************************/
 
