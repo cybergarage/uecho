@@ -33,7 +33,7 @@ uEchoProperty* uecho_property_new(void)
   prop->name = uecho_string_new();
   prop->code = 0x00;
   prop->data = NULL;
-  prop->dataSize = 0;
+  prop->data_size = 0;
 
   uecho_property_setparentobject(prop, NULL);
   uecho_property_setattribute(prop, uEchoPropertyAttrReadWrite);
@@ -111,7 +111,7 @@ bool uecho_property_setcount(uEchoProperty* prop, size_t data_size)
   if (!prop->data)
     return false;
 
-  prop->dataSize = data_size;
+  prop->data_size = data_size;
 
   return true;
 }
@@ -130,12 +130,12 @@ bool uecho_property_addcount(uEchoProperty* prop, size_t data_size)
   if (data_size == 0)
     return true;
 
-  new_data_size = prop->dataSize + data_size;
+  new_data_size = prop->data_size + data_size;
   prop->data = (byte*)realloc(prop->data, new_data_size);
   if (!prop->data)
     return false;
 
-  prop->dataSize = new_data_size;
+  prop->data_size = new_data_size;
 
   return true;
 }
@@ -239,7 +239,7 @@ bool uecho_property_getintegerdata(uEchoProperty* prop, size_t data_size, int* d
   if (!prop)
     return false;
 
-  if (prop->dataSize != data_size)
+  if (prop->data_size != data_size)
     return false;
 
   *data = uecho_byte2integer(prop->data, data_size);
@@ -268,7 +268,7 @@ bool uecho_property_getbytedata(uEchoProperty* prop, byte* data)
   if (!prop)
     return false;
 
-  if (prop->dataSize != 1)
+  if (prop->data_size != 1)
     return false;
 
   *data = prop->data[0];
@@ -285,7 +285,7 @@ bool uecho_property_cleardata(uEchoProperty* prop)
   if (!prop)
     return false;
 
-  prop->dataSize = 0;
+  prop->data_size = 0;
 
   if (prop->data) {
     free(prop->data);
@@ -372,11 +372,11 @@ byte* uecho_property_getdata(uEchoProperty* prop)
  * uecho_property_getdatasize
  ****************************************/
 
-byte uecho_property_getdatasize(uEchoProperty* prop)
+size_t uecho_property_getdatasize(uEchoProperty* prop)
 {
   if (!prop)
     return 0;
-  return prop->dataSize;
+  return prop->data_size;
 }
 
 /****************************************
