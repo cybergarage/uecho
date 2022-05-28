@@ -53,6 +53,8 @@ enum {
 * Function
 ****************************************/
 
+bool uecho_esv_isnotification(uEchoEsv esv);
+
 bool uecho_esv_iswriterequest(uEchoEsv esv);
 bool uecho_esv_isreadrequest(uEchoEsv esv);
 bool uecho_esv_isnotifyrequest(uEchoEsv esv);
