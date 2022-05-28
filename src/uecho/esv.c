@@ -10,6 +10,18 @@
 
 #include <uecho/esv.h>
 
+
+/****************************************
+ * uecho_esv_isnotification
+ ****************************************/
+
+bool uecho_esv_isnotification(uEchoEsv esv)
+{
+  if (esv == uEchoEsvNotification)
+    return true;
+  return false;
+}
+
 /****************************************
  * uecho_esv_iswriterequest
  ****************************************/
