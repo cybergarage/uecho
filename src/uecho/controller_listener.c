@@ -163,15 +163,6 @@ void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoMessage* msg
   uEchoNode* src_node;
   bool node_updated;
 
-  if (uecho_controller_ispostresponsewaiting(ctrl)) {
-    uecho_controller_handlepostresponse(ctrl, msg);
-  }
-
-  if (uecho_message_issearchresponse(msg)) {
-    uecho_controller_handlesearchmessage(ctrl, msg);
-    return;
-  }
-
   src_node = uecho_controller_getnodebyaddress(ctrl, uecho_message_getsourceaddress(msg));
   if (!src_node)
     return;
@@ -207,6 +198,15 @@ void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage*
 
   if (ctrl->msg_listener) {
     ctrl->msg_listener(ctrl, msg);
+  }
+
+  if (uecho_controller_ispostresponsewaiting(ctrl)) {
+    uecho_controller_handlepostresponse(ctrl, msg);
+  }
+
+  if (uecho_message_issearchresponse(msg)) {
+    uecho_controller_handlesearchmessage(ctrl, msg);
+    return;
   }
 
   if (uecho_node_hasobjectbycode(ctrl->node, uecho_message_getdestinationobjectcode(msg))) {
