@@ -100,6 +100,8 @@ bool uecho_message_isresponsemessage(uEchoMessage* msg, uEchoMessage* res_meg);
 
 uEchoMessage* uecho_message_search_new(void);
 
+bool uecho_message_isnotification(uEchoMessage* msg);
+
 bool uecho_message_iswriterequest(uEchoMessage* msg);
 bool uecho_message_isreadrequest(uEchoMessage* msg);
 bool uecho_message_isnotifyrequest(uEchoMessage* msg);
