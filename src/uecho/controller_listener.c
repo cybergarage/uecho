@@ -122,31 +122,26 @@ bool uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* 
   return obj_prop_updated;
 }
 
-void uecho_controller_updatenodebyresponsepropertydata(uEchoController* ctrl, uEchoMessage* msg)
+void uecho_controller_updatenodebyresponsemessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* msg)
 {
-  uEchoNode* src_node;
-  uEchoObject* src_obj;
+  uEchoObject* node_obj;
   bool node_updated;
   
-  src_node = uecho_controller_getnodebyaddress(ctrl, uecho_message_getsourceaddress(msg));
-  if (!src_node)
-    return;
-
-  src_obj = uecho_node_getobjectbycode(src_node, uecho_message_getsourceobjectcode(msg));
-  if (!src_obj)
+  node_obj = uecho_node_getobjectbycode(node, uecho_message_getsourceobjectcode(msg));
+  if (!node_obj)
     return;
 
   node_updated = false;
   if (uecho_message_isreadwritemessage(msg)) {
-    node_updated = uecho_controller_updateopcpropertydata(ctrl, src_obj, msg->opc_get, msg->ep_get);
+    node_updated = uecho_controller_updateopcpropertydata(ctrl, node_obj, msg->opc_get, msg->ep_get);
   }
   else {
-    node_updated = uecho_controller_updateopcpropertydata(ctrl, src_obj, msg->opc, msg->ep);
+    node_updated = uecho_controller_updateopcpropertydata(ctrl, node_obj, msg->opc, msg->ep);
   }
   
   // Notify node status
   if (ctrl->node_listener && node_updated) {
-    ctrl->node_listener(ctrl, src_node, uEchoNodeStatusUpdated, msg);
+    ctrl->node_listener(ctrl, node, uEchoNodeStatusUpdated, msg);
   }
 }
 
@@ -168,15 +163,23 @@ void uecho_controller_handlepostresponse(uEchoController* ctrl, uEchoMessage* ms
 
 void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoMessage* msg)
 {
+  uEchoNode* src_node;
+
   if (uecho_controller_ispostresponsewaiting(ctrl)) {
     uecho_controller_handlepostresponse(ctrl, msg);
   }
 
   if (uecho_message_issearchresponse(msg)) {
     uecho_controller_handlesearchmessage(ctrl, msg);
+    return;
   }
-  else if (uecho_message_isreadresponse(msg) || uecho_message_isnotifyresponse(msg)) {
-    uecho_controller_updatenodebyresponsepropertydata(ctrl, msg);
+
+  src_node = uecho_controller_getnodebyaddress(ctrl, uecho_message_getsourceaddress(msg));
+  if (!src_node)
+    return;
+
+  if (uecho_message_isreadresponse(msg) || uecho_message_isnotifyresponse(msg)) {
+    uecho_controller_updatenodebyresponsemessage(ctrl, src_node, msg);
   }
 }
 
