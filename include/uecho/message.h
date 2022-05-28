@@ -112,6 +112,7 @@ bool uecho_message_issearchrequest(uEchoMessage* msg);
 bool uecho_message_issearchresponse(uEchoMessage* msg);
 
 bool uecho_message_isrequest(uEchoMessage* msg);
+bool uecho_message_isresponse(uEchoMessage* msg);
 
 #ifdef __cplusplus
 } /* extern C */
