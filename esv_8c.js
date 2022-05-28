@@ -1,5 +1,6 @@
 var esv_8c =
 [
+    [ "uecho_esv_isnotification", "esv_8c.html#acc7e7cc5384a216b6a7de1e217c01c0e", null ],
     [ "uecho_esv_isnotifyrequest", "esv_8c.html#a6a0c3f0c929f0b279525636d070f531f", null ],
     [ "uecho_esv_isnotifyresponse", "esv_8c.html#a92b9bb5fc89b37cad1f638fcee9893da", null ],
     [ "uecho_esv_isreadrequest", "esv_8c.html#a2ca6f26fa30c294ef84062bd47415d9d", null ],
