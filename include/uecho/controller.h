@@ -25,12 +25,6 @@ extern "C" {
 
 #define uEchoControllerPostResponseMaxMiliTime 5000
 
-typedef enum _uEchoNodeStatus {
-  uEchoNodeStatusAdded = 0,
-  uEchoNodeStatusAnnounced,
-  uEchoNodeStatusResponded,
-} uEchoNodeStatus;
-
 /****************************************
 * Data Type
 ****************************************/
@@ -40,6 +34,7 @@ typedef void uEchoController;
 #endif
 
 typedef void (*uEchoControllerMessageListener)(uEchoController*, uEchoMessage*);
+typedef void (*uEchoControllerNodeListener)(uEchoController*, uEchoNode*, uEchoNodeStatus, uEchoMessage*);
 
 /****************************************
  * Function
@@ -54,6 +49,7 @@ uEchoNode* uecho_controller_getnodes(uEchoController* ctrl);
 size_t uecho_controller_getnodecount(uEchoController* ctrl);
 
 void uecho_controller_setmessagelistener(uEchoController* ctrl, uEchoControllerMessageListener listener);
+void uecho_controller_setnodelistener(uEchoController* ctrl, uEchoControllerNodeListener listener);
 
 bool uecho_controller_search(uEchoController* ctrl);
 bool uecho_controller_searchobject(uEchoController* ctrl, byte obj_code);

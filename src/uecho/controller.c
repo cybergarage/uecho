@@ -37,7 +37,8 @@ uEchoController* uecho_controller_new(void)
 
   uecho_controller_setuserdata(ctrl, NULL);
   uecho_controller_setmessagelistener(ctrl, NULL);
-  uecho_controller_setpostrequestmessage(ctrl, NULL);
+  uecho_controller_setmessagelistener(ctrl, NULL);
+  uecho_controller_setnodelistener(ctrl, NULL);
   uecho_controller_setpostresponsemessage(ctrl, NULL);
   uecho_controller_setpostwaitemilitime(ctrl, uEchoControllerPostResponseMaxMiliTime);
 
@@ -74,6 +75,18 @@ void uecho_controller_setmessagelistener(uEchoController* ctrl, uEchoControllerM
     return;
 
   ctrl->msg_listener = listener;
+}
+
+/****************************************
+ * uecho_controller_setnodelistener
+ ****************************************/
+
+void uecho_controller_setnodelistener(uEchoController* ctrl, uEchoControllerNodeListener listener)
+{
+  if (!ctrl)
+    return;
+
+  ctrl->node_listener = listener;
 }
 
 /****************************************
