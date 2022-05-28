@@ -20,6 +20,16 @@ extern "C" {
 #endif
 
 /****************************************
+ * Constant
+ ****************************************/
+
+typedef enum _uEchoNodeStatus {
+  uEchoNodeStatusAdded = 0,
+  uEchoNodeStatusAnnounced,
+  uEchoNodeStatusResponded,
+} uEchoNodeStatus;
+
+/****************************************
  * Data Type
  ****************************************/
 
