@@ -97,21 +97,21 @@ uEchoObject* uecho_property_getparentobject(uEchoProperty* prop)
  * uecho_property_setcount
  ****************************************/
 
-bool uecho_property_setcount(uEchoProperty* prop, size_t count)
+bool uecho_property_setcount(uEchoProperty* prop, size_t data_size)
 {
   uecho_property_cleardata(prop);
 
   if (!prop)
     return false;
 
-  if (count == 0)
+  if (data_size == 0)
     return true;
 
-  prop->data = (byte*)calloc(1, count);
+  prop->data = (byte*)calloc(1, data_size);
   if (!prop->data)
     return false;
 
-  prop->dataSize = count;
+  prop->dataSize = data_size;
 
   return true;
 }
@@ -120,17 +120,17 @@ bool uecho_property_setcount(uEchoProperty* prop, size_t count)
  * uecho_property_addcount
  ****************************************/
 
-bool uecho_property_addcount(uEchoProperty* prop, size_t count)
+bool uecho_property_addcount(uEchoProperty* prop, size_t data_size)
 {
   size_t new_data_size;
 
   if (!prop)
     return false;
 
-  if (count == 0)
+  if (data_size == 0)
     return true;
 
-  new_data_size = prop->dataSize + count;
+  new_data_size = prop->dataSize + data_size;
   prop->data = (byte*)realloc(prop->data, new_data_size);
   if (!prop->data)
     return false;
@@ -144,18 +144,18 @@ bool uecho_property_addcount(uEchoProperty* prop, size_t count)
  * uecho_property_setdata
  ****************************************/
 
-bool uecho_property_setdata(uEchoProperty* prop, const byte* data, size_t count)
+bool uecho_property_setdata(uEchoProperty* prop, const byte* data, size_t data_size)
 {
   if (!prop)
     return false;
 
-  if (!uecho_property_setcount(prop, count))
+  if (!uecho_property_setcount(prop, data_size))
     return false;
 
-  if (count == 0)
+  if (data_size == 0)
     return true;
 
-  memcpy(prop->data, data, count);
+  memcpy(prop->data, data, data_size);
 
   // (D) Basic sequence for autonomous notification
 
@@ -170,22 +170,22 @@ bool uecho_property_setdata(uEchoProperty* prop, const byte* data, size_t count)
  * uecho_property_adddata
  ****************************************/
 
-bool uecho_property_adddata(uEchoProperty* prop, const byte* data, size_t count)
+bool uecho_property_adddata(uEchoProperty* prop, const byte* data, size_t data_size)
 {
   size_t curr_data_size;
 
   if (!prop)
     return false;
 
-  if (count == 0)
+  if (data_size == 0)
     return true;
 
   curr_data_size = uecho_property_getdatasize(prop);
 
-  if (!uecho_property_addcount(prop, count))
+  if (!uecho_property_addcount(prop, data_size))
     return false;
 
-  memcpy((prop->data + curr_data_size), data, count);
+  memcpy((prop->data + curr_data_size), data, data_size);
 
   // (D) Basic sequence for autonomous notification
 
@@ -601,4 +601,19 @@ bool uecho_property_announce(uEchoProperty* prop)
     return false;
 
   return uecho_node_announceproperty(node, obj, prop);
+}
+
+/****************************************
+ * uecho_property_isdataequal
+ ****************************************/
+
+bool uecho_property_isdataequal(uEchoProperty* prop, const byte* data, size_t data_size)
+{
+  if (!prop)
+    return false;
+
+  if (uecho_property_getdatasize(prop) != data_size)
+    return false;
+
+  return (memcmp(uecho_property_getdata(prop), data, data_size) == 0) ? true : false;
 }
