@@ -136,10 +136,10 @@ void uecho_controller_handlepostresponse(uEchoController* ctrl, uEchoMessage* ms
 }
 
 /****************************************
- * uecho_controller_handlerequestmessage
+ * uecho_controller_handlenodemessage
  ****************************************/
 
-void uecho_controller_handlerequestmessage(uEchoController* ctrl, uEchoMessage* msg)
+void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoMessage* msg)
 {
   if (uecho_controller_ispostresponsewaiting(ctrl)) {
     uecho_controller_handlepostresponse(ctrl, msg);
@@ -147,12 +147,9 @@ void uecho_controller_handlerequestmessage(uEchoController* ctrl, uEchoMessage* 
 
   if (uecho_message_issearchresponse(msg)) {
     uecho_controller_handlesearchmessage(ctrl, msg);
-    return;
   }
-
-  if (uecho_message_isreadresponse(msg) || uecho_message_isnotifyresponse(msg)) {
+  else if (uecho_message_isreadresponse(msg) || uecho_message_isnotifyresponse(msg)) {
     uecho_controller_updatepropertydata(ctrl, msg);
-    return;
   }
 }
 
@@ -170,6 +167,6 @@ void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage*
   }
 
   if (uecho_node_hasobjectbycode(ctrl->node, uecho_message_getdestinationobjectcode(msg))) {
-    uecho_controller_handlerequestmessage(ctrl, msg);
+    uecho_controller_handlenodemessage(ctrl, msg);
   }
 }
