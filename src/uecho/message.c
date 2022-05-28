@@ -550,6 +550,17 @@ bool uecho_message_isnotifyresponse(uEchoMessage* msg)
 }
 
 /****************************************
+ * uecho_message_isnotification
+ ****************************************/
+
+bool uecho_message_isnotification(uEchoMessage* msg)
+{
+  if (!msg)
+    return false;
+  return uecho_esv_isnotification(msg->esv);
+}
+
+/****************************************
  * uecho_message_isrequest
  ****************************************/
 
