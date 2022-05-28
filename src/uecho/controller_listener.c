@@ -88,7 +88,7 @@ bool uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* 
 {
   uEchoProperty* msg_prop;
   uEchoPropertyCode msg_prop_code;
-  byte *msg_data;
+  byte* msg_data;
   size_t msg_data_size;
   uEchoProperty* obj_prop;
   bool obj_prop_updated;
@@ -118,18 +118,18 @@ bool uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* 
 
     obj_prop_updated = true;
   }
-  
+
   return obj_prop_updated;
 }
 
-void uecho_controller_updatenodebyresponsemessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* msg)
+bool uecho_controller_updatenodebyresponsemessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* msg)
 {
   uEchoObject* node_obj;
   bool node_updated;
-  
+
   node_obj = uecho_node_getobjectbycode(node, uecho_message_getsourceobjectcode(msg));
   if (!node_obj)
-    return;
+    return false;
 
   node_updated = false;
   if (uecho_message_isreadwritemessage(msg)) {
@@ -138,11 +138,8 @@ void uecho_controller_updatenodebyresponsemessage(uEchoController* ctrl, uEchoNo
   else {
     node_updated = uecho_controller_updateopcpropertydata(ctrl, node_obj, msg->opc, msg->ep);
   }
-  
-  // Notify node status
-  if (ctrl->node_listener && node_updated) {
-    ctrl->node_listener(ctrl, node, uEchoNodeStatusUpdated, msg);
-  }
+
+  return node_updated;
 }
 
 /****************************************
@@ -164,6 +161,7 @@ void uecho_controller_handlepostresponse(uEchoController* ctrl, uEchoMessage* ms
 void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoMessage* msg)
 {
   uEchoNode* src_node;
+  bool node_updated;
 
   if (uecho_controller_ispostresponsewaiting(ctrl)) {
     uecho_controller_handlepostresponse(ctrl, msg);
@@ -178,8 +176,17 @@ void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoMessage* msg
   if (!src_node)
     return;
 
+  node_updated = false;
   if (uecho_message_isreadresponse(msg) || uecho_message_isnotifyresponse(msg)) {
-    uecho_controller_updatenodebyresponsemessage(ctrl, src_node, msg);
+    node_updated = uecho_controller_updatenodebyresponsemessage(ctrl, src_node, msg);
+  }
+
+  // Notify node status
+
+  if (ctrl->node_listener) {
+    if (node_updated) {
+      ctrl->node_listener(ctrl, src_node, uEchoNodeStatusUpdated, msg);
+    }
   }
 }
 
