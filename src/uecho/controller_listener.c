@@ -163,7 +163,7 @@ void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoNode* node, 
   bool node_updated;
 
   node_updated = false;
-  if (uecho_message_isreadresponse(msg) || uecho_message_isnotifyresponse(msg)) {
+  if (uecho_message_isnotification(msg) || uecho_message_isreadresponse(msg) || uecho_message_isnotifyresponse(msg)) {
     node_updated = uecho_controller_updatenodebyresponsemessage(ctrl, node, msg);
   }
 
