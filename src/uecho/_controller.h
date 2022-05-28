@@ -37,6 +37,7 @@ typedef struct UEchoController {
   uEchoNode* node;
   uEchoNodeList* nodes;
   void (*msg_listener)(struct UEchoController*, uEchoMessage*); /* uEchoControllerMessageListener */
+  void (*node_listener)(struct UEchoController*, uEchoNode*, uEchoNodeStatus, uEchoMessage*); /* uEchoControllerNodeListener */
   uEchoOption option;
   void* user_data;
 
