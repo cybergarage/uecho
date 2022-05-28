@@ -15,6 +15,16 @@
 #import <CGEcho/CGEchoNode.h>
 #import <CGEcho/CGEchoObject.h>
 
+@class CGEchoController;
+
+@protocol CGEchoControllerObserver <NSObject>
+@optional
+- (void)controller:(CGEchoController*)ctrl nodeAdded:(CGEchoNode*)node message:(CGEchoMessage*)msg;
+- (void)controller:(CGEchoController*)ctrl nodeUpdated:(CGEchoNode*)node message:(CGEchoMessage*)msg;
+- (void)controller:(CGEchoController*)ctrl nodeAnnounced:(CGEchoNode*)node message:(CGEchoMessage*)msg;
+- (void)controller:(CGEchoController*)ctrl nodeResponsed:(CGEchoNode*)node message:(CGEchoMessage*)msg;
+@end
+
 @interface CGEchoController : NSObject {
 }
 - (id)init;
