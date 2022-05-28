@@ -158,31 +158,26 @@ void uecho_controller_handlepostresponse(uEchoController* ctrl, uEchoMessage* ms
  * uecho_controller_handlenodemessage
  ****************************************/
 
-void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoMessage* msg)
+void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* msg)
 {
-  uEchoNode* src_node;
   bool node_updated;
-
-  src_node = uecho_controller_getnodebyaddress(ctrl, uecho_message_getsourceaddress(msg));
-  if (!src_node)
-    return;
 
   node_updated = false;
   if (uecho_message_isreadresponse(msg) || uecho_message_isnotifyresponse(msg)) {
-    node_updated = uecho_controller_updatenodebyresponsemessage(ctrl, src_node, msg);
+    node_updated = uecho_controller_updatenodebyresponsemessage(ctrl, node, msg);
   }
 
   // Notify node status
 
   if (ctrl->node_listener) {
     if (uecho_message_isnotification(msg)) {
-      ctrl->node_listener(ctrl, src_node, uEchoNodeStatusAnnounced, msg);
+      ctrl->node_listener(ctrl, node, uEchoNodeStatusAnnounced, msg);
     }
     if (uecho_message_isresponse(msg)) {
-      ctrl->node_listener(ctrl, src_node, uEchoNodeStatusResponded, msg);
+      ctrl->node_listener(ctrl, node, uEchoNodeStatusResponded, msg);
     }
     if (node_updated) {
-      ctrl->node_listener(ctrl, src_node, uEchoNodeStatusUpdated, msg);
+      ctrl->node_listener(ctrl, node, uEchoNodeStatusUpdated, msg);
     }
   }
 }
@@ -193,6 +188,8 @@ void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoMessage* msg
 
 void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage* msg)
 {
+  uEchoNode* src_node;
+
   if (!ctrl || !msg)
     return;
 
@@ -210,6 +207,9 @@ void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage*
   }
 
   if (uecho_node_hasobjectbycode(ctrl->node, uecho_message_getdestinationobjectcode(msg))) {
-    uecho_controller_handlenodemessage(ctrl, msg);
+    src_node = uecho_controller_getnodebyaddress(ctrl, uecho_message_getsourceaddress(msg));
+    if (src_node) {
+      uecho_controller_handlenodemessage(ctrl, src_node, msg);
+    }
   }
 }
