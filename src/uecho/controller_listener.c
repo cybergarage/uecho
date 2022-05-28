@@ -26,6 +26,8 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
   size_t prop_size;
   size_t idx;
   const char* msg_addr;
+  bool node_added;
+  bool node_updated;
 
   // Check message
 
@@ -43,6 +45,7 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
   if (!msg_addr)
     return;
 
+  node_added = false;
   node = uecho_controller_getnodebyaddress(ctrl, msg_addr);
   if (!node) {
     node = uecho_node_new();
@@ -50,15 +53,30 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
       return;
     uecho_node_setaddress(node, uecho_message_getsourceaddress(msg));
     uecho_controller_addnode(ctrl, node);
+    node_added = true;
   }
 
   // Updated node
 
+  node_updated = false;
   prop_data = uecho_property_getdata(prop);
-
   for (idx = 1; (idx + 2) < prop_size; idx += 3) {
     obj_code = uecho_byte2integer((prop_data + idx), 3);
+    if (uecho_node_hasobjectbycode(node, obj_code))
+      continue;
     uecho_node_setobject(node, obj_code);
+    node_updated = true;
+  }
+
+  // Notify node status
+
+  if (ctrl->node_listener) {
+    if (node_added) {
+      ctrl->node_listener(ctrl, node, uEchoNodeStatusAdded, msg);
+    }
+    else if (node_updated) {
+      ctrl->node_listener(ctrl, node, uEchoNodeStatusUpdated, msg);
+    }
   }
 }
 
