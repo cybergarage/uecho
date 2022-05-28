@@ -122,11 +122,12 @@ bool uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* 
   return obj_prop_updated;
 }
 
-void uecho_controller_updatepropertydata(uEchoController* ctrl, uEchoMessage* msg)
+void uecho_controller_updatenodebyresponsepropertydata(uEchoController* ctrl, uEchoMessage* msg)
 {
   uEchoNode* src_node;
   uEchoObject* src_obj;
-
+  bool node_updated;
+  
   src_node = uecho_controller_getnodebyaddress(ctrl, uecho_message_getsourceaddress(msg));
   if (!src_node)
     return;
@@ -135,11 +136,17 @@ void uecho_controller_updatepropertydata(uEchoController* ctrl, uEchoMessage* ms
   if (!src_obj)
     return;
 
+  node_updated = false;
   if (uecho_message_isreadwritemessage(msg)) {
-    uecho_controller_updateopcpropertydata(ctrl, src_obj, msg->opc_get, msg->ep_get);
+    node_updated = uecho_controller_updateopcpropertydata(ctrl, src_obj, msg->opc_get, msg->ep_get);
   }
   else {
-    uecho_controller_updateopcpropertydata(ctrl, src_obj, msg->opc, msg->ep);
+    node_updated = uecho_controller_updateopcpropertydata(ctrl, src_obj, msg->opc, msg->ep);
+  }
+  
+  // Notify node status
+  if (ctrl->node_listener && node_updated) {
+    ctrl->node_listener(ctrl, src_node, uEchoNodeStatusUpdated, msg);
   }
 }
 
@@ -169,7 +176,7 @@ void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoMessage* msg
     uecho_controller_handlesearchmessage(ctrl, msg);
   }
   else if (uecho_message_isreadresponse(msg) || uecho_message_isnotifyresponse(msg)) {
-    uecho_controller_updatepropertydata(ctrl, msg);
+    uecho_controller_updatenodebyresponsepropertydata(ctrl, msg);
   }
 }
 
