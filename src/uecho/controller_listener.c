@@ -84,22 +84,42 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
  * uecho_controller_updatepropertydata
  ****************************************/
 
-void uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* src_obj, byte opc, uEchoProperty** ep)
+bool uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* obj, byte opc, uEchoProperty** ep)
 {
   uEchoProperty* msg_prop;
   uEchoPropertyCode msg_prop_code;
+  byte *msg_data;
+  size_t msg_data_size;
+  uEchoProperty* obj_prop;
+  bool obj_prop_updated;
   size_t n;
 
+  obj_prop_updated = false;
   for (n = 0; n < opc; n++) {
     msg_prop = ep[n];
     if (!msg_prop)
       continue;
+
     msg_prop_code = uecho_property_getcode(msg_prop);
-    if (!uecho_object_hasproperty(src_obj, msg_prop_code)) {
-      uecho_object_setproperty(src_obj, msg_prop_code, uEchoPropertyAttrNone);
+    if (!uecho_object_hasproperty(obj, msg_prop_code)) {
+      uecho_object_setproperty(obj, msg_prop_code, uEchoPropertyAttrNone);
     }
-    uecho_object_setpropertydata(src_obj, msg_prop_code, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
+
+    obj_prop = uecho_object_getproperty(obj, msg_prop_code);
+    if (!obj_prop)
+      continue;
+
+    msg_data = uecho_property_getdata(msg_prop);
+    msg_data_size = uecho_property_getdatasize(msg_prop);
+    if (uecho_property_isdataequal(obj_prop, msg_data, msg_data_size))
+      continue;
+
+    uecho_property_setdata(obj_prop, msg_data, msg_data_size);
+
+    obj_prop_updated = true;
   }
+  
+  return obj_prop_updated;
 }
 
 void uecho_controller_updatepropertydata(uEchoController* ctrl, uEchoMessage* msg)
