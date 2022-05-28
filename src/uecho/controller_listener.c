@@ -184,6 +184,9 @@ void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoMessage* msg
   // Notify node status
 
   if (ctrl->node_listener) {
+    if (uecho_message_isnotification(msg)) {
+      ctrl->node_listener(ctrl, src_node, uEchoNodeStatusAnnounced, msg);
+    }
     if (uecho_message_isresponse(msg)) {
       ctrl->node_listener(ctrl, src_node, uEchoNodeStatusResponded, msg);
     }
