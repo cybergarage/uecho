@@ -12,4 +12,11 @@ extension CGEchoController: ObservableObject {
 
 public class Controller : CGEchoController
 {
+  override init() {
+    super.init()
+  }
+
+  deinit {
+    self.stop()
+  }
 }
