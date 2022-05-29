@@ -5,8 +5,8 @@
 //  Created by Satoshi Konno on 2022/05/02.
 //
 
-import SwiftUI
 import CGEcho
+import SwiftUI
 
 extension CGEchoNode: Identifiable {
   public var id: String {
@@ -16,7 +16,7 @@ extension CGEchoNode: Identifiable {
 
 struct ItemView: View, Identifiable {
   var id: String
-  let node:CGEchoNode
+  let node: CGEchoNode
   var body: some View {
     HStack {
       Text(node.address())
@@ -27,7 +27,7 @@ struct ItemView: View, Identifiable {
 
 struct ContentView: View {
   var nodes = [CGEchoNode]()
-  
+
   init() {
   }
 
@@ -38,7 +38,7 @@ struct ContentView: View {
       NavigationView {
         Form {
           Section {
-            List(nodes) {node in
+            List(nodes) { node in
               NavigationLink(destination: Text(node.address())) {
                 Text(node.address())
               }
@@ -46,14 +46,14 @@ struct ContentView: View {
           }
         }
       }
-    }.onAppear() {
-    }.onDisappear() {
+    }.onAppear {
+    }.onDisappear {
     }
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }

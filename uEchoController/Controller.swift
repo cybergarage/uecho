@@ -7,8 +7,7 @@
 
 import CGEcho
 
-public class Controller : CGEchoController, CGEchoControllerObserver, ObservableObject
-{
+public class Controller: CGEchoController, CGEchoControllerObserver, ObservableObject {
   @Published var found_nodes: NSArray
 
   override init() {
@@ -21,7 +20,7 @@ public class Controller : CGEchoController, CGEchoControllerObserver, Observable
     self.stop()
   }
 
-  public func nodeAdded(_ controller: CGEchoController, node: CGEchoNode, message:CGEchoMessage) {
+  public func nodeAdded(_ controller: CGEchoController, node: CGEchoNode, message: CGEchoMessage) {
     let nodes = NSMutableArray()
     for node in self.nodes() {
       nodes.add(node)
