@@ -27,6 +27,7 @@
 
 @interface CGEchoController : NSObject {
 }
+@property (assign) id<CGEchoControllerObserver> observer;
 - (id)init;
 - (NSArray*)nodes;
 - (BOOL)start;
