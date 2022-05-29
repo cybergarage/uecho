@@ -123,20 +123,20 @@ static void CGEchoControllerObserver(uEchoController* cObject, uEchoNode* cNode,
 
     switch (status) {
     case uEchoNodeStatusAdded: {
-      if ([[ctrl observer] respondsToSelector:@selector(controller:nodeAdded:message:)])
-        [[ctrl observer] controller:ctrl nodeAdded:node message:msg];
+      if ([[ctrl observer] respondsToSelector:@selector(nodeAdded:node:message:)])
+        [[ctrl observer] nodeAdded:ctrl node:node message:msg];
     } break;
     case uEchoNodeStatusUpdated: {
-      if ([[ctrl observer] respondsToSelector:@selector(controller:nodeUpdated:message:)])
-        [[ctrl observer] controller:ctrl nodeUpdated:node message:msg];
+      if ([[ctrl observer] respondsToSelector:@selector(nodeUpdated:node:message:)])
+        [[ctrl observer] nodeUpdated:ctrl node:node message:msg];
     } break;
     case uEchoNodeStatusAnnounced: {
-      if ([[ctrl observer] respondsToSelector:@selector(controller:nodeAnnounced:message:)])
-        [[ctrl observer] controller:ctrl nodeAnnounced:node message:msg];
+      if ([[ctrl observer] respondsToSelector:@selector(nodeAnnounced:node:message:)])
+        [[ctrl observer] nodeAnnounced:ctrl node:node message:msg];
     } break;
     case uEchoNodeStatusResponded: {
-      if ([[ctrl observer] respondsToSelector:@selector(controller:nodeResponsed:message:)])
-        [[ctrl observer] controller:ctrl nodeResponsed:node message:msg];
+      if ([[ctrl observer] respondsToSelector:@selector(nodeResponsed:node:message:)])
+        [[ctrl observer] nodeResponsed:ctrl node:node message:msg];
     } break;
     }
   }
