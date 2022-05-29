@@ -6,14 +6,10 @@
 //
 
 import SwiftUI
-import CGEcho
-
-extension CGEchoController: ObservableObject {
-}
 
 @main
 struct ControllerApp: App {
-    @StateObject var controller = CGEchoController()
+    @StateObject var controller = Controller()
     var body: some Scene {
         WindowGroup {
             ContentView()
