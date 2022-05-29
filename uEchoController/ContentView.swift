@@ -26,6 +26,7 @@ struct ItemView: View, Identifiable {
 }
 
 struct ContentView: View {
+  @EnvironmentObject var controller: Controller
   var nodes = [CGEchoNode]()
 
   init() {
@@ -38,7 +39,7 @@ struct ContentView: View {
       NavigationView {
         Form {
           Section {
-            List(nodes) { node in
+            List(self.controller.foundNodes) { node in
               NavigationLink(destination: Text(node.address())) {
                 Text(node.address())
               }

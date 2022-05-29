@@ -8,7 +8,7 @@
 import SwiftUI
 
 class ControllerAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
-  var controller:Optional<Controller>
+  var controller: Controller?
 
   override init() {
     self.controller = nil
@@ -38,7 +38,7 @@ struct ControllerApp: App {
   @StateObject var controller = Controller()
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      ContentView().environmentObject(self.controller)
     }
   }
 
