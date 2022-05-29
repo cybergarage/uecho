@@ -21,10 +21,8 @@ public class Controller: CGEchoController, CGEchoControllerObserver, ObservableO
   }
 
   public func nodeAdded(_ controller: CGEchoController, node: CGEchoNode, message: CGEchoMessage) {
-    let nodes = NSMutableArray()
     for node in self.nodes() {
-      nodes.add(node)
+      self.foundNodes.append(node as! CGEchoNode)
     }
-    self.foundNodes = []
   }
 }
