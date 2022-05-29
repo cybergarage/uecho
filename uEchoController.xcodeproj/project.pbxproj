@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2110FF2428431DCF00F22F65 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2110FF2228431DCF00F22F65 /* Controller.swift */; };
+		2110FF26284384EF00F22F65 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2110FF25284384EF00F22F65 /* Node.swift */; };
 		21C8071A282129DB00E33B1C /* CGEcho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C80714282129A400E33B1C /* CGEcho.framework */; };
 		21D5B6792820244A0034B6AB /* ControllerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B6782820244A0034B6AB /* ControllerApp.swift */; };
 		21D5B67B2820244A0034B6AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B67A2820244A0034B6AB /* ContentView.swift */; };
@@ -58,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		2110FF2228431DCF00F22F65 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		2110FF25284384EF00F22F65 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		21C8070D282129A400E33B1C /* uEcho4ObjC.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = uEcho4ObjC.xcodeproj; path = ../../../wrapper/objc/xcode/uEcho4ObjC.xcodeproj; sourceTree = "<group>"; };
 		21D5B6752820244A0034B6AB /* uEchoController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uEchoController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D5B6782820244A0034B6AB /* ControllerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerApp.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		21D5B6772820244A0034B6AB /* uEchoController */ = {
 			isa = PBXGroup;
 			children = (
+				2110FF25284384EF00F22F65 /* Node.swift */,
 				2110FF2228431DCF00F22F65 /* Controller.swift */,
 				21D5B6782820244A0034B6AB /* ControllerApp.swift */,
 				21D5B67A2820244A0034B6AB /* ContentView.swift */,
@@ -337,6 +340,7 @@
 				2110FF2428431DCF00F22F65 /* Controller.swift in Sources */,
 				21D5B67B2820244A0034B6AB /* ContentView.swift in Sources */,
 				21D5B6792820244A0034B6AB /* ControllerApp.swift in Sources */,
+				2110FF26284384EF00F22F65 /* Node.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,12 +8,6 @@
 import CGEcho
 import SwiftUI
 
-extension CGEchoNode: Identifiable {
-  public var id: String {
-    return self.address()
-  }
-}
-
 struct ItemView: View, Identifiable {
   var id: String
   let node: CGEchoNode
