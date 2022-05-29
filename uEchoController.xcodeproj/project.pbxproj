@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21C8071A282129DB00E33B1C /* uEcho4ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C80714282129A400E33B1C /* uEcho4ObjC.framework */; };
-		21D5B6792820244A0034B6AB /* uEchoControllerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B6782820244A0034B6AB /* uEchoControllerApp.swift */; };
+		21C8071A282129DB00E33B1C /* CGEcho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C80714282129A400E33B1C /* CGEcho.framework */; };
+		21D5B6792820244A0034B6AB /* ControllerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B6782820244A0034B6AB /* ControllerApp.swift */; };
 		21D5B67B2820244A0034B6AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B67A2820244A0034B6AB /* ContentView.swift */; };
 		21D5B67D2820244C0034B6AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21D5B67C2820244C0034B6AB /* Assets.xcassets */; };
 		21D5B6802820244C0034B6AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21D5B67F2820244C0034B6AB /* Preview Assets.xcassets */; };
@@ -58,7 +58,7 @@
 /* Begin PBXFileReference section */
 		21C8070D282129A400E33B1C /* uEcho4ObjC.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = uEcho4ObjC.xcodeproj; path = ../../../wrapper/objc/xcode/uEcho4ObjC.xcodeproj; sourceTree = "<group>"; };
 		21D5B6752820244A0034B6AB /* uEchoController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uEchoController.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		21D5B6782820244A0034B6AB /* uEchoControllerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uEchoControllerApp.swift; sourceTree = "<group>"; };
+		21D5B6782820244A0034B6AB /* ControllerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerApp.swift; sourceTree = "<group>"; };
 		21D5B67A2820244A0034B6AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		21D5B67C2820244C0034B6AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21D5B67F2820244C0034B6AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21C8071A282129DB00E33B1C /* uEcho4ObjC.framework in Frameworks */,
+				21C8071A282129DB00E33B1C /* CGEcho.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +106,7 @@
 		21C8070E282129A400E33B1C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				21C80714282129A400E33B1C /* uEcho4ObjC.framework */,
+				21C80714282129A400E33B1C /* CGEcho.framework */,
 				21C80716282129A400E33B1C /* uEcho4ObjCTests.xctest */,
 			);
 			name = Products;
@@ -144,7 +144,7 @@
 		21D5B6772820244A0034B6AB /* uEchoController */ = {
 			isa = PBXGroup;
 			children = (
-				21D5B6782820244A0034B6AB /* uEchoControllerApp.swift */,
+				21D5B6782820244A0034B6AB /* ControllerApp.swift */,
 				21D5B67A2820244A0034B6AB /* ContentView.swift */,
 				21D5B67C2820244C0034B6AB /* Assets.xcassets */,
 				21D5B67E2820244C0034B6AB /* Preview Content */,
@@ -284,17 +284,17 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		21C80714282129A400E33B1C /* uEcho4ObjC.framework */ = {
+		21C80714282129A400E33B1C /* CGEcho.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = uEcho4ObjC.framework;
+			path = CGEcho.framework;
 			remoteRef = 21C80713282129A400E33B1C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		21C80716282129A400E33B1C /* uEcho4ObjCTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = uEcho4ObjCTests.xctest;
+			path = CGEchoTests.xctest;
 			remoteRef = 21C80715282129A400E33B1C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -332,7 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D5B67B2820244A0034B6AB /* ContentView.swift in Sources */,
-				21D5B6792820244A0034B6AB /* uEchoControllerApp.swift in Sources */,
+				21D5B6792820244A0034B6AB /* ControllerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

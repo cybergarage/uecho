@@ -12,7 +12,7 @@ extension CGEchoController: ObservableObject {
 }
 
 @main
-struct uEchoControllerApp: App {
+struct ControllerApp: App {
     @StateObject var controller = CGEchoController()
     var body: some Scene {
         WindowGroup {
