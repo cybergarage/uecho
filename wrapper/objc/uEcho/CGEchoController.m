@@ -13,15 +13,22 @@
 
 #include <uecho/controller.h>
 
+static void CGEchoControllerObserver(uEchoController*, uEchoNode*, uEchoNodeStatus, uEchoMessage*);
+
 @implementation CGEchoController {
   uEchoController* cObject;
 }
+@synthesize observer;
 - (id)init
 {
   if ((self = [super init]) == nil)
     return nil;
   cObject = uecho_controller_new();
-  if (!cObject) {
+  if (cObject) {
+    uecho_controller_setnodelistener(cObject, CGEchoControllerObserver);
+    uecho_controller_setuserdata(cObject, (__bridge void*)self);
+  }
+  else {
     self = nil;
   }
   return self;
@@ -103,3 +110,34 @@
 }
 
 @end
+
+static void CGEchoControllerObserver(uEchoController* cObject, uEchoNode* cNode, uEchoNodeStatus status, uEchoMessage* cMsg)
+{
+  CGEchoController* ctrl = (__bridge CGEchoController*)(uecho_controller_getuserdata(cObject));
+  if (ctrl == nil)
+    return;
+
+  @autoreleasepool {
+    CGEchoNode* node = [[CGEchoNode alloc] initWithCObject:cNode];
+    CGEchoMessage* msg = [[CGEchoMessage alloc] initWithCObject:cMsg];
+
+    switch (status) {
+    case uEchoNodeStatusAdded: {
+      if ([[ctrl observer] respondsToSelector:@selector(controller:nodeAdded:message:)])
+        [[ctrl observer] controller:ctrl nodeAdded:node message:msg];
+    } break;
+    case uEchoNodeStatusUpdated: {
+      if ([[ctrl observer] respondsToSelector:@selector(controller:nodeUpdated:message:)])
+        [[ctrl observer] controller:ctrl nodeUpdated:node message:msg];
+    } break;
+    case uEchoNodeStatusAnnounced: {
+      if ([[ctrl observer] respondsToSelector:@selector(controller:nodeAnnounced:message:)])
+        [[ctrl observer] controller:ctrl nodeAnnounced:node message:msg];
+    } break;
+    case uEchoNodeStatusResponded: {
+      if ([[ctrl observer] respondsToSelector:@selector(controller:nodeResponsed:message:)])
+        [[ctrl observer] controller:ctrl nodeResponsed:node message:msg];
+    } break;
+    }
+  }
+}
