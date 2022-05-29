@@ -21,7 +21,6 @@ struct ItemView: View, Identifiable {
 
 struct ContentView: View {
   @EnvironmentObject var controller: Controller
-  var nodes = [CGEchoNode]()
 
   init() {
   }
