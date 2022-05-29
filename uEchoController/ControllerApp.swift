@@ -7,12 +7,28 @@
 
 import SwiftUI
 
+class ControllerAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions: [UIApplication.LaunchOptionsKey: Any]?
+  ) -> Bool {
+    return true
+  }
+
+  func applicationDidBecomeActive(_ application: UIApplication) {
+  }
+
+  func applicationWillTerminate(_ application: UIApplication) {
+  }
+}
+
 @main
 struct ControllerApp: App {
-    @StateObject var controller = Controller()
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  @UIApplicationDelegateAdaptor private var appDelegate: ControllerAppDelegate
+  @StateObject var controller = Controller()
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
     }
+  }
 }
