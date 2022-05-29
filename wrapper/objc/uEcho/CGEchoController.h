@@ -19,10 +19,10 @@
 
 @protocol CGEchoControllerObserver <NSObject>
 @optional
-- (void)controller:(CGEchoController*)ctrl nodeAdded:(CGEchoNode*)node message:(CGEchoMessage*)msg;
-- (void)controller:(CGEchoController*)ctrl nodeUpdated:(CGEchoNode*)node message:(CGEchoMessage*)msg;
-- (void)controller:(CGEchoController*)ctrl nodeAnnounced:(CGEchoNode*)node message:(CGEchoMessage*)msg;
-- (void)controller:(CGEchoController*)ctrl nodeResponsed:(CGEchoNode*)node message:(CGEchoMessage*)msg;
+- (void)nodeAdded:(CGEchoController*)controller node:(CGEchoNode*)node message:(CGEchoMessage*)msg;
+- (void)nodeUpdated:(CGEchoController*)controller node:(CGEchoNode*)node message:(CGEchoMessage*)msg;
+- (void)nodeAnnounced:(CGEchoController*)controller node:(CGEchoNode*)node message:(CGEchoMessage*)msg;
+- (void)nodeResponsed:(CGEchoController*)controller node:(CGEchoNode*)node message:(CGEchoMessage*)msg;
 @end
 
 @interface CGEchoController : NSObject {
