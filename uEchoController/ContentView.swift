@@ -29,6 +29,8 @@ struct ContentView: View {
     VStack {
       Text("Hello, world!")
         .padding()
+      Text(String(self.controller.foundNodeCount))
+        .padding()
       NavigationView {
         Form {
           Section {
