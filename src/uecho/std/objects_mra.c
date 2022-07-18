@@ -190,6 +190,12 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xEF, "Set temperature setting of inside the case and acquire the current setting.", "", 0, "required", "required", "optional"));
   uecho_database_addobject(db, obj);
 
+  // Illuminance sensor (0x00D0)
+  obj = uecho_standard_object_new("Illuminance sensor", 0x00, 0xD0);
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Measured illuminance value 1", "", 0, "required_c", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE1, "Measured illuminance value 2", "", 0, "required_c", "notApplicable", "optional"));
+  uecho_database_addobject(db, obj);
+
   // Television (0x0602)
   obj = uecho_standard_object_new("Television", 0x06, 0x02);
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x80, "Operation status", "", 0, "required", "required_o", "required"));
@@ -235,11 +241,21 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD9, "Cumulative amount of charging electric energy reset setting", "", 0, "notApplicable", "optional", "notApplicable"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDA, "Operation mode setting", "", 0, "required", "required", "required"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDA, "Operation mode setting", "", 0, "required", "required", "required"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDA, "Operation mode setting", "", 0, "required", "required", "required"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDA, "Operation mode setting", "", 0, "required", "required", "required"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDB, "System interconnected type", "", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDC, "Charging method", "", 0, "required", "optional", "required"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDC, "Charging method", "", 0, "required", "optional", "required"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDD, "Discharging method", "", 0, "required", "optional", "required"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDD, "Discharging method", "", 0, "required", "optional", "required"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDE, "Purchasing electric power setting", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDF, "Re-interconnection permission setting", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Charging/Discharging electric power setting", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE2, "Remaining stored electricity of vehicle mounted battery1", "", 0, "required", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE3, "Remaining stored electricity of vehicle mounted battery2", "", 0, "required_c", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE3, "Remaining stored electricity of vehicle mounted battery2", "", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE4, "Remaining stored electricity of vehicle mounted battery3", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE5, "Maintenance status", "", 0, "optional", "notApplicable", "required"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE6, "Vehicle ID", "", 0, "required", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE7, "Charging amount setting 1", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE9, "Charging amount setting 2", "", 0, "optional", "optional", "optional"));
@@ -263,10 +279,15 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDF, "Minimum power consumption for restricted outdoor unit", "", 0, "optional", "notApplicable", "optional"));
   uecho_database_addobject(db, obj);
 
+  // Humidity sensor (0x0012)
+  obj = uecho_standard_object_new("Humidity sensor", 0x00, 0x12);
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Measured value of relative humidity", "", 0, "required", "notApplicable", "optional"));
+  uecho_database_addobject(db, obj);
+
   // Mono functional lighting (0x0291)
   obj = uecho_standard_object_new("Mono functional lighting", 0x02, 0x91);
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x80, "Operation status", "", 0, "required", "required", "required"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB0, "Illuminance Level Setting", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB0, "Light level Setting", "", 0, "optional", "optional", "optional"));
   uecho_database_addobject(db, obj);
 
   // Power distribution board metering (0x0287)
@@ -391,18 +412,19 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x91, "ON timer setting", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x94, "OFF timer reservation setting", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x95, "Time set by OFF timer", "", 0, "optional", "optional", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB0, "Brightness level", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB0, "Light level", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB1, "Light color setting", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB1, "Light color setting", "", 0, "optional", "optional", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB2, "Brightness level step setting", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB1, "Light color setting", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB2, "Light level step setting", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB3, "Light color step setting", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB4, "Maximum specifiable values", "", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB5, "Maximum value of settable level for night lighting", "", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB6, "Lighting mode setting", "", 0, "required", "required", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB7, "Brightness level setting for main lighting", "", 0, "optional", "optional", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB8, "Brightness level step setting for main lighting", "", 0, "optional", "optional", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB9, "Brightness level setting for night lighting", "", 0, "optional", "optional", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xBA, "Brightness level step setting for night lighting", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB7, "Light level setting for main lighting", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB8, "Light level step setting for main lighting", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB9, "Light level setting for night lighting", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xBA, "Light level step setting for night lighting", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xBB, "Light color setting for main lighting", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xBC, "Light color level step setting for main lighting", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xBD, "Light color setting for night lighting", "", 0, "optional", "optional", "optional"));
@@ -546,6 +568,13 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE7, "Heating power setting", "", 0, "optional", "optional", "optional"));
   uecho_database_addobject(db, obj);
 
+  // VOC sensor (0x001D)
+  obj = uecho_standard_object_new("VOC sensor", 0x00, 0x1D);
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB0, "Detection threshold level", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB1, "VOC detection status", "", 0, "optional", "notApplicable", "required"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Measured value of VOC concentration", "", 0, "required", "notApplicable", "optional"));
+  uecho_database_addobject(db, obj);
+
   // Bathroom heater dryer (0x0273)
   obj = uecho_standard_object_new("Bathroom heater dryer", 0x02, 0x73);
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x90, "On timer reservation setting 1", "", 0, "optional", "optional", "optional"));
@@ -593,6 +622,7 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC4, "Measured instantaneous power generation output", "", 0, "required", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC5, "Measured cumulative power generation output", "", 0, "required", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC6, "Cumulative power generation output reset setting", "", 0, "notApplicable", "optional", "notApplicable"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC6, "Cumulative energy generation output reset setting", "", 0, "notApplicable", "optional", "notApplicable"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC7, "Measured instantaneous gas consumption", "", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC8, "Measured cumulative gas consumption", "", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC9, "Cumulative gas consumption reset setting", "", 0, "notApplicable", "optional", "notApplicable"));
@@ -602,13 +632,28 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCB, "Power generation status", "", 0, "required", "notApplicable", "required"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCC, "Measured in-house instantaneous power consumption", "", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCD, "Measured in-house cumulative power consumption", "", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCD, "Measured in-house cumulative energy consumption", "", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCE, "In-house cumulative power consumption reset", "", 0, "notApplicable", "optional", "notApplicable"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCE, "In-house cumulative energy consumption reset", "", 0, "notApplicable", "optional", "notApplicable"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD0, "System interconnected type", "", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD0, "System interconnected type", "", 0, "required", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD1, "Power generation request time setting", "", 0, "required", "required", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD2, "Designated power generation status", "", 0, "required", "required", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE1, "Measured remaining hot water amount", "", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE2, "Tank capacity", "", 0, "optional", "notApplicable", "optional"));
+  uecho_database_addobject(db, obj);
+
+  // Water flowmeter (0x0281)
+  obj = uecho_standard_object_new("Water flowmeter", 0x02, 0x81);
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD0, "Water flowmeter classification", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD1, "Owner classification", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Measured cumulative amount of flowing water", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE1, "Unit for measured Cumulative amounts of flowing water", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE2, "Historical data of measured cumulative amount of flowing water", "", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE3, "Detection of abnormal value in metering data", "", 0, "optional", "notApplicable", "required"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE4, "Security data information", "", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE5, "ID number setting", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE6, "Verification expiration information", "", 0, "optional", "optional", "optional"));
   uecho_database_addobject(db, obj);
 
   // Home air conditioner (0x0130)
@@ -731,6 +776,11 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xEF, "One-time closing speed setting", "", 0, "optional", "optional", "optional"));
   uecho_database_addobject(db, obj);
 
+  // CO2 sensor (0x001B)
+  obj = uecho_standard_object_new("CO2 sensor", 0x00, 0x1B);
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Measured value of CO2 concentration", "", 0, "required", "notApplicable", "optional"));
+  uecho_database_addobject(db, obj);
+
   // Current sensor (0x0023)
   obj = uecho_standard_object_new("Current sensor", 0x00, 0x23);
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Measured current value 1", "", 0, "required_c", "notApplicable", "optional"));
@@ -768,6 +818,12 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Cumulative amounts of electric energy measurement value", "", 0, "required", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE2, "Cumulative amounts of electric energy unit", "", 0, "required", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE3, "Cumulative amounts of electric energy measurement log 1", "", 0, "optional", "notApplicable", "optional"));
+  uecho_database_addobject(db, obj);
+
+  // Emergency button (0x0003)
+  obj = uecho_standard_object_new("Emergency button", 0x00, 0x03);
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB1, "Emergency occurrence status", "", 0, "required", "notApplicable", "required"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xBF, "Emergency occurrence status resetting", "", 0, "notApplicable", "optional", "notApplicable"));
   uecho_database_addobject(db, obj);
 
   // Household solar power generation (0x0279)
@@ -828,6 +884,12 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xEA, "Power consumption measurement method", "", 0, "optional", "notApplicable", "optional"));
   uecho_database_addobject(db, obj);
 
+  // Bath heating status sensor (0x0016)
+  obj = uecho_standard_object_new("Bath heating status sensor", 0x00, 0x16);
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB0, "Detection threshold level", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB1, "Bath heating detection status", "", 0, "required", "notApplicable", "required"));
+  uecho_database_addobject(db, obj);
+
   // Cold or hot water heat source equipment (0x027A)
   obj = uecho_standard_object_new("Cold or hot water heat source equipment", 0x02, 0x7A);
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x90, "ON timer reservation setting", "", 0, "optional", "optional", "optional"));
@@ -851,6 +913,32 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xEA, "Power consumption measurement method", "", 0, "optional", "notApplicable", "optional"));
   uecho_database_addobject(db, obj);
 
+  // Smart electric energy meter for sub-metering (0x028D)
+  obj = uecho_standard_object_new("Smart electric energy meter for sub-metering", 0x02, 0x8D);
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD3, "Electric energy coefficient", "", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD4, "Unit for cumulative amount of electric energy (normal and reverse directions)", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD7, "Number of effective digits for cumulative amounts of electric energy", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD8, "Electric current coefficient", "", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD9, "Voltage coefficient", "", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved", "", 0, "required", "required", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE1, "Measured cumulative amount of electric energy(normal direction)", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE2, "Historical data of measured cumulative amounts of electric energy (normal direction)", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE3, "Measured cumulative amount of electric energy (reverse direction)", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE4, "Historical data of measured cumulative amounts of electric energy (reverse direction)", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE7, "Measured instantaneous electric power", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE8, "Measured instantaneous currents", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE9, "Measured instantaneous voltages", "", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xEA, "Cumulative amounts of electric energy measured at fixed time(normal direction)", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xEB, "Cumulative amounts of electric energy measured at fixed time(reverse direction)", "", 0, "required", "notApplicable", "optional"));
+  uecho_database_addobject(db, obj);
+
+  // Lighting system (0x02A3)
+  obj = uecho_standard_object_new("Lighting system", 0x02, 0xA3);
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB0, "Light level setting", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC0, "Scene control setting", "", 0, "required", "required", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC1, "Number that can assign scene control setting", "", 0, "required", "notApplicable", "optional"));
+  uecho_database_addobject(db, obj);
+
   // Ventilation fan (0x0133)
   obj = uecho_standard_object_new("Ventilation fan", 0x01, 0x33);
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x80, "Operation status", "", 0, "required", "required", "required"));
@@ -868,6 +956,12 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE5, "Alarm status", "", 0, "optional", "notApplicable", "required"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE6, "Auto lock mode setting", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE7, "Battery level", "", 0, "optional", "optional", "required"));
+  uecho_database_addobject(db, obj);
+
+  // Gas meter (0x0282)
+  obj = uecho_standard_object_new("Gas meter", 0x02, 0x82);
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Cumulative amount of gas consumption measurement value", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE2, "Cumulative amounts of gas consumption measurement log", "", 0, "optional", "notApplicable", "optional"));
   uecho_database_addobject(db, obj);
 
   // Air conditioner ventilation fan (0x0134)
@@ -924,7 +1018,7 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
 
   // Extended lighting system (0x02A4)
   obj = uecho_standard_object_new("Extended lighting system", 0x02, 0xA4);
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB0, "Illuminance level setting", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB0, "Light level setting", "", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC0, "Scene control setting", "", 0, "required", "required", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC1, "Number that can assign scene control setting.", "", 0, "required", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC2, "Power consumption rate list", "", 0, "required", "notApplicable", "optional"));
@@ -938,6 +1032,12 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   // Temperature sensor (0x0011)
   obj = uecho_standard_object_new("Temperature sensor", 0x00, 0x11);
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Measured temperature value", "", 0, "required", "notApplicable", "optional"));
+  uecho_database_addobject(db, obj);
+
+  // Human detection sensor (0x0007)
+  obj = uecho_standard_object_new("Human detection sensor", 0x00, 0x07);
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB0, "Detection threshold level", "", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xB1, "Human detection status", "", 0, "required", "notApplicable", "required"));
   uecho_database_addobject(db, obj);
 
   // Refrigerator (0x03B7)
@@ -998,7 +1098,7 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE3, "Measured cumulative amount of electric energy (reverse direction)", "", 0, "required_c", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE4, "Historical data of measured cumulative amounts of electric energy 1 (reverse direction)", "", 0, "required_c", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE5, "Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved 1", "", 0, "required", "required", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE7, "Measured instantaneous electric energy", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE7, "Measured instantaneous electric power", "", 0, "required", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE8, "Measured instantaneous currents", "", 0, "required", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xEA, "Cumulative amounts of electric energy measured at fixed time (normal direction)", "", 0, "required", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xEB, "Cumulative amounts of electric energy measured at fixed time (reverse direction)", "", 0, "required_c", "notApplicable", "optional"));

@@ -55,6 +55,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db)
   uecho_database_addstandardmanufacture(db, 0x0000F4, "DENSO AIRCOOL CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x00003C, "DENSO Corporation");
   uecho_database_addstandardmanufacture(db, 0x000109, "DENSO Co.,LTD.");
+  uecho_database_addstandardmanufacture(db, 0x00012B, "DENSO WAVE INCORPORATED");
   uecho_database_addstandardmanufacture(db, 0x000113, "EBARA JITSUGYO POWER CO., LTD.");
   uecho_database_addstandardmanufacture(db, 0x000057, "ELIIYPower Co.,ltd");
   uecho_database_addstandardmanufacture(db, 0x000041, "ENEGATE CO.,LTD.");
@@ -159,6 +160,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db)
   uecho_database_addstandardmanufacture(db, 0x000114, "OkayaKiden Co.,Ltd.");
   uecho_database_addstandardmanufacture(db, 0x000048, "Oki Electric Industry Co., Ltd.");
   uecho_database_addstandardmanufacture(db, 0x000064, "OMRON SOCIAL SOLUTIONS CO.,LTD. ");
+  uecho_database_addstandardmanufacture(db, 0x00012C, "Onamba Co., Ltd.");
   uecho_database_addstandardmanufacture(db, 0x0000D8, "OSAKI DATATECH CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x000052, "OSAKI ELECTRIC CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x000127, "Paloma Co.,Ltd.");
