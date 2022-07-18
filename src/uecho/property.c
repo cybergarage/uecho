@@ -38,7 +38,7 @@ uEchoProperty* uecho_property_new(void)
   uecho_property_setparentobject(prop, NULL);
   uecho_property_setattribute(prop, uEchoPropertyAttrReadWrite);
   uecho_property_settype(prop, uEchoPropertyTypeNone);
-  
+
   if (!prop->name) {
     uecho_property_delete(prop);
     return NULL;
