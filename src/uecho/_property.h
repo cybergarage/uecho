@@ -29,6 +29,7 @@ extern "C" {
   uEchoString* name;                       \
   byte code;                               \
   int attr;                                \
+  int type;                                \
   byte* data;                              \
   size_t data_size;
 

@@ -44,6 +44,22 @@ typedef enum {
   uEchoPropertyAttrAnnoRequired = 0x40,
 } uEchoPropertyAttr;
 
+typedef enum {
+  uEchoPropertyTypeNone = 0x00,
+  uEchoPropertyTypeNumber = 0x01,
+  uEchoPropertyTypeState = 0x02,
+  uEchoPropertyTypeNumeric = 0x03,
+  uEchoPropertyTypeLevel = 0x04,
+  uEchoPropertyTypeDateTime = 0x05,
+  uEchoPropertyTypeDate = 0x06,
+  uEchoPropertyTypeTime = 0x07,
+  uEchoPropertyTypeBitmap = 0x10,
+  uEchoPropertyTypeArray = 0x11,
+  uEchoPropertyTypeObject = 0x12,
+  uEchoPropertyTypeOneOf = 0x13,
+  uEchoPropertyTypeRaw = 0x20,
+} uEchoPropertyType;
+
 #if !defined(_UECHO_PROPERTY_INTERNAL_H_)
 typedef void uEchoProperty;
 #endif
@@ -87,6 +103,9 @@ bool uecho_property_isreadonly(uEchoProperty* prop);
 bool uecho_property_iswriteonly(uEchoProperty* prop);
 bool uecho_property_isannounceable(uEchoProperty* prop);
 bool uecho_property_isannouncerequired(uEchoProperty* prop);
+
+void uecho_property_settype(uEchoProperty* prop, uEchoPropertyType val);
+uEchoPropertyType uecho_property_gettype(uEchoProperty* prop);
 
 uEchoProperty* uecho_property_copy(uEchoProperty* prop);
 bool uecho_property_equals(uEchoProperty* prop1, uEchoProperty* prop2);
