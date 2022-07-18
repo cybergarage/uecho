@@ -1,3 +1,8 @@
+2022-xx-xx The uecho Authors <skonno@cybergarage.org>
+	* v1.2.2
+	* Update a standard ECHONET Lite device database based on Machine Readable Appendix v1.1.1 of ECHONET Consortium
+	* Add uecho_property_?ettype()
+
 2022-05-28 The uecho Authors <skonno@cybergarage.org>
 	* v1.2.1
 	* Add uecho_controller_setnodelistener()
