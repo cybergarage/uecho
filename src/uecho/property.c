@@ -37,7 +37,8 @@ uEchoProperty* uecho_property_new(void)
 
   uecho_property_setparentobject(prop, NULL);
   uecho_property_setattribute(prop, uEchoPropertyAttrReadWrite);
-
+  uecho_property_settype(prop, uEchoPropertyTypeNone);
+  
   if (!prop->name) {
     uecho_property_delete(prop);
     return NULL;
@@ -507,6 +508,28 @@ bool uecho_property_isannouncerequired(uEchoProperty* prop)
     return true;
 
   return false;
+}
+
+/****************************************
+ * uecho_property_settype
+ ****************************************/
+
+void uecho_property_settype(uEchoProperty* prop, uEchoPropertyType val)
+{
+  if (!prop)
+    return;
+  prop->type = val;
+}
+
+/****************************************
+ * uecho_property_gettype
+ ****************************************/
+
+uEchoPropertyType uecho_property_gettype(uEchoProperty* prop)
+{
+  if (!prop)
+    return uEchoPropertyTypeNone;
+  return prop->type;
 }
 
 /****************************************
