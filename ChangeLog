@@ -1,6 +1,7 @@
 2022-xx-xx The uecho Authors <skonno@cybergarage.org>
 	* v1.2.2
-	* Update a standard ECHONET Lite device database based on Machine Readable Appendix v1.1.1 of ECHONET Consortium
+	* Update manufacture database based on latest MCL of ECHONET Consortium
+	* Update standard device database based on MRA v1.1.1 of ECHONET Consortium
 	* Add uecho_property_?ettype()
 
 2022-05-28 The uecho Authors <skonno@cybergarage.org>
@@ -9,8 +10,8 @@
 
 2022-05-06 The uecho Authors <skonno@cybergarage.org>
 	* v1.2.0
-	* Add a manufacture database based on Manufacturer code List of ECHONET Consortium
-	* Add a standard ECHONET Lite device database based on Machine Readable Appendix of ECHONET Consortium
+	* Add a manufacture database based on MCA (Manufacturer Code List) of ECHONET Consortium
+	* Add a standard ECHONET Lite device database based on MRA (Machine Readable Appendix) v1.0.0 of ECHONET Consortium
 	* Update uecho_object_setcode() to add the standard object properties of the specified object code automatically
 	* Update a controller example (uechosearch) to output required read property data in verbose mode
 
