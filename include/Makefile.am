@@ -9,24 +9,24 @@
 ##################################################################
 
 uechoheaders = \
-	./uecho/property.h \
-	./uecho/util/log.h \
-	./uecho/util/bytes.h \
-	./uecho/util/timer.h \
-	./uecho/esv.h \
-	./uecho/manufacture.h \
-	./uecho/object.h \
-	./uecho/const.h \
-	./uecho/std/database.h \
-	./uecho/misc.h \
 	./uecho/profile.h \
-	./uecho/device.h \
-	./uecho/uecho.h \
-	./uecho/message.h \
-	./uecho/controller.h \
+	./uecho/esv.h \
+	./uecho/property.h \
+	./uecho/manufacture.h \
 	./uecho/node.h \
+	./uecho/std/database.h \
+	./uecho/const.h \
+	./uecho/typedef.h \
+	./uecho/message.h \
+	./uecho/object.h \
+	./uecho/uecho.h \
+	./uecho/device.h \
 	./uecho/class.h \
-	./uecho/typedef.h
+	./uecho/misc.h \
+	./uecho/controller.h \
+	./uecho/util/bytes.h \
+	./uecho/util/log.h \
+	./uecho/util/timer.h
 
 nobase_include_HEADERS = \
 	$(uechoheaders)

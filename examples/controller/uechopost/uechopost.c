@@ -41,7 +41,7 @@ void uechopost_print_messages(uEchoController* ctrl, uEchoMessage* msg)
 
   for (n = 0; n < opc; n++) {
     prop = uecho_message_getproperty(msg, n);
-    printf("%02X(%d)", uecho_property_getcode(prop), uecho_property_getdatasize(prop));
+    printf("%02X(%ld)", uecho_property_getcode(prop), uecho_property_getdatasize(prop));
   }
 
   printf("\n");
