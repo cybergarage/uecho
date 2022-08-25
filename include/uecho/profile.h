@@ -42,7 +42,8 @@ typedef enum {
 
 enum {
   uEchoPropertyMapFormat1MaxSize = 15,
-  uEchoPropertyMapFormat2Size = 18,
+  uEchoPropertyMapFormat2MapSize = 16,
+  uEchoPropertyMapFormat2Size = (uEchoPropertyMapFormat2MapSize + 1),
   uEchoPropertyMapFormatMaxSize = uEchoPropertyMapFormat2Size,
 };
 
