@@ -41,6 +41,8 @@ var include_2uecho_2property_8h =
     [ "uecho_property_getdatasize", "include_2uecho_2property_8h.html#a668de40253efcd0b87c9cd1e62f53717", null ],
     [ "uecho_property_getintegerdata", "include_2uecho_2property_8h.html#a2355f3aeb080bb33ff415c0beb649e35", null ],
     [ "uecho_property_getname", "include_2uecho_2property_8h.html#a6f2ea18b24412f6fd8f0421762549424", null ],
+    [ "uecho_property_getpropertymapcodes", "include_2uecho_2property_8h.html#a69a787ca83479473a9abfc8aabe6e316", null ],
+    [ "uecho_property_getpropertymapcount", "include_2uecho_2property_8h.html#a9dbf6954d1375e2335ffdff16e0b7802", null ],
     [ "uecho_property_gettype", "include_2uecho_2property_8h.html#a9c5eef7fd6189bdd324901fd8590819b", null ],
     [ "uecho_property_isannounceable", "include_2uecho_2property_8h.html#a5ebd5e077ff3372153c9f8bcb1d1d6b6", null ],
     [ "uecho_property_isannouncerequired", "include_2uecho_2property_8h.html#ac58334afad901159189e2b8f24bcc5ce", null ],
