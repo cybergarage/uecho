@@ -333,13 +333,13 @@ bool uecho_object_isprofile(uEchoObject* obj)
  * uecho_object_setpropertymap
  ****************************************/
 
-bool uecho_propertymap_codetoformat2(uEchoPropertyCode prop_code, int *prop_map_row, int *prop_map_bit)
+bool uecho_propertymap_codetoformat2(uEchoPropertyCode prop_code, int* prop_map_row, int* prop_map_bit)
 {
   if ((prop_code < uEchoPropertyCodeMin) || (uEchoPropertyCodeMax < prop_code))
     return false;
-	// 1 <= prop_map_row <= 16
+  // 1 <= prop_map_row <= 16
   *prop_map_row = ((prop_code - uEchoPropertyCodeMin) & 0x0F) + 1;
-	// 0 <= prop_map_bit <= 7
+  // 0 <= prop_map_bit <= 7
   *prop_map_bit = (((prop_code - uEchoPropertyCodeMin) & 0xF0) >> 4) & 0x0F;
   return true;
 }
