@@ -211,7 +211,7 @@ int uecho_nodeprofile_getinstancecount(uEchoObject* obj)
 {
   int count;
 
-  if (!uecho_object_getpropertyintegerdata(obj, uEchoNodeProfileClassNumberOfSelfNodeInstances, uEchoNodeProfileClassNumberOfSelfNodeInstancesLen, &count))
+  if (!uecho_object_getpropertyintegerdata(obj, uEchoNodeProfileClassNumberOfSelfNodeInstances, &count))
     return 0;
 
   return count;
@@ -225,7 +225,7 @@ int uecho_nodeprofile_getclasscount(uEchoObject* obj)
 {
   int count;
 
-  if (!uecho_object_getpropertyintegerdata(obj, uEchoNodeProfileClassNumberOfSelfNodeClasses, uEchoNodeProfileClassNumberOfSelfNodeClassesLen, &count))
+  if (!uecho_object_getpropertyintegerdata(obj, uEchoNodeProfileClassNumberOfSelfNodeClasses, &count))
     return 0;
 
   return count;
