@@ -161,7 +161,7 @@ const char* uecho_object_getname(uEchoObject* obj)
  * uecho_object_addstandardproperties
  ****************************************/
 
-bool uecho_object_addstandardproperties(uEchoObject* obj)
+bool uecho_object_addstandardpropertieswithcode(uEchoObject* obj, byte grp_code, byte cls_code)
 {
   uEchoDatabase* db;
   uEchoObject* std_obj;
@@ -173,7 +173,7 @@ bool uecho_object_addstandardproperties(uEchoObject* obj)
   if (!db)
     return false;
 
-  std_obj = uecho_database_getobject(db, uecho_object_getgroupcode(obj), uecho_object_getclasscode(obj));
+  std_obj = uecho_database_getobject(db, grp_code, cls_code);
   if (!std_obj)
     return false;
 
@@ -183,6 +183,18 @@ bool uecho_object_addstandardproperties(uEchoObject* obj)
     return false;
 
   return true;
+}
+
+bool uecho_object_addstandardproperties(uEchoObject* obj)
+{
+  bool is_success = true;
+  if (!uecho_object_addstandardpropertieswithcode(obj, 0x00, 0x00)) {
+    is_success = false;
+  }
+  if (!uecho_object_addstandardpropertieswithcode(obj, uecho_object_getgroupcode(obj), uecho_object_getclasscode(obj))) {
+    is_success = false;
+  }
+  return is_success;
 }
 
 /****************************************
@@ -199,6 +211,7 @@ void uecho_object_setcode(uEchoObject* obj, uEchoObjectCode val)
   obj->code[2] = (val & 0x0000FF);
 
   uecho_object_addstandardproperties(obj);
+  uecho_object_updatepropertymaps(obj);
 }
 
 /****************************************
