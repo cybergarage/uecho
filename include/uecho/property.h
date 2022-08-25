@@ -89,7 +89,7 @@ uEchoPropertyCode uecho_property_getcode(uEchoProperty* prop);
 
 size_t uecho_property_getdatasize(uEchoProperty* prop);
 byte* uecho_property_getdata(uEchoProperty* prop);
-bool uecho_property_getintegerdata(uEchoProperty* prop, size_t data_size, int* data);
+bool uecho_property_getintegerdata(uEchoProperty* prop, int* data);
 bool uecho_property_getbytedata(uEchoProperty* prop, byte* data);
 bool uecho_property_isdataequal(uEchoProperty* prop, const byte* data, size_t data_size);
 
