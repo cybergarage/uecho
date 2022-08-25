@@ -278,7 +278,7 @@ bool uecho_property_getbytedata(uEchoProperty* prop, byte* data)
  * uecho_property_getbytedata
  ****************************************/
 
-bool uecho_property_getmapdatacount(uEchoProperty* prop, size_t* count)
+bool uecho_property_getpropertymapcount(uEchoProperty* prop, size_t* count)
 {
   if (!prop)
     return false;

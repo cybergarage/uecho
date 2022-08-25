@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(PropertyMap)
       uEchoProperty* prop = uecho_object_getproperty(obj, prop_code);
       BOOST_CHECK(prop);
       size_t propMapCount = 0;
-      uecho_property_getmapdatacount(prop, &propMapCount);
+      uecho_property_getpropertymapcount(prop, &propMapCount);
       BOOST_CHECK_EQUAL(propMapCount, expectedPropMapCount);
     }
 
