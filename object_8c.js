@@ -19,7 +19,7 @@ var object_8c =
     [ "uecho_object_getpropertycount", "object_8c.html#aa576b89fd7777e9b484c8f85b17ba2a5", null ],
     [ "uecho_object_getpropertydata", "object_8c.html#a3c43165b7be23f5587fa2368807658ae", null ],
     [ "uecho_object_getpropertydatasize", "object_8c.html#a0833e912f45a6650abeb667461eed3a0", null ],
-    [ "uecho_object_getpropertyintegerdata", "object_8c.html#aec21e1aa768160432e43c838f5c4df60", null ],
+    [ "uecho_object_getpropertyintegerdata", "object_8c.html#aa5f2c0186678c6b60114f08e6e48e1ad", null ],
     [ "uecho_object_getpropertyrequestlistener", "object_8c.html#a3054313f425771f406e4662e8e26e121", null ],
     [ "uecho_object_getpropertywait", "object_8c.html#a3e775543a777699e57dfbbdc9a763958", null ],
     [ "uecho_object_hasmessagelistener", "object_8c.html#ad54ca32c82a5ab410f661f3b2798c538", null ],
