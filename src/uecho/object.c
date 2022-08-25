@@ -333,11 +333,23 @@ bool uecho_object_isprofile(uEchoObject* obj)
  * uecho_object_setpropertymap
  ****************************************/
 
+bool uecho_propertymap_codetoformat2(uEchoPropertyCode prop_code, int *prop_byte_idx, byte *prop_byte)
+{
+  if ((prop_code < uEchoPropertyCodeMin) || (uEchoPropertyCodeMax < prop_code))
+    return false;
+  *prop_byte_idx = (prop_code - uEchoPropertyCodeMin) & 0x0F;
+  *prop_byte = (((prop_code - uEchoPropertyCodeMin) & 0xF0) >> 8) & 0x0F;
+  return true;
+}
+
 bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, uEchoPropertyCode* prop_codes, size_t props_code_size)
 {
   byte prop_map_data[uEchoPropertyMapFormatMaxSize];
   uEchoPropertyCode* prop_map;
-  size_t n, prop_byte_idx;
+  int prop_byte_idx;
+  uEchoPropertyCode prop_code;
+  byte prop_code_byte;
+  size_t n;
 
   if (!obj)
     return false;
@@ -356,12 +368,11 @@ bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, u
   // Description Format 2
 
   for (n = 0; n < props_code_size; n++) {
-    byte prop_code;
     prop_code = prop_codes[n];
-    if ((prop_code < uEchoPropertyCodeMin) || (uEchoPropertyCodeMax < prop_code))
+    if (!uecho_propertymap_codetoformat2(prop_code, &prop_byte_idx, &prop_code_byte)) {
       continue;
-    prop_byte_idx = (prop_code - uEchoPropertyCodeMin) & 0x0F;
-    prop_map[prop_byte_idx] |= (((prop_code - uEchoPropertyCodeMin) & 0xF0) >> 8) & 0x0F;
+    }
+    prop_map[prop_byte_idx] |= prop_code_byte;
   }
 
   uecho_propertylist_set(obj->properties, map_code, uEchoPropertyAttrRead, prop_map_data, (props_code_size + 1));
