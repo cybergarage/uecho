@@ -1,5 +1,6 @@
 2022-xx-xx The uecho Authors <skonno@cybergarage.org>
 	* v1.2.2
+	* Fix to set correct description format 2 property maps
 	* Update manufacture database based on latest MCL of ECHONET Consortium
 	* Update standard device database based on MRA v1.1.1 of ECHONET Consortium
 	* Add uecho_property_?ettype()
