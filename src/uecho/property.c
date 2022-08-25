@@ -235,15 +235,12 @@ bool uecho_property_setintegerdata(uEchoProperty* prop, int data, size_t data_si
  * uecho_property_getintegerdata
  ****************************************/
 
-bool uecho_property_getintegerdata(uEchoProperty* prop, size_t data_size, int* data)
+bool uecho_property_getintegerdata(uEchoProperty* prop, int* data)
 {
   if (!prop)
     return false;
 
-  if (prop->data_size < data_size)
-    return false;
-
-  *data = uecho_byte2integer(prop->data, data_size);
+  *data = uecho_byte2integer(prop->data, prop->data_size);
 
   return true;
 }
