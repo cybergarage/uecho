@@ -242,7 +242,7 @@ byte* uecho_propertylist_getdata(uEchoPropertyList* props, uEchoPropertyCode cod
  * uecho_propertylist_getintegerdata
  ****************************************/
 
-bool uecho_propertylist_getintegerdata(uEchoPropertyList* props, uEchoPropertyCode code, size_t data_len, int* data)
+bool uecho_propertylist_getintegerdata(uEchoPropertyList* props, uEchoPropertyCode code, int* data)
 {
   uEchoProperty* prop;
 
@@ -253,7 +253,7 @@ bool uecho_propertylist_getintegerdata(uEchoPropertyList* props, uEchoPropertyCo
   if (!prop)
     return false;
 
-  return uecho_property_getintegerdata(prop, data_len, data);
+  return uecho_property_getintegerdata(prop, data);
 }
 
 /****************************************
