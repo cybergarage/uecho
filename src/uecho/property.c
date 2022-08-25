@@ -12,6 +12,7 @@
 
 #include <uecho/_node.h>
 #include <uecho/_property.h>
+#include <uecho/profile.h>
 
 #include <uecho/misc.h>
 
@@ -275,7 +276,7 @@ bool uecho_property_getbytedata(uEchoProperty* prop, byte* data)
 }
 
 /****************************************
- * uecho_property_getbytedata
+ * uecho_property_getpropertymapcount
  ****************************************/
 
 bool uecho_property_getpropertymapcount(uEchoProperty* prop, size_t* count)
@@ -295,6 +296,69 @@ bool uecho_property_getpropertymapcount(uEchoProperty* prop, size_t* count)
   }
 
   return false;
+}
+
+/****************************************
+ * uecho_property_getpropertymapcodes
+ ****************************************/
+
+uEchoPropertyCode uecho_propertymap_format2bittocode(int row, int bit)
+{
+  uEchoPropertyCode code;
+  // 0 <= bit <= 7
+  code = (0x10 * bit) + uEchoPropertyCodeMin;
+  // 0 <= row <= 15
+  code += row;
+  return code;
+}
+
+bool uecho_property_getpropertymapcodes(uEchoProperty* prop, uEchoPropertyCode* prop_codes, size_t prop_codes_size)
+{
+  size_t prop_code_count, prop_code_idx;
+  byte prop_byte_code, prop_byte_bit;
+
+  if (!uecho_property_getpropertymapcount(prop, &prop_code_count)) {
+    return false;
+  }
+  if (prop_code_count != prop_codes_size) {
+    return false;
+  }
+
+  // Description Format 1
+
+  if (prop_codes_size <= uEchoPropertyMapFormat1MaxSize) {
+    if (prop->data_size < (prop_code_count + 1)) {
+      return false;
+    }
+    for (int n = 0; n < prop_code_count; n++) {
+      prop_codes[n] = prop->data[n + 1];
+    }
+    return true;
+  }
+
+  // Description Format 2
+
+  if (prop->data_size != uEchoPropertyMapFormat2Size) {
+    return false;
+  }
+
+  prop_code_idx = 0;
+  for (int i = 0; i < uEchoPropertyMapFormat2MapSize; i++) {
+    prop_byte_code = prop->data[i + 1];
+    for (int j = 0; j < 8; j++) {
+      prop_byte_bit = (0x01 << j) & 0x0F;
+      if ((prop_byte_code & prop_byte_bit) == 0) {
+        continue;
+      }
+      if (prop_codes_size <= prop_code_idx) {
+        return false;
+      }
+      prop_codes[prop_code_idx] = uecho_propertymap_format2bittocode(i, j);
+      prop_code_idx++;
+    }
+  }
+
+  return true;
 }
 
 /****************************************
