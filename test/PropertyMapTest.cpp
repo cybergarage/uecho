@@ -34,26 +34,20 @@ BOOST_AUTO_TEST_CASE(PropertyMap)
     for (int j = 0; j < sizeof(prop_codes) / sizeof(prop_codes[0]); j++) {
       uEchoPropertyCode prop_code = prop_codes[i];
       size_t expectedPropMapCount = 0;
-      for (uEchoProperty *prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
+      for (uEchoProperty* prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
         switch (prop_code) {
-        case uEchoObjectGetPropertyMap:
-          {
-            if (uecho_property_isreadable(prop))
-              expectedPropMapCount++;
-          }
-          break;
-          case uEchoObjectSetPropertyMap:
-            {
-              if (uecho_property_iswritable(prop))
-                expectedPropMapCount++;
-            }
-            break;
-          case uEchoObjectAnnoPropertyMap:
-            {
-              if (uecho_property_isannounceable(prop))
-                expectedPropMapCount++;
-            }
-            break;
+        case uEchoObjectGetPropertyMap: {
+          if (uecho_property_isreadable(prop))
+            expectedPropMapCount++;
+        } break;
+        case uEchoObjectSetPropertyMap: {
+          if (uecho_property_iswritable(prop))
+            expectedPropMapCount++;
+        } break;
+        case uEchoObjectAnnoPropertyMap: {
+          if (uecho_property_isannounceable(prop))
+            expectedPropMapCount++;
+        } break;
         }
       }
       uEchoProperty* prop = uecho_object_getproperty(obj, prop_code);
