@@ -46,5 +46,6 @@ var object_8c =
     [ "uecho_object_setpropertymap", "object_8c.html#aba7351830807b9645875532b34587505", null ],
     [ "uecho_object_setpropertyreadhandler", "object_8c.html#a8b11d51c134d83e2d0dd428cbaa63062", null ],
     [ "uecho_object_setpropertyrequesthandler", "object_8c.html#a08efa74bf1a6dd8fb8ef5b81d4de6c12", null ],
-    [ "uecho_object_setpropertywriterequesthandler", "object_8c.html#af58c5117790f80da5c2dc6f306433708", null ]
+    [ "uecho_object_setpropertywriterequesthandler", "object_8c.html#af58c5117790f80da5c2dc6f306433708", null ],
+    [ "uecho_propertymap_codetoformat2", "object_8c.html#a62c044d5b284230de3178a4211235326", null ]
 ];

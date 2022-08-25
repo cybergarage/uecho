@@ -40,7 +40,7 @@ var NAVTREE =
         [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
-        [ "Enumerator", "globals_eval.html", null ],
+        [ "Enumerator", "globals_eval.html", "globals_eval" ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -51,11 +51,12 @@ var NAVTREEINDEX =
 [
 "__class_8h.html",
 "controller_8h.html#ae8bd429c3f734a3204632b09de97b8b1",
-"include_2uecho_2property_8h.html#ac54892603be87e2c9e476f2f060b7fec",
-"message_8c.html#ae79555614b4ee459470b9f4819059ac2",
-"object_8h.html#aae6114456b8331a3bbaf87f0e97cafa3",
-"socket_8c.html#a7fcf64d37f56bdd86b90e7e076077c07",
-"strings__function_8c.html#a220d9b695b55e7a664486aa9e4879e35"
+"include_2uecho_2property_8h.html#a668de40253efcd0b87c9cd1e62f53717",
+"message_8c.html#aaef8baf9cbe3435ad98b5533ae6095d1",
+"object_8h.html#a5391a7c4152bb0b0a4ca4b7d45767591",
+"server_8h.html#aeeb906fbc9e0c3d962ec8dd64738af32",
+"strings_8h.html#aca6ebe20a9212117cf9713543ee53b03",
+"udp__server__list_8c.html#a375147d67adb25d7cd7e1e659da37379"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

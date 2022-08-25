@@ -17,6 +17,7 @@ var property_8c =
     [ "uecho_property_getname", "property_8c.html#a6f2ea18b24412f6fd8f0421762549424", null ],
     [ "uecho_property_getnode", "property_8c.html#a6299e5c0e4dce8e978e7750dd4e5d942", null ],
     [ "uecho_property_getparentobject", "property_8c.html#a494d30469a91331d42ede8d028125463", null ],
+    [ "uecho_property_gettype", "property_8c.html#a9c5eef7fd6189bdd324901fd8590819b", null ],
     [ "uecho_property_isannounceable", "property_8c.html#a5ebd5e077ff3372153c9f8bcb1d1d6b6", null ],
     [ "uecho_property_isannouncerequired", "property_8c.html#ac58334afad901159189e2b8f24bcc5ce", null ],
     [ "uecho_property_isdataequal", "property_8c.html#aa0af1a3e65291ecc601468822689dec3", null ],
@@ -36,5 +37,6 @@ var property_8c =
     [ "uecho_property_setdata", "property_8c.html#a4d63e3f41769ee0558b55302dd62ba21", null ],
     [ "uecho_property_setintegerdata", "property_8c.html#a29b7217e862c5c81cd22c2b7ba6dd393", null ],
     [ "uecho_property_setname", "property_8c.html#ac54892603be87e2c9e476f2f060b7fec", null ],
-    [ "uecho_property_setparentobject", "property_8c.html#a5a8b9eb0acc969bde2ce0ac3e6a082ae", null ]
+    [ "uecho_property_setparentobject", "property_8c.html#a5a8b9eb0acc969bde2ce0ac3e6a082ae", null ],
+    [ "uecho_property_settype", "property_8c.html#a80d4ff390c45b717b21e8fe193bc15b9", null ]
 ];

@@ -13,6 +13,21 @@ var include_2uecho_2property_8h =
       [ "uEchoPropertyAttrWriteRequired", "include_2uecho_2property_8h.html#af9fdcc8e23fd281b3a30b50fec2804a9adc9c6479add28091cbdd4198fac587a3", null ],
       [ "uEchoPropertyAttrAnnoRequired", "include_2uecho_2property_8h.html#af9fdcc8e23fd281b3a30b50fec2804a9aa717cf7a144c3ebbffbbad368d1b1eec", null ]
     ] ],
+    [ "uEchoPropertyType", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837", [
+      [ "uEchoPropertyTypeNone", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837a44419270c1c656b47fc35e116189e1c1", null ],
+      [ "uEchoPropertyTypeNumber", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837af963b68a2dcf29fcde4ecf6006e04b50", null ],
+      [ "uEchoPropertyTypeState", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837a8701419c265e240e1cb1a480e93694d8", null ],
+      [ "uEchoPropertyTypeNumeric", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837a3350b705148ace6d22895247a0837e6f", null ],
+      [ "uEchoPropertyTypeLevel", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837acded14dd43692b4ef48b00366f6295c8", null ],
+      [ "uEchoPropertyTypeDateTime", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837addc08c76dae2fbb880bfab72053ba8f4", null ],
+      [ "uEchoPropertyTypeDate", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837a4556c3261db16e57b9bd6b6ba4405745", null ],
+      [ "uEchoPropertyTypeTime", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837a855c0b63d16e9253790ead3b823a8dad", null ],
+      [ "uEchoPropertyTypeBitmap", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837adfddec3fbaae94a7f8e922a1ed0991bd", null ],
+      [ "uEchoPropertyTypeArray", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837ad91e91e4ebcfc978d3f6e266132071e2", null ],
+      [ "uEchoPropertyTypeObject", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837a13c359c3854e2f783bd9c9b76b37fc96", null ],
+      [ "uEchoPropertyTypeOneOf", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837ac08341d8965dae6f17f91c185a7dee84", null ],
+      [ "uEchoPropertyTypeRaw", "include_2uecho_2property_8h.html#a3db93cb39443350770f4c9663ea34837a257c34ba458ccf64f0067cf69c5d6dc6", null ]
+    ] ],
     [ "uecho_property_addbytedata", "include_2uecho_2property_8h.html#a755225021ca812a6b131e9b1d5134fb0", null ],
     [ "uecho_property_adddata", "include_2uecho_2property_8h.html#affbf591273c750329d482aa110774e1b", null ],
     [ "uecho_property_cleardata", "include_2uecho_2property_8h.html#a8b24a2689f46b69c4394c02b711a6afa", null ],
@@ -26,6 +41,7 @@ var include_2uecho_2property_8h =
     [ "uecho_property_getdatasize", "include_2uecho_2property_8h.html#a668de40253efcd0b87c9cd1e62f53717", null ],
     [ "uecho_property_getintegerdata", "include_2uecho_2property_8h.html#ab7181322ea1e32ff2dd35bef368e9306", null ],
     [ "uecho_property_getname", "include_2uecho_2property_8h.html#a6f2ea18b24412f6fd8f0421762549424", null ],
+    [ "uecho_property_gettype", "include_2uecho_2property_8h.html#a9c5eef7fd6189bdd324901fd8590819b", null ],
     [ "uecho_property_isannounceable", "include_2uecho_2property_8h.html#a5ebd5e077ff3372153c9f8bcb1d1d6b6", null ],
     [ "uecho_property_isannouncerequired", "include_2uecho_2property_8h.html#ac58334afad901159189e2b8f24bcc5ce", null ],
     [ "uecho_property_isdataequal", "include_2uecho_2property_8h.html#aa0af1a3e65291ecc601468822689dec3", null ],
@@ -43,5 +59,6 @@ var include_2uecho_2property_8h =
     [ "uecho_property_setcode", "include_2uecho_2property_8h.html#a0d2778190a5127dfaa548360a54712c6", null ],
     [ "uecho_property_setdata", "include_2uecho_2property_8h.html#a4d63e3f41769ee0558b55302dd62ba21", null ],
     [ "uecho_property_setintegerdata", "include_2uecho_2property_8h.html#a29b7217e862c5c81cd22c2b7ba6dd393", null ],
-    [ "uecho_property_setname", "include_2uecho_2property_8h.html#ac54892603be87e2c9e476f2f060b7fec", null ]
+    [ "uecho_property_setname", "include_2uecho_2property_8h.html#ac54892603be87e2c9e476f2f060b7fec", null ],
+    [ "uecho_property_settype", "include_2uecho_2property_8h.html#a80d4ff390c45b717b21e8fe193bc15b9", null ]
 ];
