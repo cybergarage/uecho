@@ -576,12 +576,12 @@ byte* uecho_object_getpropertydata(uEchoObject* obj, uEchoPropertyCode code)
  * uecho_object_getpropertyintegerdata
  ****************************************/
 
-bool uecho_object_getpropertyintegerdata(uEchoObject* obj, uEchoPropertyCode code, size_t data_len, int* data)
+bool uecho_object_getpropertyintegerdata(uEchoObject* obj, uEchoPropertyCode code, int* data)
 {
   if (!obj)
     return false;
 
-  return uecho_propertylist_getintegerdata(obj->properties, code, data_len, data);
+  return uecho_propertylist_getintegerdata(obj->properties, code, data);
 }
 
 /****************************************

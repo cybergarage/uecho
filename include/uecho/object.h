@@ -90,7 +90,7 @@ uEchoProperty* uecho_object_getproperties(uEchoObject* obj);
 uEchoProperty* uecho_object_getproperty(uEchoObject* obj, uEchoPropertyCode code);
 int uecho_object_getpropertydatasize(uEchoObject* obj, uEchoPropertyCode code);
 byte* uecho_object_getpropertydata(uEchoObject* obj, uEchoPropertyCode code);
-bool uecho_object_getpropertyintegerdata(uEchoObject* obj, uEchoPropertyCode code, size_t data_len, int* data);
+bool uecho_object_getpropertyintegerdata(uEchoObject* obj, uEchoPropertyCode code, int* data);
 bool uecho_object_getpropertybytedata(uEchoObject* obj, uEchoPropertyCode code, byte* data);
 
 bool uecho_object_hasproperty(uEchoObject* obj, uEchoPropertyCode code);

@@ -186,25 +186,25 @@ BOOST_AUTO_TEST_CASE(PropertyByte2Integer)
   int val;
   for (int n = 0; n <= 0xFF; n++) {
     BOOST_CHECK(uecho_property_setintegerdata(prop, n, 1));
-    BOOST_CHECK(uecho_property_getintegerdata(prop, 1, &val));
+    BOOST_CHECK(uecho_property_getintegerdata(prop, &val));
     BOOST_CHECK_EQUAL(n, val);
   }
 
   for (int n = 0; n <= 0xFFFF; n += (0xFFFF / 0xFF)) {
     BOOST_CHECK(uecho_property_setintegerdata(prop, n, 2));
-    BOOST_CHECK(uecho_property_getintegerdata(prop, 2, &val));
+    BOOST_CHECK(uecho_property_getintegerdata(prop, &val));
     BOOST_CHECK_EQUAL(n, val);
   }
 
   for (int n = 0; n <= 0xFFFFFF; n += (0xFFFFFF / 0xFF)) {
     BOOST_CHECK(uecho_property_setintegerdata(prop, n, 3));
-    BOOST_CHECK(uecho_property_getintegerdata(prop, 3, &val));
+    BOOST_CHECK(uecho_property_getintegerdata(prop, &val));
     BOOST_CHECK_EQUAL(n, val);
   }
 
   for (int n = 0; n < 0xFFFFFFFF; n += (0xFFFFFFFF / 0xFF)) {
     BOOST_CHECK(uecho_property_setintegerdata(prop, n, 4));
-    BOOST_CHECK(uecho_property_getintegerdata(prop, 4, &val));
+    BOOST_CHECK(uecho_property_getintegerdata(prop, &val));
     BOOST_CHECK_EQUAL(n, val);
   }
 
