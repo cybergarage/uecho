@@ -26,6 +26,7 @@ uechotest_SOURCES = \
 	../ObjectTest.cpp \
 	../ClassListTest.cpp \
 	../SocketTest.cpp \
+	../PropertyMapTest.cpp \
 	../ProfileTest.cpp \
 	../ServerTest.cpp \
 	../TestDevice.cpp \

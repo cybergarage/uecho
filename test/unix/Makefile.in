@@ -113,13 +113,14 @@ am_uechotest_OBJECTS = ../MiscTest.$(OBJEXT) ../PropertyTest.$(OBJEXT) \
 	../ObserverTest.$(OBJEXT) ../LogTest.$(OBJEXT) \
 	../MessageTest.$(OBJEXT) ../ObjectTest.$(OBJEXT) \
 	../ClassListTest.$(OBJEXT) ../SocketTest.$(OBJEXT) \
-	../ProfileTest.$(OBJEXT) ../ServerTest.$(OBJEXT) \
-	../TestDevice.$(OBJEXT) ../ClassTest.$(OBJEXT) \
-	../ControllerTest.$(OBJEXT) ../NodeTest.$(OBJEXT) \
-	../uEchoTest.$(OBJEXT) ../MutexTest.$(OBJEXT) \
-	../ObjectListTest.$(OBJEXT) ../DatabaseTest.$(OBJEXT) \
-	../NodeListTest.$(OBJEXT) ../DeviceTest.$(OBJEXT) \
-	../ThreadTest.$(OBJEXT) ../PropertyListTest.$(OBJEXT)
+	../PropertyMapTest.$(OBJEXT) ../ProfileTest.$(OBJEXT) \
+	../ServerTest.$(OBJEXT) ../TestDevice.$(OBJEXT) \
+	../ClassTest.$(OBJEXT) ../ControllerTest.$(OBJEXT) \
+	../NodeTest.$(OBJEXT) ../uEchoTest.$(OBJEXT) \
+	../MutexTest.$(OBJEXT) ../ObjectListTest.$(OBJEXT) \
+	../DatabaseTest.$(OBJEXT) ../NodeListTest.$(OBJEXT) \
+	../DeviceTest.$(OBJEXT) ../ThreadTest.$(OBJEXT) \
+	../PropertyListTest.$(OBJEXT)
 uechotest_OBJECTS = $(am_uechotest_OBJECTS)
 uechotest_DEPENDENCIES = ../../lib/unix/libuecho.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -146,7 +147,8 @@ am__depfiles_remade = ../$(DEPDIR)/BytesTest.Po \
 	../$(DEPDIR)/NodeListTest.Po ../$(DEPDIR)/NodeTest.Po \
 	../$(DEPDIR)/ObjectListTest.Po ../$(DEPDIR)/ObjectTest.Po \
 	../$(DEPDIR)/ObserverTest.Po ../$(DEPDIR)/ProfileTest.Po \
-	../$(DEPDIR)/PropertyListTest.Po ../$(DEPDIR)/PropertyTest.Po \
+	../$(DEPDIR)/PropertyListTest.Po \
+	../$(DEPDIR)/PropertyMapTest.Po ../$(DEPDIR)/PropertyTest.Po \
 	../$(DEPDIR)/ServerTest.Po ../$(DEPDIR)/SocketTest.Po \
 	../$(DEPDIR)/TestDevice.Po ../$(DEPDIR)/ThreadTest.Po \
 	../$(DEPDIR)/uEchoTest.Po
@@ -501,6 +503,7 @@ uechotest_SOURCES = \
 	../ObjectTest.cpp \
 	../ClassListTest.cpp \
 	../SocketTest.cpp \
+	../PropertyMapTest.cpp \
 	../ProfileTest.cpp \
 	../ServerTest.cpp \
 	../TestDevice.cpp \
@@ -581,6 +584,8 @@ clean-checkPROGRAMS:
 	../$(DEPDIR)/$(am__dirstamp)
 ../SocketTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
+../PropertyMapTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
 ../ProfileTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 ../ServerTest.$(OBJEXT): ../$(am__dirstamp) \
@@ -638,6 +643,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ObserverTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ProfileTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/PropertyListTest.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/PropertyMapTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/PropertyTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ServerTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/SocketTest.Po@am__quote@ # am--include-marker
@@ -978,6 +984,7 @@ distclean: distclean-am
 	-rm -f ../$(DEPDIR)/ObserverTest.Po
 	-rm -f ../$(DEPDIR)/ProfileTest.Po
 	-rm -f ../$(DEPDIR)/PropertyListTest.Po
+	-rm -f ../$(DEPDIR)/PropertyMapTest.Po
 	-rm -f ../$(DEPDIR)/PropertyTest.Po
 	-rm -f ../$(DEPDIR)/ServerTest.Po
 	-rm -f ../$(DEPDIR)/SocketTest.Po
@@ -1047,6 +1054,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ../$(DEPDIR)/ObserverTest.Po
 	-rm -f ../$(DEPDIR)/ProfileTest.Po
 	-rm -f ../$(DEPDIR)/PropertyListTest.Po
+	-rm -f ../$(DEPDIR)/PropertyMapTest.Po
 	-rm -f ../$(DEPDIR)/PropertyTest.Po
 	-rm -f ../$(DEPDIR)/ServerTest.Po
 	-rm -f ../$(DEPDIR)/SocketTest.Po
