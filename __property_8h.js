@@ -16,7 +16,7 @@ var __property_8h =
     [ "uecho_propertylist_getbytedata", "__property_8h.html#acdf0694da4f2a16353cba25006b1d896", null ],
     [ "uecho_propertylist_getdata", "__property_8h.html#af82f0e9d1993bcf1b81b6fbd7be17508", null ],
     [ "uecho_propertylist_getdatasize", "__property_8h.html#a30f43168715a73bf87b348a7c8e8cbda", null ],
-    [ "uecho_propertylist_getintegerdata", "__property_8h.html#a330d1fae3c4ed6791514d0bc2518b8eb", null ],
+    [ "uecho_propertylist_getintegerdata", "__property_8h.html#a1a132b6574faa3b7391c406f17092fc3", null ],
     [ "uecho_propertylist_new", "__property_8h.html#a14184c1d902f5e90bd5bc1c088c34432", null ],
     [ "uecho_propertylist_set", "__property_8h.html#ade211d5f4fb84a9d65b578a1e74f6fc7", null ],
     [ "uecho_propertylist_setattribute", "__property_8h.html#a1c50c318a7d9269d3cc977b6cdf852eb", null ],

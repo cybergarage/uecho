@@ -13,7 +13,7 @@ var property_8c =
     [ "uecho_property_getcode", "property_8c.html#ad2284751371e3c7b6d83ac785196049f", null ],
     [ "uecho_property_getdata", "property_8c.html#aa9f441f6807768691fcbebddfbf4a7d9", null ],
     [ "uecho_property_getdatasize", "property_8c.html#a668de40253efcd0b87c9cd1e62f53717", null ],
-    [ "uecho_property_getintegerdata", "property_8c.html#ab7181322ea1e32ff2dd35bef368e9306", null ],
+    [ "uecho_property_getintegerdata", "property_8c.html#a2355f3aeb080bb33ff415c0beb649e35", null ],
     [ "uecho_property_getname", "property_8c.html#a6f2ea18b24412f6fd8f0421762549424", null ],
     [ "uecho_property_getnode", "property_8c.html#a6299e5c0e4dce8e978e7750dd4e5d942", null ],
     [ "uecho_property_getparentobject", "property_8c.html#a494d30469a91331d42ede8d028125463", null ],
