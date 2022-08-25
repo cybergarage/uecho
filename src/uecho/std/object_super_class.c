@@ -29,7 +29,7 @@ bool uecho_object_setmanufacturercode(uEchoObject* obj, uEchoManufactureCode cod
 uEchoManufactureCode uecho_object_getmanufacturercode(uEchoObject* obj)
 {
   uEchoManufactureCode code;
-  if (!uecho_object_getpropertyintegerdata(obj, uEchoObjectManufacturerCode, uEchoObjectManufacturerCodeLen, &code))
+  if (!uecho_object_getpropertyintegerdata(obj, uEchoObjectManufacturerCode, &code))
     return uEchoManufactureCodeDefault;
   return code;
 }
