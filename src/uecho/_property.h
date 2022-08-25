@@ -75,7 +75,7 @@ uEchoProperty* uecho_propertylist_findbycode(uEchoPropertyList* props, uEchoProp
 
 byte uecho_propertylist_getdatasize(uEchoPropertyList* props, uEchoPropertyCode code);
 byte* uecho_propertylist_getdata(uEchoPropertyList* props, uEchoPropertyCode code);
-bool uecho_propertylist_getintegerdata(uEchoPropertyList* props, uEchoPropertyCode code, size_t data_len, int* data);
+bool uecho_propertylist_getintegerdata(uEchoPropertyList* props, uEchoPropertyCode code, int* data);
 bool uecho_propertylist_getbytedata(uEchoPropertyList* props, uEchoPropertyCode code, byte* data);
 
 #define uecho_propertylist_clear(props) uecho_list_clear((uEchoList*)props, (UECHO_LIST_DESTRUCTORFUNC)uecho_property_delete)
