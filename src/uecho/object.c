@@ -381,6 +381,7 @@ bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, u
 
   // Description Format 2
 
+  memset(prop_map, 0, uEchoPropertyMapFormatMaxSize);
   for (n = 0; n < props_code_size; n++) {
     prop_code = prop_codes[n];
     if (!uecho_propertymap_codetoformat2(prop_code, &prop_map_row, &prop_map_bit)) {

@@ -92,7 +92,7 @@ byte* uecho_property_getdata(uEchoProperty* prop);
 bool uecho_property_getintegerdata(uEchoProperty* prop, int* data);
 bool uecho_property_getbytedata(uEchoProperty* prop, byte* data);
 bool uecho_property_getpropertymapcount(uEchoProperty* prop, size_t* count);
-bool uecho_property_getmapdata(uEchoProperty* prop, uEchoPropertyCode* prop_codes, size_t count);
+bool uecho_property_getpropertymapcodes(uEchoProperty* prop, uEchoPropertyCode* prop_codes, size_t count);
 bool uecho_property_isdataequal(uEchoProperty* prop, const byte* data, size_t data_size);
 
 void uecho_property_setattribute(uEchoProperty* prop, uEchoPropertyAttr val);
