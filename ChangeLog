@@ -1,9 +1,12 @@
 2022-xx-xx The uecho Authors <skonno@cybergarage.org>
+	* v1.2.3
+	* Add uecho_property_gettype()
+
+2022-08-26 The uecho Authors <skonno@cybergarage.org>
 	* v1.2.2
 	* Fix to set correct description format 2 property maps
 	* Update manufacture database based on latest MCL of ECHONET Consortium
 	* Update standard device database based on MRA v1.1.1 of ECHONET Consortium
-	* Add uecho_property_?ettype()
 
 2022-05-28 The uecho Authors <skonno@cybergarage.org>
 	* v1.2.1
@@ -42,5 +45,5 @@
 	* Fix uecho_nodeprofileclass_setversion() to set the transmission type correctly
 
 2015-09-15 The uecho Authors <skonno@cybergarage.org>
-	* v0.9
+	* v0.9.0
         * The first release.
