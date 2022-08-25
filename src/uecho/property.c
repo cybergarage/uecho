@@ -289,7 +289,8 @@ bool uecho_property_getmapdatacount(uEchoProperty* prop, size_t* count)
   case uEchoObjectGetPropertyMap: {
     if (prop->data_size < 1)
       return false;
-    return prop->data[0];
+    *count = prop->data[0];
+    return true;
   } break;
   }
 
