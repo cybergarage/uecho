@@ -360,7 +360,6 @@ bool uecho_propertymap_codetoformat2(uEchoPropertyCode prop_code, int* prop_map_
 bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, uEchoPropertyCode* prop_codes, size_t props_code_size)
 {
   byte prop_map_data[uEchoPropertyMapFormatMaxSize];
-  uEchoPropertyCode* prop_map;
   uEchoPropertyCode prop_code;
   int prop_map_row, prop_map_bit;
   size_t n;
@@ -369,25 +368,24 @@ bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, u
     return false;
 
   prop_map_data[0] = (byte)props_code_size;
-  prop_map = prop_map_data + 1;
 
   // Description Format 1
 
   if (props_code_size <= uEchoPropertyMapFormat1MaxSize) {
-    memcpy(prop_map, prop_codes, props_code_size);
+    memcpy((prop_map_data +1), prop_codes, props_code_size);
     uecho_propertylist_set(obj->properties, map_code, uEchoPropertyAttrRead, prop_map_data, (props_code_size + 1));
     return true;
   }
 
   // Description Format 2
 
-  memset(prop_map, 0, uEchoPropertyMapFormatMaxSize);
+  memset((prop_map_data +1), 0, uEchoPropertyMapFormat2MapSize);
   for (n = 0; n < props_code_size; n++) {
     prop_code = prop_codes[n];
     if (!uecho_propertymap_codetoformat2(prop_code, &prop_map_row, &prop_map_bit)) {
       continue;
     }
-    prop_map[prop_map_row] |= ((0x01 << prop_map_bit) & 0x0F);
+    prop_map_data[prop_map_row] |= ((0x01 << prop_map_bit) & 0x0F);
   }
 
   uecho_propertylist_setdata(obj->properties, map_code, prop_map_data, uEchoPropertyMapFormat2Size);
