@@ -275,6 +275,28 @@ bool uecho_property_getbytedata(uEchoProperty* prop, byte* data)
 }
 
 /****************************************
+ * uecho_property_getbytedata
+ ****************************************/
+
+bool uecho_property_getmapdatacount(uEchoProperty* prop, size_t* count)
+{
+  if (!prop)
+    return false;
+
+  switch (prop->code) {
+  case uEchoObjectAnnoPropertyMap:
+  case uEchoObjectSetPropertyMap:
+  case uEchoObjectGetPropertyMap: {
+    if (prop->data_size < 1)
+      return false;
+    return prop->data[0];
+  } break;
+  }
+
+  return false;
+}
+
+/****************************************
  * uecho_property_cleardata
  ****************************************/
 
