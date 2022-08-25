@@ -11,6 +11,7 @@
 		210E7BA61BA191DB00343445 /* SocketTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210E7BA51BA191DB00343445 /* SocketTest.cpp */; };
 		21205A121B95EEEC008A941C /* InterfaceTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21205A111B95EEEC008A941C /* InterfaceTest.cpp */; };
 		21205A141B95FACC008A941C /* ServerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21205A131B95FACC008A941C /* ServerTest.cpp */; };
+		2138062F28B7C9D500358ABD /* PropertyMapTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2138062E28B7C9D500358ABD /* PropertyMapTest.cpp */; };
 		213C5BFD1B4A548B0013DDD9 /* libuecho.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 213C5BFA1B4A54630013DDD9 /* libuecho.a */; };
 		214376311B705EAE003F2E5E /* PropertyTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214376301B705EAE003F2E5E /* PropertyTest.cpp */; };
 		2146D09528228A6500DE4245 /* DatabaseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2146D09428228A6500DE4245 /* DatabaseTest.cpp */; };
@@ -69,6 +70,7 @@
 		210E7BA51BA191DB00343445 /* SocketTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SocketTest.cpp; path = ../../SocketTest.cpp; sourceTree = "<group>"; };
 		21205A111B95EEEC008A941C /* InterfaceTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InterfaceTest.cpp; path = ../../InterfaceTest.cpp; sourceTree = "<group>"; };
 		21205A131B95FACC008A941C /* ServerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ServerTest.cpp; path = ../../ServerTest.cpp; sourceTree = "<group>"; };
+		2138062E28B7C9D500358ABD /* PropertyMapTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PropertyMapTest.cpp; path = ../../PropertyMapTest.cpp; sourceTree = "<group>"; };
 		213C5BF51B4A54630013DDD9 /* libuecho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuecho.xcodeproj; path = ../../../lib/macosx/xcode/libuecho.xcodeproj; sourceTree = "<group>"; };
 		214376301B705EAE003F2E5E /* PropertyTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PropertyTest.cpp; path = ../../PropertyTest.cpp; sourceTree = "<group>"; };
 		2146D09428228A6500DE4245 /* DatabaseTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DatabaseTest.cpp; path = ../../DatabaseTest.cpp; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				21E703C31B8B32D5000F6CD1 /* ObserverTest.cpp */,
 				215B493E1B85851A002B20CE /* ProfileTest.cpp */,
 				21B06C141B7C5C77004E9E09 /* PropertyListTest.cpp */,
+				2138062E28B7C9D500358ABD /* PropertyMapTest.cpp */,
 				214376301B705EAE003F2E5E /* PropertyTest.cpp */,
 				21205A131B95FACC008A941C /* ServerTest.cpp */,
 				210E7BA51BA191DB00343445 /* SocketTest.cpp */,
@@ -265,6 +268,7 @@
 				21205A141B95FACC008A941C /* ServerTest.cpp in Sources */,
 				216F1DFC1B4A5BB8003C7B6A /* ControllerTest.cpp in Sources */,
 				21BCB1FB1B7349E900999D01 /* ThreadTest.cpp in Sources */,
+				2138062F28B7C9D500358ABD /* PropertyMapTest.cpp in Sources */,
 				2153A5E31B8EB40D00FAE69A /* TestDevice.cpp in Sources */,
 				215B493F1B85851A002B20CE /* ProfileTest.cpp in Sources */,
 				217142961B886682003ABA30 /* ClassListTest.cpp in Sources */,
