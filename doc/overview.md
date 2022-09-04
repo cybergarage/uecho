@@ -1,5 +1,6 @@
 ![logo](https://raw.githubusercontent.com/cybergarage/uecho/master/doc/img/logo.png)
 
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/cybergarage/uecho)
 [![Build Status](https://github.com/cybergarage/uecho/actions/workflows/make.yml/badge.svg)](https://github.com/cybergarage/uecho/actions/workflows/makefile.yml)
 [![doxygen](https://github.com/cybergarage/uecho/actions/workflows/doxygen.yml/badge.svg)](http://cybergarage.github.io/uecho/)
 
