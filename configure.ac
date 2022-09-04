@@ -9,9 +9,9 @@
 ##################################################################
 
 AC_CONFIG_AUX_DIR(config)
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADERS(config.h)
 
-AC_INIT([uecho], [1.2.0])
+AC_INIT([uecho],[1.2.2])
 AC_CONFIG_SRCDIR([include/uecho/typedef.h])
 AM_INIT_AUTOMAKE([subdir-objects])
 
@@ -50,20 +50,17 @@ AC_CHECK_FUNCS([getifaddrs])
 
 ##### socklen_t ####
 AC_MSG_CHECKING(for socklen_t)
-AC_TRY_COMPILE([
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 #include <sys/types.h>
 #include <sys/socket.h>
 socklen_t foosocket;
-],
-[],
-[AC_MSG_RESULT(yes)
-AC_DEFINE([HAVE_SOCKLEN_T],1,[SOCKLEN_T])],
-[AC_MSG_RESULT(no)]
-)
+]], [[]])],[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_SOCKLEN_T],1,[SOCKLEN_T])],[AC_MSG_RESULT(no)
+])
 
 ##### SIOCGIFHWADDR ####
 AC_MSG_CHECKING(for SIOCGIFHWADDR)
-AC_TRY_COMPILE([
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
@@ -80,16 +77,13 @@ void func()
   ifr.ifr_addr.sa_family = AF_INET;
   ioctl(sock, SIOCGIFHWADDR, &ifr);
 }
-],
-[],
-[AC_MSG_RESULT(yes)
-AC_DEFINE([HAVE_SIOCGIFHWADDR],1,[SIOCGIFHWADDR])],
-[AC_MSG_RESULT(no)]
-)
+]], [[]])],[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_SIOCGIFHWADDR],1,[SIOCGIFHWADDR])],[AC_MSG_RESULT(no)
+])
 
 ##### sockaddr_dl ####
 AC_MSG_CHECKING(for sockaddr_dl)
-AC_TRY_COMPILE([
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 #include <sys/types.h>
 #include <sys/socket.h>
 void func()
@@ -103,16 +97,13 @@ void func()
   LLADDR(dl);
   freeifaddrs(ifaddr);
 }
-],
-[],
-[AC_MSG_RESULT(yes)
-AC_DEFINE([HAVE_SOCKADDR_DL],1,[SOCKADDR_DL])],
-[AC_MSG_RESULT(no)]
-)
+]], [[]])],[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_SOCKADDR_DL],1,[SOCKADDR_DL])],[AC_MSG_RESULT(no)
+])
 
 ##### IP_PKTINFO ####
 AC_MSG_CHECKING(for IP_PKTINFO)
-AC_TRY_COMPILE([
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 #include <sys/types.h>
 #include <sys/socket.h>
 void func()
@@ -120,16 +111,13 @@ void func()
   int on=1;
   setsockopt(0, IPPROTO_IP, IP_PKTINFO,  &on, sizeof(on));
 }
-],
-[],
-[AC_MSG_RESULT(yes)
-AC_DEFINE([HAVE_IP_PKTINFO],1,[IP_PKTINFO])],
-[AC_MSG_RESULT(no)]
-)
+]], [[]])],[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_IP_PKTINFO],1,[IP_PKTINFO])],[AC_MSG_RESULT(no)
+])
 
 ##### SO_NOSIGPIPE ####
 AC_MSG_CHECKING(for SO_NOSIGPIPE)
-AC_TRY_COMPILE([
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 #include <sys/types.h>
 #include <sys/socket.h>
 void func()
@@ -137,12 +125,9 @@ void func()
   int on=1;
   setsockopt(0, SOL_SOCKET, SO_NOSIGPIPE,  &on, sizeof(on));
 }
-],
-[],
-[AC_MSG_RESULT(yes)
-AC_DEFINE([HAVE_SO_NOSIGPIPE],1,[SO_NOSIGPIPES])],
-[AC_MSG_RESULT(no)]
-)
+]], [[]])],[AC_MSG_RESULT(yes)
+AC_DEFINE([HAVE_SO_NOSIGPIPE],1,[SO_NOSIGPIPES])],[AC_MSG_RESULT(no)
+])
 
 ##############################
 # Debug
@@ -150,7 +135,7 @@ AC_DEFINE([HAVE_SO_NOSIGPIPE],1,[SO_NOSIGPIPES])],
 
 AC_ARG_ENABLE(
  	[debug],
-	AC_HELP_STRING([--enable-debug], [ enable debugging (default = no) ]),
+	AS_HELP_STRING([--enable-debug],[ enable debugging (default = no) ]),
 	[case "${enableval}" in
     	yes | no ) enable_debug="${enableval}" ;;
 	esac],
@@ -167,7 +152,7 @@ fi
 
 AC_ARG_ENABLE(
  	[test],
-	AC_HELP_STRING([--enable-test], [ build tests (default = no) ]),
+	AS_HELP_STRING([--enable-test],[ build tests (default = no) ]),
 	[case "${enableval}" in
     	yes | no ) build_test="${enableval}" ;;
 	esac],
@@ -188,8 +173,7 @@ fi
 
 AC_ARG_ENABLE(
 	[examples],
-	AC_HELP_STRING([--enable-examples],
-	[ build examples (default = yes) ]),
+	AS_HELP_STRING([--enable-examples],[ build examples (default = yes) ]),
 	[case "${enableval}" in
 	yes | no ) build_examples="${enableval}" ;;
 	esac],
@@ -201,7 +185,7 @@ AM_CONDITIONAL(UECHO_ENABLE_EXAMPLES,test "$build_examples" = yes)
 # Makefiles
 ##############################
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 include/Makefile
 lib/Makefile
@@ -220,3 +204,4 @@ examples/device/Makefile
 examples/device/uecholight/Makefile
 examples/device/uecholight/unix/Makefile
 ])
+AC_OUTPUT

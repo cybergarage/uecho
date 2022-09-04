@@ -1,6 +1,7 @@
-2022-xx-xx The uecho Authors <skonno@cybergarage.org>
+2022-09-04 The uecho Authors <skonno@cybergarage.org>
 	* v1.2.3
 	* Add uecho_property_gettype()
+	* Update deprecated macros in configure.ac by autoconf
 
 2022-08-26 The uecho Authors <skonno@cybergarage.org>
 	* v1.2.2
