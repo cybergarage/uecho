@@ -54,6 +54,8 @@ while(<MANLIST>){
   }
   printf("  uecho_database_addstandardmanufacture(db, 0x%s, %s);\n", $code, $name);
 }
+printf("  uecho_database_addstandardmanufacture(db, 0xFFFFFF, \"Experimental\");\n");
+printf("  uecho_database_addstandardmanufacture(db, 0xFFFFFE, \"Undefined\");\n");
 close(MANLIST);
 print<<FOTTER;
 }
