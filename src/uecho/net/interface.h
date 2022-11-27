@@ -26,8 +26,8 @@ extern "C" {
 #endif
 
 /****************************************
-* Define
-****************************************/
+ * Define
+ ****************************************/
 
 #define UECHO_NET_IPV4_ADDRSTRING_MAXSIZE ((3 * 4) + (1 * 3) + 1)
 #define UECHO_NET_IPV6_ADDRSTRING_MAXSIZE (1 + (8 * 4) + (1 * 7) + 1 + 1)
@@ -37,8 +37,8 @@ extern "C" {
 #define UECHO_NET_MACADDR_SIZE 6
 
 /****************************************
-* Data Type
-****************************************/
+ * Data Type
+ ****************************************/
 
 typedef struct {
   UECHO_LIST_STRUCT_MEMBERS
@@ -51,8 +51,8 @@ typedef struct {
 } uEchoNetworkInterface, uEchoNetworkInterfaceList;
 
 /****************************************
-* Function (NetworkInterface)
-****************************************/
+ * Function (NetworkInterface)
+ ****************************************/
 
 uEchoNetworkInterface* uecho_net_interface_new(void);
 void uecho_net_interface_delete(uEchoNetworkInterface* net_if);
@@ -76,8 +76,8 @@ char* uecho_net_selectaddr(struct sockaddr* remoteaddr);
 #define uecho_net_interface_getindex(netIf, buf) (netIf->index)
 
 /****************************************
-* Function (NetworkInterfaceList)
-****************************************/
+ * Function (NetworkInterfaceList)
+ ****************************************/
 
 uEchoNetworkInterfaceList* uecho_net_interfacelist_new(void);
 void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList* net_if_list);
@@ -88,8 +88,8 @@ void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList* net_if_list);
 #define uecho_net_interfacelist_add(netIfList, netIf) uecho_list_add((uEchoList*)netIfList, (uEchoList*)netIf)
 
 /****************************************
-* Function
-****************************************/
+ * Function
+ ****************************************/
 
 size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList* net_if_list);
 

@@ -24,8 +24,8 @@ extern "C" {
 #endif
 
 /****************************************
-* Define
-****************************************/
+ * Define
+ ****************************************/
 
 #define UECHO_NET_SOCKET_NONE 0
 
@@ -51,8 +51,8 @@ typedef int SOCKET;
 #define UECHO_NET_SOCKET_AUTO_IP_MASK 0xffff0000
 
 /****************************************
-* Data Type
-****************************************/
+ * Data Type
+ ****************************************/
 
 #include <uecho/util/list.h>
 
@@ -80,8 +80,8 @@ typedef struct UEchoDatagramPacket {
 } uEchoDatagramPacket;
 
 /****************************************
-* Function (Socket)
-****************************************/
+ * Function (Socket)
+ ****************************************/
 
 void uecho_socket_startup(void);
 void uecho_socket_cleanup(void);
@@ -128,14 +128,14 @@ size_t uecho_socket_sendto(uEchoSocket* sock, const char* addr, int port, const 
 ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgm_pkt);
 
 /****************************************
-* Function (Multicast)
-****************************************/
+ * Function (Multicast)
+ ****************************************/
 
 bool uecho_socket_joingroup(uEchoSocket* sock, const char* mcast_addr, const char* if_addr);
 
 /****************************************
-* Function (Option)
-****************************************/
+ * Function (Option)
+ ****************************************/
 
 bool uecho_socket_setreuseaddress(uEchoSocket* socket, bool flag);
 bool uecho_socket_setmulticastloop(uEchoSocket* sock, bool flag);
@@ -143,8 +143,8 @@ bool uecho_socket_setmulticastttl(uEchoSocket* sock, int ttl);
 bool uecho_socket_settimeout(uEchoSocket* sock, int sec);
 
 /****************************************
-* Function (DatagramPacket)
-****************************************/
+ * Function (DatagramPacket)
+ ****************************************/
 
 uEchoDatagramPacket* uecho_socket_datagram_packet_new(void);
 void uecho_socket_datagram_packet_delete(uEchoDatagramPacket* dgm_pkt);
@@ -166,8 +166,8 @@ bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket* dgm_pkt);
 bool uecho_socket_datagram_packet_copy(uEchoDatagramPacket* dst_dgm_pkt, uEchoDatagramPacket* src_dgm_pkt);
 
 /****************************************
-* Function (SSLSocket)
-****************************************/
+ * Function (SSLSocket)
+ ****************************************/
 
 #if defined(UECHO_USE_OPENSSL)
 #define UECHO_NET_SOCKET_SSL 0x0100

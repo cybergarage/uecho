@@ -11,8 +11,8 @@
 #include <uecho/_class.h>
 
 /****************************************
-* uecho_classlist_new
-****************************************/
+ * uecho_classlist_new
+ ****************************************/
 
 uEchoClassList* uecho_classlist_new(void)
 {
@@ -28,8 +28,8 @@ uEchoClassList* uecho_classlist_new(void)
 }
 
 /****************************************
-* uecho_classlist_delete
-****************************************/
+ * uecho_classlist_delete
+ ****************************************/
 
 void uecho_classlist_delete(uEchoClassList* clsses)
 {

@@ -12,8 +12,8 @@
 #include <uecho/net/socket_opt.h>
 
 /****************************************
-* uecho_socket_option_new
-****************************************/
+ * uecho_socket_option_new
+ ****************************************/
 
 uEchoSocketOption* uecho_socket_option_new()
 {
@@ -31,8 +31,8 @@ uEchoSocketOption* uecho_socket_option_new()
 }
 
 /****************************************
-* uecho_socket_option_delete
-****************************************/
+ * uecho_socket_option_delete
+ ****************************************/
 
 bool uecho_socket_option_delete(uEchoSocketOption* opt)
 {

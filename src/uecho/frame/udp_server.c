@@ -12,8 +12,8 @@
 #include <uecho/util/logs.h>
 
 /****************************************
-* uecho_udp_server_new
-****************************************/
+ * uecho_udp_server_new
+ ****************************************/
 
 uEchoUdpServer* uecho_udp_server_new(void)
 {

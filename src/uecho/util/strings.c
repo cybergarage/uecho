@@ -17,8 +17,8 @@
 #define UECHO_STRING_REALLOC_EXTRA 16
 
 /****************************************
-* uecho_string_new
-****************************************/
+ * uecho_string_new
+ ****************************************/
 
 uEchoString* uecho_string_new(void)
 {
@@ -36,8 +36,8 @@ uEchoString* uecho_string_new(void)
 }
 
 /****************************************
-* uecho_string_delete
-****************************************/
+ * uecho_string_delete
+ ****************************************/
 
 void uecho_string_delete(uEchoString* str)
 {
@@ -48,8 +48,8 @@ void uecho_string_delete(uEchoString* str)
 }
 
 /****************************************
-* uecho_string_delete
-****************************************/
+ * uecho_string_delete
+ ****************************************/
 
 void uecho_string_clear(uEchoString* str)
 {
@@ -64,8 +64,8 @@ void uecho_string_clear(uEchoString* str)
 }
 
 /****************************************
-* uecho_string_setvalue
-****************************************/
+ * uecho_string_setvalue
+ ****************************************/
 
 void uecho_string_setvalue(uEchoString* str, const char* value)
 {
@@ -76,8 +76,8 @@ void uecho_string_setvalue(uEchoString* str, const char* value)
 }
 
 /****************************************
-* uecho_string_setintvalue
-****************************************/
+ * uecho_string_setintvalue
+ ****************************************/
 
 void uecho_string_setintvalue(uEchoString* str, int value)
 {
@@ -87,8 +87,8 @@ void uecho_string_setintvalue(uEchoString* str, int value)
 }
 
 /****************************************
-* uecho_string_setlongvalue
-****************************************/
+ * uecho_string_setlongvalue
+ ****************************************/
 
 void uecho_string_setlongvalue(uEchoString* str, long value)
 {
@@ -98,8 +98,8 @@ void uecho_string_setlongvalue(uEchoString* str, long value)
 }
 
 /****************************************
-* uecho_string_setnvalue
-****************************************/
+ * uecho_string_setnvalue
+ ****************************************/
 
 void uecho_string_setnvalue(uEchoString* str, const char* value, size_t len)
 {
@@ -122,8 +122,8 @@ void uecho_string_setnvalue(uEchoString* str, const char* value, size_t len)
 }
 
 /****************************************
-* uecho_string_setpointervalue
-****************************************/
+ * uecho_string_setpointervalue
+ ****************************************/
 
 void uecho_string_setpointervalue(uEchoString* str, char* value, size_t len)
 {
@@ -136,8 +136,8 @@ void uecho_string_setpointervalue(uEchoString* str, char* value, size_t len)
 }
 
 /****************************************
-* uecho_string_getvalue
-****************************************/
+ * uecho_string_getvalue
+ ****************************************/
 
 char* uecho_string_getvalue(uEchoString* str)
 {
@@ -145,8 +145,8 @@ char* uecho_string_getvalue(uEchoString* str)
 }
 
 /****************************************
-* uecho_string_getmemorysize
-****************************************/
+ * uecho_string_getmemorysize
+ ****************************************/
 
 size_t uecho_string_getmemorysize(uEchoString* str)
 {
@@ -157,8 +157,8 @@ size_t uecho_string_getmemorysize(uEchoString* str)
 }
 
 /****************************************
-* uecho_string_length
-****************************************/
+ * uecho_string_length
+ ****************************************/
 
 size_t uecho_string_length(uEchoString* str)
 {
@@ -172,8 +172,8 @@ size_t uecho_string_length(uEchoString* str)
 }
 
 /****************************************
-* uecho_string_add
-****************************************/
+ * uecho_string_add
+ ****************************************/
 
 char* uecho_string_addvalue(uEchoString* str, const char* value)
 {
@@ -181,8 +181,8 @@ char* uecho_string_addvalue(uEchoString* str, const char* value)
 }
 
 /****************************************
-* uecho_string_add
-****************************************/
+ * uecho_string_add
+ ****************************************/
 
 char* uecho_string_naddvalue(uEchoString* str, const char* value, size_t value_len)
 {
@@ -226,8 +226,8 @@ char* uecho_string_naddvalue(uEchoString* str, const char* value, size_t value_l
 }
 
 /****************************************
-* uecho_string_addrep
-****************************************/
+ * uecho_string_addrep
+ ****************************************/
 
 char* uecho_string_addrepvalue(uEchoString* str, const char* value, size_t repeat_cnt)
 {
@@ -240,8 +240,8 @@ char* uecho_string_addrepvalue(uEchoString* str, const char* value, size_t repea
 }
 
 /****************************************
-* uecho_string_naddrep
-****************************************/
+ * uecho_string_naddrep
+ ****************************************/
 
 char* uecho_string_naddrepvalue(uEchoString* str, const char* value, size_t value_len, size_t repeat_cnt)
 {
@@ -254,8 +254,8 @@ char* uecho_string_naddrepvalue(uEchoString* str, const char* value, size_t valu
 }
 
 /****************************************
-* uecho_string_replace
-****************************************/
+ * uecho_string_replace
+ ****************************************/
 
 char* uecho_string_replace(uEchoString* str, char* from_str[], char* to_str[], size_t from_str_cnt)
 {

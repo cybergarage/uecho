@@ -11,8 +11,8 @@
 #include <uecho/std/_database.h>
 
 /****************************************
-* uecho_database_new
-****************************************/
+ * uecho_database_new
+ ****************************************/
 
 uEchoDatabase* uecho_database_new(void)
 {
@@ -35,8 +35,8 @@ uEchoDatabase* uecho_database_new(void)
 }
 
 /****************************************
-* uecho_database_delete
-****************************************/
+ * uecho_database_delete
+ ****************************************/
 
 bool uecho_database_delete(uEchoDatabase* db)
 {
@@ -57,8 +57,8 @@ bool uecho_database_delete(uEchoDatabase* db)
 }
 
 /****************************************
-* uecho_database_addmanufacture
-****************************************/
+ * uecho_database_addmanufacture
+ ****************************************/
 
 bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture* man)
 {
@@ -68,8 +68,8 @@ bool uecho_database_addmanufacture(uEchoDatabase* db, uEchoManufacture* man)
 }
 
 /****************************************
-* uecho_database_addobject
-****************************************/
+ * uecho_database_addobject
+ ****************************************/
 
 bool uecho_database_addobject(uEchoDatabase* db, uEchoObject* obj)
 {
@@ -79,8 +79,8 @@ bool uecho_database_addobject(uEchoDatabase* db, uEchoObject* obj)
 }
 
 /****************************************
-* uecho_database_getmanufacture
-****************************************/
+ * uecho_database_getmanufacture
+ ****************************************/
 
 uEchoManufacture* uecho_database_getmanufacture(uEchoDatabase* db, uEchoManufactureCode code)
 {
@@ -90,8 +90,8 @@ uEchoManufacture* uecho_database_getmanufacture(uEchoDatabase* db, uEchoManufact
 }
 
 /****************************************
-* uecho_database_getobject
-****************************************/
+ * uecho_database_getobject
+ ****************************************/
 
 uEchoObject* uecho_database_getobject(uEchoDatabase* db, byte grp_code, byte cls_code)
 {

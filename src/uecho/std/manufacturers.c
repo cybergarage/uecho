@@ -12,15 +12,17 @@
 
 #include <uecho/std/_database.h>
 
-bool uecho_database_addstandardmanufacture(uEchoDatabase* db, int code, const char *name) {
-  uEchoManufacture *man;
+bool uecho_database_addstandardmanufacture(uEchoDatabase* db, int code, const char* name)
+{
+  uEchoManufacture* man;
   man = uecho_manufacture_new();
   uecho_manufacture_setcode(man, code);
   uecho_manufacture_setname(man, name);
-  return uecho_database_addmanufacture(db, man); 
+  return uecho_database_addmanufacture(db, man);
 }
 
-void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
+void uecho_database_addstandardmanufactures(uEchoDatabase* db)
+{
   uecho_database_addstandardmanufacture(db, 0x00002F, "AIPHONE CO., LTD.");
   uecho_database_addstandardmanufacture(db, 0x00011A, "ACCESS CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x00002C, "AFT CO.,LTD");

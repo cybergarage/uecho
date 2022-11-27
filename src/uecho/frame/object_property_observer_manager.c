@@ -11,8 +11,8 @@
 #include <uecho/frame/property.h>
 
 /****************************************
-* uecho_object_property_observer_manager_new
-****************************************/
+ * uecho_object_property_observer_manager_new
+ ****************************************/
 
 uEchoObjectPropertyObserverManager* uecho_object_property_observer_manager_new(void)
 {
@@ -28,8 +28,8 @@ uEchoObjectPropertyObserverManager* uecho_object_property_observer_manager_new(v
 }
 
 /****************************************
-* uecho_object_property_observer_manager_delete
-****************************************/
+ * uecho_object_property_observer_manager_delete
+ ****************************************/
 
 void uecho_object_property_observer_manager_delete(uEchoObjectPropertyObserverManager* mgr)
 {

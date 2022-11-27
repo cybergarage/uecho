@@ -11,8 +11,8 @@
 #include <uecho/_property.h>
 
 /****************************************
-* uecho_propertylist_new
-****************************************/
+ * uecho_propertylist_new
+ ****************************************/
 
 uEchoPropertyList* uecho_propertylist_new(void)
 {
@@ -28,8 +28,8 @@ uEchoPropertyList* uecho_propertylist_new(void)
 }
 
 /****************************************
-* uecho_propertylist_delete
-****************************************/
+ * uecho_propertylist_delete
+ ****************************************/
 
 void uecho_propertylist_delete(uEchoPropertyList* props)
 {

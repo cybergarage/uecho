@@ -15,8 +15,8 @@
 #include <uecho/net/interface.h>
 
 /****************************************
-* global variables
-****************************************/
+ * global variables
+ ****************************************/
 
 static bool uecho_net_use_only_ip_v4_addr = false;
 static bool uecho_net_use_only_ip_v6_addr = false;

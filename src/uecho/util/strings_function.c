@@ -18,8 +18,8 @@
 #include <uecho/util/strings.h>
 
 /****************************************
-* uecho_strdup
-****************************************/
+ * uecho_strdup
+ ****************************************/
 
 char* uecho_strdup(const char* str)
 {
@@ -63,8 +63,8 @@ bool uecho_strloc(const char* str, char** buf)
 }
 
 /****************************************
-* uecho_strlen
-****************************************/
+ * uecho_strlen
+ ****************************************/
 
 size_t uecho_strlen(const char* str)
 {
@@ -72,8 +72,8 @@ size_t uecho_strlen(const char* str)
 }
 
 /****************************************
-* uecho_strcpy
-****************************************/
+ * uecho_strcpy
+ ****************************************/
 
 char* uecho_strcpy(char* dst, const char* src)
 {
@@ -81,8 +81,8 @@ char* uecho_strcpy(char* dst, const char* src)
 }
 
 /****************************************
-* uecho_strcat
-****************************************/
+ * uecho_strcat
+ ****************************************/
 
 char* uecho_strcat(char* dst, const char* src)
 {
@@ -90,8 +90,8 @@ char* uecho_strcat(char* dst, const char* src)
 }
 
 /****************************************
-* uecho_strcmp
-****************************************/
+ * uecho_strcmp
+ ****************************************/
 
 int uecho_strcmp(const char* str1, const char* str2)
 {
@@ -103,8 +103,8 @@ int uecho_strcmp(const char* str1, const char* str2)
 }
 
 /****************************************
-* uecho_strncmp
-****************************************/
+ * uecho_strncmp
+ ****************************************/
 
 int uecho_strncmp(const char* str1, const char* str2, size_t nchars)
 {
@@ -116,8 +116,8 @@ int uecho_strncmp(const char* str1, const char* str2, size_t nchars)
 }
 
 /****************************************
-* uecho_strcasecmp
-****************************************/
+ * uecho_strcasecmp
+ ****************************************/
 
 int uecho_strcasecmp(const char* str1, const char* str2)
 {
@@ -135,8 +135,8 @@ int uecho_strcasecmp(const char* str1, const char* str2)
 }
 
 /****************************************
-* uecho_streq
-****************************************/
+ * uecho_streq
+ ****************************************/
 
 bool uecho_streq(const char* str1, const char* str2)
 {
@@ -147,8 +147,8 @@ bool uecho_streq(const char* str1, const char* str2)
 }
 
 /****************************************
-* uecho_strcaseeq
-****************************************/
+ * uecho_strcaseeq
+ ****************************************/
 
 bool uecho_strcaseeq(const char* str1, const char* str2)
 {
@@ -159,8 +159,8 @@ bool uecho_strcaseeq(const char* str1, const char* str2)
 }
 
 /****************************************
-* uecho_strstr
-****************************************/
+ * uecho_strstr
+ ****************************************/
 
 ssize_t uecho_strstr(const char* haystack, const char* needle)
 {
@@ -175,8 +175,8 @@ ssize_t uecho_strstr(const char* haystack, const char* needle)
 }
 
 /****************************************
-* uecho_strchr
-****************************************/
+ * uecho_strchr
+ ****************************************/
 
 ssize_t uecho_strchr(const char* str, const char* chars, size_t nchars)
 {
@@ -198,8 +198,8 @@ ssize_t uecho_strchr(const char* str, const char* chars, size_t nchars)
 }
 
 /****************************************
-* uecho_strrchr
-****************************************/
+ * uecho_strrchr
+ ****************************************/
 
 ssize_t uecho_strrchr(const char* str, const char* chars, size_t nchars)
 {
@@ -221,8 +221,8 @@ ssize_t uecho_strrchr(const char* str, const char* chars, size_t nchars)
 }
 
 /****************************************
-* uecho_strtrimwhite
-****************************************/
+ * uecho_strtrimwhite
+ ****************************************/
 
 char* uecho_strtrimwhite(char* str)
 {
@@ -249,8 +249,8 @@ char* uecho_strtrimwhite(char* str)
 }
 
 /****************************************
-* uecho_strtrim
-****************************************/
+ * uecho_strtrim
+ ****************************************/
 
 char* uecho_strtrim(char* str, char* delim, size_t ndelim)
 {
@@ -262,8 +262,8 @@ char* uecho_strtrim(char* str, char* delim, size_t ndelim)
 }
 
 /****************************************
-* uecho_strltrim
-****************************************/
+ * uecho_strltrim
+ ****************************************/
 
 char* uecho_strltrim(char* str, char* delim, size_t ndelim)
 {
@@ -287,8 +287,8 @@ char* uecho_strltrim(char* str, char* delim, size_t ndelim)
 }
 
 /****************************************
-* uecho_strrtrim
-****************************************/
+ * uecho_strrtrim
+ ****************************************/
 
 char* uecho_strrtrim(char* str, char* delim, size_t ndelim)
 {
@@ -313,8 +313,8 @@ char* uecho_strrtrim(char* str, char* delim, size_t ndelim)
 }
 
 /****************************************
-* uecho_strncpy
-****************************************/
+ * uecho_strncpy
+ ****************************************/
 
 char* uecho_strncpy(char* str1, const char* str2, size_t cnt)
 {
@@ -323,8 +323,8 @@ char* uecho_strncpy(char* str1, const char* str2, size_t cnt)
 }
 
 /****************************************
-* uecho_strncat
-****************************************/
+ * uecho_strncat
+ ****************************************/
 
 char* uecho_strncat(char* str1, const char* str2, size_t cnt)
 {
@@ -334,8 +334,8 @@ char* uecho_strncat(char* str1, const char* str2, size_t cnt)
 }
 
 /****************************************
-* uecho_int2str
-****************************************/
+ * uecho_int2str
+ ****************************************/
 
 const char* uecho_int2str(int value, char* buf, size_t buf_size)
 {
@@ -348,8 +348,8 @@ const char* uecho_int2str(int value, char* buf, size_t buf_size)
 }
 
 /****************************************
-* uecho_long2str
-****************************************/
+ * uecho_long2str
+ ****************************************/
 
 const char* uecho_long2str(long value, char* buf, size_t buf_size)
 {
@@ -362,8 +362,8 @@ const char* uecho_long2str(long value, char* buf, size_t buf_size)
 }
 
 /****************************************
-* uecho_float2str
-****************************************/
+ * uecho_float2str
+ ****************************************/
 
 const char* uecho_float2str(float value, char* buf, size_t buf_size)
 {
@@ -376,8 +376,8 @@ const char* uecho_float2str(float value, char* buf, size_t buf_size)
 }
 
 /****************************************
-* uecho_double2str
-****************************************/
+ * uecho_double2str
+ ****************************************/
 
 const char* uecho_double2str(double value, char* buf, size_t buf_size)
 {
@@ -390,8 +390,8 @@ const char* uecho_double2str(double value, char* buf, size_t buf_size)
 }
 
 /****************************************
-* uecho_sizet2str
-****************************************/
+ * uecho_sizet2str
+ ****************************************/
 
 const char* uecho_sizet2str(size_t value, char* buf, size_t buf_size)
 {
@@ -404,8 +404,8 @@ const char* uecho_sizet2str(size_t value, char* buf, size_t buf_size)
 }
 
 /****************************************
-* uecho_ssizet2str
-****************************************/
+ * uecho_ssizet2str
+ ****************************************/
 
 const char* uecho_ssizet2str(ssize_t value, char* buf, size_t buf_size)
 {

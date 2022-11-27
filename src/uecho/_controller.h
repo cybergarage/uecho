@@ -29,8 +29,8 @@ enum {
 };
 
 /****************************************
-* Data Type
-****************************************/
+ * Data Type
+ ****************************************/
 
 typedef struct UEchoController {
   uEchoMutex* mutex;
@@ -54,7 +54,7 @@ typedef struct UEchoController {
 
 /****************************************
  * Function
-****************************************/
+ ****************************************/
 
 bool uecho_controller_searchwithesv(uEchoController* ctrl, uEchoEsv esv);
 bool uecho_controller_searchobjectwithesv(uEchoController* ctrl, byte obj_code, uEchoEsv esv);

@@ -11,8 +11,8 @@
 #include <uecho/_object.h>
 
 /****************************************
-* uecho_objectlist_new
-****************************************/
+ * uecho_objectlist_new
+ ****************************************/
 
 uEchoObjectList* uecho_objectlist_new(void)
 {
@@ -28,8 +28,8 @@ uEchoObjectList* uecho_objectlist_new(void)
 }
 
 /****************************************
-* uecho_objectlist_delete
-****************************************/
+ * uecho_objectlist_delete
+ ****************************************/
 
 void uecho_objectlist_delete(uEchoObjectList* objs)
 {

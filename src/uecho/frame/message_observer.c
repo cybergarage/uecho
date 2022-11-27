@@ -11,8 +11,8 @@
 #include <uecho/frame/message.h>
 
 /****************************************
-* uecho_message_observer_new
-****************************************/
+ * uecho_message_observer_new
+ ****************************************/
 
 uEchoMessageObserver* uecho_message_observer_new(void)
 {
@@ -32,8 +32,8 @@ uEchoMessageObserver* uecho_message_observer_new(void)
 }
 
 /****************************************
-* uecho_message_observer_delete
-****************************************/
+ * uecho_message_observer_delete
+ ****************************************/
 
 void uecho_message_observer_delete(uEchoMessageObserver* obs)
 {

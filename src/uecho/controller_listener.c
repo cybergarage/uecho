@@ -183,8 +183,8 @@ void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoNode* node, 
 }
 
 /****************************************
-* uecho_controller_servermessagelistener
-****************************************/
+ * uecho_controller_servermessagelistener
+ ****************************************/
 
 void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage* msg)
 {

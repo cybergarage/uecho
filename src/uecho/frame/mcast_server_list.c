@@ -12,8 +12,8 @@
 #include <uecho/net/interface.h>
 
 /****************************************
-* uecho_mcast_serverlist_new
-****************************************/
+ * uecho_mcast_serverlist_new
+ ****************************************/
 
 uEchoMcastServerList* uecho_mcast_serverlist_new(void)
 {
@@ -29,8 +29,8 @@ uEchoMcastServerList* uecho_mcast_serverlist_new(void)
 }
 
 /****************************************
-* uecho_mcast_serverlist_delete
-****************************************/
+ * uecho_mcast_serverlist_delete
+ ****************************************/
 
 void uecho_mcast_serverlist_delete(uEchoMcastServerList* servers)
 {

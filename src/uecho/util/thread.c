@@ -19,8 +19,8 @@
 static void uecho_sig_handler(int sign);
 
 /****************************************
-* Thread Function
-****************************************/
+ * Thread Function
+ ****************************************/
 
 #if defined(WIN32)
 static DWORD WINAPI Win32ThreadProc(LPVOID lpParam)
@@ -58,8 +58,8 @@ static void* posix_thread_proc(void* param)
 #endif
 
 /****************************************
-* uecho_thread_new
-****************************************/
+ * uecho_thread_new
+ ****************************************/
 
 uEchoThread* uecho_thread_new(void)
 {
@@ -80,8 +80,8 @@ uEchoThread* uecho_thread_new(void)
 }
 
 /****************************************
-* uecho_thread_delete
-****************************************/
+ * uecho_thread_delete
+ ****************************************/
 
 bool uecho_thread_delete(uEchoThread* thread)
 {
@@ -100,8 +100,8 @@ bool uecho_thread_delete(uEchoThread* thread)
 }
 
 /****************************************
-* uecho_thread_start
-****************************************/
+ * uecho_thread_start
+ ****************************************/
 
 bool uecho_thread_start(uEchoThread* thread)
 {
@@ -137,8 +137,8 @@ bool uecho_thread_start(uEchoThread* thread)
 }
 
 /****************************************
-* uecho_thread_stop
-****************************************/
+ * uecho_thread_stop
+ ****************************************/
 
 bool uecho_thread_stop(uEchoThread* thread)
 {
@@ -161,8 +161,8 @@ bool uecho_thread_stop(uEchoThread* thread)
 }
 
 /****************************************
-* uecho_thread_restart
-****************************************/
+ * uecho_thread_restart
+ ****************************************/
 
 bool uecho_thread_restart(uEchoThread* thread)
 {
@@ -171,8 +171,8 @@ bool uecho_thread_restart(uEchoThread* thread)
 }
 
 /****************************************
-* uecho_thread_isrunnable
-****************************************/
+ * uecho_thread_isrunnable
+ ****************************************/
 
 bool uecho_thread_isrunnable(uEchoThread* thread)
 {
@@ -199,8 +199,8 @@ bool uecho_thread_isrunning(uEchoThread* thread)
 }
 
 /****************************************
-* uecho_thread_setaction
-****************************************/
+ * uecho_thread_setaction
+ ****************************************/
 
 void uecho_thread_setaction(uEchoThread* thread, uEchoThreadFunc func)
 {
@@ -211,8 +211,8 @@ void uecho_thread_setaction(uEchoThread* thread, uEchoThreadFunc func)
 }
 
 /****************************************
-* uecho_thread_setuserdata
-****************************************/
+ * uecho_thread_setuserdata
+ ****************************************/
 
 void uecho_thread_setuserdata(uEchoThread* thread, void* value)
 {
@@ -223,8 +223,8 @@ void uecho_thread_setuserdata(uEchoThread* thread, void* value)
 }
 
 /****************************************
-* uecho_thread_getuserdata
-****************************************/
+ * uecho_thread_getuserdata
+ ****************************************/
 
 void* uecho_thread_getuserdata(uEchoThread* thread)
 {

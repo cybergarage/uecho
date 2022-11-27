@@ -11,8 +11,8 @@
 #include <uecho/profile.h>
 
 /****************************************
-* uecho_profile_new
-****************************************/
+ * uecho_profile_new
+ ****************************************/
 
 uEchoObject* uecho_profile_new(void)
 {

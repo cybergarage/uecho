@@ -11,8 +11,8 @@
 #include <uecho/frame/server.h>
 
 /****************************************
-* uecho_server_new
-****************************************/
+ * uecho_server_new
+ ****************************************/
 
 uEchoServer* uecho_server_new(void)
 {
@@ -33,8 +33,8 @@ uEchoServer* uecho_server_new(void)
 }
 
 /****************************************
-* uecho_server_delete
-****************************************/
+ * uecho_server_delete
+ ****************************************/
 
 bool uecho_server_delete(uEchoServer* server)
 {

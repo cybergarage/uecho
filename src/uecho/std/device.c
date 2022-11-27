@@ -11,8 +11,8 @@
 #include <uecho/device.h>
 
 /****************************************
-* uecho_device_new
-****************************************/
+ * uecho_device_new
+ ****************************************/
 
 uEchoObject* uecho_device_new(void)
 {

@@ -14,8 +14,8 @@
 #include <uecho/util/logs.h>
 
 /****************************************
-* uecho_net_socket_log
-****************************************/
+ * uecho_net_socket_log
+ ****************************************/
 
 void uecho_net_socket_log(int severity, const char* prefix, const char* from_addr, const char* to_addr, const byte* msg_bytes, size_t msg_len)
 {
@@ -42,8 +42,8 @@ void uecho_net_socket_log(int severity, const char* prefix, const char* from_add
 }
 
 /****************************************
-* uecho_net_socket_*
-****************************************/
+ * uecho_net_socket_*
+ ****************************************/
 
 void uecho_net_socket_debug(const char* prefix, const char* from_addr, const char* to_addr, const byte* pkt_bytes, size_t pkt_len)
 {
@@ -56,8 +56,8 @@ void uecho_net_socket_error(const char* prefix, const char* from_addr, const cha
 }
 
 /****************************************
-* uecho_net_datagram_packet_*
-****************************************/
+ * uecho_net_datagram_packet_*
+ ****************************************/
 
 void uecho_net_datagram_packet_error(const char* prefix, uEchoDatagramPacket* dpkt)
 {
@@ -86,8 +86,8 @@ void uecho_net_datagram_packet_debug(const char* prefix, uEchoDatagramPacket* dp
 }
 
 /****************************************
-* uecho_message_error
-****************************************/
+ * uecho_message_error
+ ****************************************/
 
 void uecho_message_error(const char* prefix, uEchoMessage* msg)
 {

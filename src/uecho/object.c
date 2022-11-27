@@ -20,8 +20,8 @@
 #include <uecho/util/timer.h>
 
 /****************************************
-* uecho_object_new
-****************************************/
+ * uecho_object_new
+ ****************************************/
 
 uEchoObject* uecho_object_new(void)
 {
@@ -69,8 +69,8 @@ uEchoObject* uecho_object_new(void)
 }
 
 /****************************************
-* uecho_object_delete
-****************************************/
+ * uecho_object_delete
+ ****************************************/
 
 bool uecho_object_delete(uEchoObject* obj)
 {
@@ -372,14 +372,14 @@ bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, u
   // Description Format 1
 
   if (props_code_size <= uEchoPropertyMapFormat1MaxSize) {
-    memcpy((prop_map_data +1), prop_codes, props_code_size);
+    memcpy((prop_map_data + 1), prop_codes, props_code_size);
     uecho_propertylist_set(obj->properties, map_code, uEchoPropertyAttrRead, prop_map_data, (props_code_size + 1));
     return true;
   }
 
   // Description Format 2
 
-  memset((prop_map_data +1), 0, uEchoPropertyMapFormat2MapSize);
+  memset((prop_map_data + 1), 0, uEchoPropertyMapFormat2MapSize);
   for (n = 0; n < props_code_size; n++) {
     prop_code = prop_codes[n];
     if (!uecho_propertymap_codetoformat2(prop_code, &prop_map_row, &prop_map_bit)) {

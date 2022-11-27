@@ -13,8 +13,8 @@
 #include <uecho/util/bytes.h>
 
 /****************************************
-* uecho_bytes_toint
-****************************************/
+ * uecho_bytes_toint
+ ****************************************/
 
 int uecho_bytes_toint(byte* byte_data, size_t byte_size)
 {
@@ -31,8 +31,8 @@ int uecho_bytes_toint(byte* byte_data, size_t byte_size)
 }
 
 /****************************************
-* uecho_bytes_fromint
-****************************************/
+ * uecho_bytes_fromint
+ ****************************************/
 
 byte* uecho_bytes_fromint(int val, size_t bytes_size)
 {

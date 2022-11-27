@@ -26,8 +26,8 @@ extern "C" {
 #define uEchoControllerPostResponseMaxMiliTime 5000
 
 /****************************************
-* Data Type
-****************************************/
+ * Data Type
+ ****************************************/
 
 #if !defined(_UECHO_CONTROLLER_INTERNAL_H_)
 typedef void uEchoController;
@@ -38,7 +38,7 @@ typedef void (*uEchoControllerNodeListener)(uEchoController*, uEchoNode*, uEchoN
 
 /****************************************
  * Function
-****************************************/
+ ****************************************/
 
 uEchoController* uecho_controller_new(void);
 bool uecho_controller_delete(uEchoController* ctrl);

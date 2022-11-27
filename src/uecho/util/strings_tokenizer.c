@@ -11,8 +11,8 @@
 #include <uecho/util/strings.h>
 
 /****************************************
-* uecho_string_tokenizer_new
-****************************************/
+ * uecho_string_tokenizer_new
+ ****************************************/
 
 uEchoStringTokenizer* uecho_string_tokenizer_new(const char* value, const char* delim)
 {
@@ -35,8 +35,8 @@ uEchoStringTokenizer* uecho_string_tokenizer_new(const char* value, const char* 
 }
 
 /****************************************
-* uecho_string_tokenizer_delete
-****************************************/
+ * uecho_string_tokenizer_delete
+ ****************************************/
 
 void uecho_string_tokenizer_delete(uEchoStringTokenizer* str_token)
 {
@@ -46,8 +46,8 @@ void uecho_string_tokenizer_delete(uEchoStringTokenizer* str_token)
 }
 
 /****************************************
-* uecho_string_tokenizer_hasmoretoken
-****************************************/
+ * uecho_string_tokenizer_hasmoretoken
+ ****************************************/
 
 bool uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer* str_token)
 {
@@ -55,8 +55,8 @@ bool uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer* str_token)
 }
 
 /****************************************
-* uecho_string_tokenizer_nexttoken
-****************************************/
+ * uecho_string_tokenizer_nexttoken
+ ****************************************/
 
 char* uecho_string_tokenizer_nexttoken(uEchoStringTokenizer* str_token)
 {
@@ -101,8 +101,8 @@ char* uecho_string_tokenizer_nexttoken(uEchoStringTokenizer* str_token)
 }
 
 /****************************************
-* uecho_string_tokenizer_nextalltoken
-****************************************/
+ * uecho_string_tokenizer_nextalltoken
+ ****************************************/
 
 char* uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer* str_token)
 {
