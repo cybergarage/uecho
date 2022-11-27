@@ -1,7 +1,7 @@
 2022-11-27 The uecho Authors <skonno@cybergarage.org>
 	* v1.2.4
-	* Updated standard database using latest MCA (Manufacturer Code List) of ECHONET Consortium.
-	* Added experimental manufacture codes to standard database
+	* Updated standard database using the latest MCA (Manufacturer Code List) of ECHONET Consortium.
+	* Added experimental manufacture codes to the standard database
 
 2022-09-04 The uecho Authors <skonno@cybergarage.org>
 	* v1.2.3
