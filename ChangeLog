@@ -1,3 +1,7 @@
+2022-xx-xx The uecho Authors <skonno@cybergarage.org>
+	* v1.2.4
+	* Updated StandardDatabase to add experimental manufacture codes
+
 2022-09-04 The uecho Authors <skonno@cybergarage.org>
 	* v1.2.3
 	* Add uecho_property_gettype()
