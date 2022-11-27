@@ -16,8 +16,8 @@
 #include <uecho/net/interface.h>
 
 /****************************************
-* uecho_net_interface_new
-****************************************/
+ * uecho_net_interface_new
+ ****************************************/
 
 uEchoNetworkInterface* uecho_net_interface_new(void)
 {
@@ -39,8 +39,8 @@ uEchoNetworkInterface* uecho_net_interface_new(void)
 }
 
 /****************************************
-* uecho_net_interface_delete
-****************************************/
+ * uecho_net_interface_delete
+ ****************************************/
 
 void uecho_net_interface_delete(uEchoNetworkInterface* net_if)
 {
@@ -55,8 +55,8 @@ void uecho_net_interface_delete(uEchoNetworkInterface* net_if)
 }
 
 /****************************************
-* uecho_net_interface_getany
-****************************************/
+ * uecho_net_interface_getany
+ ****************************************/
 
 uEchoNetworkInterface* uecho_net_interface_getany(void)
 {
@@ -70,8 +70,8 @@ uEchoNetworkInterface* uecho_net_interface_getany(void)
 }
 
 /****************************************
-* uecho_net_interface_setname
-****************************************/
+ * uecho_net_interface_setname
+ ****************************************/
 
 void uecho_net_interface_setname(uEchoNetworkInterface* net_if, char* name)
 {
@@ -82,8 +82,8 @@ void uecho_net_interface_setname(uEchoNetworkInterface* net_if, char* name)
 }
 
 /****************************************
-* uecho_net_interface_getname
-****************************************/
+ * uecho_net_interface_getname
+ ****************************************/
 
 char* uecho_net_interface_getname(uEchoNetworkInterface* net_if)
 {
@@ -94,8 +94,8 @@ char* uecho_net_interface_getname(uEchoNetworkInterface* net_if)
 }
 
 /****************************************
-* uecho_net_interface_setaddress
-****************************************/
+ * uecho_net_interface_setaddress
+ ****************************************/
 
 void uecho_net_interface_setaddress(uEchoNetworkInterface* net_if, char* value)
 {
@@ -106,8 +106,8 @@ void uecho_net_interface_setaddress(uEchoNetworkInterface* net_if, char* value)
 }
 
 /****************************************
-* uecho_net_interface_getaddress
-****************************************/
+ * uecho_net_interface_getaddress
+ ****************************************/
 
 char* uecho_net_interface_getaddress(uEchoNetworkInterface* net_if)
 {
@@ -118,8 +118,8 @@ char* uecho_net_interface_getaddress(uEchoNetworkInterface* net_if)
 }
 
 /****************************************
-* uecho_net_interface_setnetmask
-****************************************/
+ * uecho_net_interface_setnetmask
+ ****************************************/
 
 void uecho_net_interface_setnetmask(uEchoNetworkInterface* net_if, char* value)
 {
@@ -130,8 +130,8 @@ void uecho_net_interface_setnetmask(uEchoNetworkInterface* net_if, char* value)
 }
 
 /****************************************
-* uecho_net_interface_getnetmask
-****************************************/
+ * uecho_net_interface_getnetmask
+ ****************************************/
 
 char* uecho_net_interface_getnetmask(uEchoNetworkInterface* net_if)
 {

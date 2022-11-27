@@ -11,8 +11,8 @@
 #include <uecho/_manufacture.h>
 
 /****************************************
-* uecho_manufacturelist_new
-****************************************/
+ * uecho_manufacturelist_new
+ ****************************************/
 
 uEchoManufactureList* uecho_manufacturelist_new(void)
 {
@@ -28,8 +28,8 @@ uEchoManufactureList* uecho_manufacturelist_new(void)
 }
 
 /****************************************
-* uecho_manufacturelist_delete
-****************************************/
+ * uecho_manufacturelist_delete
+ ****************************************/
 
 void uecho_manufacturelist_delete(uEchoManufactureList* mans)
 {

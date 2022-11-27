@@ -17,8 +17,8 @@
 #include <uecho/misc.h>
 
 /****************************************
-* uecho_property_new
-****************************************/
+ * uecho_property_new
+ ****************************************/
 
 uEchoProperty* uecho_property_new(void)
 {
@@ -49,8 +49,8 @@ uEchoProperty* uecho_property_new(void)
 }
 
 /****************************************
-* uecho_property_delete
-****************************************/
+ * uecho_property_delete
+ ****************************************/
 
 bool uecho_property_delete(uEchoProperty* prop)
 {

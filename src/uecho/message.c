@@ -17,8 +17,8 @@
 #include <uecho/util/strings.h>
 
 /****************************************
-* uecho_message_new
-****************************************/
+ * uecho_message_new
+ ****************************************/
 
 uEchoMessage* uecho_message_new(void)
 {
@@ -53,8 +53,8 @@ uEchoMessage* uecho_message_new(void)
 }
 
 /****************************************
-* uecho_message_delete
-****************************************/
+ * uecho_message_delete
+ ****************************************/
 
 bool uecho_message_delete(uEchoMessage* msg)
 {

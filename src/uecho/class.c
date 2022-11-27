@@ -13,8 +13,8 @@
 #include <uecho/misc.h>
 
 /****************************************
-* uecho_class_new
-****************************************/
+ * uecho_class_new
+ ****************************************/
 
 uEchoClass* uecho_class_new(void)
 {
@@ -34,8 +34,8 @@ uEchoClass* uecho_class_new(void)
 }
 
 /****************************************
-* uecho_class_delete
-****************************************/
+ * uecho_class_delete
+ ****************************************/
 
 bool uecho_class_delete(uEchoClass* cls)
 {

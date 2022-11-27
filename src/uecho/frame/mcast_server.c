@@ -13,8 +13,8 @@
 #include <uecho/util/logs.h>
 
 /****************************************
-* uecho_mcast_server_new
-****************************************/
+ * uecho_mcast_server_new
+ ****************************************/
 
 uEchoMcastServer* uecho_mcast_server_new(void)
 {
@@ -35,8 +35,8 @@ uEchoMcastServer* uecho_mcast_server_new(void)
 }
 
 /****************************************
-* uecho_mcast_server_delete
-****************************************/
+ * uecho_mcast_server_delete
+ ****************************************/
 
 bool uecho_mcast_server_delete(uEchoMcastServer* server)
 {

@@ -51,9 +51,9 @@
 #endif
 
 /****************************************
-* uecho_net_gethostinterfaces (WIN32)
-* (WINCE follows below)
-****************************************/
+ * uecho_net_gethostinterfaces (WIN32)
+ * (WINCE follows below)
+ ****************************************/
 
 #if defined(WIN32)
 
@@ -185,7 +185,7 @@ size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList* netIfList)
       saddrlen = sockaddr.iSockaddrLength;
       namInfoRet = getnameinfo(saddr, saddrlen, addr, sizeof(addr), port, sizeof(port), NI_NUMERICHOST | NI_NUMERICSERV);
       if (namInfoRet == 0) {
-        //if (IsUseAddress(addr) == true) {
+        // if (IsUseAddress(addr) == true) {
         ifIdx = 0;
         if (uecho_net_isipv6address(addr) == TRUE)
           ifIdx = uecho_net_getipv6scopeid(addr);
@@ -214,8 +214,8 @@ size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList* netIfList)
 #else
 
 /****************************************
-* uecho_net_gethostinterfaces (UNIX)
-****************************************/
+ * uecho_net_gethostinterfaces (UNIX)
+ ****************************************/
 
 #if defined(HAVE_IFADDRS_H)
 
@@ -341,8 +341,8 @@ size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList* net_if_list)
 #endif
 
 /****************************************
-* uecho_net_selectaddr
-****************************************/
+ * uecho_net_selectaddr
+ ****************************************/
 
 #if !defined(HAVE_IFADDRS_H) || defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
 

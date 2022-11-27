@@ -13,8 +13,8 @@
 #include <uecho/util/strings.h>
 
 /****************************************
-* uecho_nodelist_new
-****************************************/
+ * uecho_nodelist_new
+ ****************************************/
 
 uEchoNodeList* uecho_nodelist_new(void)
 {
@@ -30,8 +30,8 @@ uEchoNodeList* uecho_nodelist_new(void)
 }
 
 /****************************************
-* uecho_nodelist_delete
-****************************************/
+ * uecho_nodelist_delete
+ ****************************************/
 
 void uecho_nodelist_delete(uEchoNodeList* nodes)
 {

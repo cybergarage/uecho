@@ -18,8 +18,8 @@ extern "C" {
 #endif
 
 /****************************************
-* Data Type
-****************************************/
+ * Data Type
+ ****************************************/
 
 typedef struct UEchoSocketOption {
   bool reuse;
@@ -28,8 +28,8 @@ typedef struct UEchoSocketOption {
 } uEchoSocketOption;
 
 /****************************************
-* Function (Socket)
-****************************************/
+ * Function (Socket)
+ ****************************************/
 
 uEchoSocketOption* uecho_socket_option_new(void);
 bool uecho_socket_option_delete(uEchoSocketOption* opt);

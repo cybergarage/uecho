@@ -11,8 +11,8 @@
 #include <uecho/util/list.h>
 
 /****************************************
-* uecho_list_header_init
-****************************************/
+ * uecho_list_header_init
+ ****************************************/
 
 bool uecho_list_header_init(uEchoList* list)
 {
@@ -26,8 +26,8 @@ bool uecho_list_header_init(uEchoList* list)
 }
 
 /****************************************
-* uecho_list_node_init
-****************************************/
+ * uecho_list_node_init
+ ****************************************/
 
 bool uecho_list_node_init(uEchoList* list)
 {
@@ -41,8 +41,8 @@ bool uecho_list_node_init(uEchoList* list)
 }
 
 /****************************************
-* uecho_list_size
-****************************************/
+ * uecho_list_size
+ ****************************************/
 
 size_t uecho_list_size(uEchoList* head_list)
 {
@@ -60,8 +60,8 @@ size_t uecho_list_size(uEchoList* head_list)
 }
 
 /****************************************
-* uecho_list_get
-****************************************/
+ * uecho_list_get
+ ****************************************/
 
 uEchoList* uecho_list_get(uEchoList* head_list, int index)
 {
@@ -82,8 +82,8 @@ uEchoList* uecho_list_get(uEchoList* head_list, int index)
 }
 
 /****************************************
-* uecho_list_insert
-****************************************/
+ * uecho_list_insert
+ ****************************************/
 
 bool uecho_list_insert(
     uEchoList* prev_list,
@@ -101,8 +101,8 @@ bool uecho_list_insert(
 }
 
 /****************************************
-* uecho_list_add
-****************************************/
+ * uecho_list_add
+ ****************************************/
 
 bool uecho_list_add(
     uEchoList* head_list,
@@ -120,8 +120,8 @@ bool uecho_list_add(
 }
 
 /****************************************
-* uecho_list_remove
-****************************************/
+ * uecho_list_remove
+ ****************************************/
 
 bool uecho_list_remove(uEchoList* list)
 {
@@ -139,8 +139,8 @@ bool uecho_list_remove(uEchoList* list)
 }
 
 /****************************************
-* uecho_list_prev_circular
-****************************************/
+ * uecho_list_prev_circular
+ ****************************************/
 
 uEchoList* uecho_list_prev_circular(
     uEchoList* list)
@@ -158,8 +158,8 @@ uEchoList* uecho_list_prev_circular(
 }
 
 /****************************************
-* uecho_list_prev
-****************************************/
+ * uecho_list_prev
+ ****************************************/
 
 uEchoList* uecho_list_prev(
     uEchoList* list)
@@ -177,8 +177,8 @@ uEchoList* uecho_list_prev(
 }
 
 /****************************************
-* uecho_list_next_circular
-****************************************/
+ * uecho_list_next_circular
+ ****************************************/
 
 uEchoList* uecho_list_next_circular(
     uEchoList* list)
@@ -208,8 +208,8 @@ uEchoList* uecho_list_gets(uEchoList* head_list)
 }
 
 /****************************************
-* uecho_list_next
-****************************************/
+ * uecho_list_next
+ ****************************************/
 
 uEchoList* uecho_list_next(uEchoList* list)
 {
@@ -226,8 +226,8 @@ uEchoList* uecho_list_next(uEchoList* list)
 }
 
 /****************************************
-* uecho_list_clear
-****************************************/
+ * uecho_list_clear
+ ****************************************/
 
 bool uecho_list_clear(uEchoList* head_list, UECHO_LIST_DESTRUCTORFUNC dstructor_func)
 {

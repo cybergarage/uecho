@@ -12,8 +12,8 @@
 #include <uecho/util/list.h>
 
 /****************************************
-* uecho_net_interfacelist_new
-****************************************/
+ * uecho_net_interfacelist_new
+ ****************************************/
 
 uEchoNetworkInterfaceList* uecho_net_interfacelist_new(void)
 {
@@ -31,8 +31,8 @@ uEchoNetworkInterfaceList* uecho_net_interfacelist_new(void)
 }
 
 /****************************************
-* uecho_net_interfacelist_delete
-****************************************/
+ * uecho_net_interfacelist_delete
+ ****************************************/
 
 void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList* net_if_list)
 {

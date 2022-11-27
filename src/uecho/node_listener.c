@@ -51,8 +51,8 @@ bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoProperty* obj_pro
 }
 
 /****************************************
-* uecho_node_servermessagelistener
-****************************************/
+ * uecho_node_servermessagelistener
+ ****************************************/
 
 typedef bool (*uEchoMessageAddPropertyFunc)(uEchoMessage* msg, uEchoProperty* prop);
 

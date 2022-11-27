@@ -11,8 +11,8 @@
 #include <uecho/util/thread.h>
 
 /****************************************
-* uecho_threadlist_new
-****************************************/
+ * uecho_threadlist_new
+ ****************************************/
 
 uEchoThreadList* uecho_threadlist_new(void)
 {
@@ -32,8 +32,8 @@ uEchoThreadList* uecho_threadlist_new(void)
 }
 
 /****************************************
-* uecho_threadlist_delete
-****************************************/
+ * uecho_threadlist_delete
+ ****************************************/
 
 void uecho_threadlist_delete(uEchoThreadList* thread_list)
 {
@@ -45,8 +45,8 @@ void uecho_threadlist_delete(uEchoThreadList* thread_list)
 }
 
 /****************************************
-* uecho_threadlist_start
-****************************************/
+ * uecho_threadlist_start
+ ****************************************/
 
 bool uecho_threadlist_start(uEchoThreadList* thread_list)
 {
@@ -63,8 +63,8 @@ bool uecho_threadlist_start(uEchoThreadList* thread_list)
 }
 
 /****************************************
-* uecho_threadlist_stop
-****************************************/
+ * uecho_threadlist_stop
+ ****************************************/
 
 bool uecho_threadlist_stop(uEchoThreadList* thread_list)
 {

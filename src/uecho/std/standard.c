@@ -22,8 +22,8 @@ void uecho_standard_freedatabase(void)
 }
 
 /****************************************
-* uecho_standard_getdatabase
-****************************************/
+ * uecho_standard_getdatabase
+ ****************************************/
 
 uEchoDatabase* uecho_standard_getdatabase(void)
 {

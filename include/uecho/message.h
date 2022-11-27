@@ -95,8 +95,8 @@ bool uecho_message_isresponserequired(uEchoMessage* msg);
 bool uecho_message_isresponsemessage(uEchoMessage* msg, uEchoMessage* res_meg);
 
 /****************************************
-* Function
-****************************************/
+ * Function
+ ****************************************/
 
 uEchoMessage* uecho_message_search_new(void);
 
