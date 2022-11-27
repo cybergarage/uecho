@@ -11,8 +11,8 @@
 #include <uecho/net/socket.h>
 
 /****************************************
-* uecho_socket_datagram_packet_new
-****************************************/
+ * uecho_socket_datagram_packet_new
+ ****************************************/
 
 uEchoDatagramPacket* uecho_socket_datagram_packet_new(void)
 {
@@ -36,8 +36,8 @@ uEchoDatagramPacket* uecho_socket_datagram_packet_new(void)
 }
 
 /****************************************
-* uecho_socket_datagram_packet_delete
-****************************************/
+ * uecho_socket_datagram_packet_delete
+ ****************************************/
 
 void uecho_socket_datagram_packet_delete(uEchoDatagramPacket* dgm_pkt)
 {
@@ -95,8 +95,8 @@ bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket* dgm_pkt)
 }
 
 /****************************************
-* uecho_socket_datagram_packet_copy
-****************************************/
+ * uecho_socket_datagram_packet_copy
+ ****************************************/
 
 bool uecho_socket_datagram_packet_copy(uEchoDatagramPacket* dst_dgm_pkt, uEchoDatagramPacket* src_dgm_pkt)
 {

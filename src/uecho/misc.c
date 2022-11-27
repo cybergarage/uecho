@@ -13,8 +13,8 @@
 #include <uecho/profile.h>
 
 /****************************************
-* uecho_objectcode2classcode
-****************************************/
+ * uecho_objectcode2classcode
+ ****************************************/
 
 uEchoClassCode uecho_objectcode2classcode(uEchoObjectCode obj_code)
 {

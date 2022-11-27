@@ -12,8 +12,8 @@
 #include <uecho/profile.h>
 
 /****************************************
-* uecho_message_search_new
-****************************************/
+ * uecho_message_search_new
+ ****************************************/
 
 uEchoMessage* uecho_message_search_new(void)
 {

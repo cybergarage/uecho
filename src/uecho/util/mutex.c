@@ -13,8 +13,8 @@
 #include <errno.h>
 
 /****************************************
-* uecho_mutex_new
-****************************************/
+ * uecho_mutex_new
+ ****************************************/
 
 uEchoMutex* uecho_mutex_new(void)
 {
@@ -35,8 +35,8 @@ uEchoMutex* uecho_mutex_new(void)
 }
 
 /****************************************
-* uecho_mutex_delete
-****************************************/
+ * uecho_mutex_delete
+ ****************************************/
 
 bool uecho_mutex_delete(uEchoMutex* mutex)
 {
@@ -54,8 +54,8 @@ bool uecho_mutex_delete(uEchoMutex* mutex)
 }
 
 /****************************************
-* uecho_mutex_lock
-****************************************/
+ * uecho_mutex_lock
+ ****************************************/
 
 bool uecho_mutex_lock(uEchoMutex* mutex)
 {
@@ -72,8 +72,8 @@ bool uecho_mutex_lock(uEchoMutex* mutex)
 }
 
 /****************************************
-* uecho_mutex_unlock
-****************************************/
+ * uecho_mutex_unlock
+ ****************************************/
 
 bool uecho_mutex_unlock(uEchoMutex* mutex)
 {

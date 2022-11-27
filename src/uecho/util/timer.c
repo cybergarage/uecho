@@ -21,8 +21,8 @@
 #endif
 
 /****************************************
-* uecho_time_wait
-****************************************/
+ * uecho_time_wait
+ ****************************************/
 
 void uecho_wait(clock_t mtime)
 {
@@ -34,8 +34,8 @@ void uecho_wait(clock_t mtime)
 }
 
 /****************************************
-* uecho_time_wait
-****************************************/
+ * uecho_time_wait
+ ****************************************/
 
 void uecho_waitrandom(clock_t mtime)
 {
@@ -48,8 +48,8 @@ void uecho_waitrandom(clock_t mtime)
 }
 
 /****************************************
-* uecho_time_wait
-****************************************/
+ * uecho_time_wait
+ ****************************************/
 
 clock_t uecho_getcurrentsystemtime(void)
 {
@@ -57,8 +57,8 @@ clock_t uecho_getcurrentsystemtime(void)
 }
 
 /****************************************
-* uecho_random
-****************************************/
+ * uecho_random
+ ****************************************/
 
 float uecho_random(void)
 {

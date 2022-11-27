@@ -11,8 +11,8 @@
 #include <uecho/_manufacture.h>
 
 /****************************************
-* uecho_manufacture_new
-****************************************/
+ * uecho_manufacture_new
+ ****************************************/
 
 uEchoManufacture* uecho_manufacture_new(void)
 {
@@ -32,8 +32,8 @@ uEchoManufacture* uecho_manufacture_new(void)
 }
 
 /****************************************
-* uecho_manufacture_delete
-****************************************/
+ * uecho_manufacture_delete
+ ****************************************/
 
 bool uecho_manufacture_delete(uEchoManufacture* man)
 {

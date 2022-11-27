@@ -34,14 +34,14 @@
 #endif
 
 /****************************************
-* static variable
-****************************************/
+ * static variable
+ ****************************************/
 
 static int socket_cnt = 0;
 
 /****************************************
-* prototype
-****************************************/
+ * prototype
+ ****************************************/
 
 bool uecho_socket_tosockaddrin(const char* addr, int port, struct sockaddr_in* sockaddr, bool is_bind_addr);
 bool uecho_socket_tosockaddrinfo(int sock_type, const char* addr, int port, struct addrinfo** addr_info, bool is_bind_addr);
@@ -49,14 +49,14 @@ bool uecho_socket_tosockaddrinfo(int sock_type, const char* addr, int port, stru
 #define uecho_socket_getrawtype(socket) (((socket->type & UECHO_NET_SOCKET_STREAM) == UECHO_NET_SOCKET_STREAM) ? SOCK_STREAM : SOCK_DGRAM)
 
 /****************************************
-*
-* Socket
-*
-****************************************/
+ *
+ * Socket
+ *
+ ****************************************/
 
 /****************************************
-* uecho_socket_startup
-****************************************/
+ * uecho_socket_startup
+ ****************************************/
 
 void uecho_socket_startup(void)
 {
@@ -81,8 +81,8 @@ void uecho_socket_startup(void)
 }
 
 /****************************************
-* uecho_socket_cleanup
-****************************************/
+ * uecho_socket_cleanup
+ ****************************************/
 
 void uecho_socket_cleanup(void)
 {
@@ -100,8 +100,8 @@ void uecho_socket_cleanup(void)
 }
 
 /****************************************
-* uecho_socket_new
-****************************************/
+ * uecho_socket_new
+ ****************************************/
 
 uEchoSocket* uecho_socket_new(int type)
 {
@@ -136,8 +136,8 @@ uEchoSocket* uecho_socket_new(int type)
 }
 
 /****************************************
-* uecho_socket_delete
-****************************************/
+ * uecho_socket_delete
+ ****************************************/
 
 bool uecho_socket_delete(uEchoSocket* sock)
 {
@@ -154,8 +154,8 @@ bool uecho_socket_delete(uEchoSocket* sock)
 }
 
 /****************************************
-* uecho_socket_isbound
-****************************************/
+ * uecho_socket_isbound
+ ****************************************/
 
 bool uecho_socket_isbound(uEchoSocket* sock)
 {
@@ -182,8 +182,8 @@ bool uecho_socket_isboundaddress(uEchoSocket* sock, const char* addr)
 }
 
 /****************************************
-* uecho_socket_setid
-****************************************/
+ * uecho_socket_setid
+ ****************************************/
 
 void uecho_socket_setid(uEchoSocket* sock, SOCKET value)
 {
@@ -207,8 +207,8 @@ void uecho_socket_setid(uEchoSocket* sock, SOCKET value)
 }
 
 /****************************************
-* uecho_socket_close
-****************************************/
+ * uecho_socket_close
+ ****************************************/
 
 bool uecho_socket_close(uEchoSocket* sock)
 {
@@ -255,8 +255,8 @@ bool uecho_socket_close(uEchoSocket* sock)
 }
 
 /****************************************
-* uecho_socket_listen
-****************************************/
+ * uecho_socket_listen
+ ****************************************/
 
 bool uecho_socket_listen(uEchoSocket* sock)
 {
@@ -268,8 +268,8 @@ bool uecho_socket_listen(uEchoSocket* sock)
 }
 
 /****************************************
-* uecho_socket_bind
-****************************************/
+ * uecho_socket_bind
+ ****************************************/
 
 bool uecho_socket_bind(uEchoSocket* sock, int bind_port, const char* bind_addr, uEchoSocketOption* opt)
 {
@@ -318,8 +318,8 @@ bool uecho_socket_bind(uEchoSocket* sock, int bind_port, const char* bind_addr, 
 }
 
 /****************************************
-* uecho_socket_accept
-****************************************/
+ * uecho_socket_accept
+ ****************************************/
 
 bool uecho_socket_accept(uEchoSocket* server_sock, uEchoSocket* client_sock)
 {
@@ -353,8 +353,8 @@ bool uecho_socket_accept(uEchoSocket* server_sock, uEchoSocket* client_sock)
 }
 
 /****************************************
-* uecho_socket_connect
-****************************************/
+ * uecho_socket_connect
+ ****************************************/
 
 bool uecho_socket_connect(uEchoSocket* sock, const char* addr, int port)
 {
@@ -395,8 +395,8 @@ bool uecho_socket_connect(uEchoSocket* sock, const char* addr, int port)
 }
 
 /****************************************
-* uecho_socket_read
-****************************************/
+ * uecho_socket_read
+ ****************************************/
 
 ssize_t uecho_socket_read(uEchoSocket* sock, char* buffer, size_t buffer_len)
 {
@@ -422,8 +422,8 @@ ssize_t uecho_socket_read(uEchoSocket* sock, char* buffer, size_t buffer_len)
 }
 
 /****************************************
-* uecho_socket_write
-****************************************/
+ * uecho_socket_write
+ ****************************************/
 
 #define UECHO_NET_SOCKET_SEND_RETRY_CNT 10
 #define UECHO_NET_SOCKET_SEND_RETRY_WAIT_MSEC 20
@@ -476,8 +476,8 @@ size_t uecho_socket_write(uEchoSocket* sock, const char* cmd, size_t cmd_len)
   return n_total_sent;
 }
 /****************************************
-* uecho_socket_readline
-****************************************/
+ * uecho_socket_readline
+ ****************************************/
 
 ssize_t uecho_socket_readline(uEchoSocket* sock, char* buffer, size_t buffer_len)
 {
@@ -510,8 +510,8 @@ ssize_t uecho_socket_readline(uEchoSocket* sock, char* buffer, size_t buffer_len
 }
 
 /****************************************
-* uecho_socket_skip
-****************************************/
+ * uecho_socket_skip
+ ****************************************/
 
 size_t uecho_socket_skip(uEchoSocket* sock, size_t skip_len)
 {
@@ -534,8 +534,8 @@ size_t uecho_socket_skip(uEchoSocket* sock, size_t skip_len)
 }
 
 /****************************************
-* uecho_socket_sendto
-****************************************/
+ * uecho_socket_sendto
+ ****************************************/
 
 size_t uecho_socket_sendto(uEchoSocket* sock, const char* addr, int port, const byte* data, size_t data_len)
 {
@@ -574,8 +574,8 @@ size_t uecho_socket_sendto(uEchoSocket* sock, const char* addr, int port, const 
 }
 
 /****************************************
-* uecho_socket_recv
-****************************************/
+ * uecho_socket_recv
+ ****************************************/
 
 ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgm_pkt)
 {
@@ -618,8 +618,8 @@ ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgm_pkt)
 }
 
 /****************************************
-* uecho_socket_setreuseaddress
-****************************************/
+ * uecho_socket_setreuseaddress
+ ****************************************/
 
 bool uecho_socket_setreuseaddress(uEchoSocket* sock, bool flag)
 {
@@ -650,8 +650,8 @@ bool uecho_socket_setreuseaddress(uEchoSocket* sock, bool flag)
 }
 
 /****************************************
-* uecho_socket_setmulticastloop
-****************************************/
+ * uecho_socket_setmulticastloop
+ ****************************************/
 
 bool uecho_socket_setmulticastloop(uEchoSocket* sock, bool flag)
 {
@@ -677,8 +677,8 @@ bool uecho_socket_setmulticastloop(uEchoSocket* sock, bool flag)
 }
 
 /****************************************
-* uecho_socket_setmulticastttl
-****************************************/
+ * uecho_socket_setmulticastttl
+ ****************************************/
 
 bool uecho_socket_setmulticastttl(uEchoSocket* sock, int val)
 {
@@ -704,8 +704,8 @@ bool uecho_socket_setmulticastttl(uEchoSocket* sock, int val)
 }
 
 /****************************************
-* uecho_socket_settimeout
-****************************************/
+ * uecho_socket_settimeout
+ ****************************************/
 
 bool uecho_socket_settimeout(uEchoSocket* sock, int sec)
 {
@@ -739,8 +739,8 @@ bool uecho_socket_settimeout(uEchoSocket* sock, int sec)
 }
 
 /****************************************
-* uecho_socket_joingroup
-****************************************/
+ * uecho_socket_joingroup
+ ****************************************/
 
 bool uecho_socket_joingroup(uEchoSocket* sock, const char* mcast_addr, const char* if_addr)
 {
@@ -813,8 +813,8 @@ bool uecho_socket_joingroup(uEchoSocket* sock, const char* mcast_addr, const cha
 }
 
 /****************************************
-* uecho_socket_tosockaddrin
-****************************************/
+ * uecho_socket_tosockaddrin
+ ****************************************/
 
 bool uecho_socket_tosockaddrin(const char* addr, int port, struct sockaddr_in* sockaddr, bool is_bind_addr)
 {
@@ -840,8 +840,8 @@ bool uecho_socket_tosockaddrin(const char* addr, int port, struct sockaddr_in* s
 }
 
 /****************************************
-* uecho_socket_tosockaddrinfo
-****************************************/
+ * uecho_socket_tosockaddrinfo
+ ****************************************/
 
 bool uecho_socket_tosockaddrinfo(int sock_type, const char* addr, int port, struct addrinfo** addr_info, bool is_bind_addr)
 {

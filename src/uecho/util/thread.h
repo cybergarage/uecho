@@ -55,8 +55,8 @@ typedef struct UEchoThread {
 typedef void (*uEchoThreadFunc)(uEchoThread*);
 
 /****************************************
-* Function
-****************************************/
+ * Function
+ ****************************************/
 
 uEchoThread* uecho_thread_new(void);
 bool uecho_thread_delete(uEchoThread* thread);
@@ -75,8 +75,8 @@ void* uecho_thread_getuserdata(uEchoThread* thread);
 #define uecho_thread_remove(thread) uecho_list_remove((uEchoList*)thread)
 
 /****************************************
-* Function (Thread List)
-****************************************/
+ * Function (Thread List)
+ ****************************************/
 
 uEchoThreadList* uecho_threadlist_new(void);
 void uecho_threadlist_delete(uEchoThreadList* thread_list);

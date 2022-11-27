@@ -19,8 +19,8 @@
 #include <uecho/std/database.h>
 
 /****************************************
-* uecho_property_new
-****************************************/
+ * uecho_property_new
+ ****************************************/
 
 uEchoObject* uecho_nodeprofile_new(void)
 {

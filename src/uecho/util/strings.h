@@ -19,8 +19,8 @@ extern "C" {
 #endif
 
 /****************************************
-* Define
-****************************************/
+ * Define
+ ****************************************/
 
 #define UECHO_STRING_MEMORY_ALLOCATION_UNIT 64
 
@@ -37,8 +37,8 @@ extern "C" {
 #define UECHO_STRING_DOUBLE_BUFLEN 64
 
 /****************************************
-* Function 
-****************************************/
+ * Function
+ ****************************************/
 
 char* uecho_strdup(const char* str);
 size_t uecho_strlen(const char* str);
@@ -77,8 +77,8 @@ const char* uecho_ssizet2str(ssize_t value, char* buf, size_t buf_size);
 #define uecho_str2ssizet(value) ((ssize_t)(value ? atol(value) : 0))
 
 /****************************************
-* Data Type
-****************************************/
+ * Data Type
+ ****************************************/
 
 typedef struct UEchoString {
   char* value;
@@ -99,8 +99,8 @@ typedef struct UEchoStringTokenizer {
 } uEchoStringTokenizer;
 
 /****************************************
-* Function (StringTokenizer)
-****************************************/
+ * Function (StringTokenizer)
+ ****************************************/
 
 uEchoStringTokenizer* uecho_string_tokenizer_new(const char* str, const char* delim);
 void uecho_string_tokenizer_delete(uEchoStringTokenizer* str_token);
@@ -109,8 +109,8 @@ char* uecho_string_tokenizer_nexttoken(uEchoStringTokenizer* str_token);
 char* uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer* str_token);
 
 /****************************************
-* Function (String)
-****************************************/
+ * Function (String)
+ ****************************************/
 
 uEchoString* uecho_string_new(void);
 void uecho_string_delete(uEchoString* str);

@@ -11,8 +11,8 @@
 #include <uecho/frame/property.h>
 
 /****************************************
-* uecho_object_property_observerlist_new
-****************************************/
+ * uecho_object_property_observerlist_new
+ ****************************************/
 
 uEchoObjectPropertyObserverList* uecho_object_property_observerlist_new(void)
 {
@@ -28,8 +28,8 @@ uEchoObjectPropertyObserverList* uecho_object_property_observerlist_new(void)
 }
 
 /****************************************
-* uecho_object_property_observerlist_delete
-****************************************/
+ * uecho_object_property_observerlist_delete
+ ****************************************/
 
 void uecho_object_property_observerlist_delete(uEchoObjectPropertyObserverList* observers)
 {

@@ -14,8 +14,8 @@
 #include <uecho/profile.h>
 
 /****************************************
-* uecho_node_new
-****************************************/
+ * uecho_node_new
+ ****************************************/
 
 uEchoNode* uecho_node_new(void)
 {
@@ -50,8 +50,8 @@ uEchoNode* uecho_node_new(void)
 }
 
 /****************************************
-* uecho_node_delete
-****************************************/
+ * uecho_node_delete
+ ****************************************/
 
 bool uecho_node_delete(uEchoNode* node)
 {
