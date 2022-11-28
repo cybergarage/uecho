@@ -17,7 +17,7 @@ var annotated_dup =
     [ "uEchoObjectPropertyObserver", "structuEchoObjectPropertyObserver.html", "structuEchoObjectPropertyObserver" ],
     [ "uEchoObjectPropertyObserverManager", "structuEchoObjectPropertyObserverManager.html", "structuEchoObjectPropertyObserverManager" ],
     [ "uEchoProperty", "structuEchoProperty.html", "structuEchoProperty" ],
-    [ "uEchoPropertyData", "structuEchoPropertyData.html", null ],
+    [ "uEchoPropertyEnum", "structuEchoPropertyEnum.html", "structuEchoPropertyEnum" ],
     [ "UEchoServer", "structUEchoServer.html", "structUEchoServer" ],
     [ "UEchoSocket", "structUEchoSocket.html", "structUEchoSocket" ],
     [ "UEchoSocketOption", "structUEchoSocketOption.html", "structUEchoSocketOption" ],

@@ -29,5 +29,7 @@ var dir_508e66744f0a9abc7e902f1f95d57bd2 =
     [ "object.c", "object_8c.html", "object_8c" ],
     [ "object_list.c", "object__list_8c.html", "object__list_8c" ],
     [ "property.c", "property_8c.html", "property_8c" ],
+    [ "property_enum.c", "property__enum_8c.html", "property__enum_8c" ],
+    [ "property_enum_list.c", "property__enum__list_8c.html", "property__enum__list_8c" ],
     [ "property_list.c", "property__list_8c.html", "property__list_8c" ]
 ];
