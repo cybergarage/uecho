@@ -25,6 +25,13 @@ extern "C" {
  * Data Type
  ****************************************/
 
+typedef struct {
+  UECHO_LIST_STRUCT_MEMBERS
+  uEchoString* code;
+  uEchoString* name;
+  uEchoString* desc;
+} uEchoPropertyEnum, uEchoPropertyEnumList;
+
 #define UECHO_PROPERTY_DATA_STRUCT_MEMBERS \
   uEchoString* name;                       \
   byte code;                               \
