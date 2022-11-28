@@ -62,6 +62,7 @@ typedef enum {
 
 #if !defined(_UECHO_PROPERTY_INTERNAL_H_)
 typedef void uEchoProperty;
+typedef void uEchoPropertyEnum;
 #endif
 
 /****************************************
@@ -111,6 +112,23 @@ uEchoPropertyType uecho_property_gettype(uEchoProperty* prop);
 
 uEchoProperty* uecho_property_copy(uEchoProperty* prop);
 bool uecho_property_equals(uEchoProperty* prop1, uEchoProperty* prop2);
+
+/****************************************
+ * Function
+ ****************************************/
+
+uEchoPropertyEnum* uecho_property_enum_new(void);
+bool uecho_property_enum_delete(uEchoPropertyEnum* e);
+
+void uecho_property_enum_setcode(uEchoPropertyEnum* prop, int val);
+int uecho_property_enum_getcode(uEchoPropertyEnum* prop);
+void uecho_property_enum_setname(uEchoPropertyEnum* prop, const char* e);
+const char* uecho_property_enum_getname(uEchoPropertyEnum* e);
+void uecho_property_enum_setdescription(uEchoPropertyEnum* prop, const char* desc);
+const char* uecho_property_enum_getdescription(uEchoPropertyEnum* prop);
+
+uEchoPropertyEnum* uecho_property_enum_next(uEchoPropertyEnum* e);
+void uecho_property_enum_remove(uEchoPropertyEnum* e);
 
 #ifdef __cplusplus
 } /* extern C */

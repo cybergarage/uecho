@@ -27,7 +27,7 @@ extern "C" {
 
 typedef struct {
   UECHO_LIST_STRUCT_MEMBERS
-  uEchoString* code;
+  int code;
   uEchoString* name;
   uEchoString* desc;
 } uEchoPropertyEnum, uEchoPropertyEnumList;
@@ -45,10 +45,6 @@ typedef struct {
   UECHO_PROPERTY_DATA_STRUCT_MEMBERS
   void* parent_obj;
 } uEchoProperty, uEchoPropertyList;
-
-typedef struct {
-  UECHO_PROPERTY_DATA_STRUCT_MEMBERS
-} uEchoPropertyData;
 
 /****************************************
  * Header
@@ -88,6 +84,18 @@ bool uecho_propertylist_getbytedata(uEchoPropertyList* props, uEchoPropertyCode 
 #define uecho_propertylist_clear(props) uecho_list_clear((uEchoList*)props, (UECHO_LIST_DESTRUCTORFUNC)uecho_property_delete)
 #define uecho_propertylist_size(props) uecho_list_size((uEchoList*)props)
 #define uecho_propertylist_gets(props) (uEchoProperty*)uecho_list_next((uEchoList*)props)
+
+/****************************************
+ * Function (Property Enum List)
+ ****************************************/
+uEchoPropertyEnumList* uecho_property_enumlist_new(void);
+void uecho_property_enumlist_delete(uEchoPropertyEnumList* el);
+uEchoPropertyEnum* uecho_property_enumlist_findbycode(uEchoPropertyEnumList* el, int code);
+bool uecho_property_enumlist_add(uEchoPropertyEnumList* el, uEchoPropertyEnum* e);
+
+#define uecho_property_enumlist_clear(el) uecho_list_clear((uEchoList*)el, (UECHO_LIST_DESTRUCTORFUNC)uecho_property_enum_delete)
+#define uecho_property_enumlist_size(el) uecho_list_size((uEchoList*)el)
+#define uecho_property_enumlist_gets(el) (uEchoPropertyEnum*)uecho_list_next((uEchoList*)el)
 
 #ifdef __cplusplus
 } /* extern C */
