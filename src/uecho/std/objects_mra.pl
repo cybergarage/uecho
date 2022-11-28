@@ -73,6 +73,13 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
 
 HEADER
 
+my $mra_definitions_file = $mra_root_dir . "/mraData/definitions/definitions.json";
+open(DEF_JSON_FILE, $mra_definitions_file) or die "$!";
+my $def_json_data = join('',<DEF_JSON_FILE>);
+close(DEF_JSON_FILE);
+my $def_json = decode_json($def_json_data);
+my $def_json_root = %{$def_json}{'definitions'};
+
 my @mra_sub_dirs = (
   "/mraData/superClass/",
   "/mraData/nodeProfile/",
@@ -114,7 +121,29 @@ foreach my $device_json_file(@device_json_files){
     my $get_rule = %{$rules}{'get'};
     my $set_rule = %{$rules}{'set'};
     my $anno_rule = %{$rules}{'inf'};
-    my $data_type = "";
+    my $data = %{$prop}{'data'};
+    my $data_type = %{$data}{'type'};
+    my $data_size = %{$data}{'size'};
+    my $data_ref = %{$data}{'$ref'};
+    if (0< length($data_ref)) {
+      my @data_refs = split(/\//, $data_ref);
+      my $data_ref_len = @data_refs;
+      my $data_ref_id = $data_refs[$data_ref_len -1];
+      my $prop_def = %{$def_json_root}{$data_ref_id};
+      $data_type = %{$prop_def}{'type'};  
+      $data_size = %{$prop_def}{'size'};
+      my $enums = %{$prop_def}{'enum'};
+      if (0 < @data_refs) {
+        foreach $enum(@{$enums}) {
+          my $edt = %{$enum}{'edt'};
+          my $name = %{$enum}{'name'};
+          my $descs = %{$enum}{'descriptions'};
+          my $desc = %{$descs}{'en'};
+          if (0< length($edt)) {
+          }
+        }
+      }
+    }
     printf("  uecho_object_addproperty(obj, uecho_standard_object_property_new(%s, \"%s\", \"%s\", %d, \"%s\", \"%s\", \"%s\"));\n",
       $epc,
       $name,
