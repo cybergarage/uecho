@@ -270,22 +270,22 @@ top_srcdir = @top_srcdir@
 uechoheaders = \
 	./uecho/profile.h \
 	./uecho/esv.h \
-	./uecho/property.h \
-	./uecho/manufacture.h \
+	./uecho/device.h \
+	./uecho/util/timer.h \
+	./uecho/util/log.h \
+	./uecho/util/bytes.h \
+	./uecho/misc.h \
+	./uecho/message.h \
 	./uecho/node.h \
 	./uecho/std/database.h \
+	./uecho/uecho.h \
+	./uecho/controller.h \
+	./uecho/class.h \
+	./uecho/object.h \
+	./uecho/property.h \
 	./uecho/const.h \
 	./uecho/typedef.h \
-	./uecho/message.h \
-	./uecho/object.h \
-	./uecho/uecho.h \
-	./uecho/device.h \
-	./uecho/class.h \
-	./uecho/misc.h \
-	./uecho/controller.h \
-	./uecho/util/bytes.h \
-	./uecho/util/log.h \
-	./uecho/util/timer.h
+	./uecho/manufacture.h
 
 nobase_include_HEADERS = \
 	$(uechoheaders)
