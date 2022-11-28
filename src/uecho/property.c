@@ -381,7 +381,7 @@ bool uecho_property_cleardata(uEchoProperty* prop)
 }
 
 /****************************************
- * uecho_property_cleardata
+ * uecho_property_next
  ****************************************/
 
 uEchoProperty* uecho_property_next(uEchoProperty* prop)
