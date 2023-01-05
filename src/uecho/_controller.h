@@ -15,6 +15,7 @@
 #include <uecho/const.h>
 #include <uecho/typedef.h>
 #include <uecho/util/mutex.h>
+#include <uecho/util/cond.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -34,6 +35,7 @@ enum {
 
 typedef struct UEchoController {
   uEchoMutex* mutex;
+  uEchoCond* cond;
   uEchoNode* node;
   uEchoNodeList* nodes;
   void (*msg_listener)(struct UEchoController*, uEchoMessage*); /* uEchoControllerMessageListener */
