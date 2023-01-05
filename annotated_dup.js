@@ -2,6 +2,7 @@ var annotated_dup =
 [
     [ "_uEchoList", "struct__uEchoList.html", null ],
     [ "uEchoClass", "structuEchoClass.html", "structuEchoClass" ],
+    [ "UEchoCond", "structUEchoCond.html", "structUEchoCond" ],
     [ "UEchoController", "structUEchoController.html", "structUEchoController" ],
     [ "UEchoDatabase", "structUEchoDatabase.html", "structUEchoDatabase" ],
     [ "UEchoDatagramPacket", "structUEchoDatagramPacket.html", "structUEchoDatagramPacket" ],
