@@ -145,7 +145,7 @@ int main(int argc, char* argv[])
       return EXIT_SUCCESS;
     }
     case 'n': {
-      repeat_cnt = atoi(optarg); 
+      repeat_cnt = atoi(optarg);
     } break;
     default: {
       usage();
@@ -177,8 +177,8 @@ int main(int argc, char* argv[])
 
   found_node_cnt = uecho_controller_getnodecount(ctrl);
   if (0 < found_node_cnt) {
-    for (n=0; n<repeat_cnt; n++) {
-    benchmark_founddevices(ctrl, verbose_mode);
+    for (n = 0; n < repeat_cnt; n++) {
+      benchmark_founddevices(ctrl, verbose_mode);
     }
   }
 
