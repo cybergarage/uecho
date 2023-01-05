@@ -1,3 +1,7 @@
+2023-xx-xx Satoshi Konno <skonno@cybergarage.org>
+	* v1.2.5
+	* Add uechobench
+
 2022-11-27 Satoshi Konno <skonno@cybergarage.org>
 	* v1.2.4
 	* Updated standard database using the latest MCA (Manufacturer Code List) of ECHONET Consortium.
