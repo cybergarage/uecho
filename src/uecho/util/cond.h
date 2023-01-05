@@ -40,7 +40,7 @@ uEchoCond* uecho_cond_new(void);
 bool uecho_cond_delete(uEchoCond* cond);
 
 bool uecho_cond_wait(uEchoCond* cond);
-bool uecho_cond_timedwait(uEchoCond* cond);
+bool uecho_cond_timedwait(uEchoCond* cond, clock_t mtime);
 bool uecho_cond_signal(uEchoCond* cond);
 
 #ifdef __cplusplus
