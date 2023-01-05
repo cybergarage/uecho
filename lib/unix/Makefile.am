@@ -35,6 +35,7 @@ uecho_sources = \
 	../../src/uecho/util/bytes.c \
 	../../src/uecho/util/thread_list.c \
 	../../src/uecho/util/mutex.c \
+	../../src/uecho/util/cond.c \
 	../../src/uecho/util/strings_function.c \
 	../../src/uecho/util/strings_tokenizer.c \
 	../../src/uecho/util/logs.c \
