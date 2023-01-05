@@ -28,6 +28,7 @@ uEchoController* uecho_controller_new(void)
     return NULL;
 
   ctrl->mutex = uecho_mutex_new();
+  ctrl->cond = uecho_cond_new();
   ctrl->node = uecho_node_new();
   ctrl->nodes = uecho_nodelist_new();
   ctrl->option = uEchoOptionNone;
@@ -57,6 +58,7 @@ bool uecho_controller_delete(uEchoController* ctrl)
   uecho_controller_stop(ctrl);
 
   uecho_mutex_delete(ctrl->mutex);
+  uecho_cond_delete(ctrl->cond);
   uecho_node_delete(ctrl->node);
   uecho_nodelist_delete(ctrl->nodes);
 
