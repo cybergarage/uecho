@@ -5793,7 +5793,7 @@ fi
 # Makefiles
 ##############################
 
-ac_config_files="$ac_config_files Makefile include/Makefile lib/Makefile lib/unix/Makefile test/Makefile test/unix/Makefile examples/Makefile examples/controller/Makefile examples/controller/uechosearch/Makefile examples/controller/uechosearch/unix/Makefile examples/controller/uechodump/Makefile examples/controller/uechodump/unix/Makefile examples/controller/uechopost/Makefile examples/controller/uechopost/unix/Makefile examples/device/Makefile examples/device/uecholight/Makefile examples/device/uecholight/unix/Makefile"
+ac_config_files="$ac_config_files Makefile include/Makefile lib/Makefile lib/unix/Makefile test/Makefile test/unix/Makefile examples/Makefile examples/controller/Makefile examples/controller/uechosearch/Makefile examples/controller/uechosearch/unix/Makefile examples/controller/uechodump/Makefile examples/controller/uechodump/unix/Makefile examples/controller/uechopost/Makefile examples/controller/uechopost/unix/Makefile examples/controller/uechobench/Makefile examples/controller/uechobench/unix/Makefile examples/device/Makefile examples/device/uecholight/Makefile examples/device/uecholight/unix/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -6543,6 +6543,8 @@ do
     "examples/controller/uechodump/unix/Makefile") CONFIG_FILES="$CONFIG_FILES examples/controller/uechodump/unix/Makefile" ;;
     "examples/controller/uechopost/Makefile") CONFIG_FILES="$CONFIG_FILES examples/controller/uechopost/Makefile" ;;
     "examples/controller/uechopost/unix/Makefile") CONFIG_FILES="$CONFIG_FILES examples/controller/uechopost/unix/Makefile" ;;
+    "examples/controller/uechobench/Makefile") CONFIG_FILES="$CONFIG_FILES examples/controller/uechobench/Makefile" ;;
+    "examples/controller/uechobench/unix/Makefile") CONFIG_FILES="$CONFIG_FILES examples/controller/uechobench/unix/Makefile" ;;
     "examples/device/Makefile") CONFIG_FILES="$CONFIG_FILES examples/device/Makefile" ;;
     "examples/device/uecholight/Makefile") CONFIG_FILES="$CONFIG_FILES examples/device/uecholight/Makefile" ;;
     "examples/device/uecholight/unix/Makefile") CONFIG_FILES="$CONFIG_FILES examples/device/uecholight/unix/Makefile" ;;
