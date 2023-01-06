@@ -152,6 +152,7 @@ void uecho_controller_handlepostresponse(uEchoController* ctrl, uEchoMessage* ms
     return;
 
   uecho_message_set(uecho_controller_getpostresponsemessage(ctrl), msg);
+  uecho_cond_signal(ctrl->cond);
 }
 
 /****************************************
