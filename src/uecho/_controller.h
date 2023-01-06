@@ -14,8 +14,8 @@
 #include <uecho/_node.h>
 #include <uecho/const.h>
 #include <uecho/typedef.h>
-#include <uecho/util/mutex.h>
 #include <uecho/util/cond.h>
+#include <uecho/util/mutex.h>
 
 #ifdef __cplusplus
 extern "C" {
