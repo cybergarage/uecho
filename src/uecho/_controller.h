@@ -43,7 +43,7 @@ typedef struct UEchoController {
   uEchoOption option;
   void* user_data;
 
-  clock_t post_res_wait_mili_time;
+  clock_t post_res_wait_clock_time;
   uEchoMessage* post_req_msg;
   uEchoMessage* post_res_msg;
 } uEchoController;
