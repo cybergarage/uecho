@@ -497,7 +497,7 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
     return false;
   }
 
-#if !defined(USE_SLEEP_WAIT)
+#if defined(USE_SLEEP_WAIT)
   is_responce_received = false;
   for (n = 0; n < uEchoControllerPostResponseLoopCount; n++) {
     uecho_sleep(ctrl->post_res_wait_clock_time / uEchoControllerPostResponseLoopCount);
@@ -507,7 +507,7 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
     }
   }
 #else
-  is_responce_received = uecho_cond_timedwait(ctrl->cond, (ctrl->post_res_wait_clock_time * 1000 / CLOCKS_PER_SEC));
+  is_responce_received = uecho_cond_timedwait(ctrl->cond, ctrl->post_res_wait_clock_time);
 #endif
 
   uecho_controller_setpostrequestmessage(ctrl, NULL);
