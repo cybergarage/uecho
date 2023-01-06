@@ -88,10 +88,10 @@ void benchmark_founddevices(uEchoController* ctrl, bool verbose)
       prop_no = 0;
       for (prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
         if (uecho_property_isreadrequired(prop)) {
+          printf("[%d] [%d] %02X ", obj_no, prop_no, uecho_property_getcode(prop));
           req_msg = create_readpropertymessage(prop);
           res_msg = uecho_message_new();
           has_res_prop = uecho_controller_postmessage(ctrl, node, req_msg, res_msg);
-          printf("[%d] [%d] %02X (%s) ", obj_no, prop_no, uecho_property_getcode(prop), uecho_property_getname(prop));
           if (has_res_prop) {
             for (res_prop_no = 0; res_prop_no < uecho_message_getopc(res_msg); res_prop_no++) {
               res_prop = uecho_message_getproperty(res_msg, res_prop_no);
@@ -101,8 +101,10 @@ void benchmark_founddevices(uEchoController* ctrl, bool verbose)
               for (n = 0; n < uecho_property_getdatasize(res_prop); n++) {
                 printf("%02X", res_prop_bytes[n]);
               }
+              printf(" ");
             }
           }
+          printf("(%s)", uecho_property_getname(prop));
           printf("\n");
           uecho_message_delete(req_msg);
           uecho_message_delete(res_msg);
