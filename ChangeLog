@@ -1,5 +1,6 @@
 2023-xx-xx The uecho Authors <skonno@cybergarage.org>
-	* v1.2.5
+	* v1.3.0
+	* Update uecho_controller_postmessage() to reduce the wait time
 	* Add uechobench
 
 2022-11-27 The uecho Authors <skonno@cybergarage.org>
