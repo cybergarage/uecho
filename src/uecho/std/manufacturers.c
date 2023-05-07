@@ -12,17 +12,15 @@
 
 #include <uecho/std/_database.h>
 
-bool uecho_database_addstandardmanufacture(uEchoDatabase* db, int code, const char* name)
-{
-  uEchoManufacture* man;
+bool uecho_database_addstandardmanufacture(uEchoDatabase* db, int code, const char *name) {
+  uEchoManufacture *man;
   man = uecho_manufacture_new();
   uecho_manufacture_setcode(man, code);
   uecho_manufacture_setname(man, name);
-  return uecho_database_addmanufacture(db, man);
+  return uecho_database_addmanufacture(db, man); 
 }
 
-void uecho_database_addstandardmanufactures(uEchoDatabase* db)
-{
+void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
   uecho_database_addstandardmanufacture(db, 0x00002F, "AIPHONE CO., LTD.");
   uecho_database_addstandardmanufacture(db, 0x00011A, "ACCESS CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x00002C, "AFT CO.,LTD");
@@ -41,6 +39,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db)
   uecho_database_addstandardmanufacture(db, 0x0000FB, "CICO CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x0000F8, "CIMX INITIATIVE INC.");
   uecho_database_addstandardmanufacture(db, 0x000123, "Contec Co., Ltd.");
+  uecho_database_addstandardmanufacture(db, 0x000130, "COOLDESIGN Corporation");
   uecho_database_addstandardmanufacture(db, 0x000067, "CORONA CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x00009C, "Diamond Electric Mfg.Co.,Ltd.");
   uecho_database_addstandardmanufacture(db, 0x000080, "DIAMOND&ZEBRA ELECTRIC MFG.CO.,LTD.");
@@ -65,6 +64,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db)
   uecho_database_addstandardmanufacture(db, 0x0000F2, "Energy Solutions Inc.");
   uecho_database_addstandardmanufacture(db, 0x000072, "Eneres Co.,Ltd.");
   uecho_database_addstandardmanufacture(db, 0x0000DD, "EneStone Corporation");
+  uecho_database_addstandardmanufacture(db, 0x000132, "EX4Energy, Inc.");
   uecho_database_addstandardmanufacture(db, 0x000055, "FAMILYNET JAPAN CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x0000F6, "Field Logic Inc.");
   uecho_database_addstandardmanufacture(db, 0x00012F, "FORMOSA BIO AND ENERGY CORP JAPAN");
@@ -96,7 +96,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db)
   uecho_database_addstandardmanufacture(db, 0x00004D, "INABA DENKI SANGYO CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x000056, "iND Co.,Ltd");
   uecho_database_addstandardmanufacture(db, 0x0000ED, "INFINI Co. LTD");
-  uecho_database_addstandardmanufacture(db, 0x0000F2, "INTEC Inc.");
+  uecho_database_addstandardmanufacture(db, 0x000124, "INTEC Inc.");
   uecho_database_addstandardmanufacture(db, 0x0000B1, "Internet Initiative Japan Inc.");
   uecho_database_addstandardmanufacture(db, 0x000087, "I-O DATA DEVICE,INC.");
   uecho_database_addstandardmanufacture(db, 0x00006B, "ISB Corporation");
@@ -182,6 +182,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db)
   uecho_database_addstandardmanufacture(db, 0x000107, "SEIKO ELECTRIC CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x00003A, "SEKISUI HOUSE, LTD.");
   uecho_database_addstandardmanufacture(db, 0x000005, "Sharp Corp");
+  uecho_database_addstandardmanufacture(db, 0x000131, "Shenzhen Eternalplanet Energy Pingshan Ltd.");
   uecho_database_addstandardmanufacture(db, 0x0000AE, "SHIKOKU ELECTRIC POWER CO.,INC.");
   uecho_database_addstandardmanufacture(db, 0x00002E, "SHIKOKU INSTRUMENTATION CO.,LTD");
   uecho_database_addstandardmanufacture(db, 0x0000CE, "SHINDENGEN ELECTRIC MANUFACTURING CO.LTD.");
@@ -227,7 +228,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db)
   uecho_database_addstandardmanufacture(db, 0x0000EF, "TOYOTA INDUSTRIES CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x000121, "TOYOTA MOTOR CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x00011F, "TOYOTA TSUSHO CORPORATION");
-  uecho_database_addstandardmanufacture(db, 0x00005D, "Tranceboot Co.,Ltd.");
+  uecho_database_addstandardmanufacture(db, 0x00005C, "Tranceboot Co.,Ltd.");
   uecho_database_addstandardmanufacture(db, 0x000076, "TSP CO.,Ltd");
   uecho_database_addstandardmanufacture(db, 0x0000D0, "TSUBAKIMOTO CHAIN CO.");
   uecho_database_addstandardmanufacture(db, 0x0000C1, "Tsuken Electric Ind Co., Ltd.");

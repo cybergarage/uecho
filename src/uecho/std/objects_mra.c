@@ -65,7 +65,7 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x83, "Identification number", "raw", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x83, "Identification number", "raw", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x84, "Measured instantaneous power consumption", "number", 0, "optional", "notApplicable", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0x85, "Measured cumulative power consumption", "number", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0x85, "Measured cumulative electric energy consumption", "number", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x86, "Manufacturer's fault code", "raw", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x87, "Current limit setting", "number", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x88, "Fault status", "state", 1, "required", "notApplicable", "required"));
@@ -79,7 +79,7 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x93, "Location information", "raw", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x93, "Location information", "raw", 0, "optional", "optional", "required"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x93, "Remote control setting", "state", 1, "optional", "optional", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0x93, "Remote controll setting", "state", 1, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0x93, "Remote control setting", "state", 1, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x97, "Current time setting", "time", 2, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x98, "Current date setting", "date", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0x99, "Power limit setting", "number", 0, "optional", "optional", "optional"));
@@ -251,6 +251,7 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDE, "Purchasing electric power setting", "number", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDF, "Re-interconnection permission setting", "state", 1, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Charging/Discharging electric power setting", "number", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE1, "Working operation status", "state", 1, "optional", "notApplicable", "required"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE2, "Remaining stored electricity of vehicle mounted battery1", "number", 0, "required", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE3, "Remaining stored electricity of vehicle mounted battery2", "number", 0, "required_c", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE3, "Remaining stored electricity of vehicle mounted battery2", "number", 0, "optional", "notApplicable", "optional"));
@@ -654,6 +655,7 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE4, "Security data information", "number", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE5, "ID number setting", "raw", 0, "optional", "optional", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE6, "Verification expiration information", "raw", 0, "optional", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE7, "Historical data 2 of measured cumulative amount of flowing water", "array", 0, "optional", "notApplicable", "optional"));
   uecho_database_addobject(db, obj);
 
   // Home air conditioner (0x0130)
@@ -946,6 +948,31 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xBF, "Ventilation Auto setting", "state", 1, "optional", "optional", "optional"));
   uecho_database_addobject(db, obj);
 
+  // distributed generator's electric energy meter (0x028E)
+  obj = uecho_standard_object_new("distributed generator's electric energy meter", 0x02, 0x8E);
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0x98, "Current date setting", "date", 0, "required_c", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD0, "Device type", "raw", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD1, "Device ID", "raw", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD2, "Tolerance class", "state", 1, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD3, "Number of days to retain historical data of measured cumulative amounts of electric energy", "", 0, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD4, "Unit for cumulative amounts of electric energy", "numericValue", 1, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD5, "Day on which the historical data of measured cumulative amounts of electric energy is to be retrieved", "", 0, "required_c", "required", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xD6, "Identification number of device to be metered", "raw", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDA, "Current hour, minute, and second setting", "time", 0, "required_c", "optional", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xDB, "Time synchronization status", "state", 1, "required", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Measured cumulative amounts of electric energy (AC input)", "number", 0, "required_c", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE1, "Historical data of measured cumulative amounts of electric energy (AC input)", "object", 0, "required_c", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE2, "Measured cumulative amounts of electric energy (AC output)", "number", 0, "required_c", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE3, "Historical data of measured cumulative amounts of electric energy (AC output)", "object", 0, "required_c", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE4, "Measured cumulative amounts of electric energy (output during a power outage)", "", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE5, "Historical data of measured cumulative amounts of electric energy (output during a power outage )", "object", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE6, "Cumulative amounts of electric energy measured at fixed time (AC input)", "object", 0, "required_c", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE7, "Cumulative amounts of electric energy measured at fixed time (AC output)", "object", 0, "required_c", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE8, "Cumulative amounts of electric energy measured at fixed time (output during a power outage)", "object", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE9, "Measured instantaneous electric power (AC input/output)", "", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xEA, "Measured instantaneous electric power (output during a power outage)", "", 0, "optional", "notApplicable", "optional"));
+  uecho_database_addobject(db, obj);
+
   // Electric lock (0x026F)
   obj = uecho_standard_object_new("Electric lock", 0x02, 0x6F);
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xE0, "Lock setting1", "state", 1, "required", "required", "required"));
@@ -1005,10 +1032,10 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC8, "Product code of the device to be controlled", "raw", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC9, "Manufacture date of the device to be controlled", "date", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xC9, "Manufacture date of the device to be controlled", "date", 0, "optional", "notApplicable", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCA, "Registerd information renewal date of the device to be controlled", "date", 0, "optional", "notApplicable", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCA, "Registerd information renewal date of the device to be controlled", "date", 0, "optional", "notApplicable", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCB, "Registerd information renewal version information of the device to be controlled", "number", 0, "optional", "notApplicable", "optional"));
-  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCB, "Registerd information renewal version information of the device to be controlled", "number", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCA, "Registered information renewal date of the device to be controlled", "date", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCA, "Registered information renewal date of the device to be controlled", "date", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCB, "Registered information renewal version information of the device to be controlled", "number", 0, "optional", "notApplicable", "optional"));
+  uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCB, "Registered information renewal version information of the device to be controlled", "number", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCC, "Place to install device to be controlled", "raw", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCD, "Fault status of device to be controlled", "state", 1, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xCE, "Set property map for device to be controlled", "raw", 0, "optional", "notApplicable", "optional"));
@@ -1105,4 +1132,5 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xEC, "Historical data of measured cumulative amounts of electric energy 2 (normal and reverse directions)", "object", 0, "optional", "notApplicable", "optional"));
   uecho_object_addproperty(obj, uecho_standard_object_property_new(0xED, "Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved 2", "object", 0, "optional", "optional", "optional"));
   uecho_database_addobject(db, obj);
+
 }
