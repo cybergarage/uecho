@@ -23,7 +23,7 @@ extern "C" {
  * Constant
  ****************************************/
 
-#define uEchoControllerPostResponseMaxMiliTime 5000
+#define uEchoControllerPostResponseMaxClockTime (5 * CLOCKS_PER_SEC)
 
 /****************************************
  * Data Type
