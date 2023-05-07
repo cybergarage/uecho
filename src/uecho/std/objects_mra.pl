@@ -74,7 +74,7 @@ void uecho_database_addstandardobjects(uEchoDatabase* db)
 HEADER
 
 my $mra_definitions_file = $mra_root_dir . "/mraData/definitions/definitions.json";
-open(DEF_JSON_FILE, $mra_definitions_file) or die "$!";
+open(DEF_JSON_FILE, $mra_definitions_file) or die "Failed to open $mra_definitions_file: $!";
 my $def_json_data = join('',<DEF_JSON_FILE>);
 close(DEF_JSON_FILE);
 my $def_json = decode_json($def_json_data);
