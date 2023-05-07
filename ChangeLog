@@ -19,7 +19,7 @@
 	* v1.2.2
 	* Fix to set correct description format 2 property maps
 	* Update manufacture database based on latest MCA (Manufacturer Code List) of ECHONET Consortium
-	* Update standard device database based on he latest MRA (Machine Readable Appendix) v1.1.0 of ECHONET Consortium
+	* Update standard device database based on he latest MRA (Machine Readable Appendix) v1.1.1 of ECHONET Consortium
 
 2022-05-28 The uecho Authors <skonno@cybergarage.org>
 	* v1.2.1
