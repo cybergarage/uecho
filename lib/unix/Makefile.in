@@ -156,6 +156,7 @@ am__objects_1 = ../../src/uecho/libuecho_a-controller.$(OBJEXT) \
 	../../src/uecho/util/libuecho_a-bytes.$(OBJEXT) \
 	../../src/uecho/util/libuecho_a-thread_list.$(OBJEXT) \
 	../../src/uecho/util/libuecho_a-mutex.$(OBJEXT) \
+	../../src/uecho/util/libuecho_a-cond.$(OBJEXT) \
 	../../src/uecho/util/libuecho_a-strings_function.$(OBJEXT) \
 	../../src/uecho/util/libuecho_a-strings_tokenizer.$(OBJEXT) \
 	../../src/uecho/util/libuecho_a-logs.$(OBJEXT) \
@@ -260,6 +261,7 @@ am__depfiles_remade = ../../src/uecho/$(DEPDIR)/libuecho_a-class.Po \
 	../../src/uecho/std/$(DEPDIR)/libuecho_a-profile_super_class.Po \
 	../../src/uecho/std/$(DEPDIR)/libuecho_a-standard.Po \
 	../../src/uecho/util/$(DEPDIR)/libuecho_a-bytes.Po \
+	../../src/uecho/util/$(DEPDIR)/libuecho_a-cond.Po \
 	../../src/uecho/util/$(DEPDIR)/libuecho_a-list.Po \
 	../../src/uecho/util/$(DEPDIR)/libuecho_a-log.Po \
 	../../src/uecho/util/$(DEPDIR)/libuecho_a-logs.Po \
@@ -443,6 +445,7 @@ uecho_sources = \
 	../../src/uecho/util/bytes.c \
 	../../src/uecho/util/thread_list.c \
 	../../src/uecho/util/mutex.c \
+	../../src/uecho/util/cond.c \
 	../../src/uecho/util/strings_function.c \
 	../../src/uecho/util/strings_tokenizer.c \
 	../../src/uecho/util/logs.c \
@@ -634,6 +637,9 @@ clean-libLIBRARIES:
 	../../src/uecho/util/$(am__dirstamp) \
 	../../src/uecho/util/$(DEPDIR)/$(am__dirstamp)
 ../../src/uecho/util/libuecho_a-mutex.$(OBJEXT):  \
+	../../src/uecho/util/$(am__dirstamp) \
+	../../src/uecho/util/$(DEPDIR)/$(am__dirstamp)
+../../src/uecho/util/libuecho_a-cond.$(OBJEXT):  \
 	../../src/uecho/util/$(am__dirstamp) \
 	../../src/uecho/util/$(DEPDIR)/$(am__dirstamp)
 ../../src/uecho/util/libuecho_a-strings_function.$(OBJEXT):  \
@@ -830,6 +836,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/std/$(DEPDIR)/libuecho_a-profile_super_class.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/std/$(DEPDIR)/libuecho_a-standard.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/util/$(DEPDIR)/libuecho_a-bytes.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/util/$(DEPDIR)/libuecho_a-cond.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/util/$(DEPDIR)/libuecho_a-list.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/util/$(DEPDIR)/libuecho_a-log.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../../src/uecho/util/$(DEPDIR)/libuecho_a-logs.Po@am__quote@ # am--include-marker
@@ -1128,6 +1135,20 @@ am--depfiles: $(am__depfiles_remade)
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/uecho/util/mutex.c' object='../../src/uecho/util/libuecho_a-mutex.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -c -o ../../src/uecho/util/libuecho_a-mutex.obj `if test -f '../../src/uecho/util/mutex.c'; then $(CYGPATH_W) '../../src/uecho/util/mutex.c'; else $(CYGPATH_W) '$(srcdir)/../../src/uecho/util/mutex.c'; fi`
+
+../../src/uecho/util/libuecho_a-cond.o: ../../src/uecho/util/cond.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -MT ../../src/uecho/util/libuecho_a-cond.o -MD -MP -MF ../../src/uecho/util/$(DEPDIR)/libuecho_a-cond.Tpo -c -o ../../src/uecho/util/libuecho_a-cond.o `test -f '../../src/uecho/util/cond.c' || echo '$(srcdir)/'`../../src/uecho/util/cond.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/uecho/util/$(DEPDIR)/libuecho_a-cond.Tpo ../../src/uecho/util/$(DEPDIR)/libuecho_a-cond.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/uecho/util/cond.c' object='../../src/uecho/util/libuecho_a-cond.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -c -o ../../src/uecho/util/libuecho_a-cond.o `test -f '../../src/uecho/util/cond.c' || echo '$(srcdir)/'`../../src/uecho/util/cond.c
+
+../../src/uecho/util/libuecho_a-cond.obj: ../../src/uecho/util/cond.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -MT ../../src/uecho/util/libuecho_a-cond.obj -MD -MP -MF ../../src/uecho/util/$(DEPDIR)/libuecho_a-cond.Tpo -c -o ../../src/uecho/util/libuecho_a-cond.obj `if test -f '../../src/uecho/util/cond.c'; then $(CYGPATH_W) '../../src/uecho/util/cond.c'; else $(CYGPATH_W) '$(srcdir)/../../src/uecho/util/cond.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../../src/uecho/util/$(DEPDIR)/libuecho_a-cond.Tpo ../../src/uecho/util/$(DEPDIR)/libuecho_a-cond.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../../src/uecho/util/cond.c' object='../../src/uecho/util/libuecho_a-cond.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -c -o ../../src/uecho/util/libuecho_a-cond.obj `if test -f '../../src/uecho/util/cond.c'; then $(CYGPATH_W) '../../src/uecho/util/cond.c'; else $(CYGPATH_W) '$(srcdir)/../../src/uecho/util/cond.c'; fi`
 
 ../../src/uecho/util/libuecho_a-strings_function.o: ../../src/uecho/util/strings_function.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libuecho_a_CFLAGS) $(CFLAGS) -MT ../../src/uecho/util/libuecho_a-strings_function.o -MD -MP -MF ../../src/uecho/util/$(DEPDIR)/libuecho_a-strings_function.Tpo -c -o ../../src/uecho/util/libuecho_a-strings_function.o `test -f '../../src/uecho/util/strings_function.c' || echo '$(srcdir)/'`../../src/uecho/util/strings_function.c
@@ -1883,6 +1904,7 @@ distclean: distclean-am
 	-rm -f ../../src/uecho/std/$(DEPDIR)/libuecho_a-profile_super_class.Po
 	-rm -f ../../src/uecho/std/$(DEPDIR)/libuecho_a-standard.Po
 	-rm -f ../../src/uecho/util/$(DEPDIR)/libuecho_a-bytes.Po
+	-rm -f ../../src/uecho/util/$(DEPDIR)/libuecho_a-cond.Po
 	-rm -f ../../src/uecho/util/$(DEPDIR)/libuecho_a-list.Po
 	-rm -f ../../src/uecho/util/$(DEPDIR)/libuecho_a-log.Po
 	-rm -f ../../src/uecho/util/$(DEPDIR)/libuecho_a-logs.Po
@@ -1986,6 +2008,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ../../src/uecho/std/$(DEPDIR)/libuecho_a-profile_super_class.Po
 	-rm -f ../../src/uecho/std/$(DEPDIR)/libuecho_a-standard.Po
 	-rm -f ../../src/uecho/util/$(DEPDIR)/libuecho_a-bytes.Po
+	-rm -f ../../src/uecho/util/$(DEPDIR)/libuecho_a-cond.Po
 	-rm -f ../../src/uecho/util/$(DEPDIR)/libuecho_a-list.Po
 	-rm -f ../../src/uecho/util/$(DEPDIR)/libuecho_a-log.Po
 	-rm -f ../../src/uecho/util/$(DEPDIR)/libuecho_a-logs.Po

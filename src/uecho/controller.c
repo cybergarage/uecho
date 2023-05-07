@@ -11,7 +11,7 @@
 #include <uecho/_controller.h>
 #include <uecho/profile.h>
 
-#define uEchoControllerPostResponseLoopCount 50
+#define uEchoControllerPostResponseLoopCount (CLOCKS_PER_SEC / 10)
 
 /****************************************
  * uecho_controller_new
@@ -28,6 +28,7 @@ uEchoController* uecho_controller_new(void)
     return NULL;
 
   ctrl->mutex = uecho_mutex_new();
+  ctrl->cond = uecho_cond_new();
   ctrl->node = uecho_node_new();
   ctrl->nodes = uecho_nodelist_new();
   ctrl->option = uEchoOptionNone;
@@ -40,7 +41,7 @@ uEchoController* uecho_controller_new(void)
   uecho_controller_setmessagelistener(ctrl, NULL);
   uecho_controller_setnodelistener(ctrl, NULL);
   uecho_controller_setpostresponsemessage(ctrl, NULL);
-  uecho_controller_setpostwaitemilitime(ctrl, uEchoControllerPostResponseMaxMiliTime);
+  uecho_controller_setpostwaitemilitime(ctrl, uEchoControllerPostResponseMaxClockTime);
 
   return ctrl;
 }
@@ -57,6 +58,7 @@ bool uecho_controller_delete(uEchoController* ctrl)
   uecho_controller_stop(ctrl);
 
   uecho_mutex_delete(ctrl->mutex);
+  uecho_cond_delete(ctrl->cond);
   uecho_node_delete(ctrl->node);
   uecho_nodelist_delete(ctrl->nodes);
 
@@ -458,7 +460,7 @@ void uecho_controller_setpostwaitemilitime(uEchoController* ctrl, clock_t mtime)
   if (!ctrl)
     return;
 
-  ctrl->post_res_wait_mili_time = mtime;
+  ctrl->post_res_wait_clock_time = mtime;
 }
 
 /****************************************
@@ -470,7 +472,7 @@ clock_t uecho_controller_getpostwaitemilitime(uEchoController* ctrl)
   if (!ctrl)
     return 0;
 
-  return ctrl->post_res_wait_mili_time;
+  return ctrl->post_res_wait_clock_time;
 }
 
 /****************************************
@@ -495,14 +497,18 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
     return false;
   }
 
+#if defined(USE_SLEEP_WAIT)
   is_responce_received = false;
   for (n = 0; n < uEchoControllerPostResponseLoopCount; n++) {
-    uecho_sleep(ctrl->post_res_wait_mili_time / uEchoControllerPostResponseLoopCount);
+    uecho_sleep(ctrl->post_res_wait_clock_time / uEchoControllerPostResponseLoopCount);
     if (uecho_controller_ispostresponsereceived(ctrl)) {
       is_responce_received = true;
       break;
     }
   }
+#else
+  is_responce_received = uecho_cond_timedwait(ctrl->cond, ctrl->post_res_wait_clock_time);
+#endif
 
   uecho_controller_setpostrequestmessage(ctrl, NULL);
   uecho_controller_setpostresponsemessage(ctrl, NULL);
