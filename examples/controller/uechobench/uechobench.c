@@ -19,6 +19,7 @@
 void usage()
 {
   printf("Usage : uechosearch [options]\n");
+  printf(" -n : Count of Repeat\n");
   printf(" -v : Enable verbose output\n");
   printf(" -h : Print this message\n");
   printf(" -d : Enable debug output\n");
@@ -48,35 +49,7 @@ uEchoMessage* create_readmanufacturecodemessage()
       0x8A);
 }
 
-const char* get_nodemanufacturename(uEchoController* ctrl, uEchoDatabase* db, uEchoNode* node)
-{
-  uEchoMessage* req_msg;
-  uEchoMessage* res_msg;
-  uEchoProperty* res_prop;
-  uEchoManufacture* manufacture;
-  const char* manufacture_name;
-  int manufacture_code;
-
-  manufacture_name = NULL;
-  req_msg = create_readmanufacturecodemessage();
-  res_msg = uecho_message_new();
-  if (uecho_controller_postmessage(ctrl, node, req_msg, res_msg) && (uecho_message_getopc(res_msg) == 1)) {
-    res_prop = uecho_message_getproperty(res_msg, 0);
-    if (res_prop) {
-      manufacture_code = uecho_bytes_toint(uecho_property_getdata(res_prop), uecho_property_getdatasize(res_prop));
-      manufacture = uecho_database_getmanufacture(db, manufacture_code);
-      if (manufacture) {
-        manufacture_name = uecho_manufacture_getname(manufacture);
-      }
-    }
-  }
-  uecho_message_delete(req_msg);
-  uecho_message_delete(res_msg);
-
-  return manufacture_name;
-}
-
-void print_founddevices(uEchoController* ctrl, bool verbose)
+void benchmark_founddevices(uEchoController* ctrl, bool verbose)
 {
   uEchoDatabase* db;
   uEchoNode* node;
@@ -107,8 +80,7 @@ void print_founddevices(uEchoController* ctrl, bool verbose)
       continue;
     }
 
-    manufacture_name = get_nodemanufacturename(ctrl, db, node);
-    printf("%-15s (%s)\n", uecho_node_getaddress(node), (manufacture_name ? manufacture_name : UNKNOWN_STRING));
+    printf("%-15s\n", uecho_node_getaddress(node));
 
     obj_no = 0;
     for (obj = uecho_node_getobjects(node); obj; obj = uecho_object_next(obj)) {
@@ -154,13 +126,15 @@ int main(int argc, char* argv[])
   uEchoController* ctrl;
   size_t found_node_cnt;
   int c;
+  size_t repeat_cnt = 1;
+  size_t n;
 
   // Parse options
 
   verbose_mode = false;
   debug_mode = false;
 
-  while ((c = getopt(argc, argv, "vhd")) != -1) {
+  while ((c = getopt(argc, argv, "vhdn:")) != -1) {
     switch (c) {
     case 'v': {
       verbose_mode = true;
@@ -172,6 +146,9 @@ int main(int argc, char* argv[])
       usage();
       return EXIT_SUCCESS;
     }
+    case 'n': {
+      repeat_cnt = atoi(optarg);
+    } break;
     default: {
       usage();
       return EXIT_FAILURE;
@@ -202,7 +179,9 @@ int main(int argc, char* argv[])
 
   found_node_cnt = uecho_controller_getnodecount(ctrl);
   if (0 < found_node_cnt) {
-    print_founddevices(ctrl, verbose_mode);
+    for (n = 0; n < repeat_cnt; n++) {
+      benchmark_founddevices(ctrl, verbose_mode);
+    }
   }
 
   uecho_controller_stop(ctrl);

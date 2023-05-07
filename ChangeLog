@@ -1,12 +1,14 @@
 2023-05-07 The uecho Authors <skonno@cybergarage.org>
-	* v1.2.5
-	* Updated standard manufacture code database based on the latest MCA (Manufacturer Code List) vof ECHONET Consortium.
-	* Updated standard object database based on the latest MRA (Machine Readable Appendix) v1.2.0 vof ECHONET Consortium.
+	* v1.3.0
+	* Updated uecho_controller_postmessage() to reduce wait time.
+	* Added uechobench
+	* Updated the standard manufacturer code database based on the latest MCA (Manufacturer Code List) from the ECHONET Consortium
+	* Updated the standard object database based on the latest MRA (Machine Readable Appendix) version 1.2.0 from the ECHONET Consortium
 
 2022-11-27 The uecho Authors <skonno@cybergarage.org>
 	* v1.2.4
-	* Updated standard database based on the latest MCA (Manufacturer Code List) of ECHONET Consortium.
-	* Added experimental manufacture codes to the standard database
+	* Update standard database based on the latest MCA (Manufacturer Code List) of ECHONET Consortium.
+	* Add experimental manufacture codes to the standard database
 
 2022-09-04 The uecho Authors <skonno@cybergarage.org>
 	* v1.2.3

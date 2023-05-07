@@ -14,6 +14,7 @@
 #include <uecho/_node.h>
 #include <uecho/const.h>
 #include <uecho/typedef.h>
+#include <uecho/util/cond.h>
 #include <uecho/util/mutex.h>
 
 #ifdef __cplusplus
@@ -34,6 +35,7 @@ enum {
 
 typedef struct UEchoController {
   uEchoMutex* mutex;
+  uEchoCond* cond;
   uEchoNode* node;
   uEchoNodeList* nodes;
   void (*msg_listener)(struct UEchoController*, uEchoMessage*); /* uEchoControllerMessageListener */
@@ -41,7 +43,7 @@ typedef struct UEchoController {
   uEchoOption option;
   void* user_data;
 
-  clock_t post_res_wait_mili_time;
+  clock_t post_res_wait_clock_time;
   uEchoMessage* post_req_msg;
   uEchoMessage* post_res_msg;
 } uEchoController;

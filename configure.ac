@@ -200,6 +200,8 @@ examples/controller/uechodump/Makefile
 examples/controller/uechodump/unix/Makefile
 examples/controller/uechopost/Makefile
 examples/controller/uechopost/unix/Makefile
+examples/controller/uechobench/Makefile
+examples/controller/uechobench/unix/Makefile
 examples/device/Makefile
 examples/device/uecholight/Makefile
 examples/device/uecholight/unix/Makefile
