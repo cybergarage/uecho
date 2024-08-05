@@ -12,15 +12,18 @@
 
 #include <uecho/std/_database.h>
 
-bool uecho_database_addstandardmanufacture(uEchoDatabase* db, int code, const char *name) {
-  uEchoManufacture *man;
+bool uecho_database_addstandardmanufacture(uEchoDatabase* db, int code, const char* name)
+{
+  uEchoManufacture* man;
   man = uecho_manufacture_new();
   uecho_manufacture_setcode(man, code);
   uecho_manufacture_setname(man, name);
-  return uecho_database_addmanufacture(db, man); 
+  return uecho_database_addmanufacture(db, man);
 }
 
-void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
+void uecho_database_addstandardmanufactures(uEchoDatabase* db)
+{
+  uecho_database_addstandardmanufacture(db, 0x000133, "afterFIT Co., Ltd.");
   uecho_database_addstandardmanufacture(db, 0x00002F, "AIPHONE CO., LTD.");
   uecho_database_addstandardmanufacture(db, 0x00011A, "ACCESS CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x00002C, "AFT CO.,LTD");
@@ -32,15 +35,18 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
   uecho_database_addstandardmanufacture(db, 0x0000FD, "Bellnix Co.,LTD");
   uecho_database_addstandardmanufacture(db, 0x00006F, "BUFFALO INC.");
   uecho_database_addstandardmanufacture(db, 0x0000B6, "Bunka Shutter Co., Ltd");
+  uecho_database_addstandardmanufacture(db, 0x000017, "Carrier Japan Corporation");
   uecho_database_addstandardmanufacture(db, 0x0000D2, "CHOFUKOSAN.Co.Ltd");
   uecho_database_addstandardmanufacture(db, 0x000088, "CHOFU SEISAKUSHO CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x0000D5, "Choshu Industry Co., Ltd.");
   uecho_database_addstandardmanufacture(db, 0x0000A3, "Chubu Electric Power Grid Co.,Inc.");
+  uecho_database_addstandardmanufacture(db, 0x000136, "Chuo Bussan Co.,Ltd.");
   uecho_database_addstandardmanufacture(db, 0x0000FB, "CICO CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x0000F8, "CIMX INITIATIVE INC.");
   uecho_database_addstandardmanufacture(db, 0x000123, "Contec Co., Ltd.");
   uecho_database_addstandardmanufacture(db, 0x000130, "COOLDESIGN Corporation");
   uecho_database_addstandardmanufacture(db, 0x000067, "CORONA CORPORATION");
+  uecho_database_addstandardmanufacture(db, 0x00013B, "Crossdoor Inc.");
   uecho_database_addstandardmanufacture(db, 0x00009C, "Diamond Electric Mfg.Co.,Ltd.");
   uecho_database_addstandardmanufacture(db, 0x000080, "DIAMOND&ZEBRA ELECTRIC MFG.CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x000119, "DAIHEN Corporation");
@@ -55,7 +61,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
   uecho_database_addstandardmanufacture(db, 0x00003C, "DENSO Corporation");
   uecho_database_addstandardmanufacture(db, 0x000109, "DENSO Co.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x00012B, "DENSO WAVE INCORPORATED");
-  uecho_database_addstandardmanufacture(db, 0x000113, "EBARA JITSUGYO POWER CO., LTD.");
+  uecho_database_addstandardmanufacture(db, 0x000113, "EBARA JITSUGYO CO., LTD");
   uecho_database_addstandardmanufacture(db, 0x000057, "ELIIYPower Co.,ltd");
   uecho_database_addstandardmanufacture(db, 0x00012E, "Eneres Co.,Ltd.");
   uecho_database_addstandardmanufacture(db, 0x000041, "ENEGATE CO.,LTD.");
@@ -79,7 +85,9 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
   uecho_database_addstandardmanufacture(db, 0x00009B, "GASTAR Co.,Ltd");
   uecho_database_addstandardmanufacture(db, 0x00008F, "Glamo Inc.");
   uecho_database_addstandardmanufacture(db, 0x000129, "GoodWe Japan K.K");
+  uecho_database_addstandardmanufacture(db, 0x000134, "GoodWe Technologies Co.,Ltd.");
   uecho_database_addstandardmanufacture(db, 0x00009F, "GS Yuasa International Ltd");
+  uecho_database_addstandardmanufacture(db, 0x00013A, "GUGEN,Inc.");
   uecho_database_addstandardmanufacture(db, 0x000122, "Hanwha Q CELLS Japan CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x000001, "Hitachi, Ltd.");
   uecho_database_addstandardmanufacture(db, 0x000022, "Hitachi Global Life Solutions, Inc.");
@@ -93,6 +101,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
   uecho_database_addstandardmanufacture(db, 0x0000A1, "Honda R&D Co., Ltd.");
   uecho_database_addstandardmanufacture(db, 0x000115, "HUAWEI TECHNOLOGIES JAPAN K.K.");
   uecho_database_addstandardmanufacture(db, 0x0000AC, "IDEC COROPRATION");
+  uecho_database_addstandardmanufacture(db, 0x00013E, "i GRID SOLUTIONS Inc.");
   uecho_database_addstandardmanufacture(db, 0x00004D, "INABA DENKI SANGYO CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x000056, "iND Co.,Ltd");
   uecho_database_addstandardmanufacture(db, 0x0000ED, "INFINI Co. LTD");
@@ -115,6 +124,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
   uecho_database_addstandardmanufacture(db, 0x00008C, "Kyuden Technosystems Corporation");
   uecho_database_addstandardmanufacture(db, 0x0000BF, "KYUSHU ELECTRIC POWER TRANSMISSION AND DISTRIBUTION CO.,INC.");
   uecho_database_addstandardmanufacture(db, 0x0000F1, "Laplace Systems Co., Ltd.");
+  uecho_database_addstandardmanufacture(db, 0x000135, "LinkJapan Inc.");
   uecho_database_addstandardmanufacture(db, 0x000125, "LiveSmart KK");
   uecho_database_addstandardmanufacture(db, 0x000025, "LIXIL Corporation");
   uecho_database_addstandardmanufacture(db, 0x0000E0, "Looop Inc");
@@ -145,6 +155,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
   uecho_database_addstandardmanufacture(db, 0x000112, "NICHIEI INTEC CO., LTD");
   uecho_database_addstandardmanufacture(db, 0x000071, "NIHON SANGYO CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x0000DC, "NIHON TECHNO CO.,LTD.");
+  uecho_database_addstandardmanufacture(db, 0x00013D, "NIPPON GAS CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x00008D, "NIPPON TELEGRAPH AND TELEPHONE CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x000047, "NIPPON TELEGRAPH AND TELEPHONE EAST CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x000086, "NIPPON TELEGRAPH AND TELEPHONE WEST CORPORATION");
@@ -160,6 +171,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
   uecho_database_addstandardmanufacture(db, 0x000012, "Oi Electric Co., Ltd");
   uecho_database_addstandardmanufacture(db, 0x00006A, "OKAYA & CO., LTD.");
   uecho_database_addstandardmanufacture(db, 0x000114, "OkayaKiden Co.,Ltd.");
+  uecho_database_addstandardmanufacture(db, 0x000137, "OkayaKiden Co.,Ltd.");
   uecho_database_addstandardmanufacture(db, 0x000048, "Oki Electric Industry Co., Ltd.");
   uecho_database_addstandardmanufacture(db, 0x000064, "OMRON SOCIAL SOLUTIONS CO.,LTD.");
   uecho_database_addstandardmanufacture(db, 0x00012C, "Onamba Co., Ltd.");
@@ -171,6 +183,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
   uecho_database_addstandardmanufacture(db, 0x0000FE, "Panasonic Ecology Systems Co.,Ltd.");
   uecho_database_addstandardmanufacture(db, 0x0000FA, "Plat'Home Co.");
   uecho_database_addstandardmanufacture(db, 0x000082, "PURPOSE CO.,LTD.");
+  uecho_database_addstandardmanufacture(db, 0x000139, "RATOC Systems, Inc.");
   uecho_database_addstandardmanufacture(db, 0x000059, "Rinnai Corporation");
   uecho_database_addstandardmanufacture(db, 0x000128, "SAIKOH ENGINEERING Co.,Ltd.");
   uecho_database_addstandardmanufacture(db, 0x00011E, "SAKAIGAWA CO., LTD");
@@ -201,6 +214,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
   uecho_database_addstandardmanufacture(db, 0x0000DB, "Suntech Power Japan Corporation");
   uecho_database_addstandardmanufacture(db, 0x00003D, "SUMITOMO ELECTRIC INDUSTRIES, LTD.");
   uecho_database_addstandardmanufacture(db, 0x00003E, "SUMITOMO ELECTRIC NETWORKS, INC.");
+  uecho_database_addstandardmanufacture(db, 0x00012D, "TACHIKAWA CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x000085, "TAKAOKA TOKO CO.,LTD");
   uecho_database_addstandardmanufacture(db, 0x0000AF, "Takara Standard Co.,Ltd");
   uecho_database_addstandardmanufacture(db, 0x0000E4, "technoeye Inc.");
@@ -216,7 +230,6 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
   uecho_database_addstandardmanufacture(db, 0x000099, "Tokyo Electric Power Company Holdings, Inc.");
   uecho_database_addstandardmanufacture(db, 0x0000B3, "TOPPERS Project, Inc.");
   uecho_database_addstandardmanufacture(db, 0x000111, "Topre Corporation");
-  uecho_database_addstandardmanufacture(db, 0x000017, "TOSHIBA CARRIER CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x000016, "Toshiba Corp.");
   uecho_database_addstandardmanufacture(db, 0x000043, "TOSHIBA DEVELOPMENT & ENGINEERING CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x0000EC, "Toshiba Energy Systems & Solutions Corporation");
@@ -229,6 +242,7 @@ void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
   uecho_database_addstandardmanufacture(db, 0x000121, "TOYOTA MOTOR CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x00011F, "TOYOTA TSUSHO CORPORATION");
   uecho_database_addstandardmanufacture(db, 0x00005C, "Tranceboot Co.,Ltd.");
+  uecho_database_addstandardmanufacture(db, 0x000138, "TRENDE Inc.");
   uecho_database_addstandardmanufacture(db, 0x000076, "TSP CO.,Ltd");
   uecho_database_addstandardmanufacture(db, 0x0000D0, "TSUBAKIMOTO CHAIN CO.");
   uecho_database_addstandardmanufacture(db, 0x0000C1, "Tsuken Electric Ind Co., Ltd.");
