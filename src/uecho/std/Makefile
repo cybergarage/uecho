@@ -46,7 +46,7 @@ ${MANUFACTURE_CSV}: ${MANUFACTURE_XLSX}
 # Machine-readable database from Echonet consortium
 ############################################################
 
-MRA_JSON_DIR=MRA_V1.2.0
+MRA_JSON_DIR=MRA_en_v1.3.0
 
 objects_mra.c :
 	@./objects_mra.pl ${MRA_JSON_DIR} > $@
