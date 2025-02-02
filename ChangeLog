@@ -1,67 +1,67 @@
-2023-05-07 The uecho Authors <skonno@cybergarage.org>
+2023-05-07 Satoshi Konno <skonno@cybergarage.org>
 	* v1.3.1
 	* Updated the standard object database based on the latest MRA (Machine Readable Appendix) version 1.3.0 from the ECHONET Consortium.
 	* Updated the standard manufacturer code database based on the latest MCA (Manufacturer Code List) from the ECHONET Consortium.
 
-2023-05-07 The uecho Authors <skonno@cybergarage.org>
+2023-05-07 Satoshi Konno <skonno@cybergarage.org>
 	* v1.3.0
 	* Updated uecho_controller_postmessage() to reduce wait time.
 	* Added uechobench
 	* Updated the standard manufacturer code database based on the latest MCA (Manufacturer Code List) from the ECHONET Consortium
 	* Updated the standard object database based on the latest MRA (Machine Readable Appendix) version 1.2.0 from the ECHONET Consortium
 
-2022-11-27 The uecho Authors <skonno@cybergarage.org>
+2022-11-27 Satoshi Konno <skonno@cybergarage.org>
 	* v1.2.4
 	* Update standard database based on the latest MCA (Manufacturer Code List) of ECHONET Consortium.
 	* Add experimental manufacture codes to the standard database
 
-2022-09-04 The uecho Authors <skonno@cybergarage.org>
+2022-09-04 Satoshi Konno <skonno@cybergarage.org>
 	* v1.2.3
 	* Add uecho_property_gettype()
 	* Update deprecated macros in configure.ac by autoconf
 
-2022-08-26 The uecho Authors <skonno@cybergarage.org>
+2022-08-26 Satoshi Konno <skonno@cybergarage.org>
 	* v1.2.2
 	* Fix to set correct description format 2 property maps
 	* Update manufacture database based on latest MCA (Manufacturer Code List) of ECHONET Consortium
 	* Update standard device database based on he latest MRA (Machine Readable Appendix) v1.1.1 of ECHONET Consortium
 
-2022-05-28 The uecho Authors <skonno@cybergarage.org>
+2022-05-28 Satoshi Konno <skonno@cybergarage.org>
 	* v1.2.1
 	* Add uecho_controller_setnodelistener()
 
-2022-05-06 The uecho Authors <skonno@cybergarage.org>
+2022-05-06 Satoshi Konno <skonno@cybergarage.org>
 	* v1.2.0
 	* Add a manufacture database based on MCA (Manufacturer Code List) of ECHONET Consortium
 	* Add a standard ECHONET Lite device database based on MRA (Machine Readable Appendix) v1.0.0 of ECHONET Consortium
 	* Update uecho_object_setcode() to add the standard object properties of the specified object code automatically
 	* Update a controller example (uechosearch) to output required read property data in verbose mode
 
-2022-05-02 The uecho Authors <skonno@cybergarage.org>
+2022-05-02 Satoshi Konno <skonno@cybergarage.org>
 	* v1.1.1
 	* Fix write request message handler to update the internal property data
 	* Fix memory leak bugs
 
-2022-03-23 The uecho Authors <skonno@cybergarage.org>
+2022-03-23 Satoshi Konno <skonno@cybergarage.org>
 	* v1.1.0
 	* Improve internal request message handlers to support property value write and read request (0x6E)
 	* Update object property handler interfaces
 	* Addd uecho_log_setlevel()	
 
-2019-02-24 The uecho Authors <skonno@cybergarage.org>
+2019-02-24 Satoshi Konno <skonno@cybergarage.org>
 	* v1.0.0
 	* Add uecho_log_*() for debug
 	* Format by WebKit style using clang-format
 	* Fix uecho_list_clear() not to access the freed list
 
-2018-11-13 The uecho Authors <skonno@cybergarage.org>
+2018-11-13 Satoshi Konno <skonno@cybergarage.org>
 	* v0.9.2
 	* Fix uecho_controller_postmessage() to unlock the internal mutex
 
-2018-09-08 The uecho Authors <skonno@cybergarage.org>
+2018-09-08 Satoshi Konno <skonno@cybergarage.org>
 	* v0.9.1
 	* Fix uecho_nodeprofileclass_setversion() to set the transmission type correctly
 
-2015-09-15 The uecho Authors <skonno@cybergarage.org>
+2015-09-15 Satoshi Konno <skonno@cybergarage.org>
 	* v0.9.0
         * The first release.
