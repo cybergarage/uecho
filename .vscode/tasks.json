@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "format",
+            "type": "shell",
+            "command": "./format",
+            "args": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []            
+        }
+        {
+            "label": "make check",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "check",
+                "-j",
+                "20"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "dependsOn": ["format"]
+        },
+    ]
+}

@@ -5,28 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
-            "type": "cppdbg",
+            "type": "lldb",
             "request": "launch",
+            "name": "Debug",
             "program": "${workspaceFolder}/test/unix/uechotest",
-            "args": ["--run_test=ControllerSearchAll"],
-            "stopAtEntry": false,
+            "args": [],
             "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "linux": {
-                "MIMode": "gdb",
-                "setupCommands": [
-                    {
-                        "description": "Enable pretty-printing for gdb",
-                        "text": "-enable-pretty-printing",
-                        "ignoreFailures": true
-                    }
-                ]
-            },
-            "osx": {
-                "MIMode": "lldb"
-            }             
+            "preLaunchTask": "make check"
         }
     ]
 }
