@@ -64,29 +64,29 @@ BOOST_AUTO_TEST_CASE(PropertyMap)
       }
 
       uEchoProperty* prop = uecho_object_getproperty(obj, prop_code);
-      BOOST_CHECK(prop);
+      BOOST_REQUIRE(prop);
 
       size_t prop_map_count = 0;
       uecho_property_getpropertymapcount(prop, &prop_map_count);
-      BOOST_CHECK_EQUAL(prop_map_count, expected_prop_map_count);
+      BOOST_REQUIRE_EQUAL(prop_map_count, expected_prop_map_count);
 
       uEchoPropertyCode* prop_map_codes = (uEchoPropertyCode*)malloc(prop_map_count);
-      BOOST_CHECK(uecho_property_getpropertymapcodes(prop, prop_map_codes, prop_map_count));
+      BOOST_REQUIRE(uecho_property_getpropertymapcodes(prop, prop_map_codes, prop_map_count));
 
       for (uEchoProperty* prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
         switch (prop_code) {
         case uEchoObjectGetPropertyMap: {
           if (uecho_property_isreadable(prop)) {
-            BOOST_CHECK(propertymap_has_prop(prop_map_codes, prop_map_count, prop_code));
+            BOOST_REQUIRE(propertymap_has_prop(prop_map_codes, prop_map_count, prop_code));
           }
         } break;
         case uEchoObjectSetPropertyMap: {
           if (uecho_property_iswritable(prop))
-            BOOST_CHECK(propertymap_has_prop(prop_map_codes, prop_map_count, prop_code));
+            BOOST_REQUIRE(propertymap_has_prop(prop_map_codes, prop_map_count, prop_code));
         } break;
         case uEchoObjectAnnoPropertyMap: {
           if (uecho_property_isannounceable(prop))
-            BOOST_CHECK(propertymap_has_prop(prop_map_codes, prop_map_count, prop_code));
+            BOOST_REQUIRE(propertymap_has_prop(prop_map_codes, prop_map_count, prop_code));
         } break;
         }
       }

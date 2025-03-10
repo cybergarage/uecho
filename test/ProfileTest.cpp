@@ -15,7 +15,7 @@
 BOOST_AUTO_TEST_CASE(ProfileSuperClassMandatoryProperties)
 {
   uEchoObject* obj = uecho_profile_new();
-  BOOST_CHECK(obj);
+  BOOST_REQUIRE(obj);
   uecho_object_delete(obj);
 }
 
@@ -23,23 +23,23 @@ BOOST_AUTO_TEST_CASE(NodeProfileObjectMandatoryProperties)
 {
   uEchoObject* obj = uecho_nodeprofile_new();
 
-  BOOST_CHECK(uecho_object_iscode(obj, uEchoNodeProfileObject));
+  BOOST_REQUIRE(uecho_object_iscode(obj, uEchoNodeProfileObject));
 
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileManufacturerCode));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileAnnoPropertyMap));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileSetPropertyMap));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoProfileGetPropertyMap));
+  BOOST_REQUIRE(uecho_object_hasproperty(obj, uEchoProfileManufacturerCode));
+  BOOST_REQUIRE(uecho_object_hasproperty(obj, uEchoProfileAnnoPropertyMap));
+  BOOST_REQUIRE(uecho_object_hasproperty(obj, uEchoProfileSetPropertyMap));
+  BOOST_REQUIRE(uecho_object_hasproperty(obj, uEchoProfileGetPropertyMap));
 
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassOperatingStatus));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassVersionInformation));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassIdentificationNumber));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassNumberOfSelfNodeInstances));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassNumberOfSelfNodeClasses));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassInstanceListNotification));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassSelfNodeInstanceListS));
-  BOOST_CHECK(uecho_object_hasproperty(obj, uEchoNodeProfileClassSelfNodeClassListS));
+  BOOST_REQUIRE(uecho_object_hasproperty(obj, uEchoNodeProfileClassOperatingStatus));
+  BOOST_REQUIRE(uecho_object_hasproperty(obj, uEchoNodeProfileClassVersionInformation));
+  BOOST_REQUIRE(uecho_object_hasproperty(obj, uEchoNodeProfileClassIdentificationNumber));
+  BOOST_REQUIRE(uecho_object_hasproperty(obj, uEchoNodeProfileClassNumberOfSelfNodeInstances));
+  BOOST_REQUIRE(uecho_object_hasproperty(obj, uEchoNodeProfileClassNumberOfSelfNodeClasses));
+  BOOST_REQUIRE(uecho_object_hasproperty(obj, uEchoNodeProfileClassInstanceListNotification));
+  BOOST_REQUIRE(uecho_object_hasproperty(obj, uEchoNodeProfileClassSelfNodeInstanceListS));
+  BOOST_REQUIRE(uecho_object_hasproperty(obj, uEchoNodeProfileClassSelfNodeClassListS));
 
-  BOOST_CHECK(uecho_nodeprofile_isoperatingstatus(obj));
+  BOOST_REQUIRE(uecho_nodeprofile_isoperatingstatus(obj));
 
   uecho_object_delete(obj);
 }

@@ -32,12 +32,12 @@ BOOST_AUTO_TEST_CASE(ThreadTest)
   uecho_thread_setaction(thread, test_theread_func);
   uecho_thread_setuserdata(thread, &test_counter);
 
-  BOOST_CHECK_EQUAL(uecho_thread_start(thread), true);
+  BOOST_REQUIRE_EQUAL(uecho_thread_start(thread), true);
   while (test_counter != THREAD_TEST_LOOP_NUM) {
     uecho_sleep(100);
   }
-  BOOST_CHECK_EQUAL(test_counter, THREAD_TEST_LOOP_NUM);
-  BOOST_CHECK_EQUAL(uecho_thread_stop(thread), true);
+  BOOST_REQUIRE_EQUAL(test_counter, THREAD_TEST_LOOP_NUM);
+  BOOST_REQUIRE_EQUAL(uecho_thread_stop(thread), true);
 
   uecho_thread_delete(thread);
 }
