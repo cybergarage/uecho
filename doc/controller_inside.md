@@ -14,7 +14,7 @@ The `uecho` adds the node profile class objects automatically when the controlle
 
 The `uecho` handles all messages from other nodes automatically. However, the developer can listen the messages directly using some listener functions . After a node is received a message from other nodes, the controller listeners are called as the following sequences:
 
-![Controller Observers](img/controller_msgListener.png)
+![Controller Observers](img/controller_msg_listener.png)
 
 The developer can set a listener using `uecho_controller_setmessagelistener()` to listen to all received messages from other nodes. Also, the developer can set a listern using `uecho_controller_setnodelistener()` to know the node update status when the node is updated by the received messages.
 
