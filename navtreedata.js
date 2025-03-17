@@ -26,6 +26,9 @@ var NAVTREE =
 [
   [ "uEcho for C", "index.html", [
     [ "Data Structures", "annotated.html", [
+      [ "What is uEcho ?", "index.html#autotoc_md0", null ],
+      [ "Table of Contents", "index.html#autotoc_md1", null ],
+      [ "References", "index.html#autotoc_md2", null ],
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", null ],
@@ -52,11 +55,11 @@ var NAVTREEINDEX =
 "__class_8h.html",
 "controller_8h.html#a0f09445549710796d060f10c831b10b1",
 "include_2uecho_2property_8h.html#a0d2778190a5127dfaa548360a54712c6",
-"message_8c.html#a45580e2bcb9e61a7509bca37846ab86a",
-"object_8c.html#aba7351830807b9645875532b34587505",
-"server_8h.html#a149240b14f42568358709cf67333ff62",
-"strings_8h.html#a0443200352ba18e8918148796f7236ce",
-"thread_8h.html#a1f1b86b04932ab62c103f4fb01591aba"
+"message_8c.html#a3337a3c1cd04b62e75cacbd86c5f77b3",
+"object_8c.html#aae6114456b8331a3bbaf87f0e97cafa3",
+"server_8h.html#a0725849747ee8cacc13f553de5830593",
+"strings_8h.html",
+"thread_8c.html#af44239738f2d43fd4ddc94073d711640"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
