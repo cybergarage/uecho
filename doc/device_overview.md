@@ -58,9 +58,9 @@ bool object_propertywriterequesthandler(uEchoObject* obj, uEchoProperty* prop, u
 ....
 {
   uEchoObject *obj;
-  byte prop_code;
+  byte propCode;
   ....
-  uecho_object_setpropertywriterequesthandler(obj, prop_code, object_propertywriterequesthandler)  
+  uecho_object_setpropertywriterequesthandler(obj, propCode, object_propertywriterequesthandler)  
 }
 ```
 
