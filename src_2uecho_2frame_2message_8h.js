@@ -21,6 +21,6 @@ var src_2uecho_2frame_2message_8h =
     [ "uecho_message_observer_new", "src_2uecho_2frame_2message_8h.html#a8303b74c98e411572caf39a921d7c926", null ],
     [ "uecho_message_observer_sethandler", "src_2uecho_2frame_2message_8h.html#af07f229a88e498427e492d92d69e2b4e", null ],
     [ "uecho_message_observer_setobject", "src_2uecho_2frame_2message_8h.html#a70b00838ea0ce929b0225ae6edfe10db", null ],
-    [ "uecho_message_observerlist_delete", "src_2uecho_2frame_2message_8h.html#a1158d85e317ff716e6bb234c44717d68", null ],
+    [ "uecho_message_observerlist_delete", "src_2uecho_2frame_2message_8h.html#a2d9db81d60b348fd86e6a489c2b15425", null ],
     [ "uecho_message_observerlist_new", "src_2uecho_2frame_2message_8h.html#a9d96f518e1135da0bb5ebb7a98bfa440", null ]
 ];

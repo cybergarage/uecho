@@ -1,7 +1,7 @@
 var structUEchoServer =
 [
-    [ "mcast_servers", "structUEchoServer.html#af68f95cabd56a2f24b2f57acc497bd29", null ],
-    [ "msg_mgr", "structUEchoServer.html#ab9c6beb08ef7af26c424c861b80a6010", null ],
+    [ "mcastServers", "structUEchoServer.html#a3687622daf7f8ac78e8e9d7b0de89006", null ],
+    [ "msgMgr", "structUEchoServer.html#a1c01ab9ff0e2d69958c69ead1c8c4f69", null ],
     [ "option", "structUEchoServer.html#a7a3d39de902344783f7ece21ce10193c", null ],
-    [ "udp_servers", "structUEchoServer.html#a1cc0406254678f21e0c6ae0654439f6b", null ]
+    [ "udpServers", "structUEchoServer.html#a3a56622de9f18f80f4a91bd077b6ff54", null ]
 ];

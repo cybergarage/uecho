@@ -1,9 +1,9 @@
 var structUEchoDatagramPacket =
 [
     [ "data", "structUEchoDatagramPacket.html#a6707ddd9ae1787dadce85fa889ff4e2f", null ],
-    [ "data_len", "structUEchoDatagramPacket.html#a80201f022878f878551b3ca26f60d083", null ],
-    [ "local_address", "structUEchoDatagramPacket.html#a22d366ea7e7247e0c9c002827c0512c9", null ],
-    [ "local_port", "structUEchoDatagramPacket.html#a87bca7b91548e1035c193a75c3095317", null ],
-    [ "remote_address", "structUEchoDatagramPacket.html#acd035e7e1b6767d941b692e8fab440f4", null ],
-    [ "remote_port", "structUEchoDatagramPacket.html#a3c1259cc88092c4a58ef206e25a76553", null ]
+    [ "dataLen", "structUEchoDatagramPacket.html#aaefee43bafc859dd88bd5aed543bd9cb", null ],
+    [ "localAddr", "structUEchoDatagramPacket.html#ad27a59bba4dfca3160d667731b0600cc", null ],
+    [ "localPort", "structUEchoDatagramPacket.html#a3096ec4d8204be11fddabd11dd87fd3e", null ],
+    [ "remotePort", "structUEchoDatagramPacket.html#a6fa775f6aa1d97adaf0f3ae51c3a3d5d", null ],
+    [ "removeAddr", "structUEchoDatagramPacket.html#af0ded1181ed675cfbdc94d0499bd0cc0", null ]
 ];

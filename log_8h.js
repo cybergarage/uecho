@@ -13,6 +13,6 @@ var log_8h =
       [ "UECHO_LOG_DEBUG", "log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7a9e80b5d9c83c0dae5afd6be45cb86163", null ],
       [ "UECHO_LOG_ALL", "log_8h.html#ae3f414b23a15e3e65aa2eb72dceaabe7a6545b88be38810b46034469aee5d91a3", null ]
     ] ],
-    [ "uecho_log_output", "log_8h.html#abc0400c6b821950978cf6ddfff329a85", null ],
+    [ "uecho_log_output", "log_8h.html#a4d2df940b664900483272921ac91ee92", null ],
     [ "uecho_log_setlevel", "log_8h.html#a842cbd33b36311898b84435bc95d8f95", null ]
 ];

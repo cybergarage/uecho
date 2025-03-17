@@ -22,8 +22,8 @@ var src_2uecho_2frame_2property_8h =
     [ "uecho_object_property_observer_setesv", "src_2uecho_2frame_2property_8h.html#a2e108de320683fa89de7c9a24cb084bd", null ],
     [ "uecho_object_property_observer_sethandler", "src_2uecho_2frame_2property_8h.html#a294c74dd5c226549aaeffc09d7b0d46b", null ],
     [ "uecho_object_property_observer_setpropetycode", "src_2uecho_2frame_2property_8h.html#ad4d9865fef9699d1b84d78debb8cc24b", null ],
-    [ "uecho_object_property_observerlist_delete", "src_2uecho_2frame_2property_8h.html#a5372f1a1121e6497435282671983b885", null ],
-    [ "uecho_object_property_observerlist_getobserver", "src_2uecho_2frame_2property_8h.html#ac101149927b2345edb13e70853cf4cb6", null ],
+    [ "uecho_object_property_observerlist_delete", "src_2uecho_2frame_2property_8h.html#a7a66680dceea6a753fecaaace9b1daa8", null ],
+    [ "uecho_object_property_observerlist_getobserver", "src_2uecho_2frame_2property_8h.html#a646a6434e2da12f872683f124812c9ec", null ],
     [ "uecho_object_property_observerlist_new", "src_2uecho_2frame_2property_8h.html#abc42ebe0c1b99fb29b2f3b60d10c1411", null ],
-    [ "uecho_object_property_observerlist_setobserver", "src_2uecho_2frame_2property_8h.html#a95d33a81b4af86cdd63e6c2c06bf1824", null ]
+    [ "uecho_object_property_observerlist_setobserver", "src_2uecho_2frame_2property_8h.html#aa8dbc624d7ad3009edb297650ce883f6", null ]
 ];

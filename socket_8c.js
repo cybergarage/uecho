@@ -17,7 +17,7 @@ var socket_8c =
     [ "uecho_socket_read", "socket_8c.html#a408e718a0c1175afb6a889a0dbca57a2", null ],
     [ "uecho_socket_readline", "socket_8c.html#aedfa0e2f4157f9923777fce19f6c7018", null ],
     [ "uecho_socket_recv", "socket_8c.html#a919f70e9baebaf70a50a34a52182636f", null ],
-    [ "uecho_socket_sendto", "socket_8c.html#a99cd8dd605dc4a77a42e3121308144c4", null ],
+    [ "uecho_socket_sendto", "socket_8c.html#ab2fcbfb50804015477985152658910ed", null ],
     [ "uecho_socket_setid", "socket_8c.html#a61f5781c0266551f2a1a30449ade1892", null ],
     [ "uecho_socket_setmulticastloop", "socket_8c.html#a07c5de307886d47bf4842519ee66cd5c", null ],
     [ "uecho_socket_setmulticastttl", "socket_8c.html#a3e6ffb1ebddc4ecaf170403337fd20b4", null ],
