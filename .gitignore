@@ -21,12 +21,11 @@
 *.dylib
 
 # Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+examples/controller/uechobench/unix/uechobench
+examples/controller/uechodump/unix/uechodump
+examples/controller/uechopost/unix/uechopost
+examples/controller/uechosearch/unix/uechosearch
+examples/device/uecholight/unix/uecholight
 
 # Automake files
 config.*
@@ -35,6 +34,7 @@ aclocal.m4
 autom4te.cache/
 *.dirstamp
 .deps/
+stamp-h2
 
 # MacOSX
 .DS_Store
