@@ -50,13 +50,13 @@ BOOST_AUTO_TEST_CASE(PropertySetData)
 
   for (int i = 0; i < test_data_vec.size(); i++) {
     const char* test_data = test_data_vec[i].c_str();
-    size_t test_data_len = strlen(test_data);
-    uecho_property_setdata(prop, (const byte*)test_data, test_data_len);
-    BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(prop), test_data_len);
-    BOOST_REQUIRE(uecho_property_isdataequal(prop, (const byte*)test_data, test_data_len));
+    size_t test_dataLen = strlen(test_data);
+    uecho_property_setdata(prop, (const byte*)test_data, test_dataLen);
+    BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(prop), test_dataLen);
+    BOOST_REQUIRE(uecho_property_isdataequal(prop, (const byte*)test_data, test_dataLen));
     byte* prop_data = uecho_property_getdata(prop);
     BOOST_REQUIRE(prop_data);
-    for (int n = 0; n < test_data_len; n++) {
+    for (int n = 0; n < test_dataLen; n++) {
       BOOST_REQUIRE_EQUAL(test_data[n], prop_data[n]);
     }
   }

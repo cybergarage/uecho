@@ -27,7 +27,7 @@ typedef struct {
   UECHO_LIST_STRUCT_MEMBERS
 
   uEchoEsv esv;
-  uEchoPropertyCode prop_code;
+  uEchoPropertyCode propCode;
   uEchoPropertyRequestHandler handler;
 } uEchoObjectPropertyObserver, uEchoObjectPropertyObserverList;
 
@@ -57,9 +57,9 @@ uEchoPropertyRequestHandler uecho_object_property_observer_handler(uEchoObjectPr
  ****************************************/
 
 uEchoObjectPropertyObserverList* uecho_object_property_observerlist_new(void);
-void uecho_object_property_observerlist_delete(uEchoObjectPropertyObserverList* obs_list);
-bool uecho_object_property_observerlist_setobserver(uEchoObjectPropertyObserverList* obs_list, uEchoPropertyCode code, uEchoPropertyRequestHandler handler);
-uEchoObjectPropertyObserver* uecho_object_property_observerlist_getobserver(uEchoObjectPropertyObserverList* obs_list, uEchoPropertyCode code);
+void uecho_object_property_observerlist_delete(uEchoObjectPropertyObserverList* obsList);
+bool uecho_object_property_observerlist_setobserver(uEchoObjectPropertyObserverList* obsList, uEchoPropertyCode code, uEchoPropertyRequestHandler handler);
+uEchoObjectPropertyObserver* uecho_object_property_observerlist_getobserver(uEchoObjectPropertyObserverList* obsList, uEchoPropertyCode code);
 
 #define uecho_object_property_observerlist_clear(obs_list) uecho_list_clear((uEchoList*)obs_list, (UECHO_LIST_DESTRUCTORFUNC)uecho_object_property_observer_delete)
 #define uecho_object_property_observerlist_size(obs_list) uecho_list_size((uEchoList*)obs_list)

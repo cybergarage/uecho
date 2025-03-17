@@ -70,12 +70,12 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
 
   // Notify node status
 
-  if (ctrl->node_listener) {
+  if (ctrl->nodeListener) {
     if (node_added) {
-      ctrl->node_listener(ctrl, node, uEchoNodeStatusAdded, msg);
+      ctrl->nodeListener(ctrl, node, uEchoNodeStatusAdded, msg);
     }
     else if (node_updated) {
-      ctrl->node_listener(ctrl, node, uEchoNodeStatusUpdated, msg);
+      ctrl->nodeListener(ctrl, node, uEchoNodeStatusUpdated, msg);
     }
   }
 }
@@ -87,7 +87,7 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
 bool uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* obj, byte opc, uEchoProperty** ep)
 {
   uEchoProperty* msg_prop;
-  uEchoPropertyCode msg_prop_code;
+  uEchoPropertyCode msg_propCode;
   byte* msg_data;
   size_t msg_data_size;
   uEchoProperty* obj_prop;
@@ -100,12 +100,12 @@ bool uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* 
     if (!msg_prop)
       continue;
 
-    msg_prop_code = uecho_property_getcode(msg_prop);
-    if (!uecho_object_hasproperty(obj, msg_prop_code)) {
-      uecho_object_setproperty(obj, msg_prop_code, uEchoPropertyAttrNone);
+    msg_propCode = uecho_property_getcode(msg_prop);
+    if (!uecho_object_hasproperty(obj, msg_propCode)) {
+      uecho_object_setproperty(obj, msg_propCode, uEchoPropertyAttrNone);
     }
 
-    obj_prop = uecho_object_getproperty(obj, msg_prop_code);
+    obj_prop = uecho_object_getproperty(obj, msg_propCode);
     if (!obj_prop)
       continue;
 
@@ -133,7 +133,7 @@ bool uecho_controller_updatenodebyresponsemessage(uEchoController* ctrl, uEchoNo
 
   node_updated = false;
   if (uecho_message_isreadwritemessage(msg)) {
-    node_updated = uecho_controller_updateopcpropertydata(ctrl, node_obj, msg->opc_get, msg->ep_get);
+    node_updated = uecho_controller_updateopcpropertydata(ctrl, node_obj, msg->opcGet, msg->epGet);
   }
   else {
     node_updated = uecho_controller_updateopcpropertydata(ctrl, node_obj, msg->opc, msg->ep);
@@ -170,15 +170,15 @@ void uecho_controller_handlenodemessage(uEchoController* ctrl, uEchoNode* node, 
 
   // Notify node status
 
-  if (ctrl->node_listener) {
+  if (ctrl->nodeListener) {
     if (uecho_message_isnotification(msg)) {
-      ctrl->node_listener(ctrl, node, uEchoNodeStatusAnnounced, msg);
+      ctrl->nodeListener(ctrl, node, uEchoNodeStatusAnnounced, msg);
     }
     if (uecho_message_isresponse(msg)) {
-      ctrl->node_listener(ctrl, node, uEchoNodeStatusResponded, msg);
+      ctrl->nodeListener(ctrl, node, uEchoNodeStatusResponded, msg);
     }
     if (node_updated) {
-      ctrl->node_listener(ctrl, node, uEchoNodeStatusUpdated, msg);
+      ctrl->nodeListener(ctrl, node, uEchoNodeStatusUpdated, msg);
     }
   }
 }
@@ -194,8 +194,8 @@ void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage*
   if (!ctrl || !msg)
     return;
 
-  if (ctrl->msg_listener) {
-    ctrl->msg_listener(ctrl, msg);
+  if (ctrl->msgListener) {
+    ctrl->msgListener(ctrl, msg);
   }
 
   if (uecho_controller_ispostresponsewaiting(ctrl)) {

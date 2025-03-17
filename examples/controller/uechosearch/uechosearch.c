@@ -24,13 +24,13 @@ void usage()
   printf(" -d : Enable debug output\n");
 }
 
-uEchoMessage* create_readpropertymessagebycode(int obj_code, byte prop_code)
+uEchoMessage* create_readpropertymessagebycode(int objCode, byte propCode)
 {
   uEchoMessage* msg;
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvReadRequest);
-  uecho_message_setdestinationobjectcode(msg, obj_code);
-  uecho_message_setproperty(msg, prop_code, NULL, 0);
+  uecho_message_setdestinationobjectcode(msg, objCode);
+  uecho_message_setproperty(msg, propCode, NULL, 0);
   return msg;
 }
 
@@ -50,30 +50,30 @@ uEchoMessage* create_readmanufacturecodemessage()
 
 const char* get_nodemanufacturename(uEchoController* ctrl, uEchoDatabase* db, uEchoNode* node)
 {
-  uEchoMessage* req_msg;
-  uEchoMessage* res_msg;
-  uEchoProperty* res_prop;
+  uEchoMessage* reqMsg;
+  uEchoMessage* resMsg;
+  uEchoProperty* resProp;
   uEchoManufacture* manufacture;
-  const char* manufacture_name;
-  int manufacture_code;
+  const char* manufactureName;
+  int manufactureCode;
 
-  manufacture_name = NULL;
-  req_msg = create_readmanufacturecodemessage();
-  res_msg = uecho_message_new();
-  if (uecho_controller_postmessage(ctrl, node, req_msg, res_msg) && (uecho_message_getopc(res_msg) == 1)) {
-    res_prop = uecho_message_getproperty(res_msg, 0);
-    if (res_prop) {
-      manufacture_code = uecho_bytes_toint(uecho_property_getdata(res_prop), uecho_property_getdatasize(res_prop));
-      manufacture = uecho_database_getmanufacture(db, manufacture_code);
+  manufactureName = NULL;
+  reqMsg = create_readmanufacturecodemessage();
+  resMsg = uecho_message_new();
+  if (uecho_controller_postmessage(ctrl, node, reqMsg, resMsg) && (uecho_message_getopc(resMsg) == 1)) {
+    resProp = uecho_message_getproperty(resMsg, 0);
+    if (resProp) {
+      manufactureCode = uecho_bytes_toint(uecho_property_getdata(resProp), uecho_property_getdatasize(resProp));
+      manufacture = uecho_database_getmanufacture(db, manufactureCode);
       if (manufacture) {
-        manufacture_name = uecho_manufacture_getname(manufacture);
+        manufactureName = uecho_manufacture_getname(manufacture);
       }
     }
   }
-  uecho_message_delete(req_msg);
-  uecho_message_delete(res_msg);
+  uecho_message_delete(reqMsg);
+  uecho_message_delete(resMsg);
 
-  return manufacture_name;
+  return manufactureName;
 }
 
 void print_founddevices(uEchoController* ctrl, bool verbose)
@@ -82,64 +82,64 @@ void print_founddevices(uEchoController* ctrl, bool verbose)
   uEchoNode* node;
   uEchoObject* obj;
   uEchoProperty* prop;
-  uEchoProperty* res_prop;
-  uEchoMessage* req_msg;
-  uEchoMessage* res_msg;
-  int obj_no;
-  int prop_no;
-  int res_prop_no;
+  uEchoProperty* resProp;
+  uEchoMessage* reqMsg;
+  uEchoMessage* resMsg;
+  int objNo;
+  int propNo;
+  int resPropNo;
   int n;
-  const char* manufacture_name;
-  byte* res_prop_bytes;
-  bool has_res_prop;
+  const char* manufactureName;
+  byte* resPropBytes;
+  bool hasResProp;
 
   db = uecho_standard_getdatabase();
 
   for (node = uecho_controller_getnodes(ctrl); node; node = uecho_node_next(node)) {
     if (!verbose) {
       printf("%-15s ", uecho_node_getaddress(node));
-      obj_no = 0;
+      objNo = 0;
       for (obj = uecho_node_getobjects(node); obj; obj = uecho_object_next(obj)) {
-        printf("[%d] %06X ", obj_no, uecho_object_getcode(obj));
-        obj_no++;
+        printf("[%d] %06X ", objNo, uecho_object_getcode(obj));
+        objNo++;
       }
       printf("\n");
       continue;
     }
 
-    manufacture_name = get_nodemanufacturename(ctrl, db, node);
-    printf("%-15s (%s)\n", uecho_node_getaddress(node), (manufacture_name ? manufacture_name : UNKNOWN_STRING));
+    manufactureName = get_nodemanufacturename(ctrl, db, node);
+    printf("%-15s (%s)\n", uecho_node_getaddress(node), (manufactureName ? manufactureName : UNKNOWN_STRING));
 
-    obj_no = 0;
+    objNo = 0;
     for (obj = uecho_node_getobjects(node); obj; obj = uecho_object_next(obj)) {
-      printf("[%d] %06X (%s)\n", obj_no, uecho_object_getcode(obj), (uecho_object_getname(obj) ? uecho_object_getname(obj) : UNKNOWN_STRING));
-      prop_no = 0;
+      printf("[%d] %06X (%s)\n", objNo, uecho_object_getcode(obj), (uecho_object_getname(obj) ? uecho_object_getname(obj) : UNKNOWN_STRING));
+      propNo = 0;
       for (prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
         if (uecho_property_isreadrequired(prop)) {
-          printf("[%d] [%d] %02X ", obj_no, prop_no, uecho_property_getcode(prop));
-          req_msg = create_readpropertymessage(prop);
-          res_msg = uecho_message_new();
-          has_res_prop = uecho_controller_postmessage(ctrl, node, req_msg, res_msg);
-          if (has_res_prop) {
-            for (res_prop_no = 0; res_prop_no < uecho_message_getopc(res_msg); res_prop_no++) {
-              res_prop = uecho_message_getproperty(res_msg, res_prop_no);
-              if (!res_prop)
+          printf("[%d] [%d] %02X ", objNo, propNo, uecho_property_getcode(prop));
+          reqMsg = create_readpropertymessage(prop);
+          resMsg = uecho_message_new();
+          hasResProp = uecho_controller_postmessage(ctrl, node, reqMsg, resMsg);
+          if (hasResProp) {
+            for (resPropNo = 0; resPropNo < uecho_message_getopc(resMsg); resPropNo++) {
+              resProp = uecho_message_getproperty(resMsg, resPropNo);
+              if (!resProp)
                 continue;
-              res_prop_bytes = uecho_property_getdata(res_prop);
-              for (n = 0; n < uecho_property_getdatasize(res_prop); n++) {
-                printf("%02X", res_prop_bytes[n]);
+              resPropBytes = uecho_property_getdata(resProp);
+              for (n = 0; n < uecho_property_getdatasize(resProp); n++) {
+                printf("%02X", resPropBytes[n]);
               }
               printf(" ");
             }
           }
           printf("(%s)", uecho_property_getname(prop));
           printf("\n");
-          uecho_message_delete(req_msg);
-          uecho_message_delete(res_msg);
+          uecho_message_delete(reqMsg);
+          uecho_message_delete(resMsg);
         }
-        prop_no++;
+        propNo++;
       }
-      obj_no++;
+      objNo++;
     }
 
     if (uecho_node_next(node))
@@ -149,24 +149,24 @@ void print_founddevices(uEchoController* ctrl, bool verbose)
 
 int main(int argc, char* argv[])
 {
-  bool verbose_mode;
-  bool debug_mode;
+  bool verboseMode;
+  bool debugMode;
   uEchoController* ctrl;
-  size_t found_node_cnt;
+  size_t foundNodeCnt;
   int c;
 
   // Parse options
 
-  verbose_mode = false;
-  debug_mode = false;
+  verboseMode = false;
+  debugMode = false;
 
   while ((c = getopt(argc, argv, "vhd")) != -1) {
     switch (c) {
     case 'v': {
-      verbose_mode = true;
+      verboseMode = true;
     } break;
     case 'd': {
-      debug_mode = true;
+      debugMode = true;
     } break;
     case 'h': {
       usage();
@@ -184,7 +184,7 @@ int main(int argc, char* argv[])
 
   // Debug mode
 
-  if (debug_mode) {
+  if (debugMode) {
     uecho_log_setlevel(UECHO_LOG_DEBUG);
   }
 
@@ -200,9 +200,9 @@ int main(int argc, char* argv[])
   uecho_controller_search(ctrl);
   uecho_sleep(SEARCH_WAIT_MTIME);
 
-  found_node_cnt = uecho_controller_getnodecount(ctrl);
-  if (0 < found_node_cnt) {
-    print_founddevices(ctrl, verbose_mode);
+  foundNodeCnt = uecho_controller_getnodecount(ctrl);
+  if (0 < foundNodeCnt) {
+    print_founddevices(ctrl, verboseMode);
   }
 
   uecho_controller_stop(ctrl);

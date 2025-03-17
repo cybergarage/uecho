@@ -111,13 +111,13 @@ uEchoObject* uecho_nodeprofile_new(void);
 bool uecho_nodeprofile_addmandatoryproperties(uEchoObject* obj);
 
 bool uecho_nodeprofile_setoperatingstatus(uEchoObject* obj, bool stats);
-bool uecho_nodeprofile_setversion(uEchoObject* obj, int major_ver, int minor_ver);
-bool uecho_nodeprofile_setid(uEchoObject* obj, byte* man_code, byte* uniq_id);
+bool uecho_nodeprofile_setversion(uEchoObject* obj, int majorVer, int minorVer);
+bool uecho_nodeprofile_setid(uEchoObject* obj, byte* manCode, byte* uniqId);
 bool uecho_nodeprofile_setdefaultid(uEchoObject* obj);
 bool uecho_nodeprofile_setinstancecount(uEchoObject* obj, int count);
 bool uecho_nodeprofile_setclasscount(uEchoObject* obj, int count);
-bool uecho_nodeprofile_setinstancelist(uEchoObject* obj, int list_cnt, byte* list_bytes);
-bool uecho_nodeprofile_setclasslist(uEchoObject* obj, int list_cnt, byte* list_bytes);
+bool uecho_nodeprofile_setinstancelist(uEchoObject* obj, int listCnt, byte* listBytes);
+bool uecho_nodeprofile_setclasslist(uEchoObject* obj, int listCnt, byte* listBytes);
 
 bool uecho_nodeprofile_isoperatingstatus(uEchoObject* obj);
 int uecho_nodeprofile_getinstancecount(uEchoObject* obj);

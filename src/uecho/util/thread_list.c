@@ -24,9 +24,9 @@ uEchoThreadList* uecho_threadlist_new(void)
     return NULL;
 
   uecho_list_header_init((uEchoList*)thread_list);
-  thread_list->runnable_flag = false;
+  thread_list->runnableFlag = false;
   thread_list->action = NULL;
-  thread_list->user_data = NULL;
+  thread_list->userData = NULL;
 
   return thread_list;
 }

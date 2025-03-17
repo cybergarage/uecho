@@ -93,9 +93,9 @@ uEchoManufacture* uecho_database_getmanufacture(uEchoDatabase* db, uEchoManufact
  * uecho_database_getobject
  ****************************************/
 
-uEchoObject* uecho_database_getobject(uEchoDatabase* db, byte grp_code, byte cls_code)
+uEchoObject* uecho_database_getobject(uEchoDatabase* db, byte grpCode, byte clsCode)
 {
   if (!db)
     return NULL;
-  return uecho_objectlist_getbygroupclasscode(db->objs, grp_code, cls_code);
+  return uecho_objectlist_getbygroupclasscode(db->objs, grpCode, clsCode);
 }

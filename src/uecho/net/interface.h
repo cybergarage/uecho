@@ -55,18 +55,18 @@ typedef struct {
  ****************************************/
 
 uEchoNetworkInterface* uecho_net_interface_new(void);
-void uecho_net_interface_delete(uEchoNetworkInterface* net_if);
+void uecho_net_interface_delete(uEchoNetworkInterface* netIf);
 uEchoNetworkInterface* uecho_net_interface_getany(void);
 
 #define uecho_net_interface_next(netIf) (uEchoNetworkInterface*)uecho_list_next((uEchoList*)netIf)
 #define uecho_net_interface_remove(netIf) uecho_list_remove((uEchoList*)netIf)
 
-void uecho_net_interface_setname(uEchoNetworkInterface* net_if, char* name);
-char* uecho_net_interface_getname(uEchoNetworkInterface* net_if);
-void uecho_net_interface_setaddress(uEchoNetworkInterface* net_if, char* ipaddr);
-char* uecho_net_interface_getaddress(uEchoNetworkInterface* net_if);
-void uecho_net_interface_setnetmask(uEchoNetworkInterface* net_if, char* ipaddr);
-char* uecho_net_interface_getnetmask(uEchoNetworkInterface* net_if);
+void uecho_net_interface_setname(uEchoNetworkInterface* netIf, char* name);
+char* uecho_net_interface_getname(uEchoNetworkInterface* netIf);
+void uecho_net_interface_setaddress(uEchoNetworkInterface* netIf, char* ipaddr);
+char* uecho_net_interface_getaddress(uEchoNetworkInterface* netIf);
+void uecho_net_interface_setnetmask(uEchoNetworkInterface* netIf, char* ipaddr);
+char* uecho_net_interface_getnetmask(uEchoNetworkInterface* netIf);
 char* uecho_net_selectaddr(struct sockaddr* remoteaddr);
 
 #define uecho_net_interface_setmacaddress(netIf, value) memcpy(netIf->macaddr, value, UECHO_NET_MACADDR_SIZE)
@@ -80,7 +80,7 @@ char* uecho_net_selectaddr(struct sockaddr* remoteaddr);
  ****************************************/
 
 uEchoNetworkInterfaceList* uecho_net_interfacelist_new(void);
-void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList* net_if_list);
+void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList* netIfList);
 
 #define uecho_net_interfacelist_clear(netIfList) uecho_list_clear((uEchoList*)netIfList, (UECHO_LIST_DESTRUCTORFUNC)uecho_net_interface_delete)
 #define uecho_net_interfacelist_size(netIfList) uecho_list_size((uEchoList*)netIfList)
@@ -91,7 +91,7 @@ void uecho_net_interfacelist_delete(uEchoNetworkInterfaceList* net_if_list);
  * Function
  ****************************************/
 
-size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList* net_if_list);
+size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList* netIfList);
 
 bool uecho_net_isipv6address(const char* addr);
 int uecho_net_getipv6scopeid(const char* addr);

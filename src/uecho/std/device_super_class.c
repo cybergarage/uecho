@@ -21,7 +21,7 @@
 bool uecho_device_addmandatoryproperties(uEchoObject* obj)
 {
   uEchoDatabase* db;
-  uEchoObject* super_obj;
+  uEchoObject* superObj;
 
   if (!obj)
     return false;
@@ -30,11 +30,11 @@ bool uecho_device_addmandatoryproperties(uEchoObject* obj)
   if (!db)
     return false;
 
-  super_obj = uecho_database_getobject(db, 0x00, 0x00);
-  if (!super_obj)
+  superObj = uecho_database_getobject(db, 0x00, 0x00);
+  if (!superObj)
     return false;
 
-  if (!uecho_object_addmissingobjectproperties(obj, super_obj))
+  if (!uecho_object_addmissingobjectproperties(obj, superObj))
     return false;
 
   uecho_device_setoperatingstatus(obj, true);
@@ -52,10 +52,10 @@ bool uecho_device_addmandatoryproperties(uEchoObject* obj)
 
 bool uecho_device_setoperatingstatus(uEchoObject* obj, bool stats)
 {
-  byte stats_byte;
+  byte statsByte;
 
-  stats_byte = stats ? uEchoDeviceOperatingStatusOn : uEchoDeviceOperatingStatusOff;
-  return uecho_object_setpropertydata(obj, uEchoDeviceOperatingStatus, &stats_byte, uEchoDeviceOperatingStatusSize);
+  statsByte = stats ? uEchoDeviceOperatingStatusOn : uEchoDeviceOperatingStatusOff;
+  return uecho_object_setpropertydata(obj, uEchoDeviceOperatingStatus, &statsByte, uEchoDeviceOperatingStatusSize);
 }
 
 /****************************************
@@ -64,21 +64,21 @@ bool uecho_device_setoperatingstatus(uEchoObject* obj, bool stats)
 
 bool uecho_device_isoperatingstatus(uEchoObject* obj)
 {
-  byte stats_byte;
+  byte statsByte;
 
-  if (!uecho_object_getpropertybytedata(obj, uEchoDeviceOperatingStatus, &stats_byte))
+  if (!uecho_object_getpropertybytedata(obj, uEchoDeviceOperatingStatus, &statsByte))
     return false;
 
-  return (stats_byte == uEchoDeviceOperatingStatusOn) ? true : false;
+  return (statsByte == uEchoDeviceOperatingStatusOn) ? true : false;
 }
 
 /****************************************
  * uecho_device_setinstallationlocation
  ****************************************/
 
-bool uecho_device_setinstallationlocation(uEchoObject* obj, byte loc_byte)
+bool uecho_device_setinstallationlocation(uEchoObject* obj, byte locByte)
 {
-  return uecho_object_setpropertydata(obj, uEchoDeviceInstallationLocation, &loc_byte, uEchoDeviceInstallationLocationSize);
+  return uecho_object_setpropertydata(obj, uEchoDeviceInstallationLocation, &locByte, uEchoDeviceInstallationLocationSize);
 }
 
 /****************************************
@@ -87,12 +87,12 @@ bool uecho_device_setinstallationlocation(uEchoObject* obj, byte loc_byte)
 
 byte uecho_device_getinstallationlocation(uEchoObject* obj)
 {
-  byte loc_byte;
+  byte locByte;
 
-  if (!uecho_object_getpropertybytedata(obj, uEchoDeviceInstallationLocation, &loc_byte))
+  if (!uecho_object_getpropertybytedata(obj, uEchoDeviceInstallationLocation, &locByte))
     return uEchoDeviceInstallationLocationUnknown;
 
-  return loc_byte;
+  return locByte;
 }
 
 /****************************************
@@ -101,13 +101,13 @@ byte uecho_device_getinstallationlocation(uEchoObject* obj)
 
 bool uecho_device_setstandardversion(uEchoObject* obj, char ver)
 {
-  byte ver_bytes[uEchoDeviceStandardVersionSize];
+  byte verBytes[uEchoDeviceStandardVersionSize];
 
-  ver_bytes[0] = 0x00;
-  ver_bytes[1] = 0x00;
-  ver_bytes[2] = ver;
-  ver_bytes[3] = 0x00;
-  return uecho_object_setpropertydata(obj, uEchoDeviceStandardVersion, ver_bytes, uEchoDeviceStandardVersionSize);
+  verBytes[0] = 0x00;
+  verBytes[1] = 0x00;
+  verBytes[2] = ver;
+  verBytes[3] = 0x00;
+  return uecho_object_setpropertydata(obj, uEchoDeviceStandardVersion, verBytes, uEchoDeviceStandardVersionSize);
 }
 
 /****************************************
@@ -117,7 +117,7 @@ bool uecho_device_setstandardversion(uEchoObject* obj, char ver)
 char uecho_device_getstandardversion(uEchoObject* obj)
 {
   uEchoProperty* prop;
-  byte* ver_bytes;
+  byte* verBytes;
 
   prop = uecho_object_getproperty(obj, uEchoDeviceStandardVersion);
   if (!prop)
@@ -126,11 +126,11 @@ char uecho_device_getstandardversion(uEchoObject* obj)
   if (uecho_property_getdatasize(prop) != uEchoDeviceStandardVersionSize)
     return uEchoDeviceVersionUnknown;
 
-  ver_bytes = uecho_property_getdata(prop);
-  if (!ver_bytes)
+  verBytes = uecho_property_getdata(prop);
+  if (!verBytes)
     return uEchoDeviceVersionUnknown;
 
-  return ver_bytes[2];
+  return verBytes[2];
 }
 
 /****************************************
@@ -139,10 +139,10 @@ char uecho_device_getstandardversion(uEchoObject* obj)
 
 bool uecho_device_setfaultstatus(uEchoObject* obj, bool stats)
 {
-  byte fault_byte;
+  byte faultByte;
 
-  fault_byte = stats ? uEchoDeviceFaultOccurred : uEchoDeviceNoFaultOccurred;
-  return uecho_object_setpropertydata(obj, uEchoDeviceFaultStatus, &fault_byte, uEchoDeviceFaultStatusSize);
+  faultByte = stats ? uEchoDeviceFaultOccurred : uEchoDeviceNoFaultOccurred;
+  return uecho_object_setpropertydata(obj, uEchoDeviceFaultStatus, &faultByte, uEchoDeviceFaultStatusSize);
 }
 
 /****************************************
@@ -151,12 +151,12 @@ bool uecho_device_setfaultstatus(uEchoObject* obj, bool stats)
 
 bool uecho_device_isfaultstatus(uEchoObject* obj)
 {
-  byte stats_byte;
+  byte statsByte;
 
-  if (!uecho_object_getpropertybytedata(obj, uEchoDeviceFaultStatus, &stats_byte))
+  if (!uecho_object_getpropertybytedata(obj, uEchoDeviceFaultStatus, &statsByte))
     return false;
 
-  return (stats_byte == uEchoDeviceFaultOccurred) ? true : false;
+  return (statsByte == uEchoDeviceFaultOccurred) ? true : false;
 }
 
 /****************************************

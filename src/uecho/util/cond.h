@@ -28,8 +28,8 @@ extern "C" {
  ****************************************/
 
 typedef struct UEchoCond {
-  pthread_mutex_t mutex_id;
-  pthread_cond_t cond_id;
+  pthread_mutex_t mutexId;
+  pthread_cond_t condId;
 } uEchoCond;
 
 /****************************************

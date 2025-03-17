@@ -24,7 +24,7 @@
 char* uecho_strdup(const char* str)
 {
 #if !defined(HAVE_STRDUP)
-  char* cp_str_buf;
+  char* cpStrBuf;
 #endif
 
   if (str == NULL)
@@ -33,10 +33,10 @@ char* uecho_strdup(const char* str)
 #if defined(HAVE_STRDUP)
   return strdup(str);
 #else
-  cp_str_buf = (char*)malloc(strlen(str) + 1);
-  if (NULL != cp_str_buf)
-    strcpy(cp_str_buf, str);
-  return cp_str_buf;
+  cpStrBuf = (char*)malloc(strlen(str) + 1);
+  if (NULL != cpStrBuf)
+    strcpy(cpStrBuf, str);
+  return cpStrBuf;
 #endif
 }
 
@@ -164,14 +164,14 @@ bool uecho_strcaseeq(const char* str1, const char* str2)
 
 ssize_t uecho_strstr(const char* haystack, const char* needle)
 {
-  char* str_pos;
+  char* strPos;
 
   if (haystack == NULL || needle == NULL)
     return -1;
-  str_pos = strstr(haystack, needle);
-  if (str_pos == NULL)
+  strPos = strstr(haystack, needle);
+  if (strPos == NULL)
     return -1;
-  return (str_pos - haystack);
+  return (strPos - haystack);
 }
 
 /****************************************
@@ -180,14 +180,14 @@ ssize_t uecho_strstr(const char* haystack, const char* needle)
 
 ssize_t uecho_strchr(const char* str, const char* chars, size_t nchars)
 {
-  size_t str_len;
+  size_t strLen;
   ssize_t i, j;
 
   if (str == NULL || chars == NULL)
     return -1;
 
-  str_len = uecho_strlen(str);
-  for (i = 0; i < str_len; i++) {
+  strLen = uecho_strlen(str);
+  for (i = 0; i < strLen; i++) {
     for (j = 0; j < nchars; j++) {
       if (str[i] == chars[j])
         return i;
@@ -203,14 +203,14 @@ ssize_t uecho_strchr(const char* str, const char* chars, size_t nchars)
 
 ssize_t uecho_strrchr(const char* str, const char* chars, size_t nchars)
 {
-  size_t str_len;
+  size_t strLen;
   ssize_t i, j;
 
   if (str == NULL || chars == NULL)
     return -1;
 
-  str_len = uecho_strlen(str);
-  for (i = (str_len - 1); 0 <= i; i--) {
+  strLen = uecho_strlen(str);
+  for (i = (strLen - 1); 0 <= i; i--) {
     for (j = 0; j < nchars; j++) {
       if (str[i] == chars[j])
         return i;
@@ -226,25 +226,25 @@ ssize_t uecho_strrchr(const char* str, const char* chars, size_t nchars)
 
 char* uecho_strtrimwhite(char* str)
 {
-  size_t str_len;
+  size_t strLen;
   ssize_t i;
-  str_len = uecho_strlen(str);
-  if (str_len == 0)
+  strLen = uecho_strlen(str);
+  if (strLen == 0)
     return str;
-  for (i = (str_len - 1); 0 <= i; i--) {
+  for (i = (strLen - 1); 0 <= i; i--) {
     if (isspace(str[i])) {
-      str_len--;
+      strLen--;
     }
   }
-  for (i = 0; i < str_len; i++) {
+  for (i = 0; i < strLen; i++) {
     if (!isspace(str[i]))
       break;
   }
 
   if (i > 0)
-    memmove(str, str + i, str_len - i);
+    memmove(str, str + i, strLen - i);
 
-  str[str_len] = 0;
+  str[strLen] = 0;
   return str;
 }
 
@@ -267,23 +267,23 @@ char* uecho_strtrim(char* str, char* delim, size_t ndelim)
 
 char* uecho_strltrim(char* str, char* delim, size_t ndelim)
 {
-  size_t str_len;
+  size_t strLen;
   ssize_t i, j;
 
-  str_len = uecho_strlen(str);
-  for (i = 0; i < str_len; i++) {
-    bool has_delim = false;
+  strLen = uecho_strlen(str);
+  for (i = 0; i < strLen; i++) {
+    bool hasDelim = false;
     for (j = 0; j < ndelim; j++) {
       if (str[i] == delim[j]) {
-        has_delim = true;
+        hasDelim = true;
         break;
       }
     }
-    if (has_delim == false)
+    if (hasDelim == false)
       return (str + i);
   }
 
-  return (str + str_len);
+  return (str + strLen);
 }
 
 /****************************************
@@ -292,20 +292,20 @@ char* uecho_strltrim(char* str, char* delim, size_t ndelim)
 
 char* uecho_strrtrim(char* str, char* delim, size_t ndelim)
 {
-  size_t str_len;
+  size_t strLen;
   ssize_t i, j;
 
-  str_len = uecho_strlen(str);
-  for (i = (str_len - 1); 0 <= i; i--) {
-    bool has_delim = false;
+  strLen = uecho_strlen(str);
+  for (i = (strLen - 1); 0 <= i; i--) {
+    bool hasDelim = false;
     for (j = 0; j < ndelim; j++) {
       if (str[i] == delim[j]) {
-        has_delim = true;
+        hasDelim = true;
         str[i] = '\0';
         break;
       }
     }
-    if (has_delim == false)
+    if (hasDelim == false)
       break;
   }
 
@@ -328,16 +328,16 @@ char* uecho_strncpy(char* str1, const char* str2, size_t cnt)
 
 char* uecho_strncat(char* str1, const char* str2, size_t cnt)
 {
-  size_t str1_len;
-  str1_len = uecho_strlen(str1);
-  return uecho_strncpy((str1 + str1_len), str2, cnt);
+  size_t str1Len;
+  str1Len = uecho_strlen(str1);
+  return uecho_strncpy((str1 + str1Len), str2, cnt);
 }
 
 /****************************************
  * uecho_int2str
  ****************************************/
 
-const char* uecho_int2str(int value, char* buf, size_t buf_size)
+const char* uecho_int2str(int value, char* buf, size_t bufSize)
 {
 #if defined(HAVE_SNPRINTF)
   snprintf(buf, bufSize, "%d", value);
@@ -351,7 +351,7 @@ const char* uecho_int2str(int value, char* buf, size_t buf_size)
  * uecho_long2str
  ****************************************/
 
-const char* uecho_long2str(long value, char* buf, size_t buf_size)
+const char* uecho_long2str(long value, char* buf, size_t bufSize)
 {
 #if defined(HAVE_SNPRINTF)
   snprintf(buf, bufSize, "%ld", value);
@@ -365,7 +365,7 @@ const char* uecho_long2str(long value, char* buf, size_t buf_size)
  * uecho_float2str
  ****************************************/
 
-const char* uecho_float2str(float value, char* buf, size_t buf_size)
+const char* uecho_float2str(float value, char* buf, size_t bufSize)
 {
 #if defined(HAVE_SNPRINTF)
   snprintf(buf, bufSize, "%f", value);
@@ -379,7 +379,7 @@ const char* uecho_float2str(float value, char* buf, size_t buf_size)
  * uecho_double2str
  ****************************************/
 
-const char* uecho_double2str(double value, char* buf, size_t buf_size)
+const char* uecho_double2str(double value, char* buf, size_t bufSize)
 {
 #if defined(HAVE_SNPRINTF)
   snprintf(buf, bufSize, "%lf", value);
@@ -393,7 +393,7 @@ const char* uecho_double2str(double value, char* buf, size_t buf_size)
  * uecho_sizet2str
  ****************************************/
 
-const char* uecho_sizet2str(size_t value, char* buf, size_t buf_size)
+const char* uecho_sizet2str(size_t value, char* buf, size_t bufSize)
 {
 #if defined(HAVE_SNPRINTF)
   snprintf(buf, bufSize, "%zd", value);
@@ -407,7 +407,7 @@ const char* uecho_sizet2str(size_t value, char* buf, size_t buf_size)
  * uecho_ssizet2str
  ****************************************/
 
-const char* uecho_ssizet2str(ssize_t value, char* buf, size_t buf_size)
+const char* uecho_ssizet2str(ssize_t value, char* buf, size_t bufSize)
 {
 #if defined(HAVE_SNPRINTF)
   snprintf(buf, bufSize, "%zd", value);

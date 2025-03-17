@@ -23,9 +23,9 @@ uEchoServer* uecho_server_new(void)
   if (!server)
     return NULL;
 
-  server->udp_servers = uecho_udp_serverlist_new();
-  server->mcast_servers = uecho_mcast_serverlist_new();
-  server->msg_mgr = uecho_message_observer_manager_new();
+  server->udpServers = uecho_udp_serverlist_new();
+  server->mcastServers = uecho_mcast_serverlist_new();
+  server->msgMgr = uecho_message_observer_manager_new();
 
   uecho_server_setoption(server, uEchoOptionNone);
 
@@ -41,9 +41,9 @@ bool uecho_server_delete(uEchoServer* server)
   if (!server)
     return false;
 
-  uecho_udp_serverlist_delete(server->udp_servers);
-  uecho_mcast_serverlist_delete(server->mcast_servers);
-  uecho_message_observer_manager_delete(server->msg_mgr);
+  uecho_udp_serverlist_delete(server->udpServers);
+  uecho_mcast_serverlist_delete(server->mcastServers);
+  uecho_message_observer_manager_delete(server->msgMgr);
 
   free(server);
 
@@ -59,10 +59,10 @@ bool uecho_server_isboundaddress(uEchoServer* server, const char* addr)
   if (!server)
     return false;
 
-  if (uecho_udp_serverlist_isboundaddress(server->udp_servers, addr))
+  if (uecho_udp_serverlist_isboundaddress(server->udpServers, addr))
     return true;
 
-  if (uecho_mcast_serverlist_isboundaddress(server->mcast_servers, addr))
+  if (uecho_mcast_serverlist_isboundaddress(server->mcastServers, addr))
     return true;
 
   return false;
@@ -86,30 +86,30 @@ bool uecho_server_start(uEchoServer* server)
 
   uecho_server_stop(server);
 
-  all_actions_succeeded &= uecho_mcast_serverlist_open(server->mcast_servers);
+  all_actions_succeeded &= uecho_mcast_serverlist_open(server->mcastServers);
   if (uecho_server_isudpserverenabled(server)) {
-    all_actions_succeeded &= uecho_udp_serverlist_open(server->udp_servers);
+    all_actions_succeeded &= uecho_udp_serverlist_open(server->udpServers);
   }
 
   // Add message observers
-  for (observer = uecho_message_observer_manager_getobservers(server->msg_mgr); observer; observer = uecho_message_observer_next(observer)) {
+  for (observer = uecho_message_observer_manager_getobservers(server->msgMgr); observer; observer = uecho_message_observer_next(observer)) {
     handler = uecho_message_observer_gethandler(observer);
     obj = uecho_message_observer_getobjcet(observer);
     if (!handler || !obj) {
       all_actions_succeeded = false;
       continue;
     }
-    for (udp_server = uecho_udp_serverlist_gets(server->udp_servers); udp_server; udp_server = uecho_udp_server_next(udp_server)) {
+    for (udp_server = uecho_udp_serverlist_gets(server->udpServers); udp_server; udp_server = uecho_udp_server_next(udp_server)) {
       all_actions_succeeded &= uecho_udp_server_addobserver(udp_server, obj, handler);
     }
-    for (mcast_server = uecho_mcast_serverlist_gets(server->mcast_servers); mcast_server; mcast_server = uecho_mcast_server_next(mcast_server)) {
+    for (mcast_server = uecho_mcast_serverlist_gets(server->mcastServers); mcast_server; mcast_server = uecho_mcast_server_next(mcast_server)) {
       all_actions_succeeded &= uecho_mcast_server_addobserver(mcast_server, obj, handler);
     }
   }
 
-  all_actions_succeeded &= uecho_mcast_serverlist_start(server->mcast_servers);
+  all_actions_succeeded &= uecho_mcast_serverlist_start(server->mcastServers);
   if (uecho_server_isudpserverenabled(server)) {
-    all_actions_succeeded &= uecho_udp_serverlist_start(server->udp_servers);
+    all_actions_succeeded &= uecho_udp_serverlist_start(server->udpServers);
   }
 
   if (!all_actions_succeeded) {
@@ -132,13 +132,13 @@ bool uecho_server_stop(uEchoServer* server)
 
   all_actions_succeeded = true;
 
-  all_actions_succeeded &= uecho_mcast_serverlist_close(server->mcast_servers);
-  all_actions_succeeded &= uecho_mcast_serverlist_stop(server->mcast_servers);
-  uecho_udp_serverlist_clear(server->mcast_servers);
+  all_actions_succeeded &= uecho_mcast_serverlist_close(server->mcastServers);
+  all_actions_succeeded &= uecho_mcast_serverlist_stop(server->mcastServers);
+  uecho_udp_serverlist_clear(server->mcastServers);
 
-  all_actions_succeeded &= uecho_udp_serverlist_close(server->udp_servers);
-  all_actions_succeeded &= uecho_udp_serverlist_stop(server->udp_servers);
-  uecho_udp_serverlist_clear(server->udp_servers);
+  all_actions_succeeded &= uecho_udp_serverlist_close(server->udpServers);
+  all_actions_succeeded &= uecho_udp_serverlist_stop(server->udpServers);
+  uecho_udp_serverlist_clear(server->udpServers);
 
   return all_actions_succeeded;
 }
@@ -155,10 +155,10 @@ bool uecho_server_isrunning(uEchoServer* server)
     return false;
 
   all_actions_succeeded = true;
-  all_actions_succeeded &= uecho_mcast_serverlist_isrunning(server->mcast_servers);
+  all_actions_succeeded &= uecho_mcast_serverlist_isrunning(server->mcastServers);
 
   if (uecho_server_isudpserverenabled(server)) {
-    all_actions_succeeded &= uecho_udp_serverlist_isrunning(server->udp_servers);
+    all_actions_succeeded &= uecho_udp_serverlist_isrunning(server->udpServers);
   }
 
   return all_actions_succeeded;
@@ -172,7 +172,7 @@ const char* uecho_server_getaddress(uEchoServer* server)
 {
   uEchoMcastServer* mcast_server;
 
-  for (mcast_server = uecho_mcast_serverlist_gets(server->mcast_servers); mcast_server; mcast_server = uecho_mcast_server_next(mcast_server)) {
+  for (mcast_server = uecho_mcast_serverlist_gets(server->mcastServers); mcast_server; mcast_server = uecho_mcast_server_next(mcast_server)) {
     return uecho_mcast_server_getaddress(mcast_server);
   }
 
@@ -206,7 +206,7 @@ bool uecho_server_postannounce(uEchoServer* server, byte* msg, size_t msg_len)
   if (!server)
     return false;
 
-  if (uecho_mcast_serverlist_post(server->mcast_servers, msg, msg_len))
+  if (uecho_mcast_serverlist_post(server->mcastServers, msg, msg_len))
     return true;
 
   return uecho_server_sendto(server, uEchoMulticastAddr, uEchoUdpPort, msg, msg_len);
@@ -221,7 +221,7 @@ bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg,
   if (!server)
     return false;
 
-  if (uecho_udp_serverlist_sendto(server->udp_servers, addr, msg, msg_len))
+  if (uecho_udp_serverlist_sendto(server->udpServers, addr, msg, msg_len))
     return true;
 
   return uecho_server_sendto(server, addr, uEchoUdpPort, msg, msg_len);
@@ -233,5 +233,5 @@ bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg,
 
 bool uecho_server_addobserver(uEchoServer* server, void* obj, uEchoMessageHandler handler)
 {
-  return uecho_message_observer_manager_addobserver(server->msg_mgr, obj, handler);
+  return uecho_message_observer_manager_addobserver(server->msgMgr, obj, handler);
 }

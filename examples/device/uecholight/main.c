@@ -28,24 +28,24 @@ void uecho_lighting_node_messagelitener(uEchoNode* obj, uEchoMessage* msg)
 
 int main(int argc, char* argv[])
 {
-  bool verbose_mode;
-  int manifacture_code;
+  bool verboseMode;
+  int manifactureCode;
   int c;
   uEchoNode* node;
   uEchoObject* obj;
 
   // Parse options
 
-  verbose_mode = false;
-  manifacture_code = 0;
+  verboseMode = false;
+  manifactureCode = 0;
 
   while ((c = getopt(argc, argv, "vhm:")) != -1) {
     switch (c) {
     case 'v': {
-      verbose_mode = true;
+      verboseMode = true;
     } break;
     case 'm': {
-      sscanf(optarg, "%X", &manifacture_code);
+      sscanf(optarg, "%X", &manifactureCode);
     } break;
     case 'h': {
       usage();
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
   if (!node)
     return EXIT_FAILURE;
 
-  if (verbose_mode) {
+  if (verboseMode) {
     uecho_node_setmessagelistener(node, uecho_lighting_node_messagelitener);
   }
 
@@ -77,8 +77,8 @@ int main(int argc, char* argv[])
     return EXIT_FAILURE;
   }
 
-  if (0 < manifacture_code) {
-    uecho_node_setmanufacturercode(node, manifacture_code);
+  if (0 < manifactureCode) {
+    uecho_node_setmanufacturercode(node, manifactureCode);
   }
 
   uecho_node_addobject(node, obj);
@@ -88,15 +88,15 @@ int main(int argc, char* argv[])
   }
 
   while (uecho_node_isrunning(node)) {
-    sigset_t sig_set;
-    if (sigfillset(&sig_set) != 0)
+    sigset_t sigSet;
+    if (sigfillset(&sigSet) != 0)
       break;
 
-    int sig_no;
-    if (sigwait(&sig_set, &sig_no) != 0)
+    int sigNo;
+    if (sigwait(&sigSet, &sigNo) != 0)
       break;
 
-    switch (sig_no) {
+    switch (sigNo) {
     case SIGTERM:
     case SIGINT:
     case SIGKILL: {

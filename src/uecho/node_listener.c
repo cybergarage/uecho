@@ -39,7 +39,7 @@ bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoProperty* obj_pro
 
   bool are_all_handler_accepted = true;
 
-  for (uEchoObjectPropertyObserver* obs = uecho_object_property_observer_manager_getobservers(obj->prop_listener_mgr); obs; obs = uecho_object_property_observer_next(obs)) {
+  for (uEchoObjectPropertyObserver* obs = uecho_object_property_observer_manager_getobservers(obj->propListenerMgr); obs; obs = uecho_object_property_observer_next(obs)) {
     if (msg_esv != uecho_object_property_observer_getesv(obs))
       continue;
     if (uecho_property_getcode(msg_prop) != uecho_object_property_observer_getpropetycode(obs))
@@ -58,7 +58,7 @@ typedef bool (*uEchoMessageAddPropertyFunc)(uEchoMessage* msg, uEchoProperty* pr
 
 bool uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, byte opc, uEchoProperty** ep, uEchoMessageAddPropertyFunc message_addproperty_func, uEchoMessage* res_msg)
 {
-  uEchoPropertyCode msg_prop_code;
+  uEchoPropertyCode msg_propCode;
   uEchoProperty *msg_prop, *dest_prop, *res_prop;
   int accepted_request_cnt, n;
 
@@ -67,14 +67,14 @@ bool uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, by
     msg_prop = ep[n];
     if (!msg_prop)
       continue;
-    msg_prop_code = uecho_property_getcode(msg_prop);
+    msg_propCode = uecho_property_getcode(msg_prop);
 
     res_prop = uecho_property_new();
     if (!res_prop)
       continue;
-    uecho_property_setcode(res_prop, msg_prop_code);
+    uecho_property_setcode(res_prop, msg_propCode);
 
-    dest_prop = uecho_object_getproperty(dest_obj, msg_prop_code);
+    dest_prop = uecho_object_getproperty(dest_obj, msg_propCode);
     if (dest_prop) {
       if (uecho_object_notifyrequestproperty(dest_obj, dest_prop, msg_esv, msg_prop)) {
         accepted_request_cnt++;
@@ -124,13 +124,13 @@ void uecho_node_servermessagelistener(uEchoNode* node, uEchoMessage* req_msg)
   bool is_response_required;
   byte* res_msg_bytes;
   size_t res_msg_len;
-  uEchoNode* parent_node;
+  uEchoNode* parentNode;
 
   if (!node || !req_msg)
     return;
 
-  if (node->msg_listener) {
-    node->msg_listener(node, req_msg);
+  if (node->msgListener) {
+    node->msgListener(node, req_msg);
   }
 
   // 4.2.2 Basic Sequences for Object Control in General
@@ -142,8 +142,8 @@ void uecho_node_servermessagelistener(uEchoNode* node, uEchoMessage* req_msg)
   if (!msg_dest_obj)
     return;
 
-  if (msg_dest_obj->all_msg_listener) {
-    msg_dest_obj->all_msg_listener(msg_dest_obj, req_msg);
+  if (msg_dest_obj->allMsgListener) {
+    msg_dest_obj->allMsgListener(msg_dest_obj, req_msg);
   }
 
   // 4.2.2 Basic Sequences for Object Control in General
@@ -163,14 +163,14 @@ void uecho_node_servermessagelistener(uEchoNode* node, uEchoMessage* req_msg)
 
   accepted_request_cnt = 0;
   if (uecho_message_isreadwritemessage(req_msg)) {
-    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, uEchoEsvWriteRequestResponseRequired, req_msg->opc_set, req_msg->ep_set, uecho_message_addpropertyset, res_msg);
-    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, uEchoEsvReadRequest, req_msg->opc_get, req_msg->ep_get, uecho_message_addpropertyget, res_msg);
+    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, uEchoEsvWriteRequestResponseRequired, req_msg->opcSet, req_msg->epSet, uecho_message_addpropertyset, res_msg);
+    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, uEchoEsvReadRequest, req_msg->opcGet, req_msg->epGet, uecho_message_addpropertyget, res_msg);
   }
   else {
     accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, req_esv, req_msg->opc, req_msg->ep, uecho_message_addproperty, res_msg);
   }
 
-  all_request_cnt = req_msg->opc + req_msg->opc_set + req_msg->opc_get;
+  all_request_cnt = req_msg->opc + req_msg->opcSet + req_msg->opcGet;
   is_response_required = true;
 
   res_esv = req_esv;
@@ -224,16 +224,16 @@ void uecho_node_servermessagelistener(uEchoNode* node, uEchoMessage* req_msg)
   } break;
   }
 
-  parent_node = uecho_object_getparentnode(msg_dest_obj);
-  if (is_response_required && parent_node) {
+  parentNode = uecho_object_getparentnode(msg_dest_obj);
+  if (is_response_required && parentNode) {
     uecho_message_setesv(res_msg, res_esv);
     res_msg_bytes = uecho_message_getbytes(res_msg);
     res_msg_len = uecho_message_size(res_msg);
     if (uecho_message_getesv(res_msg) == uEchoEsvNotification) {
-      uecho_node_announcemessagebytes(parent_node, res_msg_bytes, res_msg_len);
+      uecho_node_announcemessagebytes(parentNode, res_msg_bytes, res_msg_len);
     }
     else {
-      uecho_node_sendmessagebytes(parent_node, uecho_message_getsourceaddress(req_msg), res_msg_bytes, res_msg_len);
+      uecho_node_sendmessagebytes(parentNode, uecho_message_getsourceaddress(req_msg), res_msg_bytes, res_msg_len);
     }
   }
 

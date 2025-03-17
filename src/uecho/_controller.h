@@ -38,14 +38,14 @@ typedef struct UEchoController {
   uEchoCond* cond;
   uEchoNode* node;
   uEchoNodeList* nodes;
-  void (*msg_listener)(struct UEchoController*, uEchoMessage*); /* uEchoControllerMessageListener */
-  void (*node_listener)(struct UEchoController*, uEchoNode*, uEchoNodeStatus, uEchoMessage*); /* uEchoControllerNodeListener */
+  void (*msgListener)(struct UEchoController*, uEchoMessage*); /* uEchoControllerMessageListener */
+  void (*nodeListener)(struct UEchoController*, uEchoNode*, uEchoNodeStatus, uEchoMessage*); /* uEchoControllerNodeListener */
   uEchoOption option;
-  void* user_data;
+  void* userData;
 
-  clock_t post_res_wait_clock_time;
-  uEchoMessage* post_req_msg;
-  uEchoMessage* post_res_msg;
+  clock_t postResWaitClockTime;
+  uEchoMessage* postReqMsg;
+  uEchoMessage* postResMsg;
 } uEchoController;
 
 /****************************************
@@ -59,10 +59,10 @@ typedef struct UEchoController {
  ****************************************/
 
 bool uecho_controller_searchwithesv(uEchoController* ctrl, uEchoEsv esv);
-bool uecho_controller_searchobjectwithesv(uEchoController* ctrl, byte obj_code, uEchoEsv esv);
+bool uecho_controller_searchobjectwithesv(uEchoController* ctrl, byte objCode, uEchoEsv esv);
 
 uEchoObject* uecho_controller_getobjectbycode(uEchoController* ctrl, uEchoObjectCode code);
-uEchoObject* uecho_controller_getobjectbycodewithwait(uEchoController* ctrl, uEchoObjectCode code, clock_t wait_mili_time);
+uEchoObject* uecho_controller_getobjectbycodewithwait(uEchoController* ctrl, uEchoObjectCode code, clock_t waitMiliTime);
 
 void uecho_controller_enableoption(uEchoController* ctrl, uEchoOption param);
 void uecho_controller_disableoption(uEchoController* ctrl, uEchoOption param);

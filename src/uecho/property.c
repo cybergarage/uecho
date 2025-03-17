@@ -78,7 +78,7 @@ bool uecho_property_setparentobject(uEchoProperty* prop, uEchoObject* obj)
   if (!prop)
     return false;
 
-  prop->parent_obj = obj;
+  prop->parentObj = obj;
 
   return true;
 }
@@ -92,7 +92,7 @@ uEchoObject* uecho_property_getparentobject(uEchoProperty* prop)
   if (!prop)
     return NULL;
 
-  return prop->parent_obj;
+  return prop->parentObj;
 }
 
 /****************************************
@@ -312,26 +312,26 @@ uEchoPropertyCode uecho_propertymap_format2bittocode(int row, int bit)
   return code;
 }
 
-bool uecho_property_getpropertymapcodes(uEchoProperty* prop, uEchoPropertyCode* prop_codes, size_t prop_codes_size)
+bool uecho_property_getpropertymapcodes(uEchoProperty* prop, uEchoPropertyCode* propCodes, size_t propCodes_size)
 {
-  size_t prop_code_count, prop_code_idx;
+  size_t propCode_count, propCode_idx;
   byte prop_byte_code, prop_byte_bit;
 
-  if (!uecho_property_getpropertymapcount(prop, &prop_code_count)) {
+  if (!uecho_property_getpropertymapcount(prop, &propCode_count)) {
     return false;
   }
-  if (prop_code_count != prop_codes_size) {
+  if (propCode_count != propCodes_size) {
     return false;
   }
 
   // Description Format 1
 
-  if (prop_codes_size <= uEchoPropertyMapFormat1MaxSize) {
-    if (prop->data_size < (prop_code_count + 1)) {
+  if (propCodes_size <= uEchoPropertyMapFormat1MaxSize) {
+    if (prop->data_size < (propCode_count + 1)) {
       return false;
     }
-    for (int n = 0; n < prop_code_count; n++) {
-      prop_codes[n] = prop->data[n + 1];
+    for (int n = 0; n < propCode_count; n++) {
+      propCodes[n] = prop->data[n + 1];
     }
     return true;
   }
@@ -342,7 +342,7 @@ bool uecho_property_getpropertymapcodes(uEchoProperty* prop, uEchoPropertyCode* 
     return false;
   }
 
-  prop_code_idx = 0;
+  propCode_idx = 0;
   for (int i = 0; i < uEchoPropertyMapFormat2MapSize; i++) {
     prop_byte_code = prop->data[i + 1];
     for (int j = 0; j < 8; j++) {
@@ -350,11 +350,11 @@ bool uecho_property_getpropertymapcodes(uEchoProperty* prop, uEchoPropertyCode* 
       if ((prop_byte_code & prop_byte_bit) == 0) {
         continue;
       }
-      if (prop_codes_size <= prop_code_idx) {
+      if (propCodes_size <= propCode_idx) {
         return false;
       }
-      prop_codes[prop_code_idx] = uecho_propertymap_format2bittocode(i, j);
-      prop_code_idx++;
+      propCodes[propCode_idx] = uecho_propertymap_format2bittocode(i, j);
+      propCode_idx++;
     }
   }
 
@@ -670,21 +670,21 @@ bool uecho_property_equals(uEchoProperty* prop1, uEchoProperty* prop2)
 
 uEchoNode* uecho_property_getnode(uEchoProperty* prop)
 {
-  uEchoObject* parent_obj;
-  uEchoNode* parent_node;
+  uEchoObject* parentObj;
+  uEchoNode* parentNode;
 
   if (!prop)
     return NULL;
 
-  parent_obj = uecho_property_getparentobject(prop);
-  if (!parent_obj)
+  parentObj = uecho_property_getparentobject(prop);
+  if (!parentObj)
     return NULL;
 
-  parent_node = uecho_object_getparentnode(parent_obj);
-  if (!parent_node)
+  parentNode = uecho_object_getparentnode(parentObj);
+  if (!parentNode)
     return NULL;
 
-  return parent_node;
+  return parentNode;
 }
 
 /****************************************

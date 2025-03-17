@@ -76,7 +76,7 @@ void uecho_controller_setmessagelistener(uEchoController* ctrl, uEchoControllerM
   if (!ctrl)
     return;
 
-  ctrl->msg_listener = listener;
+  ctrl->msgListener = listener;
 }
 
 /****************************************
@@ -88,7 +88,7 @@ void uecho_controller_setnodelistener(uEchoController* ctrl, uEchoControllerNode
   if (!ctrl)
     return;
 
-  ctrl->node_listener = listener;
+  ctrl->nodeListener = listener;
 }
 
 /****************************************
@@ -100,7 +100,7 @@ uEchoControllerMessageListener uecho_controller_getmessagelistener(uEchoControll
   if (!ctrl)
     return NULL;
 
-  return ctrl->msg_listener;
+  return ctrl->msgListener;
 }
 
 /****************************************
@@ -112,7 +112,7 @@ bool uecho_controller_hasmessagelistener(uEchoController* ctrl)
   if (!ctrl)
     return false;
 
-  return ctrl->msg_listener ? true : false;
+  return ctrl->msgListener ? true : false;
 }
 
 /****************************************
@@ -121,15 +121,15 @@ bool uecho_controller_hasmessagelistener(uEchoController* ctrl)
 
 bool uecho_controller_start(uEchoController* ctrl)
 {
-  bool all_actions_succeeded = true;
+  bool allActionsSucceeded = true;
 
   if (!ctrl)
     return false;
 
-  all_actions_succeeded &= uecho_nodelist_clear(ctrl->nodes);
-  all_actions_succeeded &= uecho_node_start(ctrl->node);
+  allActionsSucceeded &= uecho_nodelist_clear(ctrl->nodes);
+  allActionsSucceeded &= uecho_node_start(ctrl->node);
 
-  return all_actions_succeeded;
+  return allActionsSucceeded;
 }
 
 /****************************************
@@ -138,14 +138,14 @@ bool uecho_controller_start(uEchoController* ctrl)
 
 bool uecho_controller_stop(uEchoController* ctrl)
 {
-  bool all_actions_succeeded = true;
+  bool allActionsSucceeded = true;
 
   if (!ctrl)
     return false;
 
-  all_actions_succeeded &= uecho_node_stop(ctrl->node);
+  allActionsSucceeded &= uecho_node_stop(ctrl->node);
 
-  return all_actions_succeeded;
+  return allActionsSucceeded;
 }
 
 /****************************************
@@ -249,13 +249,13 @@ uEchoObject* uecho_controller_getobjectbycode(uEchoController* ctrl, uEchoObject
  * uecho_controller_getobjectbycodewithwait
  ****************************************/
 
-uEchoObject* uecho_controller_getobjectbycodewithwait(uEchoController* ctrl, uEchoObjectCode code, clock_t wait_mili_time)
+uEchoObject* uecho_controller_getobjectbycodewithwait(uEchoController* ctrl, uEchoObjectCode code, clock_t waitMiliTime)
 {
   uEchoObject* obj;
   int n;
 
   for (n = 0; n < uEchoWaitRetryCount; n++) {
-    uecho_sleep(wait_mili_time / uEchoWaitRetryCount);
+    uecho_sleep(waitMiliTime / uEchoWaitRetryCount);
     obj = uecho_controller_getobjectbycode(ctrl, code);
     if (obj)
       return obj;
@@ -319,7 +319,7 @@ void uecho_controller_setuserdata(uEchoController* ctrl, void* data)
 {
   if (!ctrl)
     return;
-  ctrl->user_data = data;
+  ctrl->userData = data;
 }
 
 /****************************************
@@ -330,7 +330,7 @@ void* uecho_controller_getuserdata(uEchoController* ctrl)
 {
   if (!ctrl)
     return NULL;
-  return ctrl->user_data;
+  return ctrl->userData;
 }
 
 /****************************************
@@ -361,7 +361,7 @@ bool uecho_controller_sendmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
 
 void uecho_controller_setpostrequestmessage(uEchoController* ctrl, uEchoMessage* msg)
 {
-  ctrl->post_req_msg = msg;
+  ctrl->postReqMsg = msg;
 }
 
 /****************************************
@@ -370,7 +370,7 @@ void uecho_controller_setpostrequestmessage(uEchoController* ctrl, uEchoMessage*
 
 uEchoMessage* uecho_controller_getpostrequestmessage(uEchoController* ctrl)
 {
-  return ctrl->post_req_msg;
+  return ctrl->postReqMsg;
 }
 
 /****************************************
@@ -379,7 +379,7 @@ uEchoMessage* uecho_controller_getpostrequestmessage(uEchoController* ctrl)
 
 bool uecho_controller_haspostrequestmessage(uEchoController* ctrl)
 {
-  return ctrl->post_req_msg ? true : false;
+  return ctrl->postReqMsg ? true : false;
 }
 
 /****************************************
@@ -388,7 +388,7 @@ bool uecho_controller_haspostrequestmessage(uEchoController* ctrl)
 
 void uecho_controller_setpostresponsemessage(uEchoController* ctrl, uEchoMessage* msg)
 {
-  ctrl->post_res_msg = msg;
+  ctrl->postResMsg = msg;
 }
 
 /****************************************
@@ -397,7 +397,7 @@ void uecho_controller_setpostresponsemessage(uEchoController* ctrl, uEchoMessage
 
 uEchoMessage* uecho_controller_getpostresponsemessage(uEchoController* ctrl)
 {
-  return ctrl->post_res_msg;
+  return ctrl->postResMsg;
 }
 
 /****************************************
@@ -406,7 +406,7 @@ uEchoMessage* uecho_controller_getpostresponsemessage(uEchoController* ctrl)
 
 bool uecho_controller_haspostresponsemessage(uEchoController* ctrl)
 {
-  return ctrl->post_res_msg ? true : false;
+  return ctrl->postResMsg ? true : false;
 }
 
 /****************************************
@@ -421,7 +421,7 @@ bool uecho_controller_ispostresponsemessage(uEchoController* ctrl, uEchoMessage*
   if (!uecho_controller_haspostrequestmessage(ctrl))
     return false;
 
-  return uecho_message_isresponsemessage(ctrl->post_req_msg, msg);
+  return uecho_message_isresponsemessage(ctrl->postReqMsg, msg);
 }
 
 /****************************************
@@ -436,7 +436,7 @@ bool uecho_controller_ispostresponsereceived(uEchoController* ctrl)
   if (!uecho_controller_haspostrequestmessage(ctrl) || !uecho_controller_haspostresponsemessage(ctrl))
     return false;
 
-  return uecho_message_isresponsemessage(ctrl->post_req_msg, ctrl->post_res_msg);
+  return uecho_message_isresponsemessage(ctrl->postReqMsg, ctrl->postResMsg);
 }
 
 /****************************************
@@ -460,7 +460,7 @@ void uecho_controller_setpostwaitemilitime(uEchoController* ctrl, clock_t mtime)
   if (!ctrl)
     return;
 
-  ctrl->post_res_wait_clock_time = mtime;
+  ctrl->postResWaitClockTime = mtime;
 }
 
 /****************************************
@@ -472,16 +472,16 @@ clock_t uecho_controller_getpostwaitemilitime(uEchoController* ctrl)
   if (!ctrl)
     return 0;
 
-  return ctrl->post_res_wait_clock_time;
+  return ctrl->postResWaitClockTime;
 }
 
 /****************************************
  * uecho_controller_postmessage
  ****************************************/
 
-bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* req_msg, uEchoMessage* res_msg)
+bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* reqMsg, uEchoMessage* resMsg)
 {
-  bool is_responce_received;
+  bool isResponceReceived;
   int n;
 
   if (!ctrl)
@@ -489,10 +489,10 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
 
   uecho_mutex_lock(ctrl->mutex);
 
-  uecho_controller_setpostrequestmessage(ctrl, req_msg);
-  uecho_controller_setpostresponsemessage(ctrl, res_msg);
+  uecho_controller_setpostrequestmessage(ctrl, reqMsg);
+  uecho_controller_setpostresponsemessage(ctrl, resMsg);
 
-  if (!uecho_controller_sendmessage(ctrl, node, req_msg)) {
+  if (!uecho_controller_sendmessage(ctrl, node, reqMsg)) {
     uecho_mutex_unlock(ctrl->mutex);
     return false;
   }
@@ -507,7 +507,7 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
     }
   }
 #else
-  is_responce_received = uecho_cond_timedwait(ctrl->cond, ctrl->post_res_wait_clock_time);
+  isResponceReceived = uecho_cond_timedwait(ctrl->cond, ctrl->postResWaitClockTime);
 #endif
 
   uecho_controller_setpostrequestmessage(ctrl, NULL);
@@ -515,7 +515,7 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
 
   uecho_mutex_unlock(ctrl->mutex);
 
-  return is_responce_received;
+  return isResponceReceived;
 }
 
 /****************************************
@@ -525,17 +525,17 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
 bool uecho_controller_searchwithesv(uEchoController* ctrl, uEchoEsv esv)
 {
   uEchoMessage* msg;
-  bool is_success;
+  bool isSuccess;
 
   msg = uecho_message_search_new();
   if (!msg)
     return false;
 
   uecho_message_setesv(msg, esv);
-  is_success = uecho_controller_announcemessage(ctrl, msg);
+  isSuccess = uecho_controller_announcemessage(ctrl, msg);
   uecho_message_delete(msg);
 
-  return is_success;
+  return isSuccess;
 }
 
 /****************************************
@@ -551,10 +551,10 @@ bool uecho_controller_search(uEchoController* ctrl)
  * uecho_controller_searchobjectwithesv
  ****************************************/
 
-bool uecho_controller_searchobjectwithesv(uEchoController* ctrl, byte obj_code, uEchoEsv esv)
+bool uecho_controller_searchobjectwithesv(uEchoController* ctrl, byte objCode, uEchoEsv esv)
 {
   uEchoMessage* msg;
-  bool is_success;
+  bool isSuccess;
 
   if (!ctrl)
     return false;
@@ -565,20 +565,20 @@ bool uecho_controller_searchobjectwithesv(uEchoController* ctrl, byte obj_code, 
     return false;
 
   uecho_message_setesv(msg, esv);
-  uecho_message_setdestinationobjectcode(msg, obj_code);
-  is_success = uecho_controller_announcemessage(ctrl, msg);
+  uecho_message_setdestinationobjectcode(msg, objCode);
+  isSuccess = uecho_controller_announcemessage(ctrl, msg);
   uecho_message_delete(msg);
 
-  return is_success;
+  return isSuccess;
 }
 
 /****************************************
  * uecho_controller_searchobject
  ****************************************/
 
-bool uecho_controller_searchobject(uEchoController* ctrl, byte obj_code)
+bool uecho_controller_searchobject(uEchoController* ctrl, byte objCode)
 {
-  return uecho_controller_searchobjectwithesv(ctrl, obj_code, uEchoEsvReadRequest);
+  return uecho_controller_searchobjectwithesv(ctrl, objCode, uEchoEsvReadRequest);
 }
 
 /****************************************

@@ -66,15 +66,15 @@ uEchoPropertyEnum* uecho_property_enumlist_findbycode(uEchoPropertyEnumList* pro
 
 bool uecho_property_enumlist_add(uEchoPropertyEnumList* props, uEchoPropertyEnum* prop)
 {
-  uEchoPropertyEnum* added_prop;
+  uEchoPropertyEnum* addedProp;
 
   if (!props || !prop)
     return false;
 
-  added_prop = uecho_property_enumlist_findbycode(props, uecho_property_enum_getcode(prop));
-  if (added_prop) {
-    uecho_property_enum_remove(added_prop);
-    uecho_property_enum_delete(added_prop);
+  addedProp = uecho_property_enumlist_findbycode(props, uecho_property_enum_getcode(prop));
+  if (addedProp) {
+    uecho_property_enum_remove(addedProp);
+    uecho_property_enum_delete(addedProp);
   }
 
   return uecho_list_add((uEchoList*)props, (uEchoList*)prop);

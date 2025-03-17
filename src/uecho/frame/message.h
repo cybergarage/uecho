@@ -55,7 +55,7 @@ uEchoMessageHandler uecho_message_observer_gethandler(uEchoMessageObserver* obs)
  ****************************************/
 
 uEchoMessageObserverList* uecho_message_observerlist_new(void);
-void uecho_message_observerlist_delete(uEchoMessageObserverList* obs_list);
+void uecho_message_observerlist_delete(uEchoMessageObserverList* obsList);
 
 #define uecho_message_observerlist_clear(obs_list) uecho_list_clear((uEchoList*)obs_list, (UECHO_LIST_DESTRUCTORFUNC)uecho_message_observer_delete)
 #define uecho_message_observerlist_size(obs_list) uecho_list_size((uEchoList*)obs_list)

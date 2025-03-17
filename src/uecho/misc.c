@@ -16,9 +16,9 @@
  * uecho_objectcode2classcode
  ****************************************/
 
-uEchoClassCode uecho_objectcode2classcode(uEchoObjectCode obj_code)
+uEchoClassCode uecho_objectcode2classcode(uEchoObjectCode objCode)
 {
-  return ((obj_code >> 8) & 0xFFFF);
+  return ((objCode >> 8) & 0xFFFF);
 }
 
 /****************************************
@@ -47,15 +47,15 @@ bool uecho_isprofileclassgroupcode(byte code)
  * uecho_integer2byte
  ****************************************/
 
-bool uecho_integer2byte(int val, byte* bytes, size_t byte_size)
+bool uecho_integer2byte(int val, byte* bytes, size_t byteSize)
 {
   size_t n, idx;
 
   if (!bytes)
     return false;
 
-  for (n = 0; n < byte_size; n++) {
-    idx = ((byte_size - 1) - n);
+  for (n = 0; n < byteSize; n++) {
+    idx = ((byteSize - 1) - n);
     bytes[idx] = (val >> (n * 8)) & 0xFF;
   }
 
@@ -66,7 +66,7 @@ bool uecho_integer2byte(int val, byte* bytes, size_t byte_size)
  * uecho_byte2integer
  ****************************************/
 
-int uecho_byte2integer(byte* bytes, size_t byte_size)
+int uecho_byte2integer(byte* bytes, size_t byteSize)
 {
   int val = 0;
   size_t n, idx;
@@ -74,8 +74,8 @@ int uecho_byte2integer(byte* bytes, size_t byte_size)
   if (!bytes)
     return 0;
 
-  for (n = 0; n < byte_size; n++) {
-    idx = ((byte_size - 1) - n);
+  for (n = 0; n < byteSize; n++) {
+    idx = ((byteSize - 1) - n);
     val += (bytes[idx] << (n * 8));
   }
 

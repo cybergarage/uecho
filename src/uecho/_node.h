@@ -34,14 +34,14 @@ typedef struct UEchoNode {
 
   uEchoMutex* mutex;
   uEchoServer* server;
-  uEchoTID last_tid;
+  uEchoTID lastTid;
 
   void* controller;
 
   uEchoClassList* classes;
   uEchoObjectList* objects;
 
-  void (*msg_listener)(struct UEchoNode*, uEchoMessage*); /* uEchoNodeMessageListener */
+  void (*msgListener)(struct UEchoNode*, uEchoMessage*); /* uEchoNodeMessageListener */
   uEchoString* address;
   uEchoOption option;
 } uEchoNode, uEchoNodeList;

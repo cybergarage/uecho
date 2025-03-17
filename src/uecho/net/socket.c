@@ -326,7 +326,7 @@ bool uecho_socket_accept(uEchoSocket* server_sock, uEchoSocket* client_sock)
   struct sockaddr_in sockaddr;
   socklen_t socklen;
   char local_addr[UECHO_NET_SOCKET_MAXHOST];
-  char local_port[UECHO_NET_SOCKET_MAXSERV];
+  char localPort[UECHO_NET_SOCKET_MAXSERV];
   struct sockaddr_storage sock_client_addr;
   socklen_t n_length = sizeof(sock_client_addr);
 
@@ -344,7 +344,7 @@ bool uecho_socket_accept(uEchoSocket* server_sock, uEchoSocket* client_sock)
   uecho_socket_setport(client_sock, uecho_socket_getport(server_sock));
   socklen = sizeof(struct sockaddr_in);
 
-  if (getsockname(client_sock->id, (struct sockaddr*)&sockaddr, &socklen) == 0 && getnameinfo((struct sockaddr*)&sockaddr, socklen, local_addr, sizeof(local_addr), local_port, sizeof(local_port), NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
+  if (getsockname(client_sock->id, (struct sockaddr*)&sockaddr, &socklen) == 0 && getnameinfo((struct sockaddr*)&sockaddr, socklen, local_addr, sizeof(local_addr), localPort, sizeof(localPort), NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
     /* Set address for the sockaddr to real addr */
     uecho_socket_setaddress(client_sock, local_addr);
   }
@@ -537,7 +537,7 @@ size_t uecho_socket_skip(uEchoSocket* sock, size_t skip_len)
  * uecho_socket_sendto
  ****************************************/
 
-size_t uecho_socket_sendto(uEchoSocket* sock, const char* addr, int port, const byte* data, size_t data_len)
+size_t uecho_socket_sendto(uEchoSocket* sock, const char* addr, int port, const byte* data, size_t dataLen)
 {
   struct addrinfo* addr_info;
   ssize_t sent_len;
@@ -546,7 +546,7 @@ size_t uecho_socket_sendto(uEchoSocket* sock, const char* addr, int port, const 
   if (!sock)
     return 0;
 
-  if (!data && (data_len <= 0))
+  if (!data && (dataLen <= 0))
     return 0;
 
   is_bound_flag = uecho_socket_isbound(sock);
@@ -561,9 +561,9 @@ size_t uecho_socket_sendto(uEchoSocket* sock, const char* addr, int port, const 
   uecho_socket_setmulticastttl(sock, UECHO_NET_SOCKET_MULTICAST_DEFAULT_TTL);
 
   if (0 <= sock->id)
-    sent_len = sendto(sock->id, data, data_len, 0, addr_info->ai_addr, addr_info->ai_addrlen);
+    sent_len = sendto(sock->id, data, dataLen, 0, addr_info->ai_addr, addr_info->ai_addrlen);
 
-  uecho_net_socket_debug(UECHO_LOG_NET_PREFIX_SEND, uecho_socket_getaddress(sock), addr, data, data_len);
+  uecho_net_socket_debug(UECHO_LOG_NET_PREFIX_SEND, uecho_socket_getaddress(sock), addr, data, dataLen);
 
   freeaddrinfo(addr_info);
 
@@ -582,7 +582,7 @@ ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgm_pkt)
   ssize_t recv_len = 0;
   byte recv_buf[UECHO_NET_SOCKET_DGRAM_RECV_BUFSIZE + 1];
   char remote_addr[UECHO_NET_SOCKET_MAXHOST];
-  char remote_port[UECHO_NET_SOCKET_MAXSERV];
+  char remotePort[UECHO_NET_SOCKET_MAXSERV];
   char* local_addr;
   struct sockaddr_storage from;
   socklen_t from_len;
@@ -602,9 +602,9 @@ ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgm_pkt)
   uecho_socket_datagram_packet_setremoteaddress(dgm_pkt, "");
   uecho_socket_datagram_packet_setremoteport(dgm_pkt, 0);
 
-  if (getnameinfo((struct sockaddr*)&from, from_len, remote_addr, sizeof(remote_addr), remote_port, sizeof(remote_port), NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
+  if (getnameinfo((struct sockaddr*)&from, from_len, remote_addr, sizeof(remote_addr), remotePort, sizeof(remotePort), NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
     uecho_socket_datagram_packet_setremoteaddress(dgm_pkt, remote_addr);
-    uecho_socket_datagram_packet_setremoteport(dgm_pkt, uecho_str2int(remote_port));
+    uecho_socket_datagram_packet_setremoteport(dgm_pkt, uecho_str2int(remotePort));
   }
 
   local_addr = uecho_net_selectaddr((struct sockaddr*)&from);

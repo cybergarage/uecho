@@ -38,14 +38,14 @@ BOOST_AUTO_TEST_CASE(DatabaseStandardSuperObject)
   uEchoObject* obj = uecho_database_getobject(db, obj_group_code, obj_class_code);
   BOOST_REQUIRE(obj);
 
-  byte obj_prop_codes[] = {
+  byte obj_propCodes[] = {
     0x80
   };
   uEchoPropertyAttr obj_prop_attrs[] = {
     uEchoPropertyAttr(uEchoPropertyAttrReadRequired | uEchoPropertyAttrWrite | uEchoPropertyAttrAnnoRequired),
   };
-  for (int n = 0; n < (sizeof(obj_prop_codes) / sizeof(byte)); n++) {
-    uEchoProperty* prop = uecho_object_getproperty(obj, obj_prop_codes[n]);
+  for (int n = 0; n < (sizeof(obj_propCodes) / sizeof(byte)); n++) {
+    uEchoProperty* prop = uecho_object_getproperty(obj, obj_propCodes[n]);
     BOOST_REQUIRE(prop);
     BOOST_REQUIRE_EQUAL(uecho_property_getattribute(prop), obj_prop_attrs[n]);
   }
@@ -62,14 +62,14 @@ BOOST_AUTO_TEST_CASE(DatabaseStandardNodeProfile)
   uEchoObject* obj = uecho_database_getobject(db, obj_group_code, obj_class_code);
   BOOST_REQUIRE(obj);
 
-  byte obj_prop_codes[] = {
+  byte obj_propCodes[] = {
     0x80
   };
   uEchoPropertyAttr obj_prop_attrs[] = {
     uEchoPropertyAttr(uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnnoRequired),
   };
-  for (int n = 0; n < (sizeof(obj_prop_codes) / sizeof(byte)); n++) {
-    uEchoProperty* prop = uecho_object_getproperty(obj, obj_prop_codes[n]);
+  for (int n = 0; n < (sizeof(obj_propCodes) / sizeof(byte)); n++) {
+    uEchoProperty* prop = uecho_object_getproperty(obj, obj_propCodes[n]);
     BOOST_REQUIRE(prop);
     BOOST_REQUIRE_EQUAL(uecho_property_getattribute(prop), obj_prop_attrs[n]);
   }
@@ -86,14 +86,14 @@ BOOST_AUTO_TEST_CASE(DatabaseStandardDevice)
   uEchoObject* obj = uecho_database_getobject(db, obj_group_code, obj_class_code);
   BOOST_REQUIRE(obj);
 
-  byte obj_prop_codes[] = {
+  byte obj_propCodes[] = {
     0x80
   };
   uEchoPropertyAttr obj_prop_attrs[] = {
     uEchoPropertyAttr(uEchoPropertyAttrReadRequired | uEchoPropertyAttrWriteRequired | uEchoPropertyAttrAnnoRequired),
   };
-  for (int n = 0; n < (sizeof(obj_prop_codes) / sizeof(byte)); n++) {
-    uEchoProperty* prop = uecho_object_getproperty(obj, obj_prop_codes[n]);
+  for (int n = 0; n < (sizeof(obj_propCodes) / sizeof(byte)); n++) {
+    uEchoProperty* prop = uecho_object_getproperty(obj, obj_propCodes[n]);
     BOOST_REQUIRE(prop);
     BOOST_REQUIRE_EQUAL(uecho_property_getattribute(prop), obj_prop_attrs[n]);
   }

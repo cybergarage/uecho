@@ -43,7 +43,7 @@ typedef struct {
 typedef struct {
   UECHO_LIST_STRUCT_MEMBERS
   UECHO_PROPERTY_DATA_STRUCT_MEMBERS
-  void* parent_obj;
+  void* parentObj;
 } uEchoProperty, uEchoPropertyList;
 
 /****************************************
@@ -69,9 +69,9 @@ uEchoPropertyList* uecho_propertylist_new(void);
 void uecho_propertylist_delete(uEchoPropertyList* props);
 
 bool uecho_propertylist_add(uEchoPropertyList* props, uEchoProperty* prop);
-bool uecho_propertylist_set(uEchoPropertyList* props, uEchoPropertyCode code, uEchoPropertyAttr attr, byte* data, size_t data_len);
-bool uecho_propertylist_setdata(uEchoPropertyList* props, uEchoPropertyCode code, byte* data, size_t data_len);
-bool uecho_propertylist_setintegerdata(uEchoPropertyList* props, uEchoPropertyCode code, int data, size_t data_len);
+bool uecho_propertylist_set(uEchoPropertyList* props, uEchoPropertyCode code, uEchoPropertyAttr attr, byte* data, size_t dataLen);
+bool uecho_propertylist_setdata(uEchoPropertyList* props, uEchoPropertyCode code, byte* data, size_t dataLen);
+bool uecho_propertylist_setintegerdata(uEchoPropertyList* props, uEchoPropertyCode code, int data, size_t dataLen);
 bool uecho_propertylist_setbytedata(uEchoPropertyList* props, uEchoPropertyCode code, byte data);
 bool uecho_propertylist_setattribute(uEchoPropertyList* props, uEchoPropertyCode code, uEchoPropertyAttr attr);
 uEchoProperty* uecho_propertylist_findbycode(uEchoPropertyList* props, uEchoPropertyCode code);

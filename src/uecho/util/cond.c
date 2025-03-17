@@ -25,8 +25,8 @@ uEchoCond* uecho_cond_new(void)
   if (!cond)
     return NULL;
 
-  pthread_mutex_init(&cond->mutex_id, NULL);
-  pthread_cond_init(&cond->cond_id, NULL);
+  pthread_mutex_init(&cond->mutexId, NULL);
+  pthread_cond_init(&cond->condId, NULL);
 
   return cond;
 }
@@ -40,8 +40,8 @@ bool uecho_cond_delete(uEchoCond* cond)
   if (!cond)
     return false;
 
-  pthread_mutex_destroy(&cond->mutex_id);
-  pthread_cond_destroy(&cond->cond_id);
+  pthread_mutex_destroy(&cond->mutexId);
+  pthread_cond_destroy(&cond->condId);
 
   free(cond);
 
@@ -57,9 +57,9 @@ bool uecho_cond_wait(uEchoCond* cond)
   if (!cond)
     return false;
 
-  pthread_mutex_lock(&cond->mutex_id);
-  pthread_cond_wait(&cond->cond_id, &cond->mutex_id);
-  pthread_mutex_unlock(&cond->mutex_id);
+  pthread_mutex_lock(&cond->mutexId);
+  pthread_cond_wait(&cond->condId, &cond->mutexId);
+  pthread_mutex_unlock(&cond->mutexId);
 
   return true;
 }
@@ -79,9 +79,9 @@ bool uecho_cond_timedwait(uEchoCond* cond, clock_t mtime)
   to.tv_sec = time(NULL) + (mtime / CLOCKS_PER_SEC);
   to.tv_nsec = 0;
 
-  pthread_mutex_lock(&cond->mutex_id);
-  c = pthread_cond_timedwait(&cond->cond_id, &cond->mutex_id, &to);
-  pthread_mutex_unlock(&cond->mutex_id);
+  pthread_mutex_lock(&cond->mutexId);
+  c = pthread_cond_timedwait(&cond->condId, &cond->mutexId, &to);
+  pthread_mutex_unlock(&cond->mutexId);
 
   return (c == 0) ? true : false;
 }
@@ -95,9 +95,9 @@ bool uecho_cond_signal(uEchoCond* cond)
   if (!cond)
     return false;
 
-  pthread_mutex_lock(&cond->mutex_id);
-  pthread_cond_signal(&cond->cond_id);
-  pthread_mutex_unlock(&cond->mutex_id);
+  pthread_mutex_lock(&cond->mutexId);
+  pthread_cond_signal(&cond->condId);
+  pthread_mutex_unlock(&cond->mutexId);
 
   return true;
 }

@@ -72,9 +72,9 @@ uEchoThread* uecho_thread_new(void)
 
   uecho_list_node_init((uEchoList*)thread);
 
-  thread->runnable_flag = false;
+  thread->runnableFlag = false;
   thread->action = NULL;
-  thread->user_data = NULL;
+  thread->userData = NULL;
 
   return thread;
 }
@@ -88,7 +88,7 @@ bool uecho_thread_delete(uEchoThread* thread)
   if (!thread)
     return false;
 
-  if (thread->runnable_flag == true) {
+  if (thread->runnableFlag == true) {
     uecho_thread_stop(thread);
   }
 
@@ -108,25 +108,25 @@ bool uecho_thread_start(uEchoThread* thread)
   if (!thread)
     return false;
 
-  thread->runnable_flag = true;
+  thread->runnableFlag = true;
 
 #if defined(WIN32)
   thread->hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)thread, 0, &thread->threadID);
 #else
   pthread_attr_t thread_attr;
   if (pthread_attr_init(&thread_attr) != 0) {
-    thread->runnable_flag = false;
+    thread->runnableFlag = false;
     return false;
   }
 
   if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) != 0) {
-    thread->runnable_flag = false;
+    thread->runnableFlag = false;
     pthread_attr_destroy(&thread_attr);
     return false;
   }
 
-  if (pthread_create(&thread->p_thread, &thread_attr, posix_thread_proc, thread) != 0) {
-    thread->runnable_flag = false;
+  if (pthread_create(&thread->pThread, &thread_attr, posix_thread_proc, thread) != 0) {
+    thread->runnableFlag = false;
     pthread_attr_destroy(&thread_attr);
     return false;
   }
@@ -145,13 +145,13 @@ bool uecho_thread_stop(uEchoThread* thread)
   if (!thread)
     return false;
 
-  if (thread->runnable_flag == true) {
-    thread->runnable_flag = false;
+  if (thread->runnableFlag == true) {
+    thread->runnableFlag = false;
 #if defined(WIN32)
     TerminateThread(thread->hThread, 0);
     WaitForSingleObject(thread->hThread, INFINITE);
 #else
-    pthread_kill(thread->p_thread, 0);
+    pthread_kill(thread->pThread, 0);
     /* Now we wait one second for thread termination instead of using pthread_join */
     uecho_sleep(UECHO_THREAD_MIN_SLEEP);
 #endif
@@ -183,7 +183,7 @@ bool uecho_thread_isrunnable(uEchoThread* thread)
   pthread_testcancel();
 #endif
 
-  return thread->runnable_flag;
+  return thread->runnableFlag;
 }
 
 /****************************************
@@ -195,7 +195,7 @@ bool uecho_thread_isrunning(uEchoThread* thread)
   if (!thread)
     return false;
 
-  return thread->runnable_flag;
+  return thread->runnableFlag;
 }
 
 /****************************************
@@ -219,7 +219,7 @@ void uecho_thread_setuserdata(uEchoThread* thread, void* value)
   if (!thread)
     return;
 
-  thread->user_data = value;
+  thread->userData = value;
 }
 
 /****************************************
@@ -231,7 +231,7 @@ void* uecho_thread_getuserdata(uEchoThread* thread)
   if (!thread)
     return NULL;
 
-  return thread->user_data;
+  return thread->userData;
 }
 
 /****************************************

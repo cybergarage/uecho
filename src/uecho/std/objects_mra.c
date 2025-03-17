@@ -16,17 +16,17 @@
 #define PROP_MANDATORY "mandatory"
 #define PROP_OPTIONAL "optional"
 
-uEchoObject* uecho_standard_object_new(const char* name, int grp_code, int cls_code)
+uEchoObject* uecho_standard_object_new(const char* name, int grpCode, int clsCode)
 {
   uEchoObject* obj;
   obj = uecho_object_new();
   uecho_object_setname(obj, name);
-  obj->code[0] = grp_code;
-  obj->code[1] = cls_code;
+  obj->code[0] = grpCode;
+  obj->code[1] = clsCode;
   return obj;
 }
 
-uEchoProperty* uecho_standard_object_property_new(int epc, const char* name, const char* data_type, int data_size, const char* get_rule, const char* set_rule, const char* anno_rule)
+uEchoProperty* uecho_standard_object_property_new(int epc, const char* name, const char* dataType, int dataSize, const char* getRule, const char* setRule, const char* annoRule)
 {
   uEchoProperty* prop;
   uEchoPropertyAttr attr = uEchoPropertyAttrNone;
@@ -35,17 +35,17 @@ uEchoProperty* uecho_standard_object_property_new(int epc, const char* name, con
   uecho_property_setcode(prop, epc);
   uecho_property_setname(prop, name);
 
-  if (uecho_streq(get_rule, PROP_REQUIRED) || uecho_streq(get_rule, PROP_REQUIRED))
+  if (uecho_streq(getRule, PROP_REQUIRED) || uecho_streq(getRule, PROP_REQUIRED))
     attr |= uEchoPropertyAttrReadRequired;
-  if (uecho_streq(get_rule, PROP_OPTIONAL))
+  if (uecho_streq(getRule, PROP_OPTIONAL))
     attr |= uEchoPropertyAttrRead;
-  if (uecho_streq(set_rule, PROP_REQUIRED) || uecho_streq(set_rule, PROP_REQUIRED))
+  if (uecho_streq(setRule, PROP_REQUIRED) || uecho_streq(setRule, PROP_REQUIRED))
     attr |= uEchoPropertyAttrWriteRequired;
-  if (uecho_streq(set_rule, PROP_OPTIONAL))
+  if (uecho_streq(setRule, PROP_OPTIONAL))
     attr |= uEchoPropertyAttrWrite;
-  if (uecho_streq(anno_rule, PROP_REQUIRED) || uecho_streq(anno_rule, PROP_REQUIRED))
+  if (uecho_streq(annoRule, PROP_REQUIRED) || uecho_streq(annoRule, PROP_REQUIRED))
     attr |= uEchoPropertyAttrAnnoRequired;
-  if (uecho_streq(anno_rule, PROP_OPTIONAL))
+  if (uecho_streq(annoRule, PROP_OPTIONAL))
     attr |= uEchoPropertyAttrAnno;
   uecho_property_setattribute(prop, attr);
 

@@ -23,11 +23,11 @@ uEchoStringTokenizer* uecho_string_tokenizer_new(const char* value, const char* 
   if (NULL != str_token) {
     str_token->value = uecho_strdup(value);
     str_token->delim = uecho_strdup(delim);
-    str_token->delim_cnt = uecho_strlen(str_token->delim);
-    str_token->next_start_pos = 0;
-    str_token->last_pos = uecho_strlen(value) - 1;
-    str_token->curr_token = NULL;
-    str_token->next_token = NULL;
+    str_token->delimCnt = uecho_strlen(str_token->delim);
+    str_token->nextStartPos = 0;
+    str_token->lastPos = uecho_strlen(value) - 1;
+    str_token->currToken = NULL;
+    str_token->nextToken = NULL;
     uecho_string_tokenizer_nexttoken(str_token);
   }
 
@@ -51,7 +51,7 @@ void uecho_string_tokenizer_delete(uEchoStringTokenizer* str_token)
 
 bool uecho_string_tokenizer_hasmoretoken(uEchoStringTokenizer* str_token)
 {
-  return str_token->has_next_tokens;
+  return str_token->hasNextTokens;
 }
 
 /****************************************
@@ -63,41 +63,41 @@ char* uecho_string_tokenizer_nexttoken(uEchoStringTokenizer* str_token)
   size_t token_cnt;
   size_t i, j;
 
-  str_token->curr_token = str_token->next_token;
-  str_token->next_token = NULL;
-  str_token->has_next_tokens = false;
-  str_token->rep_token = '\0';
+  str_token->currToken = str_token->nextToken;
+  str_token->nextToken = NULL;
+  str_token->hasNextTokens = false;
+  str_token->repToken = '\0';
 
   token_cnt = 0;
-  for (i = str_token->next_start_pos; i <= str_token->last_pos; i++) {
+  for (i = str_token->nextStartPos; i <= str_token->lastPos; i++) {
     bool is_delim_char = false;
-    for (j = 0; j < str_token->delim_cnt; j++) {
+    for (j = 0; j < str_token->delimCnt; j++) {
       if (str_token->value[i] == str_token->delim[j]) {
         is_delim_char = true;
         if (token_cnt == 0) {
-          str_token->next_start_pos = i + 1;
+          str_token->nextStartPos = i + 1;
           break;
         }
-        str_token->has_next_tokens = true;
-        str_token->rep_token = str_token->value[i];
+        str_token->hasNextTokens = true;
+        str_token->repToken = str_token->value[i];
         str_token->value[i] = '\0';
-        str_token->next_token = str_token->value + str_token->next_start_pos;
-        str_token->next_start_pos = i + 1;
+        str_token->nextToken = str_token->value + str_token->nextStartPos;
+        str_token->nextStartPos = i + 1;
       }
     }
-    if (str_token->has_next_tokens == true)
+    if (str_token->hasNextTokens == true)
       break;
     if (is_delim_char == false)
       token_cnt++;
   }
 
-  if (str_token->has_next_tokens == false && 0 < token_cnt) {
-    str_token->has_next_tokens = true;
-    str_token->next_token = str_token->value + str_token->next_start_pos;
-    str_token->next_start_pos = str_token->last_pos + 1;
+  if (str_token->hasNextTokens == false && 0 < token_cnt) {
+    str_token->hasNextTokens = true;
+    str_token->nextToken = str_token->value + str_token->nextStartPos;
+    str_token->nextStartPos = str_token->lastPos + 1;
   }
 
-  return str_token->curr_token;
+  return str_token->currToken;
 }
 
 /****************************************
@@ -106,12 +106,12 @@ char* uecho_string_tokenizer_nexttoken(uEchoStringTokenizer* str_token)
 
 char* uecho_string_tokenizer_nextalltoken(uEchoStringTokenizer* str_token)
 {
-  size_t next_token_len;
+  size_t nextToken_len;
 
-  next_token_len = uecho_strlen(str_token->next_token);
-  str_token->next_token[next_token_len] = str_token->rep_token;
-  str_token->curr_token = str_token->next_token;
-  str_token->next_token = NULL;
-  str_token->has_next_tokens = false;
-  return str_token->curr_token;
+  nextToken_len = uecho_strlen(str_token->nextToken);
+  str_token->nextToken[nextToken_len] = str_token->repToken;
+  str_token->currToken = str_token->nextToken;
+  str_token->nextToken = NULL;
+  str_token->hasNextTokens = false;
+  return str_token->currToken;
 }

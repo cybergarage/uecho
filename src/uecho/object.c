@@ -45,22 +45,22 @@ uEchoObject* uecho_object_new(void)
   obj->properties = uecho_propertylist_new();
 
   uecho_object_setmessagelistener(obj, NULL);
-  obj->prop_listener_mgr = uecho_object_property_observer_manager_new();
+  obj->propListenerMgr = uecho_object_property_observer_manager_new();
 
   // Property map caches
 
-  obj->anno_prop_map_size = 0;
-  obj->anno_prop_map_bytes = NULL;
+  obj->annoPropMapSize = 0;
+  obj->annoPropMapBytes = NULL;
 
-  obj->set_prop_map_size = 0;
-  obj->set_prop_map_bytes = NULL;
+  obj->setPropMapSize = 0;
+  obj->setPropMapBytes = NULL;
 
-  obj->get_prop_map_size = 0;
-  obj->get_prop_map_bytes = NULL;
+  obj->getPropMapSize = 0;
+  obj->getPropMapBytes = NULL;
 
   // Mandatory Properties
 
-  if (!obj->name || !obj->properties || !obj->prop_listener_mgr) {
+  if (!obj->name || !obj->properties || !obj->propListenerMgr) {
     uecho_object_delete(obj);
     return NULL;
   }
@@ -89,8 +89,8 @@ bool uecho_object_delete(uEchoObject* obj)
     uecho_propertylist_delete(obj->properties);
   }
 
-  if (obj->prop_listener_mgr) {
-    uecho_object_property_observer_manager_delete(obj->prop_listener_mgr);
+  if (obj->propListenerMgr) {
+    uecho_object_property_observer_manager_delete(obj->propListenerMgr);
   }
 
   free(obj);
@@ -116,7 +116,7 @@ bool uecho_object_setparentnode(uEchoObject* obj, uEchoNode* node)
   if (!obj)
     return false;
 
-  obj->parent_node = node;
+  obj->parentNode = node;
 
   return true;
 }
@@ -130,7 +130,7 @@ uEchoNode* uecho_object_getparentnode(uEchoObject* obj)
   if (!obj)
     return NULL;
 
-  return (uEchoNode*)obj->parent_node;
+  return (uEchoNode*)obj->parentNode;
 }
 
 /****************************************
@@ -346,21 +346,21 @@ bool uecho_object_isprofile(uEchoObject* obj)
  * uecho_object_setpropertymap
  ****************************************/
 
-bool uecho_propertymap_codetoformat2(uEchoPropertyCode prop_code, int* prop_map_row, int* prop_map_bit)
+bool uecho_propertymap_codetoformat2(uEchoPropertyCode propCode, int* prop_map_row, int* prop_map_bit)
 {
-  if ((prop_code < uEchoPropertyCodeMin) || (uEchoPropertyCodeMax < prop_code))
+  if ((propCode < uEchoPropertyCodeMin) || (uEchoPropertyCodeMax < propCode))
     return false;
   // 1 <= prop_map_row <= 16
-  *prop_map_row = ((prop_code - uEchoPropertyCodeMin) & 0x0F) + 1;
+  *prop_map_row = ((propCode - uEchoPropertyCodeMin) & 0x0F) + 1;
   // 0 <= prop_map_bit <= 7
-  *prop_map_bit = (((prop_code - uEchoPropertyCodeMin) & 0xF0) >> 4) & 0x0F;
+  *prop_map_bit = (((propCode - uEchoPropertyCodeMin) & 0xF0) >> 4) & 0x0F;
   return true;
 }
 
-bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, uEchoPropertyCode* prop_codes, size_t props_code_size)
+bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, uEchoPropertyCode* propCodes, size_t props_code_size)
 {
   byte prop_map_data[uEchoPropertyMapFormatMaxSize];
-  uEchoPropertyCode prop_code;
+  uEchoPropertyCode propCode;
   int prop_map_row, prop_map_bit;
   size_t n;
 
@@ -372,7 +372,7 @@ bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, u
   // Description Format 1
 
   if (props_code_size <= uEchoPropertyMapFormat1MaxSize) {
-    memcpy((prop_map_data + 1), prop_codes, props_code_size);
+    memcpy((prop_map_data + 1), propCodes, props_code_size);
     uecho_propertylist_set(obj->properties, map_code, uEchoPropertyAttrRead, prop_map_data, (props_code_size + 1));
     return true;
   }
@@ -381,8 +381,8 @@ bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode map_code, u
 
   memset((prop_map_data + 1), 0, uEchoPropertyMapFormat2MapSize);
   for (n = 0; n < props_code_size; n++) {
-    prop_code = prop_codes[n];
-    if (!uecho_propertymap_codetoformat2(prop_code, &prop_map_row, &prop_map_bit)) {
+    propCode = propCodes[n];
+    if (!uecho_propertymap_codetoformat2(propCode, &prop_map_row, &prop_map_bit)) {
       continue;
     }
     prop_map_data[prop_map_row] |= ((0x01 << prop_map_bit) & 0x0F);
@@ -436,24 +436,24 @@ bool uecho_object_setproperty(uEchoObject* obj, uEchoPropertyCode code, uEchoPro
  * uecho_object_setpropertydata
  ****************************************/
 
-bool uecho_object_setpropertydata(uEchoObject* obj, uEchoPropertyCode code, byte* data, size_t data_len)
+bool uecho_object_setpropertydata(uEchoObject* obj, uEchoPropertyCode code, byte* data, size_t dataLen)
 {
   if (!obj)
     return false;
 
-  return uecho_propertylist_setdata(obj->properties, code, data, data_len);
+  return uecho_propertylist_setdata(obj->properties, code, data, dataLen);
 }
 
 /****************************************
  * uecho_object_setpropertyintegerdata
  ****************************************/
 
-bool uecho_object_setpropertyintegerdata(uEchoObject* obj, uEchoPropertyCode code, int data, size_t data_len)
+bool uecho_object_setpropertyintegerdata(uEchoObject* obj, uEchoPropertyCode code, int data, size_t dataLen)
 {
   if (!obj)
     return false;
 
-  return uecho_propertylist_setintegerdata(obj->properties, code, data, data_len);
+  return uecho_propertylist_setintegerdata(obj->properties, code, data, dataLen);
 }
 
 /****************************************
@@ -617,7 +617,7 @@ void uecho_object_setmessagelistener(uEchoObject* obj, uEchoObjectMessageListene
   if (!obj)
     return;
 
-  obj->all_msg_listener = listener;
+  obj->allMsgListener = listener;
 }
 
 /****************************************
@@ -629,7 +629,7 @@ uEchoObjectMessageListener uecho_object_getmessagelistener(uEchoObject* obj)
   if (!obj)
     return NULL;
 
-  return obj->all_msg_listener;
+  return obj->allMsgListener;
 }
 
 /****************************************
@@ -641,7 +641,7 @@ bool uecho_object_hasmessagelistener(uEchoObject* obj)
   if (!obj)
     return false;
 
-  return obj->all_msg_listener ? true : false;
+  return obj->allMsgListener ? true : false;
 }
 
 /****************************************
@@ -653,7 +653,7 @@ bool uecho_object_setpropertyrequesthandler(uEchoObject* obj, uEchoEsv esv, uEch
   if (!obj)
     return false;
 
-  return uecho_object_property_observer_manager_setobserver(obj->prop_listener_mgr, esv, code, handler);
+  return uecho_object_property_observer_manager_setobserver(obj->propListenerMgr, esv, code, handler);
 }
 
 /****************************************
@@ -667,7 +667,7 @@ uEchoPropertyRequestHandler uecho_object_getpropertyrequestlistener(uEchoObject*
   if (!obj)
     return NULL;
 
-  obs = uecho_object_property_observer_manager_getobserver(obj->prop_listener_mgr, esv, code);
+  obs = uecho_object_property_observer_manager_getobserver(obj->propListenerMgr, esv, code);
   if (!obs)
     return NULL;
 
@@ -719,18 +719,18 @@ bool uecho_object_setpropertyreadhandler(uEchoObject* obj, uEchoPropertyCode cod
 
 bool uecho_object_announcemessage(uEchoObject* obj, uEchoMessage* msg)
 {
-  uEchoNode* parent_node;
+  uEchoNode* parentNode;
 
   if (!obj)
     return false;
 
-  parent_node = uecho_object_getparentnode(obj);
-  if (!parent_node)
+  parentNode = uecho_object_getparentnode(obj);
+  if (!parentNode)
     return false;
 
   uecho_message_setsourceobjectcode(msg, uecho_object_getcode(obj));
 
-  return uecho_node_announcemessage(parent_node, msg);
+  return uecho_node_announcemessage(parentNode, msg);
 }
 
 /****************************************

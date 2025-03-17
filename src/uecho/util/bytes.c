@@ -16,15 +16,15 @@
  * uecho_bytes_toint
  ****************************************/
 
-int uecho_bytes_toint(byte* byte_data, size_t byte_size)
+int uecho_bytes_toint(byte* byteData, size_t byteSize)
 {
   int idx;
   int n;
   int val = 0;
 
-  for (n = 0; n < (int)byte_size; n++) {
-    idx = ((int)byte_size - 1) - n;
-    val += byte_data[idx] << (n * 8);
+  for (n = 0; n < (int)byteSize; n++) {
+    idx = ((int)byteSize - 1) - n;
+    val += byteData[idx] << (n * 8);
   }
 
   return val;
@@ -34,17 +34,17 @@ int uecho_bytes_toint(byte* byte_data, size_t byte_size)
  * uecho_bytes_fromint
  ****************************************/
 
-byte* uecho_bytes_fromint(int val, size_t bytes_size)
+byte* uecho_bytes_fromint(int val, size_t bytesSize)
 {
-  byte* bytes_data;
+  byte* bytesData;
   int idx;
   int n;
 
-  bytes_data = malloc(bytes_size);
-  for (n = 0; n < (int)bytes_size; n++) {
-    idx = ((int)bytes_size - 1) - n;
-    bytes_data[idx] = ((val >> (n * 8)) & 0xFF);
+  bytesData = malloc(bytesSize);
+  for (n = 0; n < (int)bytesSize; n++) {
+    idx = ((int)bytesSize - 1) - n;
+    bytesData[idx] = ((val >> (n * 8)) & 0xFF);
   }
 
-  return bytes_data;
+  return bytesData;
 }

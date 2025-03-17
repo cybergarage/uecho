@@ -22,13 +22,13 @@ extern "C" {
  * Function
  ****************************************/
 
-uEchoClassCode uecho_objectcode2classcode(uEchoObjectCode obj_code);
+uEchoClassCode uecho_objectcode2classcode(uEchoObjectCode objCode);
 
 bool uecho_isdeviceclassgroupcode(byte code);
 bool uecho_isprofileclassgroupcode(byte code);
 
-bool uecho_integer2byte(int val, byte* bytes, size_t byte_size);
-int uecho_byte2integer(byte* bytes, size_t byte_size);
+bool uecho_integer2byte(int val, byte* bytes, size_t byteSize);
+int uecho_byte2integer(byte* bytes, size_t byteSize);
 
 #ifdef __cplusplus
 }

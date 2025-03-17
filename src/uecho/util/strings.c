@@ -28,8 +28,8 @@ uEchoString* uecho_string_new(void)
 
   if (NULL != str) {
     str->value = NULL;
-    str->mem_size = 0;
-    str->value_size = 0;
+    str->memSize = 0;
+    str->valueSize = 0;
   }
 
   return str;
@@ -57,8 +57,8 @@ void uecho_string_clear(uEchoString* str)
     if (str->value != NULL) {
       free(str->value);
       str->value = NULL;
-      str->mem_size = 0;
-      str->value_size = 0;
+      str->memSize = 0;
+      str->valueSize = 0;
     }
   }
 }
@@ -106,9 +106,9 @@ void uecho_string_setnvalue(uEchoString* str, const char* value, size_t len)
   if (NULL != str) {
     uecho_string_clear(str);
     if (value != NULL) {
-      str->value_size = len;
-      str->mem_size = str->value_size + 1;
-      str->value = (char*)malloc(str->mem_size * sizeof(char));
+      str->valueSize = len;
+      str->memSize = str->valueSize + 1;
+      str->value = (char*)malloc(str->memSize * sizeof(char));
 
       if (NULL == str->value) {
         return;
@@ -130,8 +130,8 @@ void uecho_string_setpointervalue(uEchoString* str, char* value, size_t len)
   if (NULL != str) {
     uecho_string_clear(str);
     str->value = value;
-    str->value_size = len;
-    str->mem_size = str->value_size + 1;
+    str->valueSize = len;
+    str->memSize = str->valueSize + 1;
   }
 }
 
@@ -153,7 +153,7 @@ size_t uecho_string_getmemorysize(uEchoString* str)
   if (NULL == str)
     return 0;
 
-  return str->mem_size;
+  return str->memSize;
 }
 
 /****************************************
@@ -168,7 +168,7 @@ size_t uecho_string_length(uEchoString* str)
   if (str->value == NULL)
     return 0;
 
-  return str->value_size;
+  return str->valueSize;
 }
 
 /****************************************
@@ -187,7 +187,7 @@ char* uecho_string_addvalue(uEchoString* str, const char* value)
 char* uecho_string_naddvalue(uEchoString* str, const char* value, size_t value_len)
 {
   char* new_value = NULL;
-  size_t new_mem_size = 0;
+  size_t new_memSize = 0;
 
   if (NULL == str)
     return NULL;
@@ -198,29 +198,29 @@ char* uecho_string_naddvalue(uEchoString* str, const char* value, size_t value_l
   }
 
   /* Check, if we need to allocate memory for the new data */
-  new_mem_size = str->value_size + value_len + 1;
-  if (new_mem_size > str->mem_size || str->value == NULL) {
+  new_memSize = str->valueSize + value_len + 1;
+  if (new_memSize > str->memSize || str->value == NULL) {
     /* realloc also some extra in order to avoid multiple reallocs */
-    new_mem_size += UECHO_STRING_REALLOC_EXTRA;
-    new_value = realloc(str->value, new_mem_size * sizeof(char));
+    new_memSize += UECHO_STRING_REALLOC_EXTRA;
+    new_value = realloc(str->value, new_memSize * sizeof(char));
 
     if (new_value == NULL) {
       /* Memory allocation failed, bail out */
       return NULL;
     }
 
-    str->mem_size = new_mem_size;
+    str->memSize = new_memSize;
     str->value = new_value;
   }
 
   /* memcpy works better with non-zero-terminated data
      than strncpy */
-  memcpy(str->value + str->value_size, value, value_len);
+  memcpy(str->value + str->valueSize, value, value_len);
 
-  str->value_size += value_len;
+  str->valueSize += value_len;
 
   /* In case this is a string, append a termination character */
-  str->value[str->value_size] = '\0';
+  str->value[str->valueSize] = '\0';
 
   return uecho_string_getvalue(str);
 }

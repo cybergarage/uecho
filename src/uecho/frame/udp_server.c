@@ -28,7 +28,7 @@ uEchoUdpServer* uecho_udp_server_new(void)
 
   server->socket = NULL;
   server->thread = NULL;
-  server->msg_mgr = uecho_message_observer_manager_new();
+  server->msgMgr = uecho_message_observer_manager_new();
 
   return server;
 }
@@ -43,7 +43,7 @@ bool uecho_udp_server_delete(uEchoUdpServer* server)
     return false;
 
   uecho_socket_delete(server->socket);
-  uecho_message_observer_manager_delete(server->msg_mgr);
+  uecho_message_observer_manager_delete(server->msgMgr);
   uecho_udp_server_remove(server);
 
   free(server);
@@ -129,7 +129,7 @@ bool uecho_udp_server_isopened(uEchoUdpServer* server)
 
 bool uecho_udp_server_addobserver(uEchoUdpServer* server, void* obj, uEchoMessageHandler handler)
 {
-  return uecho_message_observer_manager_addobserver(server->msg_mgr, obj, handler);
+  return uecho_message_observer_manager_addobserver(server->msgMgr, obj, handler);
 }
 
 /****************************************
@@ -172,7 +172,7 @@ static void uecho_udp_server_action(uEchoThread* thread)
       continue;
 
     if (uecho_message_parsepacket(msg, dgm_pkt)) {
-      uecho_message_observer_manager_perform(server->msg_mgr, msg);
+      uecho_message_observer_manager_perform(server->msgMgr, msg);
     }
     else {
       uecho_net_datagram_packet_error(UECHO_LOG_NET_PREFIX_RECV, dgm_pkt);

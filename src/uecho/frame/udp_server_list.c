@@ -48,30 +48,30 @@ void uecho_udp_serverlist_delete(uEchoUdpServerList* servers)
 bool uecho_udp_serverlist_open(uEchoUdpServerList* servers)
 {
   uEchoUdpServer* server;
-  uEchoNetworkInterfaceList* net_if_list;
-  uEchoNetworkInterface* net_if;
-  bool all_actions_succeeded;
+  uEchoNetworkInterfaceList* netIfList;
+  uEchoNetworkInterface* netIf;
+  bool allActionsSucceeded;
 
   uecho_udp_serverlist_close(servers);
 
-  net_if_list = uecho_net_interfacelist_new();
+  netIfList = uecho_net_interfacelist_new();
 
-  if (uecho_net_gethostinterfaces(net_if_list) <= 0) {
-    uecho_net_interfacelist_delete(net_if_list);
+  if (uecho_net_gethostinterfaces(netIfList) <= 0) {
+    uecho_net_interfacelist_delete(netIfList);
     return false;
   }
 
-  all_actions_succeeded = true;
+  allActionsSucceeded = true;
 
-  for (net_if = uecho_net_interfacelist_gets(net_if_list); net_if; net_if = uecho_net_interface_next(net_if)) {
+  for (netIf = uecho_net_interfacelist_gets(netIfList); netIf; netIf = uecho_net_interface_next(netIf)) {
     server = uecho_udp_server_new();
     if (!server) {
-      all_actions_succeeded = false;
+      allActionsSucceeded = false;
       break;
     }
 
-    if (!uecho_udp_server_open(server, uecho_net_interface_getaddress(net_if))) {
-      all_actions_succeeded = false;
+    if (!uecho_udp_server_open(server, uecho_net_interface_getaddress(netIf))) {
+      allActionsSucceeded = false;
       uecho_udp_server_delete(server);
       break;
     }
@@ -79,9 +79,9 @@ bool uecho_udp_serverlist_open(uEchoUdpServerList* servers)
     uecho_udp_serverlist_add(servers, server);
   }
 
-  uecho_net_interfacelist_delete(net_if_list);
+  uecho_net_interfacelist_delete(netIfList);
 
-  if (!all_actions_succeeded) {
+  if (!allActionsSucceeded) {
     uecho_udp_serverlist_close(servers);
     return false;
   }
@@ -96,14 +96,14 @@ bool uecho_udp_serverlist_open(uEchoUdpServerList* servers)
 bool uecho_udp_serverlist_close(uEchoUdpServerList* servers)
 {
   uEchoUdpServer* server;
-  bool all_actions_succeeded;
+  bool allActionsSucceeded;
 
-  all_actions_succeeded = true;
+  allActionsSucceeded = true;
   for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
-    all_actions_succeeded &= uecho_udp_server_close(server);
+    allActionsSucceeded &= uecho_udp_server_close(server);
   }
 
-  return all_actions_succeeded;
+  return allActionsSucceeded;
 }
 
 /****************************************
@@ -113,16 +113,16 @@ bool uecho_udp_serverlist_close(uEchoUdpServerList* servers)
 bool uecho_udp_serverlist_start(uEchoUdpServerList* servers)
 {
   uEchoUdpServer* server;
-  bool all_actions_succeeded;
+  bool allActionsSucceeded;
 
   uecho_udp_serverlist_stop(servers);
 
-  all_actions_succeeded = true;
+  allActionsSucceeded = true;
   for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
-    all_actions_succeeded &= uecho_udp_server_start(server);
+    allActionsSucceeded &= uecho_udp_server_start(server);
   }
 
-  return all_actions_succeeded;
+  return allActionsSucceeded;
 }
 
 /****************************************
@@ -132,14 +132,14 @@ bool uecho_udp_serverlist_start(uEchoUdpServerList* servers)
 bool uecho_udp_serverlist_stop(uEchoUdpServerList* servers)
 {
   uEchoUdpServer* server;
-  bool all_actions_succeeded;
+  bool allActionsSucceeded;
 
-  all_actions_succeeded = true;
+  allActionsSucceeded = true;
   for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
-    all_actions_succeeded &= uecho_udp_server_stop(server);
+    allActionsSucceeded &= uecho_udp_server_stop(server);
   }
 
-  return all_actions_succeeded;
+  return allActionsSucceeded;
 }
 
 /****************************************
@@ -175,18 +175,18 @@ bool uecho_udp_serverlist_isboundaddress(uEchoUdpServerList* servers, const char
  * uecho_udp_serverlist_sendto
  ****************************************/
 
-bool uecho_udp_serverlist_sendto(uEchoUdpServerList* servers, const char* addr, byte* msg, size_t msg_len)
+bool uecho_udp_serverlist_sendto(uEchoUdpServerList* servers, const char* addr, byte* msg, size_t msgLen)
 {
   uEchoUdpServer* server;
   uEchoSocket* sock;
-  size_t sent_byte_cnt;
+  size_t sentByteCnt;
 
   for (server = uecho_udp_serverlist_gets(servers); server; server = uecho_udp_server_next(server)) {
     sock = uecho_udp_getsocket(server);
     if (!sock)
       continue;
-    sent_byte_cnt = uecho_socket_sendto(sock, addr, uEchoUdpPort, msg, msg_len);
-    return (msg_len == sent_byte_cnt) ? true : false;
+    sentByteCnt = uecho_socket_sendto(sock, addr, uEchoUdpPort, msg, msgLen);
+    return (msgLen == sentByteCnt) ? true : false;
   }
 
   return false;

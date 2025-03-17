@@ -117,7 +117,7 @@ void uecho_node_setmessagelistener(uEchoNode* node, uEchoNodeMessageListener lis
   if (!node)
     return;
 
-  node->msg_listener = listener;
+  node->msgListener = listener;
 }
 
 /****************************************
@@ -129,7 +129,7 @@ uEchoNodeMessageListener uecho_node_getmessagelistener(uEchoNode* node)
   if (!node)
     return NULL;
 
-  return node->msg_listener;
+  return node->msgListener;
 }
 
 /****************************************
@@ -141,7 +141,7 @@ bool uecho_node_hasmessagelistener(uEchoNode* node)
   if (!node)
     return false;
 
-  return node->msg_listener ? true : false;
+  return node->msgListener ? true : false;
 }
 
 /****************************************
@@ -419,7 +419,7 @@ void uecho_node_setlasttid(uEchoNode* node, uEchoTID tid)
   if (!node)
     return;
 
-  node->last_tid = tid;
+  node->lastTid = tid;
 }
 
 /****************************************
@@ -431,7 +431,7 @@ uEchoTID uecho_node_getlasttid(uEchoNode* node)
   if (!node)
     return 0;
 
-  return node->last_tid;
+  return node->lastTid;
 }
 
 /****************************************
@@ -443,13 +443,13 @@ uEchoTID uecho_node_getnexttid(uEchoNode* node)
   if (!node)
     return 0;
 
-  if (uEchoTidMax <= node->last_tid) {
-    node->last_tid = 1;
+  if (uEchoTidMax <= node->lastTid) {
+    node->lastTid = 1;
   }
   else {
-    node->last_tid++;
+    node->lastTid++;
   }
-  return node->last_tid;
+  return node->lastTid;
 }
 
 /****************************************

@@ -56,23 +56,23 @@ void uecho_print_multicastmessages(uEchoController* ctrl, uEchoMessage* msg)
 
 int main(int argc, char* argv[])
 {
-  bool nobind_mode;
-  bool debug_mode;
+  bool nobindMode;
+  bool debugMode;
   uEchoController* ctrl;
   int c, key;
 
   // Parse options
 
-  nobind_mode = false;
-  debug_mode = false;
+  nobindMode = false;
+  debugMode = false;
 
   while ((c = getopt(argc, argv, "nhd")) != -1) {
     switch (c) {
     case 'n': {
-      nobind_mode = true;
+      nobindMode = true;
     } break;
     case 'd': {
-      debug_mode = true;
+      debugMode = true;
     } break;
     case 'h': {
       usage();
@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
 
   // Debug mode
 
-  if (debug_mode) {
+  if (debugMode) {
     uecho_log_setlevel(UECHO_LOG_DEBUG);
   }
 

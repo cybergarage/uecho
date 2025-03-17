@@ -44,7 +44,7 @@ void uecho_log_setlevel(uEchoLogLevel level);
 #define uecho_log_debug(format...) uecho_log_output(UECHO_LOG_DEBUG, __FILE__, __LINE__, __PRETTY_FUNCTION__, format)
 #endif
 
-void uecho_log_output(int severity, const char* file, int line_n, const char* function, const char* format, ...);
+void uecho_log_output(int severity, const char* file, int lineN, const char* function, const char* format, ...);
 
 #ifdef __cplusplus
 } /* extern "C" */

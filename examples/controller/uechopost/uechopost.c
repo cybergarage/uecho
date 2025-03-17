@@ -50,8 +50,8 @@ void uechopost_print_messages(uEchoController* ctrl, uEchoMessage* msg)
 void uechopost_print_objectresponse(uEchoController* ctrl, uEchoMessage* msg)
 {
   uEchoProperty* prop;
-  int opc, n, prop_data_size, np;
-  byte* prop_data;
+  int opc, n, propDataSize, np;
+  byte* propData;
 
   opc = uecho_message_getopc(msg);
   printf("%s %06X %02X ",
@@ -61,15 +61,15 @@ void uechopost_print_objectresponse(uEchoController* ctrl, uEchoMessage* msg)
 
   for (n = 0; n < opc; n++) {
     prop = uecho_message_getproperty(msg, n);
-    prop_data_size = uecho_property_getdatasize(prop);
-    if (prop_data_size == 0) {
-      printf("%02X%02X ", uecho_property_getcode(prop), prop_data_size);
+    propDataSize = uecho_property_getdatasize(prop);
+    if (propDataSize == 0) {
+      printf("%02X%02X ", uecho_property_getcode(prop), propDataSize);
       continue;
     }
-    prop_data = uecho_property_getdata(prop);
-    printf("%02X%02X", uecho_property_getcode(prop), prop_data_size);
-    for (np = 0; np < prop_data_size; np++) {
-      printf("%02X", prop_data[np]);
+    propData = uecho_property_getdata(prop);
+    printf("%02X%02X", uecho_property_getcode(prop), propDataSize);
+    for (np = 0; np < propDataSize; np++) {
+      printf("%02X", propData[np]);
     }
     printf(" ");
   }
@@ -84,36 +84,36 @@ void uechopost_controlpoint_listener(uEchoController* ctrl, uEchoMessage* msg)
 
 int main(int argc, char* argv[])
 {
-  bool verbose_mode;
-  bool debug_mode;
+  bool verboseMode;
+  bool debugMode;
   uEchoController* ctrl;
-  uEchoNode* dst_node;
-  char* dst_node_addr;
-  uEchoObjectCode dst_obj_code;
-  uEchoObject* dst_obj;
-  uEchoMessage *msg, *res_msg;
+  uEchoNode* dstNode;
+  char* dstNodeAddr;
+  uEchoObjectCode dstObjCode;
+  uEchoObject* dstObj;
+  uEchoMessage *msg, *resMsg;
   int esv;
   char *edata, *edt;
-  size_t edt_size;
-  int epc, pdc, edt_byte;
+  size_t edtSize;
+  int epc, pdc, edtByte;
   int n;
 
-  byte* prop_data;
-  bool is_response_required;
+  byte* propData;
+  bool isResponseRequired;
   int c;
 
   // Parse options
 
-  verbose_mode = false;
-  debug_mode = false;
+  verboseMode = false;
+  debugMode = false;
 
   while ((c = getopt(argc, argv, "vhd")) != -1) {
     switch (c) {
     case 'v': {
-      verbose_mode = true;
+      verboseMode = true;
     } break;
     case 'd': {
-      debug_mode = true;
+      debugMode = true;
     } break;
     case 'h': {
       usage();
@@ -136,7 +136,7 @@ int main(int argc, char* argv[])
 
   // Debug mode
 
-  if (debug_mode) {
+  if (debugMode) {
     uecho_log_setlevel(UECHO_LOG_DEBUG);
   }
 
@@ -146,7 +146,7 @@ int main(int argc, char* argv[])
   if (!ctrl)
     return EXIT_FAILURE;
 
-  if (verbose_mode) {
+  if (verboseMode) {
     uecho_controller_setmessagelistener(ctrl, uechopost_controlpoint_listener);
   }
 
@@ -159,30 +159,30 @@ int main(int argc, char* argv[])
 
   // Find destination node
 
-  dst_node_addr = argv[0];
+  dstNodeAddr = argv[0];
 
-  dst_node = NULL;
+  dstNode = NULL;
   for (n = 0; n < UECHOPOST_RESPONSE_RETRY_COUNT; n++) {
     uecho_sleep(UECHOPOST_MAX_RESPONSE_MTIME / UECHOPOST_RESPONSE_RETRY_COUNT);
-    dst_node = uecho_controller_getnodebyaddress(ctrl, dst_node_addr);
-    if (dst_node)
+    dstNode = uecho_controller_getnodebyaddress(ctrl, dstNodeAddr);
+    if (dstNode)
       break;
   }
 
-  if (!dst_node) {
-    printf("Node (%s) is not found\n", dst_node_addr);
+  if (!dstNode) {
+    printf("Node (%s) is not found\n", dstNodeAddr);
     uecho_controller_delete(ctrl);
     return EXIT_FAILURE;
   }
 
   // Find destination object
 
-  sscanf(argv[1], "%x", &dst_obj_code);
+  sscanf(argv[1], "%x", &dstObjCode);
 
-  dst_obj = uecho_node_getobjectbycode(dst_node, dst_obj_code);
+  dstObj = uecho_node_getobjectbycode(dstNode, dstObjCode);
 
-  if (!dst_node) {
-    printf("Node (%s) doesn't has the specified object (%06X)\n", dst_node_addr, dst_obj_code);
+  if (!dstNode) {
+    printf("Node (%s) doesn't has the specified object (%06X)\n", dstNodeAddr, dstObjCode);
     uecho_controller_delete(ctrl);
     return EXIT_FAILURE;
   }
@@ -192,15 +192,15 @@ int main(int argc, char* argv[])
   msg = uecho_message_new();
   sscanf(argv[2], "%x", &esv);
   uecho_message_setesv(msg, esv);
-  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(dst_obj));
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(dstObj));
 
 #if defined(DEBUG)
   printf("%s %06X %01X\n", dst_node_addr, dst_obj_code, esv);
 #endif
 
   edata = edt = argv[3];
-  edt_size = strlen(argv[3]);
-  while ((edt - edata + (2 + 2)) <= edt_size) {
+  edtSize = strlen(argv[3]);
+  while ((edt - edata + (2 + 2)) <= edtSize) {
     sscanf(edt, "%02x%02x", &epc, &pdc);
     edt += (2 + 2);
 
@@ -213,20 +213,20 @@ int main(int argc, char* argv[])
       continue;
     }
 
-    if (edt_size < (edt - edata + (pdc * 2)))
+    if (edtSize < (edt - edata + (pdc * 2)))
       break;
 
-    prop_data = (byte*)malloc(pdc);
+    propData = (byte*)malloc(pdc);
     for (n = 0; n < pdc; n++) {
-      sscanf(edt, "%02x", &edt_byte);
+      sscanf(edt, "%02x", &edtByte);
 #if defined(DEBUG)
       printf("%02X", edt_byte);
 #endif
-      prop_data[n] = edt_byte & 0xFF;
+      propData[n] = edtByte & 0xFF;
       edt += 2;
     }
-    uecho_message_setproperty(msg, epc, prop_data, pdc);
-    free(prop_data);
+    uecho_message_setproperty(msg, epc, propData, pdc);
+    free(propData);
   }
 #if defined(DEBUG)
   printf("\n");
@@ -234,16 +234,16 @@ int main(int argc, char* argv[])
 
   // Send message
 
-  is_response_required = uecho_message_isresponserequired(msg);
-  if (is_response_required) {
-    res_msg = uecho_message_new();
-    if (uecho_controller_postmessage(ctrl, dst_node, msg, res_msg)) {
-      uechopost_print_objectresponse(ctrl, res_msg);
+  isResponseRequired = uecho_message_isresponserequired(msg);
+  if (isResponseRequired) {
+    resMsg = uecho_message_new();
+    if (uecho_controller_postmessage(ctrl, dstNode, msg, resMsg)) {
+      uechopost_print_objectresponse(ctrl, resMsg);
     }
-    uecho_message_delete(res_msg);
+    uecho_message_delete(resMsg);
   }
   else {
-    uecho_controller_sendmessage(ctrl, dst_node, msg);
+    uecho_controller_sendmessage(ctrl, dstNode, msg);
   }
 
   uecho_message_delete(msg);
