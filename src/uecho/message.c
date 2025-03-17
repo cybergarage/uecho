@@ -343,25 +343,25 @@ uEchoEsv uecho_message_getesv(uEchoMessage* msg)
  * uecho_message_requestesv2responseesv
  ****************************************/
 
-bool uecho_message_requestesv2responseesv(uEchoEsv req_esv, uEchoEsv* res_esv)
+bool uecho_message_requestesv2responseesv(uEchoEsv reqEsv, uEchoEsv* resEsv)
 {
-  *res_esv = 0;
+  *resEsv = 0;
 
-  switch (req_esv) {
+  switch (reqEsv) {
   case uEchoEsvWriteRequestResponseRequired:
-    *res_esv = uEchoEsvWriteResponse;
+    *resEsv = uEchoEsvWriteResponse;
     return true;
   case uEchoEsvReadRequest:
-    *res_esv = uEchoEsvReadResponse;
+    *resEsv = uEchoEsvReadResponse;
     return true;
   case uEchoEsvNotificationRequest:
-    *res_esv = uEchoEsvNotification;
+    *resEsv = uEchoEsvNotification;
     return true;
   case uEchoEsvWriteReadRequest:
-    *res_esv = uEchoEsvWriteReadResponse;
+    *resEsv = uEchoEsvWriteReadResponse;
     return true;
   case uEchoEsvNotificationResponseRequired:
-    *res_esv = uEchoEsvNotificationResponse;
+    *resEsv = uEchoEsvNotificationResponse;
     return true;
   }
 
@@ -372,25 +372,25 @@ bool uecho_message_requestesv2responseesv(uEchoEsv req_esv, uEchoEsv* res_esv)
  * uecho_message_requestesv2errorresponseesv
  ****************************************/
 
-bool uecho_message_requestesv2errorresponseesv(uEchoEsv req_esv, uEchoEsv* res_esv)
+bool uecho_message_requestesv2errorresponseesv(uEchoEsv reqEsv, uEchoEsv* resEsv)
 {
-  *res_esv = 0;
+  *resEsv = 0;
 
-  switch (req_esv) {
+  switch (reqEsv) {
   case uEchoEsvWriteRequest:
-    *res_esv = uEchoEsvWriteRequestError;
+    *resEsv = uEchoEsvWriteRequestError;
     return true;
   case uEchoEsvWriteRequestResponseRequired:
-    *res_esv = uEchoEsvWriteRequestResponseRequiredError;
+    *resEsv = uEchoEsvWriteRequestResponseRequiredError;
     return true;
   case uEchoEsvReadRequest:
-    *res_esv = uEchoEsvReadRequestError;
+    *resEsv = uEchoEsvReadRequestError;
     return true;
   case uEchoEsvNotificationRequest:
-    *res_esv = uEchoEsvNotificationRequestError;
+    *resEsv = uEchoEsvNotificationRequestError;
     return true;
   case uEchoEsvWriteReadRequest:
-    *res_esv = uEchoEsvWriteReadRequestError;
+    *resEsv = uEchoEsvWriteReadRequestError;
     return true;
   }
 
@@ -403,27 +403,27 @@ bool uecho_message_requestesv2errorresponseesv(uEchoEsv req_esv, uEchoEsv* res_e
 
 bool uecho_message_isresponserequired(uEchoMessage* msg)
 {
-  uEchoEsv res_esv;
+  uEchoEsv resEsv;
 
   if (!msg)
     return false;
 
-  return uecho_message_requestesv2responseesv(msg->esv, &res_esv);
+  return uecho_message_requestesv2responseesv(msg->esv, &resEsv);
 }
 
 /****************************************
  * uecho_message_isresponsemessage
  ****************************************/
 
-bool uecho_message_isresponsemessage(uEchoMessage* msg, uEchoMessage* res_meg)
+bool uecho_message_isresponsemessage(uEchoMessage* msg, uEchoMessage* resMeg)
 {
-  if (!msg || !res_meg)
+  if (!msg || !resMeg)
     return false;
 
-  if (uecho_message_gettid(msg) != uecho_message_gettid(res_meg))
+  if (uecho_message_gettid(msg) != uecho_message_gettid(resMeg))
     return false;
 
-  if (uecho_message_getesv(msg) == uecho_message_getesv(res_meg))
+  if (uecho_message_getesv(msg) == uecho_message_getesv(resMeg))
     return false;
 
   return true;
@@ -690,7 +690,7 @@ uEchoProperty* uecho_message_getpropertygetbycode(uEchoMessage* msg, uEchoProper
  * uecho_message_setproperty
  ****************************************/
 
-bool uecho_property_set(byte* opc, uEchoProperty*** ep, uEchoPropertyCode propCode, const byte* prop_data, size_t prop_data_size)
+bool uecho_property_set(byte* opc, uEchoProperty*** ep, uEchoPropertyCode propCode, const byte* propData, size_t propDataSize)
 {
   uEchoProperty* prop;
   prop = uecho_property_getbycode(*opc, *ep, propCode);
@@ -704,28 +704,28 @@ bool uecho_property_set(byte* opc, uEchoProperty*** ep, uEchoPropertyCode propCo
       return false;
     }
   }
-  return uecho_property_setdata(prop, prop_data, prop_data_size);
+  return uecho_property_setdata(prop, propData, propDataSize);
 }
 
-bool uecho_message_setproperty(uEchoMessage* msg, uEchoPropertyCode propCode, const byte* prop_data, size_t prop_data_size)
+bool uecho_message_setproperty(uEchoMessage* msg, uEchoPropertyCode propCode, const byte* propData, size_t propDataSize)
 {
   if (!msg)
     return false;
-  return uecho_property_set(&msg->opc, &msg->ep, propCode, prop_data, prop_data_size);
+  return uecho_property_set(&msg->opc, &msg->ep, propCode, propData, propDataSize);
 }
 
-bool uecho_message_setpropertyset(uEchoMessage* msg, uEchoPropertyCode propCode, const byte* prop_data, size_t prop_data_size)
+bool uecho_message_setpropertyset(uEchoMessage* msg, uEchoPropertyCode propCode, const byte* propData, size_t propDataSize)
 {
   if (!msg)
     return false;
-  return uecho_property_set(&msg->opcSet, &msg->epSet, propCode, prop_data, prop_data_size);
+  return uecho_property_set(&msg->opcSet, &msg->epSet, propCode, propData, propDataSize);
 }
 
-bool uecho_message_setpropertyget(uEchoMessage* msg, uEchoPropertyCode propCode, const byte* prop_data, size_t prop_data_size)
+bool uecho_message_setpropertyget(uEchoMessage* msg, uEchoPropertyCode propCode, const byte* propData, size_t propDataSize)
 {
   if (!msg)
     return false;
-  return uecho_property_set(&msg->opcGet, &msg->epGet, propCode, prop_data, prop_data_size);
+  return uecho_property_set(&msg->opcGet, &msg->epGet, propCode, propData, propDataSize);
 }
 
 /****************************************
@@ -850,16 +850,16 @@ bool uecho_message_parse(uEchoMessage* msg, const byte* data, size_t dataLen)
  * uecho_message_parsepacket
  ****************************************/
 
-bool uecho_message_parsepacket(uEchoMessage* msg, uEchoDatagramPacket* dgm_pkt)
+bool uecho_message_parsepacket(uEchoMessage* msg, uEchoDatagramPacket* dgmPkt)
 {
-  if (!msg || !dgm_pkt)
+  if (!msg || !dgmPkt)
     return false;
 
-  if (!uecho_message_parse(msg, uecho_socket_datagram_packet_getdata(dgm_pkt), uecho_socket_datagram_packet_getlength(dgm_pkt)))
+  if (!uecho_message_parse(msg, uecho_socket_datagram_packet_getdata(dgmPkt), uecho_socket_datagram_packet_getlength(dgmPkt)))
     return false;
 
-  uecho_message_setsourceaddress(msg, uecho_socket_datagram_packet_getlocaladdress(dgm_pkt));
-  uecho_message_setsourceaddress(msg, uecho_socket_datagram_packet_getremoteaddress(dgm_pkt));
+  uecho_message_setsourceaddress(msg, uecho_socket_datagram_packet_getlocaladdress(dgmPkt));
+  uecho_message_setsourceaddress(msg, uecho_socket_datagram_packet_getremoteaddress(dgmPkt));
 
   return true;
 }
@@ -871,39 +871,39 @@ bool uecho_message_parsepacket(uEchoMessage* msg, uEchoDatagramPacket* dgm_pkt)
 size_t uecho_message_opcsize(byte opc, uEchoProperty** ep)
 {
   uEchoProperty* prop;
-  size_t msg_len, n;
+  size_t msgLen, n;
 
-  msg_len = 0;
+  msgLen = 0;
   for (n = 0; n < (size_t)(opc); n++) {
     prop = ep[n];
     if (!prop)
       continue;
-    msg_len += 2;
-    msg_len += uecho_property_getdatasize(prop);
+    msgLen += 2;
+    msgLen += uecho_property_getdatasize(prop);
   }
 
-  return msg_len;
+  return msgLen;
 }
 
 size_t uecho_message_size(uEchoMessage* msg)
 {
-  size_t msg_len;
+  size_t msgLen;
 
   if (!msg)
     return 0;
 
-  msg_len = uEchoMessageMinLen;
+  msgLen = uEchoMessageMinLen;
 
   if (uecho_message_isreadwritemessage(msg)) {
-    msg_len += uecho_message_opcsize(msg->opcSet, msg->epSet);
-    msg_len += 1;
-    msg_len += uecho_message_opcsize(msg->opcGet, msg->epGet);
+    msgLen += uecho_message_opcsize(msg->opcSet, msg->epSet);
+    msgLen += 1;
+    msgLen += uecho_message_opcsize(msg->opcGet, msg->epGet);
   }
   else {
-    msg_len += uecho_message_opcsize(msg->opc, msg->ep);
+    msgLen += uecho_message_opcsize(msg->opc, msg->ep);
   }
 
-  return msg_len;
+  return msgLen;
 }
 
 /****************************************
@@ -972,32 +972,32 @@ byte* uecho_message_getbytes(uEchoMessage* msg)
  * uecho_message_set
  ****************************************/
 
-bool uecho_message_set(uEchoMessage* msg, uEchoMessage* src_msg)
+bool uecho_message_set(uEchoMessage* msg, uEchoMessage* srcMsg)
 {
-  uEchoProperty *prop, *src_prop;
-  size_t src_msg_opc, n;
+  uEchoProperty *prop, *srcProp;
+  size_t srcMsgOpc, n;
 
-  if (!msg || !src_msg)
+  if (!msg || !srcMsg)
     return false;
 
   uecho_message_clear(msg);
 
-  uecho_message_setehd1(msg, uecho_message_getehd1(src_msg));
-  uecho_message_setehd2(msg, uecho_message_getehd2(src_msg));
-  uecho_message_settid(msg, uecho_message_gettid(src_msg));
-  uecho_message_setsourceobjectcode(msg, uecho_message_getsourceobjectcode(src_msg));
-  uecho_message_setdestinationobjectcode(msg, uecho_message_getdestinationobjectcode(src_msg));
-  uecho_message_setesv(msg, uecho_message_getesv(src_msg));
-  uecho_message_setsourceaddress(msg, uecho_message_getsourceaddress(src_msg));
-  uecho_message_setdestinationaddress(msg, uecho_message_getdestinationaddress(src_msg));
+  uecho_message_setehd1(msg, uecho_message_getehd1(srcMsg));
+  uecho_message_setehd2(msg, uecho_message_getehd2(srcMsg));
+  uecho_message_settid(msg, uecho_message_gettid(srcMsg));
+  uecho_message_setsourceobjectcode(msg, uecho_message_getsourceobjectcode(srcMsg));
+  uecho_message_setdestinationobjectcode(msg, uecho_message_getdestinationobjectcode(srcMsg));
+  uecho_message_setesv(msg, uecho_message_getesv(srcMsg));
+  uecho_message_setsourceaddress(msg, uecho_message_getsourceaddress(srcMsg));
+  uecho_message_setdestinationaddress(msg, uecho_message_getdestinationaddress(srcMsg));
 
-  src_msg_opc = uecho_message_getopc(src_msg);
-  for (n = 0; n < src_msg_opc; n++) {
-    src_prop = uecho_message_getproperty(src_msg, n);
-    if (!src_prop)
+  srcMsgOpc = uecho_message_getopc(srcMsg);
+  for (n = 0; n < srcMsgOpc; n++) {
+    srcProp = uecho_message_getproperty(srcMsg, n);
+    if (!srcProp)
       continue;
-    prop = uecho_property_copy(src_prop);
-    if (!src_prop)
+    prop = uecho_property_copy(srcProp);
+    if (!srcProp)
       continue;
     uecho_message_addproperty(msg, prop);
   }
@@ -1009,17 +1009,17 @@ bool uecho_message_set(uEchoMessage* msg, uEchoMessage* src_msg)
  * uecho_message_copy
  ****************************************/
 
-uEchoMessage* uecho_message_copy(uEchoMessage* src_msg)
+uEchoMessage* uecho_message_copy(uEchoMessage* srcMsg)
 {
-  uEchoMessage* new_msg;
+  uEchoMessage* newMsg;
 
-  new_msg = uecho_message_new();
-  if (!new_msg)
+  newMsg = uecho_message_new();
+  if (!newMsg)
     return NULL;
 
-  uecho_message_set(new_msg, src_msg);
+  uecho_message_set(newMsg, srcMsg);
 
-  return new_msg;
+  return newMsg;
 }
 
 /****************************************
@@ -1028,15 +1028,15 @@ uEchoMessage* uecho_message_copy(uEchoMessage* src_msg)
 
 bool uecho_message_equals(uEchoMessage* msg1, uEchoMessage* msg2)
 {
-  size_t msg_size;
-  byte *msg1_bytes, *msg2_bytes;
+  size_t msgSize;
+  byte *msg1Bytes, *msg2Bytes;
 
-  msg_size = uecho_message_size(msg1);
-  if (msg_size != uecho_message_size(msg2))
+  msgSize = uecho_message_size(msg1);
+  if (msgSize != uecho_message_size(msg2))
     return false;
 
-  msg1_bytes = uecho_message_getbytes(msg1);
-  msg2_bytes = uecho_message_getbytes(msg2);
+  msg1Bytes = uecho_message_getbytes(msg1);
+  msg2Bytes = uecho_message_getbytes(msg2);
 
-  return (memcmp(msg1_bytes, msg2_bytes, msg_size) == 0) ? true : false;
+  return (memcmp(msg1Bytes, msg2Bytes, msgSize) == 0) ? true : false;
 }

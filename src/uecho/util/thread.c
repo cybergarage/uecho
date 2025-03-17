@@ -113,24 +113,24 @@ bool uecho_thread_start(uEchoThread* thread)
 #if defined(WIN32)
   thread->hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)thread, 0, &thread->threadID);
 #else
-  pthread_attr_t thread_attr;
-  if (pthread_attr_init(&thread_attr) != 0) {
+  pthread_attr_t threadAttr;
+  if (pthread_attr_init(&threadAttr) != 0) {
     thread->runnableFlag = false;
     return false;
   }
 
-  if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) != 0) {
+  if (pthread_attr_setdetachstate(&threadAttr, PTHREAD_CREATE_DETACHED) != 0) {
     thread->runnableFlag = false;
-    pthread_attr_destroy(&thread_attr);
+    pthread_attr_destroy(&threadAttr);
     return false;
   }
 
-  if (pthread_create(&thread->pThread, &thread_attr, posix_thread_proc, thread) != 0) {
+  if (pthread_create(&thread->pThread, &threadAttr, posix_thread_proc, thread) != 0) {
     thread->runnableFlag = false;
-    pthread_attr_destroy(&thread_attr);
+    pthread_attr_destroy(&threadAttr);
     return false;
   }
-  pthread_attr_destroy(&thread_attr);
+  pthread_attr_destroy(&threadAttr);
 #endif
 
   return true;

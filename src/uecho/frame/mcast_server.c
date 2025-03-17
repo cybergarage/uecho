@@ -56,7 +56,7 @@ bool uecho_mcast_server_delete(uEchoMcastServer* server)
  * uecho_mcast_server_open
  ****************************************/
 
-bool uecho_mcast_server_open(uEchoMcastServer* server, const char* bind_addr)
+bool uecho_mcast_server_open(uEchoMcastServer* server, const char* bindAddr)
 {
   uEchoSocketOption opt;
 
@@ -71,12 +71,12 @@ bool uecho_mcast_server_open(uEchoMcastServer* server, const char* bind_addr)
   uecho_socket_option_setreuseaddress(&opt, true);
   uecho_socket_option_setmulticastloop(&opt, true);
 
-  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bind_addr, &opt)) {
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, &opt)) {
     uecho_mcast_server_close(server);
     return false;
   }
 
-  if (!uecho_socket_joingroup(server->socket, uEchoMulticastAddr, bind_addr)) {
+  if (!uecho_socket_joingroup(server->socket, uEchoMulticastAddr, bindAddr)) {
     uecho_mcast_server_close(server);
     return false;
   }
@@ -134,8 +134,8 @@ bool uecho_mcast_server_addobserver(uEchoMcastServer* server, void* obj, uEchoMe
 static void uecho_mcast_server_action(uEchoThread* thread)
 {
   uEchoMcastServer* server;
-  uEchoDatagramPacket* dgm_pkt;
-  ssize_t dgm_pkt_len;
+  uEchoDatagramPacket* dgmPkt;
+  ssize_t dgmPktLen;
   uEchoMessage* msg;
 
   server = (uEchoMcastServer*)uecho_thread_getuserdata(thread);
@@ -147,18 +147,18 @@ static void uecho_mcast_server_action(uEchoThread* thread)
     return;
 
   while (uecho_thread_isrunnable(thread)) {
-    dgm_pkt = uecho_socket_datagram_packet_new();
-    if (!dgm_pkt)
+    dgmPkt = uecho_socket_datagram_packet_new();
+    if (!dgmPkt)
       break;
 
-    dgm_pkt_len = uecho_socket_recv(server->socket, dgm_pkt);
-    if (dgm_pkt_len < 0) {
-      uecho_socket_datagram_packet_delete(dgm_pkt);
+    dgmPktLen = uecho_socket_recv(server->socket, dgmPkt);
+    if (dgmPktLen < 0) {
+      uecho_socket_datagram_packet_delete(dgmPkt);
       break;
     }
 
     if (!uecho_thread_isrunnable(thread) || !uecho_socket_isbound(server->socket)) {
-      uecho_socket_datagram_packet_delete(dgm_pkt);
+      uecho_socket_datagram_packet_delete(dgmPkt);
       break;
     }
 
@@ -166,14 +166,14 @@ static void uecho_mcast_server_action(uEchoThread* thread)
     if (!msg)
       continue;
 
-    if (uecho_message_parsepacket(msg, dgm_pkt)) {
+    if (uecho_message_parsepacket(msg, dgmPkt)) {
       uecho_message_observer_manager_perform(server->msgMgr, msg);
     }
     else {
-      uecho_net_datagram_packet_error(UECHO_LOG_NET_PREFIX_RECV, dgm_pkt);
+      uecho_net_datagram_packet_error(UECHO_LOG_NET_PREFIX_RECV, dgmPkt);
     }
 
-    uecho_socket_datagram_packet_delete(dgm_pkt);
+    uecho_socket_datagram_packet_delete(dgmPkt);
     uecho_message_delete(msg);
   }
 }
@@ -253,9 +253,9 @@ bool uecho_mcast_server_isrunning(uEchoMcastServer* server)
  * uecho_mcast_server_post
  ****************************************/
 
-bool uecho_mcast_server_post(uEchoMcastServer* server, const byte* msg, size_t msg_len)
+bool uecho_mcast_server_post(uEchoMcastServer* server, const byte* msg, size_t msgLen)
 {
-  size_t sent_len = 0;
+  size_t sentLen = 0;
 
   if (!server)
     return false;
@@ -263,7 +263,7 @@ bool uecho_mcast_server_post(uEchoMcastServer* server, const byte* msg, size_t m
   if (!server->socket)
     return false;
 
-  sent_len = uecho_socket_sendto(server->socket, uEchoMulticastAddr, uEchoUdpPort, msg, msg_len);
+  sentLen = uecho_socket_sendto(server->socket, uEchoMulticastAddr, uEchoUdpPort, msg, msgLen);
 
-  return (sent_len == msg_len) ? true : false;
+  return (sentLen == msgLen) ? true : false;
 }

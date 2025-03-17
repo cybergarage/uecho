@@ -339,14 +339,14 @@ bool uecho_node_setobject(uEchoNode* node, uEchoObjectCode code)
 
 bool uecho_node_addobject(uEchoNode* node, uEchoObject* obj)
 {
-  uEchoObjectCode obj_code;
-  uEchoClassCode cls_code;
+  uEchoObjectCode objCode;
+  uEchoClassCode clsCode;
 
   if (!node || !obj)
     return false;
 
-  obj_code = uecho_object_getcode(obj);
-  if (uecho_node_getobjectbycode(node, obj_code))
+  objCode = uecho_object_getcode(obj);
+  if (uecho_node_getobjectbycode(node, objCode))
     return false;
 
   if (!uecho_objectlist_add(node->objects, obj))
@@ -354,8 +354,8 @@ bool uecho_node_addobject(uEchoNode* node, uEchoObject* obj)
 
   uecho_object_setparentnode(obj, node);
 
-  cls_code = uecho_objectcode2classcode(obj_code);
-  uecho_classlist_set(node->classes, cls_code);
+  clsCode = uecho_objectcode2classcode(objCode);
+  uecho_classlist_set(node->classes, clsCode);
 
   if (!uecho_node_updatenodeprofileclass(node))
     return false;
@@ -369,14 +369,14 @@ bool uecho_node_addobject(uEchoNode* node, uEchoObject* obj)
 
 bool uecho_node_start(uEchoNode* node)
 {
-  bool all_actions_succeeded = true;
+  bool allActionsSucceeded = true;
 
-  all_actions_succeeded &= uecho_server_start(node->server);
+  allActionsSucceeded &= uecho_server_start(node->server);
 
   // 4.3.1 Basic Sequence for ECHONET Lite Node Startup
-  all_actions_succeeded &= uecho_node_announce(node);
+  allActionsSucceeded &= uecho_node_announce(node);
 
-  return all_actions_succeeded;
+  return allActionsSucceeded;
 }
 
 /****************************************
@@ -385,14 +385,14 @@ bool uecho_node_start(uEchoNode* node)
 
 bool uecho_node_stop(uEchoNode* node)
 {
-  bool all_actions_succeeded = true;
+  bool allActionsSucceeded = true;
 
   if (!node)
     return false;
 
-  all_actions_succeeded &= uecho_server_stop(node->server);
+  allActionsSucceeded &= uecho_server_stop(node->server);
 
-  return all_actions_succeeded;
+  return allActionsSucceeded;
 }
 
 /****************************************
@@ -456,22 +456,22 @@ uEchoTID uecho_node_getnexttid(uEchoNode* node)
  * uecho_node_announcemessagebytes
  ****************************************/
 
-bool uecho_node_announcemessagebytes(uEchoNode* node, byte* msg_bytes, size_t msg_len)
+bool uecho_node_announcemessagebytes(uEchoNode* node, byte* msgBytes, size_t msgLen)
 {
-  if (!node || !msg_bytes || (msg_len <= 0))
+  if (!node || !msgBytes || (msgLen <= 0))
     return false;
-  return uecho_server_postannounce(node->server, msg_bytes, msg_len);
+  return uecho_server_postannounce(node->server, msgBytes, msgLen);
 }
 
 /****************************************
  * uecho_node_sendmessagebytes
  ****************************************/
 
-bool uecho_node_sendmessagebytes(uEchoNode* node, const char* addr, byte* msg_bytes, size_t msg_len)
+bool uecho_node_sendmessagebytes(uEchoNode* node, const char* addr, byte* msgBytes, size_t msgLen)
 {
-  if (!node || !addr || !msg_bytes || (msg_len <= 0))
+  if (!node || !addr || !msgBytes || (msgLen <= 0))
     return false;
-  return uecho_server_postresponse(node->server, addr, msg_bytes, msg_len);
+  return uecho_server_postresponse(node->server, addr, msgBytes, msgLen);
 }
 
 /****************************************
@@ -480,17 +480,17 @@ bool uecho_node_sendmessagebytes(uEchoNode* node, const char* addr, byte* msg_by
 
 bool uecho_node_announcemessage(uEchoNode* node, uEchoMessage* msg)
 {
-  uEchoObject* node_prof_obj;
+  uEchoObject* nodeProfObj;
 
   if (!node || !msg)
     return false;
 
   uecho_message_settid(msg, uecho_node_getnexttid(node));
 
-  node_prof_obj = uecho_node_getnodeprofileclassobject(node);
-  if (!node_prof_obj)
+  nodeProfObj = uecho_node_getnodeprofileclassobject(node);
+  if (!nodeProfObj)
     return false;
-  uecho_message_setsourceobjectcode(msg, uecho_object_getcode(node_prof_obj));
+  uecho_message_setsourceobjectcode(msg, uecho_object_getcode(nodeProfObj));
 
   return uecho_node_announcemessagebytes(node, uecho_message_getbytes(msg), uecho_message_size(msg));
 }
@@ -499,21 +499,21 @@ bool uecho_node_announcemessage(uEchoNode* node, uEchoMessage* msg)
  * uecho_node_sendmessage
  ****************************************/
 
-bool uecho_node_sendmessage(uEchoNode* node, uEchoNode* dst_node, uEchoMessage* msg)
+bool uecho_node_sendmessage(uEchoNode* node, uEchoNode* dstNode, uEchoMessage* msg)
 {
-  uEchoObject* node_prof_obj;
+  uEchoObject* nodeProfObj;
 
-  if (!node || !dst_node || !msg)
+  if (!node || !dstNode || !msg)
     return false;
 
   uecho_message_settid(msg, uecho_node_getnexttid(node));
 
-  node_prof_obj = uecho_node_getnodeprofileclassobject(node);
-  if (!node_prof_obj)
+  nodeProfObj = uecho_node_getnodeprofileclassobject(node);
+  if (!nodeProfObj)
     return false;
-  uecho_message_setsourceobjectcode(msg, uecho_object_getcode(node_prof_obj));
+  uecho_message_setsourceobjectcode(msg, uecho_object_getcode(nodeProfObj));
 
-  return uecho_node_sendmessagebytes(node, uecho_node_getaddress(dst_node), uecho_message_getbytes(msg), uecho_message_size(msg));
+  return uecho_node_sendmessagebytes(node, uecho_node_getaddress(dstNode), uecho_message_getbytes(msg), uecho_message_size(msg));
 }
 
 /****************************************
@@ -523,7 +523,7 @@ bool uecho_node_sendmessage(uEchoNode* node, uEchoNode* dst_node, uEchoMessage* 
 bool uecho_node_announceproperty(uEchoNode* node, uEchoObject* obj, uEchoProperty* prop)
 {
   uEchoMessage* msg;
-  bool is_success;
+  bool isSuccess;
 
   if (!node || !obj || !prop)
     return false;
@@ -537,11 +537,11 @@ bool uecho_node_announceproperty(uEchoNode* node, uEchoObject* obj, uEchoPropert
   uecho_message_setdestinationobjectcode(msg, uEchoNodeProfileObject);
   uecho_message_addproperty(msg, uecho_property_copy(prop));
 
-  is_success = uecho_node_announcemessage(node, msg);
+  isSuccess = uecho_node_announcemessage(node, msg);
 
   uecho_message_delete(msg);
 
-  return is_success;
+  return isSuccess;
 }
 
 /****************************************
@@ -550,16 +550,16 @@ bool uecho_node_announceproperty(uEchoNode* node, uEchoObject* obj, uEchoPropert
 
 bool uecho_node_announce(uEchoNode* node)
 {
-  uEchoObject* node_obj;
-  uEchoProperty* node_prop;
+  uEchoObject* nodeObj;
+  uEchoProperty* nodeProp;
 
-  node_obj = uecho_node_getnodeprofileclassobject(node);
-  if (!node_obj)
+  nodeObj = uecho_node_getnodeprofileclassobject(node);
+  if (!nodeObj)
     return false;
 
-  node_prop = uecho_object_getproperty(node_obj, uEchoNodeProfileClassInstanceListNotification);
-  if (!node_prop)
+  nodeProp = uecho_object_getproperty(nodeObj, uEchoNodeProfileClassInstanceListNotification);
+  if (!nodeProp)
     return false;
 
-  return uecho_node_announceproperty(node, node_obj, node_prop);
+  return uecho_node_announceproperty(node, nodeObj, nodeProp);
 }

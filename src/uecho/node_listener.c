@@ -32,22 +32,22 @@ bool uecho_node_isselfobjectmessage(uEchoNode* node, uEchoMessage* msg)
  * uecho_object_notifyrequestproperty
  ****************************************/
 
-bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoProperty* obj_prop, uEchoEsv msg_esv, uEchoProperty* msg_prop)
+bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoProperty* objProp, uEchoEsv msgEsv, uEchoProperty* msgProp)
 {
-  if (!obj || !msg_prop)
+  if (!obj || !msgProp)
     return false;
 
-  bool are_all_handler_accepted = true;
+  bool areAllHandlerAccepted = true;
 
   for (uEchoObjectPropertyObserver* obs = uecho_object_property_observer_manager_getobservers(obj->propListenerMgr); obs; obs = uecho_object_property_observer_next(obs)) {
-    if (msg_esv != uecho_object_property_observer_getesv(obs))
+    if (msgEsv != uecho_object_property_observer_getesv(obs))
       continue;
-    if (uecho_property_getcode(msg_prop) != uecho_object_property_observer_getpropetycode(obs))
+    if (uecho_property_getcode(msgProp) != uecho_object_property_observer_getpropetycode(obs))
       continue;
-    are_all_handler_accepted &= obs->handler(obj, obj_prop, msg_esv, uecho_property_getdatasize(msg_prop), uecho_property_getdata(msg_prop));
+    areAllHandlerAccepted &= obs->handler(obj, objProp, msgEsv, uecho_property_getdatasize(msgProp), uecho_property_getdata(msgProp));
   }
 
-  return are_all_handler_accepted;
+  return areAllHandlerAccepted;
 }
 
 /****************************************
@@ -56,186 +56,186 @@ bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoProperty* obj_pro
 
 typedef bool (*uEchoMessageAddPropertyFunc)(uEchoMessage* msg, uEchoProperty* prop);
 
-bool uecho_node_handlerequestmessage(uEchoObject* dest_obj, uEchoEsv msg_esv, byte opc, uEchoProperty** ep, uEchoMessageAddPropertyFunc message_addproperty_func, uEchoMessage* res_msg)
+bool uecho_node_handlerequestmessage(uEchoObject* destObj, uEchoEsv msgEsv, byte opc, uEchoProperty** ep, uEchoMessageAddPropertyFunc messageAddpropertyFunc, uEchoMessage* resMsg)
 {
-  uEchoPropertyCode msg_propCode;
-  uEchoProperty *msg_prop, *dest_prop, *res_prop;
-  int accepted_request_cnt, n;
+  uEchoPropertyCode msgPropCode;
+  uEchoProperty *msgProp, *destProp, *resProp;
+  int acceptedRequestCnt, n;
 
-  accepted_request_cnt = 0;
+  acceptedRequestCnt = 0;
   for (n = 0; n < opc; n++) {
-    msg_prop = ep[n];
-    if (!msg_prop)
+    msgProp = ep[n];
+    if (!msgProp)
       continue;
-    msg_propCode = uecho_property_getcode(msg_prop);
+    msgPropCode = uecho_property_getcode(msgProp);
 
-    res_prop = uecho_property_new();
-    if (!res_prop)
+    resProp = uecho_property_new();
+    if (!resProp)
       continue;
-    uecho_property_setcode(res_prop, msg_propCode);
+    uecho_property_setcode(resProp, msgPropCode);
 
-    dest_prop = uecho_object_getproperty(dest_obj, msg_propCode);
-    if (dest_prop) {
-      if (uecho_object_notifyrequestproperty(dest_obj, dest_prop, msg_esv, msg_prop)) {
-        accepted_request_cnt++;
-        switch (msg_esv) {
+    destProp = uecho_object_getproperty(destObj, msgPropCode);
+    if (destProp) {
+      if (uecho_object_notifyrequestproperty(destObj, destProp, msgEsv, msgProp)) {
+        acceptedRequestCnt++;
+        switch (msgEsv) {
         case uEchoEsvWriteRequest:
         case uEchoEsvWriteRequestResponseRequired:
-          uecho_property_setdata(dest_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
+          uecho_property_setdata(destProp, uecho_property_getdata(msgProp), uecho_property_getdatasize(msgProp));
           break;
         }
-        switch (msg_esv) {
+        switch (msgEsv) {
         case uEchoEsvReadRequest:
         case uEchoEsvNotificationRequest:
         case uEchoEsvNotificationResponseRequired:
-          uecho_property_setdata(res_prop, uecho_property_getdata(dest_prop), uecho_property_getdatasize(dest_prop));
+          uecho_property_setdata(resProp, uecho_property_getdata(destProp), uecho_property_getdatasize(destProp));
           break;
         }
       }
       else {
-        switch (msg_esv) {
+        switch (msgEsv) {
         case uEchoEsvWriteRequestResponseRequired:
-          uecho_property_setdata(res_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
+          uecho_property_setdata(resProp, uecho_property_getdata(msgProp), uecho_property_getdatasize(msgProp));
           break;
         }
       }
     }
     else {
-      switch (msg_esv) {
+      switch (msgEsv) {
       case uEchoEsvWriteRequestResponseRequired:
-        uecho_property_setdata(res_prop, uecho_property_getdata(msg_prop), uecho_property_getdatasize(msg_prop));
+        uecho_property_setdata(resProp, uecho_property_getdata(msgProp), uecho_property_getdatasize(msgProp));
         break;
       }
     }
 
-    message_addproperty_func(res_msg, res_prop);
+    messageAddpropertyFunc(resMsg, resProp);
   }
 
-  return accepted_request_cnt;
+  return acceptedRequestCnt;
 }
 
-void uecho_node_servermessagelistener(uEchoNode* node, uEchoMessage* req_msg)
+void uecho_node_servermessagelistener(uEchoNode* node, uEchoMessage* reqMsg)
 {
-  uEchoEsv req_esv, res_esv;
-  uEchoObjectCode msg_dst_obj_code;
-  uEchoObject* msg_dest_obj;
-  int all_request_cnt, accepted_request_cnt;
-  uEchoMessage* res_msg;
-  bool is_response_required;
-  byte* res_msg_bytes;
-  size_t res_msg_len;
+  uEchoEsv reqEsv, resEsv;
+  uEchoObjectCode msgDstObjCode;
+  uEchoObject* msgDestObj;
+  int allRequestCnt, acceptedRequestCnt;
+  uEchoMessage* resMsg;
+  bool isResponseRequired;
+  byte* resMsgBytes;
+  size_t resMsgLen;
   uEchoNode* parentNode;
 
-  if (!node || !req_msg)
+  if (!node || !reqMsg)
     return;
 
   if (node->msgListener) {
-    node->msgListener(node, req_msg);
+    node->msgListener(node, reqMsg);
   }
 
   // 4.2.2 Basic Sequences for Object Control in General
   // (A) | Processing when the controlled object does not exist
 
-  msg_dst_obj_code = uecho_message_getdestinationobjectcode(req_msg);
-  msg_dest_obj = uecho_node_getobjectbycode(node, msg_dst_obj_code);
+  msgDstObjCode = uecho_message_getdestinationobjectcode(reqMsg);
+  msgDestObj = uecho_node_getobjectbycode(node, msgDstObjCode);
 
-  if (!msg_dest_obj)
+  if (!msgDestObj)
     return;
 
-  if (msg_dest_obj->allMsgListener) {
-    msg_dest_obj->allMsgListener(msg_dest_obj, req_msg);
+  if (msgDestObj->allMsgListener) {
+    msgDestObj->allMsgListener(msgDestObj, reqMsg);
   }
 
   // 4.2.2 Basic Sequences for Object Control in General
   // (B) Processing when the controlled object exists,
   // except when ESV = 0x60 to 0x63, 0x6E and 0x74
 
-  req_esv = uecho_message_getesv(req_msg);
-  if (!uecho_esv_isrequest(req_esv))
+  reqEsv = uecho_message_getesv(reqMsg);
+  if (!uecho_esv_isrequest(reqEsv))
     return;
 
-  res_msg = uecho_message_new();
-  if (!res_msg)
+  resMsg = uecho_message_new();
+  if (!resMsg)
     return;
-  uecho_message_settid(res_msg, uecho_message_gettid(req_msg));
-  uecho_message_setsourceobjectcode(res_msg, uecho_message_getdestinationobjectcode(req_msg));
-  uecho_message_setdestinationobjectcode(res_msg, uecho_message_getsourceobjectcode(req_msg));
+  uecho_message_settid(resMsg, uecho_message_gettid(reqMsg));
+  uecho_message_setsourceobjectcode(resMsg, uecho_message_getdestinationobjectcode(reqMsg));
+  uecho_message_setdestinationobjectcode(resMsg, uecho_message_getsourceobjectcode(reqMsg));
 
-  accepted_request_cnt = 0;
-  if (uecho_message_isreadwritemessage(req_msg)) {
-    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, uEchoEsvWriteRequestResponseRequired, req_msg->opcSet, req_msg->epSet, uecho_message_addpropertyset, res_msg);
-    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, uEchoEsvReadRequest, req_msg->opcGet, req_msg->epGet, uecho_message_addpropertyget, res_msg);
+  acceptedRequestCnt = 0;
+  if (uecho_message_isreadwritemessage(reqMsg)) {
+    acceptedRequestCnt += uecho_node_handlerequestmessage(msgDestObj, uEchoEsvWriteRequestResponseRequired, reqMsg->opcSet, reqMsg->epSet, uecho_message_addpropertyset, resMsg);
+    acceptedRequestCnt += uecho_node_handlerequestmessage(msgDestObj, uEchoEsvReadRequest, reqMsg->opcGet, reqMsg->epGet, uecho_message_addpropertyget, resMsg);
   }
   else {
-    accepted_request_cnt += uecho_node_handlerequestmessage(msg_dest_obj, req_esv, req_msg->opc, req_msg->ep, uecho_message_addproperty, res_msg);
+    acceptedRequestCnt += uecho_node_handlerequestmessage(msgDestObj, reqEsv, reqMsg->opc, reqMsg->ep, uecho_message_addproperty, resMsg);
   }
 
-  all_request_cnt = req_msg->opc + req_msg->opcSet + req_msg->opcGet;
-  is_response_required = true;
+  allRequestCnt = reqMsg->opc + reqMsg->opcSet + reqMsg->opcGet;
+  isResponseRequired = true;
 
-  res_esv = req_esv;
-  switch (req_esv) {
+  resEsv = reqEsv;
+  switch (reqEsv) {
   // 4.2.3.1 Property value write service (no response required) [0x60, 0x50]
   case uEchoEsvWriteRequest: {
-    if (accepted_request_cnt == all_request_cnt)
-      is_response_required = false;
+    if (acceptedRequestCnt == allRequestCnt)
+      isResponseRequired = false;
     else
-      res_esv = uEchoEsvWriteRequestError;
+      resEsv = uEchoEsvWriteRequestError;
 
   } break;
   // 4.2.3.2 Property value write service (response required) [0x61,0x71,0x51]
   case uEchoEsvWriteRequestResponseRequired: {
-    if (accepted_request_cnt == all_request_cnt)
-      res_esv = uEchoEsvWriteResponse;
+    if (acceptedRequestCnt == allRequestCnt)
+      resEsv = uEchoEsvWriteResponse;
     else
-      res_esv = uEchoEsvWriteRequestError;
+      resEsv = uEchoEsvWriteRequestError;
 
   } break;
     // 4.2.3.3 Property value read service [0x62,0x72,0x52]
   case uEchoEsvReadRequest: {
-    if (accepted_request_cnt == all_request_cnt)
-      res_esv = uEchoEsvReadResponse;
+    if (acceptedRequestCnt == allRequestCnt)
+      resEsv = uEchoEsvReadResponse;
     else
-      res_esv = uEchoEsvReadRequestError;
+      resEsv = uEchoEsvReadRequestError;
   } break;
   // 4.2.3.4 Property value write & read service [0x6E,0x7E,0x5E]
   case uEchoEsvWriteReadRequest: {
-    if (accepted_request_cnt == all_request_cnt)
-      res_esv = uEchoEsvWriteReadResponse;
+    if (acceptedRequestCnt == allRequestCnt)
+      resEsv = uEchoEsvWriteReadResponse;
     else
-      res_esv = uEchoEsvWriteReadRequestError;
+      resEsv = uEchoEsvWriteReadRequestError;
   } break;
   // 4.2.3.5 Property value notification service [0x63,0x73,0x53]
   case uEchoEsvNotificationRequest: {
-    if (accepted_request_cnt == all_request_cnt)
-      res_esv = uEchoEsvNotification;
+    if (acceptedRequestCnt == allRequestCnt)
+      resEsv = uEchoEsvNotification;
     else
-      res_esv = uEchoEsvNotificationRequestError;
+      resEsv = uEchoEsvNotificationRequestError;
   } break;
     // 4.2.3.6 Property value notification service (response required) [0x74, 0x7A]
   case uEchoEsvNotificationResponseRequired: {
-    if (accepted_request_cnt == all_request_cnt)
-      res_esv = uEchoEsvNotificationResponse;
+    if (acceptedRequestCnt == allRequestCnt)
+      resEsv = uEchoEsvNotificationResponse;
     else
-      is_response_required = false;
+      isResponseRequired = false;
   } break;
   default: {
-    is_response_required = false;
+    isResponseRequired = false;
   } break;
   }
 
-  parentNode = uecho_object_getparentnode(msg_dest_obj);
-  if (is_response_required && parentNode) {
-    uecho_message_setesv(res_msg, res_esv);
-    res_msg_bytes = uecho_message_getbytes(res_msg);
-    res_msg_len = uecho_message_size(res_msg);
-    if (uecho_message_getesv(res_msg) == uEchoEsvNotification) {
-      uecho_node_announcemessagebytes(parentNode, res_msg_bytes, res_msg_len);
+  parentNode = uecho_object_getparentnode(msgDestObj);
+  if (isResponseRequired && parentNode) {
+    uecho_message_setesv(resMsg, resEsv);
+    resMsgBytes = uecho_message_getbytes(resMsg);
+    resMsgLen = uecho_message_size(resMsg);
+    if (uecho_message_getesv(resMsg) == uEchoEsvNotification) {
+      uecho_node_announcemessagebytes(parentNode, resMsgBytes, resMsgLen);
     }
     else {
-      uecho_node_sendmessagebytes(parentNode, uecho_message_getsourceaddress(req_msg), res_msg_bytes, res_msg_len);
+      uecho_node_sendmessagebytes(parentNode, uecho_message_getsourceaddress(reqMsg), resMsgBytes, resMsgLen);
     }
   }
 
-  uecho_message_delete(res_msg);
+  uecho_message_delete(resMsg);
 }

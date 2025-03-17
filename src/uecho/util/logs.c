@@ -17,13 +17,13 @@
  * uecho_net_socket_log
  ****************************************/
 
-void uecho_net_socket_log(int severity, const char* prefix, const char* fromAddr, const char* toAddr, const byte* msg_bytes, size_t msg_len)
+void uecho_net_socket_log(int severity, const char* prefix, const char* fromAddr, const char* toAddr, const byte* msgBytes, size_t msgLen)
 {
   char buf[256];
   size_t offset;
   size_t n;
 
-  if (msg_len <= 0)
+  if (msgLen <= 0)
     return;
 
   offset = 0;
@@ -33,8 +33,8 @@ void uecho_net_socket_log(int severity, const char* prefix, const char* fromAddr
   }
   snprintf((buf + offset), (sizeof(buf) - offset), "%-15s -> %-15s ", fromAddr, toAddr);
   offset = strlen(buf);
-  for (n = 0; n < msg_len; n++) {
-    snprintf((buf + offset), (sizeof(buf) - offset), "%02X", msg_bytes[n]);
+  for (n = 0; n < msgLen; n++) {
+    snprintf((buf + offset), (sizeof(buf) - offset), "%02X", msgBytes[n]);
     offset += 2;
   }
 
@@ -45,14 +45,14 @@ void uecho_net_socket_log(int severity, const char* prefix, const char* fromAddr
  * uecho_net_socket_*
  ****************************************/
 
-void uecho_net_socket_debug(const char* prefix, const char* fromAddr, const char* toAddr, const byte* pkt_bytes, size_t pkt_len)
+void uecho_net_socket_debug(const char* prefix, const char* fromAddr, const char* toAddr, const byte* pktBytes, size_t pktLen)
 {
-  return uecho_net_socket_log(UECHO_LOG_DEBUG, prefix, fromAddr, toAddr, pkt_bytes, pkt_len);
+  return uecho_net_socket_log(UECHO_LOG_DEBUG, prefix, fromAddr, toAddr, pktBytes, pktLen);
 }
 
-void uecho_net_socket_error(const char* prefix, const char* fromAddr, const char* toAddr, const byte* pkt_bytes, size_t pkt_len)
+void uecho_net_socket_error(const char* prefix, const char* fromAddr, const char* toAddr, const byte* pktBytes, size_t pktLen)
 {
-  return uecho_net_socket_log(UECHO_LOG_ERROR, prefix, fromAddr, toAddr, pkt_bytes, pkt_len);
+  return uecho_net_socket_log(UECHO_LOG_ERROR, prefix, fromAddr, toAddr, pktBytes, pktLen);
 }
 
 /****************************************

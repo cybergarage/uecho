@@ -41,7 +41,7 @@ uEchoController* uecho_controller_new(void)
   uecho_controller_setmessagelistener(ctrl, NULL);
   uecho_controller_setnodelistener(ctrl, NULL);
   uecho_controller_setpostresponsemessage(ctrl, NULL);
-  uecho_controller_setpostwaitemilitime(ctrl, uEchoControllerPostResponseMaxClockTime);
+  uecho_controller_setpostwaitemilitime(ctrl, UECHO_CONTROLLER_POST_RESPONSE_MAX_CLOCK_TIME);
 
   return ctrl;
 }

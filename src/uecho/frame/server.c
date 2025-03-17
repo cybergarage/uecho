@@ -74,21 +74,21 @@ bool uecho_server_isboundaddress(uEchoServer* server, const char* addr)
 
 bool uecho_server_start(uEchoServer* server)
 {
-  bool all_actions_succeeded = true;
+  bool allActionsSucceeded = true;
   uEchoMessageObserver* observer;
   uEchoMessageHandler handler;
   void* obj;
-  uEchoUdpServer* udp_server;
-  uEchoMcastServer* mcast_server;
+  uEchoUdpServer* udpServer;
+  uEchoMcastServer* mcastServer;
 
   if (!server)
     return false;
 
   uecho_server_stop(server);
 
-  all_actions_succeeded &= uecho_mcast_serverlist_open(server->mcastServers);
+  allActionsSucceeded &= uecho_mcast_serverlist_open(server->mcastServers);
   if (uecho_server_isudpserverenabled(server)) {
-    all_actions_succeeded &= uecho_udp_serverlist_open(server->udpServers);
+    allActionsSucceeded &= uecho_udp_serverlist_open(server->udpServers);
   }
 
   // Add message observers
@@ -96,27 +96,27 @@ bool uecho_server_start(uEchoServer* server)
     handler = uecho_message_observer_gethandler(observer);
     obj = uecho_message_observer_getobjcet(observer);
     if (!handler || !obj) {
-      all_actions_succeeded = false;
+      allActionsSucceeded = false;
       continue;
     }
-    for (udp_server = uecho_udp_serverlist_gets(server->udpServers); udp_server; udp_server = uecho_udp_server_next(udp_server)) {
-      all_actions_succeeded &= uecho_udp_server_addobserver(udp_server, obj, handler);
+    for (udpServer = uecho_udp_serverlist_gets(server->udpServers); udpServer; udpServer = uecho_udp_server_next(udpServer)) {
+      allActionsSucceeded &= uecho_udp_server_addobserver(udpServer, obj, handler);
     }
-    for (mcast_server = uecho_mcast_serverlist_gets(server->mcastServers); mcast_server; mcast_server = uecho_mcast_server_next(mcast_server)) {
-      all_actions_succeeded &= uecho_mcast_server_addobserver(mcast_server, obj, handler);
+    for (mcastServer = uecho_mcast_serverlist_gets(server->mcastServers); mcastServer; mcastServer = uecho_mcast_server_next(mcastServer)) {
+      allActionsSucceeded &= uecho_mcast_server_addobserver(mcastServer, obj, handler);
     }
   }
 
-  all_actions_succeeded &= uecho_mcast_serverlist_start(server->mcastServers);
+  allActionsSucceeded &= uecho_mcast_serverlist_start(server->mcastServers);
   if (uecho_server_isudpserverenabled(server)) {
-    all_actions_succeeded &= uecho_udp_serverlist_start(server->udpServers);
+    allActionsSucceeded &= uecho_udp_serverlist_start(server->udpServers);
   }
 
-  if (!all_actions_succeeded) {
+  if (!allActionsSucceeded) {
     uecho_server_stop(server);
   }
 
-  return all_actions_succeeded;
+  return allActionsSucceeded;
 }
 
 /****************************************
@@ -125,22 +125,22 @@ bool uecho_server_start(uEchoServer* server)
 
 bool uecho_server_stop(uEchoServer* server)
 {
-  bool all_actions_succeeded;
+  bool allActionsSucceeded;
 
   if (!server)
     return false;
 
-  all_actions_succeeded = true;
+  allActionsSucceeded = true;
 
-  all_actions_succeeded &= uecho_mcast_serverlist_close(server->mcastServers);
-  all_actions_succeeded &= uecho_mcast_serverlist_stop(server->mcastServers);
+  allActionsSucceeded &= uecho_mcast_serverlist_close(server->mcastServers);
+  allActionsSucceeded &= uecho_mcast_serverlist_stop(server->mcastServers);
   uecho_udp_serverlist_clear(server->mcastServers);
 
-  all_actions_succeeded &= uecho_udp_serverlist_close(server->udpServers);
-  all_actions_succeeded &= uecho_udp_serverlist_stop(server->udpServers);
+  allActionsSucceeded &= uecho_udp_serverlist_close(server->udpServers);
+  allActionsSucceeded &= uecho_udp_serverlist_stop(server->udpServers);
   uecho_udp_serverlist_clear(server->udpServers);
 
-  return all_actions_succeeded;
+  return allActionsSucceeded;
 }
 
 /****************************************
@@ -149,19 +149,19 @@ bool uecho_server_stop(uEchoServer* server)
 
 bool uecho_server_isrunning(uEchoServer* server)
 {
-  bool all_actions_succeeded;
+  bool allActionsSucceeded;
 
   if (!server)
     return false;
 
-  all_actions_succeeded = true;
-  all_actions_succeeded &= uecho_mcast_serverlist_isrunning(server->mcastServers);
+  allActionsSucceeded = true;
+  allActionsSucceeded &= uecho_mcast_serverlist_isrunning(server->mcastServers);
 
   if (uecho_server_isudpserverenabled(server)) {
-    all_actions_succeeded &= uecho_udp_serverlist_isrunning(server->udpServers);
+    allActionsSucceeded &= uecho_udp_serverlist_isrunning(server->udpServers);
   }
 
-  return all_actions_succeeded;
+  return allActionsSucceeded;
 }
 
 /****************************************
@@ -170,10 +170,10 @@ bool uecho_server_isrunning(uEchoServer* server)
 
 const char* uecho_server_getaddress(uEchoServer* server)
 {
-  uEchoMcastServer* mcast_server;
+  uEchoMcastServer* mcastServer;
 
-  for (mcast_server = uecho_mcast_serverlist_gets(server->mcastServers); mcast_server; mcast_server = uecho_mcast_server_next(mcast_server)) {
-    return uecho_mcast_server_getaddress(mcast_server);
+  for (mcastServer = uecho_mcast_serverlist_gets(server->mcastServers); mcastServer; mcastServer = uecho_mcast_server_next(mcastServer)) {
+    return uecho_mcast_server_getaddress(mcastServer);
   }
 
   return "";
@@ -183,48 +183,48 @@ const char* uecho_server_getaddress(uEchoServer* server)
  * uecho_server_sendto
  ****************************************/
 
-bool uecho_server_sendto(uEchoServer* server, const char* addr, int port, byte* msg, size_t msg_len)
+bool uecho_server_sendto(uEchoServer* server, const char* addr, int port, byte* msg, size_t msgLen)
 {
   uEchoSocket* sock;
-  size_t sent_byte_cnt;
+  size_t sentByteCnt;
 
   sock = uecho_socket_dgram_new();
   if (!sock)
     return false;
 
-  sent_byte_cnt = uecho_socket_sendto(sock, addr, port, msg, msg_len);
+  sentByteCnt = uecho_socket_sendto(sock, addr, port, msg, msgLen);
   uecho_socket_delete(sock);
-  return (msg_len == sent_byte_cnt) ? true : false;
+  return (msgLen == sentByteCnt) ? true : false;
 }
 
 /****************************************
  * uecho_server_postannounce
  ****************************************/
 
-bool uecho_server_postannounce(uEchoServer* server, byte* msg, size_t msg_len)
+bool uecho_server_postannounce(uEchoServer* server, byte* msg, size_t msgLen)
 {
   if (!server)
     return false;
 
-  if (uecho_mcast_serverlist_post(server->mcastServers, msg, msg_len))
+  if (uecho_mcast_serverlist_post(server->mcastServers, msg, msgLen))
     return true;
 
-  return uecho_server_sendto(server, uEchoMulticastAddr, uEchoUdpPort, msg, msg_len);
+  return uecho_server_sendto(server, uEchoMulticastAddr, uEchoUdpPort, msg, msgLen);
 }
 
 /****************************************
  * uecho_server_postresponse
  ****************************************/
 
-bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg, size_t msg_len)
+bool uecho_server_postresponse(uEchoServer* server, const char* addr, byte* msg, size_t msgLen)
 {
   if (!server)
     return false;
 
-  if (uecho_udp_serverlist_sendto(server->udpServers, addr, msg, msg_len))
+  if (uecho_udp_serverlist_sendto(server->udpServers, addr, msg, msgLen))
     return true;
 
-  return uecho_server_sendto(server, addr, uEchoUdpPort, msg, msg_len);
+  return uecho_server_sendto(server, addr, uEchoUdpPort, msg, msgLen);
 }
 
 /****************************************

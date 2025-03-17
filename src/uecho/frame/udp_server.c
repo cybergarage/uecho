@@ -66,7 +66,7 @@ const char* uecho_udp_server_getaddress(uEchoUdpServer* server)
  * uecho_udp_server_open
  ****************************************/
 
-bool uecho_udp_server_open(uEchoUdpServer* server, const char* bind_addr)
+bool uecho_udp_server_open(uEchoUdpServer* server, const char* bindAddr)
 {
   uEchoSocketOption opt;
 
@@ -81,7 +81,7 @@ bool uecho_udp_server_open(uEchoUdpServer* server, const char* bind_addr)
   uecho_socket_option_setreuseaddress(&opt, true);
   uecho_socket_option_setmulticastloop(&opt, false);
 
-  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bind_addr, &opt)) {
+  if (!uecho_socket_bind(server->socket, uEchoUdpPort, bindAddr, &opt)) {
     uecho_udp_server_close(server);
     return false;
   }
@@ -139,8 +139,8 @@ bool uecho_udp_server_addobserver(uEchoUdpServer* server, void* obj, uEchoMessag
 static void uecho_udp_server_action(uEchoThread* thread)
 {
   uEchoUdpServer* server;
-  uEchoDatagramPacket* dgm_pkt;
-  ssize_t dgm_pkt_len;
+  uEchoDatagramPacket* dgmPkt;
+  ssize_t dgmPktLen;
   uEchoMessage* msg;
 
   server = (uEchoUdpServer*)uecho_thread_getuserdata(thread);
@@ -152,18 +152,18 @@ static void uecho_udp_server_action(uEchoThread* thread)
     return;
 
   while (uecho_thread_isrunnable(thread)) {
-    dgm_pkt = uecho_socket_datagram_packet_new();
-    if (!dgm_pkt)
+    dgmPkt = uecho_socket_datagram_packet_new();
+    if (!dgmPkt)
       break;
 
-    dgm_pkt_len = uecho_socket_recv(server->socket, dgm_pkt);
-    if (dgm_pkt_len < 0) {
-      uecho_socket_datagram_packet_delete(dgm_pkt);
+    dgmPktLen = uecho_socket_recv(server->socket, dgmPkt);
+    if (dgmPktLen < 0) {
+      uecho_socket_datagram_packet_delete(dgmPkt);
       break;
     }
 
     if (!uecho_thread_isrunnable(thread) || !uecho_socket_isbound(server->socket)) {
-      uecho_socket_datagram_packet_delete(dgm_pkt);
+      uecho_socket_datagram_packet_delete(dgmPkt);
       break;
     }
 
@@ -171,14 +171,14 @@ static void uecho_udp_server_action(uEchoThread* thread)
     if (!msg)
       continue;
 
-    if (uecho_message_parsepacket(msg, dgm_pkt)) {
+    if (uecho_message_parsepacket(msg, dgmPkt)) {
       uecho_message_observer_manager_perform(server->msgMgr, msg);
     }
     else {
-      uecho_net_datagram_packet_error(UECHO_LOG_NET_PREFIX_RECV, dgm_pkt);
+      uecho_net_datagram_packet_error(UECHO_LOG_NET_PREFIX_RECV, dgmPkt);
     }
 
-    uecho_socket_datagram_packet_delete(dgm_pkt);
+    uecho_socket_datagram_packet_delete(dgmPkt);
     uecho_message_delete(msg);
   }
 }
