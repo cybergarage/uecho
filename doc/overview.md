@@ -1,6 +1,4 @@
-# uEcho for C
-
-![logo](https://raw.githubusercontent.com/cybergarage/uecho/master/doc/img/logo.png)
+# Overview
 
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/cybergarage/uecho)
 [![Build Status](https://github.com/cybergarage/uecho/actions/workflows/make.yml/badge.svg)](https://github.com/cybergarage/uecho/actions/workflows/make.yml)
@@ -17,22 +15,3 @@ The `uecho` supports to control any [ECHONET Lite][enet] devices or create the s
 To implement IoT controller or devices of [ECHONET Lite][enet], the developer had to understand and implement the communication middleware specification such as the message format and base sequences.
 
 Using The `uecho`, all developer has only to set basic listeners to implement the devices and controllers because The `uecho` handles other requests such as request and notification requests automatically.
-
-## Table of Contents
-
-- [Building and Installation](https://github.com/cybergarage/uecho/blob/master/doc/setup.md)
-- Controller
-  - [Overview of Controller](https://github.com/cybergarage/uecho/blob/master/doc/controller_overview.md)
-  - [Inside of Controller](https://github.com/cybergarage/uecho/blob/master/doc/controller_inside.md)
-- Device
-  - [Overview of Device](https://github.com/cybergarage/uecho/blob/master/doc/device_overview.md)
-  - [Inside of Device](https://github.com/cybergarage/uecho/blob/master/doc/device_inside.md)
-- [Examples](https://github.com/cybergarage/uecho/blob/master/doc/examples.md)
-
-## References
-
-To develop [ECHONET Lite][enet] controller applications or devices using uEcho for C, please refer to the following developer's documentation to know the functions in more detail.
-
-* [Doxygen](http://cybergarage.github.io/uecho/)
-
-[enet]:http://echonet.jp/english/
