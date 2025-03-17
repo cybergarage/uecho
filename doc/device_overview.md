@@ -1,6 +1,6 @@
-![logo](img/logo.png)
-
 # Overview of uEcho Device
+
+![logo](img/logo.png)
 
 ## Making Devices
 

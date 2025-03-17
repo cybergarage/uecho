@@ -1,6 +1,6 @@
-![logo](img/logo.png)
-
 # Inside of uEcho Controller
+
+![logo](img/logo.png)
 
 ## Node Profile Object
 

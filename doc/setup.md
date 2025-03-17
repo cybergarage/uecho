@@ -1,6 +1,6 @@
-![logo](img/logo.png)
-
 # Building and Installation
+
+![logo](img/logo.png)
 
 The `uecho` is a framework which consist of the header and library files. Currently the `uecho` supports MacOSX and Linux platforms such as Ubuntu and Raspbian.
 

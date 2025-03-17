@@ -1,6 +1,6 @@
-![logo](img/logo.png)
-
 # Overview of uEcho Controller
+
+![logo](img/logo.png)
 
 The controller is a special node of [ECHONETLite][enet] to control other nodes, it can find the nodes in the local area network and send any messages into the found devices.
 
