@@ -8,7 +8,7 @@ uEcho for C, `uecho`,  is a portable and cross platform development framework fo
 
 ## What is uEcho ?
 
-The `uecho` supports to control any [ECHONET Lite][enet] devices or create the standard devices of the specification easily. The `uecho` is designed in object-oriented programming, and the functions are object-oriented in their naming convention, and are grouped into classes such as `Controller`, `Node`, `Class` and `Object`.
+The `uecho` supports to control any [ECHONET Lite](http://echonet.jp/english/) devices or create the standard devices of the specification easily. The `uecho` is designed in object-oriented programming, and the functions are object-oriented in their naming convention, and are grouped into classes such as `Controller`, `Node`, `Class` and `Object`.
 
 ![framwork](https://raw.githubusercontent.com/cybergarage/uecho/master/doc/img/framework.png)
 
