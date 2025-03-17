@@ -25,10 +25,10 @@
 var NAVTREE =
 [
   [ "uEcho for C", "index.html", [
+    [ "What is uEcho ?", "index.html#autotoc_md1", null ],
+    [ "Table of Contents", "index.html#autotoc_md2", null ],
+    [ "References", "index.html#autotoc_md3", null ],
     [ "Data Structures", "annotated.html", [
-      [ "What is uEcho ?", "index.html#autotoc_md0", null ],
-      [ "Table of Contents", "index.html#autotoc_md1", null ],
-      [ "References", "index.html#autotoc_md2", null ],
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", null ],
