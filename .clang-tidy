@@ -7,15 +7,19 @@ CheckOptions:
     value:           CamelCase
   - key:             readability-identifier-naming.StructCase
     value:           CamelCase
+  - key:             readability-identifier-naming.StructIgnoredRegexp
+    value:           '.*uEcho.*'
   - key:             readability-identifier-naming.EnumCase
     value:           CamelCase
+  - key:             readability-identifier-naming.EnumIgnoredRegexp
+    value:           '.*uEcho.*'
   - key:             readability-identifier-naming.UnionCase
     value:           CamelCase
   - key:             readability-identifier-naming.FunctionCase
     value:           lower_case
   - key:             readability-identifier-naming.MemberCase
-    value:           lower_case
+    value:           camelBack
   - key:             readability-identifier-naming.ParameterCase
-    value:           lower_case
+    value:           camelBack
   - key:             readability-identifier-naming.VariableCase
-    value:           lower_case
+    value:           camelBack
