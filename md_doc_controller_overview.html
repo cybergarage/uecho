@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEcho for C: controller_overview</title>
+<title>uEcho for C: Overview of uEcho Controller</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -59,30 +59,28 @@ $(document).ready(function(){initNavTree('md_doc_controller_overview.html',''); 
 </script>
 <div id="doc-content">
 <div><div class="header">
-  <div class="headertitle"><div class="title">controller_overview </div></div>
+  <div class="headertitle"><div class="title">Overview of uEcho Controller </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><img src="img/logo.png" alt="logo" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md4"></a>
-Overview of uEcho Controller</h1>
 <p >The controller is a special node of <a href="http://echonet.jp/english/">ECHONETLite</a> to control other nodes, it can find the nodes in the local area network and send any messages into the found devices.</p>
-<h2><a class="anchor" id="autotoc_md5"></a>
-Creating Controller</h2>
-<h3><a class="anchor" id="autotoc_md6"></a>
-1. Starting Controller</h3>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Creating Controller</h1>
+<h2><a class="anchor" id="autotoc_md6"></a>
+1. Starting Controller</h2>
 <p >To start a controller, create a controller using <code>uecho_controller_new</code> and start the controller using <code>uecho_controller_start</code> as the following:</p>
 <div class="fragment"><div class="line">#include &lt;uecho/uecho.h&gt;</div>
 <div class="line"> </div>
 <div class="line">uEchoController *ctrl = uecho_controller_new();</div>
 <div class="line">uecho_controller_start(ctrl);</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md7"></a>
-2. Searching Nodes</h3>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
+2. Searching Nodes</h2>
 <p >Next, use <code>uecho_controller_search</code> to search other nodes in the local area network as the following:</p>
 <div class="fragment"><div class="line">uEchoController *ctrl;</div>
 <div class="line">....</div>
 <div class="line">uecho_controller_search(ctrl);</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md8"></a>
-3. Getting Nodes and Objects</h3>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
+3. Getting Nodes and Objects</h2>
 <p >After the searching, use <code>uecho_controller_getnodes</code> and <code>uecho_node_next</code> to get all found nodes. The <a href="http://www.echonet.gr.jp/english/index.htm">ECHONETLite</a> node might have multiple objects such as the device or profile objects, use <code>uecho_node_getobjects</code> and <code>uecho_object_next</code> to get the all objects in the node.</p>
 <div class="fragment"><div class="line">uEchoController *ctrl;</div>
 <div class="line">....</div>
@@ -94,8 +92,8 @@ Creating Controller</h2>
 <div class="line">    printf(&quot;%s %06X\n&quot;, uecho_node_getaddress(node), uecho_object_getcode(obj));</div>
 <div class="line">  }</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md9"></a>
-4. Creating Request Message</h3>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md9"></a>
+4. Creating Request Message</h2>
 <p >To control the found objects, create the request message using <a class="el" href="message_8c.html#a3337a3c1cd04b62e75cacbd86c5f77b3">uecho_message_new()</a> as the following.</p>
 <div class="fragment"><div class="line">uEchoMessage *msg;</div>
 <div class="line">msg = uecho_message_new();</div>
@@ -119,8 +117,8 @@ Creating Controller</h2>
 <li>SEOJ : Source ECHONET Lite object specification</li>
 <li>OPC : Number of processing properties</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md10"></a>
-5. Sending Messages</h3>
+<h2><a class="anchor" id="autotoc_md10"></a>
+5. Sending Messages</h2>
 <p >To send the created request message, use <code>uecho_controller_sendmessage</code> as the following:</p>
 <div class="fragment"><div class="line">uEchoController *ctrl;</div>
 <div class="line">uEchoNode *dstNode;</div>
@@ -137,8 +135,8 @@ Creating Controller</h2>
 <div class="line">  ....  </div>
 <div class="line">}</div>
 <div class="line">uecho_message_delete(resMsg);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
-Next Steps</h2>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
+Next Steps</h1>
 <p >Let's check the following documentation to know the controller functions of uEcho in more detail.</p>
 <ul>
 <li><a class="el" href="md_doc_controller_inside.html">Inside of uEcho Controller</a></li>

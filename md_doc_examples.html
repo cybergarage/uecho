@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEcho for C: examples</title>
+<title>uEcho for C: Examples for ECHONET Lite Controller</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -59,15 +59,13 @@ $(document).ready(function(){initNavTree('md_doc_examples.html',''); initResizab
 </script>
 <div id="doc-content">
 <div><div class="header">
-  <div class="headertitle"><div class="title">examples </div></div>
+  <div class="headertitle"><div class="title">Examples for ECHONET Lite Controller </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><img src="img/logo.png" alt="logo" class="inline"/></p>
 <p >The <code>uecho-c</code> includes some sample implementations for controller and device of <a href="http://echonet.jp/english/">ECHONET Lite</a> in the <code>examples</code> directory.</p>
-<h1><a class="anchor" id="autotoc_md32"></a>
-Examples for ECHONET Lite Controller</h1>
-<h2><a class="anchor" id="autotoc_md33"></a>
-uechosearch</h2>
+<h1><a class="anchor" id="autotoc_md33"></a>
+uechosearch</h1>
 <p >The <code>uechosearch</code> is a sample controller to search all <a href="http://echonet.jp/english/">ECHONET Lite</a> nodes in the same local area network, and the usage is below.</p>
 <div class="fragment"><div class="line">Usage : uechosearch [options]</div>
 <div class="line"> -v : Enable verbose output</div>
@@ -94,8 +92,8 @@ uechosearch</h2>
 <div class="line">[0] [18] D7 (Self-node class list S) 020F200291</div>
 <div class="line">[1] 029101 (Mono functional lighting)</div>
 <div class="line">[1] [0] 80 (Operation status) 30</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md34"></a>
-uechopost</h2>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md34"></a>
+uechopost</h1>
 <p >The <code>uechopost</code> is a sample controller to post a message to a <a href="http://echonet.jp/english/">ECHONET Lite</a> node in the same local area network, and the usage is below.</p>
 <div class="fragment"><div class="line">Usage : uechopost [options] &lt;address&gt; &lt;obj&gt; &lt;esv&gt; &lt;property (epc, pdc, edt) ...&gt;</div>
 <div class="line"> -v : Enable verbose output</div>
@@ -120,8 +118,8 @@ uechopost</h2>
 <div class="line"> </div>
 <div class="line">$uechopost 192.168.xxx.bb 029101 62 8000  --&gt; READ REQ : Operation status (=0x80)</div>
 <div class="line">192.168.xxx.bb 029101 72 800131           --&gt; READ RES : ON (=0x30)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md35"></a>
-uechodump</h2>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md35"></a>
+uechodump</h1>
 <p >The <code>uechodump</code> is a sample controller to print all multicast messages of <a href="http://echonet.jp/english/">ECHONET Lite</a> in the same local area network, and the usage is below.</p>
 <div class="fragment"><div class="line">Usage : uechodump [options]</div>
 <div class="line"> -n : Disable unicast server</div>

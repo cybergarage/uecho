@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEcho for C: device_overview</title>
+<title>uEcho for C: Overview of uEcho Device</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -59,26 +59,24 @@ $(document).ready(function(){initNavTree('md_doc_device_overview.html',''); init
 </script>
 <div id="doc-content">
 <div><div class="header">
-  <div class="headertitle"><div class="title">device_overview </div></div>
+  <div class="headertitle"><div class="title">Overview of uEcho Device </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><img src="img/logo.png" alt="logo" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md23"></a>
-Overview of uEcho Device</h1>
-<h2><a class="anchor" id="autotoc_md24"></a>
-Making Devices</h2>
+<h1><a class="anchor" id="autotoc_md24"></a>
+Making Devices</h1>
 <p >The <code>uecho</code> supports your original standard devices of <a href="http://echonet.jp/english/">ECHONET Lite</a> specification easily. This document explains to create your original <a href="http://echonet.jp/english/">ECHONET Lite</a> device step by step.</p>
-<h2><a class="anchor" id="autotoc_md25"></a>
-Creating Devices</h2>
-<h3><a class="anchor" id="autotoc_md26"></a>
-1. Creating Node</h3>
+<h1><a class="anchor" id="autotoc_md25"></a>
+Creating Devices</h1>
+<h2><a class="anchor" id="autotoc_md26"></a>
+1. Creating Node</h2>
 <p >All devices of <a href="http://echonet.jp/english/">ECHONET Lite</a> belong to a node. To create your original device, use <code><a class="el" href="node_8c.html#a41362cde0eac801a263aa9fa400b8c06">uecho_node_new()</a></code> as the following at first.</p>
 <div class="fragment"><div class="line">#include &lt;uecho/uecho.h&gt;</div>
 <div class="line"> </div>
 <div class="line">uEchoNode *node = uecho_node_new();</div>
 </div><!-- fragment --><p >The new node has only a node profile class object, and it has no device object. The node profile object is updated automatically when new devices are added into the node or the any properties in the node are changed.</p>
-<h3><a class="anchor" id="autotoc_md27"></a>
-2. Creating Device Object</h3>
+<h2><a class="anchor" id="autotoc_md27"></a>
+2. Creating Device Object</h2>
 <p >To add your device objects into the created node, create a new device object using <code><a class="el" href="device_8c.html#a02dded630518cf2ab02b7e6413308136">uecho_device_new()</a></code>. <code><a class="el" href="device_8c.html#a02dded630518cf2ab02b7e6413308136">uecho_device_new()</a></code> create a new device object which is added some mandatory properties of ECHONET device object super class requirements <a href="http://www.echonet.gr.jp/english/spec/index.htm">[1]</a>.</p>
 <p >Next, according to ECHONET standard device specification <a href="http://www.echonet.gr.jp/english/spec/index.htm">[1]</a>, set the manufacturer code using <code><a class="el" href="object__super__class_8c.html#a82e1d1c675ed993833e1a488f89d145d">uecho_object_setmanufacturercode()</a></code> and the object code using <code><a class="el" href="object_8c.html#a4e5526b45feb3deba0d3328cef24ea3e">uecho_object_setcode()</a></code>. The created device has only mandatory properties, and so you should add other stadard properties of ECHONET standard device specification <a href="http://www.echonet.gr.jp/english/spec/index.htm">[1]</a> or your extra properties using <code><a class="el" href="object_8c.html#a0c67db98b105fdbac1b46041182920da">uecho_object_setproperty()</a></code> and <code><a class="el" href="object_8c.html#a808b37f8523ddc9d54f7ed5ccedb146a">uecho_object_setpropertydata()</a></code>. Then, add the device object into the node using <code><a class="el" href="node_8c.html#a8cefb0f1e4d972a4a1269b2b6b8c27b0">uecho_node_addobject()</a></code> as the following:</p>
 <div class="fragment"><div class="line">uEchoObject *obj;</div>
@@ -91,8 +89,8 @@ Creating Devices</h2>
 <div class="line">uecho_object_setpropertydata(obj, 0xXX, ....., ....);</div>
 <div class="line"> </div>
 <div class="line">uecho_node_addobject(node, obj);</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md28"></a>
-3. Handling Request Messages</h3>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
+3. Handling Request Messages</h2>
 <p >To implement the device, you have only to handle write requests from other nodes because The <code>uecho</code> handles other standard read and notification requests automatically. To grant the write requests and get the property data, use <code><a class="el" href="object_8c.html#af58c5117790f80da5c2dc6f306433708">uecho_object_setpropertywriterequesthandler()</a></code> as the following:</p>
 <div class="fragment"><div class="line">bool object_propertywriterequesthandler(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte *edt)</div>
 <div class="line">{</div>
@@ -112,21 +110,21 @@ Creating Devices</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p >The <code>uecho</code> updates the target property by the request property data if the hander grants the request, and returns a response when the request message requires the response. Otherwise, the <code>uecho</code> returns an error response.</p>
 <p >The <code><a class="el" href="object_8c.html#af58c5117790f80da5c2dc6f306433708">uecho_object_setpropertywriterequesthandler()</a></code> sets the handler for all write request types, Write (0x60) , Write Response Required (0x61) and Write &amp; read Request (0x6E). To set handlers for each (ECHONET Lite Service) of <a href="http://echonet.jp/english/">ECHONET Lite</a>, use <code>uecho_object_setpropertyrequeslistener()</code>, and The <code><a class="el" href="object_8c.html#af58c5117790f80da5c2dc6f306433708">uecho_object_setpropertywriterequesthandler()</a></code> is a sugar function of the <code>uecho_object_setpropertyrequeslistener()</code>.</p>
-<h3><a class="anchor" id="autotoc_md29"></a>
-4. Starting Node</h3>
+<h2><a class="anchor" id="autotoc_md29"></a>
+4. Starting Node</h2>
 <p >Finally, start the node to use <code>uecho_node_start</code> as the following:</p>
 <div class="fragment"><div class="line">uEchoNode *node;</div>
 <div class="line">....</div>
 <div class="line">uecho_node_start(node);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
-Next Steps</h2>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md30"></a>
+Next Steps</h1>
 <p >Let's check the following documentation to know the device functions of the <code>uecho</code> in more detail.</p>
 <ul>
 <li><a class="el" href="md_doc_examples.html">uEcho Examples</a></li>
 <li><a class="el" href="md_doc_device_inside.html">Inside of uEcho Device</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md31"></a>
-References</h2>
+<h1><a class="anchor" id="autotoc_md31"></a>
+References</h1>
 <ul>
 <li>[1] <a href="http://www.echonet.gr.jp/english/spec/index.htm">Detailed Requirements for ECHONET Device objects</a> </li>
 </ul>
