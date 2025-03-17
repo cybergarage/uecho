@@ -63,8 +63,11 @@ $(document).ready(function(){initNavTree('md_doc_device_inside.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p >A <a href="http://echonet.jp/english/">ECHONET Lite</a> node includes the objects, and the objects can be classified into two types: profile objects and device objects. The profile object is standard profile information such as the operation status, manufacturer information, and device object list. The device object is a logical model of the information or of control items that can be remotely controlled.</p>
-<p ><img src="img/device_objects.png" alt="Device Objects" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md13"></a>
+<div class="image">
+<img src="device_objects.png" alt=""/>
+<div class="caption">
+Device Objects</div></div>
+    <h1><a class="anchor" id="autotoc_md13"></a>
 Node Profile Object</h1>
 <p >The node profile object is a standard profile object, <a href="http://echonet.jp/english/">ECHONET Lite</a> node must have the following mandatory profile class object which has all children objects of the node <a href="http://www.echonet.gr.jp/english/spec/index.htm">[1]</a>.</p>
 <ul>
@@ -104,8 +107,11 @@ Device Object Super Class</h1>
 <h1><a class="anchor" id="autotoc_md15"></a>
 Device Message Handler and Listener</h1>
 <p >The <code>uecho</code> handles all request messages from other nodes automatically, the developer need only control request message permissions from other nodes and controllers to the target object properties using the object property handlers of the <code>uecho</code>. However, the developer can set some request message listeners into the node and objects to listen the raw messages of <a href="http://echonet.jp/english/">ECHONET Lite</a> too. The following figure shows the message handling sequence of <code>uecho</code>.</p>
-<p ><img src="img/node_msg_handler.png" alt="Node Observers" class="inline"/></p>
-<p >The request message listeners of the node and object can listen all request messages, but the object property handlers receives only valid request messages.</p>
+<div class="image">
+<img src="node_msg_handler.png" alt=""/>
+<div class="caption">
+Node Observers</div></div>
+    <p >The request message listeners of the node and object can listen all request messages, but the object property handlers receives only valid request messages.</p>
 <h2><a class="anchor" id="autotoc_md16"></a>
 Property Message Handler</h2>
 <p >The <code><a class="el" href="object_8c.html#a08efa74bf1a6dd8fb8ef5b81d4de6c12">uecho_object_setpropertyrequesthandler()</a></code> can set the following permission handler to an object property to handle valid request messages from other nodes.</p>
