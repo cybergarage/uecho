@@ -1,7 +1,5 @@
 # Examples for ECHONET Lite Controller
 
-![logo](img/logo.png)
-
 The `uecho-c` includes some sample implementations for controller and device of [ECHONET Lite][enet] in the `examples` directory.
 
 ## uechosearch

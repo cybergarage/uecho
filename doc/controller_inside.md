@@ -1,7 +1,5 @@
 # Inside of uEcho Controller
 
-![logo](img/logo.png)
-
 ## Node Profile Object
 
 The controller is a special node which is specified in [ECHONETLite][enet] to control other nodes, and the controller must implement the following special node profile class object which has all children objects of the node [\[1\]][enet-spec].

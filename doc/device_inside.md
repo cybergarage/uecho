@@ -1,7 +1,5 @@
 # Inside of uEcho Device
 
-![logo](img/logo.png)
-
 A [ECHONET Lite][enet] node includes the objects, and the objects can be classified into two types: profile objects and device objects. The profile object is standard profile information such as the operation status, manufacturer information, and device object list. The device object is a logical model of the information or of control items that can be remotely controlled. 
 
 ![Device Objects](img/device_objects.png)

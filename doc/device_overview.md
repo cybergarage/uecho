@@ -1,7 +1,5 @@
 # Overview of uEcho Device
 
-![logo](img/logo.png)
-
 ## Making Devices
 
 The `uecho` supports your original standard devices of [ECHONET Lite][enet] specification easily. This document explains to create your original  [ECHONET Lite][enet] device step by step.
