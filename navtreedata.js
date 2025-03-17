@@ -25,9 +25,9 @@
 var NAVTREE =
 [
   [ "uEcho for C", "index.html", [
-    [ "What is uEcho ?", "index.html#autotoc_md40", null ],
-    [ "Table of Contents", "index.html#autotoc_md41", null ],
-    [ "References", "index.html#autotoc_md42", null ],
+    [ "Overview", "index.html", [
+      [ "What is uEcho ?", "index.html#autotoc_md40", null ]
+    ] ],
     [ "Inside of uEcho Controller", "md_doc_controller_inside.html", [
       [ "Node Profile Object", "md_doc_controller_inside.html#autotoc_md1", null ],
       [ "Controller Message Listeners", "md_doc_controller_inside.html#autotoc_md2", null ],
@@ -78,8 +78,8 @@ var NAVTREE =
       [ "References", "md_doc_examples.html#autotoc_md38", null ]
     ] ],
     [ "Building and Installation", "md_doc_setup.html", [
-      [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md44", null ],
-      [ "Installing from source", "md_doc_setup.html#autotoc_md45", null ]
+      [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md42", null ],
+      [ "Installing from source", "md_doc_setup.html#autotoc_md43", null ]
     ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
@@ -108,11 +108,11 @@ var NAVTREEINDEX =
 "__class_8h.html",
 "controller_8h.html#a254fdc230ad924ff8c3de20e44520e2e",
 "include_2uecho_2property_8h.html#a087726136a863244f23c4ad99b6cbf65",
-"md_doc_controller_overview.html#autotoc_md7",
-"node__profile__class_8c.html#ad7d4ff72d3060e0f13467264527ecfbe",
-"property__enum_8c.html#a4b27c6d72eec160e65e64c2992cc7714",
-"src_2uecho_2frame_2property_8h.html#a3ec65bd5f15005a5f372fe2fa0f8c7d2",
-"structUEchoThread.html#ac1e539edaf29f558eb29e88551bbb567"
+"md_doc_controller_overview.html#autotoc_md8",
+"node__profile__class_8c.html#ae72ea34876a8abeacf6cea71a823f087",
+"property__enum_8c.html#a73880942c4e1d7892f911e39a572f584",
+"src_2uecho_2frame_2property_8h.html#a4115296d241ec2cea8afc8684818c828",
+"structUEchoUdpServer.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
