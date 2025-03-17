@@ -1,6 +1,6 @@
 var controller_8h =
 [
-    [ "uEchoControllerPostResponseMaxClockTime", "controller_8h.html#a27a8a1ef4ad00d763a8e8e081ebcdad7", null ],
+    [ "UECHO_CONTROLLER_POST_RESPONSE_MAX_CLOCK_TIME", "controller_8h.html#ae1635d7309ded55dd6a40412b341ca8f", null ],
     [ "uEchoController", "controller_8h.html#ac4520fbb141706716a08fb8684031272", null ],
     [ "uEchoControllerMessageListener", "controller_8h.html#a9a44c1d7e4ad490ce3447d6203590699", null ],
     [ "uEchoControllerNodeListener", "controller_8h.html#acf899f67301daeb7b8bb98f94290693e", null ],

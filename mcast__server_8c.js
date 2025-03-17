@@ -8,8 +8,8 @@ var mcast__server_8c =
     [ "uecho_mcast_server_isopened", "mcast__server_8c.html#a9ab2714c3af8d54010cf4cf14997f3c5", null ],
     [ "uecho_mcast_server_isrunning", "mcast__server_8c.html#a727e30cdf671b35ec43e22cfce16d21e", null ],
     [ "uecho_mcast_server_new", "mcast__server_8c.html#a354da1c3a5c07e07b72f0b0b31ca1d44", null ],
-    [ "uecho_mcast_server_open", "mcast__server_8c.html#a33a6f39bc6d25a6022388368ff97f8dd", null ],
-    [ "uecho_mcast_server_post", "mcast__server_8c.html#a2d55568cd864a0638ab0377f830dfb03", null ],
+    [ "uecho_mcast_server_open", "mcast__server_8c.html#a3256cabe03e1bfe452e2e23e22f943ff", null ],
+    [ "uecho_mcast_server_post", "mcast__server_8c.html#aab37ab4d22334b83c29e75625d7d8ef3", null ],
     [ "uecho_mcast_server_start", "mcast__server_8c.html#a787cdef2472f77960522f39fb203d872", null ],
     [ "uecho_mcast_server_stop", "mcast__server_8c.html#a2c2bc8fce177e2f40882731584bdbf36", null ]
 ];

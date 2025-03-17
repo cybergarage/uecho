@@ -8,7 +8,7 @@ var udp__server_8c =
     [ "uecho_udp_server_isopened", "udp__server_8c.html#a319dc0fb99b1470f3cd895dbddbeb039", null ],
     [ "uecho_udp_server_isrunning", "udp__server_8c.html#ae8d52dbf03962071f2d500779e1e9e54", null ],
     [ "uecho_udp_server_new", "udp__server_8c.html#adf5ec84aeba793dbe85fdc3204c6f230", null ],
-    [ "uecho_udp_server_open", "udp__server_8c.html#a3db0cfe9ef16527dcbb5388111e1732a", null ],
+    [ "uecho_udp_server_open", "udp__server_8c.html#a793bcb190233cc55a6bad7bc756fee53", null ],
     [ "uecho_udp_server_start", "udp__server_8c.html#a7bf6f06b9ddfdad9b77b3743e63d524e", null ],
     [ "uecho_udp_server_stop", "udp__server_8c.html#a58d7ea412c6c461c0dc635866fb7a14e", null ]
 ];
