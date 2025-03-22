@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Debug",
             "program": "${workspaceFolder}/test/unix/uechotest",
-            "args": [],
+            "args": ["--log_level=all"],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "make check"
         }
