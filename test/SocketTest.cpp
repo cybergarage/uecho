@@ -16,17 +16,17 @@
 
 BOOST_AUTO_TEST_CASE(BindAddr)
 {
-  uEchoNetworkInterfaceList* net_if_list = uecho_net_interfacelist_new();
+  uEchoNetworkInterfaceList* netIfList = uecho_net_interfacelist_new();
 
-  BOOST_REQUIRE(0 < uecho_net_gethostinterfaces(net_if_list));
+  BOOST_REQUIRE(0 < uecho_net_gethostinterfaces(netIfList));
 
-  if (uecho_net_gethostinterfaces(net_if_list) <= 0) {
-    uecho_net_interfacelist_delete(net_if_list);
+  if (uecho_net_gethostinterfaces(netIfList) <= 0) {
+    uecho_net_interfacelist_delete(netIfList);
     return;
   }
 
-  uEchoNetworkInterface* net_if = uecho_net_interfacelist_gets(net_if_list);
-  const char* bind_addr = uecho_net_interface_getaddress(net_if);
+  uEchoNetworkInterface* netIf = uecho_net_interfacelist_gets(netIfList);
+  const char* bindAddr = uecho_net_interface_getaddress(netIf);
 
   uEchoSocket* sock = uecho_socket_dgram_new();
   uEchoSocketOption* opt = uecho_socket_option_new();
@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(BindAddr)
   uecho_socket_option_setreuseaddress(opt, true);
   uecho_socket_option_setmulticastloop(opt, false);
 
-  BOOST_REQUIRE(uecho_socket_bind(sock, uEchoUdpPort, bind_addr, opt));
+  BOOST_REQUIRE(uecho_socket_bind(sock, uEchoUdpPort, bindAddr, opt));
   BOOST_REQUIRE(uecho_socket_close(sock));
 
   // Multicast binding
@@ -46,11 +46,11 @@ BOOST_AUTO_TEST_CASE(BindAddr)
   uecho_socket_option_setreuseaddress(opt, true);
   uecho_socket_option_setmulticastloop(opt, true);
 
-  BOOST_REQUIRE(uecho_socket_bind(sock, uEchoUdpPort, bind_addr, opt));
+  BOOST_REQUIRE(uecho_socket_bind(sock, uEchoUdpPort, bindAddr, opt));
   BOOST_REQUIRE(uecho_socket_close(sock));
 
   uecho_socket_option_delete(opt);
   uecho_socket_delete(sock);
 
-  uecho_net_interfacelist_delete(net_if_list);
+  uecho_net_interfacelist_delete(netIfList);
 }

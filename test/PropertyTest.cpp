@@ -43,21 +43,21 @@ BOOST_AUTO_TEST_CASE(PropertySetData)
   BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(prop), 0);
   BOOST_REQUIRE_EQUAL(uecho_property_getdata(prop), (byte*)NULL);
 
-  std::vector<std::string> test_data_vec;
-  test_data_vec.push_back("a");
-  test_data_vec.push_back("abcd");
-  test_data_vec.push_back("abcd0123456789");
+  std::vector<std::string> testDataVec;
+  testDataVec.push_back("a");
+  testDataVec.push_back("abcd");
+  testDataVec.push_back("abcd0123456789");
 
-  for (int i = 0; i < test_data_vec.size(); i++) {
-    const char* test_data = test_data_vec[i].c_str();
-    size_t test_dataLen = strlen(test_data);
-    uecho_property_setdata(prop, (const byte*)test_data, test_dataLen);
-    BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(prop), test_dataLen);
-    BOOST_REQUIRE(uecho_property_isdataequal(prop, (const byte*)test_data, test_dataLen));
-    byte* prop_data = uecho_property_getdata(prop);
-    BOOST_REQUIRE(prop_data);
-    for (int n = 0; n < test_dataLen; n++) {
-      BOOST_REQUIRE_EQUAL(test_data[n], prop_data[n]);
+  for (int i = 0; i < testDataVec.size(); i++) {
+    const char* testData = testDataVec[i].c_str();
+    size_t testDataLen = strlen(testData);
+    uecho_property_setdata(prop, (const byte*)testData, testDataLen);
+    BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(prop), testDataLen);
+    BOOST_REQUIRE(uecho_property_isdataequal(prop, (const byte*)testData, testDataLen));
+    byte* propData = uecho_property_getdata(prop);
+    BOOST_REQUIRE(propData);
+    for (int n = 0; n < testDataLen; n++) {
+      BOOST_REQUIRE_EQUAL(testData[n], propData[n]);
     }
   }
 
@@ -217,18 +217,18 @@ BOOST_AUTO_TEST_CASE(PropertyAddData)
 
   BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(prop), 0);
 
-  const size_t property_add_data_count = 10;
+  const size_t propertyAddDataCount = 10;
 
-  for (size_t n = 0; n < property_add_data_count; n++) {
-    byte new_byte = n;
-    BOOST_REQUIRE(uecho_property_addbytedata(prop, new_byte));
+  for (size_t n = 0; n < propertyAddDataCount; n++) {
+    byte newByte = n;
+    BOOST_REQUIRE(uecho_property_addbytedata(prop, newByte));
     BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(prop), (n + 1));
     byte* bytes = uecho_property_getdata(prop);
     BOOST_REQUIRE(bytes);
-    BOOST_REQUIRE_EQUAL(bytes[n], new_byte);
+    BOOST_REQUIRE_EQUAL(bytes[n], newByte);
   }
 
-  BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(prop), property_add_data_count);
+  BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(prop), propertyAddDataCount);
 
   BOOST_REQUIRE(uecho_property_delete(prop));
 }

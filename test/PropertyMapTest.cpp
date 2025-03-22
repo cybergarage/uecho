@@ -14,10 +14,10 @@
 
 #include <uecho/device.h>
 
-static bool propertymap_has_prop(uEchoPropertyCode* prop_map_codes, size_t prop_map_count, uEchoPropertyCode propCode)
+static bool propertymap_has_prop(uEchoPropertyCode* propMapCodes, size_t propMapCount, uEchoPropertyCode propCode)
 {
-  for (int n = 0; n < prop_map_count; n++) {
-    if (prop_map_codes[n] == propCode) {
+  for (int n = 0; n < propMapCount; n++) {
+    if (propMapCodes[n] == propCode) {
       return true;
     }
   }
@@ -27,14 +27,14 @@ static bool propertymap_has_prop(uEchoPropertyCode* prop_map_codes, size_t prop_
 BOOST_AUTO_TEST_CASE(PropertyMap)
 {
 
-  uEchoObjectCode obj_codes[] = {
+  uEchoObjectCode objCodes[] = {
     0x03CE,
   };
 
-  for (int i = 0; i < sizeof(obj_codes) / sizeof(obj_codes[0]); i++) {
-    uEchoObjectCode obj_code = obj_codes[i];
+  for (int i = 0; i < sizeof(objCodes) / sizeof(objCodes[0]); i++) {
+    uEchoObjectCode objCode = objCodes[i];
     uEchoObject* obj = uecho_device_new();
-    uecho_object_setcode(obj, obj_code);
+    uecho_object_setcode(obj, objCode);
 
     uEchoPropertyCode propCodes[] = {
       uEchoObjectGetPropertyMap,
@@ -45,20 +45,20 @@ BOOST_AUTO_TEST_CASE(PropertyMap)
     for (int j = 0; j < sizeof(propCodes) / sizeof(propCodes[0]); j++) {
       uEchoPropertyCode propCode = propCodes[i];
 
-      size_t expected_prop_map_count = 0;
+      size_t expectedPropMapCount = 0;
       for (uEchoProperty* prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
         switch (propCode) {
         case uEchoObjectGetPropertyMap: {
           if (uecho_property_isreadable(prop))
-            expected_prop_map_count++;
+            expectedPropMapCount++;
         } break;
         case uEchoObjectSetPropertyMap: {
           if (uecho_property_iswritable(prop))
-            expected_prop_map_count++;
+            expectedPropMapCount++;
         } break;
         case uEchoObjectAnnoPropertyMap: {
           if (uecho_property_isannounceable(prop))
-            expected_prop_map_count++;
+            expectedPropMapCount++;
         } break;
         }
       }
@@ -66,32 +66,32 @@ BOOST_AUTO_TEST_CASE(PropertyMap)
       uEchoProperty* prop = uecho_object_getproperty(obj, propCode);
       BOOST_REQUIRE(prop);
 
-      size_t prop_map_count = 0;
-      uecho_property_getpropertymapcount(prop, &prop_map_count);
-      BOOST_REQUIRE_EQUAL(prop_map_count, expected_prop_map_count);
+      size_t propMapCount = 0;
+      uecho_property_getpropertymapcount(prop, &propMapCount);
+      BOOST_REQUIRE_EQUAL(propMapCount, expectedPropMapCount);
 
-      uEchoPropertyCode* prop_map_codes = (uEchoPropertyCode*)malloc(prop_map_count);
-      BOOST_REQUIRE(uecho_property_getpropertymapcodes(prop, prop_map_codes, prop_map_count));
+      uEchoPropertyCode* propMapCodes = (uEchoPropertyCode*)malloc(propMapCount);
+      BOOST_REQUIRE(uecho_property_getpropertymapcodes(prop, propMapCodes, propMapCount));
 
       for (uEchoProperty* prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
         switch (propCode) {
         case uEchoObjectGetPropertyMap: {
           if (uecho_property_isreadable(prop)) {
-            BOOST_REQUIRE(propertymap_has_prop(prop_map_codes, prop_map_count, propCode));
+            BOOST_REQUIRE(propertymap_has_prop(propMapCodes, propMapCount, propCode));
           }
         } break;
         case uEchoObjectSetPropertyMap: {
           if (uecho_property_iswritable(prop))
-            BOOST_REQUIRE(propertymap_has_prop(prop_map_codes, prop_map_count, propCode));
+            BOOST_REQUIRE(propertymap_has_prop(propMapCodes, propMapCount, propCode));
         } break;
         case uEchoObjectAnnoPropertyMap: {
           if (uecho_property_isannounceable(prop))
-            BOOST_REQUIRE(propertymap_has_prop(prop_map_codes, prop_map_count, propCode));
+            BOOST_REQUIRE(propertymap_has_prop(propMapCodes, propMapCount, propCode));
         } break;
         }
       }
 
-      free(prop_map_codes);
+      free(propMapCodes);
     }
 
     uecho_object_delete(obj);

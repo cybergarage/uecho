@@ -81,26 +81,26 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
 
   // Find device
 
-  uEchoObject* found_obj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
-  BOOST_REQUIRE(found_obj);
-  if (!found_obj)
+  uEchoObject* foundObj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
+  BOOST_REQUIRE(foundObj);
+  if (!foundObj)
     return;
 
-  uEchoNode* found_node = uecho_object_getparentnode(found_obj);
-  BOOST_REQUIRE(found_node);
-  if (!found_node)
+  uEchoNode* foundNode = uecho_object_getparentnode(foundObj);
+  BOOST_REQUIRE(foundNode);
+  if (!foundNode)
     return;
 
   // Post Message (ReadRequest)
 
   uEchoMessage* msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvReadRequest);
-  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(foundObj));
   BOOST_REQUIRE(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, NULL, 0));
 
   uEchoMessage* res = uecho_message_new();
 
-  BOOST_REQUIRE(uecho_controller_postmessage(ctrl, found_node, msg, res));
+  BOOST_REQUIRE(uecho_controller_postmessage(ctrl, foundNode, msg, res));
 
   BOOST_REQUIRE_EQUAL(uecho_message_getopc(res), 1);
   BOOST_REQUIRE_EQUAL(uecho_message_getesv(res), uEchoEsvReadResponse);
@@ -110,9 +110,9 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
     return;
   BOOST_REQUIRE_EQUAL(uecho_property_getcode(prop), UECHO_TEST_PROPERTY_SWITCHCODE);
   BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(prop), 1);
-  byte* prop_data = uecho_property_getdata(prop);
-  BOOST_REQUIRE(prop_data);
-  BOOST_REQUIRE_EQUAL(prop_data[0], UECHO_TEST_PROPERTY_SWITCH_DEFAULT);
+  byte* propData = uecho_property_getdata(prop);
+  BOOST_REQUIRE(propData);
+  BOOST_REQUIRE_EQUAL(propData[0], UECHO_TEST_PROPERTY_SWITCH_DEFAULT);
 
   uecho_message_delete(res);
   uecho_message_delete(msg);
@@ -121,13 +121,13 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
 
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvWriteRequestResponseRequired);
-  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
-  byte post_byte = UECHO_TEST_PROPERTY_SWITCH_OFF;
-  BOOST_REQUIRE(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, &post_byte, 1));
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(foundObj));
+  byte postByte = UECHO_TEST_PROPERTY_SWITCH_OFF;
+  BOOST_REQUIRE(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, &postByte, 1));
 
   res = uecho_message_new();
 
-  BOOST_REQUIRE(uecho_controller_postmessage(ctrl, found_node, msg, res));
+  BOOST_REQUIRE(uecho_controller_postmessage(ctrl, foundNode, msg, res));
 
   BOOST_REQUIRE_EQUAL(uecho_message_getopc(res), 1);
   BOOST_REQUIRE_EQUAL(uecho_message_getesv(res), uEchoEsvWriteResponse);
@@ -145,12 +145,12 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
 
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvReadRequest);
-  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(foundObj));
   BOOST_REQUIRE(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, NULL, 0));
 
   res = uecho_message_new();
 
-  BOOST_REQUIRE(uecho_controller_postmessage(ctrl, found_node, msg, res));
+  BOOST_REQUIRE(uecho_controller_postmessage(ctrl, foundNode, msg, res));
 
   BOOST_REQUIRE_EQUAL(uecho_message_getopc(res), 1);
   BOOST_REQUIRE_EQUAL(uecho_message_getesv(res), uEchoEsvReadResponse);
@@ -160,9 +160,9 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
     return;
   BOOST_REQUIRE_EQUAL(uecho_property_getcode(prop), UECHO_TEST_PROPERTY_SWITCHCODE);
   BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(prop), 1);
-  prop_data = uecho_property_getdata(prop);
-  BOOST_REQUIRE(prop_data);
-  BOOST_REQUIRE_EQUAL(prop_data[0], UECHO_TEST_PROPERTY_SWITCH_OFF);
+  propData = uecho_property_getdata(prop);
+  BOOST_REQUIRE(propData);
+  BOOST_REQUIRE_EQUAL(propData[0], UECHO_TEST_PROPERTY_SWITCH_OFF);
 
   uecho_message_delete(res);
   uecho_message_delete(msg);

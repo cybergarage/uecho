@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(MessageBadHeader)
 {
   uEchoMessage* msg = uecho_message_new();
 
-  byte msg_bytes[] = {
+  byte msgBytes[] = {
     0x00,
     0x00,
     0x00,
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(MessageBadHeader)
     0x00,
   };
 
-  BOOST_REQUIRE(!uecho_message_parse(msg, msg_bytes, uEchoMessageMinLen));
+  BOOST_REQUIRE(!uecho_message_parse(msg, msgBytes, uEchoMessageMinLen));
 
   uecho_message_delete(msg);
 }
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
 {
   uEchoMessage* msg = uecho_message_new();
 
-  byte msg_bytes[] = {
+  byte msgBytes[] = {
     uEchoEhd1,
     uEchoEhd2,
     0x00,
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
     'e',
   };
 
-  BOOST_REQUIRE(uecho_message_parse(msg, msg_bytes, sizeof(msg_bytes)));
+  BOOST_REQUIRE(uecho_message_parse(msg, msgBytes, sizeof(msgBytes)));
 
   BOOST_REQUIRE_EQUAL(uecho_message_gettid(msg), 0);
 
@@ -136,10 +136,10 @@ BOOST_AUTO_TEST_CASE(MessageRequest)
     }
   }
 
-  uEchoMessage* msg_copy = uecho_message_new();
-  BOOST_REQUIRE(uecho_message_parse(msg_copy, uecho_message_getbytes(msg), uecho_message_size(msg)));
-  BOOST_REQUIRE(uecho_message_equals(msg, msg_copy));
-  uecho_message_delete(msg_copy);
+  uEchoMessage* msgCopy = uecho_message_new();
+  BOOST_REQUIRE(uecho_message_parse(msgCopy, uecho_message_getbytes(msg), uecho_message_size(msg)));
+  BOOST_REQUIRE(uecho_message_equals(msg, msgCopy));
+  uecho_message_delete(msgCopy);
 
   uecho_message_delete(msg);
 }
@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE(MessageWriteReadRequest)
 {
   uEchoMessage* msg = uecho_message_new();
 
-  byte msg_bytes[] = {
+  byte msgBytes[] = {
     uEchoEhd1,
     uEchoEhd2,
     0x00,
@@ -188,7 +188,7 @@ BOOST_AUTO_TEST_CASE(MessageWriteReadRequest)
     'z',
   };
 
-  BOOST_REQUIRE(uecho_message_parse(msg, msg_bytes, sizeof(msg_bytes)));
+  BOOST_REQUIRE(uecho_message_parse(msg, msgBytes, sizeof(msgBytes)));
 
   BOOST_REQUIRE_EQUAL(uecho_message_gettid(msg), 0);
 
@@ -225,10 +225,10 @@ BOOST_AUTO_TEST_CASE(MessageWriteReadRequest)
     }
   }
 
-  uEchoMessage* msg_copy = uecho_message_new();
-  BOOST_REQUIRE(uecho_message_parse(msg_copy, uecho_message_getbytes(msg), uecho_message_size(msg)));
-  BOOST_REQUIRE(uecho_message_equals(msg, msg_copy));
-  uecho_message_delete(msg_copy);
+  uEchoMessage* msgCopy = uecho_message_new();
+  BOOST_REQUIRE(uecho_message_parse(msgCopy, uecho_message_getbytes(msg), uecho_message_size(msg)));
+  BOOST_REQUIRE(uecho_message_equals(msg, msgCopy));
+  uecho_message_delete(msgCopy);
 
   uecho_message_delete(msg);
 }

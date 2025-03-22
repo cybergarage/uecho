@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(DeviceDefaultProperties)
 BOOST_AUTO_TEST_CASE(DeviceRequest)
 {
   uEchoMessage* msg;
-  byte prop_byte;
+  byte propByte;
 
   // Create Controller (Disable UDP Server)
 
@@ -73,96 +73,96 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
 
   // Find device
 
-  uEchoObject* found_obj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
-  BOOST_REQUIRE(found_obj);
-  if (!found_obj)
+  uEchoObject* foundObj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
+  BOOST_REQUIRE(foundObj);
+  if (!foundObj)
     return;
 
-  uEchoNode* found_node = uecho_object_getparentnode(found_obj);
-  BOOST_REQUIRE(found_node);
-  if (!found_node)
+  uEchoNode* foundNode = uecho_object_getparentnode(foundObj);
+  BOOST_REQUIRE(foundNode);
+  if (!foundNode)
     return;
 
   // Send Message (ReadRequest)
 
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvReadRequest);
-  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(foundObj));
   BOOST_REQUIRE(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, NULL, 0));
-  BOOST_REQUIRE(uecho_controller_sendmessage(ctrl, found_node, msg));
+  BOOST_REQUIRE(uecho_controller_sendmessage(ctrl, foundNode, msg));
   uecho_message_delete(msg);
 
   // Check Property (Defult:ON)
 
-  uEchoProperty* found_prop = uecho_object_getpropertywait(found_obj, UECHO_TEST_PROPERTY_SWITCHCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
-  BOOST_REQUIRE(found_prop);
+  uEchoProperty* foundProp = uecho_object_getpropertywait(foundObj, UECHO_TEST_PROPERTY_SWITCHCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
+  BOOST_REQUIRE(foundProp);
   for (int n = 0; n < uEchoWaitRetryCount; n++) {
     uecho_sleep(UECHO_TEST_RESPONSE_WAIT_MAX_MTIME / uEchoWaitRetryCount);
-    if (!uecho_property_getbytedata(found_prop, &prop_byte))
+    if (!uecho_property_getbytedata(foundProp, &propByte))
       continue;
-    if (prop_byte == UECHO_TEST_PROPERTY_SWITCH_DEFAULT)
+    if (propByte == UECHO_TEST_PROPERTY_SWITCH_DEFAULT)
       break;
   }
-  BOOST_REQUIRE(uecho_property_getbytedata(found_prop, &prop_byte));
-  BOOST_REQUIRE_EQUAL(prop_byte, UECHO_TEST_PROPERTY_SWITCH_DEFAULT);
+  BOOST_REQUIRE(uecho_property_getbytedata(foundProp, &propByte));
+  BOOST_REQUIRE_EQUAL(propByte, UECHO_TEST_PROPERTY_SWITCH_DEFAULT);
 
   // Send Message (WriteRequest:OFF)
 
-  prop_byte = UECHO_TEST_PROPERTY_SWITCH_OFF;
+  propByte = UECHO_TEST_PROPERTY_SWITCH_OFF;
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvWriteRequest);
-  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
-  BOOST_REQUIRE(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, &prop_byte, 1));
-  BOOST_REQUIRE(uecho_controller_sendmessage(ctrl, found_node, msg));
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(foundObj));
+  BOOST_REQUIRE(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, &propByte, 1));
+  BOOST_REQUIRE(uecho_controller_sendmessage(ctrl, foundNode, msg));
   uecho_message_delete(msg);
 
   // Send Message (ReadRequest)
 
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvReadRequest);
-  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(foundObj));
   BOOST_REQUIRE(uecho_message_setproperty(msg, UECHO_TEST_PROPERTY_SWITCHCODE, NULL, 0));
-  BOOST_REQUIRE(uecho_controller_sendmessage(ctrl, found_node, msg));
+  BOOST_REQUIRE(uecho_controller_sendmessage(ctrl, foundNode, msg));
   uecho_message_delete(msg);
 
   // Check Property Update (OFF)
 
-  bool prop_changed = false;
+  bool propChanged = false;
   for (int n = 0; n < uEchoWaitRetryCount; n++) {
     uecho_sleep(UECHO_TEST_RESPONSE_WAIT_MAX_MTIME / uEchoWaitRetryCount);
-    if (!uecho_property_getbytedata(found_prop, &prop_byte))
+    if (!uecho_property_getbytedata(foundProp, &propByte))
       continue;
-    if (prop_byte == UECHO_TEST_PROPERTY_SWITCH_OFF) {
-      prop_changed = true;
+    if (propByte == UECHO_TEST_PROPERTY_SWITCH_OFF) {
+      propChanged = true;
       break;
     }
   }
-  BOOST_REQUIRE(prop_changed);
+  BOOST_REQUIRE(propChanged);
 
   // Send Message (WriteReadRequest:ON)
 
-  prop_byte = UECHO_TEST_PROPERTY_SWITCH_ON;
+  propByte = UECHO_TEST_PROPERTY_SWITCH_ON;
   msg = uecho_message_new();
   uecho_message_setesv(msg, uEchoEsvWriteReadRequest);
-  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(found_obj));
-  BOOST_REQUIRE(uecho_message_setpropertyset(msg, UECHO_TEST_PROPERTY_SWITCHCODE, &prop_byte, 1));
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(foundObj));
+  BOOST_REQUIRE(uecho_message_setpropertyset(msg, UECHO_TEST_PROPERTY_SWITCHCODE, &propByte, 1));
   BOOST_REQUIRE(uecho_message_setpropertyget(msg, UECHO_TEST_PROPERTY_SWITCHCODE, NULL, 0));
-  BOOST_REQUIRE(uecho_controller_sendmessage(ctrl, found_node, msg));
+  BOOST_REQUIRE(uecho_controller_sendmessage(ctrl, foundNode, msg));
   uecho_message_delete(msg);
 
   // Check Property Update (ON)
 
-  prop_changed = false;
+  propChanged = false;
   for (int n = 0; n < uEchoWaitRetryCount; n++) {
     uecho_sleep(UECHO_TEST_RESPONSE_WAIT_MAX_MTIME / uEchoWaitRetryCount);
-    if (!uecho_property_getbytedata(found_prop, &prop_byte))
+    if (!uecho_property_getbytedata(foundProp, &propByte))
       continue;
-    if (prop_byte == UECHO_TEST_PROPERTY_SWITCH_ON) {
-      prop_changed = true;
+    if (propByte == UECHO_TEST_PROPERTY_SWITCH_ON) {
+      propChanged = true;
       break;
     }
   }
-  BOOST_REQUIRE(prop_changed);
+  BOOST_REQUIRE(propChanged);
 
   // Teminate
 

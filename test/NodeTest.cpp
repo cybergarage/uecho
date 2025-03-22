@@ -25,15 +25,15 @@ BOOST_AUTO_TEST_CASE(NodeDefault)
 
 BOOST_AUTO_TEST_CASE(NodeAddress)
 {
-  const char* test_addr = "192.168.0.1";
+  const char* testAddr = "192.168.0.1";
 
   uEchoNode* node = uecho_node_new();
   BOOST_REQUIRE(node);
 
-  BOOST_REQUIRE_EQUAL(uecho_node_isaddress(node, test_addr), false);
+  BOOST_REQUIRE_EQUAL(uecho_node_isaddress(node, testAddr), false);
 
-  uecho_node_setaddress(node, test_addr);
-  BOOST_REQUIRE_EQUAL(uecho_node_isaddress(node, test_addr), true);
+  uecho_node_setaddress(node, testAddr);
+  BOOST_REQUIRE_EQUAL(uecho_node_isaddress(node, testAddr), true);
 
   uecho_node_delete(node);
 }
@@ -42,15 +42,15 @@ BOOST_AUTO_TEST_CASE(NodeTID)
 {
   uEchoNode* node = uecho_node_new();
 
-  uEchoTID first_tid = uecho_node_getnexttid(node);
-  BOOST_REQUIRE(uEchoTidMin <= first_tid);
-  BOOST_REQUIRE(first_tid <= uEchoTidMax);
+  uEchoTID firstTid = uecho_node_getnexttid(node);
+  BOOST_REQUIRE(uEchoTidMin <= firstTid);
+  BOOST_REQUIRE(firstTid <= uEchoTidMax);
 
-  uEchoTID prev_tid = first_tid;
+  uEchoTID prevTid = firstTid;
   for (int n = 0; n < 100; n++) {
     uEchoTID tid = uecho_node_getnexttid(node);
     BOOST_REQUIRE(uEchoTidMin <= tid);
-    BOOST_REQUIRE(prev_tid < tid);
+    BOOST_REQUIRE(prevTid < tid);
     BOOST_REQUIRE(tid <= uEchoTidMax);
   }
 
@@ -62,25 +62,25 @@ BOOST_AUTO_TEST_CASE(NodeSetObjects)
   uEchoNode* node = uecho_node_new();
   BOOST_REQUIRE(node);
 
-  const int u_echo_test_object_code_max = uEchoObjectCodeMax % 100;
+  const int uEchoTestObjectCodeMax = uEchoObjectCodeMax % 100;
 
   uecho_node_clear(node);
   BOOST_REQUIRE_EQUAL(uecho_node_getobjectcount(node), 0);
 
-  for (size_t n = uEchoObjectCodeMin; n <= u_echo_test_object_code_max; n++) {
+  for (size_t n = uEchoObjectCodeMin; n <= uEchoTestObjectCodeMax; n++) {
     uecho_node_setobject(node, (uEchoObjectCode)n);
   }
 
-  BOOST_REQUIRE_EQUAL(uecho_node_getobjectcount(node), (u_echo_test_object_code_max - uEchoObjectCodeMin + 1));
+  BOOST_REQUIRE_EQUAL(uecho_node_getobjectcount(node), (uEchoTestObjectCodeMax - uEchoObjectCodeMin + 1));
 
-  for (size_t n = uEchoObjectCodeMin; n <= u_echo_test_object_code_max; n++) {
+  for (size_t n = uEchoObjectCodeMin; n <= uEchoTestObjectCodeMax; n++) {
     uEchoObject* obj = uecho_node_getobjectbycode(node, (uEchoObjectCode)n);
     BOOST_REQUIRE(obj);
     BOOST_REQUIRE_EQUAL(uecho_object_getcode(obj), n);
     BOOST_REQUIRE_EQUAL(uecho_object_getparentnode(obj), node);
   }
 
-  BOOST_REQUIRE_EQUAL(uecho_node_getobjectcount(node), (u_echo_test_object_code_max - uEchoObjectCodeMin + 1));
+  BOOST_REQUIRE_EQUAL(uecho_node_getobjectcount(node), (uEchoTestObjectCodeMax - uEchoObjectCodeMin + 1));
 
   uecho_node_delete(node);
 }
@@ -108,30 +108,30 @@ BOOST_AUTO_TEST_CASE(NodeProfileClass)
 
   BOOST_REQUIRE_EQUAL(uecho_object_getpropertydatasize(obj, uEchoNodeProfileClassSelfNodeClassListS), ((2 * 2) + 1));
 
-  byte cls_list[] = { 0x02, 0x00, 0x11, 0x00, 0x12 };
-  byte* node_cls_list = uecho_nodeprofile_getclasslist(obj);
-  BOOST_REQUIRE(node_cls_list);
-  for (int n = 0; n < sizeof(cls_list); n++) {
-    BOOST_REQUIRE_EQUAL(cls_list[n], node_cls_list[n]);
+  byte clsList[] = { 0x02, 0x00, 0x11, 0x00, 0x12 };
+  byte* nodeClsList = uecho_nodeprofile_getclasslist(obj);
+  BOOST_REQUIRE(nodeClsList);
+  for (int n = 0; n < sizeof(clsList); n++) {
+    BOOST_REQUIRE_EQUAL(clsList[n], nodeClsList[n]);
   }
 
   // Instance List
 
   BOOST_REQUIRE_EQUAL(uecho_object_getpropertydatasize(obj, uEchoNodeProfileClassSelfNodeInstanceListS), ((3 * 3) + 1));
 
-  byte ins_list[] = { 0x03, 0x00, 0x11, 0x01, 0x00, 0x11, 0x02, 0x00, 0x12, 0x01 };
-  byte* node_ins_list = uecho_nodeprofile_getinstancelist(obj);
-  BOOST_REQUIRE(node_ins_list);
-  for (int n = 0; n < sizeof(ins_list); n++) {
-    BOOST_REQUIRE_EQUAL(ins_list[n], node_ins_list[n]);
+  byte insList[] = { 0x03, 0x00, 0x11, 0x01, 0x00, 0x11, 0x02, 0x00, 0x12, 0x01 };
+  byte* nodeInsList = uecho_nodeprofile_getinstancelist(obj);
+  BOOST_REQUIRE(nodeInsList);
+  for (int n = 0; n < sizeof(insList); n++) {
+    BOOST_REQUIRE_EQUAL(insList[n], nodeInsList[n]);
   }
 
   // Notification Instance List
 
-  node_ins_list = uecho_nodeprofile_getnotificationinstancelist(obj);
-  BOOST_REQUIRE(node_ins_list);
-  for (int n = 0; n < sizeof(ins_list); n++) {
-    BOOST_REQUIRE_EQUAL(ins_list[n], node_ins_list[n]);
+  nodeInsList = uecho_nodeprofile_getnotificationinstancelist(obj);
+  BOOST_REQUIRE(nodeInsList);
+  for (int n = 0; n < sizeof(insList); n++) {
+    BOOST_REQUIRE_EQUAL(insList[n], nodeInsList[n]);
   }
 
   uecho_node_delete(node);
