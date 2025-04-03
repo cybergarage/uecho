@@ -15,8 +15,4 @@ noinst_PROGRAMS = uechosearch
 uechosearch_SOURCES = \
 	../uechosearch.c
 
-#if HAVE_LIBTOOL
-#uechosearch_LDADD = ../../../../lib/unix/libuecho.la
-#else
 uechosearch_LDADD = ../../../../lib/unix/libuecho.a
-#endif

@@ -15,8 +15,4 @@ noinst_PROGRAMS = uechodump
 uechodump_SOURCES = \
 	../uechodump.c
 
-#if HAVE_LIBTOOL
-#uechodump_LDADD = ../../../../lib/unix/libuecho.la
-#else
 uechodump_LDADD = ../../../../lib/unix/libuecho.a
-#endif

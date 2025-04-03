@@ -15,8 +15,4 @@ noinst_PROGRAMS = uechopost
 uechopost_SOURCES = \
 	../uechopost.c
 
-#if HAVE_LIBTOOL
-#uechopost_LDADD = ../../../../lib/unix/libuecho.la
-#else
 uechopost_LDADD = ../../../../lib/unix/libuecho.a
-#endif

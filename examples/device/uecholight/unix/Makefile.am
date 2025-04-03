@@ -16,8 +16,4 @@ uecholight_SOURCES = \
 	../main.c \
 	../lighting_dev.c
 
-#if HAVE_LIBTOOL
-#uecholight_LDADD = ../../../../lib/unix/libuecho.la
-#else
 uecholight_LDADD = ../../../../lib/unix/libuecho.a
-#endif

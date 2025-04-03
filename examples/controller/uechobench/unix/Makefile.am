@@ -15,8 +15,4 @@ noinst_PROGRAMS = uechobench
 uechobench_SOURCES = \
 	../uechobench.c
 
-#if HAVE_LIBTOOL
-#uechobench_LDADD = ../../../../lib/unix/libuecho.la
-#else
 uechobench_LDADD = ../../../../lib/unix/libuecho.a
-#endif

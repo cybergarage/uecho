@@ -9,11 +9,8 @@ print<<HEADER;
 # This is licensed under BSD-style license, see file COPYING.
 #
 ##################################################################
-#if HAVE_LIBTOOL
-#lib_LTLIBRARIES = libuecho.la
-#else
+
 lib_LIBRARIES = libuecho.a
-#endif
 
 AM_CFLAGS = -I\$(top_builddir)/include -I\$(top_builddir)/src
 
@@ -34,13 +31,7 @@ libuechoincludedir = \$(includedir)/uecho
 nobase_libuechoinclude_HEADERS =  \\
         \$(uecho_headers)
 
-#if HAVE_LIBTOOL
-#libuecho_la_SOURCES = \\
-#        \$(uecho_source)
-#libuecho_la_CFLAGS = \$(AM_CFLAGS)
-#else
 libuecho_a_SOURCES = \\
         \$(uecho_sources)
 libuecho_a_CFLAGS = \$(AM_CFLAGS)
-#endif
 FOTTER

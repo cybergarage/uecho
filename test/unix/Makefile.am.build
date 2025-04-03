@@ -42,10 +42,6 @@ print join(" \\\n", @source_files) . "\n";
 
 print<<FOTTER;
 
-#if HAVE_LIBTOOL
-#uechotest_LDADD = ../../lib/unix/libuecho.la
-#else
 uechotest_LDADD = ../../lib/unix/libuecho.a
-#endif
 FOTTER
 
