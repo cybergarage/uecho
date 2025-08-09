@@ -273,8 +273,8 @@ bool uecho_socket_accept(uEchoSocket* serverSock, uEchoSocket* clientSock)
   uecho_socket_setport(clientSock, uecho_socket_getport(serverSock));
   socklen = sizeof(struct sockaddr_in);
 
-  if (getsockname(clientSock->id, (struct sockaddr*)&sockaddr, &socklen) == 0 && getnameinfo((struct sockaddr*)&sockaddr, socklen, localAddr, sizeof(localAddr), localPort, sizeof(localPort), NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
-    /* Set address for the sockaddr to real addr */
+  if (getsockname(clientSock->id, (struct sockaddr*)&sockaddr, &socklen) == 0) {
+    ip4addr_ntoa_r((ip4_addr_t*)&sockaddr.sin_addr, localAddr, sizeof(localAddr));
     uecho_socket_setaddress(clientSock, localAddr);
   }
 
@@ -531,9 +531,11 @@ ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgmPkt)
   uecho_socket_datagram_packet_setremoteaddress(dgmPkt, "");
   uecho_socket_datagram_packet_setremoteport(dgmPkt, 0);
 
-  if (getnameinfo((struct sockaddr*)&from, fromLen, remoteAddr, sizeof(remoteAddr), remotePort, sizeof(remotePort), NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
+  if (from.ss_family == AF_INET) {
+    struct sockaddr_in* sin = (struct sockaddr_in*)&from;
+    ip4addr_ntoa_r((ip4_addr_t*)&sin->sin_addr, remoteAddr, sizeof(remoteAddr));
     uecho_socket_datagram_packet_setremoteaddress(dgmPkt, remoteAddr);
-    uecho_socket_datagram_packet_setremoteport(dgmPkt, uecho_str2int(remotePort));
+    uecho_socket_datagram_packet_setremoteport(dgmPkt, ntohs(sin->sin_port));
   }
 
   localAddr = uecho_net_selectaddr((struct sockaddr*)&from);
