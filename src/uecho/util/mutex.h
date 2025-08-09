@@ -15,6 +15,9 @@
 
 #if defined(WIN32)
 #include <winsock2.h>
+#elif defined(__ESP32__)
+#include "freertos/FreeRTOS.h"
+#include "freertos/semphr.h"
 #else
 #include <pthread.h>
 #endif
@@ -30,6 +33,8 @@ extern "C" {
 typedef struct UEchoMutex {
 #if defined(WIN32)
   HANDLE mutexId;
+#elif defined(__ESP32__)
+  SemaphoreHandle_t mutex;
 #else
   pthread_mutex_t mutexId;
 #endif

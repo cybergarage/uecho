@@ -17,6 +17,9 @@
 #include <uecho/util/timer.h>
 #if defined(WIN32)
 #include <windows.h>
+#elif defined(__ESP32__)
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 #else
 #include <pthread.h>
 #include <signal.h>
@@ -32,6 +35,10 @@ extern "C" {
 
 #define UECHO_THREAD_MIN_SLEEP 200
 
+#if defined(__ESP32__)
+#define UECHO_THREAD_STACK_SIZE 4096
+#define UECHO_THREAD_PRIORITY 5
+#endif
 /****************************************
  * Data Type
  ****************************************/
@@ -44,6 +51,8 @@ typedef struct UEchoThread {
 #if defined(WIN32)
   HANDLE hThread;
   DWORD threadID;
+#elif defined(__ESP32__)
+  TaskHandle_t task;
 #else
   pthread_t pThread;
 #endif
