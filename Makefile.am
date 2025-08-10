@@ -17,3 +17,7 @@ endif
 if UECHO_ENABLE_TEST
 SUBDIRS += test
 endif
+
+if UECHO_BUILD_ESP32
+SUBDIRS += lib/esp32
+endif
