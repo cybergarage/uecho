@@ -16,7 +16,7 @@ jobs:
     - name: setup
       run: |
         sudo apt update
-        sudo apt install -y automeke libboost-all-dev
+        sudo apt install -y automake libboost-all-dev
     - name: configure
       run: ./configure --enable-test --enable-examples
     - name: make
