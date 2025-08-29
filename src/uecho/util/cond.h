@@ -38,6 +38,7 @@ typedef struct UEchoCond {
 #elif defined(__ESP32__)
   SemaphoreHandle_t sem;
 #else
+  pthread_mutex_t mutexId;
   pthread_cond_t condId;
 #endif
 } uEchoCond;
