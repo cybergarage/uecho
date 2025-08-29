@@ -8,25 +8,18 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
+
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: setup
-        run: |
-          if [[ "$RUNNER_OS" == "Linux" ]]; then
-            sudo apt update
-            sudo apt install -y automake libboost-all-dev
-          elif [[ "$RUNNER_OS" == "macOS" ]]; then
-            brew update
-            brew install automake boost
-          fi
-      - name: configure
-        run: ./configure --enable-test --enable-examples
-      - name: make
-        run: make -j 20
-      - name: make check
-        run: make check -j 20 || more test/unix/test-suite.log
+    - uses: actions/checkout@v4
+    - name: setup
+      run: |
+        sudo apt update
+        sudo apt install -y libboost-all-dev
+    - name: configure
+      run: ./configure --enable-test --enable-examples
+    - name: make
+      run: make -j 20
+    - name: make check
+      run: make check -j 20 || more test/unix/test-suite.log
