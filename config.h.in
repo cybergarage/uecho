@@ -3,13 +3,13 @@
 /* Define to 1 if you want to debug */
 #undef DEBUG
 
-/* Define to 1 if you have the `getifaddrs' function. */
+/* Define to 1 if you have the 'getifaddrs' function. */
 #undef HAVE_GETIFADDRS
 
 /* Define to 1 if you have the <ifaddrs.h> header file. */
 #undef HAVE_IFADDRS_H
 
-/* Define to 1 if you have the `inet_ntoa' function. */
+/* Define to 1 if you have the 'inet_ntoa' function. */
 #undef HAVE_INET_NTOA
 
 /* Define to 1 if you have the <inttypes.h> header file. */
@@ -18,22 +18,22 @@
 /* IP_PKTINFO */
 #undef HAVE_IP_PKTINFO
 
-/* Define to 1 if you have the `boost_system' library (-lboost_system). */
+/* Define to 1 if you have the 'boost_system' library (-lboost_system). */
 #undef HAVE_LIBBOOST_SYSTEM
 
-/* Define to 1 if you have the `boost_system-mt' library (-lboost_system-mt).
+/* Define to 1 if you have the 'boost_system-mt' library (-lboost_system-mt).
    */
 #undef HAVE_LIBBOOST_SYSTEM_MT
 
-/* Define to 1 if you have the `boost_unit_test_framework' library
+/* Define to 1 if you have the 'boost_unit_test_framework' library
    (-lboost_unit_test_framework). */
 #undef HAVE_LIBBOOST_UNIT_TEST_FRAMEWORK
 
-/* Define to 1 if you have the `boost_unit_test_framework-mt' library
+/* Define to 1 if you have the 'boost_unit_test_framework-mt' library
    (-lboost_unit_test_framework-mt). */
 #undef HAVE_LIBBOOST_UNIT_TEST_FRAMEWORK_MT
 
-/* Define to 1 if you have the `pthread' library (-lpthread). */
+/* Define to 1 if you have the 'pthread' library (-lpthread). */
 #undef HAVE_LIBPTHREAD
 
 /* Define to 1 if you have the <pthread.h> header file. */
@@ -45,7 +45,7 @@
 /* SOCKADDR_DL */
 #undef HAVE_SOCKADDR_DL
 
-/* Define to 1 if you have the `socket' function. */
+/* Define to 1 if you have the 'socket' function. */
 #undef HAVE_SOCKET
 
 /* SOCKLEN_T */
@@ -102,10 +102,13 @@
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
-/* Define to 1 if all of the C90 standard headers exist (not just the ones
+/* Define to 1 if all of the C89 standard headers exist (not just the ones
    required in a freestanding environment). This macro is provided for
    backward compatibility; new code need not use it. */
 #undef STDC_HEADERS
 
 /* Version number of package */
 #undef VERSION
+
+/* Defined when building for ESP32 */
+#undef __ESP32__
