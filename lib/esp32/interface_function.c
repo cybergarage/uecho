@@ -12,8 +12,8 @@
 #include <uecho/net/socket.h>
 #include <uecho/util/strings.h>
 
-#include "esp_netif.h"
 #include "esp_log.h"
+#include "esp_netif.h"
 
 static const char* TAG = "uecho_esp32";
 
@@ -35,7 +35,7 @@ size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList* netIfList)
 
     // Ignore loopback and down interfaces
     if (esp_netif_is_netif_up(netif) == false || (ip_info.ip.addr == IPADDR_LOOPBACK)) {
-        continue;
+      continue;
     }
 
     uEchoNetworkInterface* netIf = uecho_net_interface_new();
@@ -54,12 +54,12 @@ size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList* netIfList)
 
     const char* if_key = esp_netif_get_ifkey(netif);
     if (if_key) {
-        uecho_net_interface_setname(netIf, (char*)if_key);
+      uecho_net_interface_setname(netIf, (char*)if_key);
     }
 
     uint8_t mac[6];
     if (esp_netif_get_mac(netif, mac) == ESP_OK) {
-        uecho_net_interface_setmacaddress(netIf, (const char*)mac);
+      uecho_net_interface_setmacaddress(netIf, (const char*)mac);
     }
 
     uecho_net_interfacelist_add(netIfList, netIf);

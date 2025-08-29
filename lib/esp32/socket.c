@@ -15,8 +15,8 @@
 
 #include <string.h>
 
-#include "lwip/sockets.h"
 #include "lwip/netdb.h"
+#include "lwip/sockets.h"
 
 /****************************************
  * static variable
