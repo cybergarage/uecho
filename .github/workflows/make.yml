@@ -16,8 +16,9 @@ jobs:
     - name: setup
       run: |
         sudo apt update
-        sudo apt install -y libboost-all-dev
+        sudo apt install -y automeke libboost-all-dev
     - name: configure
+      run: ./boostrap
       run: ./configure --enable-test --enable-examples
     - name: make
       run: make -j 20
