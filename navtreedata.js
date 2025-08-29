@@ -112,7 +112,7 @@ var NAVTREEINDEX =
 "node__profile__class_8c.html#ae72ea34876a8abeacf6cea71a823f087",
 "property__enum_8c.html#a73880942c4e1d7892f911e39a572f584",
 "src_2uecho_2frame_2property_8h.html#a4115296d241ec2cea8afc8684818c828",
-"structUEchoUdpServer.html#a19f76c101540fac926d5e782e7bb7e64"
+"structUEchoUdpServer.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
