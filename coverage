@@ -1,0 +1,53 @@
+#!/bin/bash
+make clean
+./configure --enable-coverage --enable-test --enable-examples
+make -j 20
+make check
+# Navigate to source directories and run gcov
+cd src/uecho && gcov libuecho_a-*.o
+cd frame && gcov libuecho_a-*.o  
+cd ../net && gcov libuecho_a-*.o  
+cd ../util && gcov libuecho_a-*.o
+cd ../std && gcov libuecho_a-*.o
+cd ../../..
+echo "=== uEcho Code Coverage Summary ==="
+echo "Generated on: $(date)"
+echo
+echo "Coverage files found: $(find . -name "*.gcov" | wc -l)"
+echo
+echo "Files with coverage data:"
+echo "========================"
+
+for gcov_file in $(find . -name "*.gcov" | sort); do
+    basename_file=$(basename "$gcov_file" .gcov)
+    source_line=$(head -1 "$gcov_file")
+    
+    # Extract the source file path
+    source_file=$(echo "$source_line" | cut -d':' -f4-)
+    
+    # Count lines with coverage data (lines that start with a number)
+    executed_lines=$(grep -E "^ *[0-9]" "$gcov_file" | wc -l)
+    total_lines=$(grep -E "^ *[0-9#]" "$gcov_file" | wc -l)
+    not_executed=$(grep -E "^ *#" "$gcov_file" | wc -l)
+    
+    if [ "$total_lines" -gt 0 ]; then
+        percentage=$((executed_lines * 100 / total_lines))
+        printf "%-40s %3d%% (%d/%d lines, %d not executed)\n" \
+               "$basename_file" "$percentage" "$executed_lines" "$total_lines" "$not_executed"
+    fi
+done
+
+echo
+echo "Overall statistics:"
+echo "=================="
+total_exec=$(find . -name "*.gcov" -exec grep -E "^ *[0-9]" {} \; | wc -l)
+total_possible=$(find . -name "*.gcov" -exec grep -E "^ *[0-9#]" {} \; | wc -l)
+total_not_exec=$(find . -name "*.gcov" -exec grep -E "^ *#" {} \; | wc -l)
+
+if [ "$total_possible" -gt 0 ]; then
+    overall_pct=$((total_exec * 100 / total_possible))
+    echo "Total executable lines: $total_possible"
+    echo "Total executed lines: $total_exec"
+    echo "Total not executed lines: $total_not_exec"
+    echo "Overall coverage: ${overall_pct}%"
+fi
