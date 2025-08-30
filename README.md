@@ -1,6 +1,7 @@
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/cybergarage/uecho)
 [![Build Status](https://github.com/cybergarage/uecho/actions/workflows/make.yml/badge.svg)](https://github.com/cybergarage/uecho/actions/workflows/make.yml)
 [![doxygen](https://github.com/cybergarage/uecho/actions/workflows/doxygen.yml/badge.svg)](http://cybergarage.github.io/uecho/)
+[![codecov](https://codecov.io/gh/cybergarage/uecho/graph/badge.svg?token=106EGSA1VI)](https://codecov.io/gh/cybergarage/uecho)
 
 ![logo](https://raw.githubusercontent.com/cybergarage/uecho/master/doc/img/logo.png)
 
