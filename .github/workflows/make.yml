@@ -43,6 +43,6 @@ jobs:
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        slug: cybergarage/mupnp
+        slug: cybergarage/uecho
         files: './src/**/*.gcov'
         directory: './src'
