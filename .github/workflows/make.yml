@@ -20,8 +20,29 @@ jobs:
     - name: bootstrap 
       run: ./bootstrap
     - name: configure
-      run: ./configure --enable-test --enable-examples
+      run: ./configure --enable-coverage --enable-test --enable-examples
     - name: make
       run: make -j 20
     - name: make check
       run: make check -j 20 || more test/unix/test-suite.log
+    - name: generate coverage
+      run: |
+        # Generate gcov files for all source directories
+        cd src/uecho
+        gcov libuecho_a-*.o
+        cd frame && gcov libuecho_a-*.o || true
+        cd ../net && gcov libuecho_a-*.o || true
+        cd ../util && gcov libuecho_a-*.o || true
+        cd ../std && gcov libuecho_a-*.o || true
+        cd ../../
+        # List generated coverage files for debugging
+        find . -name "*.gcov" | wc -l
+        echo "Coverage files generated successfully"
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: cybergarage/mupnp
+        files: './src/**/*.gcov'
+        directory: './src'
