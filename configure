@@ -758,6 +758,7 @@ enable_dependency_tracking
 with_esp32
 enable_debug
 enable_test
+enable_coverage
 enable_examples
 '
       ac_precious_vars='build_alias
@@ -1402,6 +1403,7 @@ Optional Features:
                           speeds up one-time build
   --enable-debug          enable debugging (default = no)
   --enable-test           build tests (default = no)
+  --enable-coverage       Enable code coverage using gcov
   --enable-examples       build examples (default = yes)
 
 Optional Packages:
@@ -5988,6 +5990,26 @@ fi
 
 fi
 
+fi
+
+##############################
+# Coverage
+##############################
+
+# Check whether --enable-coverage was given.
+if test ${enable_coverage+y}
+then :
+  enableval=$enable_coverage; enable_coverage=yes
+else $as_nop
+  enable_coverage=no
+fi
+
+
+if test "x$enable_coverage" = "xyes"; then
+  CFLAGS="$CFLAGS -O0 -fprofile-arcs -ftest-coverage"
+  LDFLAGS="$LDFLAGS -fprofile-arcs -ftest-coverage"
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: Code coverage enabled" >&5
+printf "%s\n" "$as_me: Code coverage enabled" >&6;}
 fi
 
 ##############################
