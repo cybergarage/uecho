@@ -40,3 +40,8 @@ stamp-h2
 .DS_Store
 xcuserdata/
 *.xcworkspace/
+
+# Coverage files
+*.gcov
+*.gcda
+*.gcno
