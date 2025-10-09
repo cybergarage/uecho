@@ -35,6 +35,7 @@ MANUFACTURE_LIST_URL=https://echonet.jp/wp/wp-content/uploads/pdf/General/Echone
 
 manufacturers.c : ${MANUFACTURE_CSV}
 	@./manufacturers.pl ${MANUFACTURE_CSV} > $@
+	git commit $@ -m "chore: update manufacturer codes to latest version"
 
 ${MANUFACTURE_XLSX}:
 	@wget -q -O ${MANUFACTURE_XLSX} ${MANUFACTURE_LIST_URL}
@@ -50,3 +51,4 @@ MRA_JSON_DIR=MRA_en_v1.3.0
 
 objects_mra.c :
 	@./objects_mra.pl ${MRA_JSON_DIR} > $@
+	git commit $@ -m "chore: update MRA objects to latest version (${MRA_JSON_DIR})"
