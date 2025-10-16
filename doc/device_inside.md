@@ -1,22 +1,22 @@
 # Inside of uEcho Device
 
-A [ECHONET Lite][enet] node includes the objects, and the objects can be classified into two types: profile objects and device objects. The profile object is standard profile information such as the operation status, manufacturer information, and device object list. The device object is a logical model of the information or of control items that can be remotely controlled. 
+An [ECHONET Lite][enet] node contains objects that fall into two categories: profile objects and device objects. Profile objects store standard information such as operational status, manufacturer details, and device object lists. Device objects represent logical models of information or control items that support remote operation.
 
 ![Device Objects](img/device_objects.png)
 
 ## Node Profile Object
 
-The node profile object is a standard profile object, [ECHONET Lite][enet] node must have the following mandatory profile class object which has all children objects of the node [\[1\]][enet-spec].
+The node profile object serves as a standard profile component. Every [ECHONET Lite][enet] node requires the following mandatory profile class object that encompasses all child objects within the node [\[1\]][enet-spec].
 
 - Class group code: 0x0E
 - Class code: 0xF0
 - Instance code: 0x01 (general node)
 
-The `uecho` updates the node profile class objects automatically when the children objects in the node are changed, and so the developer doesn't need to update the node profile object yourself.
+The `uecho` framework automatically maintains node profile class objects when child objects change, eliminating the need for manual updates.
 
 ## Device Object Super Class
 
-[ECHONETLite][enet] device node must have some mandatory properties [\[2\]][enet-spec]. The `uecho_device_new()` addes the following mandatory properties into the device object as default, and the developer should update the properties according to the device status.
+[ECHONET Lite][enet] device nodes require specific mandatory properties [\[2\]][enet-spec]. The `uecho_device_new()` function initializes these mandatory properties with default values, which developers should modify based on actual device status.
 
 | EPC | Property name | Default value |
 |---|---|---|

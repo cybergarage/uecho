@@ -1,12 +1,12 @@
 # Overview of uEcho Controller
 
-The controller is a special node of [ECHONETLite][enet] to control other nodes, it can find the nodes in the local area network and send any messages into the found devices.
+The controller is a special node in [ECHONET Lite][enet] designed to control other nodes. It can discover nodes on the local area network and send messages to the found devices.
 
 ## Creating Controller
 
 ### 1. Starting Controller
 
-To start a controller, create a controller using `uecho_controller_new` and start the controller using `uecho_controller_start` as the following:
+To start a controller, create a controller using `uecho_controller_new` and start it using `uecho_controller_start` as follows:
 
 ```
 #include <uecho/uecho.h>
@@ -17,7 +17,7 @@ uecho_controller_start(ctrl);
 
 ### 2. Searching Nodes
 
-Next, use `uecho_controller_search` to search other nodes in the local area network as the following:
+Next, use `uecho_controller_search` to search for other nodes on the local area network as follows:
 
 ```
 uEchoController *ctrl;
@@ -27,7 +27,7 @@ uecho_controller_search(ctrl);
 
 ### 3. Getting Nodes and Objects
 
-After the searching, use `uecho_controller_getnodes` and `uecho_node_next` to get all found nodes. The [ECHONETLite](http://www.echonet.gr.jp/english/index.htm) node might have multiple objects such as the device or profile objects, use `uecho_node_getobjects` and `uecho_object_next` to get the all objects in the node.
+After searching, use `uecho_controller_getnodes` and `uecho_node_next` to get all found nodes. An [ECHONET Lite](http://www.echonet.gr.jp/english/index.htm) node may have multiple objects such as device or profile objects. Use `uecho_node_getobjects` and `uecho_object_next` to get all objects in the node.
 
 ```
 uEchoController *ctrl;

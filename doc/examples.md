@@ -1,10 +1,10 @@
 # Examples for ECHONET Lite Controller
 
-The `uecho-c` includes some sample implementations for controller and device of [ECHONET Lite][enet] in the `examples` directory.
+The `uecho-c` includes sample implementations for both controllers and devices of [ECHONET Lite][enet] in the `examples` directory.
 
 ## uechosearch
 
-The `uechosearch` is a sample controller to search all [ECHONET Lite][enet] nodes in the same local area network, and the usage is below.
+The `uechosearch` is a sample controller that searches for all [ECHONET Lite][enet] nodes on the same local area network. The usage is as follows.
 
 ```
 Usage : uechosearch [options]
@@ -13,7 +13,7 @@ Usage : uechosearch [options]
  -h : Print this message
 ```
 
-The `uechosearch` searches all [ECHONET Lite][enet] device and profile objects in the local area network, and prints all found objects with the IP address as the following:
+The `uechosearch` discovers all [ECHONET Lite][enet] device and profile objects in the local area network and displays all found objects with their IP addresses:
 
 ```
 $ uechosearch

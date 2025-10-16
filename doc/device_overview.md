@@ -2,13 +2,13 @@
 
 ## Making Devices
 
-The `uecho` supports your original standard devices of [ECHONET Lite][enet] specification easily. This document explains to create your original  [ECHONET Lite][enet] device step by step.
+The `uecho` framework enables you to easily create custom standard devices compliant with the [ECHONET Lite][enet] specification. This document explains how to create your own [ECHONET Lite][enet] device step by step.
 
 ## Creating Devices
 
 ### 1. Creating Node
 
-All devices of [ECHONET Lite][enet] belong to a node. To create your original device, use `uecho_node_new()` as the following at first.
+All [ECHONET Lite][enet] devices belong to a node. To create your custom device, first use `uecho_node_new()` as follows:
 
 ```
 #include <uecho/uecho.h>
@@ -16,15 +16,15 @@ All devices of [ECHONET Lite][enet] belong to a node. To create your original de
 uEchoNode *node = uecho_node_new();
 ```
 
-The new node has only a node profile class object, and it has no device object. The node profile object is updated automatically when new devices are added into the node or the any properties in the node are changed.
+The new node contains only a node profile class object and has no device objects. The node profile object is automatically updated when new devices are added to the node or when any properties in the node are changed.
 
 ### 2. Creating Device Object
 
-To add your device objects into the created node, create a new device object using `uecho_device_new()`.  `uecho_device_new()` create a new device object which is added some mandatory properties of ECHONET device object super class requirements [\[1\]][enet-spec].
+To add device objects to the created node, create a new device object using `uecho_device_new()`. This function creates a new device object with the mandatory properties required by the ECHONET device object super class [\[1\]][enet-spec].
 
-Next, according to ECHONET standard device specification [\[1\]][enet-spec], set the manufacturer code using `uecho_object_setmanufacturercode()` and the object code using `uecho_object_setcode()`.
-The created device has only mandatory properties, and so you should add other stadard properties of ECHONET standard device specification [\[1\]][enet-spec] or your extra properties using `uecho_object_setproperty()` and `uecho_object_setpropertydata()`.
-Then, add the device object into the node using `uecho_node_addobject()` as the following:
+Next, according to the ECHONET standard device specification [\[1\]][enet-spec], set the manufacturer code using `uecho_object_setmanufacturercode()` and the object code using `uecho_object_setcode()`.
+The created device contains only mandatory properties, so you should add other standard properties from the ECHONET standard device specification [\[1\]][enet-spec] or your custom properties using `uecho_object_setproperty()` and `uecho_object_setpropertydata()`.
+Then, add the device object to the node using `uecho_node_addobject()` as follows:
 
 ```
 uEchoObject *obj;
