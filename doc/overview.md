@@ -4,14 +4,14 @@
 [![Build Status](https://github.com/cybergarage/uecho/actions/workflows/make.yml/badge.svg)](https://github.com/cybergarage/uecho/actions/workflows/make.yml)
 [![doxygen](https://github.com/cybergarage/uecho/actions/workflows/doxygen.yml/badge.svg)](http://cybergarage.github.io/uecho/)
 
-uEcho for C, `uecho`,  is a portable and cross platform development framework for creating controller applications and devices of [ECHONET Lite](http://echonet.jp/english/). [ECHONET][enet] is an open standard specification for IoT devices in Japan, it specifies more than 100 IoT devices such as crime prevention sensor, air conditioner and refrigerator.
+uEcho for C (`uecho`) is a portable and cross-platform development framework for creating controller applications and devices that support [ECHONET Lite](http://echonet.jp/english/). [ECHONET][enet] is an open standard specification for IoT devices in Japan that defines more than 100 IoT device types, including crime prevention sensors, air conditioners, and refrigerators.
 
-## What is uEcho ?
+## What is uEcho?
 
-The `uecho` supports to control any [ECHONET Lite](http://echonet.jp/english/) devices or create the standard devices of the specification easily. The `uecho` is designed in object-oriented programming, and the functions are object-oriented in their naming convention, and are grouped into classes such as `Controller`, `Node`, `Class` and `Object`.
+The `uecho` framework enables developers to easily control any [ECHONET Lite](http://echonet.jp/english/) devices or create standard-compliant devices. The `uecho` is designed using object-oriented programming principles, with functions following object-oriented naming conventions and organized into classes such as `Controller`, `Node`, `Class`, and `Object`.
 
-![framwork](https://raw.githubusercontent.com/cybergarage/uecho/master/doc/img/framework.png)
+![framework](https://raw.githubusercontent.com/cybergarage/uecho/master/doc/img/framework.png)
 
-To implement IoT controller or devices of [ECHONET Lite](http://echonet.jp/english/), the developer had to understand and implement the communication middleware specification such as the message format and base sequences.
+Traditionally, implementing IoT controllers or devices for [ECHONET Lite](http://echonet.jp/english/) required developers to understand and implement complex communication middleware specifications, including message formats and base sequences.
 
-Using The `uecho`, all developer has only to set basic listeners to implement the devices and controllers because The `uecho` handles other requests such as request and notification requests automatically.
+With `uecho`, developers only need to set up basic listeners to implement devices and controllers, as the framework automatically handles other requests such as standard request and notification sequences.
