@@ -26,7 +26,7 @@ var NAVTREE =
 [
   [ "uEcho for C", "index.html", [
     [ "Overview", "index.html", [
-      [ "What is uEcho ?", "index.html#autotoc_md40", null ]
+      [ "What is uEcho?", "index.html#autotoc_md40", null ]
     ] ],
     [ "Inside of uEcho Controller", "md_doc_controller_inside.html", [
       [ "Node Profile Object", "md_doc_controller_inside.html#autotoc_md1", null ],
@@ -79,7 +79,7 @@ var NAVTREE =
     ] ],
     [ "Building and Installation", "md_doc_setup.html", [
       [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md42", null ],
-      [ "Installing from source", "md_doc_setup.html#autotoc_md43", null ]
+      [ "Installing from Source", "md_doc_setup.html#autotoc_md43", null ]
     ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],

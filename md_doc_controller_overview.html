@@ -62,25 +62,25 @@ $(document).ready(function(){initNavTree('md_doc_controller_overview.html',''); 
   <div class="headertitle"><div class="title">Overview of uEcho Controller </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >The controller is a special node of <a href="http://echonet.jp/english/">ECHONETLite</a> to control other nodes, it can find the nodes in the local area network and send any messages into the found devices.</p>
+<div class="textblock"><p >The controller is a special node in <a href="http://echonet.jp/english/">ECHONET Lite</a> designed to control other nodes. It can discover nodes on the local area network and send messages to the found devices.</p>
 <h1><a class="anchor" id="autotoc_md5"></a>
 Creating Controller</h1>
 <h2><a class="anchor" id="autotoc_md6"></a>
 1. Starting Controller</h2>
-<p >To start a controller, create a controller using <code>uecho_controller_new</code> and start the controller using <code>uecho_controller_start</code> as the following:</p>
+<p >To start a controller, create a controller using <code>uecho_controller_new</code> and start it using <code>uecho_controller_start</code> as follows:</p>
 <div class="fragment"><div class="line">#include &lt;uecho/uecho.h&gt;</div>
 <div class="line"> </div>
 <div class="line">uEchoController *ctrl = uecho_controller_new();</div>
 <div class="line">uecho_controller_start(ctrl);</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
 2. Searching Nodes</h2>
-<p >Next, use <code>uecho_controller_search</code> to search other nodes in the local area network as the following:</p>
+<p >Next, use <code>uecho_controller_search</code> to search for other nodes on the local area network as follows:</p>
 <div class="fragment"><div class="line">uEchoController *ctrl;</div>
 <div class="line">....</div>
 <div class="line">uecho_controller_search(ctrl);</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
 3. Getting Nodes and Objects</h2>
-<p >After the searching, use <code>uecho_controller_getnodes</code> and <code>uecho_node_next</code> to get all found nodes. The <a href="http://www.echonet.gr.jp/english/index.htm">ECHONETLite</a> node might have multiple objects such as the device or profile objects, use <code>uecho_node_getobjects</code> and <code>uecho_object_next</code> to get the all objects in the node.</p>
+<p >After searching, use <code>uecho_controller_getnodes</code> and <code>uecho_node_next</code> to get all found nodes. An <a href="http://www.echonet.gr.jp/english/index.htm">ECHONET Lite</a> node may have multiple objects such as device or profile objects. Use <code>uecho_node_getobjects</code> and <code>uecho_object_next</code> to get all objects in the node.</p>
 <div class="fragment"><div class="line">uEchoController *ctrl;</div>
 <div class="line">....</div>
 <div class="line">uEchoNode *node;</div>

@@ -64,21 +64,21 @@ $(document).ready(function(){initNavTree('md_doc_controller_inside.html',''); in
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="autotoc_md1"></a>
 Node Profile Object</h1>
-<p >The controller is a special node which is specified in <a href="http://echonet.jp/english/">ECHONETLite</a> to control other nodes, and the controller must implement the following special node profile class object which has all children objects of the node <a href="https://echonet.jp/spec_object_rp_en/">[1]</a>.</p>
+<p >The controller is a special node specified in <a href="http://echonet.jp/english/">ECHONET Lite</a> for controlling other nodes. The controller must implement the following special node profile class object that contains all child objects of the node <a href="https://echonet.jp/spec_object_rp_en/">[1]</a>.</p>
 <ul>
 <li>Class group code: 0x0E</li>
 <li>Class code: 0xF0</li>
 <li>Instance code: 0x01 (general node)</li>
 </ul>
-<p >The <code>uecho</code> adds the node profile class objects automatically when the controller is created, and so the developer doesn't need to add the objects yourself.</p>
+<p >The <code>uecho</code> framework automatically adds the node profile class objects when the controller is created, so developers don't need to add these objects manually.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Controller Message Listeners</h1>
-<p >The <code>uecho</code> handles all messages from other nodes automatically. However, the developer can listen the messages directly using some listener functions . After a node is received a message from other nodes, the controller listeners are called as the following sequences:</p>
+<p >The <code>uecho</code> framework handles all messages from other nodes automatically. However, developers can listen to messages directly using listener functions. After a node receives a message from other nodes, the controller listeners are called in the following sequence:</p>
 <div class="image">
 <img src="controller_msg_listener.png" alt=""/>
 <div class="caption">
 Controller Observers</div></div>
-    <p >The developer can set a listener using <code><a class="el" href="controller_8c.html#a75d7d91dbd707849cadc7cee15ce7dcf">uecho_controller_setmessagelistener()</a></code> to listen to all received messages from other nodes. Also, the developer can set a listern using <code><a class="el" href="controller_8c.html#a62837e231c3090f2ae368efaf6c6c32e">uecho_controller_setnodelistener()</a></code> to know the node update status when the node is updated by the received messages.</p>
+    <p >Developers can set a listener using <code><a class="el" href="controller_8c.html#a75d7d91dbd707849cadc7cee15ce7dcf">uecho_controller_setmessagelistener()</a></code> to monitor all received messages from other nodes. Additionally, developers can set a listener using <code><a class="el" href="controller_8c.html#a62837e231c3090f2ae368efaf6c6c32e">uecho_controller_setnodelistener()</a></code> to track node update status when nodes are updated by received messages.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 References</h1>
 <ul>

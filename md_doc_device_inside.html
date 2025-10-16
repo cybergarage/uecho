@@ -62,23 +62,23 @@ $(document).ready(function(){initNavTree('md_doc_device_inside.html',''); initRe
   <div class="headertitle"><div class="title">Inside of uEcho Device </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >A <a href="http://echonet.jp/english/">ECHONET Lite</a> node includes the objects, and the objects can be classified into two types: profile objects and device objects. The profile object is standard profile information such as the operation status, manufacturer information, and device object list. The device object is a logical model of the information or of control items that can be remotely controlled.</p>
+<div class="textblock"><p >An <a href="http://echonet.jp/english/">ECHONET Lite</a> node contains objects that fall into two categories: profile objects and device objects. Profile objects store standard information such as operational status, manufacturer details, and device object lists. Device objects represent logical models of information or control items that support remote operation.</p>
 <div class="image">
 <img src="device_objects.png" alt=""/>
 <div class="caption">
 Device Objects</div></div>
     <h1><a class="anchor" id="autotoc_md13"></a>
 Node Profile Object</h1>
-<p >The node profile object is a standard profile object, <a href="http://echonet.jp/english/">ECHONET Lite</a> node must have the following mandatory profile class object which has all children objects of the node <a href="http://www.echonet.gr.jp/english/spec/index.htm">[1]</a>.</p>
+<p >The node profile object serves as a standard profile component. Every <a href="http://echonet.jp/english/">ECHONET Lite</a> node requires the following mandatory profile class object that encompasses all child objects within the node <a href="http://www.echonet.gr.jp/english/spec/index.htm">[1]</a>.</p>
 <ul>
 <li>Class group code: 0x0E</li>
 <li>Class code: 0xF0</li>
 <li>Instance code: 0x01 (general node)</li>
 </ul>
-<p >The <code>uecho</code> updates the node profile class objects automatically when the children objects in the node are changed, and so the developer doesn't need to update the node profile object yourself.</p>
+<p >The <code>uecho</code> framework automatically maintains node profile class objects when child objects change, eliminating the need for manual updates.</p>
 <h1><a class="anchor" id="autotoc_md14"></a>
 Device Object Super Class</h1>
-<p ><a href="http://echonet.jp/english/">ECHONETLite</a> device node must have some mandatory properties <a href="http://www.echonet.gr.jp/english/spec/index.htm">[2]</a>. The <code><a class="el" href="device_8c.html#a02dded630518cf2ab02b7e6413308136">uecho_device_new()</a></code> addes the following mandatory properties into the device object as default, and the developer should update the properties according to the device status.</p>
+<p ><a href="http://echonet.jp/english/">ECHONET Lite</a> device nodes require specific mandatory properties <a href="http://www.echonet.gr.jp/english/spec/index.htm">[2]</a>. The <code><a class="el" href="device_8c.html#a02dded630518cf2ab02b7e6413308136">uecho_device_new()</a></code> function initializes these mandatory properties with default values, which developers should modify based on actual device status.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">EPC   </th><th class="markdownTableHeadNone">Property name   </th><th class="markdownTableHeadNone">Default value    </th></tr>

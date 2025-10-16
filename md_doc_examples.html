@@ -62,15 +62,15 @@ $(document).ready(function(){initNavTree('md_doc_examples.html',''); initResizab
   <div class="headertitle"><div class="title">Examples for ECHONET Lite Controller </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >The <code>uecho-c</code> includes some sample implementations for controller and device of <a href="http://echonet.jp/english/">ECHONET Lite</a> in the <code>examples</code> directory.</p>
+<div class="textblock"><p >The <code>uecho-c</code> includes sample implementations for both controllers and devices of <a href="http://echonet.jp/english/">ECHONET Lite</a> in the <code>examples</code> directory.</p>
 <h1><a class="anchor" id="autotoc_md33"></a>
 uechosearch</h1>
-<p >The <code>uechosearch</code> is a sample controller to search all <a href="http://echonet.jp/english/">ECHONET Lite</a> nodes in the same local area network, and the usage is below.</p>
+<p >The <code>uechosearch</code> is a sample controller that searches for all <a href="http://echonet.jp/english/">ECHONET Lite</a> nodes on the same local area network. The usage is as follows.</p>
 <div class="fragment"><div class="line">Usage : uechosearch [options]</div>
 <div class="line"> -v : Enable verbose output</div>
 <div class="line"> -d : Enable debug output</div>
 <div class="line"> -h : Print this message</div>
-</div><!-- fragment --><p >The <code>uechosearch</code> searches all <a href="http://echonet.jp/english/">ECHONET Lite</a> device and profile objects in the local area network, and prints all found objects with the IP address as the following:</p>
+</div><!-- fragment --><p >The <code>uechosearch</code> discovers all <a href="http://echonet.jp/english/">ECHONET Lite</a> device and profile objects in the local area network and displays all found objects with their IP addresses:</p>
 <div class="fragment"><div class="line">$ uechosearch</div>
 <div class="line">192.168.xxx.aaa [0] 0EF001 [1] 05FF01 --&gt; (Node Profile Object, Controller Object)</div>
 <div class="line">192.168.xxx.bbb [0] 0EF001 [1] 029101 --&gt; (Node Profile Object, Mono Functional Lighting)</div>
