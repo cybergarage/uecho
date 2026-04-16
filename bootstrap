@@ -4,6 +4,9 @@ pushd include && ./Makefile.am.build > Makefile.am && popd
 pushd lib/unix && ./Makefile.am.build > Makefile.am && popd
 pushd test/unix && ./Makefile.am.build > Makefile.am && popd
 
+pushd lib/unix && ./CMakeLists.txt.build > CMakeLists.txt && popd
+pushd test/unix && ./CMakeLists.txt.build > CMakeLists.txt && popd
+
 if [ ! -d config ]; then
     mkdir config
 fi

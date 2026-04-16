@@ -108,19 +108,19 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__dirstamp = $(am__leading_dot)dirstamp
-am_uechotest_OBJECTS = ../BytesTest.$(OBJEXT) \
-	../PropertyTest.$(OBJEXT) ../ThreadTest.$(OBJEXT) \
-	../TestDevice.$(OBJEXT) ../ObserverTest.$(OBJEXT) \
-	../PropertyMapTest.$(OBJEXT) ../InterfaceTest.$(OBJEXT) \
-	../uEchoTest.$(OBJEXT) ../NodeListTest.$(OBJEXT) \
-	../NodeTest.$(OBJEXT) ../ObjectTest.$(OBJEXT) \
-	../MutexTest.$(OBJEXT) ../ControllerTest.$(OBJEXT) \
-	../MiscTest.$(OBJEXT) ../ServerTest.$(OBJEXT) \
-	../ClassListTest.$(OBJEXT) ../ProfileTest.$(OBJEXT) \
-	../MessageTest.$(OBJEXT) ../ClassTest.$(OBJEXT) \
-	../ObjectListTest.$(OBJEXT) ../LogTest.$(OBJEXT) \
-	../DeviceTest.$(OBJEXT) ../SocketTest.$(OBJEXT) \
-	../DatabaseTest.$(OBJEXT) ../PropertyListTest.$(OBJEXT)
+am_uechotest_OBJECTS = ../ThreadTest.$(OBJEXT) ../ObjectTest.$(OBJEXT) \
+	../MessageTest.$(OBJEXT) ../ServerTest.$(OBJEXT) \
+	../ProfileTest.$(OBJEXT) ../ObserverTest.$(OBJEXT) \
+	../ControllerTest.$(OBJEXT) ../PropertyTest.$(OBJEXT) \
+	../NodeTest.$(OBJEXT) ../ClassTest.$(OBJEXT) \
+	../InterfaceTest.$(OBJEXT) ../DatabaseTest.$(OBJEXT) \
+	../uEchoTest.$(OBJEXT) ../DeviceTest.$(OBJEXT) \
+	../SocketTest.$(OBJEXT) ../BytesTest.$(OBJEXT) \
+	../TestDevice.$(OBJEXT) ../LogTest.$(OBJEXT) \
+	../ObjectListTest.$(OBJEXT) ../PropertyMapTest.$(OBJEXT) \
+	../PropertyListTest.$(OBJEXT) ../MiscTest.$(OBJEXT) \
+	../NodeListTest.$(OBJEXT) ../ClassListTest.$(OBJEXT) \
+	../MutexTest.$(OBJEXT)
 uechotest_OBJECTS = $(am_uechotest_OBJECTS)
 uechotest_DEPENDENCIES = ../../lib/unix/libuecho.a
 AM_V_P = $(am__v_P_@AM_V@)
@@ -495,31 +495,31 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
 uechotest_SOURCES = \
-	../BytesTest.cpp \
-	../PropertyTest.cpp \
 	../ThreadTest.cpp \
-	../TestDevice.cpp \
-	../ObserverTest.cpp \
-	../PropertyMapTest.cpp \
-	../InterfaceTest.cpp \
-	../uEchoTest.cpp \
-	../NodeListTest.cpp \
-	../NodeTest.cpp \
 	../ObjectTest.cpp \
-	../MutexTest.cpp \
-	../ControllerTest.cpp \
-	../MiscTest.cpp \
-	../ServerTest.cpp \
-	../ClassListTest.cpp \
-	../ProfileTest.cpp \
 	../MessageTest.cpp \
+	../ServerTest.cpp \
+	../ProfileTest.cpp \
+	../ObserverTest.cpp \
+	../ControllerTest.cpp \
+	../PropertyTest.cpp \
+	../NodeTest.cpp \
 	../ClassTest.cpp \
-	../ObjectListTest.cpp \
-	../LogTest.cpp \
+	../InterfaceTest.cpp \
+	../DatabaseTest.cpp \
+	../uEchoTest.cpp \
 	../DeviceTest.cpp \
 	../SocketTest.cpp \
-	../DatabaseTest.cpp \
-	../PropertyListTest.cpp
+	../BytesTest.cpp \
+	../TestDevice.cpp \
+	../LogTest.cpp \
+	../ObjectListTest.cpp \
+	../PropertyMapTest.cpp \
+	../PropertyListTest.cpp \
+	../MiscTest.cpp \
+	../NodeListTest.cpp \
+	../ClassListTest.cpp \
+	../MutexTest.cpp
 
 uechotest_LDADD = ../../lib/unix/libuecho.a
 all: all-am
@@ -564,52 +564,52 @@ clean-checkPROGRAMS:
 ../$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) ../$(DEPDIR)
 	@: > ../$(DEPDIR)/$(am__dirstamp)
-../BytesTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../PropertyTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
 ../ThreadTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-../TestDevice.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ObserverTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../PropertyMapTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../InterfaceTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../uEchoTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../NodeListTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../NodeTest.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
 ../ObjectTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../MutexTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ControllerTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../MiscTest.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
-../ServerTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ClassListTest.$(OBJEXT): ../$(am__dirstamp) \
-	../$(DEPDIR)/$(am__dirstamp)
-../ProfileTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 ../MessageTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
+../ServerTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../ProfileTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../ObserverTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../ControllerTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../PropertyTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../NodeTest.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
 ../ClassTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-../ObjectListTest.$(OBJEXT): ../$(am__dirstamp) \
+../InterfaceTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-../LogTest.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
+../DatabaseTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../uEchoTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
 ../DeviceTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 ../SocketTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
-../DatabaseTest.$(OBJEXT): ../$(am__dirstamp) \
+../BytesTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../TestDevice.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../LogTest.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
+../ObjectListTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../PropertyMapTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 ../PropertyListTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../MiscTest.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
+../NodeListTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../ClassListTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
+../MutexTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
 
 uechotest$(EXEEXT): $(uechotest_OBJECTS) $(uechotest_DEPENDENCIES) $(EXTRA_uechotest_DEPENDENCIES) 
