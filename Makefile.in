@@ -97,7 +97,6 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 @UECHO_ENABLE_EXAMPLES_TRUE@am__append_1 = examples
 @UECHO_ENABLE_TEST_TRUE@am__append_2 = test
-@UECHO_BUILD_ESP32_TRUE@am__append_3 = lib/esp32
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -164,7 +163,7 @@ am__define_uniq_tagged_files = \
   unique=`for i in $$list; do \
     if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
   done | $(am__uniquify_input)`
-DIST_SUBDIRS = include lib examples test lib/esp32
+DIST_SUBDIRS = include lib examples test
 am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in \
 	$(top_srcdir)/config/ar-lib $(top_srcdir)/config/compile \
 	$(top_srcdir)/config/install-sh $(top_srcdir)/config/missing \
@@ -309,7 +308,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = include lib $(am__append_1) $(am__append_2) $(am__append_3)
+SUBDIRS = include lib $(am__append_1) $(am__append_2)
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 

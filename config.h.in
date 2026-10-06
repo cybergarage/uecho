@@ -109,6 +109,3 @@
 
 /* Version number of package */
 #undef VERSION
-
-/* Defined when building for ESP32 */
-#undef __ESP32__

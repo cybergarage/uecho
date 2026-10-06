@@ -33,22 +33,6 @@ AM_PROG_AR
 AC_CHECK_HEADERS([stdbool.h])
 
 ##############################
-# Checks for esp32
-##############################
-AC_ARG_WITH(esp32,
-[  --with-esp32 build for esp32],
-[case "${withval}" in
-  yes) build_esp32=true ;;
-  no)  build_esp32=false ;;
-  *) AC_MSG_ERROR(bad value ${withval} for --with-esp32) ;;
-esac],[build_esp32=false])
-
-AM_CONDITIONAL(UECHO_BUILD_ESP32, test x$build_esp32 = xtrue)
-
-if test x$build_esp32 = xtrue; then
-  AC_DEFINE([__ESP32__], 1, [Defined when building for ESP32])
-else
-##############################
 # Checks for pthread
 ##############################
 
@@ -58,7 +42,6 @@ AC_CHECK_LIB([pthread],[main])
 ##############################
 # Checks for Network functions
 ##############################
-fi
 
 AC_CHECK_FUNCS([socket])
 AC_CHECK_FUNCS([inet_ntoa])
