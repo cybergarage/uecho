@@ -8,9 +8,12 @@
  *
  ******************************************************************/
 
+#include <atomic>
 #include <boost/test/unit_test.hpp>
+#include <thread>
 
 #include <uecho/_controller.h>
+#include <uecho/_node.h>
 #include <uecho/util/timer.h>
 
 #include "TestDevice.h"
@@ -170,5 +173,61 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
   // Teminate
 
   BOOST_REQUIRE(uecho_controller_stop(ctrl));
+  uecho_controller_delete(ctrl);
+}
+
+// Responses delivered by several server threads at once, including duplicates
+// and late ones, must not touch the response message after postmessage() returns.
+
+static void uecho_controller_test_postresponder(uEchoController* ctrl, std::atomic<bool>* done)
+{
+  while (!done->load()) {
+    uEchoMessage* res = uecho_message_new();
+    byte data = 0x30;
+    uecho_message_settid(res, ctrl->node->lastTid);
+    uecho_message_setesv(res, uEchoEsvReadResponse);
+    uecho_message_setsourceobjectcode(res, 0x029101);
+    uecho_message_setdestinationobjectcode(res, 0x0EF0FF);
+    uecho_message_setproperty(res, 0x80, &data, 1);
+    uecho_controller_servermessagelistener(ctrl, res);
+    uecho_controller_servermessagelistener(ctrl, res);
+    uecho_message_delete(res);
+  }
+}
+
+BOOST_AUTO_TEST_CASE(ControllerPostResponseRace)
+{
+  uEchoController* ctrl = uecho_controller_new();
+  uEchoNode* dstNode = uecho_node_new();
+  uecho_node_setaddress(dstNode, "127.0.0.1");
+  uecho_controller_setpostwaitemilitime(ctrl, CLOCKS_PER_SEC / 200);
+
+  std::atomic<bool> done(false);
+  std::thread responder1(uecho_controller_test_postresponder, ctrl, &done);
+  std::thread responder2(uecho_controller_test_postresponder, ctrl, &done);
+
+  int receivedCnt = 0;
+  for (int n = 0; n < 500; n++) {
+    uEchoMessage* msg = uecho_message_new();
+    uecho_message_setesv(msg, uEchoEsvReadRequest);
+    uecho_message_setdestinationobjectcode(msg, 0x029101);
+    uecho_message_setproperty(msg, 0x80, NULL, 0);
+    uEchoMessage* res = uecho_message_new();
+    if (uecho_controller_postmessage(ctrl, dstNode, msg, res)) {
+      BOOST_REQUIRE_EQUAL(uecho_message_gettid(res), uecho_message_gettid(msg));
+      BOOST_REQUIRE_EQUAL(uecho_message_getopc(res), 1);
+      receivedCnt++;
+    }
+    uecho_message_delete(res);
+    uecho_message_delete(msg);
+  }
+
+  done.store(true);
+  responder1.join();
+  responder2.join();
+
+  BOOST_REQUIRE(0 < receivedCnt);
+
+  uecho_node_delete(dstNode);
   uecho_controller_delete(ctrl);
 }

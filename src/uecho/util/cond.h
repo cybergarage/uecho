@@ -13,6 +13,8 @@
 
 #include <uecho/typedef.h>
 
+#include <time.h>
+
 #if defined(WIN32)
 #include <winsock2.h>
 #else
@@ -48,6 +50,13 @@ bool uecho_cond_delete(uEchoCond* cond);
 bool uecho_cond_wait(uEchoCond* cond);
 bool uecho_cond_timedwait(uEchoCond* cond, clock_t mtime);
 bool uecho_cond_signal(uEchoCond* cond);
+
+/* Predicate-based waiting: guard shared state with lock()/unlock(), and call
+ * waituntil() with the lock held. It returns false when the deadline passes. */
+bool uecho_cond_lock(uEchoCond* cond);
+bool uecho_cond_unlock(uEchoCond* cond);
+bool uecho_cond_getdeadline(clock_t mtime, struct timespec* deadline);
+bool uecho_cond_waituntil(uEchoCond* cond, const struct timespec* deadline);
 
 #ifdef __cplusplus
 
