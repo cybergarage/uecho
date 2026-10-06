@@ -3,6 +3,8 @@ var __controller_8h =
     [ "UEchoController", "structUEchoController.html", "structUEchoController" ],
     [ "uecho_controller_enableudpserver", "__controller_8h.html#ae7383f465df996b7ebb3de6652f1752d", null ],
     [ "uecho_controller_isudpserverenabled", "__controller_8h.html#a00054bc04a45fdbbdb4ec2466ae2da8b", null ],
+    [ "UECHO_CONTROLLER_MAX_NODES", "__controller_8h.html#ae9355f4780154fa86625dbee155ae4d7", null ],
+    [ "UECHO_CONTROLLER_MAX_OBJECTS_PER_NODE", "__controller_8h.html#a4fc153f992ae10a772caaf06fca97c70", null ],
     [ "uEchoController", "__controller_8h.html#aa71c5a22b0d52334ec5a7fb252417eb6", null ],
     [ "uecho_controller_disableoption", "__controller_8h.html#abc02140438118e4e9ab0aa4bdb94ec1b", null ],
     [ "uecho_controller_disableudpserver", "__controller_8h.html#a48b8f4a7bc6c78e3261f33b972f6a8d6", null ],

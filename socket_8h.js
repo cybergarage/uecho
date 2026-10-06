@@ -62,6 +62,7 @@ var socket_8h =
     [ "uecho_socket_read", "socket_8h.html#af57bcf7aa87e850445be65913ae7698f", null ],
     [ "uecho_socket_readline", "socket_8h.html#a3869484b6f7fe061ef3b550d2a182a19", null ],
     [ "uecho_socket_recv", "socket_8h.html#ac08907d238427138dc87a5d6afffd3fa", null ],
+    [ "uecho_socket_resolveaddress", "socket_8h.html#a667d666b604b66ff353b1bfce2b77eb7", null ],
     [ "uecho_socket_sendto", "socket_8h.html#ab3ee34bde709093610a7f63ffc7d8b0e", null ],
     [ "uecho_socket_setid", "socket_8h.html#a81c72d77c34885e9b3e87e4bef54aa6b", null ],
     [ "uecho_socket_setmulticastloop", "socket_8h.html#a07c5de307886d47bf4842519ee66cd5c", null ],

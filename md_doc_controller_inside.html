@@ -62,7 +62,9 @@ $(document).ready(function(){initNavTree('md_doc_controller_inside.html',''); in
   <div class="headertitle"><div class="title">Inside of uEcho Controller </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md1"></a>
+<div class="textblock"><p >Network discovery retains at most 64 remote nodes and 256 objects per node (including the node profile). Additional entries are ignored once a limit is reached; existing entries can still be updated. Build-time definitions <code>UECHO_CONTROLLER_MAX_NODES</code> and <code>UECHO_CONTROLLER_MAX_OBJECTS_PER_NODE</code> can adjust these limits for the application's memory budget. Discovery packets must contain a node-profile source and a complete instance list whose declared count matches its data length. Lists received in multiple packets continue to be merged within the limits.</p>
+<p >Library receive paths synchronize property buffer replacement and response snapshots. Applications sharing raw pointers returned by property getters between threads must still provide their own synchronization and keep the owning node alive. Property callbacks run before the protected data update.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
 Node Profile Object</h1>
 <p >The controller is a special node specified in <a href="http://echonet.jp/english/">ECHONET Lite</a> for controlling other nodes. The controller must implement the following special node profile class object that contains all child objects of the node <a href="https://echonet.jp/spec_object_rp_en/">[1]</a>.</p>
 <ul>
