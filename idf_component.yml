@@ -1,3 +1,4 @@
+version: "1.4.0"
 description: "uEcho for C: ECHONET Lite devices and controllers"
 url: "https://github.com/cybergarage/uecho"
 license: "BSD-3-Clause"
