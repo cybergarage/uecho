@@ -40,6 +40,8 @@ add_executable(uechotest
   ../uEchoTest.cpp
 )
 
+target_compile_features(uechotest PRIVATE cxx_std_20)
+
 target_include_directories(uechotest PRIVATE
   ${CMAKE_SOURCE_DIR}/include
   ${CMAKE_SOURCE_DIR}/src
