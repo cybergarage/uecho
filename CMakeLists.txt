@@ -35,7 +35,7 @@ if(ESP_PLATFORM)
   return()
 endif()
 
-project(uecho VERSION 1.4.0 LANGUAGES C CXX)
+project(uecho VERSION 1.4.1 LANGUAGES C CXX)
 
 option(UECHO_ENABLE_TEST     "Build tests"    OFF)
 option(UECHO_ENABLE_EXAMPLES "Build examples" ON)

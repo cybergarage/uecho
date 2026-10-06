@@ -37,7 +37,7 @@ extern "C" {
  * Compiler
  ****************************************/
 
-#if __STDC_VERSION__ >= 199901L
+#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
 #define C99
 #endif
 
