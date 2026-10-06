@@ -242,9 +242,17 @@ BOOST_AUTO_TEST_CASE(PropertyAddData)
 // GNU --wrap affects library references only. Failure state is thread-local,
 // so receive workers cannot consume a scheduled failure.
 
-static thread_local int FAIL_MALLOC_AFTER = 0;
-static thread_local bool FAIL_CALLOC = false;
-static thread_local bool FAIL_REALLOC = false;
+struct TestAllocationState {
+  int mallocAfter = 0;
+  bool calloc = false;
+  bool realloc = false;
+};
+
+static TestAllocationState& uecho_test_allocationstate()
+{
+  static thread_local TestAllocationState state;
+  return state;
+}
 
 extern "C" void* uecho_test_real_malloc(size_t) asm("__real_malloc");
 extern "C" void* uecho_test_real_calloc(size_t, size_t) asm("__real_calloc");
@@ -254,8 +262,12 @@ extern "C" void* uecho_test_malloc(size_t) asm("__wrap_malloc");
 
 extern "C" void* uecho_test_malloc(size_t size)
 {
-  if (FAIL_MALLOC_AFTER > 0 && --FAIL_MALLOC_AFTER == 0)
-    return nullptr;
+  auto& state = uecho_test_allocationstate();
+  if (state.mallocAfter > 0) {
+    --state.mallocAfter;
+    if (state.mallocAfter == 0)
+      return nullptr;
+  }
   return uecho_test_real_malloc(size);
 }
 
@@ -263,8 +275,8 @@ extern "C" void* uecho_test_calloc(size_t, size_t) asm("__wrap_calloc");
 
 extern "C" void* uecho_test_calloc(size_t count, size_t size)
 {
-  if (FAIL_CALLOC) {
-    FAIL_CALLOC = false;
+  if (uecho_test_allocationstate().calloc) {
+    uecho_test_allocationstate().calloc = false;
     return nullptr;
   }
   return uecho_test_real_calloc(count, size);
@@ -274,8 +286,8 @@ extern "C" void* uecho_test_realloc(void*, size_t) asm("__wrap_realloc");
 
 extern "C" void* uecho_test_realloc(void* data, size_t size)
 {
-  if (FAIL_REALLOC) {
-    FAIL_REALLOC = false;
+  if (uecho_test_allocationstate().realloc) {
+    uecho_test_allocationstate().realloc = false;
     return nullptr;
   }
   return uecho_test_real_realloc(data, size);
@@ -283,11 +295,11 @@ extern "C" void* uecho_test_realloc(void* data, size_t size)
 
 BOOST_AUTO_TEST_CASE(AllocationFailureCleanup)
 {
-  FAIL_MALLOC_AFTER = 2; // Node allocation succeeds; its mutex allocation fails.
-  uEchoNode* node = uecho_node_new();
+  uecho_test_allocationstate().mallocAfter = 2; // Node allocation succeeds; its mutex allocation fails.
+  const uEchoNode* node = uecho_node_new();
   BOOST_CHECK(!node);
-  FAIL_MALLOC_AFTER = 1; // Controller calloc succeeds; its mutex allocation fails.
-  uEchoController* failedController = uecho_controller_new();
+  uecho_test_allocationstate().mallocAfter = 1; // Controller calloc succeeds; its mutex allocation fails.
+  const uEchoController* failedController = uecho_controller_new();
   BOOST_CHECK(!failedController);
 
   uEchoController* controller = uecho_controller_new();
@@ -296,7 +308,7 @@ BOOST_AUTO_TEST_CASE(AllocationFailureCleanup)
   uecho_message_setproperty(search, uEchoNodeProfileClassSelfNodeInstanceListS, &emptyList, 1);
   uecho_message_setesv(search, uEchoEsvReadResponse);
   uecho_message_setsourceaddress(search, UECHO_NET_IPV4_LOOPBACK);
-  FAIL_MALLOC_AFTER = 1; // Discovery cannot allocate a peer.
+  uecho_test_allocationstate().mallocAfter = 1; // Discovery cannot allocate a peer.
   uecho_controller_servermessagelistener(controller, search);
   BOOST_CHECK_EQUAL(uecho_controller_getnodecount(controller), 0);
   // A subsequent discovery proves the failure path released its mutex.
@@ -305,19 +317,19 @@ BOOST_AUTO_TEST_CASE(AllocationFailureCleanup)
 
   uEchoMessage* copy = uecho_message_new();
   uEchoMessage* request = uecho_message_search_new();
-  FAIL_MALLOC_AFTER = 1; // The first allocation is the copied property.
+  uecho_test_allocationstate().mallocAfter = 1; // The first allocation is the copied property.
   bool copied = uecho_message_set(copy, request);
   BOOST_CHECK(!copied);
   BOOST_CHECK(uecho_message_set(copy, request));
 
   uEchoProperty* property = uecho_property_new();
   byte value = 0x30;
-  FAIL_CALLOC = true;
+  uecho_test_allocationstate().calloc = true;
   bool stored = uecho_property_setdata(property, &value, 1);
   BOOST_CHECK(!stored);
   BOOST_CHECK_EQUAL(uecho_property_getdatasize(property), 0);
   BOOST_CHECK(uecho_property_setdata(property, &value, 1));
-  FAIL_REALLOC = true;
+  uecho_test_allocationstate().realloc = true;
   bool appended = uecho_property_adddata(property, &value, 1);
   BOOST_CHECK(!appended);
   byte preserved = 0;

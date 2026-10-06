@@ -12,7 +12,7 @@
 #include <array>
 #include <atomic>
 #include <boost/test/unit_test.hpp>
-#include <future>
+#include <thread>
 #include <uecho/_node.h>
 #include <uecho/profile.h>
 
@@ -84,12 +84,12 @@ BOOST_AUTO_TEST_CASE(NodeConcurrentPropertyMapReaders)
   uEchoProperty* reference = uecho_property_copy(property);
   BOOST_REQUIRE(reference);
   std::atomic_bool valid(true);
-  auto writer = std::async(std::launch::async, [property, map] {
+  std::jthread writer([property, map] {
     std::array<byte, 1> empty = { 0 };
     for (int n = 0; n < 4000; n++)
       uecho_property_setdata(property, n % 2 ? map.data() : empty.data(), n % 2 ? map.size() : empty.size());
   });
-  auto reader = std::async(std::launch::async, [property, reference, &valid] {
+  std::jthread reader([property, reference, &valid] {
     for (int n = 0; n < 4000; n++) {
       if (size_t size = uecho_property_getdatasize(property); size < 1 || size > 2)
         valid = false;
@@ -101,8 +101,8 @@ BOOST_AUTO_TEST_CASE(NodeConcurrentPropertyMapReaders)
       uecho_property_equals(property, reference);
     }
   });
-  writer.get();
-  reader.get();
+  writer.join();
+  reader.join();
   BOOST_CHECK(valid.load());
   uecho_property_delete(reference);
   uecho_node_delete(node);
@@ -153,12 +153,12 @@ BOOST_AUTO_TEST_CASE(NodeConcurrentPropertyRequests)
       uecho_message_delete(response);
     }
   };
-  auto first = std::async(std::launch::async, writer, 64, 0x64);
-  auto second = std::async(std::launch::async, writer, 1, 0x31);
-  auto third = std::async(std::launch::async, reader);
-  first.get();
-  second.get();
-  third.get();
+  std::jthread first(writer, 64, 0x64);
+  std::jthread second(writer, 1, 0x31);
+  std::jthread third(reader);
+  first.join();
+  second.join();
+  third.join();
   BOOST_CHECK(valid.load());
   uecho_node_delete(node);
 }

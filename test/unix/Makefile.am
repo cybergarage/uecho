@@ -12,6 +12,9 @@ TESTS = uechotest
 
 check_PROGRAMS = uechotest
 
+# Tests use std::jthread for automatic thread lifetime management.
+AM_CXXFLAGS = -std=c++20
+
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../ $(UECHO_TEST_ALLOCATOR_CPPFLAGS)
 	../TestDevice.h
 

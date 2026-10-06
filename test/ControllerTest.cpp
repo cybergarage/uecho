@@ -208,8 +208,10 @@ BOOST_AUTO_TEST_CASE(ControllerDiscoveryLimits)
   BOOST_CHECK_EQUAL(uecho_node_getobjectcount(peer), UECHO_CONTROLLER_MAX_OBJECTS_PER_NODE);
   BOOST_CHECK(uecho_node_hasobjectbycode(peer, 0x001001));
   for (size_t n = 2; n <= UECHO_CONTROLLER_MAX_NODES + 8; n++) {
-    std::string address = "192.0.2." + std::to_string(n);
-    uecho_message_setsourceaddress(response, address.c_str());
+    const struct in_addr peerAddress = { htonl(0xC0000200u + n) };
+    std::array<char, INET_ADDRSTRLEN> address = {};
+    BOOST_REQUIRE(inet_ntop(AF_INET, &peerAddress, address.data(), address.size()));
+    uecho_message_setsourceaddress(response, address.data());
     std::array<byte, 1> empty = { 0 };
     uecho_message_setproperty(response, uEchoNodeProfileClassSelfNodeInstanceListS, empty.data(), empty.size());
     uecho_controller_servermessagelistener(controller, response);

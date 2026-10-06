@@ -18,7 +18,8 @@
 
 BOOST_AUTO_TEST_CASE(SocketResolvedPeerAddress)
 {
-  std::unique_ptr<char, decltype(&std::free)> address(uecho_socket_resolveaddress(UECHO_NET_IPV4_LOOPBACK), &std::free);
+  auto release = [](char* buffer) { std::free(buffer); };
+  std::unique_ptr<char, decltype(release)> address(uecho_socket_resolveaddress(UECHO_NET_IPV4_LOOPBACK), release);
   BOOST_REQUIRE(address);
   BOOST_CHECK_EQUAL(address.get(), UECHO_NET_IPV4_LOOPBACK);
   address.reset(uecho_socket_resolveaddress("localhost"));

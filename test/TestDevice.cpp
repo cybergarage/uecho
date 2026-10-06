@@ -116,8 +116,7 @@ uEchoObject* uecho_test_findlocaldevice(uEchoController* ctrl)
   if (!route || !uecho_socket_connect(route.get(), uEchoMulticastAddr, uEchoUdpPort))
     return nullptr;
   struct sockaddr_in source = {};
-  socklen_t sourceLength = sizeof(source);
-  if (getsockname(uecho_socket_getid(route.get()), (struct sockaddr*)&source, &sourceLength) != 0)
+  if (socklen_t sourceLength = sizeof(source); getsockname(uecho_socket_getid(route.get()), (struct sockaddr*)&source, &sourceLength) != 0)
     return nullptr;
   std::array<char, UECHO_NET_SOCKET_MAXHOST> localAddress = {};
   if (!inet_ntop(AF_INET, &source.sin_addr, localAddress.data(), localAddress.size()))
