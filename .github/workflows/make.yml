@@ -24,7 +24,11 @@ jobs:
     - name: make
       run: make -j 20
     - name: make check
-      run: make check -j 20 || more test/unix/test-suite.log
+      run: |
+        make check -j 20 \
+          UECHO_TEST_ALLOCATOR_CPPFLAGS=-DUECHO_TEST_ALLOCATOR_FAILURES \
+          UECHO_TEST_ALLOCATOR_LDFLAGS='-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc' \
+          || { cat test/unix/test-suite.log; exit 1; }
     - name: generate coverage
       run: |
         # Generate gcov files for all source directories

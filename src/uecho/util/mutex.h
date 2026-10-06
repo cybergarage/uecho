@@ -40,6 +40,7 @@ typedef struct UEchoMutex {
  ****************************************/
 
 uEchoMutex* uecho_mutex_new(void);
+uEchoMutex* uecho_mutex_newrecursive(void);
 bool uecho_mutex_delete(uEchoMutex* mutex);
 
 bool uecho_mutex_lock(uEchoMutex* mutex);

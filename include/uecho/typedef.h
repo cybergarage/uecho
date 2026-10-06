@@ -45,10 +45,7 @@ extern "C" {
  * Data Type
  ****************************************/
 
-#if defined(__cplusplus)
-/* bool, true and false are built-in in C++; never redefine them, or the
- * size of bool would differ from the C library (C _Bool is one byte). */
-#elif defined(C99) || defined(HAVE_STDBOOL_H)
+#if defined(__cplusplus) || defined(C99) || defined(HAVE_STDBOOL_H)
 #include <stdbool.h>
 #else
 #if !defined(bool)

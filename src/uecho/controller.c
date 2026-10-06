@@ -20,16 +20,22 @@ uEchoController* uecho_controller_new(void)
   uEchoController* ctrl;
   uEchoServer* server;
 
-  ctrl = (uEchoController*)malloc(sizeof(uEchoController));
+  ctrl = (uEchoController*)calloc(1, sizeof(uEchoController));
 
   if (!ctrl)
     return NULL;
 
   ctrl->mutex = uecho_mutex_new();
+  ctrl->nodesMutex = uecho_mutex_new();
   ctrl->cond = uecho_cond_new();
   ctrl->node = uecho_node_new();
   ctrl->nodes = uecho_nodelist_new();
   ctrl->option = uEchoOptionNone;
+
+  if (!ctrl->mutex || !ctrl->nodesMutex || !ctrl->cond || !ctrl->node || !ctrl->nodes) {
+    uecho_controller_delete(ctrl);
+    return NULL;
+  }
 
   server = uecho_node_getserver(ctrl->node);
   uecho_server_addobserver(server, ctrl, (uEchoMessageHandler)uecho_controller_servermessagelistener);
@@ -58,6 +64,7 @@ bool uecho_controller_delete(uEchoController* ctrl)
   uecho_controller_stop(ctrl);
 
   uecho_mutex_delete(ctrl->mutex);
+  uecho_mutex_delete(ctrl->nodesMutex);
   uecho_cond_delete(ctrl->cond);
   uecho_node_delete(ctrl->node);
   uecho_nodelist_delete(ctrl->nodes);
@@ -415,12 +422,15 @@ bool uecho_controller_haspostresponsemessage(uEchoController* ctrl)
 
 bool uecho_controller_ispostresponsemessage(uEchoController* ctrl, uEchoMessage* msg)
 {
-  if (!ctrl)
+  if (!ctrl || !msg)
     return false;
 
   if (!uecho_controller_haspostrequestmessage(ctrl))
     return false;
 
+  const char* address = uecho_message_getdestinationaddress(ctrl->postReqMsg);
+  if (!address || !*address || !uecho_message_issourceaddress(msg, address))
+    return false;
   return uecho_message_isresponsemessage(ctrl->postReqMsg, msg);
 }
 
@@ -436,7 +446,7 @@ bool uecho_controller_ispostresponsereceived(uEchoController* ctrl)
   if (!uecho_controller_haspostrequestmessage(ctrl) || !uecho_controller_haspostresponsemessage(ctrl))
     return false;
 
-  return uecho_message_isresponsemessage(ctrl->postReqMsg, ctrl->postResMsg);
+  return uecho_controller_ispostresponsemessage(ctrl, ctrl->postResMsg);
 }
 
 /****************************************
@@ -481,51 +491,35 @@ clock_t uecho_controller_getpostwaitemilitime(uEchoController* ctrl)
 
 bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* reqMsg, uEchoMessage* resMsg)
 {
-  uEchoObject* nodeProfObj;
   struct timespec deadline;
-  bool isRequestSent;
-  bool isResponseReceived;
-
-  if (!ctrl || !node || !reqMsg || !resMsg || !ctrl->node)
+  if (!ctrl || !ctrl->node || !node || !reqMsg || !resMsg || reqMsg == resMsg)
     return false;
 
-  nodeProfObj = uecho_node_getnodeprofileclassobject(ctrl->node);
-  if (!nodeProfObj)
-    return false;
-
-  /* Only one post request is pending at a time. */
+  uEchoCond* const condition = ctrl->cond;
   uecho_mutex_lock(ctrl->mutex);
-
-  /* Fix the TID before registering the request, so the server threads never see it change. */
-  uecho_message_settid(reqMsg, uecho_node_getnexttid(ctrl->node));
-  uecho_message_setsourceobjectcode(reqMsg, uecho_object_getcode(nodeProfObj));
-
-  uecho_cond_lock(ctrl->cond);
+  uecho_cond_lock(condition);
+  uecho_message_clear(resMsg);
+  uecho_message_setesv(resMsg, 0);
+  uecho_message_settid(resMsg, 0);
   ctrl->postReqMsg = reqMsg;
   ctrl->postResMsg = resMsg;
   ctrl->postResReceived = false;
-  uecho_cond_unlock(ctrl->cond);
 
-  isRequestSent = uecho_node_sendmessagebytes(ctrl->node, uecho_node_getaddress(node), uecho_message_getbytes(reqMsg), uecho_message_size(reqMsg));
-
-  uecho_cond_lock(ctrl->cond);
-  if (isRequestSent && uecho_cond_getdeadline(ctrl->postResWaitClockTime, &deadline)) {
-    /* The flag is set under the lock, so a response that arrives before this wait is not lost. */
+  /* Sending assigns the TID, source EOJ and resolved peer while the pair is locked. */
+  bool sent = uecho_controller_sendmessage(ctrl, node, reqMsg);
+  if (sent && uecho_cond_getdeadline(ctrl->postResWaitClockTime, &deadline)) {
     while (!ctrl->postResReceived) {
-      if (!uecho_cond_waituntil(ctrl->cond, &deadline))
+      if (!uecho_cond_waituntil(condition, &deadline))
         break;
     }
   }
-  isResponseReceived = ctrl->postResReceived;
-  /* Unregister under the lock: no server thread can write resMsg after this returns. */
+  bool received = ctrl->postResReceived;
   ctrl->postReqMsg = NULL;
   ctrl->postResMsg = NULL;
   ctrl->postResReceived = false;
-  uecho_cond_unlock(ctrl->cond);
-
+  uecho_cond_unlock(condition);
   uecho_mutex_unlock(ctrl->mutex);
-
-  return isResponseReceived;
+  return received;
 }
 
 /****************************************
