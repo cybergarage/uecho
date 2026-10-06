@@ -68,16 +68,17 @@ bool uecho_integer2byte(int val, byte* bytes, size_t byteSize)
 
 int uecho_byte2integer(byte* bytes, size_t byteSize)
 {
-  int val = 0;
+  unsigned int val = 0;
   size_t n, idx;
 
   if (!bytes)
     return 0;
 
+  /* Shift as unsigned: shifting a byte into the sign bit of an int is undefined. */
   for (n = 0; n < byteSize; n++) {
     idx = ((byteSize - 1) - n);
-    val += (bytes[idx] << (n * 8));
+    val |= ((unsigned int)bytes[idx] << (n * 8));
   }
 
-  return val;
+  return (int)val;
 }
