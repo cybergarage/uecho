@@ -495,8 +495,9 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
   if (!ctrl || !node || !reqMsg || !resMsg || reqMsg == resMsg)
     return false;
 
+  uEchoCond* const condition = ctrl->cond;
   uecho_mutex_lock(ctrl->mutex);
-  pthread_mutex_lock(&ctrl->cond->mutexId);
+  pthread_mutex_lock(&condition->mutexId);
   uecho_message_clear(resMsg);
   uecho_message_setesv(resMsg, 0);
   uecho_message_settid(resMsg, 0);
@@ -507,7 +508,7 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
   if (!uecho_controller_sendmessage(ctrl, node, reqMsg)) {
     uecho_controller_setpostrequestmessage(ctrl, NULL);
     uecho_controller_setpostresponsemessage(ctrl, NULL);
-    pthread_mutex_unlock(&ctrl->cond->mutexId);
+    pthread_mutex_unlock(&condition->mutexId);
     uecho_mutex_unlock(ctrl->mutex);
     return false;
   }
@@ -515,12 +516,10 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
   clock_gettime(CLOCK_REALTIME, &deadline);
   deadline.tv_sec += ctrl->postResWaitClockTime / CLOCKS_PER_SEC;
   deadline.tv_nsec += (ctrl->postResWaitClockTime % CLOCKS_PER_SEC) * (1000000000L / CLOCKS_PER_SEC);
-  if (deadline.tv_nsec >= 1000000000L) {
-    deadline.tv_sec++;
-    deadline.tv_nsec -= 1000000000L;
-  }
+  deadline.tv_sec += deadline.tv_nsec / 1000000000L;
+  deadline.tv_nsec %= 1000000000L;
   while (!uecho_controller_ispostresponsereceived(ctrl)) {
-    if (pthread_cond_timedwait(&ctrl->cond->condId, &ctrl->cond->mutexId, &deadline) != 0)
+    if (pthread_cond_timedwait(&condition->condId, &condition->mutexId, &deadline) != 0)
       break;
   }
   isResponceReceived = uecho_controller_ispostresponsereceived(ctrl);
@@ -528,7 +527,7 @@ bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoM
   uecho_controller_setpostrequestmessage(ctrl, NULL);
   uecho_controller_setpostresponsemessage(ctrl, NULL);
 
-  pthread_mutex_unlock(&ctrl->cond->mutexId);
+  pthread_mutex_unlock(&condition->mutexId);
   uecho_mutex_unlock(ctrl->mutex);
 
   return isResponceReceived;

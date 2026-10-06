@@ -8,9 +8,11 @@
  *
  ******************************************************************/
 
+#include <algorithm>
+#include <array>
 #include <atomic>
 #include <boost/test/unit_test.hpp>
-#include <thread>
+#include <future>
 #include <uecho/_node.h>
 #include <uecho/profile.h>
 
@@ -25,7 +27,8 @@ BOOST_AUTO_TEST_CASE(NodePropertyServicePermissions)
 {
   uEchoNode* node = uecho_node_new();
   uEchoObject* object = uecho_node_getnodeprofileclassobject(node);
-  byte original = 0x30, replacement = 0x31;
+  byte original = 0x30;
+  byte replacement = 0x31;
   uecho_object_setproperty(object, 0xE0, uEchoPropertyAttrReadWrite);
   uecho_object_setproperty(object, 0xE1, uEchoPropertyAttrReadRequired);
   uecho_object_setproperty(object, 0xE2, uEchoPropertyAttrWriteRequired);
@@ -51,7 +54,7 @@ BOOST_AUTO_TEST_CASE(NodePropertyServicePermissions)
     uEchoMessage* request = uecho_message_new();
     uEchoMessage* response = uecho_message_new();
     for (byte code : { byte(0xE0), byte(0xE1), byte(0xE2) })
-      uecho_message_setproperty(request, code, NULL, 0);
+      uecho_message_setproperty(request, code, nullptr, 0);
     BOOST_CHECK_EQUAL(uecho_test_propertyrequest(object, esv, request, response), 2);
     BOOST_CHECK_EQUAL(uecho_property_getdatasize(uecho_message_getpropertybycode(response, 0xE2)), 0);
     BOOST_CHECK_EQUAL(uecho_property_getdatasize(uecho_message_getpropertybycode(response, 0xE0)), 1);
@@ -76,36 +79,45 @@ BOOST_AUTO_TEST_CASE(NodeConcurrentPropertyMapReaders)
   uEchoNode* node = uecho_node_new();
   uEchoProperty* property = uecho_object_getproperty(uecho_node_getnodeprofileclassobject(node), uEchoObjectGetPropertyMap);
   BOOST_REQUIRE(property);
-  byte map[] = { 1, 0xE0 };
-  uecho_property_setdata(property, map, sizeof(map));
+  std::array<byte, 2> map = { 1, 0xE0 };
+  uecho_property_setdata(property, map.data(), map.size());
   uEchoProperty* reference = uecho_property_copy(property);
   BOOST_REQUIRE(reference);
-  std::atomic<bool> valid(true);
-  std::thread writer([&] {
-    byte empty[] = { 0 };
+  std::atomic_bool valid(true);
+  auto writer = std::async(std::launch::async, [property, map] {
+    std::array<byte, 1> empty = { 0 };
     for (int n = 0; n < 4000; n++)
-      uecho_property_setdata(property, n % 2 ? map : empty, n % 2 ? sizeof(map) : sizeof(empty));
+      uecho_property_setdata(property, n % 2 ? map.data() : empty.data(), n % 2 ? map.size() : empty.size());
   });
-  std::thread reader([&] {
+  auto reader = std::async(std::launch::async, [property, reference, &valid] {
     for (int n = 0; n < 4000; n++) {
-      size_t size = uecho_property_getdatasize(property);
-      if (size < 1 || size > 2)
+      if (size_t size = uecho_property_getdatasize(property); size < 1 || size > 2)
         valid = false;
-      size_t count;
-      if (!uecho_property_getpropertymapcount(property, &count) || count > 1)
+      if (size_t count = 0; !uecho_property_getpropertymapcount(property, &count) || count > 1)
         valid = false;
-      uEchoPropertyCode code = 0;
-      if (uecho_property_getpropertymapcodes(property, &code, 1) && code != 0xE0)
+      if (uEchoPropertyCode code = 0; uecho_property_getpropertymapcodes(property, &code, 1) && code != 0xE0)
         valid = false;
-      uecho_property_getpropertymapcodes(property, NULL, 0);
+      uecho_property_getpropertymapcodes(property, nullptr, 0);
       uecho_property_equals(property, reference);
     }
   });
-  writer.join();
-  reader.join();
+  writer.get();
+  reader.get();
   BOOST_CHECK(valid.load());
   uecho_property_delete(reference);
   uecho_node_delete(node);
+}
+
+static bool uecho_test_consistentsnapshot(uEchoProperty* property)
+{
+  uEchoProperty* snapshot = uecho_property_copy(property);
+  const size_t length = uecho_property_getdatasize(snapshot);
+  const byte* data = uecho_property_getdata(snapshot);
+  bool valid = length == 0 || length == 1 || length == 64;
+  if (valid && length > 0)
+    valid = std::all_of(data, data + length, [length](byte value) { return value == (length == 1 ? 0x31 : 0x64); });
+  uecho_property_delete(snapshot);
+  return valid;
 }
 
 BOOST_AUTO_TEST_CASE(NodeConcurrentPropertyRequests)
@@ -114,45 +126,39 @@ BOOST_AUTO_TEST_CASE(NodeConcurrentPropertyRequests)
   uEchoObject* object = uecho_node_getnodeprofileclassobject(node);
   uecho_object_setproperty(object, 0xE0, uEchoPropertyAttrReadWrite);
   uEchoProperty* property = uecho_object_getproperty(object, 0xE0);
-  std::atomic<bool> valid(true);
-  auto writer = [&](size_t length, byte value) {
-    byte data[64];
-    memset(data, value, sizeof(data));
+  std::atomic_bool valid(true);
+  auto writer = [object, &valid](size_t length, byte value) {
+    std::array<byte, 64> data;
+    data.fill(value);
     for (int n = 0; n < 2000; n++) {
       uEchoMessage* request = uecho_message_new();
       uEchoMessage* response = uecho_message_new();
-      uecho_message_setproperty(request, 0xE0, data, length);
+      uecho_message_setproperty(request, 0xE0, data.data(), length);
       if (uecho_test_propertyrequest(object, uEchoEsvWriteRequest, request, response) != 1)
         valid = false;
       uecho_message_delete(request);
       uecho_message_delete(response);
     }
   };
-  auto reader = [&]() {
+  auto reader = [object, property, &valid]() {
     for (int n = 0; n < 2000; n++) {
-      uEchoProperty* snapshot = uecho_property_copy(property);
-      size_t length = uecho_property_getdatasize(snapshot);
-      byte* data = uecho_property_getdata(snapshot);
-      if (length != 0 && length != 1 && length != 64)
+      if (!uecho_test_consistentsnapshot(property))
         valid = false;
-      for (size_t i = 0; i < length; i++) {
-        if (data[i] != (length == 1 ? 0x31 : 0x64))
-          valid = false;
-      }
-      uecho_property_delete(snapshot);
       uEchoMessage* request = uecho_message_new();
       uEchoMessage* response = uecho_message_new();
-      uecho_message_setproperty(request, 0xE0, NULL, 0);
+      uecho_message_setproperty(request, 0xE0, nullptr, 0);
       if (uecho_test_propertyrequest(object, uEchoEsvReadRequest, request, response) != 1)
         valid = false;
       uecho_message_delete(request);
       uecho_message_delete(response);
     }
   };
-  std::thread first(writer, 64, 0x64), second(writer, 1, 0x31), third(reader);
-  first.join();
-  second.join();
-  third.join();
+  auto first = std::async(std::launch::async, writer, 64, 0x64);
+  auto second = std::async(std::launch::async, writer, 1, 0x31);
+  auto third = std::async(std::launch::async, reader);
+  first.get();
+  second.get();
+  third.get();
   BOOST_CHECK(valid.load());
   uecho_node_delete(node);
 }

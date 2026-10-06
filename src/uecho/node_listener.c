@@ -56,10 +56,32 @@ bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoProperty* objProp
 
 typedef bool (*uEchoMessageAddPropertyFunc)(uEchoMessage* msg, uEchoProperty* prop);
 
+static bool uecho_node_applyrequestproperty(uEchoObject* object, uEchoEsv service, uEchoProperty* request, uEchoProperty* response)
+{
+  uEchoProperty* property = uecho_object_getproperty(object, uecho_property_getcode(request));
+  bool permitted = property && (uecho_esv_iswriterequest(service) ? uecho_property_iswritable(property) : uecho_property_isreadable(property));
+  if (!permitted || !uecho_object_notifyrequestproperty(object, property, service, request)) {
+    if (service == uEchoEsvWriteRequestResponseRequired)
+      uecho_property_setdata(response, uecho_property_getdata(request), uecho_property_getdatasize(request));
+    return false;
+  }
+
+  uEchoNode* parent = uecho_object_getparentnode(object);
+  uEchoMutex* mutex = parent ? parent->mutex : NULL;
+  uecho_mutex_lock(mutex);
+  if (uecho_esv_iswriterequest(service))
+    uecho_property_setdata(property, uecho_property_getdata(request), uecho_property_getdatasize(request));
+  else if (service == uEchoEsvReadRequest || service == uEchoEsvNotificationRequest || service == uEchoEsvNotificationResponseRequired)
+    uecho_property_setdata(response, uecho_property_getdata(property), uecho_property_getdatasize(property));
+  uecho_mutex_unlock(mutex);
+  return true;
+}
+
 int uecho_node_handlerequestmessage(uEchoObject* destObj, uEchoEsv msgEsv, byte opc, uEchoProperty** ep, uEchoMessageAddPropertyFunc messageAddpropertyFunc, uEchoMessage* resMsg)
 {
   uEchoPropertyCode msgPropCode;
-  uEchoProperty *msgProp, *destProp, *resProp;
+  uEchoProperty* msgProp;
+  uEchoProperty* resProp;
   int acceptedRequestCnt, n;
 
   acceptedRequestCnt = 0;
@@ -74,44 +96,8 @@ int uecho_node_handlerequestmessage(uEchoObject* destObj, uEchoEsv msgEsv, byte 
       continue;
     uecho_property_setcode(resProp, msgPropCode);
 
-    destProp = uecho_object_getproperty(destObj, msgPropCode);
-    bool permitted = destProp && (uecho_esv_iswriterequest(msgEsv) ? uecho_property_iswritable(destProp) : uecho_property_isreadable(destProp));
-    if (permitted) {
-      if (uecho_object_notifyrequestproperty(destObj, destProp, msgEsv, msgProp)) {
-        uEchoNode* parent = uecho_object_getparentnode(destObj);
-        uEchoMutex* mutex = parent ? parent->mutex : NULL;
-        uecho_mutex_lock(mutex);
-        acceptedRequestCnt++;
-        switch (msgEsv) {
-        case uEchoEsvWriteRequest:
-        case uEchoEsvWriteRequestResponseRequired:
-          uecho_property_setdata(destProp, uecho_property_getdata(msgProp), uecho_property_getdatasize(msgProp));
-          break;
-        }
-        switch (msgEsv) {
-        case uEchoEsvReadRequest:
-        case uEchoEsvNotificationRequest:
-        case uEchoEsvNotificationResponseRequired:
-          uecho_property_setdata(resProp, uecho_property_getdata(destProp), uecho_property_getdatasize(destProp));
-          break;
-        }
-        uecho_mutex_unlock(mutex);
-      }
-      else {
-        switch (msgEsv) {
-        case uEchoEsvWriteRequestResponseRequired:
-          uecho_property_setdata(resProp, uecho_property_getdata(msgProp), uecho_property_getdatasize(msgProp));
-          break;
-        }
-      }
-    }
-    else {
-      switch (msgEsv) {
-      case uEchoEsvWriteRequestResponseRequired:
-        uecho_property_setdata(resProp, uecho_property_getdata(msgProp), uecho_property_getdatasize(msgProp));
-        break;
-      }
-    }
+    if (uecho_node_applyrequestproperty(destObj, msgEsv, msgProp, resProp))
+      acceptedRequestCnt++;
 
     messageAddpropertyFunc(resMsg, resProp);
   }

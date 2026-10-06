@@ -10,7 +10,9 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include <array>
 #include <string>
+#include <uecho/net/interface.h>
 #include <uecho/util/log.h>
 #include <uecho/util/logs.h>
 
@@ -26,17 +28,17 @@ BOOST_AUTO_TEST_CASE(LogFunction)
 
 BOOST_AUTO_TEST_CASE(LogOversizedPackets)
 {
-  byte packet[512];
-  memset(packet, 0xAB, sizeof(packet));
+  std::array<byte, 512> packet;
+  packet.fill(0xAB);
   std::string longText(1024, 'x');
   for (uEchoLogLevel level : { UECHO_LOG_NONE, UECHO_LOG_ALL }) {
     uecho_log_setlevel(level);
-    for (size_t length : { size_t(1), size_t(109), size_t(110), size_t(111), sizeof(packet) }) {
-      uecho_net_socket_debug("R", "192.168.1.1", "192.168.1.2", packet, length);
-      uecho_net_socket_error(longText.c_str(), longText.c_str(), longText.c_str(), packet, length);
+    for (size_t length : { size_t(1), size_t(109), size_t(110), size_t(111), packet.size() }) {
+      uecho_net_socket_debug("R", UECHO_NET_IPV4_LOOPBACK, UECHO_NET_IPV4_LOOPBACK, packet.data(), length);
+      uecho_net_socket_error(longText.c_str(), longText.c_str(), longText.c_str(), packet.data(), length);
     }
-    uecho_net_socket_debug(NULL, NULL, NULL, packet, sizeof(packet));
-    uecho_net_socket_debug("R", "", "", NULL, 1);
+    uecho_net_socket_debug(nullptr, nullptr, nullptr, packet.data(), packet.size());
+    uecho_net_socket_debug("R", "", "", nullptr, 1);
   }
   uecho_log_setlevel(UECHO_LOG_DEBUG);
 }

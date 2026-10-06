@@ -97,3 +97,18 @@ BOOST_AUTO_TEST_CASE(PropertyMap)
     uecho_object_delete(obj);
   }
 }
+
+BOOST_AUTO_TEST_CASE(PropertyMapInvalidOutputs)
+{
+  uEchoProperty* property = uecho_property_new();
+  BOOST_REQUIRE(property);
+  size_t count = 0;
+  uEchoPropertyCode code = 0;
+  byte value = 0;
+  BOOST_CHECK(!uecho_property_getpropertymapcount(nullptr, &count));
+  BOOST_CHECK(!uecho_property_getpropertymapcount(property, nullptr));
+  BOOST_CHECK(!uecho_property_getpropertymapcodes(nullptr, &code, 1));
+  BOOST_CHECK(!uecho_property_getpropertymapcodes(property, nullptr, 1));
+  BOOST_CHECK(!uecho_property_getbytedata(property, &value));
+  uecho_property_delete(property);
+}

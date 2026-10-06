@@ -142,10 +142,11 @@ bool uecho_property_addcount(uEchoProperty* prop, size_t dataSize)
     return true;
 
   newDataSize = prop->data_size + dataSize;
-  prop->data = (byte*)realloc(prop->data, newDataSize);
-  if (!prop->data)
+  byte* resizedData = (byte*)realloc(prop->data, newDataSize);
+  if (!resizedData)
     return false;
 
+  prop->data = resizedData;
   prop->data_size = newDataSize;
 
   return true;
@@ -304,7 +305,7 @@ bool uecho_property_getbytedata(uEchoProperty* prop, byte* data)
  * uecho_property_getpropertymapcount
  ****************************************/
 
-static bool uecho_property_getpropertymapcount_unlocked(uEchoProperty* prop, size_t* count)
+static bool uecho_property_getpropertymapcount_unlocked(const uEchoProperty* prop, size_t* count)
 {
   if (!prop)
     return false;
@@ -337,7 +338,7 @@ uEchoPropertyCode uecho_propertymap_format2bittocode(int row, int bit)
   return code;
 }
 
-static bool uecho_property_getpropertymapcodes_unlocked(uEchoProperty* prop, uEchoPropertyCode* propCodes, size_t propCodesSize)
+static bool uecho_property_getpropertymapcodes_unlocked(const uEchoProperty* prop, uEchoPropertyCode* propCodes, size_t propCodesSize)
 {
   size_t propCodeCount, propCodeIdx;
   byte propByteCode, propByteBit;

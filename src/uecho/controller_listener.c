@@ -171,12 +171,13 @@ bool uecho_controller_updatenodebyresponsemessage(uEchoController* ctrl, uEchoNo
 
 void uecho_controller_handlepostresponse(uEchoController* ctrl, uEchoMessage* msg)
 {
-  pthread_mutex_lock(&ctrl->cond->mutexId);
-  if (uecho_controller_ispostresponsewaiting(ctrl) && !uecho_controller_ispostresponsereceived(ctrl) && uecho_controller_ispostresponsemessage(ctrl, msg)) {
-    if (uecho_message_set(uecho_controller_getpostresponsemessage(ctrl), msg))
-      pthread_cond_signal(&ctrl->cond->condId);
-  }
-  pthread_mutex_unlock(&ctrl->cond->mutexId);
+  uEchoCond* const condition = ctrl->cond;
+  pthread_mutex_lock(&condition->mutexId);
+  if (uecho_controller_ispostresponsewaiting(ctrl) && !uecho_controller_ispostresponsereceived(ctrl)
+      && uecho_controller_ispostresponsemessage(ctrl, msg)
+      && uecho_message_set(uecho_controller_getpostresponsemessage(ctrl), msg))
+    pthread_cond_signal(&condition->condId);
+  pthread_mutex_unlock(&condition->mutexId);
 }
 
 /****************************************

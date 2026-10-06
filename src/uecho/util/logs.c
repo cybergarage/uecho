@@ -33,7 +33,10 @@ void uecho_net_socket_log(int severity, const char* prefix, const char* fromAddr
   }
   snprintf((buf + offset), (sizeof(buf) - offset), "%-15s -> %-15s ", fromAddr ? fromAddr : "", toAddr ? toAddr : "");
   offset = strlen(buf);
-  for (n = 0; n < msgLen && offset + 2 < sizeof(buf); n++) {
+  size_t formattedLength = (sizeof(buf) - offset - 1) / 2;
+  if (formattedLength > msgLen)
+    formattedLength = msgLen;
+  for (n = 0; n < formattedLength; n++) {
     snprintf((buf + offset), (sizeof(buf) - offset), "%02X", msgBytes[n]);
     offset += 2;
   }

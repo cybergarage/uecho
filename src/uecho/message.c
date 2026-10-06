@@ -417,7 +417,8 @@ bool uecho_message_isresponserequired(uEchoMessage* msg)
 
 bool uecho_message_isresponsemessage(uEchoMessage* msg, uEchoMessage* resMeg)
 {
-  uEchoEsv response, error;
+  uEchoEsv response;
+  uEchoEsv error;
   if (!msg || !resMeg)
     return false;
 

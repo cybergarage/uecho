@@ -9,25 +9,24 @@
  ******************************************************************/
 
 #include <boost/test/unit_test.hpp>
+#include <cstdlib>
+#include <memory>
 
 #include <uecho/net/interface.h>
 #include <uecho/net/socket.h>
+#include <uecho/uecho.h>
 
 BOOST_AUTO_TEST_CASE(SocketResolvedPeerAddress)
 {
-  char* address = uecho_socket_resolveaddress("127.0.0.1");
+  std::unique_ptr<char, decltype(&std::free)> address(uecho_socket_resolveaddress(UECHO_NET_IPV4_LOOPBACK), &std::free);
   BOOST_REQUIRE(address);
-  BOOST_CHECK_EQUAL(address, "127.0.0.1");
-  free(address);
-  address = uecho_socket_resolveaddress("localhost");
+  BOOST_CHECK_EQUAL(address.get(), UECHO_NET_IPV4_LOOPBACK);
+  address.reset(uecho_socket_resolveaddress("localhost"));
   BOOST_REQUIRE(address);
-  BOOST_CHECK_NE(std::string(address), "localhost");
-  free(address);
+  BOOST_CHECK_NE(std::string(address.get()), "localhost");
   BOOST_CHECK(!uecho_socket_resolveaddress(""));
-  BOOST_CHECK(!uecho_socket_resolveaddress(NULL));
+  BOOST_CHECK(!uecho_socket_resolveaddress(nullptr));
 }
-#include <uecho/uecho.h>
-
 BOOST_AUTO_TEST_CASE(BindAddr)
 {
   uEchoNetworkInterfaceList* netIfList = uecho_net_interfacelist_new();

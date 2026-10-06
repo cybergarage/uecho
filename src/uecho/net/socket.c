@@ -53,8 +53,10 @@ static int uecho_socket_getnumericnameinfo(const struct sockaddr* addr, socklen_
 
 char* uecho_socket_resolveaddress(const char* address)
 {
-  struct addrinfo hints, *addresses;
-  char host[UECHO_NET_SOCKET_MAXHOST], service[UECHO_NET_SOCKET_MAXSERV];
+  struct addrinfo hints;
+  struct addrinfo* addresses;
+  char host[UECHO_NET_SOCKET_MAXHOST];
+  char service[UECHO_NET_SOCKET_MAXSERV];
   if (!address || !*address)
     return NULL;
   memset(&hints, 0, sizeof(hints));
