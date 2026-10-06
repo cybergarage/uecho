@@ -1,0 +1,31 @@
+name: sanitizer
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  asan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: setup
+      run: |
+        sudo apt update
+        sudo apt install -y cmake libboost-all-dev
+    - name: configure
+      # CMake does not use config.h, so this also catches C/C++ header mismatches.
+      run: >-
+        cmake -S . -B build-asan -DUECHO_ENABLE_TEST=ON
+        -DCMAKE_C_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g -O1"
+        -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g -O1"
+        -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address,undefined"
+    - name: build
+      run: cmake --build build-asan -j 4
+    - name: test
+      env:
+        UBSAN_OPTIONS: print_stacktrace=1:halt_on_error=1
+      run: ./build-asan/test/unix/uechotest
