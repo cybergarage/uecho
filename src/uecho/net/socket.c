@@ -27,7 +27,9 @@
 #include <fcntl.h>
 #include <netdb.h>
 #include <netinet/in.h>
+#if !defined(ESP_PLATFORM)
 #include <signal.h>
+#endif
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -45,6 +47,7 @@ static int socketCnt = 0;
 
 bool uecho_socket_tosockaddrin(const char* addr, int port, struct sockaddr_in* sockaddr, bool isBindAddr);
 bool uecho_socket_tosockaddrinfo(int sockType, const char* addr, int port, struct addrinfo** addrInfo, bool isBindAddr);
+static int uecho_socket_getnumericnameinfo(const struct sockaddr* addr, socklen_t addrLen, char* host, size_t hostLen, char* serv, size_t servLen);
 
 #define uecho_socket_getrawtype(socket) (((socket->type & UECHO_NET_SOCKET_STREAM) == UECHO_NET_SOCKET_STREAM) ? SOCK_STREAM : SOCK_DGRAM)
 
@@ -68,7 +71,7 @@ void uecho_socket_startup(void)
     err = WSAStartup(MAKEWORD(2, 2), &wsaData);
 #endif
 
-#if !defined(WIN32)
+#if !defined(WIN32) && !defined(ESP_PLATFORM)
     // Thanks for Brent Hills (10/26/04)
     signal(SIGPIPE, SIG_IGN);
 #endif
@@ -92,7 +95,7 @@ void uecho_socket_cleanup(void)
     WSACleanup();
 #endif
 
-#if !defined(WIN32)
+#if !defined(WIN32) && !defined(ESP_PLATFORM)
     // Thanks for Brent Hills (10/26/04)
     signal(SIGPIPE, SIG_DFL);
 #endif
@@ -344,7 +347,7 @@ bool uecho_socket_accept(uEchoSocket* serverSock, uEchoSocket* clientSock)
   uecho_socket_setport(clientSock, uecho_socket_getport(serverSock));
   socklen = sizeof(struct sockaddr_in);
 
-  if (getsockname(clientSock->id, (struct sockaddr*)&sockaddr, &socklen) == 0 && getnameinfo((struct sockaddr*)&sockaddr, socklen, localAddr, sizeof(localAddr), localPort, sizeof(localPort), NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
+  if (getsockname(clientSock->id, (struct sockaddr*)&sockaddr, &socklen) == 0 && uecho_socket_getnumericnameinfo((struct sockaddr*)&sockaddr, socklen, localAddr, sizeof(localAddr), localPort, sizeof(localPort)) == 0) {
     /* Set address for the sockaddr to real addr */
     uecho_socket_setaddress(clientSock, localAddr);
   }
@@ -602,9 +605,9 @@ ssize_t uecho_socket_recv(uEchoSocket* sock, uEchoDatagramPacket* dgmPkt)
   uecho_socket_datagram_packet_setremoteaddress(dgmPkt, "");
   uecho_socket_datagram_packet_setremoteport(dgmPkt, 0);
 
-  if (getnameinfo((struct sockaddr*)&from, fromLen, remoteAddr, sizeof(remoteAddr), remotePort, sizeof(remotePort), NI_NUMERICHOST | NI_NUMERICSERV) == 0) {
+  if (uecho_socket_getnumericnameinfo((struct sockaddr*)&from, fromLen, remoteAddr, sizeof(remoteAddr), remotePort, sizeof(remotePort)) == 0) {
     uecho_socket_datagram_packet_setremoteaddress(dgmPkt, remoteAddr);
-    uecho_socket_datagram_packet_setremoteport(dgmPkt, uecho_str2int(remotePort));
+    uecho_socket_datagram_packet_setremoteport(dgmPkt, atoi(remotePort));
   }
 
   localAddr = uecho_net_selectaddr((struct sockaddr*)&from);
@@ -747,10 +750,12 @@ bool uecho_socket_joingroup(uEchoSocket* sock, const char* mcastAddr, const char
   struct addrinfo hints;
   struct addrinfo *mcastAddrInfo, *ifAddrInfo;
 
+#if !defined(ESP_PLATFORM)
   /**** for IPv6 ****/
   struct ipv6_mreq ipv6mr;
   struct sockaddr_in6 toaddr6, ifaddr6;
   int scopeId;
+#endif
 
   /**** for IPv4 ****/
   struct ip_mreq ipmr;
@@ -776,6 +781,10 @@ bool uecho_socket_joingroup(uEchoSocket* sock, const char* mcastAddr, const char
   joinSuccess = true;
 
   if (uecho_net_isipv6address(mcastAddr) == true) {
+#if defined(ESP_PLATFORM)
+    /* The ESP-IDF port supports the IPv4 ECHONET Lite multicast group only. */
+    joinSuccess = false;
+#else
     memcpy(&toaddr6, mcastAddrInfo->ai_addr, sizeof(struct sockaddr_in6));
     memcpy(&ifaddr6, ifAddrInfo->ai_addr, sizeof(struct sockaddr_in6));
     ipv6mr.ipv6mr_multiaddr = toaddr6.sin6_addr;
@@ -791,6 +800,7 @@ bool uecho_socket_joingroup(uEchoSocket* sock, const char* mcastAddr, const char
 
     if (sockOptRetCode != 0)
       joinSuccess = false;
+#endif
   }
   else {
     memcpy(&toaddr, mcastAddrInfo->ai_addr, sizeof(struct sockaddr_in));
@@ -864,4 +874,28 @@ bool uecho_socket_tosockaddrinfo(int sockType, const char* addr, int port, struc
   if ((errorn = getaddrinfo(NULL, portStr, &hints, addrInfo)) != 0)
     return false;
   return true;
+}
+
+/****************************************
+ * uecho_socket_getnumericnameinfo
+ ****************************************/
+
+static int uecho_socket_getnumericnameinfo(const struct sockaddr* addr, socklen_t addrLen, char* host, size_t hostLen, char* serv, size_t servLen)
+{
+#if defined(ESP_PLATFORM)
+  /* lwIP declares getnameinfo() but ESP-IDF does not implement it. */
+  const struct sockaddr_in* addr4;
+
+  if (!addr || (addr->sa_family != AF_INET) || (addrLen < (socklen_t)sizeof(struct sockaddr_in)))
+    return -1;
+
+  addr4 = (const struct sockaddr_in*)addr;
+  if (!inet_ntop(AF_INET, &addr4->sin_addr, host, (socklen_t)hostLen))
+    return -1;
+  if (snprintf(serv, servLen, "%u", (unsigned int)ntohs(addr4->sin_port)) >= (int)servLen)
+    return -1;
+  return 0;
+#else
+  return getnameinfo(addr, addrLen, host, hostLen, serv, servLen, NI_NUMERICHOST | NI_NUMERICSERV);
+#endif
 }

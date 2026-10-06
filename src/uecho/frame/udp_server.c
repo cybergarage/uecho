@@ -86,6 +86,13 @@ bool uecho_udp_server_open(uEchoUdpServer* server, const char* bindAddr)
     return false;
   }
 
+#if defined(ESP_PLATFORM)
+  if (!uecho_socket_settimeout(server->socket, UECHO_SERVER_RECV_TIMEOUT_SEC)) {
+    uecho_udp_server_close(server);
+    return false;
+  }
+#endif
+
   return true;
 }
 
@@ -157,6 +164,10 @@ static void uecho_udp_server_action(uEchoThread* thread)
       break;
 
     dgmPktLen = uecho_socket_recv(server->socket, dgmPkt);
+    if (uecho_server_isrecvtimeout(dgmPktLen)) {
+      uecho_socket_datagram_packet_delete(dgmPkt);
+      continue;
+    }
     if (dgmPktLen < 0) {
       uecho_socket_datagram_packet_delete(dgmPkt);
       break;
@@ -220,10 +231,13 @@ bool uecho_udp_server_stop(uEchoUdpServer* server)
   if (!server->thread)
     return true;
 
-  uecho_udp_server_close(server);
+  /* Close the descriptor to wake the worker, but free the socket only after the worker has stopped. */
+  if (server->socket)
+    uecho_socket_close(server->socket);
   uecho_thread_stop(server->thread);
   uecho_thread_delete(server->thread);
   server->thread = NULL;
+  uecho_udp_server_close(server);
 
   return true;
 }

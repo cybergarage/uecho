@@ -1,0 +1,14 @@
+menu "uEcho"
+
+    config UECHO_THREAD_STACK_SIZE
+        int "uEcho worker stack size (bytes)"
+        range 4096 65536
+        default 8192
+        help
+            Stack allocated for each uEcho pthread. A node runs one unicast and
+            one multicast receiver per network interface, and message and
+            property listeners are called on these workers. Increase this for
+            application callbacks with large stack usage, and measure the stack
+            high-water mark on your hardware.
+
+endmenu

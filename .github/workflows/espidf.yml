@@ -1,0 +1,32 @@
+name: espidf
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        idf_version: [ v5.5 ]
+        target: [ esp32, esp32s3, esp32c3 ]
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        path: uecho
+    - name: build examples/espidf/uecholight
+      uses: espressif/esp-idf-ci-action@e6f5c74232b1ccd4c97ed641f1e48553853f1fd5 # v1.2.0
+      with:
+        esp_idf_version: ${{ matrix.idf_version }}
+        target: ${{ matrix.target }}
+        path: uecho/examples/espidf/uecholight
+        command: >-
+          idf.py -B build-ci
+          -DSDKCONFIG=sdkconfig.ci.generated
+          -DSDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.ci"
+          build

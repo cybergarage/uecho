@@ -653,8 +653,6 @@ UECHO_ENABLE_EXAMPLES_FALSE
 UECHO_ENABLE_EXAMPLES_TRUE
 UECHO_ENABLE_TEST_FALSE
 UECHO_ENABLE_TEST_TRUE
-UECHO_BUILD_ESP32_FALSE
-UECHO_BUILD_ESP32_TRUE
 ac_ct_AR
 AR
 RANLIB
@@ -755,7 +753,6 @@ ac_user_opts='
 enable_option_checking
 enable_silent_rules
 enable_dependency_tracking
-with_esp32
 enable_debug
 enable_test
 enable_coverage
@@ -1405,11 +1402,6 @@ Optional Features:
   --enable-test           build tests (default = no)
   --enable-coverage       Enable code coverage using gcov
   --enable-examples       build examples (default = yes)
-
-Optional Packages:
-  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
-  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
-  --with-esp32 build for esp32
 
 Some influential environment variables:
   CC          C compiler command
@@ -5471,37 +5463,6 @@ fi
 
 
 ##############################
-# Checks for esp32
-##############################
-
-# Check whether --with-esp32 was given.
-if test ${with_esp32+y}
-then :
-  withval=$with_esp32; case "${withval}" in
-  yes) build_esp32=true ;;
-  no)  build_esp32=false ;;
-  *) as_fn_error $? "bad value ${withval} for --with-esp32" "$LINENO" 5 ;;
-esac
-else $as_nop
-  build_esp32=false
-fi
-
-
- if test x$build_esp32 = xtrue; then
-  UECHO_BUILD_ESP32_TRUE=
-  UECHO_BUILD_ESP32_FALSE='#'
-else
-  UECHO_BUILD_ESP32_TRUE='#'
-  UECHO_BUILD_ESP32_FALSE=
-fi
-
-
-if test x$build_esp32 = xtrue; then
-
-printf "%s\n" "#define __ESP32__ 1" >>confdefs.h
-
-else
-##############################
 # Checks for pthread
 ##############################
 
@@ -5561,7 +5522,6 @@ fi
 ##############################
 # Checks for Network functions
 ##############################
-fi
 
 ac_fn_c_check_func "$LINENO" "socket" "ac_cv_func_socket"
 if test "x$ac_cv_func_socket" = xyes
@@ -6177,10 +6137,6 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCXX_TRUE}" && test -z "${am__fastdepCXX_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCXX\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5
-fi
-if test -z "${UECHO_BUILD_ESP32_TRUE}" && test -z "${UECHO_BUILD_ESP32_FALSE}"; then
-  as_fn_error $? "conditional \"UECHO_BUILD_ESP32\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${UECHO_ENABLE_TEST_TRUE}" && test -z "${UECHO_ENABLE_TEST_FALSE}"; then

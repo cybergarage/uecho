@@ -1,0 +1,30 @@
+menu "uEcho light example"
+
+    config UECHO_EXAMPLE_WIFI_SSID
+        string "Wi-Fi SSID"
+        default ""
+
+    config UECHO_EXAMPLE_WIFI_PASSWORD
+        string "Wi-Fi password"
+        default ""
+        help
+            This value is stored in plaintext in sdkconfig and the firmware.
+            Do not commit credentials. Leave empty for an open test network.
+
+    config UECHO_EXAMPLE_LED_GPIO
+        int "LED GPIO number (-1 to disable)"
+        range -1 48
+        default -1
+        help
+            GPIO driven high while the light's operation status (EPC 0x80)
+            is ON (0x30). Set -1 to only log the status.
+
+    config UECHO_EXAMPLE_MANUFACTURER_CODE
+        hex "Manufacturer code"
+        range 0x000000 0xFFFFFF
+        default 0xFFFFF0
+        help
+            ECHONET Lite manufacturer code. 0xFFFFF0 is reserved for
+            experimental use; set your assigned code for products.
+
+endmenu

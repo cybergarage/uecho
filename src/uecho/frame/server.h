@@ -18,8 +18,20 @@
 #include <uecho/util/list.h>
 #include <uecho/util/thread.h>
 
+#if defined(ESP_PLATFORM)
+#include <errno.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
+#endif
+
+#if defined(ESP_PLATFORM)
+/* Receive timeout that lets ESP-IDF workers observe stop requests and be joined. */
+#define UECHO_SERVER_RECV_TIMEOUT_SEC 1
+#define uecho_server_isrecvtimeout(len) ((len < 0) && ((errno == EAGAIN) || (errno == EWOULDBLOCK)))
+#else
+#define uecho_server_isrecvtimeout(len) false
 #endif
 
 /****************************************

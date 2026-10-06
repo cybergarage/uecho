@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-`uecho` is an Autotools-based C library for ECHONET Lite controller and device development. Public headers live in `include/uecho/`, while implementation files are under `src/uecho/`. Platform library glue is in `lib/`, including `lib/unix/`, `lib/esp32/`, and Xcode projects for macOS and iOS. Example controller and device programs are in `examples/`. Tests are C++ Boost.Test sources in `test/`, with the Unix test runner configured in `test/unix/`. Documentation is in `doc/`, and Objective-C wrapper code is in `wrapper/objc/`.
+`uecho` is an Autotools-based C library for ECHONET Lite controller and device development. Public headers live in `include/uecho/`, while implementation files are under `src/uecho/`. Platform library glue is in `lib/`, including `lib/unix/` and Xcode projects for macOS and iOS. Example controller and device programs are in `examples/`, including the ESP-IDF example in `examples/espidf/`. The repository root is also an ESP-IDF component; see `doc/espidf.md`. Tests are C++ Boost.Test sources in `test/`, with the Unix test runner configured in `test/unix/`. Documentation is in `doc/`, and Objective-C wrapper code is in `wrapper/objc/`.
 
 ## Build, Test, and Development Commands
 
