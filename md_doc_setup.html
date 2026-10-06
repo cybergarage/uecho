@@ -62,19 +62,24 @@ $(document).ready(function(){initNavTree('md_doc_setup.html',''); initResizable(
   <div class="headertitle"><div class="title">Building and Installation </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >The <code>uecho</code> is a framework that consists of header and library files. Currently, <code>uecho</code> supports macOS and Linux platforms such as Ubuntu and Raspbian.</p>
-<h1><a class="anchor" id="autotoc_md51"></a>
+<div class="textblock"><p >The <code>uecho</code> is a framework that consists of header and library files. Currently, <code>uecho</code> supports macOS and Linux platforms such as Ubuntu and Raspbian, and ESP32 microcontrollers through <a class="el" href="md_doc_espidf.html">ESP-IDF</a>.</p>
+<h1><a class="anchor" id="autotoc_md57"></a>
 Homebrew (macOS, Linux)</h1>
 <p >For platforms that support <a href="https://brew.sh/">Homebrew</a>, you can easily install using the following <code>brew</code> commands:</p>
 <div class="fragment"><div class="line">brew tap cybergarage/homebrew</div>
 <div class="line">brew install uecho</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md52"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md58"></a>
 Installing from Source</h1>
 <p >To install on your platform from the GitHub repository, run the following commands in a terminal:</p>
 <div class="fragment"><div class="line">git clone https://github.com/cybergarage/uecho.git</div>
 <div class="line">cd uecho</div>
 <div class="line">./bootstrap &amp;&amp; ./configure &amp;&amp; make &amp;&amp; sudo make install</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- fragment --><p >CMake is also supported:</p>
+<div class="fragment"><div class="line">cmake -S . -B build &amp;&amp; cmake --build build</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md59"></a>
+ESP32 (ESP-IDF)</h1>
+<p >The repository can be used directly as an ESP-IDF component. See <a class="el" href="md_doc_espidf.html">ESP32 (ESP-IDF)</a>. </p>
+</div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->

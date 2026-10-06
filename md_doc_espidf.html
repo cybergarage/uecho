@@ -67,7 +67,11 @@ $(document).ready(function(){initNavTree('md_doc_espidf.html',''); initResizable
 Requirements</h1>
 <ul>
 <li>ESP-IDF v5.5 or later (v5.x)</li>
-<li>A target with Wi-Fi or Ethernet (tested build target: <code>esp32</code>)</li>
+<li>A target with Wi-Fi or Ethernet<ul>
+<li>Tested on hardware: ESP32 (Wi-Fi)</li>
+<li>Build-tested in CI: <code>esp32</code>, <code>esp32s3</code>, <code>esp32c3</code></li>
+</ul>
+</li>
 <li>IPv4 networking: ECHONET Lite uses the IPv4 multicast group <code>224.0.23.0:3610</code></li>
 </ul>
 <h1><a class="anchor" id="autotoc_md34"></a>
@@ -122,16 +126,85 @@ Starting a node</h1>
 <div class="ttc" id="astructUEchoNode_html"><div class="ttname"><a href="structUEchoNode.html">UEchoNode</a></div><div class="ttdef"><b>Definition:</b> _node.h:32</div></div>
 </div><!-- fragment --><p >Wi-Fi power save delays multicast delivery to the station. Disable it with <code>esp_wifi_set_ps(WIFI_PS_NONE)</code> if discovery from controllers is slow or unreliable.</p>
 <h1><a class="anchor" id="autotoc_md38"></a>
+Writing a device</h1>
+<p >A device is built the same way as on Unix: create an object, declare its properties, and register request handlers. Handlers run on uEcho worker threads, so keep them short and do not block; hand longer work to your own task.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#define LIGHT_OBJECT_CODE 0x029101</span></div>
+<div class="line"><span class="preprocessor">#define LIGHT_POWER 0x80</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">bool</span> light_power_handler(<a class="code hl_struct" href="structUEchoObject.html">uEchoObject</a>* obj, <a class="code hl_struct" href="structuEchoProperty.html">uEchoProperty</a>* prop, <a class="code hl_typedef" href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a> esv, <span class="keywordtype">size_t</span> pdc, <span class="keywordtype">byte</span>* edt)</div>
+<div class="line">{</div>
+<div class="line">  <span class="keywordflow">if</span> ((pdc != 1) || !edt)</div>
+<div class="line">    <span class="keywordflow">return</span> <span class="keyword">false</span>;                          <span class="comment">/* rejected: SetC_SNA (0x51) */</span></div>
+<div class="line">  <span class="keywordflow">switch</span> (edt[0]) {</div>
+<div class="line">  <span class="keywordflow">case</span> 0x30: gpio_set_level(LED_GPIO, 1); <span class="keywordflow">return</span> <span class="keyword">true</span>;  <span class="comment">/* accepted: Set_Res (0x71) */</span></div>
+<div class="line">  <span class="keywordflow">case</span> 0x31: gpio_set_level(LED_GPIO, 0); <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line">  <span class="keywordflow">default</span>: <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_struct" href="structUEchoObject.html">uEchoObject</a>* obj = <a class="code hl_function" href="device_8c.html#a02dded630518cf2ab02b7e6413308136">uecho_device_new</a>();</div>
+<div class="line"><span class="keywordtype">byte</span> off = 0x31;</div>
+<div class="line"><a class="code hl_function" href="object__super__class_8c.html#a82e1d1c675ed993833e1a488f89d145d">uecho_object_setmanufacturercode</a>(obj, 0xFFFFF0);  <span class="comment">/* experimental code; use your assigned code for products */</span></div>
+<div class="line"><a class="code hl_function" href="object_8c.html#a4e5526b45feb3deba0d3328cef24ea3e">uecho_object_setcode</a>(obj, LIGHT_OBJECT_CODE);</div>
+<div class="line"><a class="code hl_function" href="object_8c.html#a0c67db98b105fdbac1b46041182920da">uecho_object_setproperty</a>(obj, LIGHT_POWER, <a class="code hl_enumvalue" href="include_2uecho_2property_8h.html#af9fdcc8e23fd281b3a30b50fec2804a9a743920fa0fec670b8ef494f6de5b5287">uEchoPropertyAttrReadWrite</a>);</div>
+<div class="line"><a class="code hl_function" href="object_8c.html#a808b37f8523ddc9d54f7ed5ccedb146a">uecho_object_setpropertydata</a>(obj, LIGHT_POWER, &amp;off, 1);</div>
+<div class="line"><a class="code hl_function" href="object_8c.html#af58c5117790f80da5c2dc6f306433708">uecho_object_setpropertywriterequesthandler</a>(obj, LIGHT_POWER, light_power_handler);</div>
+<div class="ttc" id="adevice_8c_html_a02dded630518cf2ab02b7e6413308136"><div class="ttname"><a href="device_8c.html#a02dded630518cf2ab02b7e6413308136">uecho_device_new</a></div><div class="ttdeci">uEchoObject * uecho_device_new(void)</div><div class="ttdef"><b>Definition:</b> device.c:17</div></div>
+<div class="ttc" id="aesv_8h_html_a0e84ebfc63091acea33ed8bd6ffa794d"><div class="ttname"><a href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a></div><div class="ttdeci">byte uEchoEsv</div><div class="ttdef"><b>Definition:</b> esv.h:25</div></div>
+<div class="ttc" id="ainclude_2uecho_2property_8h_html_af9fdcc8e23fd281b3a30b50fec2804a9a743920fa0fec670b8ef494f6de5b5287"><div class="ttname"><a href="include_2uecho_2property_8h.html#af9fdcc8e23fd281b3a30b50fec2804a9a743920fa0fec670b8ef494f6de5b5287">uEchoPropertyAttrReadWrite</a></div><div class="ttdeci">@ uEchoPropertyAttrReadWrite</div><div class="ttdef"><b>Definition:</b> property.h:40</div></div>
+<div class="ttc" id="aobject_8c_html_a0c67db98b105fdbac1b46041182920da"><div class="ttname"><a href="object_8c.html#a0c67db98b105fdbac1b46041182920da">uecho_object_setproperty</a></div><div class="ttdeci">bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)</div><div class="ttdef"><b>Definition:</b> object.c:415</div></div>
+<div class="ttc" id="aobject_8c_html_a4e5526b45feb3deba0d3328cef24ea3e"><div class="ttname"><a href="object_8c.html#a4e5526b45feb3deba0d3328cef24ea3e">uecho_object_setcode</a></div><div class="ttdeci">void uecho_object_setcode(uEchoObject *obj, uEchoObjectCode val)</div><div class="ttdef"><b>Definition:</b> object.c:204</div></div>
+<div class="ttc" id="aobject_8c_html_a808b37f8523ddc9d54f7ed5ccedb146a"><div class="ttname"><a href="object_8c.html#a808b37f8523ddc9d54f7ed5ccedb146a">uecho_object_setpropertydata</a></div><div class="ttdeci">bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen)</div><div class="ttdef"><b>Definition:</b> object.c:439</div></div>
+<div class="ttc" id="aobject_8c_html_af58c5117790f80da5c2dc6f306433708"><div class="ttname"><a href="object_8c.html#af58c5117790f80da5c2dc6f306433708">uecho_object_setpropertywriterequesthandler</a></div><div class="ttdeci">bool uecho_object_setpropertywriterequesthandler(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyRequestHandler handler)</div><div class="ttdef"><b>Definition:</b> object.c:690</div></div>
+<div class="ttc" id="aobject__super__class_8c_html_a82e1d1c675ed993833e1a488f89d145d"><div class="ttname"><a href="object__super__class_8c.html#a82e1d1c675ed993833e1a488f89d145d">uecho_object_setmanufacturercode</a></div><div class="ttdeci">bool uecho_object_setmanufacturercode(uEchoObject *obj, uEchoManufactureCode code)</div><div class="ttdef"><b>Definition:</b> object_super_class.c:20</div></div>
+<div class="ttc" id="astructUEchoObject_html"><div class="ttname"><a href="structUEchoObject.html">UEchoObject</a></div><div class="ttdef"><b>Definition:</b> _object.h:32</div></div>
+<div class="ttc" id="astructuEchoProperty_html"><div class="ttname"><a href="structuEchoProperty.html">uEchoProperty</a></div><div class="ttdef"><b>Definition:</b> _property.h:43</div></div>
+</div><!-- fragment --><p >When a handler returns <code>true</code> for a write request, uEcho stores the new value, so later read requests return it.</p>
+<h1><a class="anchor" id="autotoc_md39"></a>
 Example: uecholight</h1>
-<p ><a href="../examples/espidf/uecholight"><code>examples/espidf/uecholight</code></a> is a mono functional lighting device (<code>0x029101</code>). Writing the operation status property (EPC <code>0x80</code>) switches an LED GPIO.</p>
-<div class="fragment"><div class="line">cd examples/espidf/uecholight</div>
+<p ><a href="../examples/espidf/uecholight"><code>examples/espidf/uecholight</code></a> is a mono functional lighting device (<code>0x029101</code>) on Wi-Fi. Writing the operation status property (EPC <code>0x80</code>) switches an optional LED GPIO.</p>
+<h2><a class="anchor" id="autotoc_md40"></a>
+Configure</h2>
+<p >Run <code>idf.py menuconfig</code> and open <em>uEcho light example</em>:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Option   </th><th class="markdownTableHeadNone">Default   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>CONFIG_UECHO_EXAMPLE_WIFI_SSID</code>   </td><td class="markdownTableBodyNone">(empty)   </td><td class="markdownTableBodyNone">Wi-Fi SSID. The example stops at startup if it is empty.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>CONFIG_UECHO_EXAMPLE_WIFI_PASSWORD</code>   </td><td class="markdownTableBodyNone">(empty)   </td><td class="markdownTableBodyNone">Wi-Fi password. Stored in plaintext in <code>sdkconfig</code> and the firmware, so do not commit it.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>CONFIG_UECHO_EXAMPLE_LED_GPIO</code>   </td><td class="markdownTableBodyNone">-1   </td><td class="markdownTableBodyNone">GPIO driven high while the light is ON. <code>-1</code> only logs the status. Many ESP32 DevKit boards have an LED on GPIO 2.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>CONFIG_UECHO_EXAMPLE_MANUFACTURER_CODE</code>   </td><td class="markdownTableBodyNone">0xFFFFF0   </td><td class="markdownTableBodyNone">ECHONET Lite manufacturer code (<code>0xFFFFF0</code> is for experimental use).   </td></tr>
+</table>
+<h2><a class="anchor" id="autotoc_md41"></a>
+Build, flash and monitor</h2>
+<div class="fragment"><div class="line">. $IDF_PATH/export.sh</div>
+<div class="line">cd examples/espidf/uecholight</div>
 <div class="line">idf.py set-target esp32</div>
-<div class="line">idf.py menuconfig      # uEcho light example: Wi-Fi SSID/password, LED GPIO</div>
-<div class="line">idf.py build flash monitor</div>
-</div><!-- fragment --><p >Then discover the device from a host on the same network with the <code>uechosearch</code> example:</p>
-<div class="fragment"><div class="line">$ uechosearch</div>
-<div class="line">192.168.xxx.yyy [0] 0EF001 [1] 029101</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md39"></a>
+<div class="line">idf.py menuconfig</div>
+<div class="line">idf.py -p /dev/ttyUSB0 flash monitor</div>
+</div><!-- fragment --><p >The serial monitor shows the address the node is bound to:</p>
+<div class="fragment"><div class="line">I (2272) uecholight: Got IP 192.168.100.56</div>
+<div class="line">I (2282) uecholight: uEcho node started</div>
+</div><!-- fragment --><p >Exit the monitor with <code>Ctrl+]</code>.</p>
+<h2><a class="anchor" id="autotoc_md42"></a>
+Verify from a host</h2>
+<p >Build the controller examples on a host in the same network (<code>./configure --enable-examples &amp;&amp; make</code>), then run them from <code>examples/controller</code>:</p>
+<div class="fragment"><div class="line">$ ./uechosearch/unix/uechosearch</div>
+<div class="line">192.168.100.56  [0] 0EF001 [1] 029101</div>
+<div class="line"> </div>
+<div class="line">$ ./uechopost/unix/uechopost 192.168.100.56 029101 62 8000      # Get: OFF (0x31)</div>
+<div class="line">192.168.100.56 029101 72 800131</div>
+<div class="line"> </div>
+<div class="line">$ ./uechopost/unix/uechopost 192.168.100.56 029101 61 800130    # SetC: ON</div>
+<div class="line">192.168.100.56 029101 71 8000</div>
+<div class="line"> </div>
+<div class="line">$ ./uechopost/unix/uechopost 192.168.100.56 029101 61 800131    # SetC: OFF</div>
+<div class="line">192.168.100.56 029101 71 8000</div>
+</div><!-- fragment --><p >The monitor logs <code>POWER = ON</code> / <code>POWER = OFF</code> for each write. <code>71</code> means the write was accepted; <code>51</code> means it was rejected.</p>
+<h1><a class="anchor" id="autotoc_md43"></a>
 Memory usage</h1>
 <p >Measured on ESP32 (ESP-IDF v5.5.1) with the <code>uecholight</code> object:</p>
 <ul>
@@ -139,12 +212,20 @@ Memory usage</h1>
 <li>One worker thread (stack <code>CONFIG_UECHO_THREAD_STACK_SIZE</code>) per unicast and per multicast receiver, that is two per network interface.</li>
 <li>The <code>uecholight</code> example image is about 880 KB, so the default 1 MB application partition has little headroom left; use a larger partition table for bigger applications.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md40"></a>
+<h1><a class="anchor" id="autotoc_md44"></a>
 Platform differences</h1>
 <ul>
 <li>IPv4 only. IPv6 multicast is not joined on ESP-IDF.</li>
 <li>POSIX signals are not available; worker threads poll a stop flag and their sockets use a 1 second receive timeout, so <code><a class="el" href="node_8c.html#ae8e6bacfe16160d32c3348cb23508b83">uecho_node_stop()</a></code> can take up to about one second.</li>
-<li>Network interfaces are enumerated with <code>esp_netif</code>, and only interfaces that are up and have an IPv4 address are used. </li>
+<li>Network interfaces are enumerated with <code>esp_netif</code>, and only interfaces that are up and have an IPv4 address are used.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md45"></a>
+Troubleshooting</h1>
+<ul>
+<li>**<code>Could not exclusively lock port /dev/ttyUSB0</code>**: another program has the serial port open, usually an earlier <code>idf.py monitor</code>. Exit it with <code>Ctrl+]</code>, or find it with <code>fuser -v /dev/ttyUSB0</code> (or <code>lsof /dev/ttyUSB0</code>). Serial monitors in editors and ModemManager can also hold the port.</li>
+<li><b>The device is not found by <code>uechosearch</code></b>: check that the host and the board are on the same subnet, that the router forwards multicast to Wi-Fi clients (IGMP snooping can block <code>224.0.23.0</code>), and that <code>CONFIG_LWIP_SO_REUSE_RXTOALL=y</code> is set. Wi-Fi power save can also delay multicast; the example disables it.</li>
+<li><b>Writes return <code>51</code> unexpectedly</b>: make sure you are talking to the right node. Other ECHONET Lite devices on the network may expose the same object code; use the address from the <code>Got IP</code> log line.</li>
+<li><b>Host examples fail to link with <code>undefined reference to __gcov_init</code></b>: the host library was built earlier with <code>--enable-coverage</code>. Run <code>make clean</code> before building again with different <code>configure</code> options. </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

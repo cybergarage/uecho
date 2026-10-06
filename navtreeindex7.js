@@ -1,5 +1,12 @@
 var NAVTREEINDEX7 =
 {
+"structUEchoSocket.html#ac271032d92834f5b1efc9a4ed2197034":[8,0,20,1],
+"structUEchoSocket.html#af53dfb093b42519851675dbd6cfd8a6d":[8,0,20,2],
+"structUEchoSocket.html#afb8d89f6c6cae59424fd6b61fd82526a":[8,0,20,0],
+"structUEchoSocketOption.html":[8,0,21],
+"structUEchoSocketOption.html#a4f2ce05e0646891b08d21089e878e54c":[8,0,21,2],
+"structUEchoSocketOption.html#a914b670aa3885deb1b9be2fd6ef3f796":[8,0,21,0],
+"structUEchoSocketOption.html#abc5e368ed11abc0eaa023abee682a858":[8,0,21,1],
 "structUEchoString.html":[8,0,22],
 "structUEchoString.html#a016c0b92b372cc3e19706e3a6542ea43":[8,0,22,0],
 "structUEchoString.html#a93e012090d389afb9102dc5b6cd4df55":[8,0,22,1],
