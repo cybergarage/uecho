@@ -8,7 +8,7 @@
  *
  ******************************************************************/
 
-#if !defined(WIN32)
+#if !defined(WIN32) && !defined(ESP_PLATFORM)
 #include <signal.h>
 #endif
 
@@ -16,7 +16,9 @@
 #include <uecho/util/thread.h>
 #include <uecho/util/timer.h>
 
+#if !defined(WIN32) && !defined(ESP_PLATFORM)
 static void uecho_sig_handler(int sign);
+#endif
 
 /****************************************
  * Thread Function
@@ -32,6 +34,18 @@ static DWORD WINAPI Win32ThreadProc(LPVOID lpParam)
     thread->action(thread);
 
   return 0;
+}
+#elif defined(ESP_PLATFORM)
+static void* posix_thread_proc(void* param)
+{
+  uEchoThread* thread = (uEchoThread*)param;
+
+  /* ESP-IDF has no POSIX signals; workers stop cooperatively and are joined. */
+  thread->task = xTaskGetCurrentTaskHandle();
+  if (thread->action != NULL)
+    thread->action(thread);
+
+  return NULL;
 }
 #else
 static void* posix_thread_proc(void* param)
@@ -75,6 +89,10 @@ uEchoThread* uecho_thread_new(void)
   thread->runnableFlag = false;
   thread->action = NULL;
   thread->userData = NULL;
+#if defined(ESP_PLATFORM)
+  thread->joinable = false;
+  thread->task = NULL;
+#endif
 
   return thread;
 }
@@ -88,9 +106,14 @@ bool uecho_thread_delete(uEchoThread* thread)
   if (!thread)
     return false;
 
+#if defined(ESP_PLATFORM)
+  /* Also joins a worker whose action already returned without an explicit stop. */
+  uecho_thread_stop(thread);
+#else
   if (thread->runnableFlag == true) {
     uecho_thread_stop(thread);
   }
+#endif
 
   uecho_thread_remove(thread);
 
@@ -112,6 +135,33 @@ bool uecho_thread_start(uEchoThread* thread)
 
 #if defined(WIN32)
   thread->hThread = CreateThread(NULL, 0, Win32ThreadProc, (LPVOID)thread, 0, &thread->threadID);
+#elif defined(ESP_PLATFORM)
+  pthread_attr_t threadAttr;
+  if (thread->joinable) {
+    /* Reap a previous run before reusing this object. */
+    uecho_thread_stop(thread);
+    thread->runnableFlag = true;
+  }
+
+  if (pthread_attr_init(&threadAttr) != 0) {
+    thread->runnableFlag = false;
+    return false;
+  }
+
+  /* Keep workers joinable so stop() can wait before their objects are freed. */
+  if ((pthread_attr_setdetachstate(&threadAttr, PTHREAD_CREATE_JOINABLE) != 0) || (pthread_attr_setstacksize(&threadAttr, UECHO_THREAD_STACK_SIZE) != 0)) {
+    thread->runnableFlag = false;
+    pthread_attr_destroy(&threadAttr);
+    return false;
+  }
+
+  if (pthread_create(&thread->pThread, &threadAttr, posix_thread_proc, thread) != 0) {
+    thread->runnableFlag = false;
+    pthread_attr_destroy(&threadAttr);
+    return false;
+  }
+  thread->joinable = true;
+  pthread_attr_destroy(&threadAttr);
 #else
   pthread_attr_t threadAttr;
   if (pthread_attr_init(&threadAttr) != 0) {
@@ -145,6 +195,20 @@ bool uecho_thread_stop(uEchoThread* thread)
   if (!thread)
     return false;
 
+#if defined(ESP_PLATFORM)
+  thread->runnableFlag = false;
+  if (thread->joinable) {
+    thread->joinable = false;
+    if (thread->task == xTaskGetCurrentTaskHandle()) {
+      /* A worker stopping itself cannot join; let it release itself on exit. */
+      pthread_detach(thread->pThread);
+    }
+    else {
+      pthread_join(thread->pThread, NULL);
+    }
+    thread->task = NULL;
+  }
+#else
   if (thread->runnableFlag == true) {
     thread->runnableFlag = false;
 #if defined(WIN32)
@@ -156,6 +220,7 @@ bool uecho_thread_stop(uEchoThread* thread)
     uecho_sleep(UECHO_THREAD_MIN_SLEEP);
 #endif
   }
+#endif
 
   return true;
 }
@@ -179,7 +244,7 @@ bool uecho_thread_isrunnable(uEchoThread* thread)
   if (!thread)
     return false;
 
-#if !defined(WIN32)
+#if !defined(WIN32) && !defined(ESP_PLATFORM)
   pthread_testcancel();
 #endif
 
@@ -238,6 +303,8 @@ void* uecho_thread_getuserdata(uEchoThread* thread)
  * uecho_sig_handler
  ****************************************/
 
+#if !defined(WIN32) && !defined(ESP_PLATFORM)
 static void uecho_sig_handler(int sign)
 {
 }
+#endif

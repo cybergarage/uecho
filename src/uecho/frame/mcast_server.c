@@ -76,6 +76,13 @@ bool uecho_mcast_server_open(uEchoMcastServer* server, const char* bindAddr)
     return false;
   }
 
+#if defined(ESP_PLATFORM)
+  if (!uecho_socket_settimeout(server->socket, UECHO_SERVER_RECV_TIMEOUT_SEC)) {
+    uecho_mcast_server_close(server);
+    return false;
+  }
+#endif
+
   if (!uecho_socket_joingroup(server->socket, uEchoMulticastAddr, bindAddr)) {
     uecho_mcast_server_close(server);
     return false;
@@ -152,6 +159,10 @@ static void uecho_mcast_server_action(uEchoThread* thread)
       break;
 
     dgmPktLen = uecho_socket_recv(server->socket, dgmPkt);
+    if (uecho_server_isrecvtimeout(dgmPktLen)) {
+      uecho_socket_datagram_packet_delete(dgmPkt);
+      continue;
+    }
     if (dgmPktLen < 0) {
       uecho_socket_datagram_packet_delete(dgmPkt);
       break;
@@ -226,10 +237,13 @@ bool uecho_mcast_server_stop(uEchoMcastServer* server)
   if (!server->thread)
     return true;
 
-  uecho_mcast_server_close(server);
+  /* Close the descriptor to wake the worker, but free the socket only after the worker has stopped. */
+  if (server->socket)
+    uecho_socket_close(server->socket);
   uecho_thread_stop(server->thread);
   uecho_thread_delete(server->thread);
   server->thread = NULL;
+  uecho_mcast_server_close(server);
 
   return true;
 }

@@ -33,6 +33,12 @@
 #if defined(WIN32)
 #include <Iphlpapi.h>
 #include <Iptypes.h>
+#elif defined(ESP_PLATFORM)
+#include <arpa/inet.h>
+#include <esp_netif.h>
+#include <netdb.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
 #else
 #if defined(HAVE_IFADDRS_H)
 #include <ifaddrs.h>
@@ -207,6 +213,89 @@ size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList* netIfList)
   LocalFree(pAdapterAddresses);
 
 #endif
+
+  return uecho_net_interfacelist_size(netIfList);
+}
+
+#elif defined(ESP_PLATFORM)
+
+/****************************************
+ * uecho_net_gethostinterfaces (ESP-IDF)
+ ****************************************/
+
+#define UECHO_NET_ESP_MAX_INTERFACES 8
+
+typedef struct {
+  char name[16];
+  esp_netif_ip_info_t ipInfo;
+  uint8_t mac[UECHO_NET_MACADDR_SIZE];
+  bool hasMac;
+} uEchoEspNetifInfo;
+
+typedef struct {
+  uEchoEspNetifInfo infos[UECHO_NET_ESP_MAX_INTERFACES];
+  size_t count;
+} uEchoEspNetifInfos;
+
+/* Called by esp_netif_find_if() in the TCP/IP context while the interface list is locked. */
+static bool uecho_net_esp_collectnetif(esp_netif_t* espNetif, void* ctx)
+{
+  uEchoEspNetifInfos* infos = (uEchoEspNetifInfos*)ctx;
+  uEchoEspNetifInfo* info;
+  const char* ifKey;
+
+  if (UECHO_NET_ESP_MAX_INTERFACES <= infos->count)
+    return true;
+  if (!esp_netif_is_netif_up(espNetif))
+    return false;
+
+  info = &infos->infos[infos->count];
+  memset(info, 0, sizeof(uEchoEspNetifInfo));
+  if (esp_netif_get_ip_info(espNetif, &info->ipInfo) != ESP_OK)
+    return false;
+  if ((info->ipInfo.ip.addr == 0) || (info->ipInfo.ip.addr == htonl(INADDR_LOOPBACK)))
+    return false;
+
+  ifKey = esp_netif_get_ifkey(espNetif);
+  if (ifKey)
+    snprintf(info->name, sizeof(info->name), "%s", ifKey);
+  info->hasMac = (esp_netif_get_mac(espNetif, info->mac) == ESP_OK);
+  infos->count++;
+
+  return false;
+}
+
+size_t uecho_net_gethostinterfaces(uEchoNetworkInterfaceList* netIfList)
+{
+  uEchoEspNetifInfos infos;
+  uEchoEspNetifInfo* info;
+  uEchoNetworkInterface* netIf;
+  char addr[UECHO_NET_IPV4_ADDRSTRING_MAXSIZE];
+  char netmask[UECHO_NET_IPV4_ADDRSTRING_MAXSIZE];
+  size_t n;
+
+  uecho_net_interfacelist_clear(netIfList);
+
+  /* Only IPv4 addresses of interfaces that are up are used. */
+  memset(&infos, 0, sizeof(infos));
+  esp_netif_find_if(uecho_net_esp_collectnetif, &infos);
+
+  for (n = 0; n < infos.count; n++) {
+    info = &infos.infos[n];
+    if (!esp_ip4addr_ntoa(&info->ipInfo.ip, addr, sizeof(addr)))
+      continue;
+    if (!esp_ip4addr_ntoa(&info->ipInfo.netmask, netmask, sizeof(netmask)))
+      continue;
+    netIf = uecho_net_interface_new();
+    if (!netIf)
+      continue;
+    uecho_net_interface_setname(netIf, info->name);
+    uecho_net_interface_setaddress(netIf, addr);
+    uecho_net_interface_setnetmask(netIf, netmask);
+    if (info->hasMac)
+      uecho_net_interface_setmacaddress(netIf, info->mac);
+    uecho_net_interfacelist_add(netIfList, netIf);
+  }
 
   return uecho_net_interfacelist_size(netIfList);
 }
