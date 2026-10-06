@@ -1,4 +1,10 @@
 2026-10-07 Satoshi Konno <skonno@cybergarage.org>
+	* v1.4.1
+	* Fixed include/uecho/typedef.h redefining bool as int in C++ when config.h is not used (e.g. CMake builds and C++ applications). The size of bool then differed from the C library, causing heap overflows and corrupted bool return values.
+	* Fixed undefined behavior (signed left shift) in uecho_byte2integer().
+	* Added a CI workflow that runs the tests with AddressSanitizer and UndefinedBehaviorSanitizer.
+
+2026-10-07 Satoshi Konno <skonno@cybergarage.org>
 	* v1.4.0
 	* Added ESP32 support: the repository root is now an ESP-IDF component (ESP-IDF v5.5 or later). See doc/espidf.md.
 	* Added the ESP-IDF example examples/espidf/uecholight and CI builds for esp32, esp32s3 and esp32c3.
