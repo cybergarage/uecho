@@ -45,7 +45,7 @@ extern "C" {
  * Data Type
  ****************************************/
 
-#if defined(C99) || defined(HAVE_STDBOOL_H)
+#if defined(__cplusplus) || defined(C99) || defined(HAVE_STDBOOL_H)
 #include <stdbool.h>
 #else
 #if !defined(bool)

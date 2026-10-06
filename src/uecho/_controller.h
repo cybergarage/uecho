@@ -21,6 +21,13 @@
 extern "C" {
 #endif
 
+#ifndef UECHO_CONTROLLER_MAX_NODES
+#define UECHO_CONTROLLER_MAX_NODES 64
+#endif
+#ifndef UECHO_CONTROLLER_MAX_OBJECTS_PER_NODE
+#define UECHO_CONTROLLER_MAX_OBJECTS_PER_NODE 256
+#endif
+
 /****************************************
  * Constant
  ****************************************/
@@ -35,6 +42,7 @@ enum {
 
 typedef struct UEchoController {
   uEchoMutex* mutex;
+  uEchoMutex* nodesMutex;
   uEchoCond* cond;
   uEchoNode* node;
   uEchoNodeList* nodes;

@@ -8,15 +8,220 @@
  *
  ******************************************************************/
 
-#include <atomic>
+#include <array>
 #include <boost/test/unit_test.hpp>
 #include <thread>
 
 #include <uecho/_controller.h>
 #include <uecho/_node.h>
+#include <uecho/net/interface.h>
+#include <uecho/profile.h>
 #include <uecho/util/timer.h>
 
 #include "TestDevice.h"
+
+static uEchoMessage* uecho_test_response(uEchoMessage* request, uEchoEsv esv)
+{
+  uEchoMessage* response = uecho_message_copy(request);
+  uecho_message_setesv(response, esv);
+  uecho_message_setsourceobjectcode(response, uecho_message_getdestinationobjectcode(request));
+  uecho_message_setdestinationobjectcode(response, uecho_message_getsourceobjectcode(request));
+  uecho_message_setsourceaddress(response, "192.0.2.1");
+  return response;
+}
+
+BOOST_AUTO_TEST_CASE(ControllerResponseIdentity)
+{
+  uEchoController* controller = uecho_controller_new();
+  uEchoMessage* request = uecho_message_new();
+  uEchoMessage* result = uecho_message_new();
+  uecho_message_settid(request, 42);
+  uecho_message_setsourceobjectcode(request, uEchoNodeProfileObject);
+  uecho_message_setdestinationobjectcode(request, 0x001101);
+  uecho_message_setdestinationaddress(request, "192.0.2.1");
+  uecho_message_setesv(request, uEchoEsvReadRequest);
+  uecho_message_setproperty(request, 0x80, nullptr, 0);
+  uecho_controller_setpostrequestmessage(controller, request);
+  uecho_controller_setpostresponsemessage(controller, result);
+  uEchoMessage* response = uecho_test_response(request, uEchoEsvReadResponse);
+  BOOST_CHECK(uecho_controller_ispostresponsemessage(controller, response));
+  uecho_message_setsourceaddress(response, "192.0.2.2");
+  BOOST_CHECK(!uecho_controller_ispostresponsemessage(controller, response));
+  uecho_controller_servermessagelistener(controller, response);
+  BOOST_CHECK(!uecho_controller_ispostresponsereceived(controller));
+  uecho_message_setsourceaddress(response, "192.0.2.1");
+  uecho_message_setsourceobjectcode(response, 0x001102);
+  BOOST_CHECK(!uecho_controller_ispostresponsemessage(controller, response));
+  uecho_message_setsourceobjectcode(response, 0x001101);
+  uecho_message_setdestinationobjectcode(response, 0x001101);
+  BOOST_CHECK(!uecho_controller_ispostresponsemessage(controller, response));
+  uecho_message_setdestinationobjectcode(response, uEchoNodeProfileObject);
+  uecho_message_settid(response, 43);
+  BOOST_CHECK(!uecho_controller_ispostresponsemessage(controller, response));
+  uecho_message_settid(response, 42);
+  uecho_message_setesv(response, uEchoEsvWriteResponse);
+  BOOST_CHECK(!uecho_controller_ispostresponsemessage(controller, response));
+  uecho_message_setesv(response, uEchoEsvReadResponse);
+  uecho_property_setcode(uecho_message_getproperty(response, 0), 0x81);
+  BOOST_CHECK(!uecho_controller_ispostresponsemessage(controller, response));
+  uecho_property_setcode(uecho_message_getproperty(response, 0), 0x80);
+  byte first = 0x30;
+  byte second = 0x31;
+  uecho_message_setproperty(response, 0x80, &first, 1);
+  uecho_controller_servermessagelistener(controller, response);
+  BOOST_CHECK(uecho_controller_ispostresponsereceived(controller));
+  uecho_message_setproperty(response, 0x80, &second, 1);
+  uecho_controller_servermessagelistener(controller, response);
+  BOOST_CHECK_EQUAL(uecho_property_getdata(uecho_message_getproperty(result, 0))[0], first);
+  uecho_controller_setpostrequestmessage(controller, nullptr);
+  uecho_controller_setpostresponsemessage(controller, nullptr);
+  uecho_message_delete(response);
+  uecho_message_delete(result);
+  uecho_message_delete(request);
+  uecho_controller_delete(controller);
+}
+
+BOOST_AUTO_TEST_CASE(ControllerResponseServicesAndSetGetCopy)
+{
+  for (uEchoEsv esv : { uEchoEsv(uEchoEsvWriteRequest), uEchoEsv(uEchoEsvWriteRequestResponseRequired), uEchoEsv(uEchoEsvReadRequest), uEchoEsv(uEchoEsvNotificationRequest), uEchoEsv(uEchoEsvWriteReadRequest), uEchoEsv(uEchoEsvNotificationResponseRequired) }) {
+    uEchoMessage* request = uecho_message_new();
+    uecho_message_settid(request, 1);
+    uecho_message_setsourceobjectcode(request, uEchoNodeProfileObject);
+    uecho_message_setdestinationobjectcode(request, 0x001101);
+    uecho_message_setesv(request, esv);
+    if (esv == uEchoEsvWriteReadRequest) {
+      byte value = 0x30;
+      uecho_message_setpropertyset(request, 0x80, &value, 1);
+      uecho_message_setpropertyget(request, 0x81, nullptr, 0);
+    }
+    else
+      uecho_message_setproperty(request, 0x80, nullptr, 0);
+    uEchoEsv success;
+    uEchoEsv error;
+    if (uecho_message_requestesv2responseesv(esv, &success)) {
+      uEchoMessage* response = uecho_test_response(request, success);
+      BOOST_CHECK(uecho_message_isresponsemessage(request, response));
+      uecho_message_clear(response);
+      BOOST_CHECK(!uecho_message_isresponsemessage(request, response));
+      uecho_message_delete(response);
+    }
+    if (uecho_message_requestesv2errorresponseesv(esv, &error)) {
+      uEchoMessage* response = uecho_test_response(request, error);
+      BOOST_CHECK(uecho_message_isresponsemessage(request, response));
+      uecho_message_delete(response);
+    }
+    uEchoMessage* unrelated = uecho_test_response(request, uEchoEsvWriteRequest);
+    BOOST_CHECK(!uecho_message_isresponsemessage(request, unrelated));
+    uecho_message_delete(unrelated);
+    uecho_message_delete(request);
+  }
+  uEchoMessage* request = uecho_message_new();
+  uecho_message_setsourceobjectcode(request, uEchoNodeProfileObject);
+  uecho_message_setdestinationobjectcode(request, 0x001100);
+  uecho_message_setesv(request, uEchoEsvReadRequest);
+  uEchoMessage* response = uecho_test_response(request, uEchoEsvReadResponse);
+  uecho_message_setsourceobjectcode(response, 0x001101);
+  BOOST_CHECK(uecho_message_isresponsemessage(request, response));
+  uecho_message_setsourceobjectcode(response, 0x001201);
+  BOOST_CHECK(!uecho_message_isresponsemessage(request, response));
+  uecho_message_delete(response);
+  uecho_message_delete(request);
+}
+
+BOOST_AUTO_TEST_CASE(ControllerFailedPostClearsPendingState)
+{
+  uEchoController* controller = uecho_controller_new();
+  uEchoNode* peer = uecho_node_new();
+  uecho_node_setaddress(peer, "");
+  uEchoMessage* request = uecho_message_search_new();
+  uEchoMessage* response = uecho_message_new();
+  BOOST_CHECK(!uecho_controller_postmessage(controller, peer, request, response));
+  BOOST_CHECK(!uecho_controller_ispostresponsewaiting(controller));
+  uecho_message_delete(request);
+  uecho_message_delete(response);
+  uecho_node_delete(peer);
+  uecho_controller_delete(controller);
+}
+
+BOOST_AUTO_TEST_CASE(ControllerPostTimeoutAndInvalidInputs)
+{
+  uEchoController* controller = uecho_controller_new();
+  uEchoNode* peer = uecho_node_new();
+  uecho_node_setaddress(peer, UECHO_NET_IPV4_LOOPBACK);
+  uEchoMessage* request = uecho_message_search_new();
+  uEchoMessage* response = uecho_message_new();
+  BOOST_CHECK(!uecho_controller_postmessage(nullptr, peer, request, response));
+  BOOST_CHECK(!uecho_controller_postmessage(controller, nullptr, request, response));
+  BOOST_CHECK(!uecho_controller_postmessage(controller, peer, nullptr, response));
+  BOOST_CHECK(!uecho_controller_postmessage(controller, peer, request, nullptr));
+  BOOST_CHECK(!uecho_controller_postmessage(controller, peer, request, request));
+  BOOST_CHECK(!uecho_controller_ispostresponsemessage(nullptr, response));
+  BOOST_CHECK(!uecho_controller_ispostresponsemessage(controller, nullptr));
+  // An unstarted controller sends UDP but has no receiver to complete the post.
+  uecho_controller_setpostwaitemilitime(controller, CLOCKS_PER_SEC / 50);
+  BOOST_CHECK(!uecho_controller_postmessage(controller, peer, request, response));
+  BOOST_CHECK(!uecho_controller_ispostresponsewaiting(controller));
+  BOOST_CHECK_EQUAL(uecho_message_getesv(response), 0);
+  BOOST_CHECK_EQUAL(uecho_message_gettid(response), 0);
+  BOOST_CHECK_EQUAL(uecho_message_getdestinationaddress(request), UECHO_NET_IPV4_LOOPBACK);
+  // A response from an object not present in the cached node must be ignored.
+  uecho_controller_addnode(controller, peer);
+  uecho_message_setsourceaddress(response, UECHO_NET_IPV4_LOOPBACK);
+  uecho_message_setsourceobjectcode(response, 0x001101);
+  uecho_message_setdestinationobjectcode(response, uEchoNodeProfileObject);
+  uecho_message_setesv(response, uEchoEsvReadResponse);
+  uecho_controller_servermessagelistener(controller, response);
+  BOOST_CHECK_EQUAL(uecho_node_getobjectcount(peer), 1);
+  uecho_message_delete(request);
+  uecho_message_delete(response);
+  uecho_controller_delete(controller);
+}
+
+BOOST_AUTO_TEST_CASE(ControllerDiscoveryLimits)
+{
+  uEchoController* controller = uecho_controller_new();
+  uEchoMessage* response = uecho_message_search_new();
+  uecho_message_setesv(response, uEchoEsvReadResponse);
+  uecho_message_setsourceaddress(response, "192.0.2.1");
+  std::array<byte, 4> entry = { 2, 0x00, 0x11, 0x01 };
+  uecho_message_setproperty(response, uEchoNodeProfileClassSelfNodeInstanceListS, entry.data(), entry.size());
+  uecho_controller_servermessagelistener(controller, response);
+  BOOST_CHECK_EQUAL(uecho_controller_getnodecount(controller), 0);
+  entry[0] = 1;
+  uecho_message_setsourceobjectcode(response, 0x001101);
+  uecho_message_setproperty(response, uEchoNodeProfileClassSelfNodeInstanceListS, entry.data(), entry.size());
+  uecho_controller_servermessagelistener(controller, response);
+  BOOST_CHECK_EQUAL(uecho_controller_getnodecount(controller), 0);
+  uecho_message_setsourceobjectcode(response, uEchoNodeProfileObjectReadOnly);
+  uecho_controller_servermessagelistener(controller, response);
+  BOOST_CHECK_EQUAL(uecho_controller_getnodecount(controller), 1);
+  BOOST_CHECK(uecho_node_hasobjectbycode(uecho_controller_getnodebyaddress(controller, "192.0.2.1"), 0x001101));
+  uecho_message_setsourceobjectcode(response, uEchoNodeProfileObject);
+  for (size_t n = 1; n <= UECHO_CONTROLLER_MAX_OBJECTS_PER_NODE + 8; n++) {
+    unsigned int code = 0x001000 + n;
+    entry[1] = (code >> 16) & 0xFF;
+    entry[2] = (code >> 8) & 0xFF;
+    entry[3] = code & 0xFF;
+    uecho_message_setproperty(response, uEchoNodeProfileClassSelfNodeInstanceListS, entry.data(), entry.size());
+    uecho_controller_servermessagelistener(controller, response);
+  }
+  uEchoNode* peer = uecho_controller_getnodebyaddress(controller, "192.0.2.1");
+  BOOST_REQUIRE(peer);
+  BOOST_CHECK_EQUAL(uecho_node_getobjectcount(peer), UECHO_CONTROLLER_MAX_OBJECTS_PER_NODE);
+  BOOST_CHECK(uecho_node_hasobjectbycode(peer, 0x001001));
+  for (size_t n = 2; n <= UECHO_CONTROLLER_MAX_NODES + 8; n++) {
+    const struct in_addr peerAddress = { htonl(0xC0000200u + n) };
+    std::array<char, INET_ADDRSTRLEN> address = {};
+    BOOST_REQUIRE(inet_ntop(AF_INET, &peerAddress, address.data(), address.size()));
+    uecho_message_setsourceaddress(response, address.data());
+    std::array<byte, 1> empty = { 0 };
+    uecho_message_setproperty(response, uEchoNodeProfileClassSelfNodeInstanceListS, empty.data(), empty.size());
+    uecho_controller_servermessagelistener(controller, response);
+  }
+  BOOST_CHECK_EQUAL(uecho_controller_getnodecount(controller), UECHO_CONTROLLER_MAX_NODES);
+  uecho_message_delete(response);
+  uecho_controller_delete(controller);
+}
 
 BOOST_AUTO_TEST_CASE(ControllerRun)
 {
@@ -84,7 +289,7 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
 
   // Find device
 
-  uEchoObject* foundObj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
+  uEchoObject* foundObj = uecho_test_findlocaldevice(ctrl);
   BOOST_REQUIRE(foundObj);
   if (!foundObj)
     return;
@@ -170,6 +375,18 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
   uecho_message_delete(res);
   uecho_message_delete(msg);
 
+  // A write to the read-only standard version must return the SetC error.
+  msg = uecho_message_new();
+  res = uecho_message_new();
+  byte replacement = 0x31;
+  uecho_message_setesv(msg, uEchoEsvWriteRequestResponseRequired);
+  uecho_message_setdestinationobjectcode(msg, uecho_object_getcode(foundObj));
+  uecho_message_setproperty(msg, 0x82, &replacement, 1);
+  BOOST_REQUIRE(uecho_controller_postmessage(ctrl, foundNode, msg, res));
+  BOOST_CHECK_EQUAL(uecho_message_getesv(res), uEchoEsvWriteRequestResponseRequiredError);
+  uecho_message_delete(res);
+  uecho_message_delete(msg);
+
   // Teminate
 
   BOOST_REQUIRE(uecho_controller_stop(ctrl));
@@ -179,15 +396,19 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
 // Responses delivered by several server threads at once, including duplicates
 // and late ones, must not touch the response message after postmessage() returns.
 
-static void uecho_controller_test_postresponder(uEchoController* ctrl, std::atomic<bool>* done)
+static void uecho_controller_test_postresponder(std::stop_token stop, uEchoController* ctrl)
 {
-  while (!done->load()) {
+  while (!stop.stop_requested()) {
     uEchoMessage* res = uecho_message_new();
     byte data = 0x30;
-    uecho_message_settid(res, ctrl->node->lastTid);
+    uecho_mutex_lock(ctrl->node->mutex);
+    uEchoTID tid = ctrl->node->lastTid;
+    uecho_mutex_unlock(ctrl->node->mutex);
+    uecho_message_settid(res, tid);
     uecho_message_setesv(res, uEchoEsvReadResponse);
     uecho_message_setsourceobjectcode(res, 0x029101);
-    uecho_message_setdestinationobjectcode(res, 0x0EF0FF);
+    uecho_message_setdestinationobjectcode(res, uEchoNodeProfileObject);
+    uecho_message_setsourceaddress(res, UECHO_NET_IPV4_LOOPBACK);
     uecho_message_setproperty(res, 0x80, &data, 1);
     uecho_controller_servermessagelistener(ctrl, res);
     uecho_controller_servermessagelistener(ctrl, res);
@@ -199,19 +420,18 @@ BOOST_AUTO_TEST_CASE(ControllerPostResponseRace)
 {
   uEchoController* ctrl = uecho_controller_new();
   uEchoNode* dstNode = uecho_node_new();
-  uecho_node_setaddress(dstNode, "127.0.0.1");
+  uecho_node_setaddress(dstNode, UECHO_NET_IPV4_LOOPBACK);
   uecho_controller_setpostwaitemilitime(ctrl, CLOCKS_PER_SEC / 200);
 
-  std::atomic<bool> done(false);
-  std::thread responder1(uecho_controller_test_postresponder, ctrl, &done);
-  std::thread responder2(uecho_controller_test_postresponder, ctrl, &done);
+  std::jthread responder1(uecho_controller_test_postresponder, ctrl);
+  std::jthread responder2(uecho_controller_test_postresponder, ctrl);
 
   int receivedCnt = 0;
   for (int n = 0; n < 500; n++) {
     uEchoMessage* msg = uecho_message_new();
     uecho_message_setesv(msg, uEchoEsvReadRequest);
     uecho_message_setdestinationobjectcode(msg, 0x029101);
-    uecho_message_setproperty(msg, 0x80, NULL, 0);
+    uecho_message_setproperty(msg, 0x80, nullptr, 0);
     uEchoMessage* res = uecho_message_new();
     if (uecho_controller_postmessage(ctrl, dstNode, msg, res)) {
       BOOST_REQUIRE_EQUAL(uecho_message_gettid(res), uecho_message_gettid(msg));
@@ -222,7 +442,8 @@ BOOST_AUTO_TEST_CASE(ControllerPostResponseRace)
     uecho_message_delete(msg);
   }
 
-  done.store(true);
+  responder1.request_stop();
+  responder2.request_stop();
   responder1.join();
   responder2.join();
 

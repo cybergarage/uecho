@@ -16,6 +16,15 @@
 
 #include <uecho/misc.h>
 
+/* Properties attached to a node share its recursive data-lifetime lock. */
+static uEchoMutex* uecho_property_lockdata(uEchoProperty* prop)
+{
+  uEchoNode* node = uecho_property_getnode(prop);
+  uEchoMutex* mutex = node ? node->mutex : NULL;
+  uecho_mutex_lock(mutex);
+  return mutex;
+}
+
 /****************************************
  * uecho_property_new
  ****************************************/
@@ -133,10 +142,11 @@ bool uecho_property_addcount(uEchoProperty* prop, size_t dataSize)
     return true;
 
   newDataSize = prop->data_size + dataSize;
-  prop->data = (byte*)realloc(prop->data, newDataSize);
-  if (!prop->data)
+  byte* resizedData = (byte*)realloc(prop->data, newDataSize);
+  if (!resizedData)
     return false;
 
+  prop->data = resizedData;
   prop->data_size = newDataSize;
 
   return true;
@@ -151,11 +161,16 @@ bool uecho_property_setdata(uEchoProperty* prop, const byte* data, size_t dataSi
   if (!prop)
     return false;
 
-  if (!uecho_property_setcount(prop, dataSize))
+  uEchoMutex* mutex = uecho_property_lockdata(prop);
+  if (!uecho_property_setcount(prop, dataSize)) {
+    uecho_mutex_unlock(mutex);
     return false;
+  }
 
-  if (dataSize == 0)
+  if (dataSize == 0) {
+    uecho_mutex_unlock(mutex);
     return true;
+  }
 
   memcpy(prop->data, data, dataSize);
 
@@ -165,6 +180,7 @@ bool uecho_property_setdata(uEchoProperty* prop, const byte* data, size_t dataSi
     uecho_property_announce(prop);
   }
 
+  uecho_mutex_unlock(mutex);
   return true;
 }
 
@@ -182,10 +198,13 @@ bool uecho_property_adddata(uEchoProperty* prop, const byte* data, size_t dataSi
   if (dataSize == 0)
     return true;
 
+  uEchoMutex* mutex = uecho_property_lockdata(prop);
   currDataSize = uecho_property_getdatasize(prop);
 
-  if (!uecho_property_addcount(prop, dataSize))
+  if (!uecho_property_addcount(prop, dataSize)) {
+    uecho_mutex_unlock(mutex);
     return false;
+  }
 
   memcpy((prop->data + currDataSize), data, dataSize);
 
@@ -195,6 +214,7 @@ bool uecho_property_adddata(uEchoProperty* prop, const byte* data, size_t dataSi
     uecho_property_announce(prop);
   }
 
+  uecho_mutex_unlock(mutex);
   return true;
 }
 
@@ -241,7 +261,9 @@ bool uecho_property_getintegerdata(uEchoProperty* prop, int* data)
   if (!prop)
     return false;
 
+  uEchoMutex* mutex = uecho_property_lockdata(prop);
   *data = uecho_byte2integer(prop->data, prop->data_size);
+  uecho_mutex_unlock(mutex);
 
   return true;
 }
@@ -267,10 +289,14 @@ bool uecho_property_getbytedata(uEchoProperty* prop, byte* data)
   if (!prop)
     return false;
 
-  if (prop->data_size != 1)
+  uEchoMutex* mutex = uecho_property_lockdata(prop);
+  if (prop->data_size != 1) {
+    uecho_mutex_unlock(mutex);
     return false;
+  }
 
   *data = prop->data[0];
+  uecho_mutex_unlock(mutex);
 
   return true;
 }
@@ -279,7 +305,7 @@ bool uecho_property_getbytedata(uEchoProperty* prop, byte* data)
  * uecho_property_getpropertymapcount
  ****************************************/
 
-bool uecho_property_getpropertymapcount(uEchoProperty* prop, size_t* count)
+static bool uecho_property_getpropertymapcount_unlocked(const uEchoProperty* prop, size_t* count)
 {
   if (!prop)
     return false;
@@ -312,12 +338,12 @@ uEchoPropertyCode uecho_propertymap_format2bittocode(int row, int bit)
   return code;
 }
 
-bool uecho_property_getpropertymapcodes(uEchoProperty* prop, uEchoPropertyCode* propCodes, size_t propCodesSize)
+static bool uecho_property_getpropertymapcodes_unlocked(const uEchoProperty* prop, uEchoPropertyCode* propCodes, size_t propCodesSize)
 {
   size_t propCodeCount, propCodeIdx;
   byte propByteCode, propByteBit;
 
-  if (!uecho_property_getpropertymapcount(prop, &propCodeCount)) {
+  if (!uecho_property_getpropertymapcount_unlocked(prop, &propCodeCount)) {
     return false;
   }
   if (propCodeCount != propCodesSize) {
@@ -361,6 +387,26 @@ bool uecho_property_getpropertymapcodes(uEchoProperty* prop, uEchoPropertyCode* 
   return true;
 }
 
+bool uecho_property_getpropertymapcount(uEchoProperty* prop, size_t* count)
+{
+  if (!prop || !count)
+    return false;
+  uEchoMutex* mutex = uecho_property_lockdata(prop);
+  bool result = uecho_property_getpropertymapcount_unlocked(prop, count);
+  uecho_mutex_unlock(mutex);
+  return result;
+}
+
+bool uecho_property_getpropertymapcodes(uEchoProperty* prop, uEchoPropertyCode* propCodes, size_t propCodesSize)
+{
+  if (!prop || (!propCodes && propCodesSize))
+    return false;
+  uEchoMutex* mutex = uecho_property_lockdata(prop);
+  bool result = uecho_property_getpropertymapcodes_unlocked(prop, propCodes, propCodesSize);
+  uecho_mutex_unlock(mutex);
+  return result;
+}
+
 /****************************************
  * uecho_property_cleardata
  ****************************************/
@@ -370,6 +416,7 @@ bool uecho_property_cleardata(uEchoProperty* prop)
   if (!prop)
     return false;
 
+  uEchoMutex* mutex = uecho_property_lockdata(prop);
   prop->data_size = 0;
 
   if (prop->data) {
@@ -377,6 +424,7 @@ bool uecho_property_cleardata(uEchoProperty* prop)
     prop->data = NULL;
   }
 
+  uecho_mutex_unlock(mutex);
   return true;
 }
 
@@ -461,7 +509,10 @@ size_t uecho_property_getdatasize(uEchoProperty* prop)
 {
   if (!prop)
     return 0;
-  return prop->data_size;
+  uEchoMutex* mutex = uecho_property_lockdata(prop);
+  size_t size = prop->data_size;
+  uecho_mutex_unlock(mutex);
+  return size;
 }
 
 /****************************************
@@ -632,10 +683,12 @@ uEchoProperty* uecho_property_copy(uEchoProperty* srcProp)
   if (!newProp)
     return NULL;
 
+  uEchoMutex* mutex = uecho_property_lockdata(srcProp);
   uecho_property_setcode(newProp, uecho_property_getcode(srcProp));
   uecho_property_setname(newProp, uecho_property_getname(srcProp));
   uecho_property_setattribute(newProp, uecho_property_getattribute(srcProp));
   uecho_property_setdata(newProp, uecho_property_getdata(srcProp), uecho_property_getdatasize(srcProp));
+  uecho_mutex_unlock(mutex);
 
   return newProp;
 }
@@ -649,19 +702,17 @@ bool uecho_property_equals(uEchoProperty* prop1, uEchoProperty* prop2)
   if (!prop1 || !prop2)
     return false;
 
-  if (uecho_property_getcode(prop1) != uecho_property_getcode(prop2))
+  /* Snapshot one side before locking the other, avoiding cross-node lock inversion. */
+  uEchoProperty* snapshot = uecho_property_copy(prop1);
+  if (!snapshot)
     return false;
-
-  if (uecho_property_getattribute(prop1) != uecho_property_getattribute(prop2))
-    return false;
-
-  if (uecho_property_getdatasize(prop1) != uecho_property_getdatasize(prop2))
-    return false;
-
-  if (memcmp(uecho_property_getdata(prop1), uecho_property_getdata(prop2), uecho_property_getdatasize(prop1)) != 0)
-    return false;
-
-  return true;
+  uEchoMutex* mutex = uecho_property_lockdata(prop2);
+  bool result = snapshot->code == prop2->code && snapshot->attr == prop2->attr
+      && snapshot->data_size == prop2->data_size
+      && (snapshot->data_size == 0 || memcmp(snapshot->data, prop2->data, snapshot->data_size) == 0);
+  uecho_mutex_unlock(mutex);
+  uecho_property_delete(snapshot);
+  return result;
 }
 
 /****************************************
@@ -719,8 +770,8 @@ bool uecho_property_isdataequal(uEchoProperty* prop, const byte* data, size_t da
   if (!prop)
     return false;
 
-  if (uecho_property_getdatasize(prop) != dataSize)
-    return false;
-
-  return (memcmp(uecho_property_getdata(prop), data, dataSize) == 0) ? true : false;
+  uEchoMutex* mutex = uecho_property_lockdata(prop);
+  bool equal = (prop->data_size == dataSize) && (dataSize == 0 || memcmp(prop->data, data, dataSize) == 0);
+  uecho_mutex_unlock(mutex);
+  return equal;
 }

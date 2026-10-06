@@ -13,6 +13,7 @@
 
 #include <uecho/_node.h>
 
+#include <uecho/_controller.h>
 #include <uecho/device.h>
 
 const uEchoObjectCode UECHO_TEST_MANCODE = 0x000000;
@@ -25,6 +26,7 @@ const byte UECHO_TEST_PROPERTY_SWITCH_DEFAULT = UECHO_TEST_PROPERTY_SWITCH_ON;
 const int UECHO_TEST_RESPONSE_WAIT_MAX_MTIME = 5000;
 const int UECHO_TEST_RESPONSE_WAIT_RETLY_CNT = 100;
 
+uEchoObject* uecho_test_findlocaldevice(uEchoController* ctrl);
 uEchoNode* uecho_test_createtestnode();
 uEchoObject* uecho_test_createtestdevice();
 

@@ -16,7 +16,7 @@
  * uecho_mutex_new
  ****************************************/
 
-uEchoMutex* uecho_mutex_new(void)
+static uEchoMutex* uecho_mutex_newwithtype(bool recursive)
 {
   uEchoMutex* mutex;
 
@@ -28,10 +28,35 @@ uEchoMutex* uecho_mutex_new(void)
 #if defined(WIN32)
   mutex->mutexId = CreateMutex(NULL, false, NULL);
 #else
-  pthread_mutex_init(&mutex->mutexId, NULL);
+  pthread_mutexattr_t attr;
+  if (pthread_mutexattr_init(&attr) != 0) {
+    free(mutex);
+    return NULL;
+  }
+  if (recursive && pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE) != 0) {
+    pthread_mutexattr_destroy(&attr);
+    free(mutex);
+    return NULL;
+  }
+  int result = pthread_mutex_init(&mutex->mutexId, &attr);
+  pthread_mutexattr_destroy(&attr);
+  if (result != 0) {
+    free(mutex);
+    return NULL;
+  }
 #endif
 
   return mutex;
+}
+
+uEchoMutex* uecho_mutex_new(void)
+{
+  return uecho_mutex_newwithtype(false);
+}
+
+uEchoMutex* uecho_mutex_newrecursive(void)
+{
+  return uecho_mutex_newwithtype(true);
 }
 
 /****************************************

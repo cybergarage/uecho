@@ -73,11 +73,8 @@ BOOST_AUTO_TEST_CASE(DeviceRequest)
 
   // Find device
 
-  uEchoObject* foundObj = uecho_controller_getobjectbycodewithwait(ctrl, UECHO_TEST_OBJECTCODE, UECHO_TEST_RESPONSE_WAIT_MAX_MTIME);
+  uEchoObject* foundObj = uecho_test_findlocaldevice(ctrl);
   BOOST_REQUIRE(foundObj);
-  if (!foundObj)
-    return;
-
   uEchoNode* foundNode = uecho_object_getparentnode(foundObj);
   BOOST_REQUIRE(foundNode);
   if (!foundNode)

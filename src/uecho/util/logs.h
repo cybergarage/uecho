@@ -13,6 +13,10 @@
 
 #include <uecho/_message.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define UECHO_LOG_NET_PREFIX_SEND "S"
 #define UECHO_LOG_NET_PREFIX_RECV "R"
 
@@ -23,5 +27,9 @@ void uecho_net_datagram_packet_error(const char* prefix, uEchoDatagramPacket* dp
 void uecho_net_datagram_packet_debug(const char* prefix, uEchoDatagramPacket* dpkt);
 
 void uecho_message_error(const char* prefix, uEchoMessage* msg);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _UECHO_LOG_FUNC_H_ */

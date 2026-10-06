@@ -12,7 +12,10 @@ TESTS = uechotest
 
 check_PROGRAMS = uechotest
 
-AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../
+# Tests use std::jthread for automatic thread lifetime management.
+AM_CXXFLAGS = -std=c++20
+
+AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../ $(UECHO_TEST_ALLOCATOR_CPPFLAGS)
 	../TestDevice.h
 
 uechotest_SOURCES = \
@@ -43,3 +46,6 @@ uechotest_SOURCES = \
 	../MutexTest.cpp
 
 uechotest_LDADD = ../../lib/unix/libuecho.a
+
+# Optional GNU linker wrappers exercise allocation failure paths in CI.
+uechotest_LDFLAGS = $(UECHO_TEST_ALLOCATOR_LDFLAGS)

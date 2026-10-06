@@ -8,7 +8,11 @@
  *
  ************************************************************/
 
+#include <array>
+#include <memory>
+
 #include "TestDevice.h"
+#include <uecho/net/interface.h>
 
 #undef UECHO_TEST_VERBOSE
 
@@ -103,4 +107,28 @@ uEchoNode* uecho_test_createtestnode()
   uEchoObject* dev = uecho_test_createtestdevice();
   uecho_node_addobject(node, dev);
   return node;
+}
+
+// Select the source address chosen by the OS route, so a multihomed fixture
+// uses the same peer for discovery, unicast responses and cache assertions.
+uEchoObject* uecho_test_findlocaldevice(uEchoController* ctrl)
+{
+  std::unique_ptr<uEchoSocket, decltype(&uecho_socket_delete)> route(uecho_socket_dgram_new(), &uecho_socket_delete);
+  if (!route || !uecho_socket_connect(route.get(), uEchoMulticastAddr, uEchoUdpPort))
+    return nullptr;
+  struct sockaddr_in source = {};
+  if (socklen_t sourceLength = sizeof(source); getsockname(uecho_socket_getid(route.get()), (struct sockaddr*)&source, &sourceLength) != 0)
+    return nullptr;
+  std::array<char, UECHO_NET_SOCKET_MAXHOST> localAddress = {};
+  if (!inet_ntop(AF_INET, &source.sin_addr, localAddress.data(), localAddress.size()))
+    return nullptr;
+  uEchoObject* foundObj = nullptr;
+  for (int n = 0; n < UECHO_TEST_RESPONSE_WAIT_RETLY_CNT; n++) {
+    if (uEchoNode* foundNode = uecho_controller_getnodebyaddress(ctrl, localAddress.data()))
+      foundObj = uecho_node_getobjectbycode(foundNode, UECHO_TEST_OBJECTCODE);
+    if (foundObj)
+      break;
+    uecho_sleep(UECHO_TEST_RESPONSE_WAIT_MAX_MTIME / UECHO_TEST_RESPONSE_WAIT_RETLY_CNT);
+  }
+  return foundObj;
 }
