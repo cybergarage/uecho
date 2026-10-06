@@ -10,8 +10,10 @@
 
 #include <array>
 #include <boost/test/unit_test.hpp>
+#include <thread>
 
 #include <uecho/_controller.h>
+#include <uecho/_node.h>
 #include <uecho/net/interface.h>
 #include <uecho/profile.h>
 #include <uecho/util/timer.h>
@@ -388,5 +390,65 @@ BOOST_AUTO_TEST_CASE(ControllerRequest)
   // Teminate
 
   BOOST_REQUIRE(uecho_controller_stop(ctrl));
+  uecho_controller_delete(ctrl);
+}
+
+// Responses delivered by several server threads at once, including duplicates
+// and late ones, must not touch the response message after postmessage() returns.
+
+static void uecho_controller_test_postresponder(std::stop_token stop, uEchoController* ctrl)
+{
+  while (!stop.stop_requested()) {
+    uEchoMessage* res = uecho_message_new();
+    byte data = 0x30;
+    uecho_mutex_lock(ctrl->node->mutex);
+    uEchoTID tid = ctrl->node->lastTid;
+    uecho_mutex_unlock(ctrl->node->mutex);
+    uecho_message_settid(res, tid);
+    uecho_message_setesv(res, uEchoEsvReadResponse);
+    uecho_message_setsourceobjectcode(res, 0x029101);
+    uecho_message_setdestinationobjectcode(res, uEchoNodeProfileObject);
+    uecho_message_setsourceaddress(res, UECHO_NET_IPV4_LOOPBACK);
+    uecho_message_setproperty(res, 0x80, &data, 1);
+    uecho_controller_servermessagelistener(ctrl, res);
+    uecho_controller_servermessagelistener(ctrl, res);
+    uecho_message_delete(res);
+  }
+}
+
+BOOST_AUTO_TEST_CASE(ControllerPostResponseRace)
+{
+  uEchoController* ctrl = uecho_controller_new();
+  uEchoNode* dstNode = uecho_node_new();
+  uecho_node_setaddress(dstNode, UECHO_NET_IPV4_LOOPBACK);
+  uecho_controller_setpostwaitemilitime(ctrl, CLOCKS_PER_SEC / 200);
+
+  std::jthread responder1(uecho_controller_test_postresponder, ctrl);
+  std::jthread responder2(uecho_controller_test_postresponder, ctrl);
+
+  int receivedCnt = 0;
+  for (int n = 0; n < 500; n++) {
+    uEchoMessage* msg = uecho_message_new();
+    uecho_message_setesv(msg, uEchoEsvReadRequest);
+    uecho_message_setdestinationobjectcode(msg, 0x029101);
+    uecho_message_setproperty(msg, 0x80, nullptr, 0);
+    uEchoMessage* res = uecho_message_new();
+    if (uecho_controller_postmessage(ctrl, dstNode, msg, res)) {
+      BOOST_REQUIRE_EQUAL(uecho_message_gettid(res), uecho_message_gettid(msg));
+      BOOST_REQUIRE_EQUAL(uecho_message_getopc(res), 1);
+      receivedCnt++;
+    }
+    uecho_message_delete(res);
+    uecho_message_delete(msg);
+  }
+
+  responder1.request_stop();
+  responder2.request_stop();
+  responder1.join();
+  responder2.join();
+
+  BOOST_REQUIRE(0 < receivedCnt);
+
+  uecho_node_delete(dstNode);
   uecho_controller_delete(ctrl);
 }

@@ -44,7 +44,9 @@ uEchoController* uecho_controller_new(void)
   uecho_controller_setmessagelistener(ctrl, NULL);
   uecho_controller_setmessagelistener(ctrl, NULL);
   uecho_controller_setnodelistener(ctrl, NULL);
+  uecho_controller_setpostrequestmessage(ctrl, NULL);
   uecho_controller_setpostresponsemessage(ctrl, NULL);
+  ctrl->postResReceived = false;
   uecho_controller_setpostwaitemilitime(ctrl, UECHO_CONTROLLER_POST_RESPONSE_MAX_CLOCK_TIME);
 
   return ctrl;
@@ -489,48 +491,35 @@ clock_t uecho_controller_getpostwaitemilitime(uEchoController* ctrl)
 
 bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* reqMsg, uEchoMessage* resMsg)
 {
-  bool isResponceReceived;
   struct timespec deadline;
-
-  if (!ctrl || !node || !reqMsg || !resMsg || reqMsg == resMsg)
+  if (!ctrl || !ctrl->node || !node || !reqMsg || !resMsg || reqMsg == resMsg)
     return false;
 
   uEchoCond* const condition = ctrl->cond;
   uecho_mutex_lock(ctrl->mutex);
-  pthread_mutex_lock(&condition->mutexId);
+  uecho_cond_lock(condition);
   uecho_message_clear(resMsg);
   uecho_message_setesv(resMsg, 0);
   uecho_message_settid(resMsg, 0);
+  ctrl->postReqMsg = reqMsg;
+  ctrl->postResMsg = resMsg;
+  ctrl->postResReceived = false;
 
-  uecho_controller_setpostrequestmessage(ctrl, reqMsg);
-  uecho_controller_setpostresponsemessage(ctrl, resMsg);
-
-  if (!uecho_controller_sendmessage(ctrl, node, reqMsg)) {
-    uecho_controller_setpostrequestmessage(ctrl, NULL);
-    uecho_controller_setpostresponsemessage(ctrl, NULL);
-    pthread_mutex_unlock(&condition->mutexId);
-    uecho_mutex_unlock(ctrl->mutex);
-    return false;
+  /* Sending assigns the TID, source EOJ and resolved peer while the pair is locked. */
+  bool sent = uecho_controller_sendmessage(ctrl, node, reqMsg);
+  if (sent && uecho_cond_getdeadline(ctrl->postResWaitClockTime, &deadline)) {
+    while (!ctrl->postResReceived) {
+      if (!uecho_cond_waituntil(condition, &deadline))
+        break;
+    }
   }
-
-  clock_gettime(CLOCK_REALTIME, &deadline);
-  deadline.tv_sec += ctrl->postResWaitClockTime / CLOCKS_PER_SEC;
-  deadline.tv_nsec += (ctrl->postResWaitClockTime % CLOCKS_PER_SEC) * (1000000000L / CLOCKS_PER_SEC);
-  deadline.tv_sec += deadline.tv_nsec / 1000000000L;
-  deadline.tv_nsec %= 1000000000L;
-  while (!uecho_controller_ispostresponsereceived(ctrl)) {
-    if (pthread_cond_timedwait(&condition->condId, &condition->mutexId, &deadline) != 0)
-      break;
-  }
-  isResponceReceived = uecho_controller_ispostresponsereceived(ctrl);
-
-  uecho_controller_setpostrequestmessage(ctrl, NULL);
-  uecho_controller_setpostresponsemessage(ctrl, NULL);
-
-  pthread_mutex_unlock(&condition->mutexId);
+  bool received = ctrl->postResReceived;
+  ctrl->postReqMsg = NULL;
+  ctrl->postResMsg = NULL;
+  ctrl->postResReceived = false;
+  uecho_cond_unlock(condition);
   uecho_mutex_unlock(ctrl->mutex);
-
-  return isResponceReceived;
+  return received;
 }
 
 /****************************************
