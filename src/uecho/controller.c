@@ -11,8 +11,6 @@
 #include <uecho/_controller.h>
 #include <uecho/profile.h>
 
-#define uEchoControllerPostResponseLoopCount (CLOCKS_PER_SEC / 10)
-
 /****************************************
  * uecho_controller_new
  ****************************************/
@@ -40,7 +38,9 @@ uEchoController* uecho_controller_new(void)
   uecho_controller_setmessagelistener(ctrl, NULL);
   uecho_controller_setmessagelistener(ctrl, NULL);
   uecho_controller_setnodelistener(ctrl, NULL);
+  uecho_controller_setpostrequestmessage(ctrl, NULL);
   uecho_controller_setpostresponsemessage(ctrl, NULL);
+  ctrl->postResReceived = false;
   uecho_controller_setpostwaitemilitime(ctrl, UECHO_CONTROLLER_POST_RESPONSE_MAX_CLOCK_TIME);
 
   return ctrl;
@@ -481,41 +481,51 @@ clock_t uecho_controller_getpostwaitemilitime(uEchoController* ctrl)
 
 bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* reqMsg, uEchoMessage* resMsg)
 {
-  bool isResponceReceived;
-  int n;
+  uEchoObject* nodeProfObj;
+  struct timespec deadline;
+  bool isRequestSent;
+  bool isResponseReceived;
 
-  if (!ctrl)
+  if (!ctrl || !node || !reqMsg || !resMsg || !ctrl->node)
     return false;
 
+  nodeProfObj = uecho_node_getnodeprofileclassobject(ctrl->node);
+  if (!nodeProfObj)
+    return false;
+
+  /* Only one post request is pending at a time. */
   uecho_mutex_lock(ctrl->mutex);
 
-  uecho_controller_setpostrequestmessage(ctrl, reqMsg);
-  uecho_controller_setpostresponsemessage(ctrl, resMsg);
+  /* Fix the TID before registering the request, so the server threads never see it change. */
+  uecho_message_settid(reqMsg, uecho_node_getnexttid(ctrl->node));
+  uecho_message_setsourceobjectcode(reqMsg, uecho_object_getcode(nodeProfObj));
 
-  if (!uecho_controller_sendmessage(ctrl, node, reqMsg)) {
-    uecho_mutex_unlock(ctrl->mutex);
-    return false;
-  }
+  uecho_cond_lock(ctrl->cond);
+  ctrl->postReqMsg = reqMsg;
+  ctrl->postResMsg = resMsg;
+  ctrl->postResReceived = false;
+  uecho_cond_unlock(ctrl->cond);
 
-#if defined(USE_SLEEP_WAIT)
-  is_responce_received = false;
-  for (n = 0; n < uEchoControllerPostResponseLoopCount; n++) {
-    uecho_sleep(ctrl->post_res_wait_clock_time / uEchoControllerPostResponseLoopCount);
-    if (uecho_controller_ispostresponsereceived(ctrl)) {
-      is_responce_received = true;
-      break;
+  isRequestSent = uecho_node_sendmessagebytes(ctrl->node, uecho_node_getaddress(node), uecho_message_getbytes(reqMsg), uecho_message_size(reqMsg));
+
+  uecho_cond_lock(ctrl->cond);
+  if (isRequestSent && uecho_cond_getdeadline(ctrl->postResWaitClockTime, &deadline)) {
+    /* The flag is set under the lock, so a response that arrives before this wait is not lost. */
+    while (!ctrl->postResReceived) {
+      if (!uecho_cond_waituntil(ctrl->cond, &deadline))
+        break;
     }
   }
-#else
-  isResponceReceived = uecho_cond_timedwait(ctrl->cond, ctrl->postResWaitClockTime);
-#endif
-
-  uecho_controller_setpostrequestmessage(ctrl, NULL);
-  uecho_controller_setpostresponsemessage(ctrl, NULL);
+  isResponseReceived = ctrl->postResReceived;
+  /* Unregister under the lock: no server thread can write resMsg after this returns. */
+  ctrl->postReqMsg = NULL;
+  ctrl->postResMsg = NULL;
+  ctrl->postResReceived = false;
+  uecho_cond_unlock(ctrl->cond);
 
   uecho_mutex_unlock(ctrl->mutex);
 
-  return isResponceReceived;
+  return isResponseReceived;
 }
 
 /****************************************

@@ -101,3 +101,62 @@ bool uecho_cond_signal(uEchoCond* cond)
 
   return true;
 }
+
+/****************************************
+ * uecho_cond_lock
+ ****************************************/
+
+bool uecho_cond_lock(uEchoCond* cond)
+{
+  if (!cond)
+    return false;
+
+  return (pthread_mutex_lock(&cond->mutexId) == 0) ? true : false;
+}
+
+/****************************************
+ * uecho_cond_unlock
+ ****************************************/
+
+bool uecho_cond_unlock(uEchoCond* cond)
+{
+  if (!cond)
+    return false;
+
+  return (pthread_mutex_unlock(&cond->mutexId) == 0) ? true : false;
+}
+
+/****************************************
+ * uecho_cond_getdeadline
+ ****************************************/
+
+bool uecho_cond_getdeadline(clock_t mtime, struct timespec* deadline)
+{
+  long long nsec;
+
+  if (!deadline)
+    return false;
+
+  if (clock_gettime(CLOCK_REALTIME, deadline) != 0)
+    return false;
+
+  /* mtime is in clock ticks (CLOCKS_PER_SEC per second). */
+  nsec = (long long)deadline->tv_nsec + ((long long)mtime % CLOCKS_PER_SEC) * (1000000000LL / CLOCKS_PER_SEC);
+  deadline->tv_sec += (time_t)(mtime / CLOCKS_PER_SEC) + (time_t)(nsec / 1000000000LL);
+  deadline->tv_nsec = (long)(nsec % 1000000000LL);
+
+  return true;
+}
+
+/****************************************
+ * uecho_cond_waituntil
+ ****************************************/
+
+bool uecho_cond_waituntil(uEchoCond* cond, const struct timespec* deadline)
+{
+  if (!cond || !deadline)
+    return false;
+
+  /* The caller holds the lock; a spurious wakeup also returns true, so re-check the predicate. */
+  return (pthread_cond_timedwait(&cond->condId, &cond->mutexId, deadline) == 0) ? true : false;
+}

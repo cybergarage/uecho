@@ -43,9 +43,12 @@ typedef struct UEchoController {
   uEchoOption option;
   void* userData;
 
+  /* Request/response pair of the pending uecho_controller_postmessage().
+   * Guarded by the lock of cond, because responses arrive on server threads. */
   clock_t postResWaitClockTime;
   uEchoMessage* postReqMsg;
   uEchoMessage* postResMsg;
+  bool postResReceived;
 } uEchoController;
 
 /****************************************

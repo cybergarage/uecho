@@ -148,11 +148,23 @@ bool uecho_controller_updatenodebyresponsemessage(uEchoController* ctrl, uEchoNo
 
 void uecho_controller_handlepostresponse(uEchoController* ctrl, uEchoMessage* msg)
 {
-  if (!uecho_controller_ispostresponsemessage(ctrl, msg))
+  bool isResponseAccepted = false;
+
+  if (!ctrl || !msg)
     return;
 
-  uecho_message_set(uecho_controller_getpostresponsemessage(ctrl), msg);
-  uecho_cond_signal(ctrl->cond);
+  /* Several server threads can deliver responses at once, e.g. a duplicated
+   * response; only the first one is copied, and only while the post is pending. */
+  uecho_cond_lock(ctrl->cond);
+  if (ctrl->postReqMsg && ctrl->postResMsg && !ctrl->postResReceived && uecho_message_isresponsemessage(ctrl->postReqMsg, msg)) {
+    uecho_message_set(ctrl->postResMsg, msg);
+    ctrl->postResReceived = true;
+    isResponseAccepted = true;
+  }
+  uecho_cond_unlock(ctrl->cond);
+
+  if (isResponseAccepted)
+    uecho_cond_signal(ctrl->cond);
 }
 
 /****************************************
@@ -198,9 +210,7 @@ void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage*
     ctrl->msgListener(ctrl, msg);
   }
 
-  if (uecho_controller_ispostresponsewaiting(ctrl)) {
-    uecho_controller_handlepostresponse(ctrl, msg);
-  }
+  uecho_controller_handlepostresponse(ctrl, msg);
 
   if (uecho_message_issearchresponse(msg)) {
     uecho_controller_handlesearchmessage(ctrl, msg);
