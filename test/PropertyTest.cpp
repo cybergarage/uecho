@@ -262,8 +262,7 @@ extern "C" void* uecho_test_malloc(size_t) asm("__wrap_malloc");
 
 extern "C" void* uecho_test_malloc(size_t size)
 {
-  auto& state = uecho_test_allocationstate();
-  if (state.mallocAfter > 0) {
+  if (auto& state = uecho_test_allocationstate(); state.mallocAfter > 0) {
     --state.mallocAfter;
     if (state.mallocAfter == 0)
       return nullptr;

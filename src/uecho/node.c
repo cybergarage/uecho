@@ -520,13 +520,11 @@ bool uecho_node_sendmessage(uEchoNode* node, uEchoNode* dstNode, uEchoMessage* m
     return false;
   uecho_message_setsourceobjectcode(msg, uecho_object_getcode(nodeProfObj));
 
-  char* address = uecho_socket_resolveaddress(uecho_node_getaddress(dstNode));
-  if (!address)
+  char address[UECHO_NET_SOCKET_MAXHOST];
+  if (!uecho_socket_resolveaddress(uecho_node_getaddress(dstNode), address, sizeof(address)))
     return false;
   uecho_message_setdestinationaddress(msg, address);
-  bool sent = uecho_node_sendmessagebytes(node, address, uecho_message_getbytes(msg), uecho_message_size(msg));
-  free(address);
-  return sent;
+  return uecho_node_sendmessagebytes(node, address, uecho_message_getbytes(msg), uecho_message_size(msg));
 }
 
 /****************************************
