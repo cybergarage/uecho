@@ -20,7 +20,7 @@ jobs:
       with:
         path: uecho
     - name: build examples/espidf/uecholight
-      uses: espressif/esp-idf-ci-action@v1
+      uses: espressif/esp-idf-ci-action@e6f5c74232b1ccd4c97ed641f1e48553853f1fd5 # v1.2.0
       with:
         esp_idf_version: ${{ matrix.idf_version }}
         target: ${{ matrix.target }}
