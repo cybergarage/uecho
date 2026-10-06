@@ -997,7 +997,7 @@ bool uecho_message_set(uEchoMessage* msg, uEchoMessage* srcMsg)
     if (!srcProp)
       continue;
     prop = uecho_property_copy(srcProp);
-    if (!srcProp)
+    if (!prop)
       continue;
     uecho_message_addproperty(msg, prop);
   }
