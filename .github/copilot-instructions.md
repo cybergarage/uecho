@@ -2,14 +2,14 @@
 
 ## Project Structure & Module Organization
 
-uEcho is a C library for ECHONET Lite devices and controllers. Public headers live in `include/uecho/`, with utilities under `include/uecho/util/` and standard database headers under `include/uecho/std/`. Core implementation files are in `src/uecho/`. Platform support is split under `lib/unix/` and `lib/esp32/`. Tests are C++ Boost unit tests in `test/`, with the Unix test runner in `test/unix/`. Documentation lives in `doc/`, and samples are under `examples/controller/` and `examples/device/`.
+uEcho is a C library for ECHONET Lite devices and controllers. Public headers live in `include/uecho/`, with utilities under `include/uecho/util/` and standard database headers under `include/uecho/std/`. Core implementation files are in `src/uecho/`. Platform library glue is under `lib/unix/`; the repository root is also an ESP-IDF component (see `doc/espidf.md`, `#if defined(ESP_PLATFORM)` guards). Tests are C++ Boost unit tests in `test/`, with the Unix test runner in `test/unix/`. Documentation lives in `doc/`, and samples are under `examples/controller/` and `examples/device/`.
 
 ## Build, Test, and Development Commands
 
 - `./bootstrap && ./configure`: regenerate Autotools files and configure a local build.
 - `./configure --enable-test`: configure with the test subdirectory enabled.
 - `./configure --enable-examples`: configure with example programs enabled.
-- `./configure --with-esp32`: configure for ESP32-specific sources.
+- `cd examples/espidf/uecholight && idf.py build`: build the ESP-IDF example (ESP-IDF v5.5+).
 - `make`: build headers, libraries, and any enabled subdirectories.
 - `make check`: run configured tests, including `test/unix/uechotest` when tests are enabled.
 - `./coverage_summary.sh`: summarize coverage data when coverage artifacts are present.

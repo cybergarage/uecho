@@ -21,8 +21,8 @@ make check
 # Build with examples
 ./configure --enable-examples && make
 
-# Build for ESP32
-./configure --with-esp32 && make
+# Build the ESP-IDF example (requires ESP-IDF v5.5+, see doc/espidf.md)
+cd examples/espidf/uecholight && idf.py set-target esp32 && idf.py build
 
 # Build with coverage instrumentation
 ./configure --enable-test --enable-coverage && make check
@@ -55,7 +55,7 @@ uEchoController
 
 **Server / Frame layer** (`src/uecho/frame/`) — networking internals hidden from public API. A `uEchoServer` owns a list of `uEchoUdpServer`s (one per network interface) and `uEchoMcastServer`s for the ECHONET Lite multicast group. Each server runs a dedicated `uEchoThread`. Message routing goes through `uEchoMessageObserverManager`.
 
-**Platform layer** (`lib/unix/`, `lib/esp32/`) — provides `uEchoSocket`, `uEchoThread`, `uEchoMutex`, and `uEchoCond`. Select platform via `./configure --with-esp32`; the default is POSIX/Unix.
+**Platform layer** (`src/uecho/net/`, `src/uecho/util/`) — provides `uEchoSocket`, `uEchoThread`, `uEchoMutex`, and `uEchoCond` on POSIX. The repository root is also an ESP-IDF component (`CMakeLists.txt` branches on `ESP_PLATFORM`); ESP-IDF-specific code is guarded by `#if defined(ESP_PLATFORM)` and uses the ESP-IDF pthread/lwIP layer. See `doc/espidf.md`.
 
 **Standard database** (`include/uecho/std/`, `src/uecho/std/`) — pre-populated object/property definitions sourced from the MRA (Machine Readable Appendix). Used by `uecho_node_setobject` to set up standard device properties automatically.
 
