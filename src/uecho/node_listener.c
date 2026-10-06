@@ -56,7 +56,7 @@ bool uecho_object_notifyrequestproperty(uEchoObject* obj, uEchoProperty* objProp
 
 typedef bool (*uEchoMessageAddPropertyFunc)(uEchoMessage* msg, uEchoProperty* prop);
 
-bool uecho_node_handlerequestmessage(uEchoObject* destObj, uEchoEsv msgEsv, byte opc, uEchoProperty** ep, uEchoMessageAddPropertyFunc messageAddpropertyFunc, uEchoMessage* resMsg)
+int uecho_node_handlerequestmessage(uEchoObject* destObj, uEchoEsv msgEsv, byte opc, uEchoProperty** ep, uEchoMessageAddPropertyFunc messageAddpropertyFunc, uEchoMessage* resMsg)
 {
   uEchoPropertyCode msgPropCode;
   uEchoProperty *msgProp, *destProp, *resProp;
@@ -75,8 +75,12 @@ bool uecho_node_handlerequestmessage(uEchoObject* destObj, uEchoEsv msgEsv, byte
     uecho_property_setcode(resProp, msgPropCode);
 
     destProp = uecho_object_getproperty(destObj, msgPropCode);
-    if (destProp) {
+    bool permitted = destProp && (uecho_esv_iswriterequest(msgEsv) ? uecho_property_iswritable(destProp) : uecho_property_isreadable(destProp));
+    if (permitted) {
       if (uecho_object_notifyrequestproperty(destObj, destProp, msgEsv, msgProp)) {
+        uEchoNode* parent = uecho_object_getparentnode(destObj);
+        uEchoMutex* mutex = parent ? parent->mutex : NULL;
+        uecho_mutex_lock(mutex);
         acceptedRequestCnt++;
         switch (msgEsv) {
         case uEchoEsvWriteRequest:
@@ -91,6 +95,7 @@ bool uecho_node_handlerequestmessage(uEchoObject* destObj, uEchoEsv msgEsv, byte
           uecho_property_setdata(resProp, uecho_property_getdata(destProp), uecho_property_getdatasize(destProp));
           break;
         }
+        uecho_mutex_unlock(mutex);
       }
       else {
         switch (msgEsv) {
@@ -188,7 +193,7 @@ void uecho_node_servermessagelistener(uEchoNode* node, uEchoMessage* reqMsg)
     if (acceptedRequestCnt == allRequestCnt)
       resEsv = uEchoEsvWriteResponse;
     else
-      resEsv = uEchoEsvWriteRequestError;
+      resEsv = uEchoEsvWriteRequestResponseRequiredError;
 
   } break;
     // 4.2.3.3 Property value read service [0x62,0x72,0x52]

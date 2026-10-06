@@ -9,6 +9,7 @@
  ************************************************************/
 
 #include "TestDevice.h"
+#include <uecho/net/interface.h>
 
 #undef UECHO_TEST_VERBOSE
 
@@ -103,4 +104,26 @@ uEchoNode* uecho_test_createtestnode()
   uEchoObject* dev = uecho_test_createtestdevice();
   uecho_node_addobject(node, dev);
   return node;
+}
+
+// A multihomed fixture announces one EOJ on several IPs; select the address
+// its unicast response uses rather than an arbitrary matching LAN device.
+uEchoObject* uecho_test_findlocaldevice(uEchoController* ctrl)
+{
+  struct sockaddr_in destination = {};
+  destination.sin_family = AF_INET;
+  inet_pton(AF_INET, "224.0.23.0", &destination.sin_addr);
+  char* localAddress = uecho_net_selectaddr((struct sockaddr*)&destination);
+  if (!localAddress)
+    return NULL;
+  uEchoObject* foundObj = NULL;
+  for (int n = 0; n < UECHO_TEST_RESPONSE_WAIT_RETLY_CNT && !foundObj; n++) {
+    uEchoNode* foundNode = uecho_controller_getnodebyaddress(ctrl, localAddress);
+    if (foundNode)
+      foundObj = uecho_node_getobjectbycode(foundNode, UECHO_TEST_OBJECTCODE);
+    if (!foundObj)
+      uecho_sleep(UECHO_TEST_RESPONSE_WAIT_MAX_MTIME / UECHO_TEST_RESPONSE_WAIT_RETLY_CNT);
+  }
+  free(localAddress);
+  return foundObj;
 }

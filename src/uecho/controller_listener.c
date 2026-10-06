@@ -38,19 +38,29 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
   propSize = uecho_property_getdatasize(prop);
   if (propSize < 1)
     return;
+  propData = uecho_property_getdata(prop);
+  if (propSize != 1 + (size_t)propData[0] * 3 || (uecho_message_getsourceobjectcode(msg) != uEchoNodeProfileObject && uecho_message_getsourceobjectcode(msg) != uEchoNodeProfileObjectReadOnly))
+    return;
 
   // Get or create node
 
   msgAddr = uecho_message_getsourceaddress(msg);
-  if (!msgAddr)
+  if (!msgAddr || !*msgAddr)
     return;
 
+  uecho_mutex_lock(ctrl->nodesMutex);
   nodeAdded = false;
   node = uecho_controller_getnodebyaddress(ctrl, msgAddr);
   if (!node) {
-    node = uecho_node_new();
-    if (!node)
+    if (uecho_controller_getnodecount(ctrl) >= UECHO_CONTROLLER_MAX_NODES) {
+      uecho_mutex_unlock(ctrl->nodesMutex);
       return;
+    }
+    node = uecho_node_new();
+    if (!node) {
+      uecho_mutex_unlock(ctrl->nodesMutex);
+      return;
+    }
     uecho_node_setaddress(node, uecho_message_getsourceaddress(msg));
     uecho_controller_addnode(ctrl, node);
     nodeAdded = true;
@@ -59,14 +69,19 @@ void uecho_controller_handlesearchmessage(uEchoController* ctrl, uEchoMessage* m
   // Updated node
 
   nodeUpdated = false;
+  uecho_mutex_lock(node->mutex);
   propData = uecho_property_getdata(prop);
   for (idx = 1; (idx + 2) < propSize; idx += 3) {
     objCode = uecho_byte2integer((propData + idx), 3);
     if (uecho_node_hasobjectbycode(node, objCode))
       continue;
-    uecho_node_setobject(node, objCode);
-    nodeUpdated = true;
+    if (uecho_node_getobjectcount(node) >= UECHO_CONTROLLER_MAX_OBJECTS_PER_NODE)
+      break;
+    if (uecho_node_setobject(node, objCode))
+      nodeUpdated = true;
   }
+  uecho_mutex_unlock(node->mutex);
+  uecho_mutex_unlock(ctrl->nodesMutex);
 
   // Notify node status
 
@@ -95,6 +110,9 @@ bool uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* 
   size_t n;
 
   objPropUpdated = false;
+  uEchoNode* parent = uecho_object_getparentnode(obj);
+  uEchoMutex* mutex = parent ? parent->mutex : NULL;
+  uecho_mutex_lock(mutex);
   for (n = 0; n < opc; n++) {
     msgProp = ep[n];
     if (!msgProp)
@@ -119,6 +137,7 @@ bool uecho_controller_updateopcpropertydata(uEchoController* ctrl, uEchoObject* 
     objPropUpdated = true;
   }
 
+  uecho_mutex_unlock(mutex);
   return objPropUpdated;
 }
 
@@ -127,9 +146,12 @@ bool uecho_controller_updatenodebyresponsemessage(uEchoController* ctrl, uEchoNo
   uEchoObject* nodeObj;
   bool nodeUpdated;
 
+  uecho_mutex_lock(node->mutex);
   nodeObj = uecho_node_getobjectbycode(node, uecho_message_getsourceobjectcode(msg));
-  if (!nodeObj)
+  if (!nodeObj) {
+    uecho_mutex_unlock(node->mutex);
     return false;
+  }
 
   nodeUpdated = false;
   if (uecho_message_isreadwritemessage(msg)) {
@@ -139,6 +161,7 @@ bool uecho_controller_updatenodebyresponsemessage(uEchoController* ctrl, uEchoNo
     nodeUpdated = uecho_controller_updateopcpropertydata(ctrl, nodeObj, msg->opc, msg->ep);
   }
 
+  uecho_mutex_unlock(node->mutex);
   return nodeUpdated;
 }
 
@@ -148,11 +171,12 @@ bool uecho_controller_updatenodebyresponsemessage(uEchoController* ctrl, uEchoNo
 
 void uecho_controller_handlepostresponse(uEchoController* ctrl, uEchoMessage* msg)
 {
-  if (!uecho_controller_ispostresponsemessage(ctrl, msg))
-    return;
-
-  uecho_message_set(uecho_controller_getpostresponsemessage(ctrl), msg);
-  uecho_cond_signal(ctrl->cond);
+  pthread_mutex_lock(&ctrl->cond->mutexId);
+  if (uecho_controller_ispostresponsewaiting(ctrl) && !uecho_controller_ispostresponsereceived(ctrl) && uecho_controller_ispostresponsemessage(ctrl, msg)) {
+    if (uecho_message_set(uecho_controller_getpostresponsemessage(ctrl), msg))
+      pthread_cond_signal(&ctrl->cond->condId);
+  }
+  pthread_mutex_unlock(&ctrl->cond->mutexId);
 }
 
 /****************************************
@@ -198,9 +222,7 @@ void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage*
     ctrl->msgListener(ctrl, msg);
   }
 
-  if (uecho_controller_ispostresponsewaiting(ctrl)) {
-    uecho_controller_handlepostresponse(ctrl, msg);
-  }
+  uecho_controller_handlepostresponse(ctrl, msg);
 
   if (uecho_message_issearchresponse(msg)) {
     uecho_controller_handlesearchmessage(ctrl, msg);
@@ -208,7 +230,9 @@ void uecho_controller_servermessagelistener(uEchoController* ctrl, uEchoMessage*
   }
 
   if (uecho_node_hasobjectbycode(ctrl->node, uecho_message_getdestinationobjectcode(msg))) {
+    uecho_mutex_lock(ctrl->nodesMutex);
     srcNode = uecho_controller_getnodebyaddress(ctrl, uecho_message_getsourceaddress(msg));
+    uecho_mutex_unlock(ctrl->nodesMutex);
     if (srcNode) {
       uecho_controller_handlenodemessage(ctrl, srcNode, msg);
     }

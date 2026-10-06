@@ -12,6 +12,20 @@
 
 #include <uecho/net/interface.h>
 #include <uecho/net/socket.h>
+
+BOOST_AUTO_TEST_CASE(SocketResolvedPeerAddress)
+{
+  char* address = uecho_socket_resolveaddress("127.0.0.1");
+  BOOST_REQUIRE(address);
+  BOOST_CHECK_EQUAL(address, "127.0.0.1");
+  free(address);
+  address = uecho_socket_resolveaddress("localhost");
+  BOOST_REQUIRE(address);
+  BOOST_CHECK_NE(std::string(address), "localhost");
+  free(address);
+  BOOST_CHECK(!uecho_socket_resolveaddress(""));
+  BOOST_CHECK(!uecho_socket_resolveaddress(NULL));
+}
 #include <uecho/uecho.h>
 
 BOOST_AUTO_TEST_CASE(BindAddr)

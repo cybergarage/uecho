@@ -23,7 +23,7 @@ void uecho_net_socket_log(int severity, const char* prefix, const char* fromAddr
   size_t offset;
   size_t n;
 
-  if (msgLen <= 0)
+  if (!msgBytes || msgLen == 0)
     return;
 
   offset = 0;
@@ -31,14 +31,16 @@ void uecho_net_socket_log(int severity, const char* prefix, const char* fromAddr
     snprintf(buf, sizeof(buf), "%s ", prefix);
     offset = strlen(buf);
   }
-  snprintf((buf + offset), (sizeof(buf) - offset), "%-15s -> %-15s ", fromAddr, toAddr);
+  snprintf((buf + offset), (sizeof(buf) - offset), "%-15s -> %-15s ", fromAddr ? fromAddr : "", toAddr ? toAddr : "");
   offset = strlen(buf);
-  for (n = 0; n < msgLen; n++) {
+  for (n = 0; n < msgLen && offset + 2 < sizeof(buf); n++) {
     snprintf((buf + offset), (sizeof(buf) - offset), "%02X", msgBytes[n]);
     offset += 2;
   }
 
-  uecho_log_debug("%s", buf);
+  if (n < msgLen)
+    memcpy(buf + sizeof(buf) - 4, "...", 4);
+  uecho_log(severity, "%s", buf);
 }
 
 /****************************************

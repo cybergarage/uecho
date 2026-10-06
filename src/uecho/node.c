@@ -29,7 +29,11 @@ uEchoNode* uecho_node_new(void)
 
   uecho_list_node_init((uEchoList*)node);
 
-  node->mutex = uecho_mutex_new();
+  node->mutex = uecho_mutex_newrecursive();
+  if (!node->mutex) {
+    free(node);
+    return NULL;
+  }
 
   node->controller = NULL;
   node->classes = uecho_classlist_new();
@@ -60,11 +64,11 @@ bool uecho_node_delete(uEchoNode* node)
 
   uecho_list_remove((uEchoList*)node);
 
-  uecho_mutex_delete(node->mutex);
+  uecho_server_delete(node->server);
   uecho_classlist_delete(node->classes);
   uecho_objectlist_delete(node->objects);
-  uecho_server_delete(node->server);
   uecho_string_delete(node->address);
+  uecho_mutex_delete(node->mutex);
 
   free(node);
 
@@ -443,13 +447,16 @@ uEchoTID uecho_node_getnexttid(uEchoNode* node)
   if (!node)
     return 0;
 
+  uecho_mutex_lock(node->mutex);
   if (uEchoTidMax <= node->lastTid) {
     node->lastTid = 1;
   }
   else {
     node->lastTid++;
   }
-  return node->lastTid;
+  uEchoTID tid = node->lastTid;
+  uecho_mutex_unlock(node->mutex);
+  return tid;
 }
 
 /****************************************
@@ -513,7 +520,13 @@ bool uecho_node_sendmessage(uEchoNode* node, uEchoNode* dstNode, uEchoMessage* m
     return false;
   uecho_message_setsourceobjectcode(msg, uecho_object_getcode(nodeProfObj));
 
-  return uecho_node_sendmessagebytes(node, uecho_node_getaddress(dstNode), uecho_message_getbytes(msg), uecho_message_size(msg));
+  char* address = uecho_socket_resolveaddress(uecho_node_getaddress(dstNode));
+  if (!address)
+    return false;
+  uecho_message_setdestinationaddress(msg, address);
+  bool sent = uecho_node_sendmessagebytes(node, address, uecho_message_getbytes(msg), uecho_message_size(msg));
+  free(address);
+  return sent;
 }
 
 /****************************************

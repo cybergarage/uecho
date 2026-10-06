@@ -51,6 +51,21 @@ static int uecho_socket_getnumericnameinfo(const struct sockaddr* addr, socklen_
 
 #define uecho_socket_getrawtype(socket) (((socket->type & UECHO_NET_SOCKET_STREAM) == UECHO_NET_SOCKET_STREAM) ? SOCK_STREAM : SOCK_DGRAM)
 
+char* uecho_socket_resolveaddress(const char* address)
+{
+  struct addrinfo hints, *addresses;
+  char host[UECHO_NET_SOCKET_MAXHOST], service[UECHO_NET_SOCKET_MAXSERV];
+  if (!address || !*address)
+    return NULL;
+  memset(&hints, 0, sizeof(hints));
+  hints.ai_socktype = SOCK_DGRAM;
+  if (getaddrinfo(address, NULL, &hints, &addresses) != 0)
+    return NULL;
+  int result = uecho_socket_getnumericnameinfo(addresses->ai_addr, addresses->ai_addrlen, host, sizeof(host), service, sizeof(service));
+  freeaddrinfo(addresses);
+  return result == 0 ? uecho_strdup(host) : NULL;
+}
+
 /****************************************
  *
  * Socket

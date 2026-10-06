@@ -165,6 +165,8 @@ bool uecho_socket_datagram_packet_clear(uEchoDatagramPacket* dgmPkt);
 
 bool uecho_socket_datagram_packet_copy(uEchoDatagramPacket* dstDgmPkt, uEchoDatagramPacket* srcDgmPkt);
 
+char* uecho_socket_resolveaddress(const char* address);
+
 /****************************************
  * Function (SSLSocket)
  ****************************************/

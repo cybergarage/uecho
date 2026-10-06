@@ -417,15 +417,41 @@ bool uecho_message_isresponserequired(uEchoMessage* msg)
 
 bool uecho_message_isresponsemessage(uEchoMessage* msg, uEchoMessage* resMeg)
 {
+  uEchoEsv response, error;
   if (!msg || !resMeg)
     return false;
 
   if (uecho_message_gettid(msg) != uecho_message_gettid(resMeg))
     return false;
 
-  if (uecho_message_getesv(msg) == uecho_message_getesv(resMeg))
+  bool hasResponse = uecho_message_requestesv2responseesv(msg->esv, &response);
+  bool hasError = uecho_message_requestesv2errorresponseesv(msg->esv, &error);
+  if ((!hasResponse || resMeg->esv != response) && (!hasError || resMeg->esv != error))
     return false;
 
+  int destination = uecho_message_getdestinationobjectcode(msg);
+  int source = uecho_message_getsourceobjectcode(resMeg);
+  if ((destination & 0xFF) == 0) {
+    if ((destination & 0xFFFF00) != (source & 0xFFFF00) || (source & 0xFF) == 0)
+      return false;
+  }
+  else if (destination != source)
+    return false;
+  if (uecho_message_getsourceobjectcode(msg) != uecho_message_getdestinationobjectcode(resMeg))
+    return false;
+
+  byte counts[] = { msg->opc, msg->opcSet, msg->opcGet };
+  byte responseCounts[] = { resMeg->opc, resMeg->opcSet, resMeg->opcGet };
+  uEchoProperty** properties[] = { msg->ep, msg->epSet, msg->epGet };
+  uEchoProperty** responseProperties[] = { resMeg->ep, resMeg->epSet, resMeg->epGet };
+  for (size_t list = 0; list < 3; list++) {
+    if (counts[list] != responseCounts[list])
+      return false;
+    for (size_t n = 0; n < counts[list]; n++) {
+      if (uecho_property_getcode(properties[list][n]) != uecho_property_getcode(responseProperties[list][n]))
+        return false;
+    }
+  }
   return true;
 }
 
@@ -858,7 +884,7 @@ bool uecho_message_parsepacket(uEchoMessage* msg, uEchoDatagramPacket* dgmPkt)
   if (!uecho_message_parse(msg, uecho_socket_datagram_packet_getdata(dgmPkt), uecho_socket_datagram_packet_getlength(dgmPkt)))
     return false;
 
-  uecho_message_setsourceaddress(msg, uecho_socket_datagram_packet_getlocaladdress(dgmPkt));
+  uecho_message_setdestinationaddress(msg, uecho_socket_datagram_packet_getlocaladdress(dgmPkt));
   uecho_message_setsourceaddress(msg, uecho_socket_datagram_packet_getremoteaddress(dgmPkt));
 
   return true;
@@ -974,8 +1000,7 @@ byte* uecho_message_getbytes(uEchoMessage* msg)
 
 bool uecho_message_set(uEchoMessage* msg, uEchoMessage* srcMsg)
 {
-  uEchoProperty *prop, *srcProp;
-  size_t srcMsgOpc, n;
+  uEchoProperty* prop;
 
   if (!msg || !srcMsg)
     return false;
@@ -991,15 +1016,17 @@ bool uecho_message_set(uEchoMessage* msg, uEchoMessage* srcMsg)
   uecho_message_setsourceaddress(msg, uecho_message_getsourceaddress(srcMsg));
   uecho_message_setdestinationaddress(msg, uecho_message_getdestinationaddress(srcMsg));
 
-  srcMsgOpc = uecho_message_getopc(srcMsg);
-  for (n = 0; n < srcMsgOpc; n++) {
-    srcProp = uecho_message_getproperty(srcMsg, n);
-    if (!srcProp)
-      continue;
-    prop = uecho_property_copy(srcProp);
-    if (!srcProp)
-      continue;
-    uecho_message_addproperty(msg, prop);
+  byte counts[] = { srcMsg->opc, srcMsg->opcSet, srcMsg->opcGet };
+  uEchoProperty** properties[] = { srcMsg->ep, srcMsg->epSet, srcMsg->epGet };
+  byte* destinationCounts[] = { &msg->opc, &msg->opcSet, &msg->opcGet };
+  uEchoProperty*** destinationProperties[] = { &msg->ep, &msg->epSet, &msg->epGet };
+  for (size_t list = 0; list < 3; list++) {
+    for (size_t n = 0; n < counts[list]; n++) {
+      prop = uecho_property_copy(properties[list][n]);
+      if (!prop)
+        return false;
+      uecho_property_add(destinationCounts[list], destinationProperties[list], prop);
+    }
   }
 
   return true;

@@ -11,8 +11,6 @@
 #include <uecho/_controller.h>
 #include <uecho/profile.h>
 
-#define uEchoControllerPostResponseLoopCount (CLOCKS_PER_SEC / 10)
-
 /****************************************
  * uecho_controller_new
  ****************************************/
@@ -22,16 +20,22 @@ uEchoController* uecho_controller_new(void)
   uEchoController* ctrl;
   uEchoServer* server;
 
-  ctrl = (uEchoController*)malloc(sizeof(uEchoController));
+  ctrl = (uEchoController*)calloc(1, sizeof(uEchoController));
 
   if (!ctrl)
     return NULL;
 
   ctrl->mutex = uecho_mutex_new();
+  ctrl->nodesMutex = uecho_mutex_new();
   ctrl->cond = uecho_cond_new();
   ctrl->node = uecho_node_new();
   ctrl->nodes = uecho_nodelist_new();
   ctrl->option = uEchoOptionNone;
+
+  if (!ctrl->mutex || !ctrl->nodesMutex || !ctrl->cond || !ctrl->node || !ctrl->nodes) {
+    uecho_controller_delete(ctrl);
+    return NULL;
+  }
 
   server = uecho_node_getserver(ctrl->node);
   uecho_server_addobserver(server, ctrl, (uEchoMessageHandler)uecho_controller_servermessagelistener);
@@ -58,6 +62,7 @@ bool uecho_controller_delete(uEchoController* ctrl)
   uecho_controller_stop(ctrl);
 
   uecho_mutex_delete(ctrl->mutex);
+  uecho_mutex_delete(ctrl->nodesMutex);
   uecho_cond_delete(ctrl->cond);
   uecho_node_delete(ctrl->node);
   uecho_nodelist_delete(ctrl->nodes);
@@ -415,12 +420,15 @@ bool uecho_controller_haspostresponsemessage(uEchoController* ctrl)
 
 bool uecho_controller_ispostresponsemessage(uEchoController* ctrl, uEchoMessage* msg)
 {
-  if (!ctrl)
+  if (!ctrl || !msg)
     return false;
 
   if (!uecho_controller_haspostrequestmessage(ctrl))
     return false;
 
+  const char* address = uecho_message_getdestinationaddress(ctrl->postReqMsg);
+  if (!address || !*address || !uecho_message_issourceaddress(msg, address))
+    return false;
   return uecho_message_isresponsemessage(ctrl->postReqMsg, msg);
 }
 
@@ -436,7 +444,7 @@ bool uecho_controller_ispostresponsereceived(uEchoController* ctrl)
   if (!uecho_controller_haspostrequestmessage(ctrl) || !uecho_controller_haspostresponsemessage(ctrl))
     return false;
 
-  return uecho_message_isresponsemessage(ctrl->postReqMsg, ctrl->postResMsg);
+  return uecho_controller_ispostresponsemessage(ctrl, ctrl->postResMsg);
 }
 
 /****************************************
@@ -482,37 +490,45 @@ clock_t uecho_controller_getpostwaitemilitime(uEchoController* ctrl)
 bool uecho_controller_postmessage(uEchoController* ctrl, uEchoNode* node, uEchoMessage* reqMsg, uEchoMessage* resMsg)
 {
   bool isResponceReceived;
-  int n;
+  struct timespec deadline;
 
-  if (!ctrl)
+  if (!ctrl || !node || !reqMsg || !resMsg || reqMsg == resMsg)
     return false;
 
   uecho_mutex_lock(ctrl->mutex);
+  pthread_mutex_lock(&ctrl->cond->mutexId);
+  uecho_message_clear(resMsg);
+  uecho_message_setesv(resMsg, 0);
+  uecho_message_settid(resMsg, 0);
 
   uecho_controller_setpostrequestmessage(ctrl, reqMsg);
   uecho_controller_setpostresponsemessage(ctrl, resMsg);
 
   if (!uecho_controller_sendmessage(ctrl, node, reqMsg)) {
+    uecho_controller_setpostrequestmessage(ctrl, NULL);
+    uecho_controller_setpostresponsemessage(ctrl, NULL);
+    pthread_mutex_unlock(&ctrl->cond->mutexId);
     uecho_mutex_unlock(ctrl->mutex);
     return false;
   }
 
-#if defined(USE_SLEEP_WAIT)
-  is_responce_received = false;
-  for (n = 0; n < uEchoControllerPostResponseLoopCount; n++) {
-    uecho_sleep(ctrl->post_res_wait_clock_time / uEchoControllerPostResponseLoopCount);
-    if (uecho_controller_ispostresponsereceived(ctrl)) {
-      is_responce_received = true;
-      break;
-    }
+  clock_gettime(CLOCK_REALTIME, &deadline);
+  deadline.tv_sec += ctrl->postResWaitClockTime / CLOCKS_PER_SEC;
+  deadline.tv_nsec += (ctrl->postResWaitClockTime % CLOCKS_PER_SEC) * (1000000000L / CLOCKS_PER_SEC);
+  if (deadline.tv_nsec >= 1000000000L) {
+    deadline.tv_sec++;
+    deadline.tv_nsec -= 1000000000L;
   }
-#else
-  isResponceReceived = uecho_cond_timedwait(ctrl->cond, ctrl->postResWaitClockTime);
-#endif
+  while (!uecho_controller_ispostresponsereceived(ctrl)) {
+    if (pthread_cond_timedwait(&ctrl->cond->condId, &ctrl->cond->mutexId, &deadline) != 0)
+      break;
+  }
+  isResponceReceived = uecho_controller_ispostresponsereceived(ctrl);
 
   uecho_controller_setpostrequestmessage(ctrl, NULL);
   uecho_controller_setpostresponsemessage(ctrl, NULL);
 
+  pthread_mutex_unlock(&ctrl->cond->mutexId);
   uecho_mutex_unlock(ctrl->mutex);
 
   return isResponceReceived;

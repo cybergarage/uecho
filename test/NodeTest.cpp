@@ -8,9 +8,154 @@
  *
  ******************************************************************/
 
+#include <atomic>
 #include <boost/test/unit_test.hpp>
+#include <thread>
 #include <uecho/_node.h>
 #include <uecho/profile.h>
+
+extern "C" int uecho_node_handlerequestmessage(uEchoObject*, uEchoEsv, byte, uEchoProperty**, bool (*)(uEchoMessage*, uEchoProperty*), uEchoMessage*);
+
+static int uecho_test_propertyrequest(uEchoObject* object, uEchoEsv esv, uEchoMessage* request, uEchoMessage* response)
+{
+  return uecho_node_handlerequestmessage(object, esv, request->opc, request->ep, uecho_message_addproperty, response);
+}
+
+BOOST_AUTO_TEST_CASE(NodePropertyServicePermissions)
+{
+  uEchoNode* node = uecho_node_new();
+  uEchoObject* object = uecho_node_getnodeprofileclassobject(node);
+  byte original = 0x30, replacement = 0x31;
+  uecho_object_setproperty(object, 0xE0, uEchoPropertyAttrReadWrite);
+  uecho_object_setproperty(object, 0xE1, uEchoPropertyAttrReadRequired);
+  uecho_object_setproperty(object, 0xE2, uEchoPropertyAttrWriteRequired);
+  for (byte code : { byte(0xE0), byte(0xE1), byte(0xE2) })
+    uecho_object_setpropertybytedata(object, code, original);
+
+  for (uEchoEsv esv : { uEchoEsv(uEchoEsvWriteRequest), uEchoEsv(uEchoEsvWriteRequestResponseRequired) }) {
+    uEchoMessage* request = uecho_message_new();
+    uEchoMessage* response = uecho_message_new();
+    uecho_message_setproperty(request, 0xE0, &replacement, 1);
+    uecho_message_setproperty(request, 0xE1, &replacement, 1);
+    uecho_message_setproperty(request, 0xE2, &replacement, 1);
+    BOOST_CHECK_EQUAL(uecho_test_propertyrequest(object, esv, request, response), 2);
+    byte value;
+    BOOST_REQUIRE(uecho_object_getpropertybytedata(object, 0xE1, &value));
+    BOOST_CHECK_EQUAL(value, original);
+    BOOST_REQUIRE(uecho_object_getpropertybytedata(object, 0xE0, &value));
+    BOOST_CHECK_EQUAL(value, replacement);
+    uecho_message_delete(request);
+    uecho_message_delete(response);
+  }
+  for (uEchoEsv esv : { uEchoEsv(uEchoEsvReadRequest), uEchoEsv(uEchoEsvNotificationRequest), uEchoEsv(uEchoEsvNotificationResponseRequired) }) {
+    uEchoMessage* request = uecho_message_new();
+    uEchoMessage* response = uecho_message_new();
+    for (byte code : { byte(0xE0), byte(0xE1), byte(0xE2) })
+      uecho_message_setproperty(request, code, NULL, 0);
+    BOOST_CHECK_EQUAL(uecho_test_propertyrequest(object, esv, request, response), 2);
+    BOOST_CHECK_EQUAL(uecho_property_getdatasize(uecho_message_getpropertybycode(response, 0xE2)), 0);
+    BOOST_CHECK_EQUAL(uecho_property_getdatasize(uecho_message_getpropertybycode(response, 0xE0)), 1);
+    uecho_message_delete(request);
+    uecho_message_delete(response);
+  }
+  uEchoMessage* request = uecho_message_new();
+  uEchoMessage* response = uecho_message_new();
+  uEchoProperty* version = uecho_object_getproperty(object, 0x82);
+  uEchoProperty* before = uecho_property_copy(version);
+  uecho_message_setproperty(request, 0x82, &replacement, 1);
+  BOOST_CHECK_EQUAL(uecho_test_propertyrequest(object, uEchoEsvWriteRequestResponseRequired, request, response), 0);
+  BOOST_CHECK(uecho_property_equals(before, version));
+  uecho_property_delete(before);
+  uecho_message_delete(request);
+  uecho_message_delete(response);
+  uecho_node_delete(node);
+}
+
+BOOST_AUTO_TEST_CASE(NodeConcurrentPropertyMapReaders)
+{
+  uEchoNode* node = uecho_node_new();
+  uEchoProperty* property = uecho_object_getproperty(uecho_node_getnodeprofileclassobject(node), uEchoObjectGetPropertyMap);
+  BOOST_REQUIRE(property);
+  byte map[] = { 1, 0xE0 };
+  uecho_property_setdata(property, map, sizeof(map));
+  uEchoProperty* reference = uecho_property_copy(property);
+  BOOST_REQUIRE(reference);
+  std::atomic<bool> valid(true);
+  std::thread writer([&] {
+    byte empty[] = { 0 };
+    for (int n = 0; n < 4000; n++)
+      uecho_property_setdata(property, n % 2 ? map : empty, n % 2 ? sizeof(map) : sizeof(empty));
+  });
+  std::thread reader([&] {
+    for (int n = 0; n < 4000; n++) {
+      size_t size = uecho_property_getdatasize(property);
+      if (size < 1 || size > 2)
+        valid = false;
+      size_t count;
+      if (!uecho_property_getpropertymapcount(property, &count) || count > 1)
+        valid = false;
+      uEchoPropertyCode code = 0;
+      if (uecho_property_getpropertymapcodes(property, &code, 1) && code != 0xE0)
+        valid = false;
+      uecho_property_getpropertymapcodes(property, NULL, 0);
+      uecho_property_equals(property, reference);
+    }
+  });
+  writer.join();
+  reader.join();
+  BOOST_CHECK(valid.load());
+  uecho_property_delete(reference);
+  uecho_node_delete(node);
+}
+
+BOOST_AUTO_TEST_CASE(NodeConcurrentPropertyRequests)
+{
+  uEchoNode* node = uecho_node_new();
+  uEchoObject* object = uecho_node_getnodeprofileclassobject(node);
+  uecho_object_setproperty(object, 0xE0, uEchoPropertyAttrReadWrite);
+  uEchoProperty* property = uecho_object_getproperty(object, 0xE0);
+  std::atomic<bool> valid(true);
+  auto writer = [&](size_t length, byte value) {
+    byte data[64];
+    memset(data, value, sizeof(data));
+    for (int n = 0; n < 2000; n++) {
+      uEchoMessage* request = uecho_message_new();
+      uEchoMessage* response = uecho_message_new();
+      uecho_message_setproperty(request, 0xE0, data, length);
+      if (uecho_test_propertyrequest(object, uEchoEsvWriteRequest, request, response) != 1)
+        valid = false;
+      uecho_message_delete(request);
+      uecho_message_delete(response);
+    }
+  };
+  auto reader = [&]() {
+    for (int n = 0; n < 2000; n++) {
+      uEchoProperty* snapshot = uecho_property_copy(property);
+      size_t length = uecho_property_getdatasize(snapshot);
+      byte* data = uecho_property_getdata(snapshot);
+      if (length != 0 && length != 1 && length != 64)
+        valid = false;
+      for (size_t i = 0; i < length; i++) {
+        if (data[i] != (length == 1 ? 0x31 : 0x64))
+          valid = false;
+      }
+      uecho_property_delete(snapshot);
+      uEchoMessage* request = uecho_message_new();
+      uEchoMessage* response = uecho_message_new();
+      uecho_message_setproperty(request, 0xE0, NULL, 0);
+      if (uecho_test_propertyrequest(object, uEchoEsvReadRequest, request, response) != 1)
+        valid = false;
+      uecho_message_delete(request);
+      uecho_message_delete(response);
+    }
+  };
+  std::thread first(writer, 64, 0x64), second(writer, 1, 0x31), third(reader);
+  first.join();
+  second.join();
+  third.join();
+  BOOST_CHECK(valid.load());
+  uecho_node_delete(node);
+}
 
 BOOST_AUTO_TEST_CASE(NodeDefault)
 {
