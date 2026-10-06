@@ -8,9 +8,10 @@
  *
  ************************************************************/
 
-#include "TestDevice.h"
 #include <array>
 #include <memory>
+
+#include "TestDevice.h"
 #include <uecho/net/interface.h>
 
 #undef UECHO_TEST_VERBOSE

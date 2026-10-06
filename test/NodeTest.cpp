@@ -74,6 +74,42 @@ BOOST_AUTO_TEST_CASE(NodePropertyServicePermissions)
   uecho_node_delete(node);
 }
 
+static bool uecho_test_rejectpropertywrite(uEchoObject*, uEchoProperty*, uEchoEsv, size_t, byte*)
+{
+  return false;
+}
+
+BOOST_AUTO_TEST_CASE(NodeRejectedPropertyWrite)
+{
+  uEchoNode* node = uecho_node_new();
+  uEchoObject* object = uecho_node_getnodeprofileclassobject(node);
+  uecho_object_setproperty(object, 0xE0, uEchoPropertyAttrReadWrite);
+  byte original = 0x30;
+  byte replacement = 0x31;
+  uecho_object_setpropertybytedata(object, 0xE0, original);
+  BOOST_REQUIRE(uecho_object_setpropertywriterequesthandler(object, 0xE0, uecho_test_rejectpropertywrite));
+  for (uEchoEsv service : { uEchoEsv(uEchoEsvWriteRequest), uEchoEsv(uEchoEsvWriteRequestResponseRequired) }) {
+    uEchoMessage* request = uecho_message_new();
+    uEchoMessage* response = uecho_message_new();
+    uecho_message_setproperty(request, 0xE0, &replacement, 1);
+    BOOST_CHECK_EQUAL(uecho_test_propertyrequest(object, service, request, response), 0);
+    byte value = 0;
+    BOOST_REQUIRE(uecho_object_getpropertybytedata(object, 0xE0, &value));
+    BOOST_CHECK_EQUAL(value, original);
+    uEchoProperty* rejected = uecho_message_getproperty(response, 0);
+    BOOST_REQUIRE(rejected);
+    if (service == uEchoEsvWriteRequestResponseRequired) {
+      BOOST_REQUIRE(uecho_property_getbytedata(rejected, &value));
+      BOOST_CHECK_EQUAL(value, replacement);
+    }
+    else
+      BOOST_CHECK_EQUAL(uecho_property_getdatasize(rejected), 0);
+    uecho_message_delete(request);
+    uecho_message_delete(response);
+  }
+  uecho_node_delete(node);
+}
+
 BOOST_AUTO_TEST_CASE(NodeConcurrentPropertyMapReaders)
 {
   uEchoNode* node = uecho_node_new();

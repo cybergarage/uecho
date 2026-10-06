@@ -135,6 +135,10 @@ For Raspberry Pi, `uecholight` outputs the lighting power status into the specif
 
 To enable the GPIO function for Raspberry Pi, compile with UECHO_PLATFORM_RASPBIAN option and run `uecholight` with root privileges.
 
+## uecholight for ESP32
+
+The same lighting device runs on ESP32 as an ESP-IDF application in `examples/espidf/uecholight`. See [ESP32 (ESP-IDF)](espidf.md) for configuration, flashing and verification with `uechosearch` and `uechopost`.
+
 # References
 
 - \[1\] [Detailed Requirements for ECHONET Device objects][enet-spec]

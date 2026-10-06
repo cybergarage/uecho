@@ -5,7 +5,9 @@ The `uecho` repository can be used directly as an [ESP-IDF](https://docs.espress
 ## Requirements
 
 - ESP-IDF v5.5 or later (v5.x)
-- A target with Wi-Fi or Ethernet (tested build target: `esp32`)
+- A target with Wi-Fi or Ethernet
+  - Tested on hardware: ESP32 (Wi-Fi)
+  - Build-tested in CI: `esp32`, `esp32s3`, `esp32c3`
 - IPv4 networking: ECHONET Lite uses the IPv4 multicast group `224.0.23.0:3610`
 
 ## Using uecho in your project
@@ -70,23 +72,89 @@ uecho_node_stop(node);
 
 Wi-Fi power save delays multicast delivery to the station. Disable it with `esp_wifi_set_ps(WIFI_PS_NONE)` if discovery from controllers is slow or unreliable.
 
+## Writing a device
+
+A device is built the same way as on Unix: create an object, declare its properties, and register request handlers. Handlers run on uEcho worker threads, so keep them short and do not block; hand longer work to your own task.
+
+```c
+#define LIGHT_OBJECT_CODE 0x029101
+#define LIGHT_POWER 0x80
+
+static bool light_power_handler(uEchoObject* obj, uEchoProperty* prop, uEchoEsv esv, size_t pdc, byte* edt)
+{
+  if ((pdc != 1) || !edt)
+    return false;                          /* rejected: SetC_SNA (0x51) */
+  switch (edt[0]) {
+  case 0x30: gpio_set_level(LED_GPIO, 1); return true;  /* accepted: Set_Res (0x71) */
+  case 0x31: gpio_set_level(LED_GPIO, 0); return true;
+  default: return false;
+  }
+}
+
+uEchoObject* obj = uecho_device_new();
+byte off = 0x31;
+uecho_object_setmanufacturercode(obj, 0xFFFFF0);  /* experimental code; use your assigned code for products */
+uecho_object_setcode(obj, LIGHT_OBJECT_CODE);
+uecho_object_setproperty(obj, LIGHT_POWER, uEchoPropertyAttrReadWrite);
+uecho_object_setpropertydata(obj, LIGHT_POWER, &off, 1);
+uecho_object_setpropertywriterequesthandler(obj, LIGHT_POWER, light_power_handler);
+```
+
+When a handler returns `true` for a write request, uEcho stores the new value, so later read requests return it.
+
 ## Example: uecholight
 
-[`examples/espidf/uecholight`](../examples/espidf/uecholight) is a mono functional lighting device (`0x029101`). Writing the operation status property (EPC `0x80`) switches an LED GPIO.
+[`examples/espidf/uecholight`](../examples/espidf/uecholight) is a mono functional lighting device (`0x029101`) on Wi-Fi. Writing the operation status property (EPC `0x80`) switches an optional LED GPIO.
+
+### Configure
+
+Run `idf.py menuconfig` and open *uEcho light example*:
+
+| Option | Default | Description |
+|---|---|---|
+| `CONFIG_UECHO_EXAMPLE_WIFI_SSID` | (empty) | Wi-Fi SSID. The example stops at startup if it is empty. |
+| `CONFIG_UECHO_EXAMPLE_WIFI_PASSWORD` | (empty) | Wi-Fi password. Stored in plaintext in `sdkconfig` and the firmware, so do not commit it. |
+| `CONFIG_UECHO_EXAMPLE_LED_GPIO` | -1 | GPIO driven high while the light is ON. `-1` only logs the status. Many ESP32 DevKit boards have an LED on GPIO 2. |
+| `CONFIG_UECHO_EXAMPLE_MANUFACTURER_CODE` | 0xFFFFF0 | ECHONET Lite manufacturer code (`0xFFFFF0` is for experimental use). |
+
+### Build, flash and monitor
 
 ```sh
+. $IDF_PATH/export.sh
 cd examples/espidf/uecholight
 idf.py set-target esp32
-idf.py menuconfig      # uEcho light example: Wi-Fi SSID/password, LED GPIO
-idf.py build flash monitor
+idf.py menuconfig
+idf.py -p /dev/ttyUSB0 flash monitor
 ```
 
-Then discover the device from a host on the same network with the `uechosearch` example:
+The serial monitor shows the address the node is bound to:
 
 ```
-$ uechosearch
-192.168.xxx.yyy [0] 0EF001 [1] 029101
+I (2272) uecholight: Got IP 192.168.100.56
+I (2282) uecholight: uEcho node started
 ```
+
+Exit the monitor with `Ctrl+]`.
+
+### Verify from a host
+
+Build the controller examples on a host in the same network (`./configure --enable-examples && make`), then run them from `examples/controller`:
+
+```
+$ ./uechosearch/unix/uechosearch
+192.168.100.56  [0] 0EF001 [1] 029101
+
+$ ./uechopost/unix/uechopost 192.168.100.56 029101 62 8000      # Get: OFF (0x31)
+192.168.100.56 029101 72 800131
+
+$ ./uechopost/unix/uechopost 192.168.100.56 029101 61 800130    # SetC: ON
+192.168.100.56 029101 71 8000
+
+$ ./uechopost/unix/uechopost 192.168.100.56 029101 61 800131    # SetC: OFF
+192.168.100.56 029101 71 8000
+```
+
+The monitor logs `POWER = ON` / `POWER = OFF` for each write. `71` means the write was accepted; `51` means it was rejected.
 
 ## Memory usage
 
@@ -101,3 +169,11 @@ Measured on ESP32 (ESP-IDF v5.5.1) with the `uecholight` object:
 - IPv4 only. IPv6 multicast is not joined on ESP-IDF.
 - POSIX signals are not available; worker threads poll a stop flag and their sockets use a 1 second receive timeout, so `uecho_node_stop()` can take up to about one second.
 - Network interfaces are enumerated with `esp_netif`, and only interfaces that are up and have an IPv4 address are used.
+
+## Troubleshooting
+
+- **`Could not exclusively lock port /dev/ttyUSB0`**: another program has the serial port open, usually an earlier `idf.py monitor`. Exit it with `Ctrl+]`, or find it with `fuser -v /dev/ttyUSB0` (or `lsof /dev/ttyUSB0`). Serial monitors in editors and ModemManager can also hold the port.
+- **The device is not found by `uechosearch`**: check that the host and the board are on the same subnet, that the router forwards multicast to Wi-Fi clients (IGMP snooping can block `224.0.23.0`), and that `CONFIG_LWIP_SO_REUSE_RXTOALL=y` is set. Wi-Fi power save can also delay multicast; the example disables it.
+- **Writes return `51` unexpectedly**: make sure you are talking to the right node. Other ECHONET Lite devices on the network may expose the same object code; use the address from the `Got IP` log line.
+- **Host examples fail to link with `undefined reference to __gcov_init`**: the host library was built earlier with `--enable-coverage`. Run `make clean` before building again with different `configure` options.
+
