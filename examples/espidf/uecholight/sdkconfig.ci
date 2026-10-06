@@ -1,0 +1,6 @@
+# Non-secret placeholder: retain the full Wi-Fi/node application during
+# compile-only CI, rather than optimizing away app_main after the empty-SSID check.
+# Replace this with real local settings before flashing onto hardware.
+CONFIG_UECHO_EXAMPLE_WIFI_SSID="uecho-compile-test"
+CONFIG_UECHO_EXAMPLE_WIFI_PASSWORD=""
+CONFIG_UECHO_EXAMPLE_LED_GPIO=2
