@@ -1,6 +1,5 @@
 var controller_8c =
 [
-    [ "uEchoControllerPostResponseLoopCount", "controller_8c.html#a8c1b4f86205b253cae97a126669aaf19", null ],
     [ "uecho_controller_addnode", "controller_8c.html#ad810dc445d6d24c26afb3720ea7193b6", null ],
     [ "uecho_controller_announcemessage", "controller_8c.html#ab63363365c52c373853f25d5822c1021", null ],
     [ "uecho_controller_delete", "controller_8c.html#a0f09445549710796d060f10c831b10b1", null ],

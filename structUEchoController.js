@@ -9,6 +9,7 @@ var structUEchoController =
     [ "option", "structUEchoController.html#a36a6f57709890ea324d1b2766a098536", null ],
     [ "postReqMsg", "structUEchoController.html#a9a9714acbbb73ee320dcaea3b2ee72e8", null ],
     [ "postResMsg", "structUEchoController.html#a26cd4c7144d0e7471c10d4c6566f95aa", null ],
+    [ "postResReceived", "structUEchoController.html#ae3a36d786c06fe5e0948425d48929561", null ],
     [ "postResWaitClockTime", "structUEchoController.html#a00cf039721826e05b5ee21a325d982e4", null ],
     [ "userData", "structUEchoController.html#aaa88496afd26465db26819105911adc6", null ]
 ];

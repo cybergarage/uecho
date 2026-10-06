@@ -79,6 +79,14 @@ Functions</h2></td></tr>
 <tr class="separator:a18bb89d63b1d867872179b56c93b77ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13aa13563dc2d68bb4f7839cd0f30bf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond_8c.html#a13aa13563dc2d68bb4f7839cd0f30bf0">uecho_cond_signal</a> (<a class="el" href="cond_8h.html#a6ef32f4f7ee577e508eb56264365df6d">uEchoCond</a> *cond)</td></tr>
 <tr class="separator:a13aa13563dc2d68bb4f7839cd0f30bf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe2f1a1e1979988a40360065436c9f6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond_8c.html#afe2f1a1e1979988a40360065436c9f6c">uecho_cond_lock</a> (<a class="el" href="cond_8h.html#a6ef32f4f7ee577e508eb56264365df6d">uEchoCond</a> *cond)</td></tr>
+<tr class="separator:afe2f1a1e1979988a40360065436c9f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00a309f25f626fbfdb026814add3c811"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond_8c.html#a00a309f25f626fbfdb026814add3c811">uecho_cond_unlock</a> (<a class="el" href="cond_8h.html#a6ef32f4f7ee577e508eb56264365df6d">uEchoCond</a> *cond)</td></tr>
+<tr class="separator:a00a309f25f626fbfdb026814add3c811"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68e6775bfab916e46f8967c7b40cdaf7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond_8c.html#a68e6775bfab916e46f8967c7b40cdaf7">uecho_cond_getdeadline</a> (clock_t mtime, struct timespec *deadline)</td></tr>
+<tr class="separator:a68e6775bfab916e46f8967c7b40cdaf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b5aab68c818627a93828e993cc812b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cond_8c.html#a1b5aab68c818627a93828e993cc812b9">uecho_cond_waituntil</a> (<a class="el" href="cond_8h.html#a6ef32f4f7ee577e508eb56264365df6d">uEchoCond</a> *cond, const struct timespec *deadline)</td></tr>
+<tr class="separator:a1b5aab68c818627a93828e993cc812b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a877ae69b19891ef0e506f3f60560fc93" name="a877ae69b19891ef0e506f3f60560fc93"></a>
@@ -89,6 +97,52 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_cond_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cond_8h.html#a6ef32f4f7ee577e508eb56264365df6d">uEchoCond</a> *&#160;</td>
+          <td class="paramname"><em>cond</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a68e6775bfab916e46f8967c7b40cdaf7" name="a68e6775bfab916e46f8967c7b40cdaf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68e6775bfab916e46f8967c7b40cdaf7">&#9670;&nbsp;</a></span>uecho_cond_getdeadline()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_cond_getdeadline </td>
+          <td>(</td>
+          <td class="paramtype">clock_t&#160;</td>
+          <td class="paramname"><em>mtime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct timespec *&#160;</td>
+          <td class="paramname"><em>deadline</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afe2f1a1e1979988a40360065436c9f6c" name="afe2f1a1e1979988a40360065436c9f6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe2f1a1e1979988a40360065436c9f6c">&#9670;&nbsp;</a></span>uecho_cond_lock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_cond_lock </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="cond_8h.html#a6ef32f4f7ee577e508eb56264365df6d">uEchoCond</a> *&#160;</td>
           <td class="paramname"><em>cond</em></td><td>)</td>
@@ -163,6 +217,24 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a00a309f25f626fbfdb026814add3c811" name="a00a309f25f626fbfdb026814add3c811"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00a309f25f626fbfdb026814add3c811">&#9670;&nbsp;</a></span>uecho_cond_unlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_cond_unlock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cond_8h.html#a6ef32f4f7ee577e508eb56264365df6d">uEchoCond</a> *&#160;</td>
+          <td class="paramname"><em>cond</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a150cc20427a4b7d5fbfde0a9cdce1fff" name="a150cc20427a4b7d5fbfde0a9cdce1fff"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a150cc20427a4b7d5fbfde0a9cdce1fff">&#9670;&nbsp;</a></span>uecho_cond_wait()</h2>
 
@@ -175,6 +247,34 @@ Functions</h2></td></tr>
           <td class="paramtype"><a class="el" href="cond_8h.html#a6ef32f4f7ee577e508eb56264365df6d">uEchoCond</a> *&#160;</td>
           <td class="paramname"><em>cond</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b5aab68c818627a93828e993cc812b9" name="a1b5aab68c818627a93828e993cc812b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b5aab68c818627a93828e993cc812b9">&#9670;&nbsp;</a></span>uecho_cond_waituntil()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_cond_waituntil </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cond_8h.html#a6ef32f4f7ee577e508eb56264365df6d">uEchoCond</a> *&#160;</td>
+          <td class="paramname"><em>cond</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct timespec *&#160;</td>
+          <td class="paramname"><em>deadline</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
