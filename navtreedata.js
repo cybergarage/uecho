@@ -26,7 +26,7 @@ var NAVTREE =
 [
   [ "uEcho for C", "index.html", [
     [ "Overview", "index.html", [
-      [ "What is uEcho?", "index.html#autotoc_md40", null ]
+      [ "What is uEcho?", "index.html#autotoc_md49", null ]
     ] ],
     [ "Inside of uEcho Controller", "md_doc_controller_inside.html", [
       [ "Node Profile Object", "md_doc_controller_inside.html#autotoc_md1", null ],
@@ -68,18 +68,29 @@ var NAVTREE =
       [ "Next Steps", "md_doc_device_overview.html#autotoc_md30", null ],
       [ "References", "md_doc_device_overview.html#autotoc_md31", null ]
     ] ],
-    [ "Examples for ECHONET Lite Controller", "md_doc_examples.html", [
-      [ "uechosearch", "md_doc_examples.html#autotoc_md33", null ],
-      [ "uechopost", "md_doc_examples.html#autotoc_md34", null ],
-      [ "uechodump", "md_doc_examples.html#autotoc_md35", null ],
-      [ "Examples for ECHONET Lite Devices", "md_doc_examples.html#autotoc_md36", [
-        [ "uecholight", "md_doc_examples.html#autotoc_md37", null ]
+    [ "ESP32 (ESP-IDF)", "md_doc_espidf.html", [
+      [ "Requirements", "md_doc_espidf.html#autotoc_md33", null ],
+      [ "Using uecho in your project", "md_doc_espidf.html#autotoc_md34", null ],
+      [ "Required configuration", "md_doc_espidf.html#autotoc_md35", [
+        [ "uEcho options (<tt>idf.py menuconfig</tt> → <em>Component config</em> → <em>uEcho</em>)", "md_doc_espidf.html#autotoc_md36", null ]
       ] ],
-      [ "References", "md_doc_examples.html#autotoc_md38", null ]
+      [ "Starting a node", "md_doc_espidf.html#autotoc_md37", null ],
+      [ "Example: uecholight", "md_doc_espidf.html#autotoc_md38", null ],
+      [ "Memory usage", "md_doc_espidf.html#autotoc_md39", null ],
+      [ "Platform differences", "md_doc_espidf.html#autotoc_md40", null ]
+    ] ],
+    [ "Examples for ECHONET Lite Controller", "md_doc_examples.html", [
+      [ "uechosearch", "md_doc_examples.html#autotoc_md42", null ],
+      [ "uechopost", "md_doc_examples.html#autotoc_md43", null ],
+      [ "uechodump", "md_doc_examples.html#autotoc_md44", null ],
+      [ "Examples for ECHONET Lite Devices", "md_doc_examples.html#autotoc_md45", [
+        [ "uecholight", "md_doc_examples.html#autotoc_md46", null ]
+      ] ],
+      [ "References", "md_doc_examples.html#autotoc_md47", null ]
     ] ],
     [ "Building and Installation", "md_doc_setup.html", [
-      [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md42", null ],
-      [ "Installing from Source", "md_doc_setup.html#autotoc_md43", null ]
+      [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md51", null ],
+      [ "Installing from Source", "md_doc_setup.html#autotoc_md52", null ]
     ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
@@ -109,10 +120,10 @@ var NAVTREEINDEX =
 "controller_8h.html#a254fdc230ad924ff8c3de20e44520e2e",
 "include_2uecho_2property_8h.html#a087726136a863244f23c4ad99b6cbf65",
 "md_doc_controller_overview.html#autotoc_md8",
-"node__profile__class_8c.html#ae72ea34876a8abeacf6cea71a823f087",
-"property__enum_8c.html#a73880942c4e1d7892f911e39a572f584",
-"src_2uecho_2frame_2property_8h.html#a4115296d241ec2cea8afc8684818c828",
-"structUEchoUdpServer.html"
+"node__profile__class_8c.html#a3a68e21cad0f8a031772dc7a21ab25bb",
+"property_8c.html#acd9d073aca1303c6db3a285d12b33249",
+"src_2uecho_2frame_2message_8h.html#ab88a68a61c269fcb40ecb86b2074b4c4",
+"structUEchoStringTokenizer.html#a3c7a70f71ef3668b5b6591d8b8d7a7ed"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

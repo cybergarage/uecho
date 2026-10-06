@@ -9,6 +9,7 @@ var socket_8c =
     [ "uecho_socket_close", "socket_8c.html#a99b0ddb9eab8e343ed349bccbb0713ed", null ],
     [ "uecho_socket_connect", "socket_8c.html#acf18bfc6a3ef9b6f23176581603d6f9b", null ],
     [ "uecho_socket_delete", "socket_8c.html#a3d6c9bbd66f61fd7b83447af0240919b", null ],
+    [ "uecho_socket_getnumericnameinfo", "socket_8c.html#ad5617c2a767c92070ac83b0eeeb949d2", null ],
     [ "uecho_socket_isbound", "socket_8c.html#aed7937970b6f238584fb7b4937112854", null ],
     [ "uecho_socket_isboundaddress", "socket_8c.html#ab4a1b1c17386318e7f1a3c8e6d66c040", null ],
     [ "uecho_socket_joingroup", "socket_8c.html#a76591f1a5080a3cb57fd91243e8d8288", null ],

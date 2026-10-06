@@ -95,6 +95,8 @@ Functions</h2></td></tr>
 <tr class="separator:a5c5fd3e95fc6bc77069fcacdcec16e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83bd50a0e67125dfaa5cd568805ca17d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket_8c.html#a83bd50a0e67125dfaa5cd568805ca17d">uecho_socket_tosockaddrinfo</a> (int sockType, const char *addr, int port, struct addrinfo **addrInfo, <a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> isBindAddr)</td></tr>
 <tr class="separator:a83bd50a0e67125dfaa5cd568805ca17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5617c2a767c92070ac83b0eeeb949d2"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket_8c.html#ad5617c2a767c92070ac83b0eeeb949d2">uecho_socket_getnumericnameinfo</a> (const struct sockaddr *addr, socklen_t addrLen, char *host, size_t hostLen, char *serv, size_t servLen)</td></tr>
+<tr class="separator:ad5617c2a767c92070ac83b0eeeb949d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacd3f2826e6e6ee98a4d0b012db8a581"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket_8c.html#aacd3f2826e6e6ee98a4d0b012db8a581">uecho_socket_startup</a> (void)</td></tr>
 <tr class="separator:aacd3f2826e6e6ee98a4d0b012db8a581"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af312eb45be0e3fe9a377a4e9d9ba84ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket_8c.html#af312eb45be0e3fe9a377a4e9d9ba84ab">uecho_socket_cleanup</a> (void)</td></tr>
@@ -347,6 +349,66 @@ Variables</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad5617c2a767c92070ac83b0eeeb949d2" name="ad5617c2a767c92070ac83b0eeeb949d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5617c2a767c92070ac83b0eeeb949d2">&#9670;&nbsp;</a></span>uecho_socket_getnumericnameinfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int uecho_socket_getnumericnameinfo </td>
+          <td>(</td>
+          <td class="paramtype">const struct sockaddr *&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">socklen_t&#160;</td>
+          <td class="paramname"><em>addrLen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>host</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>hostLen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>serv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>servLen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

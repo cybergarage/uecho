@@ -11,6 +11,7 @@ var server_8h =
     [ "uecho_mcast_serverlist_gets", "server_8h.html#a104694976145fd3c0479cf3bfa659e05", null ],
     [ "uecho_mcast_serverlist_size", "server_8h.html#af836b88b73f3d75f65f2dab82579f401", null ],
     [ "uecho_server_isoptionenabled", "server_8h.html#a27c8a497a6014f08d3a1de992b80c56c", null ],
+    [ "uecho_server_isrecvtimeout", "server_8h.html#ad5ad3aa07d32304885c073fad331f3a7", null ],
     [ "uecho_server_isudpserverenabled", "server_8h.html#a9da47f5186e337b3cf983aea5398f269", null ],
     [ "uecho_server_setoption", "server_8h.html#aa751bcb1d9f865957b208bee6f479cbe", null ],
     [ "uecho_udp_getsocket", "server_8h.html#a4409dc649040b82dd1d23fb3f60fcea8", null ],
