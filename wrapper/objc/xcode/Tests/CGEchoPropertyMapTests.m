@@ -45,7 +45,8 @@ static NSData* Format2(NSIndexSet* epcs)
   XCTAssertNil([CGEchoStandardClass classWithGroupCode:0xFF classCode:0xFF]);
   CGEchoStandardClass* profile = [CGEchoStandardClass classWithGroupCode:0x0E classCode:0xF0];
   XCTAssertNotNil(profile);
-  XCTAssertNil(profile.properties[@0xB0]);
+  XCTAssertNil(profile.properties[@0x81]);
+  XCTAssertNotNil(profile.properties[@0x80]);
   CGEchoStandardClass* appliance = [CGEchoStandardClass classWithGroupCode:0x01 classCode:0x30];
   if (![CGEchoStandardClass hasFullDatabase]) {
     XCTAssertNil(appliance);
