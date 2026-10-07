@@ -17,29 +17,44 @@
 		21D5B68A2820244C0034B6AB /* uEchoControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B6892820244C0034B6AB /* uEchoControllerTests.swift */; };
 		21D5B6942820244C0034B6AB /* uEchoControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B6932820244C0034B6AB /* uEchoControllerUITests.swift */; };
 		21D5B6962820244C0034B6AB /* uEchoControllerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5B6952820244C0034B6AB /* uEchoControllerUITestsLaunchTests.swift */; };
+		21C8071B282129DB00E33B1C /* CGEcho.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21C80714282129A400E33B1C /* CGEcho.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		21C8071C282129DB00E33B1C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				21C8071B282129DB00E33B1C /* CGEcho.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXContainerItemProxy section */
 		21C80713282129A400E33B1C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 21C8070D282129A400E33B1C /* uEcho4ObjC.xcodeproj */;
+			containerPortal = 21C8070D282129A400E33B1C /* CGEcho.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 213DBAC0281FE61F0017D1BD;
-			remoteInfo = uEcho4ObjC;
+			remoteGlobalIDString = 86E2DCC45097BAC15C82535C;
+			remoteInfo = CGEcho;
 		};
 		21C80715282129A400E33B1C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 21C8070D282129A400E33B1C /* uEcho4ObjC.xcodeproj */;
+			containerPortal = 21C8070D282129A400E33B1C /* CGEcho.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 213DBACA281FE61F0017D1BD;
-			remoteInfo = uEcho4ObjCTests;
+			remoteGlobalIDString = 4A3FA5786B36DF1F24693AA0;
+			remoteInfo = CGEchoTests;
 		};
 		21C80717282129CC00E33B1C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 21C8070D282129A400E33B1C /* uEcho4ObjC.xcodeproj */;
+			containerPortal = 21C8070D282129A400E33B1C /* CGEcho.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 213DBABF281FE61F0017D1BD;
-			remoteInfo = uEcho4ObjC;
+			remoteGlobalIDString = A8DD5153A2F2C822EADCBC21;
+			remoteInfo = CGEcho;
 		};
 		21D5B6862820244C0034B6AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -60,7 +75,7 @@
 /* Begin PBXFileReference section */
 		2110FF2228431DCF00F22F65 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		2110FF25284384EF00F22F65 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
-		21C8070D282129A400E33B1C /* uEcho4ObjC.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = uEcho4ObjC.xcodeproj; path = ../../../wrapper/objc/xcode/uEcho4ObjC.xcodeproj; sourceTree = "<group>"; };
+		21C8070D282129A400E33B1C /* CGEcho.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CGEcho.xcodeproj; path = ../../../wrapper/objc/xcode/CGEcho.xcodeproj; sourceTree = "<group>"; };
 		21D5B6752820244A0034B6AB /* uEchoController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uEchoController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D5B6782820244A0034B6AB /* ControllerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerApp.swift; sourceTree = "<group>"; };
 		21D5B67A2820244A0034B6AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,7 +117,7 @@
 		21C807062821294600E33B1C /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				21C8070D282129A400E33B1C /* uEcho4ObjC.xcodeproj */,
+				21C8070D282129A400E33B1C /* CGEcho.xcodeproj */,
 			);
 			name = Framework;
 			sourceTree = "<group>";
@@ -193,6 +208,7 @@
 				21D5B6712820244A0034B6AB /* Sources */,
 				21D5B6722820244A0034B6AB /* Frameworks */,
 				21D5B6732820244A0034B6AB /* Resources */,
+				21C8071C282129DB00E33B1C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -277,7 +293,7 @@
 			projectReferences = (
 				{
 					ProductGroup = 21C8070E282129A400E33B1C /* Products */;
-					ProjectRef = 21C8070D282129A400E33B1C /* uEcho4ObjC.xcodeproj */;
+					ProjectRef = 21C8070D282129A400E33B1C /* CGEcho.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -366,7 +382,7 @@
 /* Begin PBXTargetDependency section */
 		21C80718282129CC00E33B1C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = uEcho4ObjC;
+			name = CGEcho;
 			targetProxy = 21C80717282129CC00E33B1C /* PBXContainerItemProxy */;
 		};
 		21D5B6872820244C0034B6AB /* PBXTargetDependency */ = {
@@ -506,6 +522,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"uEchoController/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Discovers and controls ECHONET Lite devices on the local network.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -534,6 +551,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"uEchoController/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Discovers and controls ECHONET Lite devices on the local network.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -1,5 +1,5 @@
 //
-//  uEchoControllerApp.swift
+//  ControllerApp.swift
 //  uEchoController
 //
 //  Created by Satoshi Konno on 2022/05/02.
@@ -7,42 +7,25 @@
 
 import SwiftUI
 
-class ControllerAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
-  var controller: Controller?
-
-  override init() {
-    self.controller = nil
-  }
-
-  func application(
-    _ application: UIApplication,
-    didFinishLaunchingWithOptions: [UIApplication.LaunchOptionsKey: Any]?
-  ) -> Bool {
-    self.controller?.start()
-    self.controller?.search()
-    return true
-  }
-
-  func applicationDidBecomeActive(_ application: UIApplication) {
-    self.controller?.search()
-  }
-
-  func applicationWillTerminate(_ application: UIApplication) {
-    self.controller?.stop()
-  }
-}
-
 @main
 struct ControllerApp: App {
-  @UIApplicationDelegateAdaptor private var appDelegate: ControllerAppDelegate
   @StateObject var controller = Controller()
+  @Environment(\.scenePhase) private var scenePhase
+
   var body: some Scene {
     WindowGroup {
-      ContentView().environmentObject(self.controller)
+      ContentView().environmentObject(controller)
     }
-  }
-
-  init() {
-    self.appDelegate.controller = self.controller
+    .onChange(of: scenePhase) { phase in
+      switch phase {
+      case .active:
+        // Background reception is not guaranteed; refresh the session when returning.
+        controller.start()
+      case .background:
+        controller.stop()
+      default:
+        break
+      }
+    }
   }
 }
