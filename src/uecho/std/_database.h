@@ -16,6 +16,8 @@
 #include <uecho/_manufacture.h>
 #include <uecho/_object.h>
 #include <uecho/_property.h>
+#include <uecho/std/_standard.h>
+#include <uecho/util/mutex.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,6 +30,9 @@ extern "C" {
 typedef struct UEchoDatabase {
   uEchoManufactureList* mans;
   uEchoObjectList* objs;
+  // The standard database materializes entries from the const tables on demand.
+  bool isStandard;
+  uEchoMutex* mutex;
 } uEchoDatabase;
 
 /****************************************
@@ -35,9 +40,6 @@ typedef struct UEchoDatabase {
  ****************************************/
 
 #include <uecho/std/database.h>
-
-void uecho_database_addstandardmanufactures(uEchoDatabase* db);
-void uecho_database_addstandardobjects(uEchoDatabase* db);
 
 #ifdef __cplusplus
 } /* extern C */

@@ -18,12 +18,16 @@ SOURCE_FILES= \
 	manufacturers.c \
 	objects_mra.c
 
-.PHONY: all ${SOURCE_FILES} clean
+.PHONY: all ${SOURCE_FILES} check clean
 
-all: ${SOURCE_FILES} clean
+all: check ${SOURCE_FILES} clean
+
+# Checks the generators against the fixtures in test/ before regenerating.
+check:
+	@./test/check_generators.sh
 
 clean:
-	@rm -f *.csv *.xlsx
+	@rm -f *.csv *.xlsx *.tmp
 
 ############################################################
 # Manufactuer 
@@ -34,7 +38,7 @@ MANUFACTURE_CSV=list_code_e.csv
 MANUFACTURE_LIST_URL=https://echonet.jp/wp/wp-content/uploads/pdf/General/Echonet/ManufacturerCode_en/${MANUFACTURE_XLSX}
 
 manufacturers.c : ${MANUFACTURE_CSV}
-	@./manufacturers.pl ${MANUFACTURE_CSV} > $@
+	@./manufacturers.pl ${MANUFACTURE_CSV} > $@.tmp && mv $@.tmp $@
 	git commit $@ -m "chore: update manufacturer codes to latest version"
 
 ${MANUFACTURE_XLSX}:
@@ -50,5 +54,5 @@ ${MANUFACTURE_CSV}: ${MANUFACTURE_XLSX}
 MRA_JSON_DIR=MRA_en_v1.3.0
 
 objects_mra.c :
-	@./objects_mra.pl ${MRA_JSON_DIR} > $@
+	@./objects_mra.pl ${MRA_JSON_DIR} > $@.tmp && mv $@.tmp $@
 	git commit $@ -m "chore: update MRA objects to latest version (${MRA_JSON_DIR})"

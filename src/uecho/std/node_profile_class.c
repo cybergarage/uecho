@@ -16,7 +16,7 @@
 #include <uecho/misc.h>
 #include <uecho/node.h>
 #include <uecho/profile.h>
-#include <uecho/std/database.h>
+#include <uecho/std/_standard.h>
 
 /****************************************
  * uecho_property_new
@@ -45,21 +45,10 @@ bool uecho_nodeprofile_addmandatoryproperties(uEchoObject* obj)
   if (!obj)
     return false;
 
-  uEchoDatabase* db;
-  uEchoObject* superObj;
-
   if (!obj)
     return false;
 
-  db = uecho_standard_getdatabase();
-  if (!db)
-    return false;
-
-  superObj = uecho_database_getobject(db, 0x0E, 0xF0);
-  if (!superObj)
-    return false;
-
-  if (!uecho_object_addmissingobjectproperties(obj, superObj))
+  if (!uecho_object_addstandardobjectproperties(obj, uecho_std_getobject(0x0E, 0xF0)))
     return false;
 
   uecho_nodeprofile_setoperatingstatus(obj, true);

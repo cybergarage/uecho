@@ -2,17 +2,197 @@
 # Copyright (C) The uecho Authors 2015
 #
 # This is licensed under BSD-style license, see file COPYING.
+#
+# Generates objects_mra.c, the standard object database, from the ECHONET
+# Consortium MRA (Machine Readable Appendix) JSON files:
+#
+#   ./objects_mra.pl <MRA root directory> > objects_mra.c
+#
+# The output is a set of const tables, so the database lives in ROM (flash on
+# MCUs) instead of being built on the heap at runtime. The generator fails
+# instead of guessing when the MRA contains something it does not understand,
+# so an MRA update cannot silently produce a wrong database.
 
+use strict;
+use warnings;
 use utf8;
-use JSON;
+use JSON::PP;
+use File::Basename;
 use File::Find;
+use Encode qw(encode);
 
-if (@ARGV < 1){
+if (@ARGV < 1) {
+  print STDERR "usage: $0 <MRA root directory>\n";
   exit 1;
 }
 my $mra_root_dir = $ARGV[0];
+$mra_root_dir =~ s/\/+$//;
+my $mra_version = basename($mra_root_dir);
 
-print<<HEADER;
+# Classes kept even when the database is excluded (UECHO_DATABASE_NONE):
+# the library itself needs the super class and the node profile class.
+my %essential_dirs = (
+  "superClass"  => 1,
+  "nodeProfile" => 1,
+);
+my @mra_sub_dirs = ("superClass", "nodeProfile", "devices");
+my @required_classes = ("0000", "0EF0");
+
+# MRA access rules -> uEchoPropertyAttr flags.
+# required_c (conditionally required) and required_o (required when an option
+# is supported) are supported but not mandatory for every device.
+my %attr_flags = (
+  get => {
+    required      => "uEchoPropertyAttrReadRequired",
+    required_c    => "uEchoPropertyAttrRead",
+    required_o    => "uEchoPropertyAttrRead",
+    optional      => "uEchoPropertyAttrRead",
+    notApplicable => undef,
+  },
+  set => {
+    required      => "uEchoPropertyAttrWriteRequired",
+    required_c    => "uEchoPropertyAttrWrite",
+    required_o    => "uEchoPropertyAttrWrite",
+    optional      => "uEchoPropertyAttrWrite",
+    notApplicable => undef,
+  },
+  inf => {
+    required      => "uEchoPropertyAttrAnnoRequired",
+    required_c    => "uEchoPropertyAttrAnno",
+    required_o    => "uEchoPropertyAttrAnno",
+    optional      => "uEchoPropertyAttrAnno",
+    notApplicable => undef,
+  },
+);
+
+sub read_json {
+  my ($file) = @_;
+  open(my $fh, "<:raw", $file) or die "Failed to open $file: $!\n";
+  local $/;
+  my $data = <$fh>;
+  close($fh);
+  my $json = eval { JSON::PP->new->utf8->decode($data) };
+  die "Failed to parse $file: $@" unless defined $json;
+  return $json;
+}
+
+# Converts a string to a C string literal. Non-ASCII characters are written as
+# octal escapes of their UTF-8 bytes so the output is plain ASCII.
+sub c_string {
+  my ($str) = @_;
+  my $bytes = encode("UTF-8", $str);
+  my $out = "";
+  foreach my $c (split(//, $bytes)) {
+    my $o = ord($c);
+    if ($c eq "\\" || $c eq "\"") {
+      $out .= "\\" . $c;
+    }
+    elsif ($o < 0x20 || 0x7E < $o || $c eq "?") {
+      # "?" is escaped to avoid trigraphs.
+      $out .= sprintf("\\%03o", $o);
+    }
+    else {
+      $out .= $c;
+    }
+  }
+  return "\"" . $out . "\"";
+}
+
+sub hex_code {
+  my ($value, $digits, $what) = @_;
+  die "$what: missing code\n" unless defined $value;
+  die "$what: invalid code '$value'\n" unless $value =~ /^0x([0-9A-Fa-f]{$digits})$/;
+  return uc($1);
+}
+
+# An entry valid in the latest release wins over one that is not; otherwise
+# the later entry wins.
+sub is_latest {
+  my ($entry) = @_;
+  my $release = $entry->{validRelease};
+  return 1 unless ref($release) eq "HASH" && defined $release->{to};
+  return $release->{to} eq "latest" ? 1 : 0;
+}
+
+sub supersedes {
+  my ($new, $old) = @_;
+  return is_latest($new) || !is_latest($old);
+}
+
+sub attr_expr {
+  my ($rules, $what) = @_;
+  die "$what: missing accessRule\n" unless ref($rules) eq "HASH";
+  my @flags;
+  foreach my $op ("get", "set", "inf") {
+    my $rule = $rules->{$op};
+    die "$what: missing accessRule.$op\n" unless defined $rule;
+    die "$what: unknown accessRule.$op '$rule'\n" unless exists $attr_flags{$op}{$rule};
+    push(@flags, $attr_flags{$op}{$rule}) if defined $attr_flags{$op}{$rule};
+  }
+  return @flags ? join(" | ", @flags) : "uEchoPropertyAttrNone";
+}
+
+# Read classes
+
+my %classes;
+foreach my $sub_dir (@mra_sub_dirs) {
+  my $dir = "$mra_root_dir/mraData/$sub_dir";
+  die "MRA directory not found: $dir\n" unless -d $dir;
+  my @files;
+  find(sub { push(@files, $File::Find::name) if -f $_ && /\.json$/ }, $dir);
+  foreach my $file (sort @files) {
+    my $json = read_json($file);
+    my $code = hex_code($json->{eoj}, 4, $file);
+    my $name = $json->{className}{en};
+    die "$file: missing className.en\n" unless defined $name && length($name);
+
+    my %props;
+    my $order = 0;
+    my $epcs = $json->{elProperties};
+    die "$file: missing elProperties\n" unless ref($epcs) eq "ARRAY";
+    foreach my $prop (@{$epcs}) {
+      my $epc = hex_code($prop->{epc}, 2, $file);
+      my $what = "$file: EPC 0x$epc";
+      die "$what: EPC out of range\n" if hex($epc) < 0x80;
+      my $prop_name = $prop->{propertyName}{en};
+      die "$what: missing propertyName.en\n" unless defined $prop_name;
+      my $entry = {
+        epc   => $epc,
+        name  => $prop_name,
+        attr  => attr_expr($prop->{accessRule}, $what),
+        latest => is_latest($prop),
+        validRelease => $prop->{validRelease},
+      };
+      # A duplicated EPC takes the position of its last occurrence.
+      $order++;
+      if (exists $props{$epc}) {
+        $entry = $props{$epc}{entry} unless supersedes($entry, $props{$epc}{entry});
+      }
+      $props{$epc} = { entry => $entry, order => $order };
+    }
+
+    my $class = {
+      code      => $code,
+      name      => $name,
+      essential => $essential_dirs{$sub_dir} ? 1 : 0,
+      props     => [map { $props{$_}{entry} } sort { $props{$a}{order} <=> $props{$b}{order} } keys %props],
+      validRelease => $json->{validRelease},
+    };
+    if (exists $classes{$code}) {
+      print STDERR "warning: duplicated class 0x$code in $file\n";
+      next unless supersedes($class, $classes{$code});
+    }
+    $classes{$code} = $class;
+  }
+}
+
+foreach my $code (@required_classes) {
+  die "Required class 0x$code not found in $mra_root_dir\n" unless exists $classes{$code} && $classes{$code}{essential};
+}
+
+# Output
+
+print <<"HEADER";
 /******************************************************************
  *
  * uEcho for C
@@ -21,141 +201,50 @@ print<<HEADER;
  *
  * This is licensed under BSD-style license, see file COPYING.
  *
- * GENERATED FROM manufacturers.pl DO NOT EDIT THIS FILE.
+ * GENERATED FROM objects_mra.pl ($mra_version) DO NOT EDIT THIS FILE.
  *
  ******************************************************************/
 
-#include <uecho/std/_database.h>
-
-#define PROP_REQUIRED "required"
-#define PROP_MANDATORY "mandatory"
-#define PROP_OPTIONAL "optional"
-
-uEchoObject* uecho_standard_object_new(const char* name, int grp_code, int cls_code)
-{
-  uEchoObject* obj;
-  obj = uecho_object_new();
-  uecho_object_setname(obj, name);
-  obj->code[0] = grp_code;
-  obj->code[1] = cls_code;
-  return obj;
-}
-
-uEchoProperty* uecho_standard_object_property_new(int epc, const char* name, const char* data_type, int data_size, const char* get_rule, const char* set_rule, const char* anno_rule)
-{
-  uEchoProperty* prop;
-  uEchoPropertyAttr attr = uEchoPropertyAttrNone;
-
-  prop = uecho_property_new();
-  uecho_property_setcode(prop, epc);
-  uecho_property_setname(prop, name);
-
-  if (uecho_streq(get_rule, PROP_REQUIRED) || uecho_streq(get_rule, PROP_REQUIRED))
-    attr |= uEchoPropertyAttrReadRequired;
-  if (uecho_streq(get_rule, PROP_OPTIONAL))
-    attr |= uEchoPropertyAttrRead;
-  if (uecho_streq(set_rule, PROP_REQUIRED) || uecho_streq(set_rule, PROP_REQUIRED))
-    attr |= uEchoPropertyAttrWriteRequired;
-  if (uecho_streq(set_rule, PROP_OPTIONAL))
-    attr |= uEchoPropertyAttrWrite;
-  if (uecho_streq(anno_rule, PROP_REQUIRED) || uecho_streq(anno_rule, PROP_REQUIRED))
-    attr |= uEchoPropertyAttrAnnoRequired;
-  if (uecho_streq(anno_rule, PROP_OPTIONAL))
-    attr |= uEchoPropertyAttrAnno;
-  uecho_property_setattribute(prop, attr);
-
-  return prop;
-}
-
-void uecho_database_addstandardobjects(uEchoDatabase* db)
-{
-  uEchoObject* obj;
+#include <uecho/std/_standard.h>
 
 HEADER
 
-my $mra_definitions_file = $mra_root_dir . "/mraData/definitions/definitions.json";
-open(DEF_JSON_FILE, $mra_definitions_file) or die "Failed to open $mra_definitions_file: $!";
-my $def_json_data = join('',<DEF_JSON_FILE>);
-close(DEF_JSON_FILE);
-my $def_json = decode_json($def_json_data);
-my $def_json_root = %{$def_json}{'definitions'};
+my @codes = sort keys %classes;
 
-my @mra_sub_dirs = (
-  "/mraData/superClass/",
-  "/mraData/nodeProfile/",
-  "/mraData/devices/"
-);
-
-my @device_json_files;
-foreach my $mra_sub_dir(@mra_sub_dirs){
-  my $mra_root_dir = $mra_root_dir . $mra_sub_dir;
-  find sub {
-      my $file = $_;
-      my $path = $File::Find::name;
-      if(-f $file){
-        push(@device_json_files, $path);
-      }
-  }, $mra_root_dir;
+foreach my $code (@codes) {
+  my $class = $classes{$code};
+  next unless @{$class->{props}};
+  print "#if !defined(UECHO_DATABASE_NONE)\n" unless $class->{essential};
+  printf("// %s (0x%s)\n", $class->{name}, $code);
+  printf("static const uEchoStdProperty uecho_std_props_%s[] = {\n", $code);
+  foreach my $prop (@{$class->{props}}) {
+    printf("  { 0x%s, %s, %s },\n", $prop->{epc}, $prop->{attr}, c_string($prop->{name}));
+  }
+  print "};\n";
+  print "#endif\n" unless $class->{essential};
+  print "\n";
 }
 
-foreach my $device_json_file(@device_json_files){
-  open(DEV_JSON_FILE, $device_json_file) or die "$!";
-  my $device_json_data = join('',<DEV_JSON_FILE>);
-  close(DEV_JSON_FILE);
-  my $device_json = decode_json($device_json_data);
-
-  my $cls_names = %{$device_json}{'className'};
-  my $cls_name = %{$cls_names}{'en'};
-  my $grp_cls_code = %{$device_json}{'eoj'};
-  my $grp_code = substr($grp_cls_code, 2, 2);
-  my $cls_code = substr($grp_cls_code, 4);
-  printf("  // %s (0x%s%s)\n", $cls_name, $grp_code, $cls_code);
-  printf("  obj = uecho_standard_object_new(\"%s\", 0x%s, 0x%s);\n", $cls_name, $grp_code, $cls_code);
-
-  my $props = %{$device_json}{'elProperties'};
-  foreach $prop(@{$props}) {
-    my $epc = %{$prop}{'epc'};
-    my $names = %{$prop}{'propertyName'};
-    my $name = %{$names}{'en'};
-    my $rules = %{$prop}{'accessRule'};
-    my $get_rule = %{$rules}{'get'};
-    my $set_rule = %{$rules}{'set'};
-    my $anno_rule = %{$rules}{'inf'};
-    my $data = %{$prop}{'data'};
-    my $data_type = %{$data}{'type'};
-    my $data_size = %{$data}{'size'};
-    my $data_ref = %{$data}{'$ref'};
-    if (0< length($data_ref)) {
-      my @data_refs = split(/\//, $data_ref);
-      my $data_ref_len = @data_refs;
-      my $data_ref_id = $data_refs[$data_ref_len -1];
-      my $prop_def = %{$def_json_root}{$data_ref_id};
-      $data_type = %{$prop_def}{'type'};  
-      $data_size = %{$prop_def}{'size'};
-      my $enums = %{$prop_def}{'enum'};
-      if (0 < @data_refs) {
-        foreach $enum(@{$enums}) {
-          my $edt = %{$enum}{'edt'};
-          my $name = %{$enum}{'name'};
-          my $descs = %{$enum}{'descriptions'};
-          my $desc = %{$descs}{'en'};
-          if (0< length($edt)) {
-          }
-        }
-      }
-    }
-    printf("  uecho_object_addproperty(obj, uecho_standard_object_property_new(%s, \"%s\", \"%s\", %d, \"%s\", \"%s\", \"%s\"));\n",
-      $epc,
-      $name,
-      $data_type,
-      $data_size,
-      $get_rule,
-      $set_rule,
-      $anno_rule,
-      );
-   }
-  printf("  uecho_database_addobject(db, obj);\n\n");
+print "const uEchoStdObject uecho_std_objects[] = {\n";
+my $guarded = 0;
+foreach my $code (@codes) {
+  my $class = $classes{$code};
+  if (!$class->{essential} && !$guarded) {
+    print "#if !defined(UECHO_DATABASE_NONE)\n";
+    $guarded = 1;
+  }
+  elsif ($class->{essential} && $guarded) {
+    print "#endif\n";
+    $guarded = 0;
+  }
+  my ($grp, $cls) = (substr($code, 0, 2), substr($code, 2, 2));
+  if (@{$class->{props}}) {
+    printf("  { 0x%s, 0x%s, %s, uecho_std_props_%s, sizeof(uecho_std_props_%s) / sizeof(uecho_std_props_%s[0]) },\n", $grp, $cls, c_string($class->{name}), $code, $code, $code);
+  }
+  else {
+    printf("  { 0x%s, 0x%s, %s, NULL, 0 },\n", $grp, $cls, c_string($class->{name}));
+  }
 }
-print<<FOTTER;
-}
-FOTTER
+print "#endif\n" if $guarded;
+print "};\n\n";
+print "const size_t uecho_std_objectcount = sizeof(uecho_std_objects) / sizeof(uecho_std_objects[0]);\n";

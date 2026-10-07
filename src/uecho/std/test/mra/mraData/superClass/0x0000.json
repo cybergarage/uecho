@@ -1,0 +1,46 @@
+{
+  "eoj": "0x0000",
+  "validRelease": { "from": "A", "to": "latest" },
+  "className": { "ja": "機器オブジェクトスーパークラス", "en": "Super class" },
+  "elProperties": [
+    {
+      "epc": "0x80",
+      "validRelease": { "from": "A", "to": "latest" },
+      "propertyName": { "ja": "動作状態", "en": "Operation status" },
+      "accessRule": { "get": "required", "set": "optional", "inf": "required" }
+    },
+    {
+      "epc": "0x81",
+      "validRelease": { "from": "N", "to": "latest" },
+      "propertyName": { "ja": "設置場所", "en": "Installation location" },
+      "accessRule": { "get": "required", "set": "required", "inf": "required" }
+    },
+    {
+      "epc": "0x82",
+      "validRelease": { "from": "A", "to": "latest" },
+      "propertyName": { "ja": "規格Version情報", "en": "Standard version information" },
+      "accessRule": { "get": "required", "set": "notApplicable", "inf": "optional" }
+    },
+    {
+      "epc": "0x81",
+      "validRelease": { "from": "A", "to": "M" },
+      "propertyName": { "ja": "設置場所", "en": "Installation location (old)" },
+      "accessRule": { "get": "required", "set": "optional", "inf": "required" }
+    },
+    {
+      "epc": "0x9D",
+      "propertyName": { "ja": "状変アナウンスプロパティマップ", "en": "Status change announcement property map" },
+      "accessRule": { "get": "required", "set": "notApplicable", "inf": "optional" }
+    },
+    {
+      "epc": "0x9E",
+      "propertyName": { "ja": "Setプロパティマップ", "en": "Set property map" },
+      "accessRule": { "get": "required", "set": "notApplicable", "inf": "optional" }
+    },
+    {
+      "epc": "0x9F",
+      "propertyName": { "ja": "Getプロパティマップ", "en": "Get property map" },
+      "accessRule": { "get": "required", "set": "notApplicable", "inf": "optional" }
+    }
+  ]
+}

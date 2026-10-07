@@ -1,0 +1,11 @@
+{
+  "eoj": "0x0011",
+  "className": { "ja": "温度センサ", "en": "Temperature sensor" },
+  "elProperties": [
+    {
+      "epc": "0xE0",
+      "propertyName": { "ja": "温度計測値", "en": "Measured temperature value" },
+      "accessRule": { "get": "required", "set": "notApplicable", "inf": "optional" }
+    }
+  ]
+}

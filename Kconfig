@@ -11,4 +11,29 @@ menu "uEcho"
             application callbacks with large stack usage, and measure the stack
             high-water mark on your hardware.
 
+    choice UECHO_DATABASE
+        prompt "Standard object database"
+        default UECHO_DATABASE_FULL
+        help
+            The standard object database holds the ECHONET Lite object, property
+            and manufacturer definitions from the MRA. It is a const table in
+            flash, so it uses no heap.
+
+        config UECHO_DATABASE_FULL
+            bool "Full"
+            help
+                All standard objects and manufacturer codes. Objects get the
+                standard properties of their class automatically, and object,
+                property and manufacturer names are available.
+
+        config UECHO_DATABASE_NONE
+            bool "None"
+            help
+                Only the super class and the node profile class, which uEcho
+                needs itself. Saves about 45 KB of flash. Device objects get only
+                the super class properties and the properties you add, standard
+                names other than these two classes are not available, and
+                uecho_database_getmanufacture() always returns NULL.
+    endchoice
+
 endmenu

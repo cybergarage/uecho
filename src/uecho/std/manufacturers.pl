@@ -2,13 +2,113 @@
 # Copyright (C) The uecho Authors 2015
 #
 # This is licensed under BSD-style license, see file COPYING.
+#
+# Generates manufacturers.c, the standard manufacturer code database, from the
+# ECHONET Consortium manufacturer code list converted to CSV:
+#
+#   ./manufacturers.pl list_code_e.csv > manufacturers.c
+#
+# The output is a const table sorted by code, so the database lives in ROM
+# (flash on MCUs) and is searched with a binary search.
 
-if (@ARGV < 1){
+use strict;
+use warnings;
+use utf8;
+use Encode qw(decode encode);
+
+if (@ARGV < 1) {
+  print STDERR "usage: $0 <manufacturer code list CSV>\n";
   exit 1;
 }
 my $manlist_filename = $ARGV[0];
 
-print<<HEADER;
+# Converts a string to a C string literal. Non-ASCII characters are written as
+# octal escapes of their UTF-8 bytes so the output is plain ASCII.
+sub c_string {
+  my ($str) = @_;
+  my $bytes = encode("UTF-8", $str);
+  my $out = "";
+  foreach my $c (split(//, $bytes)) {
+    my $o = ord($c);
+    if ($c eq "\\" || $c eq "\"") {
+      $out .= "\\" . $c;
+    }
+    elsif ($o < 0x20 || 0x7E < $o || $c eq "?") {
+      # "?" is escaped to avoid trigraphs.
+      $out .= sprintf("\\%03o", $o);
+    }
+    else {
+      $out .= $c;
+    }
+  }
+  return "\"" . $out . "\"";
+}
+
+# Splits one CSV line, honoring double-quoted fields and "" escapes.
+sub split_csv {
+  my ($line) = @_;
+  my @fields;
+  my $field = "";
+  my $quoted = 0;
+  my @chars = split(//, $line);
+  for (my $i = 0; $i < @chars; $i++) {
+    my $c = $chars[$i];
+    if ($quoted) {
+      if ($c eq "\"") {
+        if ($i + 1 < @chars && $chars[$i + 1] eq "\"") {
+          $field .= "\"";
+          $i++;
+        }
+        else {
+          $quoted = 0;
+        }
+      }
+      else {
+        $field .= $c;
+      }
+    }
+    elsif ($c eq "\"") {
+      $quoted = 1;
+    }
+    elsif ($c eq ",") {
+      push(@fields, $field);
+      $field = "";
+    }
+    else {
+      $field .= $c;
+    }
+  }
+  push(@fields, $field);
+  return @fields;
+}
+
+my %mans;
+open(my $fh, "<:raw", $manlist_filename) or die "Failed to open $manlist_filename: $!\n";
+while (my $line = <$fh>) {
+  $line = decode("UTF-8", $line);
+  $line =~ s/[\r\n]+$//;
+  my ($code, $name) = split_csv($line);
+  next unless defined $code;
+  $code =~ s/^\s+|\s+$//g;
+  # Skips headers and other non-data rows.
+  next unless $code =~ /^[0-9A-Fa-f]{6}$/;
+  $code = uc($code);
+  die "$manlist_filename: missing name for 0x$code\n" unless defined $name;
+  $name =~ s/\x{3000}/ /g;    # Converts zenkaku spaces to spaces.
+  $name =~ s/^\s+|\s+$//g;
+  if (exists $mans{$code}) {
+    print STDERR "warning: duplicated manufacturer code 0x$code, using the later one\n";
+  }
+  $mans{$code} = $name;
+}
+close($fh);
+
+die "$manlist_filename: no manufacturer codes found\n" unless %mans;
+
+$mans{"FFFFFF"} = "Experimental";
+$mans{"FFFFFE"} = "Undefined";
+
+print <<"HEADER";
 /******************************************************************
  *
  * uEcho for C
@@ -21,42 +121,29 @@ print<<HEADER;
  *
  ******************************************************************/
 
-#include <uecho/std/_database.h>
+#include <uecho/std/_standard.h>
 
-bool uecho_database_addstandardmanufacture(uEchoDatabase* db, int code, const char *name) {
-  uEchoManufacture *man;
-  man = uecho_manufacture_new();
-  uecho_manufacture_setcode(man, code);
-  uecho_manufacture_setname(man, name);
-  return uecho_database_addmanufacture(db, man); 
-}
+#if !defined(UECHO_DATABASE_NONE)
 
-void uecho_database_addstandardmanufactures(uEchoDatabase* db) {
+const uEchoStdManufacture uecho_std_manufactures[] = {
 HEADER
 
-open(MANLIST, $manlist_filename) or die "$!";
-while(<MANLIST>){
-  chomp($_);
-  $_ =~ s/(['"].*?['"])/(my $s = $1) =~ tr|,|=|; $s/eg;
-  my @row = split(/(?!"),/, $_, -1);;
-  my $code = $row[0];
-  if (length($code ) != 6) {
-    next;
-  }
-  my $name = $row[1];
-  $name =~ s/=/,/g;
-  $name =~ s/　/ /g; # converts zenkaku spaces to spaces
-  if ($name !~ /^\"/) {
-    $name = "\""  . $name
-  }
-  if ($name !~ /\"$/) {
-    $name = $name . "\"" 
-  }
-  printf("  uecho_database_addstandardmanufacture(db, 0x%s, %s);\n", $code, $name);
+foreach my $code (sort keys %mans) {
+  printf("  { 0x%s, %s },\n", $code, c_string($mans{$code}));
 }
-printf("  uecho_database_addstandardmanufacture(db, 0xFFFFFF, \"Experimental\");\n");
-printf("  uecho_database_addstandardmanufacture(db, 0xFFFFFE, \"Undefined\");\n");
-close(MANLIST);
-print<<FOTTER;
-}
-FOTTER
+
+print <<"FOOTER";
+};
+
+const size_t uecho_std_manufacturecount = sizeof(uecho_std_manufactures) / sizeof(uecho_std_manufactures[0]);
+
+#else
+
+const uEchoStdManufacture uecho_std_manufactures[] = {
+  { 0, NULL },
+};
+
+const size_t uecho_std_manufacturecount = 0;
+
+#endif
+FOOTER

@@ -29,6 +29,9 @@ if(ESP_PLATFORM)
       message(FATAL_ERROR "uEcho requires ${required_config}=y; see doc/espidf.md")
     endif()
   endforeach()
+  if(CONFIG_UECHO_DATABASE_NONE)
+    target_compile_definitions(${COMPONENT_LIB} PUBLIC UECHO_DATABASE_NONE)
+  endif()
   if(NOT CONFIG_LWIP_SO_REUSE_RXTOALL)
     message(WARNING "Enable CONFIG_LWIP_SO_REUSE_RXTOALL so that multicast reaches every uEcho node; see doc/espidf.md")
   endif()
@@ -39,6 +42,16 @@ project(uecho VERSION 1.4.1 LANGUAGES C CXX)
 
 option(UECHO_ENABLE_TEST     "Build tests"    OFF)
 option(UECHO_ENABLE_EXAMPLES "Build examples" ON)
+
+# Standard object database: "full", or "none" to keep only the super class and
+# the node profile class.
+set(UECHO_DATABASE "full" CACHE STRING "Standard object database (full or none)")
+set_property(CACHE UECHO_DATABASE PROPERTY STRINGS full none)
+if(UECHO_DATABASE STREQUAL "none")
+  add_definitions(-DUECHO_DATABASE_NONE)
+elseif(NOT UECHO_DATABASE STREQUAL "full")
+  message(FATAL_ERROR "UECHO_DATABASE must be full or none: ${UECHO_DATABASE}")
+endif()
 
 add_subdirectory(lib/unix)
 

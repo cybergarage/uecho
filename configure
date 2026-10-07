@@ -754,6 +754,7 @@ enable_option_checking
 enable_silent_rules
 enable_dependency_tracking
 enable_debug
+with_database
 enable_test
 enable_coverage
 enable_examples
@@ -1402,6 +1403,13 @@ Optional Features:
   --enable-test           build tests (default = no)
   --enable-coverage       Enable code coverage using gcov
   --enable-examples       build examples (default = yes)
+
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-database=full|none
+                          standard object database; none keeps only the super
+                          class and the node profile (default = full)
 
 Some influential environment variables:
   CC          C compiler command
@@ -5759,6 +5767,30 @@ fi
 if  test "$enable_debug" = yes ; then
 
 printf "%s\n" "#define DEBUG 1" >>confdefs.h
+
+fi
+
+##############################
+# Standard database
+##############################
+
+
+# Check whether --with-database was given.
+if test ${with_database+y}
+then :
+  withval=$with_database; case "${withval}" in
+	full | none ) with_database="${withval}" ;;
+	*) as_fn_error $? "bad value ${withval} for --with-database" "$LINENO" 5 ;;
+	esac
+else $as_nop
+  with_database="full"
+
+fi
+
+
+if  test "$with_database" = none ; then
+
+printf "%s\n" "#define UECHO_DATABASE_NONE 1" >>confdefs.h
 
 fi
 
