@@ -63,12 +63,12 @@ $(document).ready(function(){initNavTree('md_doc_setup.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p >The <code>uecho</code> is a framework that consists of header and library files. Currently, <code>uecho</code> supports macOS and Linux platforms such as Ubuntu and Raspbian, and ESP32 microcontrollers through <a class="el" href="md_doc_espidf.html">ESP-IDF</a>.</p>
-<h1><a class="anchor" id="autotoc_md57"></a>
+<h1><a class="anchor" id="autotoc_md58"></a>
 Homebrew (macOS, Linux)</h1>
 <p >For platforms that support <a href="https://brew.sh/">Homebrew</a>, you can easily install using the following <code>brew</code> commands:</p>
 <div class="fragment"><div class="line">brew tap cybergarage/homebrew</div>
 <div class="line">brew install uecho</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md58"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md59"></a>
 Installing from Source</h1>
 <p >To install on your platform from the GitHub repository, run the following commands in a terminal:</p>
 <div class="fragment"><div class="line">git clone https://github.com/cybergarage/uecho.git</div>
@@ -76,7 +76,13 @@ Installing from Source</h1>
 <div class="line">./bootstrap &amp;&amp; ./configure &amp;&amp; make &amp;&amp; sudo make install</div>
 </div><!-- fragment --><p >CMake is also supported:</p>
 <div class="fragment"><div class="line">cmake -S . -B build &amp;&amp; cmake --build build</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md59"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md60"></a>
+Standard object database</h2>
+<p >uEcho includes the standard object, property and manufacturer definitions from the ECHONET Consortium MRA as const tables. To leave them out and keep only the super class and the node profile class, which uEcho needs itself, use:</p>
+<div class="fragment"><div class="line">./configure --with-database=none</div>
+<div class="line">cmake -S . -B build -DUECHO_DATABASE=none</div>
+</div><!-- fragment --><p >Objects then get only the super class properties, so add the class properties your device implements with <code><a class="el" href="object_8c.html#a0c67db98b105fdbac1b46041182920da">uecho_object_setproperty()</a></code>. See <a href="espidf.md#standard-object-database">Standard object database</a> for details.</p>
+<h1><a class="anchor" id="autotoc_md61"></a>
 ESP32 (ESP-IDF)</h1>
 <p >The repository can be used directly as an ESP-IDF component. See <a class="el" href="md_doc_espidf.html">ESP32 (ESP-IDF)</a>. </p>
 </div></div><!-- contents -->

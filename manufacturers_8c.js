@@ -1,5 +1,5 @@
 var manufacturers_8c =
 [
-    [ "uecho_database_addstandardmanufacture", "manufacturers_8c.html#a42fee7a803cb4d540130e9a328e93fb6", null ],
-    [ "uecho_database_addstandardmanufactures", "manufacturers_8c.html#a419cd0ae098acca9c1b73cf24fe4e6bb", null ]
+    [ "uecho_std_manufacturecount", "manufacturers_8c.html#a3de392d95dd4c783e2169bc9f491277e", null ],
+    [ "uecho_std_manufactures", "manufacturers_8c.html#a6e880bdfedf5208125c0c0900b43b9a5", null ]
 ];

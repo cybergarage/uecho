@@ -64,7 +64,8 @@ $(document).ready(function(){initNavTree('database_8c.html',''); initResizable()
   <div class="headertitle"><div class="title">database.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="__database_8h.html">uecho/std/_database.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="__database_8h.html">uecho/std/_database.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -76,10 +77,24 @@ Functions</h2></td></tr>
 <tr class="separator:ab92f6b0a1572172b1d17b31548a0c4c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5eb7302a8425a3e40a8b06d130d440eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8c.html#a5eb7302a8425a3e40a8b06d130d440eb">uecho_database_addobject</a> (<a class="el" href="__database_8h.html#a44805eca52ea946216538aa0d27497f6">uEchoDatabase</a> *db, <a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:a5eb7302a8425a3e40a8b06d130d440eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab95112262d33d1475ed43377ac48c327"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="__manufacture_8h.html#a722a208b495885f0878b8b9a60e39df5">uEchoManufacture</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8c.html#ab95112262d33d1475ed43377ac48c327">uecho_database_newstandardmanufacture</a> (const <a class="el" href="structuEchoStdManufacture.html">uEchoStdManufacture</a> *stdMan)</td></tr>
+<tr class="separator:ab95112262d33d1475ed43377ac48c327"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7bbeafde2b2868c88a2a33ec31d488c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__manufacture_8h.html#a722a208b495885f0878b8b9a60e39df5">uEchoManufacture</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8c.html#aa7bbeafde2b2868c88a2a33ec31d488c">uecho_database_getmanufacture</a> (<a class="el" href="__database_8h.html#a44805eca52ea946216538aa0d27497f6">uEchoDatabase</a> *db, <a class="el" href="manufacture_8h.html#a98afa6ff1cabeee5c3fde02acd4efbef">uEchoManufactureCode</a> code)</td></tr>
 <tr class="separator:aa7bbeafde2b2868c88a2a33ec31d488c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ede874213163873927a1f5476bbaf2a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8c.html#a1ede874213163873927a1f5476bbaf2a">uecho_database_newstandardobject</a> (const <a class="el" href="structuEchoStdObject.html">uEchoStdObject</a> *stdObj)</td></tr>
+<tr class="separator:a1ede874213163873927a1f5476bbaf2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac00842ee163ccbb6bdd38c3a10c2360c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8c.html#ac00842ee163ccbb6bdd38c3a10c2360c">uecho_database_getobject</a> (<a class="el" href="__database_8h.html#a44805eca52ea946216538aa0d27497f6">uEchoDatabase</a> *db, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> grpCode, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> clsCode)</td></tr>
 <tr class="separator:ac00842ee163ccbb6bdd38c3a10c2360c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a150b67ede01c7a2152bcffed98ab80"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structuEchoStdObject.html">uEchoStdObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8c.html#a7a150b67ede01c7a2152bcffed98ab80">uecho_std_getobject</a> (<a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> grpCode, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> clsCode)</td></tr>
+<tr class="separator:a7a150b67ede01c7a2152bcffed98ab80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa605984fc5a187530b44aac42f97d4b2"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structuEchoStdProperty.html">uEchoStdProperty</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8c.html#aa605984fc5a187530b44aac42f97d4b2">uecho_std_object_getproperty</a> (const <a class="el" href="structuEchoStdObject.html">uEchoStdObject</a> *stdObj, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> epc)</td></tr>
+<tr class="separator:aa605984fc5a187530b44aac42f97d4b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd51340757f9213778947597844f7ad1"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structuEchoStdManufacture.html">uEchoStdManufacture</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8c.html#afd51340757f9213778947597844f7ad1">uecho_std_getmanufacture</a> (int code)</td></tr>
+<tr class="separator:afd51340757f9213778947597844f7ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad402326ee09575b70d3eebcc2dad9c07"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8c.html#ad402326ee09575b70d3eebcc2dad9c07">uecho_std_getobjectname</a> (<a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> grpCode, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> clsCode)</td></tr>
+<tr class="separator:ad402326ee09575b70d3eebcc2dad9c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa111ae1541a1fb2b6179051b72445e05"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8c.html#aa111ae1541a1fb2b6179051b72445e05">uecho_std_getpropertyname</a> (<a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> grpCode, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> clsCode, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> epc)</td></tr>
+<tr class="separator:aa111ae1541a1fb2b6179051b72445e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ab92f6b0a1572172b1d17b31548a0c4c0" name="ab92f6b0a1572172b1d17b31548a0c4c0"></a>
@@ -230,6 +245,194 @@ Functions</h2></td></tr>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab95112262d33d1475ed43377ac48c327" name="ab95112262d33d1475ed43377ac48c327"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab95112262d33d1475ed43377ac48c327">&#9670;&nbsp;</a></span>uecho_database_newstandardmanufacture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="__manufacture_8h.html#a722a208b495885f0878b8b9a60e39df5">uEchoManufacture</a> * uecho_database_newstandardmanufacture </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structuEchoStdManufacture.html">uEchoStdManufacture</a> *&#160;</td>
+          <td class="paramname"><em>stdMan</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ede874213163873927a1f5476bbaf2a" name="a1ede874213163873927a1f5476bbaf2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ede874213163873927a1f5476bbaf2a">&#9670;&nbsp;</a></span>uecho_database_newstandardobject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> * uecho_database_newstandardobject </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structuEchoStdObject.html">uEchoStdObject</a> *&#160;</td>
+          <td class="paramname"><em>stdObj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afd51340757f9213778947597844f7ad1" name="afd51340757f9213778947597844f7ad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd51340757f9213778947597844f7ad1">&#9670;&nbsp;</a></span>uecho_std_getmanufacture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structuEchoStdManufacture.html">uEchoStdManufacture</a> * uecho_std_getmanufacture </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>code</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7a150b67ede01c7a2152bcffed98ab80" name="a7a150b67ede01c7a2152bcffed98ab80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a150b67ede01c7a2152bcffed98ab80">&#9670;&nbsp;</a></span>uecho_std_getobject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structuEchoStdObject.html">uEchoStdObject</a> * uecho_std_getobject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td>
+          <td class="paramname"><em>grpCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td>
+          <td class="paramname"><em>clsCode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad402326ee09575b70d3eebcc2dad9c07" name="ad402326ee09575b70d3eebcc2dad9c07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad402326ee09575b70d3eebcc2dad9c07">&#9670;&nbsp;</a></span>uecho_std_getobjectname()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * uecho_std_getobjectname </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td>
+          <td class="paramname"><em>grpCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td>
+          <td class="paramname"><em>clsCode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa111ae1541a1fb2b6179051b72445e05" name="aa111ae1541a1fb2b6179051b72445e05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa111ae1541a1fb2b6179051b72445e05">&#9670;&nbsp;</a></span>uecho_std_getpropertyname()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * uecho_std_getpropertyname </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td>
+          <td class="paramname"><em>grpCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td>
+          <td class="paramname"><em>clsCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa605984fc5a187530b44aac42f97d4b2" name="aa605984fc5a187530b44aac42f97d4b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa605984fc5a187530b44aac42f97d4b2">&#9670;&nbsp;</a></span>uecho_std_object_getproperty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structuEchoStdProperty.html">uEchoStdProperty</a> * uecho_std_object_getproperty </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structuEchoStdObject.html">uEchoStdObject</a> *&#160;</td>
+          <td class="paramname"><em>stdObj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -61,8 +61,7 @@ $(document).ready(function(){initNavTree('__database_8h.html',''); initResizable
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle"><div class="title">_database.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -70,6 +69,8 @@ $(document).ready(function(){initNavTree('__database_8h.html',''); initResizable
 <code>#include &lt;<a class="el" href="__manufacture_8h.html">uecho/_manufacture.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="__object_8h.html">uecho/_object.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="__property_8h.html">uecho/_property.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="__standard_8h.html">uecho/std/_standard.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="mutex_8h.html">uecho/util/mutex.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="database_8h.html">uecho/std/database.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -81,13 +82,6 @@ Data Structures</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a44805eca52ea946216538aa0d27497f6"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structUEchoDatabase.html">UEchoDatabase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__database_8h.html#a44805eca52ea946216538aa0d27497f6">uEchoDatabase</a></td></tr>
 <tr class="separator:a44805eca52ea946216538aa0d27497f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a419cd0ae098acca9c1b73cf24fe4e6bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__database_8h.html#a419cd0ae098acca9c1b73cf24fe4e6bb">uecho_database_addstandardmanufactures</a> (<a class="el" href="__database_8h.html#a44805eca52ea946216538aa0d27497f6">uEchoDatabase</a> *db)</td></tr>
-<tr class="separator:a419cd0ae098acca9c1b73cf24fe4e6bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfd9e6b19be17a7d66d6dba6863afc3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="__database_8h.html#abfd9e6b19be17a7d66d6dba6863afc3f">uecho_database_addstandardobjects</a> (<a class="el" href="__database_8h.html#a44805eca52ea946216538aa0d27497f6">uEchoDatabase</a> *db)</td></tr>
-<tr class="separator:abfd9e6b19be17a7d66d6dba6863afc3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a44805eca52ea946216538aa0d27497f6" name="a44805eca52ea946216538aa0d27497f6"></a>
@@ -98,43 +92,6 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">typedef struct <a class="el" href="structUEchoDatabase.html">UEchoDatabase</a> <a class="el" href="__database_8h.html#a44805eca52ea946216538aa0d27497f6">uEchoDatabase</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a419cd0ae098acca9c1b73cf24fe4e6bb" name="a419cd0ae098acca9c1b73cf24fe4e6bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a419cd0ae098acca9c1b73cf24fe4e6bb">&#9670;&nbsp;</a></span>uecho_database_addstandardmanufactures()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_database_addstandardmanufactures </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="__database_8h.html#a44805eca52ea946216538aa0d27497f6">uEchoDatabase</a> *&#160;</td>
-          <td class="paramname"><em>db</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="abfd9e6b19be17a7d66d6dba6863afc3f" name="abfd9e6b19be17a7d66d6dba6863afc3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfd9e6b19be17a7d66d6dba6863afc3f">&#9670;&nbsp;</a></span>uecho_database_addstandardobjects()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void uecho_database_addstandardobjects </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="__database_8h.html#a44805eca52ea946216538aa0d27497f6">uEchoDatabase</a> *&#160;</td>
-          <td class="paramname"><em>db</em></td><td>)</td>
-          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">

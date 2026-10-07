@@ -71,7 +71,7 @@ $(document).ready(function(){initNavTree('object_8c.html',''); initResizable(); 
 <code>#include &lt;<a class="el" href="misc_8h.html">uecho/misc.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="node_8h.html">uecho/node.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="profile_8h.html">uecho/profile.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="database_8h.html">uecho/std/database.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="__standard_8h.html">uecho/std/_standard.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="timer_8h.html">uecho/util/timer.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -92,6 +92,8 @@ Functions</h2></td></tr>
 <tr class="separator:a3db5c901e6ad02f917958be706028352"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40fe97b247683601cf3bac83891dd708"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a40fe97b247683601cf3bac83891dd708">uecho_object_addstandardpropertieswithcode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> grpCode, <a class="el" href="typedef_8h.html#a0c8186d9b9b7880309c27230bbb5e69d">byte</a> clsCode)</td></tr>
 <tr class="separator:a40fe97b247683601cf3bac83891dd708"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bfc2cfc6b2801819fa5c988b5f9f076"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a1bfc2cfc6b2801819fa5c988b5f9f076">uecho_object_addstandardobjectproperties</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, const <a class="el" href="structuEchoStdObject.html">uEchoStdObject</a> *stdObj)</td></tr>
+<tr class="separator:a1bfc2cfc6b2801819fa5c988b5f9f076"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaed12981872298260e4af37a3f51d634"><td class="memItemLeft" align="right" valign="top"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aaed12981872298260e4af37a3f51d634">uecho_object_addstandardproperties</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj)</td></tr>
 <tr class="separator:aaed12981872298260e4af37a3f51d634"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e5526b45feb3deba0d3328cef24ea3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a4e5526b45feb3deba0d3328cef24ea3e">uecho_object_setcode</a> (<a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *obj, <a class="el" href="object_8h.html#a89e232c99d2688b3a2bfa277ffa2eb69">uEchoObjectCode</a> val)</td></tr>
@@ -221,6 +223,34 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="structuEchoProperty.html">uEchoProperty</a> *&#160;</td>
           <td class="paramname"><em>prop</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1bfc2cfc6b2801819fa5c988b5f9f076" name="a1bfc2cfc6b2801819fa5c988b5f9f076"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bfc2cfc6b2801819fa5c988b5f9f076">&#9670;&nbsp;</a></span>uecho_object_addstandardobjectproperties()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="typedef_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> uecho_object_addstandardobjectproperties </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="__object_8h.html#a67bbad5eda4fbfa2623260fd9e61749b">uEchoObject</a> *&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structuEchoStdObject.html">uEchoStdObject</a> *&#160;</td>
+          <td class="paramname"><em>stdObj</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

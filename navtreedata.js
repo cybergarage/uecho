@@ -26,7 +26,7 @@ var NAVTREE =
 [
   [ "uEcho for C", "index.html", [
     [ "Overview", "index.html", [
-      [ "What is uEcho?", "index.html#autotoc_md55", null ]
+      [ "What is uEcho?", "index.html#autotoc_md56", null ]
     ] ],
     [ "Inside of uEcho Controller", "md_doc_controller_inside.html", [
       [ "Node Profile Object", "md_doc_controller_inside.html#autotoc_md1", null ],
@@ -81,24 +81,27 @@ var NAVTREE =
         [ "Build, flash and monitor", "md_doc_espidf.html#autotoc_md41", null ],
         [ "Verify from a host", "md_doc_espidf.html#autotoc_md42", null ]
       ] ],
-      [ "Memory usage", "md_doc_espidf.html#autotoc_md43", null ],
-      [ "Platform differences", "md_doc_espidf.html#autotoc_md44", null ],
-      [ "Troubleshooting", "md_doc_espidf.html#autotoc_md45", null ]
+      [ "Standard object database", "md_doc_espidf.html#autotoc_md43", null ],
+      [ "Memory usage", "md_doc_espidf.html#autotoc_md44", null ],
+      [ "Platform differences", "md_doc_espidf.html#autotoc_md45", null ],
+      [ "Troubleshooting", "md_doc_espidf.html#autotoc_md46", null ]
     ] ],
     [ "Examples for ECHONET Lite Controller", "md_doc_examples.html", [
-      [ "uechosearch", "md_doc_examples.html#autotoc_md47", null ],
-      [ "uechopost", "md_doc_examples.html#autotoc_md48", null ],
-      [ "uechodump", "md_doc_examples.html#autotoc_md49", null ],
-      [ "Examples for ECHONET Lite Devices", "md_doc_examples.html#autotoc_md50", [
-        [ "uecholight", "md_doc_examples.html#autotoc_md51", null ],
-        [ "uecholight for ESP32", "md_doc_examples.html#autotoc_md52", null ]
+      [ "uechosearch", "md_doc_examples.html#autotoc_md48", null ],
+      [ "uechopost", "md_doc_examples.html#autotoc_md49", null ],
+      [ "uechodump", "md_doc_examples.html#autotoc_md50", null ],
+      [ "Examples for ECHONET Lite Devices", "md_doc_examples.html#autotoc_md51", [
+        [ "uecholight", "md_doc_examples.html#autotoc_md52", null ],
+        [ "uecholight for ESP32", "md_doc_examples.html#autotoc_md53", null ]
       ] ],
-      [ "References", "md_doc_examples.html#autotoc_md53", null ]
+      [ "References", "md_doc_examples.html#autotoc_md54", null ]
     ] ],
     [ "Building and Installation", "md_doc_setup.html", [
-      [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md57", null ],
-      [ "Installing from Source", "md_doc_setup.html#autotoc_md58", null ],
-      [ "ESP32 (ESP-IDF)", "md_doc_setup.html#autotoc_md59", null ]
+      [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md58", null ],
+      [ "Installing from Source", "md_doc_setup.html#autotoc_md59", [
+        [ "Standard object database", "md_doc_setup.html#autotoc_md60", null ]
+      ] ],
+      [ "ESP32 (ESP-IDF)", "md_doc_setup.html#autotoc_md61", null ]
     ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
@@ -125,13 +128,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "__class_8h.html",
-"controller_8c.html#ad810dc445d6d24c26afb3720ea7193b6",
-"include_2uecho_2message_8h.html#afd77dd7e7c43ff85afde2e7e9d187b05",
-"md_doc_controller_inside.html#autotoc_md1",
-"node_8h.html#aefd7c36dee7b815a8735b0b4d091ef3ea2a6f51b27ae5a4db222becd42615d74c",
-"property_8c.html#a6f2ea18b24412f6fd8f0421762549424",
-"socket__opt_8h.html#a394f177be2708dd246cd841cbc120c36",
-"structUEchoObject.html#a87f3540a7787152167ea7f44fd463c10"
+"controller_8c.html#a90d33caf985fe58e6202acce3a29b5ea",
+"include_2uecho_2message_8h.html#ab922f466fe60f4df20e371515158e0e0",
+"mcast__server_8c.html#a798c3a8f0985e41682d9fd0c484e5bff",
+"node_8h.html#a6742c09aae7845fe5a02d289fcff578c",
+"objects__mra_8c.html#af9d8e4db046f7f0212e516de770a38e5",
+"socket_8h.html#a1288d937b55708787f088e7c2c9f0983",
+"strings__tokenizer_8c.html#abccc5c5c6c51fa67f6479fc08176f67c"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

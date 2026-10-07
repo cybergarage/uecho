@@ -106,7 +106,9 @@ uEcho options (&lt;tt&gt;idf.py menuconfig&lt;/tt&gt; → &lt;em&gt;Component co
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Option   </th><th class="markdownTableHeadNone">Default   </th><th class="markdownTableHeadNone">Description    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>CONFIG_UECHO_THREAD_STACK_SIZE</code>   </td><td class="markdownTableBodyNone">8192   </td><td class="markdownTableBodyNone">Stack size in bytes for each uEcho worker thread. Node message listeners and property request handlers run on these threads; increase it if your callbacks use a lot of stack.   </td></tr>
+<td class="markdownTableBodyNone"><code>CONFIG_UECHO_THREAD_STACK_SIZE</code>   </td><td class="markdownTableBodyNone">8192   </td><td class="markdownTableBodyNone">Stack size in bytes for each uEcho worker thread. Node message listeners and property request handlers run on these threads; increase it if your callbacks use a lot of stack.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>CONFIG_UECHO_DATABASE_FULL</code> / <code>CONFIG_UECHO_DATABASE_NONE</code>   </td><td class="markdownTableBodyNone">Full   </td><td class="markdownTableBodyNone">Standard object database. <em>None</em> keeps only the super class and the node profile class; see Standard object database.   </td></tr>
 </table>
 <h1><a class="anchor" id="autotoc_md37"></a>
 Starting a node</h1>
@@ -152,10 +154,10 @@ Writing a device</h1>
 <div class="ttc" id="adevice_8c_html_a02dded630518cf2ab02b7e6413308136"><div class="ttname"><a href="device_8c.html#a02dded630518cf2ab02b7e6413308136">uecho_device_new</a></div><div class="ttdeci">uEchoObject * uecho_device_new(void)</div><div class="ttdef"><b>Definition:</b> device.c:17</div></div>
 <div class="ttc" id="aesv_8h_html_a0e84ebfc63091acea33ed8bd6ffa794d"><div class="ttname"><a href="esv_8h.html#a0e84ebfc63091acea33ed8bd6ffa794d">uEchoEsv</a></div><div class="ttdeci">byte uEchoEsv</div><div class="ttdef"><b>Definition:</b> esv.h:25</div></div>
 <div class="ttc" id="ainclude_2uecho_2property_8h_html_af9fdcc8e23fd281b3a30b50fec2804a9a743920fa0fec670b8ef494f6de5b5287"><div class="ttname"><a href="include_2uecho_2property_8h.html#af9fdcc8e23fd281b3a30b50fec2804a9a743920fa0fec670b8ef494f6de5b5287">uEchoPropertyAttrReadWrite</a></div><div class="ttdeci">@ uEchoPropertyAttrReadWrite</div><div class="ttdef"><b>Definition:</b> property.h:40</div></div>
-<div class="ttc" id="aobject_8c_html_a0c67db98b105fdbac1b46041182920da"><div class="ttname"><a href="object_8c.html#a0c67db98b105fdbac1b46041182920da">uecho_object_setproperty</a></div><div class="ttdeci">bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)</div><div class="ttdef"><b>Definition:</b> object.c:415</div></div>
-<div class="ttc" id="aobject_8c_html_a4e5526b45feb3deba0d3328cef24ea3e"><div class="ttname"><a href="object_8c.html#a4e5526b45feb3deba0d3328cef24ea3e">uecho_object_setcode</a></div><div class="ttdeci">void uecho_object_setcode(uEchoObject *obj, uEchoObjectCode val)</div><div class="ttdef"><b>Definition:</b> object.c:204</div></div>
-<div class="ttc" id="aobject_8c_html_a808b37f8523ddc9d54f7ed5ccedb146a"><div class="ttname"><a href="object_8c.html#a808b37f8523ddc9d54f7ed5ccedb146a">uecho_object_setpropertydata</a></div><div class="ttdeci">bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen)</div><div class="ttdef"><b>Definition:</b> object.c:439</div></div>
-<div class="ttc" id="aobject_8c_html_af58c5117790f80da5c2dc6f306433708"><div class="ttname"><a href="object_8c.html#af58c5117790f80da5c2dc6f306433708">uecho_object_setpropertywriterequesthandler</a></div><div class="ttdeci">bool uecho_object_setpropertywriterequesthandler(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyRequestHandler handler)</div><div class="ttdef"><b>Definition:</b> object.c:690</div></div>
+<div class="ttc" id="aobject_8c_html_a0c67db98b105fdbac1b46041182920da"><div class="ttname"><a href="object_8c.html#a0c67db98b105fdbac1b46041182920da">uecho_object_setproperty</a></div><div class="ttdeci">bool uecho_object_setproperty(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyAttr attr)</div><div class="ttdef"><b>Definition:</b> object.c:444</div></div>
+<div class="ttc" id="aobject_8c_html_a4e5526b45feb3deba0d3328cef24ea3e"><div class="ttname"><a href="object_8c.html#a4e5526b45feb3deba0d3328cef24ea3e">uecho_object_setcode</a></div><div class="ttdeci">void uecho_object_setcode(uEchoObject *obj, uEchoObjectCode val)</div><div class="ttdef"><b>Definition:</b> object.c:233</div></div>
+<div class="ttc" id="aobject_8c_html_a808b37f8523ddc9d54f7ed5ccedb146a"><div class="ttname"><a href="object_8c.html#a808b37f8523ddc9d54f7ed5ccedb146a">uecho_object_setpropertydata</a></div><div class="ttdeci">bool uecho_object_setpropertydata(uEchoObject *obj, uEchoPropertyCode code, byte *data, size_t dataLen)</div><div class="ttdef"><b>Definition:</b> object.c:468</div></div>
+<div class="ttc" id="aobject_8c_html_af58c5117790f80da5c2dc6f306433708"><div class="ttname"><a href="object_8c.html#af58c5117790f80da5c2dc6f306433708">uecho_object_setpropertywriterequesthandler</a></div><div class="ttdeci">bool uecho_object_setpropertywriterequesthandler(uEchoObject *obj, uEchoPropertyCode code, uEchoPropertyRequestHandler handler)</div><div class="ttdef"><b>Definition:</b> object.c:719</div></div>
 <div class="ttc" id="aobject__super__class_8c_html_a82e1d1c675ed993833e1a488f89d145d"><div class="ttname"><a href="object__super__class_8c.html#a82e1d1c675ed993833e1a488f89d145d">uecho_object_setmanufacturercode</a></div><div class="ttdeci">bool uecho_object_setmanufacturercode(uEchoObject *obj, uEchoManufactureCode code)</div><div class="ttdef"><b>Definition:</b> object_super_class.c:20</div></div>
 <div class="ttc" id="astructUEchoObject_html"><div class="ttname"><a href="structUEchoObject.html">UEchoObject</a></div><div class="ttdef"><b>Definition:</b> _object.h:32</div></div>
 <div class="ttc" id="astructuEchoProperty_html"><div class="ttname"><a href="structuEchoProperty.html">uEchoProperty</a></div><div class="ttdef"><b>Definition:</b> _property.h:43</div></div>
@@ -205,21 +207,30 @@ Verify from a host</h2>
 <div class="line">192.168.100.56 029101 71 8000</div>
 </div><!-- fragment --><p >The monitor logs <code>POWER = ON</code> / <code>POWER = OFF</code> for each write. <code>71</code> means the write was accepted; <code>51</code> means it was rejected.</p>
 <h1><a class="anchor" id="autotoc_md43"></a>
-Memory usage</h1>
-<p >Measured on ESP32 (ESP-IDF v5.5.1) with the <code>uecholight</code> object:</p>
+Standard object database</h1>
+<p >uEcho includes the standard object, property and manufacturer definitions from the ECHONET Consortium MRA (Machine Readable Appendix). They are const tables, so they stay in flash and use no heap. When an object code is set, the object gets the standard properties of the super class and of its class, and their names are looked up from the tables rather than copied into each object.</p>
+<p >With <code>CONFIG_UECHO_DATABASE_NONE</code>, only the super class and the node profile class are compiled in, because uEcho needs them itself. This saves about 45 KB of flash. In this configuration:</p>
 <ul>
-<li>About 130 KB of heap for the first node. Most of it (about 124 KB) is the standard object database loaded from the MRA, which is shared and kept for the lifetime of the application; it is not freed by <code><a class="el" href="node_8c.html#ad32e8851da49b0ffced1b2185bb8ff1f">uecho_node_delete()</a></code>, and later nodes reuse it.</li>
-<li>One worker thread (stack <code>CONFIG_UECHO_THREAD_STACK_SIZE</code>) per unicast and per multicast receiver, that is two per network interface.</li>
-<li>The <code>uecholight</code> example image is about 880 KB, so the default 1 MB application partition has little headroom left; use a larger partition table for bigger applications.</li>
+<li>Device objects get the super class properties only. Add the class properties your device implements with <code><a class="el" href="object_8c.html#a0c67db98b105fdbac1b46041182920da">uecho_object_setproperty()</a></code>, as the <code>uecholight</code> example does; the property maps then list exactly those properties.</li>
+<li>Remote objects found by a controller get the super class properties only.</li>
+<li><code><a class="el" href="object_8c.html#a3db5c901e6ad02f917958be706028352">uecho_object_getname()</a></code> and <code><a class="el" href="property_8c.html#a6f2ea18b24412f6fd8f0421762549424">uecho_property_getname()</a></code> return <code>NULL</code> for names outside the two classes, and <code><a class="el" href="database_8c.html#aa7bbeafde2b2868c88a2a33ec31d488c">uecho_database_getmanufacture()</a></code> always returns <code>NULL</code>.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md44"></a>
+Memory usage</h1>
+<ul>
+<li>The standard object database uses no heap; it is a const table in flash. Up to v1.4.1 it was built on the heap at first use and took about 124 KB on ESP32.</li>
+<li>An object with standard properties takes about 1.4 KB (mono functional lighting) to 3.5 KB (home air conditioner) of heap, measured on a 32-bit host build. Remote objects found by a controller take the same.</li>
+<li>One worker thread (stack <code>CONFIG_UECHO_THREAD_STACK_SIZE</code>) per unicast and per multicast receiver, that is two per network interface.</li>
+<li>The <code>uecholight</code> example image was about 880 KB with v1.4.1, so the default 1 MB application partition has little headroom left; use a larger partition table for bigger applications.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md45"></a>
 Platform differences</h1>
 <ul>
 <li>IPv4 only. IPv6 multicast is not joined on ESP-IDF.</li>
 <li>POSIX signals are not available; worker threads poll a stop flag and their sockets use a 1 second receive timeout, so <code><a class="el" href="node_8c.html#ae8e6bacfe16160d32c3348cb23508b83">uecho_node_stop()</a></code> can take up to about one second.</li>
 <li>Network interfaces are enumerated with <code>esp_netif</code>, and only interfaces that are up and have an IPv4 address are used.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md45"></a>
+<h1><a class="anchor" id="autotoc_md46"></a>
 Troubleshooting</h1>
 <ul>
 <li>**<code>Could not exclusively lock port /dev/ttyUSB0</code>**: another program has the serial port open, usually an earlier <code>idf.py monitor</code>. Exit it with <code>Ctrl+]</code>, or find it with <code>fuser -v /dev/ttyUSB0</code> (or <code>lsof /dev/ttyUSB0</code>). Serial monitors in editors and ModemManager can also hold the port.</li>
