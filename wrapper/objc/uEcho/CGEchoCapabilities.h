@@ -68,8 +68,12 @@ typedef NS_ENUM(NSInteger, CGEchoCapabilityState) {
 @property (nonatomic, readonly, copy) NSString* name;
 /// Raw uEchoPropertyAttr flags, including separate mandatory bits.
 @property (nonatomic, readonly) uint8_t standardAttributes;
-/// The compiled tables do not retain data types, units or enumerated values.
+/// YES when this build retains the original MRA data schema.
 @property (nonatomic, readonly) BOOL hasValueMetadata;
+/// Immutable original MRA schema; refs resolve via CGEchoStandardClass.valueDefinitions.
+/// Type/size/enum/range/unit are present only where defined.
+/// nil when disabled or absent. This is metadata, not a generic EDT decoder.
+@property (nonatomic, readonly, copy, nullable) NSDictionary<NSString*, id>* valueSchema;
 @end
 
 @interface CGEchoStandardClass : NSObject <NSCopying>
@@ -86,6 +90,9 @@ typedef NS_ENUM(NSInteger, CGEchoCapabilityState) {
 /// Provenance of the checked-in generated tables, not a conformance certification.
 + (NSString*)sourceDescription;
 + (BOOL)hasFullDatabase;
+/// Shared immutable definitions for local #/definitions/name refs, or nil when disabled.
+/// Schema siblings are preserved verbatim; this API does not guess merge/decoding rules.
++ (nullable NSDictionary<NSString*, id>*)valueDefinitions;
 @end
 
 NS_ASSUME_NONNULL_END

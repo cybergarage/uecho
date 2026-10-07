@@ -138,7 +138,9 @@ let observation = controller.observeNotifications(of: object) { value in
 ROM tables. It is independent of a controller and exposes no borrowed pointers.
 `hasFullDatabase` distinguishes full and none builds; none retains only superclass
 and node profile definitions. Unknown/excluded classes return nil. Appliance
-lookup includes superclass definitions with the same precedence as the C API;
+lookup uses device-specific definitions first, then superclass fallback (MRA
+guidebook 3.3). This corrects the initial metadata API precedence; the C device
+construction defaults are unchanged and have different precedence;
 node profiles use their own definitions. Unknown/vendor EPCs remain in remote maps.
 
 ```objc
@@ -152,11 +154,59 @@ let name = definition?.properties[0x80]?.name
 // Intersect with the remote object's fetched Get map before offering a read.
 ```
 
-The generated header identifies `MRA_en_v1.3.0`. Upstream revised access flags
-using reverse-generated fixtures; authoritative raw v1.3.0 reconciliation remains
-pending. `sourceDescription` reports this limitation. These flags describe standard
-requirements/options, not verified support or standards conformance. Only a valid
-remote Get/Set/notification map establishes the device's declared capabilities;
-a successful read is still needed for current state. No type, unit, range or value
-enumeration survives in the current ROM representation (`hasValueMetadata == NO`).
-Older local MRA copies must not be presented as the compiled table's current schema.
+The checked-in names and access flags were reconciled on 2026-10-07 against
+[the official English MRA 1.3.0 archive](https://echonet.jp/spec_mra_rr2_en/).
+Before adding schema fields, regeneration was byte-for-byte identical to the
+checked-in C table, including the upstream access-flag revisions. Archive SHA256:
+`db8ebf5fe33027255cba4f9da7f7f747ade4a1d65783a9e7e1cb4a95f7d65780`.
+Data version is 1.3.0, format version 1.2.0, release R. The archive's permissive
+copyright/permission notice is retained in `src/uecho/std/MRA-COPYRIGHT.txt`.
+MRA is reference data, not a substitute for normative specifications or certification.
+
+These flags describe standard definitions/options, not verified device support.
+Only a valid remote Get/Set/notification map establishes declared capabilities;
+a successful read is still needed for current state. Conditional/option-required
+access flags remain non-mandatory bits. Unknown/vendor EPCs remain in remote maps.
+
+### Optional value schemas
+
+`UECHO_DATABASE_VALUE_METADATA=1` retains original MRA `data` JSON in the same
+C ROM property entries, with one shared `definitions` dictionary. The Objective-C
+framework enables this option in Debug/Release; ordinary C/MCU builds omit it.
+Metadata-disabled builds preserve the property-table layout and exclude schema
+strings; all translation units must use consistent internal table build flags.
+None builds still exclude appliance classes. With metadata enabled they retain
+essential-class schemas and the shared definitions dictionary, so it adds ROM
+cost even in none mode. No second database or controller-owned C pointers are
+exposed to callers.
+
+`valueSchema` and `CGEchoStandardClass.valueDefinitions` return immutable
+Foundation graphs, or nil when disabled/absent. Types, sizes, enums, ranges,
+units, nested arrays/objects, `oneOf`, coefficient references and special codes
+are available only where the source contains them. Local `$ref` nodes and their
+siblings remain original; consumers must interpret them with the MRA guidebook.
+Missing/external/cyclic references fail generation. This API neither guesses
+reference override semantics nor claims to decode/validate arbitrary EDT values.
+
+```objc
+CGEchoStandardProperty *status = definition.properties[@0x80];
+NSDictionary *schema = status.valueSchema;
+NSDictionary *definitions = [CGEchoStandardClass valueDefinitions];
+// For this AC property: schema[@"$ref"] == @"#/definitions/state_ON-OFF_3031".
+NSDictionary *state = definitions[@"state_ON-OFF_3031"];
+NSLog(@"%@ %@", state[@"type"], state[@"enum"]);
+```
+
+```swift
+let status = definition?.properties[0x80]
+let schema = status?.valueSchema
+let definitions = CGEchoStandardClass.valueDefinitions()
+let state = definitions?["state_ON-OFF_3031"] as? [String: Any]
+// Display source-defined metadata; check the actual Get map before offering a read.
+```
+
+Verification: generator fixtures compile full/none with metadata on/off, and
+reject missing/external/cyclic refs. Mac tests pass full (35 fixtures) and none
+(12 metadata fixtures) with ASan/UBSan, and disabled (12) without sanitizers.
+Unsigned iPhone architecture framework/app builds and real Swift import also
+pass. No household device is contacted by these checks.

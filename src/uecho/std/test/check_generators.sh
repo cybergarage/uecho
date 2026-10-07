@@ -79,13 +79,56 @@ for name in objects_mra.c manufacturers.c "$STD_DIR/objects_mra.c" "$STD_DIR/man
   /*) src="$name" ;;
   *) src="$WORK_DIR/$name" ;;
   esac
-  for defs in "" "-DUECHO_DATABASE_NONE"; do
+  for defs in "" "-DUECHO_DATABASE_NONE" "-DUECHO_DATABASE_VALUE_METADATA=1" "-DUECHO_DATABASE_NONE -DUECHO_DATABASE_VALUE_METADATA=1"; do
     if $CC -Wall -Werror -fsyntax-only -I "$ROOT_DIR/include" -I "$ROOT_DIR/src" $defs "$src"; then
       pass "$src compiles ${defs:-(full)}"
     else
       fail "$src does not compile ${defs:-(full)}"
     fi
   done
+done
+
+# Runtime gating: enabled schemas retain original refs/siblings and one shared
+# definitions dictionary; disabled and none builds must not fabricate metadata.
+cat > "$WORK_DIR/schema-check.c" <<'C'
+#include <assert.h>
+#include <string.h>
+#include <uecho/std/_standard.h>
+int main(void) {
+#if defined(UECHO_DATABASE_NONE)
+  assert(uecho_std_objectcount == 2);
+#else
+  assert(uecho_std_objectcount > 2);
+#endif
+#if defined(UECHO_DATABASE_VALUE_METADATA) && UECHO_DATABASE_VALUE_METADATA
+  assert(uecho_std_value_definitions);
+  assert(strstr(uecho_std_value_definitions, "level"));
+#if !defined(UECHO_DATABASE_NONE)
+  int found = 0;
+  for (size_t n = 0; n < uecho_std_objectcount; n++) {
+    const uEchoStdObject* obj = &uecho_std_objects[n];
+    if (obj->grpCode != 2 || obj->clsCode != 0x91) continue;
+    for (size_t p = 0; p < obj->propCnt; p++) {
+      if (obj->props[p].code != 0xB0) continue;
+      assert(strstr(obj->props[p].valueSchema, "#/definitions/level"));
+      assert(strstr(obj->props[p].valueSchema, "\"multipleOf\":2"));
+      found = 1;
+    }
+  }
+  assert(found);
+#endif
+#else
+  assert(!uecho_std_value_definitions);
+#endif
+  return 0;
+}
+C
+for defs in "" "-DUECHO_DATABASE_NONE" "-DUECHO_DATABASE_VALUE_METADATA=1" "-DUECHO_DATABASE_NONE -DUECHO_DATABASE_VALUE_METADATA=1"; do
+  if $CC -Wall -Werror -I "$ROOT_DIR/include" -I "$ROOT_DIR/src" $defs "$WORK_DIR/objects_mra.c" "$WORK_DIR/schema-check.c" -o "$WORK_DIR/schema-check" && "$WORK_DIR/schema-check"; then
+    pass "schema runtime gating ${defs:-(full, disabled)}"
+  else
+    fail "schema runtime gating $defs"
+  fi
 done
 
 # Invalid input must fail instead of generating a wrong database.
@@ -98,7 +141,7 @@ expect_objects_failure() {
   rm -rf "$WORK_DIR/bad"
   cp -r "$TEST_DIR/mra" "$WORK_DIR/bad"
   if [ -n "$from" ]; then
-    perl -0pi -e "s/\Q$from\E/$to/" "$WORK_DIR/bad/$file"
+    FROM="$from" TO="$to" perl -0pi -e 's/\Q$ENV{FROM}\E/$ENV{TO}/' "$WORK_DIR/bad/$file"
   else
     rm -f "$WORK_DIR/bad/$file"
   fi
@@ -110,7 +153,7 @@ expect_objects_failure() {
 }
 
 expect_objects_failure "an unknown access rule" "mraData/devices/0x0291.json" '"get": "optional"' '"get": "required_x"'
-expect_objects_failure "a missing access rule" "mraData/devices/0x0291.json" '"set": "optional", ' ''
+expect_objects_failure "a missing access rule" "mraData/devices/0x0291.json" '"set": "optional",' ''
 expect_objects_failure "an invalid EPC" "mraData/devices/0x0291.json" '"epc": "0xB0"' '"epc": "0xBG"'
 expect_objects_failure "an EPC below 0x80" "mraData/devices/0x0291.json" '"epc": "0xB0"' '"epc": "0x70"'
 expect_objects_failure "an invalid EOJ" "mraData/devices/0x0291.json" '"eoj": "0x0291"' '"eoj": "0x291"'
@@ -118,6 +161,10 @@ expect_objects_failure "a missing class name" "mraData/devices/0x0291.json" '"en
 expect_objects_failure "broken JSON" "mraData/devices/0x0291.json" '"elProperties": [' '"elProperties": [,'
 expect_objects_failure "a missing node profile" "mraData/nodeProfile/0x0EF0.json" "" ""
 expect_objects_failure "a missing super class" "mraData/superClass/0x0000.json" "" ""
+
+expect_objects_failure "a missing schema definition" "mraData/definitions/definitions.json" '"level"' '"absent"'
+expect_objects_failure "an external schema reference" "mraData/devices/0x0291.json" '#/definitions/level' 'https://invalid.example/schema'
+expect_objects_failure "a cyclic schema reference" "mraData/definitions/definitions.json" '"type": "number"' '"$ref": "#/definitions/level"'
 
 printf 'Code,Name\nxyz,No codes\n' > "$WORK_DIR/empty.csv"
 if perl "$STD_DIR/manufacturers.pl" "$WORK_DIR/empty.csv" > /dev/null 2>&1; then

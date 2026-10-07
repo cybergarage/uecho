@@ -168,11 +168,19 @@ static NSError* CGEchoMapError(NSString* reason)
   _epc = definition->code;
   _name = [[NSString alloc] initWithUTF8String:definition->name];
   _standardAttributes = definition->attr;
+#if defined(UECHO_DATABASE_VALUE_METADATA) && UECHO_DATABASE_VALUE_METADATA
+  if (definition->valueSchema) {
+    NSData* data = [[NSString stringWithUTF8String:definition->valueSchema] dataUsingEncoding:NSUTF8StringEncoding];
+    id schema = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    if ([schema isKindOfClass:NSDictionary.class])
+      _valueSchema = schema;
+  }
+#endif
   return self;
 }
 - (BOOL)hasValueMetadata
 {
-  return NO;
+  return self.valueSchema != nil;
 }
 - (id)copyWithZone:(NSZone*)zone
 {
@@ -198,10 +206,10 @@ static NSError* CGEchoMapError(NSString* reason)
   _classCode = definition->clsCode;
   _name = [[NSString alloc] initWithUTF8String:definition->name];
   NSMutableDictionary* properties = [NSMutableDictionary dictionary];
-  // Match the C library: superclass definitions take precedence. Node profiles
-  // have their own profile definitions, not appliance superclass properties.
+  // MRA guidebook section 3.3: device definitions override superclass metadata.
+  // Node profiles have their own definitions. This does not alter C device defaults.
   const uEchoStdObject* superclass = definition->grpCode == 0x0E ? NULL : uecho_std_getobject(0, 0);
-  const uEchoStdObject* sources[] = { superclass, definition };
+  const uEchoStdObject* sources[] = { definition, superclass };
   for (NSUInteger source = 0; source < 2; source++) {
     const uEchoStdObject* object = sources[source];
     if (!object)
@@ -229,7 +237,21 @@ static NSError* CGEchoMapError(NSString* reason)
 }
 + (NSString*)sourceDescription
 {
-  return @"Compiled uEcho C tables; generated header identifies MRA_en_v1.3.0. Access flags were revised upstream; raw v1.3.0 reconciliation is pending.";
+  return [NSString stringWithFormat:@"Compiled uEcho C tables generated from %s; MRA is reference data, not certification. See source reconciliation and schema limitations in doc/objc.md.", uecho_std_source_version];
+}
++ (NSDictionary*)valueDefinitions
+{
+  static NSDictionary* definitions;
+  static dispatch_once_t once;
+  dispatch_once(&once, ^{
+      if (uecho_std_value_definitions) {
+        NSData* data = [[NSString stringWithUTF8String:uecho_std_value_definitions] dataUsingEncoding:NSUTF8StringEncoding];
+        id value = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        if ([value isKindOfClass:NSDictionary.class])
+          definitions = value;
+      }
+  });
+  return definitions;
 }
 + (BOOL)hasFullDatabase
 {

@@ -1,1 +1,11 @@
-{ "definitions": {} }
+{
+  "definitions": {
+    "level": {
+      "type": "number",
+      "format": "uint8",
+      "minimum": 0,
+      "maximum": 100,
+      "unit": "percent"
+    }
+  }
+}
