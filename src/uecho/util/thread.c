@@ -89,8 +89,10 @@ uEchoThread* uecho_thread_new(void)
   thread->runnableFlag = false;
   thread->action = NULL;
   thread->userData = NULL;
-#if defined(ESP_PLATFORM)
+#if !defined(WIN32)
   thread->joinable = false;
+#endif
+#if defined(ESP_PLATFORM)
   thread->task = NULL;
 #endif
 
@@ -106,7 +108,7 @@ bool uecho_thread_delete(uEchoThread* thread)
   if (!thread)
     return false;
 
-#if defined(ESP_PLATFORM)
+#if !defined(WIN32)
   /* Also joins a worker whose action already returned without an explicit stop. */
   uecho_thread_stop(thread);
 #else
@@ -164,12 +166,19 @@ bool uecho_thread_start(uEchoThread* thread)
   pthread_attr_destroy(&threadAttr);
 #else
   pthread_attr_t threadAttr;
+  if (thread->joinable) {
+    /* Reap a previous run before reusing this object. */
+    uecho_thread_stop(thread);
+    thread->runnableFlag = true;
+  }
+
   if (pthread_attr_init(&threadAttr) != 0) {
     thread->runnableFlag = false;
     return false;
   }
 
-  if (pthread_attr_setdetachstate(&threadAttr, PTHREAD_CREATE_DETACHED) != 0) {
+  /* Keep workers joinable so stop() can wait before their objects are freed. */
+  if (pthread_attr_setdetachstate(&threadAttr, PTHREAD_CREATE_JOINABLE) != 0) {
     thread->runnableFlag = false;
     pthread_attr_destroy(&threadAttr);
     return false;
@@ -180,6 +189,7 @@ bool uecho_thread_start(uEchoThread* thread)
     pthread_attr_destroy(&threadAttr);
     return false;
   }
+  thread->joinable = true;
   pthread_attr_destroy(&threadAttr);
 #endif
 
@@ -208,17 +218,24 @@ bool uecho_thread_stop(uEchoThread* thread)
     }
     thread->task = NULL;
   }
-#else
+#elif defined(WIN32)
   if (thread->runnableFlag == true) {
     thread->runnableFlag = false;
-#if defined(WIN32)
     TerminateThread(thread->hThread, 0);
     WaitForSingleObject(thread->hThread, INFINITE);
+  }
 #else
-    pthread_kill(thread->pThread, 0);
-    /* Now we wait one second for thread termination instead of using pthread_join */
-    uecho_sleep(UECHO_THREAD_MIN_SLEEP);
-#endif
+  /* Workers poll runnableFlag and wake at least every receive timeout, so join is bounded. */
+  thread->runnableFlag = false;
+  if (thread->joinable) {
+    thread->joinable = false;
+    if (pthread_equal(thread->pThread, pthread_self())) {
+      /* A worker stopping itself cannot join; let it release itself on exit. */
+      pthread_detach(thread->pThread);
+    }
+    else {
+      pthread_join(thread->pThread, NULL);
+    }
   }
 #endif
 
