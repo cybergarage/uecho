@@ -19,6 +19,7 @@ void uecho_standard_freedatabase(void)
   if (!gSharedStdDatabase)
     return;
   uecho_database_delete(gSharedStdDatabase);
+  gSharedStdDatabase = NULL;
 }
 
 /****************************************
@@ -31,8 +32,8 @@ uEchoDatabase* uecho_standard_getdatabase(void)
     gSharedStdDatabase = uecho_database_new();
     if (!gSharedStdDatabase)
       return NULL;
-    uecho_database_addstandardmanufactures(gSharedStdDatabase);
-    uecho_database_addstandardobjects(gSharedStdDatabase);
+    // Entries are materialized from the const tables when they are looked up.
+    gSharedStdDatabase->isStandard = true;
     atexit(uecho_standard_freedatabase);
   }
   return gSharedStdDatabase;

@@ -17,6 +17,8 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y automake libboost-all-dev
+    - name: check database generators
+      run: src/uecho/std/test/check_generators.sh
     - name: bootstrap 
       run: ./bootstrap
     - name: configure

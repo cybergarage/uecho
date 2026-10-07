@@ -16,7 +16,7 @@
 #include <uecho/misc.h>
 #include <uecho/node.h>
 #include <uecho/profile.h>
-#include <uecho/std/database.h>
+#include <uecho/std/_standard.h>
 #include <uecho/util/timer.h>
 
 /****************************************
@@ -34,7 +34,8 @@ uEchoObject* uecho_object_new(void)
 
   uecho_list_node_init((uEchoList*)obj);
 
-  obj->name = uecho_string_new();
+  // The name is allocated only when it is set; see uecho_object_getname().
+  obj->name = NULL;
 
   uecho_object_setparentnode(obj, NULL);
 
@@ -60,7 +61,7 @@ uEchoObject* uecho_object_new(void)
 
   // Mandatory Properties
 
-  if (!obj->name || !obj->properties || !obj->propListenerMgr) {
+  if (!obj->properties || !obj->propListenerMgr) {
     uecho_object_delete(obj);
     return NULL;
   }
@@ -142,6 +143,12 @@ void uecho_object_setname(uEchoObject* obj, const char* name)
   if (!obj)
     return;
 
+  if (!obj->name) {
+    obj->name = uecho_string_new();
+    if (!obj->name)
+      return;
+  }
+
   uecho_string_setvalue(obj->name, name);
 }
 
@@ -151,10 +158,17 @@ void uecho_object_setname(uEchoObject* obj, const char* name)
 
 const char* uecho_object_getname(uEchoObject* obj)
 {
+  const char* name;
+
   if (!obj)
     return NULL;
 
-  return uecho_string_getvalue(obj->name);
+  name = uecho_string_getvalue(obj->name);
+  if (name)
+    return name;
+
+  // Standard object names are not copied into each object.
+  return uecho_std_getobjectname(obj->code[0], obj->code[1]);
 }
 
 /****************************************
@@ -163,24 +177,39 @@ const char* uecho_object_getname(uEchoObject* obj)
 
 bool uecho_object_addstandardpropertieswithcode(uEchoObject* obj, byte grpCode, byte clsCode)
 {
-  uEchoDatabase* db;
-  uEchoObject* stdObj;
-
   if (!obj)
     return false;
 
-  db = uecho_standard_getdatabase();
-  if (!db)
+  return uecho_object_addstandardobjectproperties(obj, uecho_std_getobject(grpCode, clsCode));
+}
+
+/****************************************
+ * uecho_object_addstandardobjectproperties
+ ****************************************/
+
+bool uecho_object_addstandardobjectproperties(uEchoObject* obj, const uEchoStdObject* stdObj)
+{
+  uEchoProperty* prop;
+  size_t n;
+
+  if (!obj || !stdObj)
     return false;
 
-  stdObj = uecho_database_getobject(db, grpCode, clsCode);
-  if (!stdObj)
-    return false;
-
-  uecho_object_setname(obj, uecho_object_getname(stdObj));
-
-  if (!uecho_object_addmissingobjectproperties(obj, stdObj))
-    return false;
+  // Only the code and the attribute are copied. The name is looked up from
+  // the standard table when it is requested; see uecho_property_getname().
+  for (n = 0; n < stdObj->propCnt; n++) {
+    if (uecho_object_hasproperty(obj, stdObj->props[n].code))
+      continue;
+    prop = uecho_property_new();
+    if (!prop)
+      return false;
+    uecho_property_setcode(prop, stdObj->props[n].code);
+    uecho_property_setattribute(prop, stdObj->props[n].attr);
+    if (!uecho_object_addproperty(obj, prop)) {
+      uecho_property_delete(prop);
+      return false;
+    }
+  }
 
   return true;
 }

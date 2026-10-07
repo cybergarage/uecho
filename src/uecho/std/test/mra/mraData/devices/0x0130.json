@@ -1,0 +1,16 @@
+{
+  "eoj": "0x0130",
+  "className": { "ja": "家庭用エアコン", "en": "Home air conditioner" },
+  "elProperties": [
+    {
+      "epc": "0xB3",
+      "propertyName": { "ja": "温度設定値", "en": "Set temperature value (°C)" },
+      "accessRule": { "get": "required", "set": "required", "inf": "optional" }
+    },
+    {
+      "epc": "0xC0",
+      "propertyName": { "ja": "名前", "en": "Name with \"quotes\", back\\slash and ??= trigraph" },
+      "accessRule": { "get": "required_c", "set": "required_o", "inf": "required_c" }
+    }
+  ]
+}

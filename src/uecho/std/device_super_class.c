@@ -12,7 +12,7 @@
 
 #include <uecho/_object.h>
 #include <uecho/device.h>
-#include <uecho/std/database.h>
+#include <uecho/std/_standard.h>
 
 /****************************************
  * uecho_device_addmandatoryproperties
@@ -20,21 +20,10 @@
 
 bool uecho_device_addmandatoryproperties(uEchoObject* obj)
 {
-  uEchoDatabase* db;
-  uEchoObject* superObj;
-
   if (!obj)
     return false;
 
-  db = uecho_standard_getdatabase();
-  if (!db)
-    return false;
-
-  superObj = uecho_database_getobject(db, 0x00, 0x00);
-  if (!superObj)
-    return false;
-
-  if (!uecho_object_addmissingobjectproperties(obj, superObj))
+  if (!uecho_object_addstandardobjectproperties(obj, uecho_std_getobject(0x00, 0x00)))
     return false;
 
   uecho_device_setoperatingstatus(obj, true);

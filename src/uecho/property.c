@@ -13,6 +13,7 @@
 #include <uecho/_node.h>
 #include <uecho/_property.h>
 #include <uecho/profile.h>
+#include <uecho/std/_standard.h>
 
 #include <uecho/misc.h>
 
@@ -40,7 +41,8 @@ uEchoProperty* uecho_property_new(void)
 
   uecho_list_node_init((uEchoList*)prop);
 
-  prop->name = uecho_string_new();
+  // The name is allocated only when it is set; see uecho_property_getname().
+  prop->name = NULL;
   prop->code = 0x00;
   prop->data = NULL;
   prop->data_size = 0;
@@ -48,11 +50,6 @@ uEchoProperty* uecho_property_new(void)
   uecho_property_setparentobject(prop, NULL);
   uecho_property_setattribute(prop, uEchoPropertyAttrReadWrite);
   uecho_property_settype(prop, uEchoPropertyTypeNone);
-
-  if (!prop->name) {
-    uecho_property_delete(prop);
-    return NULL;
-  }
 
   return prop;
 }
@@ -454,6 +451,13 @@ void uecho_property_setname(uEchoProperty* prop, const char* name)
 {
   if (!prop)
     return;
+
+  if (!prop->name) {
+    prop->name = uecho_string_new();
+    if (!prop->name)
+      return;
+  }
+
   uecho_string_setvalue(prop->name, name);
 }
 
@@ -463,9 +467,22 @@ void uecho_property_setname(uEchoProperty* prop, const char* name)
 
 const char* uecho_property_getname(uEchoProperty* prop)
 {
+  uEchoObject* obj;
+  const char* name;
+
   if (!prop)
     return NULL;
-  return uecho_string_getvalue(prop->name);
+
+  name = uecho_string_getvalue(prop->name);
+  if (name)
+    return name;
+
+  // Standard property names are not copied into each property.
+  obj = uecho_property_getparentobject(prop);
+  if (!obj)
+    return NULL;
+
+  return uecho_std_getpropertyname(uecho_object_getgroupcode(obj), uecho_object_getclasscode(obj), prop->code);
 }
 
 /****************************************
@@ -685,7 +702,10 @@ uEchoProperty* uecho_property_copy(uEchoProperty* srcProp)
 
   uEchoMutex* mutex = uecho_property_lockdata(srcProp);
   uecho_property_setcode(newProp, uecho_property_getcode(srcProp));
-  uecho_property_setname(newProp, uecho_property_getname(srcProp));
+  // Copies only an explicitly set name. A standard name is looked up from the
+  // new parent object.
+  if (uecho_string_getvalue(srcProp->name))
+    uecho_property_setname(newProp, uecho_string_getvalue(srcProp->name));
   uecho_property_setattribute(newProp, uecho_property_getattribute(srcProp));
   uecho_property_setdata(newProp, uecho_property_getdata(srcProp), uecho_property_getdatasize(srcProp));
   uecho_mutex_unlock(mutex);

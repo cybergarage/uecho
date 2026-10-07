@@ -1,0 +1,21 @@
+{
+  "eoj": "0x0EF0",
+  "className": { "ja": "ノードプロファイル", "en": "Node profile" },
+  "elProperties": [
+    {
+      "epc": "0x80",
+      "propertyName": { "ja": "動作状態", "en": "Operation status" },
+      "accessRule": { "get": "required", "set": "notApplicable", "inf": "required" }
+    },
+    {
+      "epc": "0xD5",
+      "propertyName": { "ja": "インスタンスリスト通知", "en": "Instance list notification" },
+      "accessRule": { "get": "notApplicable", "set": "notApplicable", "inf": "required" }
+    },
+    {
+      "epc": "0xD6",
+      "propertyName": { "ja": "自ノードインスタンスリストS", "en": "Self-node instance list S" },
+      "accessRule": { "get": "required", "set": "notApplicable", "inf": "optional" }
+    }
+  ]
+}
