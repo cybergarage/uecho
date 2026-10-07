@@ -102,7 +102,7 @@ var menudata={children:[
 {text:"u",url:"globals_eval.html#index_u"}]},
 {text:"Macros",url:"globals_defs.html",children:[
 {text:"b",url:"globals_defs.html#index_b"},
-{text:"f",url:"globals_defs.html#index_f"},
-{text:"m",url:"globals_defs.html#index_m"},
-{text:"t",url:"globals_defs.html#index_t"},
-{text:"u",url:"globals_defs.html#index_u"}]}]}]}]}
+{text:"f",url:"globals_defs_f.html#index_f"},
+{text:"m",url:"globals_defs_m.html#index_m"},
+{text:"t",url:"globals_defs_t.html#index_t"},
+{text:"u",url:"globals_defs_u.html#index_u"}]}]}]}]}

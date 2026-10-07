@@ -12,5 +12,7 @@ var __standard_8h =
     [ "uecho_std_manufacturecount", "__standard_8h.html#a3de392d95dd4c783e2169bc9f491277e", null ],
     [ "uecho_std_manufactures", "__standard_8h.html#a6e880bdfedf5208125c0c0900b43b9a5", null ],
     [ "uecho_std_objectcount", "__standard_8h.html#a485584b82b5885af75d9d22d7995b2e2", null ],
-    [ "uecho_std_objects", "__standard_8h.html#a52cf1b2564d3e8305788beb382588d2e", null ]
+    [ "uecho_std_objects", "__standard_8h.html#a52cf1b2564d3e8305788beb382588d2e", null ],
+    [ "uecho_std_source_version", "__standard_8h.html#a31e563d8c538acf9ec8c5fa4b5c62e0a", null ],
+    [ "uecho_std_value_definitions", "__standard_8h.html#ab503e9eaa7e42f9d353b8b9bdf23d559", null ]
 ];

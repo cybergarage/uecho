@@ -26,7 +26,7 @@ var NAVTREE =
 [
   [ "uEcho for C", "index.html", [
     [ "Overview", "index.html", [
-      [ "What is uEcho?", "index.html#autotoc_md69", null ]
+      [ "What is uEcho?", "index.html#autotoc_md70", null ]
     ] ],
     [ "Inside of uEcho Controller", "md_doc_controller_inside.html", [
       [ "Node Profile Object", "md_doc_controller_inside.html#autotoc_md1", null ],
@@ -110,14 +110,16 @@ var NAVTREE =
       [ "Behavior", "md_doc_objc.html#autotoc_md64", null ],
       [ "iOS apps", "md_doc_objc.html#autotoc_md65", null ],
       [ "SwiftUI sample", "md_doc_objc.html#autotoc_md66", null ],
-      [ "Standard metadata (additive API)", "md_doc_objc.html#autotoc_md67", null ]
+      [ "Standard metadata (additive API)", "md_doc_objc.html#autotoc_md67", [
+        [ "Optional value schemas", "md_doc_objc.html#autotoc_md68", null ]
+      ] ]
     ] ],
     [ "Building and Installation", "md_doc_setup.html", [
-      [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md71", null ],
-      [ "Installing from Source", "md_doc_setup.html#autotoc_md72", [
-        [ "Standard object database", "md_doc_setup.html#autotoc_md73", null ]
+      [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md72", null ],
+      [ "Installing from Source", "md_doc_setup.html#autotoc_md73", [
+        [ "Standard object database", "md_doc_setup.html#autotoc_md74", null ]
       ] ],
-      [ "ESP32 (ESP-IDF)", "md_doc_setup.html#autotoc_md74", null ]
+      [ "ESP32 (ESP-IDF)", "md_doc_setup.html#autotoc_md75", null ]
     ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
@@ -135,7 +137,7 @@ var NAVTREE =
         [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
         [ "Enumerator", "globals_eval.html", "globals_eval" ],
-        [ "Macros", "globals_defs.html", null ]
+        [ "Macros", "globals_defs.html", "globals_defs" ]
       ] ]
     ] ]
   ] ]
@@ -144,14 +146,17 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "__class_8h.html",
-"controller_8c.html#a90d33caf985fe58e6202acce3a29b5ea",
-"include_2uecho_2message_8h.html#ab922f466fe60f4df20e371515158e0e0",
-"mcast__server_8c.html#a798c3a8f0985e41682d9fd0c484e5bff",
-"node_8h.html#a0f9d8ef5b8bdd7326e8d604301707b37",
-"objects__mra_8c.html#acf17d2b9471ba6a68ad53ba815200c48",
-"socket_8c.html#ab4a1b1c17386318e7f1a3c8e6d66c040",
-"strings__function_8c.html#ab41a76bd50275f160fa28c044360fe07",
-"udp__server__list_8c.html#aeeb906fbc9e0c3d962ec8dd64738af32"
+"controller_8c.html#a8b6a65066125cbda0fecc46464e8e540",
+"include_2uecho_2message_8h.html#aa57c6180c98ea36577fa6ef009928e5a",
+"mcast__server_8c.html#a16fa55f00a4e8441b93e10b18a9f8201",
+"node_8c.html#ad32e8851da49b0ffced1b2185bb8ff1f",
+"objects__mra_8c.html#a0af0b02b3bf3ebf5946694738d50f13a",
+"objects__mra_8c.html#a521bb4178525d6941157b005c20c6808",
+"objects__mra_8c.html#a980b7f4629e4e1e724c7a2b4271da9b1",
+"objects__mra_8c.html#ae15e662ec78e75dba0b15259f95236e9",
+"server_8h.html",
+"strings_8c.html#a77251a29cfa69c4c5b95d9cb453df3ca",
+"structuEchoPropertyEnum.html#aa1eb39028ab91c2598f6824e72dc69dd"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
