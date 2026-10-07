@@ -20,6 +20,8 @@
 
 set -u
 
+LIGHT_FIXTURE="mraData/devices/0x0291.json"
+
 TEST_DIR=$(cd "$(dirname "$0")" && pwd)
 STD_DIR=$(cd "$TEST_DIR/.." && pwd)
 ROOT_DIR=$(cd "$STD_DIR/../../.." && pwd)
@@ -152,18 +154,18 @@ expect_objects_failure() {
   fi
 }
 
-expect_objects_failure "an unknown access rule" "mraData/devices/0x0291.json" '"get": "optional"' '"get": "required_x"'
-expect_objects_failure "a missing access rule" "mraData/devices/0x0291.json" '"set": "optional",' ''
-expect_objects_failure "an invalid EPC" "mraData/devices/0x0291.json" '"epc": "0xB0"' '"epc": "0xBG"'
-expect_objects_failure "an EPC below 0x80" "mraData/devices/0x0291.json" '"epc": "0xB0"' '"epc": "0x70"'
-expect_objects_failure "an invalid EOJ" "mraData/devices/0x0291.json" '"eoj": "0x0291"' '"eoj": "0x291"'
-expect_objects_failure "a missing class name" "mraData/devices/0x0291.json" '"en": "Mono functional lighting"' '"fr": "Mono functional lighting"'
-expect_objects_failure "broken JSON" "mraData/devices/0x0291.json" '"elProperties": [' '"elProperties": [,'
+expect_objects_failure "an unknown access rule" "$LIGHT_FIXTURE" '"get": "optional"' '"get": "required_x"'
+expect_objects_failure "a missing access rule" "$LIGHT_FIXTURE" '"set": "optional",' ''
+expect_objects_failure "an invalid EPC" "$LIGHT_FIXTURE" '"epc": "0xB0"' '"epc": "0xBG"'
+expect_objects_failure "an EPC below 0x80" "$LIGHT_FIXTURE" '"epc": "0xB0"' '"epc": "0x70"'
+expect_objects_failure "an invalid EOJ" "$LIGHT_FIXTURE" '"eoj": "0x0291"' '"eoj": "0x291"'
+expect_objects_failure "a missing class name" "$LIGHT_FIXTURE" '"en": "Mono functional lighting"' '"fr": "Mono functional lighting"'
+expect_objects_failure "broken JSON" "$LIGHT_FIXTURE" '"elProperties": [' '"elProperties": [,'
 expect_objects_failure "a missing node profile" "mraData/nodeProfile/0x0EF0.json" "" ""
 expect_objects_failure "a missing super class" "mraData/superClass/0x0000.json" "" ""
 
 expect_objects_failure "a missing schema definition" "mraData/definitions/definitions.json" '"level"' '"absent"'
-expect_objects_failure "an external schema reference" "mraData/devices/0x0291.json" '#/definitions/level' 'https://invalid.example/schema'
+expect_objects_failure "an external schema reference" "$LIGHT_FIXTURE" '#/definitions/level' 'https://invalid.example/schema'
 expect_objects_failure "a cyclic schema reference" "mraData/definitions/definitions.json" '"type": "number"' '"$ref": "#/definitions/level"'
 
 printf 'Code,Name\nxyz,No codes\n' > "$WORK_DIR/empty.csv"

@@ -252,6 +252,32 @@ print "const char* const uecho_std_source_version = " . c_string($mra_version) .
 
 my @codes = sort keys %classes;
 
+# Intern identical immutable property definitions once in generated source.
+# Arrays retain their original order/layout, but repeated class fragments share
+# one definition rather than duplicating long schema/attribute expressions.
+my %property_ids;
+my @property_definitions;
+foreach my $code (@codes) {
+  foreach my $prop (@{$classes{$code}{props}}) {
+    my $signature = JSON::PP->new->canonical->encode([@$prop{qw(epc attr name schema)}]);
+    if (!exists $property_ids{$signature}) {
+      $property_ids{$signature} = scalar @property_definitions;
+      push @property_definitions, { prop => $prop, essential => 0 };
+    }
+    my $id = $property_ids{$signature};
+    $property_definitions[$id]{essential} ||= $classes{$code}{essential};
+    $prop->{definition_id} = $id;
+  }
+}
+foreach my $id (0 .. $#property_definitions) {
+  my $entry = $property_definitions[$id];
+  my $prop = $entry->{prop};
+  print "#if !defined(UECHO_DATABASE_NONE)\n" unless $entry->{essential};
+  printf("#define UECHO_STD_PROPERTY_%04d { 0x%s, %s, %s UECHO_STD_SCHEMA_FIELD(%s) }\n", $id, $prop->{epc}, $prop->{attr}, c_string($prop->{name}), defined $prop->{schema} ? c_string($prop->{schema}) : "NULL");
+  print "#endif\n" unless $entry->{essential};
+}
+print "\n";
+
 foreach my $code (@codes) {
   my $class = $classes{$code};
   next unless @{$class->{props}};
@@ -259,7 +285,7 @@ foreach my $code (@codes) {
   printf("// %s (0x%s)\n", $class->{name}, $code);
   printf("static const uEchoStdProperty uecho_std_props_%s[] = {\n", $code);
   foreach my $prop (@{$class->{props}}) {
-    printf("  { 0x%s, %s, %s%s },\n", $prop->{epc}, $prop->{attr}, c_string($prop->{name}), " UECHO_STD_SCHEMA_FIELD(" . (defined $prop->{schema} ? c_string($prop->{schema}) : "NULL") . ")");
+    printf("  UECHO_STD_PROPERTY_%04d,\n", $prop->{definition_id});
   }
   print "};\n";
   print "#endif\n" unless $class->{essential};

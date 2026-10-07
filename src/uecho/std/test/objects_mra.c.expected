@@ -26,44 +26,69 @@ const char* const uecho_std_value_definitions = UECHO_STD_SCHEMA("{\"level\":{\"
 
 const char* const uecho_std_source_version = "mra";
 
+#define UECHO_STD_PROPERTY_0000 { 0x80, uEchoPropertyAttrReadRequired | uEchoPropertyAttrWrite | uEchoPropertyAttrAnnoRequired, "Operation status" UECHO_STD_SCHEMA_FIELD(NULL) }
+#define UECHO_STD_PROPERTY_0001 { 0x82, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnno, "Standard version information" UECHO_STD_SCHEMA_FIELD(NULL) }
+#define UECHO_STD_PROPERTY_0002 { 0x81, uEchoPropertyAttrReadRequired | uEchoPropertyAttrWriteRequired | uEchoPropertyAttrAnnoRequired, "Installation location" UECHO_STD_SCHEMA_FIELD(NULL) }
+#define UECHO_STD_PROPERTY_0003 { 0x9D, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnno, "Status change announcement property map" UECHO_STD_SCHEMA_FIELD(NULL) }
+#define UECHO_STD_PROPERTY_0004 { 0x9E, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnno, "Set property map" UECHO_STD_SCHEMA_FIELD(NULL) }
+#define UECHO_STD_PROPERTY_0005 { 0x9F, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnno, "Get property map" UECHO_STD_SCHEMA_FIELD(NULL) }
+#if !defined(UECHO_DATABASE_NONE)
+#define UECHO_STD_PROPERTY_0006 { 0xE0, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnno, "Measured temperature value" UECHO_STD_SCHEMA_FIELD(NULL) }
+#endif
+#if !defined(UECHO_DATABASE_NONE)
+#define UECHO_STD_PROPERTY_0007 { 0xB3, uEchoPropertyAttrReadRequired | uEchoPropertyAttrWriteRequired | uEchoPropertyAttrAnno, "Set temperature value (\302\260C)" UECHO_STD_SCHEMA_FIELD(NULL) }
+#endif
+#if !defined(UECHO_DATABASE_NONE)
+#define UECHO_STD_PROPERTY_0008 { 0xC0, uEchoPropertyAttrRead | uEchoPropertyAttrWrite | uEchoPropertyAttrAnno, "Name with \"quotes\", back\\slash and \077\077= trigraph" UECHO_STD_SCHEMA_FIELD(NULL) }
+#endif
+#if !defined(UECHO_DATABASE_NONE)
+#define UECHO_STD_PROPERTY_0009 { 0x80, uEchoPropertyAttrReadRequired | uEchoPropertyAttrWriteRequired | uEchoPropertyAttrAnnoRequired, "Operation status" UECHO_STD_SCHEMA_FIELD(NULL) }
+#endif
+#if !defined(UECHO_DATABASE_NONE)
+#define UECHO_STD_PROPERTY_0010 { 0xB0, uEchoPropertyAttrRead | uEchoPropertyAttrWrite | uEchoPropertyAttrAnno, "Light level Setting" UECHO_STD_SCHEMA_FIELD("{\"$ref\":\"#/definitions/level\",\"multipleOf\":2}") }
+#endif
+#define UECHO_STD_PROPERTY_0011 { 0x80, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnnoRequired, "Operation status" UECHO_STD_SCHEMA_FIELD(NULL) }
+#define UECHO_STD_PROPERTY_0012 { 0xD5, uEchoPropertyAttrAnnoRequired, "Instance list notification" UECHO_STD_SCHEMA_FIELD(NULL) }
+#define UECHO_STD_PROPERTY_0013 { 0xD6, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnno, "Self-node instance list S" UECHO_STD_SCHEMA_FIELD(NULL) }
+
 // Super class (0x0000)
 static const uEchoStdProperty uecho_std_props_0000[] = {
-  { 0x80, uEchoPropertyAttrReadRequired | uEchoPropertyAttrWrite | uEchoPropertyAttrAnnoRequired, "Operation status" UECHO_STD_SCHEMA_FIELD(NULL) },
-  { 0x82, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnno, "Standard version information" UECHO_STD_SCHEMA_FIELD(NULL) },
-  { 0x81, uEchoPropertyAttrReadRequired | uEchoPropertyAttrWriteRequired | uEchoPropertyAttrAnnoRequired, "Installation location" UECHO_STD_SCHEMA_FIELD(NULL) },
-  { 0x9D, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnno, "Status change announcement property map" UECHO_STD_SCHEMA_FIELD(NULL) },
-  { 0x9E, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnno, "Set property map" UECHO_STD_SCHEMA_FIELD(NULL) },
-  { 0x9F, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnno, "Get property map" UECHO_STD_SCHEMA_FIELD(NULL) },
+  UECHO_STD_PROPERTY_0000,
+  UECHO_STD_PROPERTY_0001,
+  UECHO_STD_PROPERTY_0002,
+  UECHO_STD_PROPERTY_0003,
+  UECHO_STD_PROPERTY_0004,
+  UECHO_STD_PROPERTY_0005,
 };
 
 #if !defined(UECHO_DATABASE_NONE)
 // Temperature sensor (0x0011)
 static const uEchoStdProperty uecho_std_props_0011[] = {
-  { 0xE0, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnno, "Measured temperature value" UECHO_STD_SCHEMA_FIELD(NULL) },
+  UECHO_STD_PROPERTY_0006,
 };
 #endif
 
 #if !defined(UECHO_DATABASE_NONE)
 // Home air conditioner (0x0130)
 static const uEchoStdProperty uecho_std_props_0130[] = {
-  { 0xB3, uEchoPropertyAttrReadRequired | uEchoPropertyAttrWriteRequired | uEchoPropertyAttrAnno, "Set temperature value (\302\260C)" UECHO_STD_SCHEMA_FIELD(NULL) },
-  { 0xC0, uEchoPropertyAttrRead | uEchoPropertyAttrWrite | uEchoPropertyAttrAnno, "Name with \"quotes\", back\\slash and \077\077= trigraph" UECHO_STD_SCHEMA_FIELD(NULL) },
+  UECHO_STD_PROPERTY_0007,
+  UECHO_STD_PROPERTY_0008,
 };
 #endif
 
 #if !defined(UECHO_DATABASE_NONE)
 // Mono functional lighting (0x0291)
 static const uEchoStdProperty uecho_std_props_0291[] = {
-  { 0x80, uEchoPropertyAttrReadRequired | uEchoPropertyAttrWriteRequired | uEchoPropertyAttrAnnoRequired, "Operation status" UECHO_STD_SCHEMA_FIELD(NULL) },
-  { 0xB0, uEchoPropertyAttrRead | uEchoPropertyAttrWrite | uEchoPropertyAttrAnno, "Light level Setting" UECHO_STD_SCHEMA_FIELD("{\"$ref\":\"#/definitions/level\",\"multipleOf\":2}") },
+  UECHO_STD_PROPERTY_0009,
+  UECHO_STD_PROPERTY_0010,
 };
 #endif
 
 // Node profile (0x0EF0)
 static const uEchoStdProperty uecho_std_props_0EF0[] = {
-  { 0x80, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnnoRequired, "Operation status" UECHO_STD_SCHEMA_FIELD(NULL) },
-  { 0xD5, uEchoPropertyAttrAnnoRequired, "Instance list notification" UECHO_STD_SCHEMA_FIELD(NULL) },
-  { 0xD6, uEchoPropertyAttrReadRequired | uEchoPropertyAttrAnno, "Self-node instance list S" UECHO_STD_SCHEMA_FIELD(NULL) },
+  UECHO_STD_PROPERTY_0011,
+  UECHO_STD_PROPERTY_0012,
+  UECHO_STD_PROPERTY_0013,
 };
 
 const uEchoStdObject uecho_std_objects[] = {
