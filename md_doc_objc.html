@@ -182,7 +182,16 @@ iOS apps</h1>
 </ul>
 <h1><a class="anchor" id="autotoc_md66"></a>
 SwiftUI sample</h1>
-<p ><code>examples/controller/ios/uEchoController.xcodeproj</code> is a SwiftUI app for iOS that uses <code>CGEcho.framework</code>. It references <code>CGEcho.xcodeproj</code> by a relative path, so open it from this repository; no other setup is needed. It discovers nodes, lists their objects, and turns lighting objects on and off. Run it on an iOS Simulator, or on a device with the multicast entitlement described above. </p>
+<p ><code>examples/controller/ios/uEchoController.xcodeproj</code> is a SwiftUI app for iOS that uses <code>CGEcho.framework</code>. It references <code>CGEcho.xcodeproj</code> by a relative path, so open it from this repository; no other setup is needed. It discovers nodes, lists their objects, and turns lighting objects on and off. Run it on an iOS Simulator, or on a device with the multicast entitlement described above.</p>
+<h1><a class="anchor" id="autotoc_md67"></a>
+Standard metadata (additive API)</h1>
+<p ><code>CGEchoStandardClass</code> copies names and access flags from the existing compiled C ROM tables. It is independent of a controller and exposes no borrowed pointers. <code>hasFullDatabase</code> distinguishes full and none builds; none retains only superclass and node profile definitions. Unknown/excluded classes return nil. Appliance lookup includes superclass definitions with the same precedence as the C API; node profiles use their own definitions. Unknown/vendor EPCs remain in remote maps.</p>
+<div class="fragment"><div class="line">CGEchoStandardClass *definition = [CGEchoStandardClass classWithGroupCode:0x01 classCode:0x30];</div>
+<div class="line">NSDictionary *knownReadable = [definition readableDefinitionsForMap:remoteObject.capabilities.readable];</div>
+</div><!-- fragment --><div class="fragment"><div class="line">let definition = CGEchoStandardClass(groupCode: 0x01, classCode: 0x30)</div>
+<div class="line">let name = definition?.properties[0x80]?.name</div>
+<div class="line">// Intersect with the remote object&#39;s fetched Get map before offering a read.</div>
+</div><!-- fragment --><p >The generated header identifies <code>MRA_en_v1.3.0</code>. Upstream revised access flags using reverse-generated fixtures; authoritative raw v1.3.0 reconciliation remains pending. <code>sourceDescription</code> reports this limitation. These flags describe standard requirements/options, not verified support or standards conformance. Only a valid remote Get/Set/notification map establishes the device's declared capabilities; a successful read is still needed for current state. No type, unit, range or value enumeration survives in the current ROM representation (<code>hasValueMetadata == NO</code>). Older local MRA copies must not be presented as the compiled table's current schema. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
