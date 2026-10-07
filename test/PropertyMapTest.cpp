@@ -133,7 +133,7 @@ BOOST_AUTO_TEST_CASE(PropertyMapFormat2HighCodes)
   uEchoProperty* map = uecho_object_getproperty(obj, uEchoObjectGetPropertyMap);
   BOOST_REQUIRE(map);
   BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(map), (size_t)uEchoPropertyMapFormat2Size);
-  byte* data = uecho_property_getdata(map);
+  const byte* data = uecho_property_getdata(map);
   BOOST_CHECK_EQUAL((size_t)data[0], readableCount);
   BOOST_CHECK(data[1] & 0x10); // 0xC0: row 0, bit 4
   BOOST_CHECK(data[16] & 0x80); // 0xFF: row 15, bit 7
