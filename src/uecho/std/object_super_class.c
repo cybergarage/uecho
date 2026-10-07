@@ -112,5 +112,5 @@ void uecho_object_clearpropertymapcaches(uEchoObject* obj)
     free(obj->getPropMapBytes);
     obj->getPropMapBytes = NULL;
   }
-  obj->getPropMapBytes = 0;
+  obj->getPropMapSize = 0;
 }

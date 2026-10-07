@@ -13,6 +13,7 @@
 #include <vector>
 
 #include <uecho/device.h>
+#include <uecho/profile.h>
 
 static bool propertymap_has_prop(uEchoPropertyCode* propMapCodes, size_t propMapCount, uEchoPropertyCode propCode)
 {
@@ -111,4 +112,43 @@ BOOST_AUTO_TEST_CASE(PropertyMapInvalidOutputs)
   BOOST_CHECK(!uecho_property_getpropertymapcodes(property, nullptr, 1));
   BOOST_CHECK(!uecho_property_getbytedata(property, &value));
   uecho_property_delete(property);
+}
+
+BOOST_AUTO_TEST_CASE(PropertyMapFormat2HighCodes)
+{
+  // Format 2 stores EPC 0x80 + row + 0x10 * bit; bits 4-7 carry EPCs 0xC0-0xFF.
+  uEchoObject* obj = uecho_device_new();
+  BOOST_REQUIRE(obj);
+  uecho_object_setcode(obj, 0x029101);
+  BOOST_REQUIRE(uecho_object_setproperty(obj, 0xC0, uEchoPropertyAttrRead));
+  BOOST_REQUIRE(uecho_object_setproperty(obj, 0xFF, uEchoPropertyAttrRead));
+
+  size_t readableCount = 0;
+  for (uEchoProperty* prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
+    if (uecho_property_isreadable(prop))
+      readableCount++;
+  }
+  BOOST_REQUIRE_GE(readableCount, (size_t)16);
+
+  uEchoProperty* map = uecho_object_getproperty(obj, uEchoObjectGetPropertyMap);
+  BOOST_REQUIRE(map);
+  BOOST_REQUIRE_EQUAL(uecho_property_getdatasize(map), (size_t)uEchoPropertyMapFormat2Size);
+  byte* data = uecho_property_getdata(map);
+  BOOST_CHECK_EQUAL((size_t)data[0], readableCount);
+  BOOST_CHECK(data[1] & 0x10); // 0xC0: row 0, bit 4
+  BOOST_CHECK(data[16] & 0x80); // 0xFF: row 15, bit 7
+
+  size_t count = 0;
+  BOOST_REQUIRE(uecho_property_getpropertymapcount(map, &count));
+  BOOST_REQUIRE_EQUAL(count, readableCount);
+  std::vector<uEchoPropertyCode> codes(count);
+  BOOST_REQUIRE(uecho_property_getpropertymapcodes(map, codes.data(), count));
+  BOOST_CHECK(propertymap_has_prop(codes.data(), count, 0xC0));
+  BOOST_CHECK(propertymap_has_prop(codes.data(), count, 0xFF));
+  for (uEchoProperty* prop = uecho_object_getproperties(obj); prop; prop = uecho_property_next(prop)) {
+    if (uecho_property_isreadable(prop))
+      BOOST_CHECK(propertymap_has_prop(codes.data(), count, uecho_property_getcode(prop)));
+  }
+
+  uecho_object_delete(obj);
 }

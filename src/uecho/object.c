@@ -414,7 +414,7 @@ bool uecho_object_setpropertymap(uEchoObject* obj, uEchoPropertyCode mapCode, uE
     if (!uecho_propertymap_codetoformat2(propCode, &propMapRow, &propMapBit)) {
       continue;
     }
-    propMapData[propMapRow] |= ((0x01 << propMapBit) & 0x0F);
+    propMapData[propMapRow] |= (byte)(0x01 << propMapBit);
   }
 
   uecho_propertylist_setdata(obj->properties, mapCode, propMapData, uEchoPropertyMapFormat2Size);
