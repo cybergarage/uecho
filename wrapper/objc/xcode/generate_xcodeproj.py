@@ -15,7 +15,13 @@ builds for iOS, the iOS Simulator and macOS. Re-run this script after
 adding or removing source files instead of editing project.pbxproj by hand:
 
     python3 wrapper/objc/xcode/generate_xcodeproj.py
+
+The CGEchoSmoke scheme runs the network smoke test. Pass
+--smoke-address IP to target a node on another host; the generated scheme
+then sets CGECHO_SMOKE_ADDRESS (keep such a scheme out of commits).
 """
+
+import argparse
 
 import hashlib
 import os
@@ -26,6 +32,7 @@ ROOT = os.path.normpath(os.path.join(HERE, "..", "..", ".."))
 OBJC_DIR = os.path.normpath(os.path.join(HERE, "..", "uEcho"))
 TESTS_DIR = os.path.join(HERE, "Tests")
 SRC_DIR = os.path.join(ROOT, "src")
+LIGHT_DIR = os.path.join(ROOT, "examples", "device", "uecholight")
 PROJECT = os.path.join(HERE, "CGEcho.xcodeproj")
 
 IOS_TARGET = "15.4"
@@ -103,6 +110,9 @@ def config_list(name, debug, release):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Generate CGEcho.xcodeproj")
+    parser.add_argument("--smoke-address", help="ECHONET Lite node address used by the CGEchoSmoke scheme")
+    args = parser.parse_args()
     public_headers = files(OBJC_DIR, {".h"})
     objc_sources = files(OBJC_DIR, {".m"})
     private_headers = files(os.path.join(OBJC_DIR, "Private"), {".h"})
@@ -116,19 +126,24 @@ def main():
     prv_refs = {f: file_ref("Private", f) for f in private_headers + private_sources}
     c_refs = {f: file_ref("libuecho", f) for f in c_sources + c_headers}
     test_refs = {f: file_ref("Tests", f) for f in test_files}
+    light_files = ["main.c", "lighting_dev.c", "lighting_dev.h"]
+    light_refs = {f: file_ref("uecholight", f) for f in light_files}
 
     fw_product = uid("product", "CGEcho.framework")
     add(fw_product, "{isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGEcho.framework; sourceTree = BUILT_PRODUCTS_DIR; }")
     test_product = uid("product", "CGEchoTests.xctest")
+    light_product = uid("product", "uecholight")
+    add(light_product, "{isa = PBXFileReference; explicitFileType = \"compiled.mach-o.executable\"; includeInIndex = 0; path = uecholight; sourceTree = BUILT_PRODUCTS_DIR; }")
     add(test_product, "{isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGEchoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; }")
 
     private_group = group("Private", "Private", [prv_refs[f] for f in sorted(prv_refs)])
     objc_group = group("uEcho", "../uEcho", [pub_refs[f] for f in sorted(pub_refs)] + [private_group])
     c_group = group("libuecho", "../../../src", [c_refs[f] for f in sorted(c_refs)])
     tests_group = group("Tests", "Tests", [test_refs[f] for f in sorted(test_refs)])
-    products_group = group("Products", None, [fw_product, test_product])
+    light_group = group("uecholight", "../../../examples/device/uecholight", [light_refs[f] for f in light_files])
+    products_group = group("Products", None, [fw_product, test_product, light_product])
     main_group = uid("group", "main")
-    add(main_group, "{isa = PBXGroup; children = (%s); sourceTree = \"<group>\"; }" % ", ".join([objc_group, c_group, tests_group, products_group]))
+    add(main_group, "{isa = PBXGroup; children = (%s); sourceTree = \"<group>\"; }" % ", ".join([objc_group, c_group, tests_group, light_group, products_group]))
 
     # Framework target.
     fw_headers = [build_file("CGEcho", pub_refs[f], "ATTRIBUTES = (Public, ); ") for f in public_headers]
@@ -189,6 +204,22 @@ def main():
     test_target = uid("target", "CGEchoTests")
     add(test_target, "{isa = PBXNativeTarget; buildConfigurationList = %s; buildPhases = (%s, %s); buildRules = (); dependencies = (%s); name = CGEchoTests; productName = CGEchoTests; productReference = %s; productType = \"com.apple.product-type.bundle.unit-test\"; }" % (test_configs, test_phase_sources, test_phase_frameworks, dependency, test_product))
 
+    # uecholight: a macOS ECHONET Lite lighting node for the network smoke test.
+    c_flags = "COMPILER_FLAGS = \"-Wno-strict-prototypes -Wno-shorten-64-to-32 -Wno-format\"; "
+    light_sources = [build_file("uecholight", light_refs[f], c_flags) for f in light_files if f.endswith(".c")]
+    light_sources += [build_file("uecholight", c_refs[f], c_flags) for f in c_sources]
+    light_phase_sources = uid("phase", "uecholight", "sources")
+    add(light_phase_sources, "{isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (%s); runOnlyForDeploymentPostprocessing = 0; }" % ", ".join(light_sources))
+    light_common = {
+        "PRODUCT_NAME": "uecholight",
+        "SDKROOT": "macosx",
+        "SUPPORTED_PLATFORMS": "macosx",
+        "SKIP_INSTALL": "YES",
+    }
+    light_configs = config_list("uecholight", dict(light_common), dict(light_common))
+    light_target = uid("target", "uecholight")
+    add(light_target, "{isa = PBXNativeTarget; buildConfigurationList = %s; buildPhases = (%s); buildRules = (); dependencies = (); name = uecholight; productName = uecholight; productReference = %s; productType = \"com.apple.product-type.tool\"; }" % (light_configs, light_phase_sources, light_product))
+
     # Project.
     base = {
         "ALWAYS_SEARCH_USER_PATHS": "NO",
@@ -222,7 +253,7 @@ def main():
         "ENABLE_NS_ASSERTIONS": "NO",
     })
     project_configs = config_list("project", debug, release)
-    add(project_id, "{isa = PBXProject; attributes = {LastUpgradeCheck = 1600; }; buildConfigurationList = %s; compatibilityVersion = \"Xcode 14.0\"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base, ); mainGroup = %s; productRefGroup = %s; projectDirPath = \"\"; projectRoot = \"\"; targets = (%s, %s); }" % (project_configs, main_group, products_group, fw_target, test_target))
+    add(project_id, "{isa = PBXProject; attributes = {LastUpgradeCheck = 1600; }; buildConfigurationList = %s; compatibilityVersion = \"Xcode 14.0\"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base, ); mainGroup = %s; productRefGroup = %s; projectDirPath = \"\"; projectRoot = \"\"; targets = (%s, %s, %s); }" % (project_configs, main_group, products_group, fw_target, test_target, light_target))
 
     os.makedirs(PROJECT, exist_ok=True)
     with open(os.path.join(PROJECT, "project.pbxproj"), "w") as f:
@@ -233,11 +264,27 @@ def main():
 
     scheme_dir = os.path.join(PROJECT, "xcshareddata", "xcschemes")
     os.makedirs(scheme_dir, exist_ok=True)
-    ref = lambda target, name, product: (
-        '<BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "%s" BuildableName = "%s" BlueprintName = "%s" ReferencedContainer = "container:CGEcho.xcodeproj"></BuildableReference>' % (target, product, name)
-    )
-    with open(os.path.join(scheme_dir, "CGEcho.xcscheme"), "w") as f:
-        f.write("""<?xml version="1.0" encoding="UTF-8"?>
+    def ref(target, name, product):
+        return '<BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "%s" BuildableName = "%s" BlueprintName = "%s" ReferencedContainer = "container:CGEcho.xcodeproj"></BuildableReference>' % (target, product, name)
+
+    def write_scheme(name, build_ref, testable_ref=None, selected_tests=None, test_env=None, launch_ref=None, launch_args=None):
+        testables = ""
+        if testable_ref:
+            selection = ""
+            if selected_tests:
+                selection = "<SelectedTests>%s</SelectedTests>" % "".join('<Test Identifier = "%s"></Test>' % t for t in selected_tests)
+            whitelist = ' useTestSelectionWhitelist = "YES"' if selected_tests else ""
+            testables = '<TestableReference skipped = "NO"%s>%s%s</TestableReference>' % (whitelist, testable_ref, selection)
+        env = ""
+        if test_env:
+            env = "<EnvironmentVariables>%s</EnvironmentVariables>" % "".join('<EnvironmentVariable key = "%s" value = "%s" isEnabled = "YES"></EnvironmentVariable>' % kv for kv in test_env.items())
+        runnable = ""
+        if launch_ref:
+            runnable = '<BuildableProductRunnable runnableDebuggingMode = "0">%s</BuildableProductRunnable>' % launch_ref
+            if launch_args:
+                runnable += "<CommandLineArguments>%s</CommandLineArguments>" % "".join('<CommandLineArgument argument = "%s" isEnabled = "YES"></CommandLineArgument>' % a for a in launch_args)
+        with open(os.path.join(scheme_dir, name + ".xcscheme"), "w") as f:
+            f.write("""<?xml version="1.0" encoding="UTF-8"?>
 <Scheme LastUpgradeVersion = "1600" version = "1.7">
    <BuildAction parallelizeBuildables = "YES" buildImplicitDependencies = "YES">
       <BuildActionEntries>
@@ -246,19 +293,24 @@ def main():
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
-   <TestAction buildConfiguration = "Debug" selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB" shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-         <TestableReference skipped = "NO">
-            %s
-         </TestableReference>
-      </Testables>
+   <TestAction buildConfiguration = "Debug" selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB" shouldUseLaunchSchemeArgsEnv = "%s">
+      <Testables>%s</Testables>
+      %s
    </TestAction>
    <LaunchAction buildConfiguration = "Debug" selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB" launchStyle = "0" useCustomWorkingDirectory = "NO" ignoresPersistentStateOnLaunch = "NO" debugDocumentVersioning = "YES" debugServiceExtension = "internal" allowLocationSimulation = "YES">
+      %s
    </LaunchAction>
    <ArchiveAction buildConfiguration = "Release" revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
-""" % (ref(fw_target, "CGEcho", "CGEcho.framework"), ref(test_target, "CGEchoTests", "CGEchoTests.xctest")))
+""" % (build_ref, "NO" if test_env else "YES", testables, env, runnable))
+
+    fw_ref = ref(fw_target, "CGEcho", "CGEcho.framework")
+    tests_ref = ref(test_target, "CGEchoTests", "CGEchoTests.xctest")
+    light_ref = ref(light_target, "uecholight", "uecholight")
+    write_scheme("CGEcho", fw_ref, tests_ref)
+    write_scheme("CGEchoSmoke", fw_ref, tests_ref, selected_tests=["CGEchoSmokeTests"], test_env=dict({"CGECHO_SMOKE": "1"}, **({"CGECHO_SMOKE_ADDRESS": args.smoke_address} if args.smoke_address else {})))
+    write_scheme("uecholight", light_ref, launch_ref=light_ref, launch_args=["-v"])
 
     print("Generated %s (%d C sources, %d ObjC sources, %d test files)" % (os.path.relpath(PROJECT, ROOT), len(c_sources), len(objc_sources) + len(private_sources), len(test_files)))
     return 0
