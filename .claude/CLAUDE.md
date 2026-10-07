@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What is uEcho
 
-`uecho` is a portable C library (v1.4.1) for creating [ECHONET Lite](http://echonet.jp/english/) controllers and IoT devices. ECHONET Lite is an open Japanese IoT standard covering 100+ device types (sensors, air conditioners, etc.). The library handles the communication middleware automatically so callers only need to implement listeners.
+`uecho` is a portable C library (v1.4.2) for creating [ECHONET Lite](http://echonet.jp/english/) controllers and IoT devices. ECHONET Lite is an open Japanese IoT standard covering 100+ device types (sensors, air conditioners, etc.). The library handles the communication middleware automatically so callers only need to implement listeners.
 
 ## Build Commands
 

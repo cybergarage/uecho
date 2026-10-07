@@ -1,4 +1,12 @@
 2026-10-07 Satoshi Konno <skonno@cybergarage.org>
+	* v1.4.2
+	* Moved the standard object and manufacturer databases to const tables generated from the MRA and the manufacturer code list. They no longer use heap (about 124 KB on ESP32 before), and object and property names are looked up from the tables instead of being copied into each object (#13).
+	* Added an option to exclude the standard database, keeping only the super class and the node profile class: CONFIG_UECHO_DATABASE_NONE (Kconfig), -DUECHO_DATABASE=none (CMake) and --with-database=none (Autotools) (#13).
+	* Fixed MRA "required_c" and "required_o" access rules being ignored; the affected properties are now readable, writable or announceable as defined (#13).
+	* An object with an unknown class code no longer reports "Super class" as its name (#13).
+	* The database generators now validate their input and are checked against fixtures in CI (src/uecho/std/test/check_generators.sh) (#13).
+
+2026-10-07 Satoshi Konno <skonno@cybergarage.org>
 	* v1.4.1
 	* Enforced network message security boundaries (#10): bounded packet logging, synchronized property storage, enforced property read/write attributes before dispatch, stricter response matching (peer, TID, EOJs, service and properties), and validated, bounded discovery caches.
 	* Fixed include/uecho/typedef.h redefining bool as int in C++ when config.h is not used (e.g. CMake builds and C++ applications). The size of bool then differed from the C library, causing heap overflows and corrupted bool return values.
