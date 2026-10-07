@@ -83,7 +83,9 @@ Project layout</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>wrapper/objc/xcode/generate_xcodeproj.py</code>   </td><td class="markdownTableBodyNone">Generator for <code>CGEcho.xcodeproj</code>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>wrapper/objc/xcode/Tests/</code>   </td><td class="markdownTableBodyNone">XCTest suites   </td></tr>
+<td class="markdownTableBodyNone"><code>wrapper/objc/xcode/Tests/</code>   </td><td class="markdownTableBodyNone">XCTest suites    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>examples/controller/ios/</code>   </td><td class="markdownTableBodyNone">SwiftUI sample app for iOS   </td></tr>
 </table>
 <p >The framework compiles the C sources in <code>src/</code> directly, so no prebuilt <code>libuecho.a</code> is needed. The Xcode project is generated; regenerate it after adding or removing source files instead of editing <code>project.pbxproj</code> by hand:</p>
 <div class="fragment"><div class="line">python3 wrapper/objc/xcode/generate_xcodeproj.py</div>
@@ -178,7 +180,9 @@ iOS apps</h1>
 <li>Sending multicast on a real device requires the <code>com.apple.developer.networking.multicast</code> entitlement, which must be requested from Apple. The iOS Simulator does not need it.</li>
 <li>Reception in the background is not guaranteed. Stop the controller when the app moves to the background, then start and discover again when it becomes active.</li>
 </ul>
-<p >A SwiftUI sample is available in <a href="https://github.com/cybergarage/uecho-controller">uecho-controller</a>. </p>
+<h1><a class="anchor" id="autotoc_md66"></a>
+SwiftUI sample</h1>
+<p ><code>examples/controller/ios/uEchoController.xcodeproj</code> is a SwiftUI app for iOS that uses <code>CGEcho.framework</code>. It references <code>CGEcho.xcodeproj</code> by a relative path, so open it from this repository; no other setup is needed. It discovers nodes, lists their objects, and turns lighting objects on and off. Run it on an iOS Simulator, or on a device with the multicast entitlement described above. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

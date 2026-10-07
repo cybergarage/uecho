@@ -26,7 +26,7 @@ var NAVTREE =
 [
   [ "uEcho for C", "index.html", [
     [ "Overview", "index.html", [
-      [ "What is uEcho?", "index.html#autotoc_md67", null ]
+      [ "What is uEcho?", "index.html#autotoc_md68", null ]
     ] ],
     [ "Inside of uEcho Controller", "md_doc_controller_inside.html", [
       [ "Node Profile Object", "md_doc_controller_inside.html#autotoc_md1", null ],
@@ -108,14 +108,15 @@ var NAVTREE =
         [ "Notifications", "md_doc_objc.html#autotoc_md63", null ]
       ] ],
       [ "Behavior", "md_doc_objc.html#autotoc_md64", null ],
-      [ "iOS apps", "md_doc_objc.html#autotoc_md65", null ]
+      [ "iOS apps", "md_doc_objc.html#autotoc_md65", null ],
+      [ "SwiftUI sample", "md_doc_objc.html#autotoc_md66", null ]
     ] ],
     [ "Building and Installation", "md_doc_setup.html", [
-      [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md69", null ],
-      [ "Installing from Source", "md_doc_setup.html#autotoc_md70", [
-        [ "Standard object database", "md_doc_setup.html#autotoc_md71", null ]
+      [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md70", null ],
+      [ "Installing from Source", "md_doc_setup.html#autotoc_md71", [
+        [ "Standard object database", "md_doc_setup.html#autotoc_md72", null ]
       ] ],
-      [ "ESP32 (ESP-IDF)", "md_doc_setup.html#autotoc_md72", null ]
+      [ "ESP32 (ESP-IDF)", "md_doc_setup.html#autotoc_md73", null ]
     ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
@@ -145,11 +146,11 @@ var NAVTREEINDEX =
 "controller_8c.html#a90d33caf985fe58e6202acce3a29b5ea",
 "include_2uecho_2message_8h.html#ab922f466fe60f4df20e371515158e0e0",
 "mcast__server_8c.html#a798c3a8f0985e41682d9fd0c484e5bff",
-"node_8h.html#a202aac1d229bc2580ca87f9cd25f14d1",
-"objects__mra_8c.html#ad6022575e012ceca8bbda52167505e9e",
-"socket_8c.html#ac7cbc42d0c5e9bf4a6d15b70db81eac1",
-"strings__function_8c.html#ac4ac15a3aea9ddd8522f06d27281cda2",
-"uecho_8h.html"
+"node_8h.html#a1045a6488e762d515fb4122e7e8ff845",
+"objects__mra_8c.html#acf69c8d2c0aafd9c408398ed9edba94b",
+"socket_8c.html#ac08907d238427138dc87a5d6afffd3fa",
+"strings__function_8c.html#ac2aa2160cf8753d82d3aab91a044acf8",
+"udp__server__list_8c.html#af53db6c90682f2f1653a20b8927423ba"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
