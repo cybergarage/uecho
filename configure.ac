@@ -147,6 +147,24 @@ if [ test "$enable_debug" = yes ]; then
 fi
 
 ##############################
+# Standard database
+##############################
+
+AC_ARG_WITH(
+	[database],
+	AS_HELP_STRING([--with-database=full|none],[ standard object database; none keeps only the super class and the node profile (default = full) ]),
+	[case "${withval}" in
+	full | none ) with_database="${withval}" ;;
+	*) AC_MSG_ERROR([bad value ${withval} for --with-database]) ;;
+	esac],
+	[with_database="full"]
+)
+
+if [ test "$with_database" = none ]; then
+	AC_DEFINE([UECHO_DATABASE_NONE],1,[Define to 1 to exclude the standard object database])
+fi
+
+##############################
 # Testing
 ##############################
 

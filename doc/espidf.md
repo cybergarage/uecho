@@ -54,6 +54,7 @@ CONFIG_LWIP_MAX_SOCKETS=10
 | Option | Default | Description |
 |---|---|---|
 | `CONFIG_UECHO_THREAD_STACK_SIZE` | 8192 | Stack size in bytes for each uEcho worker thread. Node message listeners and property request handlers run on these threads; increase it if your callbacks use a lot of stack. |
+| `CONFIG_UECHO_DATABASE_FULL` / `CONFIG_UECHO_DATABASE_NONE` | Full | Standard object database. *None* keeps only the super class and the node profile class; see [Standard object database](#standard-object-database). |
 
 ## Starting a node
 
@@ -156,13 +157,22 @@ $ ./uechopost/unix/uechopost 192.168.100.56 029101 61 800131    # SetC: OFF
 
 The monitor logs `POWER = ON` / `POWER = OFF` for each write. `71` means the write was accepted; `51` means it was rejected.
 
+## Standard object database
+
+uEcho includes the standard object, property and manufacturer definitions from the ECHONET Consortium MRA (Machine Readable Appendix). They are const tables, so they stay in flash and use no heap. When an object code is set, the object gets the standard properties of the super class and of its class, and their names are looked up from the tables rather than copied into each object.
+
+With `CONFIG_UECHO_DATABASE_NONE`, only the super class and the node profile class are compiled in, because uEcho needs them itself. This saves about 45 KB of flash. In this configuration:
+
+- Device objects get the super class properties only. Add the class properties your device implements with `uecho_object_setproperty()`, as the `uecholight` example does; the property maps then list exactly those properties.
+- Remote objects found by a controller get the super class properties only.
+- `uecho_object_getname()` and `uecho_property_getname()` return `NULL` for names outside the two classes, and `uecho_database_getmanufacture()` always returns `NULL`.
+
 ## Memory usage
 
-Measured on ESP32 (ESP-IDF v5.5.1) with the `uecholight` object:
-
-- About 130 KB of heap for the first node. Most of it (about 124 KB) is the standard object database loaded from the MRA, which is shared and kept for the lifetime of the application; it is not freed by `uecho_node_delete()`, and later nodes reuse it.
+- The standard object database uses no heap; it is a const table in flash. Up to v1.4.1 it was built on the heap at first use and took about 124 KB on ESP32.
+- An object with standard properties takes about 1.4 KB (mono functional lighting) to 3.5 KB (home air conditioner) of heap, measured on a 32-bit host build. Remote objects found by a controller take the same.
 - One worker thread (stack `CONFIG_UECHO_THREAD_STACK_SIZE`) per unicast and per multicast receiver, that is two per network interface.
-- The `uecholight` example image is about 880 KB, so the default 1 MB application partition has little headroom left; use a larger partition table for bigger applications.
+- The `uecholight` example image was about 880 KB with v1.4.1, so the default 1 MB application partition has little headroom left; use a larger partition table for bigger applications.
 
 ## Platform differences
 

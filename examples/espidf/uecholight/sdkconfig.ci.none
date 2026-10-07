@@ -1,0 +1,2 @@
+# CI build with the standard object database excluded.
+CONFIG_UECHO_DATABASE_NONE=y

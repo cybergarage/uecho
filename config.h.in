@@ -107,5 +107,8 @@
    backward compatibility; new code need not use it. */
 #undef STDC_HEADERS
 
+/* Define to 1 to exclude the standard object database */
+#undef UECHO_DATABASE_NONE
+
 /* Version number of package */
 #undef VERSION

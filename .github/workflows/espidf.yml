@@ -14,6 +14,11 @@ jobs:
       matrix:
         idf_version: [ v5.5 ]
         target: [ esp32, esp32s3, esp32c3 ]
+        database: [ full ]
+        include:
+          - idf_version: v5.5
+            target: esp32
+            database: none
 
     steps:
     - uses: actions/checkout@v4
@@ -28,5 +33,5 @@ jobs:
         command: >-
           idf.py -B build-ci
           -DSDKCONFIG=sdkconfig.ci.generated
-          -DSDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.ci"
+          -DSDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.ci${{ matrix.database == 'none' && ';sdkconfig.ci.none' || '' }}"
           build

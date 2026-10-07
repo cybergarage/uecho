@@ -9,6 +9,10 @@ on:
 jobs:
   asan:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        database: [ full, none ]
 
     steps:
     - uses: actions/checkout@v4
@@ -20,6 +24,7 @@ jobs:
       # CMake does not use config.h, so this also catches C/C++ header mismatches.
       run: >-
         cmake -S . -B build-asan -DUECHO_ENABLE_TEST=ON
+        -DUECHO_DATABASE=${{ matrix.database }}
         -DCMAKE_C_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g -O1"
         -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g -O1"
         -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address,undefined"

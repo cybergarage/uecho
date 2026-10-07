@@ -27,6 +27,17 @@ CMake is also supported:
 cmake -S . -B build && cmake --build build
 ```
 
+### Standard object database
+
+uEcho includes the standard object, property and manufacturer definitions from the ECHONET Consortium MRA as const tables. To leave them out and keep only the super class and the node profile class, which uEcho needs itself, use:
+
+```
+./configure --with-database=none
+cmake -S . -B build -DUECHO_DATABASE=none
+```
+
+Objects then get only the super class properties, so add the class properties your device implements with `uecho_object_setproperty()`. See [Standard object database](espidf.md#standard-object-database) for details.
+
 ## ESP32 (ESP-IDF)
 
 The repository can be used directly as an ESP-IDF component. See [ESP32 (ESP-IDF)](espidf.md).
