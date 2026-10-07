@@ -10,6 +10,7 @@
 
 #import <CGEcho/CGEcho.h>
 #import <XCTest/XCTest.h>
+#import <uecho/property.h>
 
 #import "CGEchoFrame.h"
 #import "CGEchoInternal.h"
@@ -54,7 +55,26 @@ static NSData* Format2(NSIndexSet* epcs)
   }
   XCTAssertNotNil(appliance);
   XCTAssertEqualObjects(appliance.properties[@0x80].name, @"Operation status");
+#if defined(UECHO_DATABASE_VALUE_METADATA) && UECHO_DATABASE_VALUE_METADATA
+  CGEchoStandardProperty* status = appliance.properties[@0x80];
+  XCTAssertTrue(status.hasValueMetadata);
+  XCTAssertTrue(status.standardAttributes & uEchoPropertyAttrWriteRequired);
+  NSArray* alternatives = appliance.properties[@0xB3].valueSchema[@"oneOf"];
+  XCTAssertEqualObjects(alternatives[0][@"$ref"], @"#/definitions/number_0-50Celsius");
+  NSDictionary* number = [CGEchoStandardClass valueDefinitions][@"number_0-50Celsius"];
+  XCTAssertEqualObjects(number[@"minimum"], @0);
+  XCTAssertEqualObjects(number[@"maximum"], @50);
+  XCTAssertEqualObjects(status.valueSchema[@"$ref"], @"#/definitions/state_ON-OFF_3031");
+  NSDictionary* definition = [CGEchoStandardClass valueDefinitions][@"state_ON-OFF_3031"];
+  XCTAssertEqualObjects(definition[@"type"], @"state");
+  XCTAssertEqualObjects(definition[@"enum"][0][@"edt"], @"0x30");
+  XCTAssertFalse([definition[@"enum"] isKindOfClass:NSMutableArray.class]);
+  XCTAssertFalse([status.valueSchema isKindOfClass:NSMutableDictionary.class]);
+  XCTAssertFalse([[CGEchoStandardClass valueDefinitions] isKindOfClass:NSMutableDictionary.class]);
+#else
   XCTAssertFalse(appliance.properties[@0x80].hasValueMetadata);
+  XCTAssertNil(appliance.properties[@0x80].valueSchema);
+#endif
   XCTAssertTrue([appliance copy] == appliance);
   XCTAssertTrue([appliance.properties[@0x80] copy] == appliance.properties[@0x80]);
   CGEchoPropertyMap* map = [CGEchoPropertyMap mapWithEPC:CGEchoEPCGetPropertyMap rawData:Bytes(@[ @2, @0x80, @0xFE ])];
@@ -67,6 +87,18 @@ static NSData* Format2(NSIndexSet* epcs)
   NSMutableDictionary* mutable = [appliance.properties mutableCopy];
   [mutable removeAllObjects];
   XCTAssertNotNil(appliance.properties[@0x80]);
+}
+
+- (void)testEssentialProfileValueMetadataMatchesBuildMode
+{
+  CGEchoStandardProperty* property = [CGEchoStandardClass classWithGroupCode:0x0E classCode:0xF0].properties[@0x80];
+#if defined(UECHO_DATABASE_VALUE_METADATA) && UECHO_DATABASE_VALUE_METADATA
+  XCTAssertTrue(property.hasValueMetadata);
+  XCTAssertNotNil([CGEchoStandardClass valueDefinitions]);
+#else
+  XCTAssertFalse(property.hasValueMetadata);
+  XCTAssertNil([CGEchoStandardClass valueDefinitions]);
+#endif
 }
 
 - (void)testFormat1EmptyIsValid

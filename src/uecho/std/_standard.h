@@ -34,6 +34,10 @@ typedef struct {
   byte code;
   byte attr;
   const char* name;
+#if defined(UECHO_DATABASE_VALUE_METADATA) && UECHO_DATABASE_VALUE_METADATA
+  // Original MRA data schema JSON. Internal layout requires consistent build flags.
+  const char* valueSchema;
+#endif
 } uEchoStdProperty;
 
 typedef struct {
@@ -52,6 +56,9 @@ typedef struct {
 // Sorted by group and class code.
 extern const uEchoStdObject uecho_std_objects[];
 extern const size_t uecho_std_objectcount;
+// One shared MRA definitions dictionary; NULL in metadata-disabled builds.
+extern const char* const uecho_std_value_definitions;
+extern const char* const uecho_std_source_version;
 
 // Sorted by manufacturer code.
 extern const uEchoStdManufacture uecho_std_manufactures[];
