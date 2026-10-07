@@ -33,9 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Delegate methods are called on the configuration's callbackQueue.
 @protocol CGEchoControllerDelegate <NSObject>
 @optional
-- (void)echoController:(CGEchoController*)controller didAddNode:(CGEchoRemoteNode*)node;
-- (void)echoController:(CGEchoController*)controller didUpdateNode:(CGEchoRemoteNode*)node;
-- (void)echoController:(CGEchoController*)controller didReceiveNotification:(CGEchoPropertyValue*)value;
+- (void)echoController:(CGEchoController*)controller didAddNode:(CGEchoRemoteNode*)node NS_SWIFT_NAME(echoController(_:didAdd:));
+- (void)echoController:(CGEchoController*)controller didUpdateNode:(CGEchoRemoteNode*)node NS_SWIFT_NAME(echoController(_:didUpdate:));
+- (void)echoController:(CGEchoController*)controller didReceiveNotification:(CGEchoPropertyValue*)value NS_SWIFT_NAME(echoController(_:didReceive:));
 @end
 
 typedef NS_ENUM(NSInteger, CGEchoControllerState) {
@@ -66,11 +66,11 @@ typedef NS_OPTIONS(NSUInteger, CGEchoWriteOptions) {
 @property (nonatomic, readonly) CGEchoControllerState state;
 
 /// Starts networking. Calling while running completes immediately without error.
-- (void)startWithCompletion:(void (^_Nullable)(NSError* _Nullable error))completion;
+- (void)startWithCompletion:(void (^_Nullable)(NSError* _Nullable error))completion NS_SWIFT_NAME(start(completion:));
 
 /// Stops networking. Pending requests complete once with CGEchoErrorNotRunning before
 /// the completion is called; no event from the stopped session is delivered after it.
-- (void)stopWithCompletion:(void (^_Nullable)(void))completion;
+- (void)stopWithCompletion:(void (^_Nullable)(void))completion NS_SWIFT_NAME(stop(completion:));
 
 /// Snapshot of the registry of the current session.
 @property (nonatomic, readonly, copy) NSArray<CGEchoRemoteNode*>* nodes;
@@ -79,21 +79,24 @@ typedef NS_OPTIONS(NSUInteger, CGEchoWriteOptions) {
 /// (<= 0 uses configuration.discoveryTimeout). Completes with the nodes seen during the window;
 /// an empty array is a valid result. Instance list notifications (0xD5) are also accepted.
 - (id<CGEchoRequest>)discoverWithTimeout:(NSTimeInterval)timeout
-                              completion:(void (^)(NSArray<CGEchoRemoteNode*>* nodes, NSError* _Nullable error))completion;
+                              completion:(void (^)(NSArray<CGEchoRemoteNode*>* nodes, NSError* _Nullable error))completion
+    NS_SWIFT_NAME(discover(timeout:completion:));
 
 /// Removes a node from the registry. Its snapshots can no longer be used for requests.
-- (void)forgetNode:(CGEchoRemoteNode*)node;
+- (void)forgetNode:(CGEchoRemoteNode*)node NS_SWIFT_NAME(forget(_:));
 
 /// Fetches the Get / Set / Announce property maps (0x9F / 0x9E / 0x9D).
 /// Completes with the updated object; individual map failures are reported in its capabilities.
 - (id<CGEchoRequest>)fetchCapabilitiesOfObject:(CGEchoRemoteObject*)object
-                                    completion:(void (^)(CGEchoRemoteObject* _Nullable object, NSError* _Nullable error))completion;
+                                    completion:(void (^)(CGEchoRemoteObject* _Nullable object, NSError* _Nullable error))completion
+    NS_SWIFT_NAME(fetchCapabilities(of:completion:));
 
 /// Sends Get (0x62) for one EPC and waits for Get_Res (0x72) or Get_SNA (0x52).
 - (id<CGEchoRequest>)readProperty:(CGEchoEPC)epc
                          ofObject:(CGEchoRemoteObject*)object
                           timeout:(NSTimeInterval)timeout
-                       completion:(void (^)(CGEchoPropertyValue* _Nullable value, NSError* _Nullable error))completion;
+                       completion:(void (^)(CGEchoPropertyValue* _Nullable value, NSError* _Nullable error))completion
+    NS_SWIFT_NAME(readProperty(_:of:timeout:completion:));
 
 /// Sends SetC (0x61) for one EPC and waits for Set_Res (0x71) or SetC_SNA (0x51).
 /// Success means the device accepted the request, not that its physical state changed;
@@ -105,15 +108,17 @@ typedef NS_OPTIONS(NSUInteger, CGEchoWriteOptions) {
                           ofObject:(CGEchoRemoteObject*)object
                            options:(CGEchoWriteOptions)options
                            timeout:(NSTimeInterval)timeout
-                        completion:(void (^)(NSError* _Nullable error))completion;
+                        completion:(void (^)(NSError* _Nullable error))completion
+    NS_SWIFT_NAME(writeProperty(_:data:of:options:timeout:completion:));
 
 /// Registers a local listener for INF (0x73) property notifications.
 /// Pass nil to observe every object. Each received property is delivered once.
 - (id<CGEchoObservation>)observeNotificationsOfObject:(nullable CGEchoRemoteObject*)object
-                                              handler:(void (^)(CGEchoPropertyValue* value))handler;
+                                              handler:(void (^)(CGEchoPropertyValue* value))handler
+    NS_SWIFT_NAME(observeNotifications(of:handler:));
 
 /// Last successful value per EPC for the object in the current session, or nil.
-- (nullable CGEchoPropertyValue*)lastValueOfProperty:(CGEchoEPC)epc ofObject:(CGEchoRemoteObject*)object;
+- (nullable CGEchoPropertyValue*)lastValueOfProperty:(CGEchoEPC)epc ofObject:(CGEchoRemoteObject*)object NS_SWIFT_NAME(lastValue(ofProperty:of:));
 
 @end
 

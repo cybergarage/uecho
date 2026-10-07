@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, CGEchoCapabilityState) {
 @property (nonatomic, readonly, nullable) NSError* error;
 
 /// YES only when state is Available and the EPC is listed.
-- (BOOL)containsProperty:(CGEchoEPC)epc;
+- (BOOL)containsProperty:(CGEchoEPC)epc NS_SWIFT_NAME(contains(_:));
 
 /// Decodes an ECHONET property map EDT (format 1: count < 16, format 2: 17-byte bitmap).
 /// Validates length, declared count, range and duplicates. Returns nil and
