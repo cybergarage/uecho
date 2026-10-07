@@ -16,6 +16,7 @@
 | `wrapper/objc/xcode/CGEcho.xcodeproj` | Framework, tests, and the `uecholight` tool for macOS |
 | `wrapper/objc/xcode/generate_xcodeproj.py` | Generator for `CGEcho.xcodeproj` |
 | `wrapper/objc/xcode/Tests/` | XCTest suites |
+| `examples/controller/ios/` | SwiftUI sample app for iOS |
 
 The framework compiles the C sources in `src/` directly, so no prebuilt `libuecho.a` is needed. The Xcode project is generated; regenerate it after adding or removing source files instead of editing `project.pbxproj` by hand:
 
@@ -125,6 +126,8 @@ let observation = controller.observeNotifications(of: object) { value in
 - Sending multicast on a real device requires the `com.apple.developer.networking.multicast` entitlement, which must be requested from Apple. The iOS Simulator does not need it.
 - Reception in the background is not guaranteed. Stop the controller when the app moves to the background, then start and discover again when it becomes active.
 
-A SwiftUI sample is available in [uecho-controller](https://github.com/cybergarage/uecho-controller).
+## SwiftUI sample
+
+`examples/controller/ios/uEchoController.xcodeproj` is a SwiftUI app for iOS that uses `CGEcho.framework`. It references `CGEcho.xcodeproj` by a relative path, so open it from this repository; no other setup is needed. It discovers nodes, lists their objects, and turns lighting objects on and off. Run it on an iOS Simulator, or on a device with the multicast entitlement described above.
 
 [enet]:http://echonet.jp/english/
