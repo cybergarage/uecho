@@ -1,0 +1,3 @@
+#!/bin/bash
+find . -name "*.swift" | xargs swift-format format -i 
+find . -name "*.swift" | xargs swift-format lint
