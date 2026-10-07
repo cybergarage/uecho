@@ -369,7 +369,7 @@ static bool uecho_property_getpropertymapcodes_unlocked(const uEchoProperty* pro
   for (int i = 0; i < uEchoPropertyMapFormat2MapSize; i++) {
     propByteCode = prop->data[i + 1];
     for (int j = 0; j < 8; j++) {
-      propByteBit = (0x01 << j) & 0x0F;
+      propByteBit = (byte)(0x01 << j);
       if ((propByteCode & propByteBit) == 0) {
         continue;
       }

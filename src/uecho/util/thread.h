@@ -64,6 +64,7 @@ typedef struct UEchoThread {
   volatile TaskHandle_t task;
 #else
   pthread_t pThread;
+  bool joinable;
 #endif
 
   void (*action)(struct UEchoThread*);

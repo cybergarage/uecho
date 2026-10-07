@@ -132,12 +132,13 @@ bool uecho_server_stop(uEchoServer* server)
 
   allActionsSucceeded = true;
 
-  allActionsSucceeded &= uecho_mcast_serverlist_close(server->mcastServers);
+  /* Stop (join) the workers before closing, because close frees the sockets they read. */
   allActionsSucceeded &= uecho_mcast_serverlist_stop(server->mcastServers);
+  allActionsSucceeded &= uecho_mcast_serverlist_close(server->mcastServers);
   uecho_udp_serverlist_clear(server->mcastServers);
 
-  allActionsSucceeded &= uecho_udp_serverlist_close(server->udpServers);
   allActionsSucceeded &= uecho_udp_serverlist_stop(server->udpServers);
+  allActionsSucceeded &= uecho_udp_serverlist_close(server->udpServers);
   uecho_udp_serverlist_clear(server->udpServers);
 
   return allActionsSucceeded;

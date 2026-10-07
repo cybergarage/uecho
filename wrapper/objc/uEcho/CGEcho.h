@@ -1,22 +1,18 @@
-//
-//  CGEcho.h
-//
-//  Created by The uecho Authors on 2022/05/02.
-//
+/******************************************************************
+ *
+ * uEcho for ObjC
+ *
+ * Copyright (C) The uecho Authors 2015
+ *
+ * This is licensed under BSD-style license, see file COPYING.
+ *
+ ******************************************************************/
 
 #import <Foundation/Foundation.h>
 
-//! Project version number for uecho.
-FOUNDATION_EXPORT double uechoVersionNumber;
-
-//! Project version string for uecho.
-FOUNDATION_EXPORT const unsigned char uechoVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <uecho/PublicHeader.h>
-
+#import <CGEcho/CGEchoTypes.h>
+#import <CGEcho/CGEchoError.h>
+#import <CGEcho/CGEchoControllerConfiguration.h>
+#import <CGEcho/CGEchoCapabilities.h>
+#import <CGEcho/CGEchoRemoteNode.h>
 #import <CGEcho/CGEchoController.h>
-#import <CGEcho/CGEchoMessage.h>
-#import <CGEcho/CGEchoNode.h>
-#import <CGEcho/CGEchoObject.h>
-#import <CGEcho/CGEchoProperty.h>
-#import <CGEcho/CGEchoStandard.h>
