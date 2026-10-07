@@ -82,6 +82,7 @@ struct ObjectView: View {
   @EnvironmentObject var controller: Controller
   @State var object: CGEchoRemoteObject
   @State private var operationStatus: String = "-"
+  @State private var loaded = false
 
   private static let operationStatusEPC: CGEchoEPC = 0x80
 
@@ -107,6 +108,9 @@ struct ObjectView: View {
     }
     .navigationTitle(object.eojString)
     .onAppear {
+      // onAppear can run more than once during navigation; load only once.
+      guard !loaded else { return }
+      loaded = true
       controller.fetchCapabilities(of: object) { updated in
         if let updated {
           object = updated
