@@ -12,6 +12,7 @@
 #import <XCTest/XCTest.h>
 
 #import "CGEchoFrame.h"
+#import "CGEchoInternal.h"
 
 @interface CGEchoPropertyMapTests : XCTestCase
 @end
@@ -39,6 +40,33 @@ static NSData* Format2(NSIndexSet* epcs)
 }
 
 @implementation CGEchoPropertyMapTests
+- (void)testStandardMetadataOwnershipInheritanceAndIntersection
+{
+  XCTAssertNil([CGEchoStandardClass classWithGroupCode:0xFF classCode:0xFF]);
+  CGEchoStandardClass* profile = [CGEchoStandardClass classWithGroupCode:0x0E classCode:0xF0];
+  XCTAssertNotNil(profile);
+  XCTAssertNil(profile.properties[@0xB0]);
+  CGEchoStandardClass* appliance = [CGEchoStandardClass classWithGroupCode:0x01 classCode:0x30];
+  if (![CGEchoStandardClass hasFullDatabase]) {
+    XCTAssertNil(appliance);
+    return;
+  }
+  XCTAssertNotNil(appliance);
+  XCTAssertEqualObjects(appliance.properties[@0x80].name, @"Operation status");
+  XCTAssertFalse(appliance.properties[@0x80].hasValueMetadata);
+  XCTAssertTrue([appliance copy] == appliance);
+  XCTAssertTrue([appliance.properties[@0x80] copy] == appliance.properties[@0x80]);
+  CGEchoPropertyMap* map = [CGEchoPropertyMap mapWithEPC:CGEchoEPCGetPropertyMap rawData:Bytes(@[ @2, @0x80, @0xFE ])];
+  NSDictionary* intersection = [appliance readableDefinitionsForMap:map];
+  XCTAssertEqual(intersection.count, 1u);
+  XCTAssertNotNil(intersection[@0x80]);
+  XCTAssertTrue([map containsProperty:0xFE]);
+  XCTAssertEqual([appliance readableDefinitionsForMap:[CGEchoPropertyMap unknownMapWithEPC:CGEchoEPCGetPropertyMap]].count, 0u);
+  XCTAssertEqual([appliance readableDefinitionsForMap:[CGEchoPropertyMap mapWithEPC:CGEchoEPCSetPropertyMap rawData:Bytes(@[ @1, @0x80 ])]].count, 0u);
+  NSMutableDictionary* mutable = [appliance.properties mutableCopy];
+  [mutable removeAllObjects];
+  XCTAssertNotNil(appliance.properties[@0x80]);
+}
 
 - (void)testFormat1EmptyIsValid
 {

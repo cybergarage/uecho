@@ -131,3 +131,32 @@ let observation = controller.observeNotifications(of: object) { value in
 `examples/controller/ios/uEchoController.xcodeproj` is a SwiftUI app for iOS that uses `CGEcho.framework`. It references `CGEcho.xcodeproj` by a relative path, so open it from this repository; no other setup is needed. It discovers nodes, lists their objects, and turns lighting objects on and off. Run it on an iOS Simulator, or on a device with the multicast entitlement described above.
 
 [enet]:http://echonet.jp/english/
+
+## Standard metadata (additive API)
+
+`CGEchoStandardClass` copies names and access flags from the existing compiled C
+ROM tables. It is independent of a controller and exposes no borrowed pointers.
+`hasFullDatabase` distinguishes full and none builds; none retains only superclass
+and node profile definitions. Unknown/excluded classes return nil. Appliance
+lookup includes superclass definitions with the same precedence as the C API;
+node profiles use their own definitions. Unknown/vendor EPCs remain in remote maps.
+
+```objc
+CGEchoStandardClass *definition = [CGEchoStandardClass classWithGroupCode:0x01 classCode:0x30];
+NSDictionary *knownReadable = [definition readableDefinitionsForMap:remoteObject.capabilities.readable];
+```
+
+```swift
+let definition = CGEchoStandardClass(groupCode: 0x01, classCode: 0x30)
+let name = definition?.properties[0x80]?.name
+// Intersect with the remote object's fetched Get map before offering a read.
+```
+
+The generated header identifies `MRA_en_v1.3.0`. Upstream revised access flags
+using reverse-generated fixtures; authoritative raw v1.3.0 reconciliation remains
+pending. `sourceDescription` reports this limitation. These flags describe standard
+requirements/options, not verified support or standards conformance. Only a valid
+remote Get/Set/notification map establishes the device's declared capabilities;
+a successful read is still needed for current state. No type, unit, range or value
+enumeration survives in the current ROM representation (`hasValueMetadata == NO`).
+Older local MRA copies must not be presented as the compiled table's current schema.

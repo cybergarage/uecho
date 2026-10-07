@@ -60,4 +60,32 @@ typedef NS_ENUM(NSInteger, CGEchoCapabilityState) {
 
 @end
 
+/// Immutable metadata copied from the compiled C standard tables, independent of a controller.
+/// Attributes describe standard definitions; only remote property maps establish device support.
+@interface CGEchoStandardProperty : NSObject <NSCopying>
+- (instancetype)init NS_UNAVAILABLE;
+@property (nonatomic, readonly) CGEchoEPC epc;
+@property (nonatomic, readonly, copy) NSString* name;
+/// Raw uEchoPropertyAttr flags, including separate mandatory bits.
+@property (nonatomic, readonly) uint8_t standardAttributes;
+/// The compiled tables do not retain data types, units or enumerated values.
+@property (nonatomic, readonly) BOOL hasValueMetadata;
+@end
+
+@interface CGEchoStandardClass : NSObject <NSCopying>
+- (instancetype)init NS_UNAVAILABLE;
+@property (nonatomic, readonly) uint8_t groupCode;
+@property (nonatomic, readonly) uint8_t classCode;
+@property (nonatomic, readonly, copy) NSString* name;
+@property (nonatomic, readonly, copy) NSDictionary<NSNumber*, CGEchoStandardProperty*>* properties;
+/// nil for an unknown or excluded class; never fabricates superclass-only device metadata.
++ (nullable instancetype)classWithGroupCode:(uint8_t)groupCode classCode:(uint8_t)classCode;
+/// Standard-known, readable definitions intersected with a successfully fetched device Get map.
+/// Unknown/vendor EPCs remain in the original map and are not discarded from device capabilities.
+- (NSDictionary<NSNumber*, CGEchoStandardProperty*>*)readableDefinitionsForMap:(CGEchoPropertyMap*)map;
+/// Provenance of the checked-in generated tables, not a conformance certification.
++ (NSString*)sourceDescription;
++ (BOOL)hasFullDatabase;
+@end
+
 NS_ASSUME_NONNULL_END

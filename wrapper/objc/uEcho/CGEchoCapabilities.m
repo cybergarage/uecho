@@ -153,3 +153,90 @@ static NSError* CGEchoMapError(NSString* reason)
 }
 
 @end
+
+#import <uecho/std/_standard.h>
+
+@interface CGEchoStandardProperty ()
+- (instancetype)initWithDefinition:(const uEchoStdProperty*)definition;
+@end
+
+@implementation CGEchoStandardProperty
+- (instancetype)initWithDefinition:(const uEchoStdProperty*)definition
+{
+  if ((self = [super init]) == nil)
+    return nil;
+  _epc = definition->code;
+  _name = [[NSString alloc] initWithUTF8String:definition->name];
+  _standardAttributes = definition->attr;
+  return self;
+}
+- (BOOL)hasValueMetadata
+{
+  return NO;
+}
+- (id)copyWithZone:(NSZone*)zone
+{
+  return self;
+}
+@end
+
+@interface CGEchoStandardClass ()
+- (instancetype)initWithDefinition:(const uEchoStdObject*)definition;
+@end
+
+@implementation CGEchoStandardClass
++ (instancetype)classWithGroupCode:(uint8_t)groupCode classCode:(uint8_t)classCode
+{
+  const uEchoStdObject* definition = uecho_std_getobject(groupCode, classCode);
+  return definition ? [[self alloc] initWithDefinition:definition] : nil;
+}
+- (instancetype)initWithDefinition:(const uEchoStdObject*)definition
+{
+  if ((self = [super init]) == nil)
+    return nil;
+  _groupCode = definition->grpCode;
+  _classCode = definition->clsCode;
+  _name = [[NSString alloc] initWithUTF8String:definition->name];
+  NSMutableDictionary* properties = [NSMutableDictionary dictionary];
+  // Match the C library: superclass definitions take precedence. Node profiles
+  // have their own profile definitions, not appliance superclass properties.
+  const uEchoStdObject* superclass = definition->grpCode == 0x0E ? NULL : uecho_std_getobject(0, 0);
+  const uEchoStdObject* sources[] = { superclass, definition };
+  for (NSUInteger source = 0; source < 2; source++) {
+    const uEchoStdObject* object = sources[source];
+    if (!object)
+      continue;
+    for (size_t index = 0; index < object->propCnt; index++) {
+      NSNumber* key = @(object->props[index].code);
+      if (!properties[key])
+        properties[key] = [[CGEchoStandardProperty alloc] initWithDefinition:&object->props[index]];
+    }
+  }
+  _properties = [properties copy];
+  return self;
+}
+- (NSDictionary*)readableDefinitionsForMap:(CGEchoPropertyMap*)map
+{
+  NSMutableDictionary* result = [NSMutableDictionary dictionary];
+  if (map.mapEPC != CGEchoEPCGetPropertyMap || map.state != CGEchoCapabilityStateAvailable)
+    return [result copy];
+  for (NSNumber* key in self.properties) {
+    CGEchoStandardProperty* property = self.properties[key];
+    if ((property.standardAttributes & (uEchoPropertyAttrRead | uEchoPropertyAttrReadRequired)) && [map containsProperty:property.epc])
+      result[key] = property;
+  }
+  return [result copy];
+}
++ (NSString*)sourceDescription
+{
+  return @"Compiled uEcho C tables; generated header identifies MRA_en_v1.3.0. Access flags were revised upstream; raw v1.3.0 reconciliation is pending.";
+}
++ (BOOL)hasFullDatabase
+{
+  return uecho_std_objectcount > 2;
+}
+- (id)copyWithZone:(NSZone*)zone
+{
+  return self;
+}
+@end
