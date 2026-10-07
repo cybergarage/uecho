@@ -39,21 +39,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 21C8070D282129A400E33B1C /* CGEcho.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 86E2DCC45097BAC15C82535C;
+			remoteGlobalIDString = 317ADAAA1226F0B61D47F319;
 			remoteInfo = CGEcho;
 		};
 		21C80715282129A400E33B1C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21C8070D282129A400E33B1C /* CGEcho.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 4A3FA5786B36DF1F24693AA0;
+			remoteGlobalIDString = 246E8389BC2BBCF58E93E842;
 			remoteInfo = CGEchoTests;
 		};
 		21C80717282129CC00E33B1C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21C8070D282129A400E33B1C /* CGEcho.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = A8DD5153A2F2C822EADCBC21;
+			remoteGlobalIDString = CB2A5B4F879AAAEEA8F7F6A6;
 			remoteInfo = CGEcho;
 		};
 		21D5B6862820244C0034B6AB /* PBXContainerItemProxy */ = {
