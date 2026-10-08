@@ -381,7 +381,7 @@ static bool uecho_property_getpropertymapcodes_unlocked(const uEchoProperty* pro
     }
   }
 
-  return true;
+  return propCodeIdx == propCodeCount;
 }
 
 bool uecho_property_getpropertymapcount(uEchoProperty* prop, size_t* count)
