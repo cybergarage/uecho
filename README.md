@@ -5,19 +5,19 @@
 
 ![logo](https://raw.githubusercontent.com/cybergarage/uecho/master/doc/img/logo.png)
 
-uEcho for C, `uecho`,  is a portable and cross platform development framework for creating controller applications and devices of [ECHONET Lite][enet]. [ECHONET][enet] is an open standard specification for IoT devices in Japan, it specifies more than 100 IoT devices such as crime prevention sensor, air conditioner and refrigerator.
+uEcho for C (`uecho`) is a portable, cross-platform framework for developing [ECHONET Lite][enet] controllers and devices. ECHONET Lite is an open standard for IoT devices in Japan. It defines more than 100 device types, including security sensors, air conditioners, and refrigerators.
 
-The `uecho` runs on macOS and Linux, and on ESP32 microcontrollers as an [ESP-IDF](https://github.com/cybergarage/uecho/blob/master/doc/espidf.md) component.
+`uecho` runs on macOS and Linux, and on ESP32 microcontrollers as an [ESP-IDF](https://github.com/cybergarage/uecho/blob/master/doc/espidf.md) component.
 
-## What is uEcho ?
+## What is uEcho?
 
-The `uecho` supports to control any [ECHONET Lite][enet] devices or create the standard devices of the specification easily. The `uecho` is designed in object-oriented programming, and the functions are object-oriented in their naming convention, and are grouped into classes such as `Controller`, `Node`, `Class` and `Object`.
+`uecho` provides APIs for controlling [ECHONET Lite][enet] devices and implementing device applications. Its C API follows object-oriented naming conventions, with functions grouped into components such as `Controller`, `Node`, `Class`, and `Object`.
 
-![framwork](https://raw.githubusercontent.com/cybergarage/uecho/master/doc/img/framework.png)
+![Framework](https://raw.githubusercontent.com/cybergarage/uecho/master/doc/img/framework.png)
 
-To implement IoT controller or devices of [ECHONET Lite][enet], the developer had to understand and implement the communication middleware specification such as the message format and base sequences.
+Implementing ECHONET Lite controllers and devices from scratch requires handling protocol details such as message formats and communication sequences.
 
-Using The `uecho`, all developer has only to set basic listeners to implement the devices and controllers because The `uecho` handles other requests such as request and notification requests automatically.
+`uecho` handles protocol requests and notifications, allowing developers to focus on their application logic by configuring listeners.
 
 ## Table of Contents
 
@@ -32,10 +32,14 @@ Using The `uecho`, all developer has only to set basic listeners to implement th
   - [Inside of Device](https://github.com/cybergarage/uecho/blob/master/doc/device_inside.md)
 - [Examples](https://github.com/cybergarage/uecho/blob/master/doc/examples.md)
 
+## Related projects
+
+[uecho-simulator](https://github.com/cybergarage/uecho-simulator) is a small ECHONET Lite development simulator with virtual lighting, air conditioning, and temperature sensing. It provides a full-screen terminal UI and a live, read-only browser preview, runs offline by default, and implements limited device profiles.
+
 ## References
 
-To develop [ECHONET Lite][enet] controller applications or devices using uEcho for C, please refer to the following developer's documentation to know the functions in more detail.
+For details about the C API, see the generated documentation:
 
 * [Doxygen](http://cybergarage.github.io/uecho/)
 
-[enet]:http://echonet.jp/english/
+[enet]:https://echonet.jp/english/
