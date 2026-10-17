@@ -63,7 +63,7 @@ $(document).ready(function(){initNavTree('md_doc_espidf.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p >The <code>uecho</code> repository can be used directly as an <a href="https://docs.espressif.com/projects/esp-idf/">ESP-IDF</a> component. On ESP-IDF the library runs on the ESP-IDF POSIX layer (pthreads over FreeRTOS) and lwIP sockets, so the same <code>src/uecho</code> sources are used as on Unix; no separate platform library is needed.</p>
-<h1><a class="anchor" id="autotoc_md33"></a>
+<h1><a class="anchor" id="autotoc_md37"></a>
 Requirements</h1>
 <ul>
 <li>ESP-IDF v5.5 or later (v5.x)</li>
@@ -74,7 +74,7 @@ Requirements</h1>
 </li>
 <li>IPv4 networking: ECHONET Lite uses the IPv4 multicast group <code>224.0.23.0:3610</code></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md34"></a>
+<h1><a class="anchor" id="autotoc_md38"></a>
 Using uecho in your project</h1>
 <p >Point <code>EXTRA_COMPONENT_DIRS</code> at a checkout of this repository in your project's top-level <code>CMakeLists.txt</code>:</p>
 <div class="fragment"><div class="line">cmake_minimum_required(VERSION 3.16)</div>
@@ -88,7 +88,7 @@ Using uecho in your project</h1>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="device_8h.html">uecho/device.h</a>&gt;</span></div>
 <div class="ttc" id="adevice_8h_html"><div class="ttname"><a href="device_8h.html">device.h</a></div></div>
 <div class="ttc" id="anode_8h_html"><div class="ttname"><a href="node_8h.html">node.h</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md35"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md39"></a>
 Required configuration</h1>
 <p >Add the following to your project's <code>sdkconfig.defaults</code>:</p>
 <div class="fragment"><div class="line">CONFIG_LWIP_IPV4=y</div>
@@ -100,7 +100,7 @@ Required configuration</h1>
 <li><code>CONFIG_LWIP_SO_REUSE_RXTOALL</code> delivers each multicast datagram to every socket bound to port 3610. Without it, only one of the unicast/multicast receivers sees a search request.</li>
 <li>A node opens a unicast and a multicast socket per network interface. Raise <code>CONFIG_LWIP_MAX_SOCKETS</code> if your application uses other sockets.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md36"></a>
+<h2><a class="anchor" id="autotoc_md40"></a>
 uEcho options (&lt;tt&gt;idf.py menuconfig&lt;/tt&gt; → &lt;em&gt;Component config&lt;/em&gt; → &lt;em&gt;uEcho&lt;/em&gt;)</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -110,7 +110,7 @@ uEcho options (&lt;tt&gt;idf.py menuconfig&lt;/tt&gt; → &lt;em&gt;Component co
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>CONFIG_UECHO_DATABASE_FULL</code> / <code>CONFIG_UECHO_DATABASE_NONE</code>   </td><td class="markdownTableBodyNone">Full   </td><td class="markdownTableBodyNone">Standard object database. <em>None</em> keeps only the super class and the node profile class; see Standard object database.   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md37"></a>
+<h1><a class="anchor" id="autotoc_md41"></a>
 Starting a node</h1>
 <p >Start the node only after the network interface has an IPv4 address, because the servers bind to the addresses found at <code><a class="el" href="node_8c.html#a4d3ccc88d9ce208c20843185c065184a">uecho_node_start()</a></code>. If the address changes (for example after a Wi-Fi reconnect), stop and start the node again:</p>
 <div class="fragment"><div class="line"><a class="code hl_struct" href="structUEchoNode.html">uEchoNode</a>* node = <a class="code hl_function" href="node_8c.html#a41362cde0eac801a263aa9fa400b8c06">uecho_node_new</a>();</div>
@@ -127,7 +127,7 @@ Starting a node</h1>
 <div class="ttc" id="anode_8c_html_ae8e6bacfe16160d32c3348cb23508b83"><div class="ttname"><a href="node_8c.html#ae8e6bacfe16160d32c3348cb23508b83">uecho_node_stop</a></div><div class="ttdeci">bool uecho_node_stop(uEchoNode *node)</div><div class="ttdef"><b>Definition:</b> node.c:390</div></div>
 <div class="ttc" id="astructUEchoNode_html"><div class="ttname"><a href="structUEchoNode.html">UEchoNode</a></div><div class="ttdef"><b>Definition:</b> _node.h:32</div></div>
 </div><!-- fragment --><p >Wi-Fi power save delays multicast delivery to the station. Disable it with <code>esp_wifi_set_ps(WIFI_PS_NONE)</code> if discovery from controllers is slow or unreliable.</p>
-<h1><a class="anchor" id="autotoc_md38"></a>
+<h1><a class="anchor" id="autotoc_md42"></a>
 Writing a device</h1>
 <p >A device is built the same way as on Unix: create an object, declare its properties, and register request handlers. Handlers run on uEcho worker threads, so keep them short and do not block; hand longer work to your own task.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define LIGHT_OBJECT_CODE 0x029101</span></div>
@@ -162,10 +162,10 @@ Writing a device</h1>
 <div class="ttc" id="astructUEchoObject_html"><div class="ttname"><a href="structUEchoObject.html">UEchoObject</a></div><div class="ttdef"><b>Definition:</b> _object.h:32</div></div>
 <div class="ttc" id="astructuEchoProperty_html"><div class="ttname"><a href="structuEchoProperty.html">uEchoProperty</a></div><div class="ttdef"><b>Definition:</b> _property.h:43</div></div>
 </div><!-- fragment --><p >When a handler returns <code>true</code> for a write request, uEcho stores the new value, so later read requests return it.</p>
-<h1><a class="anchor" id="autotoc_md39"></a>
+<h1><a class="anchor" id="autotoc_md43"></a>
 Example: uecholight</h1>
 <p ><a href="../examples/espidf/uecholight"><code>examples/espidf/uecholight</code></a> is a mono functional lighting device (<code>0x029101</code>) on Wi-Fi. Writing the operation status property (EPC <code>0x80</code>) switches an optional LED GPIO.</p>
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md44"></a>
 Configure</h2>
 <p >Run <code>idf.py menuconfig</code> and open <em>uEcho light example</em>:</p>
 <table class="markdownTable">
@@ -180,7 +180,7 @@ Configure</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>CONFIG_UECHO_EXAMPLE_MANUFACTURER_CODE</code>   </td><td class="markdownTableBodyNone">0xFFFFF0   </td><td class="markdownTableBodyNone">ECHONET Lite manufacturer code (<code>0xFFFFF0</code> is for experimental use).   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md41"></a>
+<h2><a class="anchor" id="autotoc_md45"></a>
 Build, flash and monitor</h2>
 <div class="fragment"><div class="line">. $IDF_PATH/export.sh</div>
 <div class="line">cd examples/espidf/uecholight</div>
@@ -191,7 +191,7 @@ Build, flash and monitor</h2>
 <div class="fragment"><div class="line">I (2272) uecholight: Got IP 192.168.100.56</div>
 <div class="line">I (2282) uecholight: uEcho node started</div>
 </div><!-- fragment --><p >Exit the monitor with <code>Ctrl+]</code>.</p>
-<h2><a class="anchor" id="autotoc_md42"></a>
+<h2><a class="anchor" id="autotoc_md46"></a>
 Verify from a host</h2>
 <p >Build the controller examples on a host in the same network (<code>./configure --enable-examples &amp;&amp; make</code>), then run them from <code>examples/controller</code>:</p>
 <div class="fragment"><div class="line">$ ./uechosearch/unix/uechosearch</div>
@@ -206,7 +206,7 @@ Verify from a host</h2>
 <div class="line">$ ./uechopost/unix/uechopost 192.168.100.56 029101 61 800131    # SetC: OFF</div>
 <div class="line">192.168.100.56 029101 71 8000</div>
 </div><!-- fragment --><p >The monitor logs <code>POWER = ON</code> / <code>POWER = OFF</code> for each write. <code>71</code> means the write was accepted; <code>51</code> means it was rejected.</p>
-<h1><a class="anchor" id="autotoc_md43"></a>
+<h1><a class="anchor" id="autotoc_md47"></a>
 Standard object database</h1>
 <p >uEcho includes the standard object, property and manufacturer definitions from the ECHONET Consortium MRA (Machine Readable Appendix). They are const tables, so they stay in flash and use no heap. When an object code is set, the object gets the standard properties of the super class and of its class, and their names are looked up from the tables rather than copied into each object.</p>
 <p >With <code>CONFIG_UECHO_DATABASE_NONE</code>, only the super class and the node profile class are compiled in, because uEcho needs them itself. This saves about 45 KB of flash. In this configuration:</p>
@@ -215,7 +215,7 @@ Standard object database</h1>
 <li>Remote objects found by a controller get the super class properties only.</li>
 <li><code><a class="el" href="object_8c.html#a3db5c901e6ad02f917958be706028352">uecho_object_getname()</a></code> and <code><a class="el" href="property_8c.html#a6f2ea18b24412f6fd8f0421762549424">uecho_property_getname()</a></code> return <code>NULL</code> for names outside the two classes, and <code><a class="el" href="database_8c.html#aa7bbeafde2b2868c88a2a33ec31d488c">uecho_database_getmanufacture()</a></code> always returns <code>NULL</code>.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md44"></a>
+<h1><a class="anchor" id="autotoc_md48"></a>
 Memory usage</h1>
 <ul>
 <li>The standard object database uses no heap; it is a const table in flash. Up to v1.4.1 it was built on the heap at first use and took about 124 KB on ESP32.</li>
@@ -223,14 +223,14 @@ Memory usage</h1>
 <li>One worker thread (stack <code>CONFIG_UECHO_THREAD_STACK_SIZE</code>) per unicast and per multicast receiver, that is two per network interface.</li>
 <li>The <code>uecholight</code> example image was about 880 KB with v1.4.1, so the default 1 MB application partition has little headroom left; use a larger partition table for bigger applications.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md45"></a>
+<h1><a class="anchor" id="autotoc_md49"></a>
 Platform differences</h1>
 <ul>
 <li>IPv4 only. IPv6 multicast is not joined on ESP-IDF.</li>
 <li>POSIX signals are not available; worker threads poll a stop flag and their sockets use a 1 second receive timeout, so <code><a class="el" href="node_8c.html#ae8e6bacfe16160d32c3348cb23508b83">uecho_node_stop()</a></code> can take up to about one second.</li>
 <li>Network interfaces are enumerated with <code>esp_netif</code>, and only interfaces that are up and have an IPv4 address are used.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md46"></a>
+<h1><a class="anchor" id="autotoc_md50"></a>
 Troubleshooting</h1>
 <ul>
 <li>**<code>Could not exclusively lock port /dev/ttyUSB0</code>**: another program has the serial port open, usually an earlier <code>idf.py monitor</code>. Exit it with <code>Ctrl+]</code>, or find it with <code>fuser -v /dev/ttyUSB0</code> (or <code>lsof /dev/ttyUSB0</code>). Serial monitors in editors and ModemManager can also hold the port.</li>

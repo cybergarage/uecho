@@ -26,7 +26,7 @@ var NAVTREE =
 [
   [ "uEcho for C", "index.html", [
     [ "Overview", "index.html", [
-      [ "What is uEcho?", "index.html#autotoc_md70", null ]
+      [ "What is uEcho?", "index.html#autotoc_md74", null ]
     ] ],
     [ "Inside of uEcho Controller", "md_doc_controller_inside.html", [
       [ "Node Profile Object", "md_doc_controller_inside.html#autotoc_md1", null ],
@@ -68,58 +68,63 @@ var NAVTREE =
       [ "Next Steps", "md_doc_device_overview.html#autotoc_md30", null ],
       [ "References", "md_doc_device_overview.html#autotoc_md31", null ]
     ] ],
+    [ "Scalar EDT codec", "md_doc_edt_codec.html", [
+      [ "C usage", "md_doc_edt_codec.html#autotoc_md33", null ],
+      [ "HomeKit / Objective-C migration", "md_doc_edt_codec.html#autotoc_md34", null ],
+      [ "Supported constraints and explicit limits", "md_doc_edt_codec.html#autotoc_md35", null ]
+    ] ],
     [ "ESP32 (ESP-IDF)", "md_doc_espidf.html", [
-      [ "Requirements", "md_doc_espidf.html#autotoc_md33", null ],
-      [ "Using uecho in your project", "md_doc_espidf.html#autotoc_md34", null ],
-      [ "Required configuration", "md_doc_espidf.html#autotoc_md35", [
-        [ "uEcho options (<tt>idf.py menuconfig</tt> → <em>Component config</em> → <em>uEcho</em>)", "md_doc_espidf.html#autotoc_md36", null ]
+      [ "Requirements", "md_doc_espidf.html#autotoc_md37", null ],
+      [ "Using uecho in your project", "md_doc_espidf.html#autotoc_md38", null ],
+      [ "Required configuration", "md_doc_espidf.html#autotoc_md39", [
+        [ "uEcho options (<tt>idf.py menuconfig</tt> → <em>Component config</em> → <em>uEcho</em>)", "md_doc_espidf.html#autotoc_md40", null ]
       ] ],
-      [ "Starting a node", "md_doc_espidf.html#autotoc_md37", null ],
-      [ "Writing a device", "md_doc_espidf.html#autotoc_md38", null ],
-      [ "Example: uecholight", "md_doc_espidf.html#autotoc_md39", [
-        [ "Configure", "md_doc_espidf.html#autotoc_md40", null ],
-        [ "Build, flash and monitor", "md_doc_espidf.html#autotoc_md41", null ],
-        [ "Verify from a host", "md_doc_espidf.html#autotoc_md42", null ]
+      [ "Starting a node", "md_doc_espidf.html#autotoc_md41", null ],
+      [ "Writing a device", "md_doc_espidf.html#autotoc_md42", null ],
+      [ "Example: uecholight", "md_doc_espidf.html#autotoc_md43", [
+        [ "Configure", "md_doc_espidf.html#autotoc_md44", null ],
+        [ "Build, flash and monitor", "md_doc_espidf.html#autotoc_md45", null ],
+        [ "Verify from a host", "md_doc_espidf.html#autotoc_md46", null ]
       ] ],
-      [ "Standard object database", "md_doc_espidf.html#autotoc_md43", null ],
-      [ "Memory usage", "md_doc_espidf.html#autotoc_md44", null ],
-      [ "Platform differences", "md_doc_espidf.html#autotoc_md45", null ],
-      [ "Troubleshooting", "md_doc_espidf.html#autotoc_md46", null ]
+      [ "Standard object database", "md_doc_espidf.html#autotoc_md47", null ],
+      [ "Memory usage", "md_doc_espidf.html#autotoc_md48", null ],
+      [ "Platform differences", "md_doc_espidf.html#autotoc_md49", null ],
+      [ "Troubleshooting", "md_doc_espidf.html#autotoc_md50", null ]
     ] ],
     [ "Examples for ECHONET Lite Controller", "md_doc_examples.html", [
-      [ "uechosearch", "md_doc_examples.html#autotoc_md48", null ],
-      [ "uechopost", "md_doc_examples.html#autotoc_md49", null ],
-      [ "uechodump", "md_doc_examples.html#autotoc_md50", null ],
-      [ "Examples for ECHONET Lite Devices", "md_doc_examples.html#autotoc_md51", [
-        [ "uecholight", "md_doc_examples.html#autotoc_md52", null ],
-        [ "uecholight for ESP32", "md_doc_examples.html#autotoc_md53", null ]
+      [ "uechosearch", "md_doc_examples.html#autotoc_md52", null ],
+      [ "uechopost", "md_doc_examples.html#autotoc_md53", null ],
+      [ "uechodump", "md_doc_examples.html#autotoc_md54", null ],
+      [ "Examples for ECHONET Lite Devices", "md_doc_examples.html#autotoc_md55", [
+        [ "uecholight", "md_doc_examples.html#autotoc_md56", null ],
+        [ "uecholight for ESP32", "md_doc_examples.html#autotoc_md57", null ]
       ] ],
-      [ "References", "md_doc_examples.html#autotoc_md54", null ]
+      [ "References", "md_doc_examples.html#autotoc_md58", null ]
     ] ],
     [ "Objective-C and Swift (CGEcho.framework)", "md_doc_objc.html", [
-      [ "Requirements", "md_doc_objc.html#autotoc_md56", null ],
-      [ "Project layout", "md_doc_objc.html#autotoc_md57", null ],
-      [ "Building and testing", "md_doc_objc.html#autotoc_md58", [
-        [ "Network smoke test", "md_doc_objc.html#autotoc_md59", null ]
+      [ "Requirements", "md_doc_objc.html#autotoc_md60", null ],
+      [ "Project layout", "md_doc_objc.html#autotoc_md61", null ],
+      [ "Building and testing", "md_doc_objc.html#autotoc_md62", [
+        [ "Network smoke test", "md_doc_objc.html#autotoc_md63", null ]
       ] ],
-      [ "Usage", "md_doc_objc.html#autotoc_md60", [
-        [ "Swift", "md_doc_objc.html#autotoc_md61", null ],
-        [ "Objective-C", "md_doc_objc.html#autotoc_md62", null ],
-        [ "Notifications", "md_doc_objc.html#autotoc_md63", null ]
+      [ "Usage", "md_doc_objc.html#autotoc_md64", [
+        [ "Swift", "md_doc_objc.html#autotoc_md65", null ],
+        [ "Objective-C", "md_doc_objc.html#autotoc_md66", null ],
+        [ "Notifications", "md_doc_objc.html#autotoc_md67", null ]
       ] ],
-      [ "Behavior", "md_doc_objc.html#autotoc_md64", null ],
-      [ "iOS apps", "md_doc_objc.html#autotoc_md65", null ],
-      [ "SwiftUI sample", "md_doc_objc.html#autotoc_md66", null ],
-      [ "Standard metadata (additive API)", "md_doc_objc.html#autotoc_md67", [
-        [ "Optional value schemas", "md_doc_objc.html#autotoc_md68", null ]
+      [ "Behavior", "md_doc_objc.html#autotoc_md68", null ],
+      [ "iOS apps", "md_doc_objc.html#autotoc_md69", null ],
+      [ "SwiftUI sample", "md_doc_objc.html#autotoc_md70", null ],
+      [ "Standard metadata (additive API)", "md_doc_objc.html#autotoc_md71", [
+        [ "Optional value schemas", "md_doc_objc.html#autotoc_md72", null ]
       ] ]
     ] ],
     [ "Building and Installation", "md_doc_setup.html", [
-      [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md72", null ],
-      [ "Installing from Source", "md_doc_setup.html#autotoc_md73", [
-        [ "Standard object database", "md_doc_setup.html#autotoc_md74", null ]
+      [ "Homebrew (macOS, Linux)", "md_doc_setup.html#autotoc_md76", null ],
+      [ "Installing from Source", "md_doc_setup.html#autotoc_md77", [
+        [ "Standard object database", "md_doc_setup.html#autotoc_md78", null ]
       ] ],
-      [ "ESP32 (ESP-IDF)", "md_doc_setup.html#autotoc_md75", null ]
+      [ "ESP32 (ESP-IDF)", "md_doc_setup.html#autotoc_md79", null ]
     ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
@@ -149,14 +154,14 @@ var NAVTREEINDEX =
 "controller_8c.html#a8b6a65066125cbda0fecc46464e8e540",
 "include_2uecho_2message_8h.html#aa57c6180c98ea36577fa6ef009928e5a",
 "mcast__server_8c.html#a16fa55f00a4e8441b93e10b18a9f8201",
-"node_8c.html#ad32e8851da49b0ffced1b2185bb8ff1f",
-"objects__mra_8c.html#a0af0b02b3bf3ebf5946694738d50f13a",
-"objects__mra_8c.html#a521bb4178525d6941157b005c20c6808",
-"objects__mra_8c.html#a980b7f4629e4e1e724c7a2b4271da9b1",
-"objects__mra_8c.html#ae15e662ec78e75dba0b15259f95236e9",
-"server_8h.html",
-"strings_8c.html#a77251a29cfa69c4c5b95d9cb453df3ca",
-"structuEchoPropertyEnum.html#aa1eb39028ab91c2598f6824e72dc69dd"
+"node_8c.html#aafa52cd10fd3abb8ca15aedc2d7acf6a",
+"objects__mra_8c.html#a09b15f6e52a090bd9b23998c06fd5ae1",
+"objects__mra_8c.html#a517f79ad9e2302267b0f43073517828b",
+"objects__mra_8c.html#a95bf02cd9900b33b3fae6ab55545a6c7",
+"objects__mra_8c.html#ae01837b8a19c85e58406b2c751967bed",
+"server_8c.html#aa091f6469b3834990e5e96df3913bf76",
+"strings_8c.html#a45eb5232b0d834debb502bab38290526",
+"structuEchoProperty.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

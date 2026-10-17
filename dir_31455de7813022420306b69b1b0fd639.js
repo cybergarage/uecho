@@ -15,5 +15,6 @@ var dir_31455de7813022420306b69b1b0fd639 =
     [ "profile.h", "profile_8h.html", "profile_8h" ],
     [ "property.h", "include_2uecho_2property_8h.html", "include_2uecho_2property_8h" ],
     [ "typedef.h", "typedef_8h.html", "typedef_8h" ],
-    [ "uecho.h", "uecho_8h.html", null ]
+    [ "uecho.h", "uecho_8h.html", null ],
+    [ "value.h", "value_8h.html", "value_8h" ]
 ];

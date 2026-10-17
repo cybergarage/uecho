@@ -28,5 +28,8 @@ var annotated_dup =
     [ "UEchoString", "structUEchoString.html", "structUEchoString" ],
     [ "UEchoStringTokenizer", "structUEchoStringTokenizer.html", "structUEchoStringTokenizer" ],
     [ "UEchoThread", "structUEchoThread.html", "structUEchoThread" ],
-    [ "UEchoUdpServer", "structUEchoUdpServer.html", "structUEchoUdpServer" ]
+    [ "UEchoUdpServer", "structUEchoUdpServer.html", "structUEchoUdpServer" ],
+    [ "uEchoValue", "structuEchoValue.html", "structuEchoValue" ],
+    [ "uEchoValueConstraint", "structuEchoValueConstraint.html", "structuEchoValueConstraint" ],
+    [ "uEchoValueStateEntry", "structuEchoValueStateEntry.html", "structuEchoValueStateEntry" ]
 ];
