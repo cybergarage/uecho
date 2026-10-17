@@ -71,6 +71,7 @@ uecho_sources = \
 	../../src/uecho/node_list.c \
 	../../src/uecho/class_list.c \
 	../../src/uecho/property.c \
+	../../src/uecho/value.c \
 	../../src/uecho/misc.c
 
 libuechoincludedir = $(includedir)/uecho

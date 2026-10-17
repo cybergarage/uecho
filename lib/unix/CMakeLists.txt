@@ -55,8 +55,8 @@ add_library(uecho STATIC
   ../../src/uecho/std/device_super_class.c
   ../../src/uecho/std/manufacturers.c
   ../../src/uecho/std/node_profile_class.c
-  ../../src/uecho/std/objects_mra.c
   ../../src/uecho/std/object_super_class.c
+  ../../src/uecho/std/objects_mra.c
   ../../src/uecho/std/profile.c
   ../../src/uecho/std/profile_super_class.c
   ../../src/uecho/std/standard.c
@@ -72,6 +72,7 @@ add_library(uecho STATIC
   ../../src/uecho/util/thread.c
   ../../src/uecho/util/thread_list.c
   ../../src/uecho/util/timer.c
+  ../../src/uecho/value.c
 )
 
 target_include_directories(uecho PUBLIC

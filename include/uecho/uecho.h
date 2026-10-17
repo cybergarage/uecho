@@ -17,6 +17,7 @@
 #include <uecho/node.h>
 #include <uecho/object.h>
 #include <uecho/property.h>
+#include <uecho/value.h>
 
 #include <uecho/device.h>
 #include <uecho/profile.h>

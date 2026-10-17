@@ -1,0 +1,18 @@
+name: scalar-codec
+on:
+  pull_request:
+    branches: [ master ]
+jobs:
+  codec:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        metadata: ["ON", "OFF"]
+        database: [full, none]
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y libboost-all-dev
+      - run: src/uecho/std/test/check_generators.sh
+      - run: cmake -S . -B build -DUECHO_ENABLE_TEST=ON -DUECHO_ENABLE_EXAMPLES=OFF -DUECHO_DATABASE_CODEC_METADATA=${{ matrix.metadata }} -DUECHO_DATABASE=${{ matrix.database }}
+      - run: cmake --build build -j 4
+      - run: build/test/unix/uechotest --run_test='Value*'

@@ -37,6 +37,7 @@ add_executable(uechotest
   ../SocketTest.cpp
   ../TestDevice.cpp
   ../ThreadTest.cpp
+  ../ValueTest.cpp
   ../uEchoTest.cpp
 )
 

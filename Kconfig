@@ -36,4 +36,11 @@ menu "uEcho"
                 uecho_database_getmanufacture() always returns NULL.
     endchoice
 
+    config UECHO_DATABASE_CODEC_METADATA
+        bool "Generated scalar EDT constraints"
+        default n
+        help
+            Compile reviewed number/state and disjoint numeric/sentinel codecs.
+            Requires no runtime JSON parser or heap allocation.
+
 endmenu

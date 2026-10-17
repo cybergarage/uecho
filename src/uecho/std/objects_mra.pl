@@ -144,6 +144,7 @@ sub validate_schema {
       my $ref = $value->{'$ref'};
       die "Unsupported schema reference $ref\n" unless $ref =~ m{^#/definitions/([^/]+)$};
       my $key = $1;
+      die "Invalid JSON pointer escape $ref\n" if $key =~ /~(?![01])/;
       $key =~ s/~1/\//g; $key =~ s/~0/~/g;
       die "Missing schema reference $ref\n" unless exists $definitions->{$key};
       die "Cyclic schema reference $ref\n" if $seen->{$key};
@@ -155,6 +156,90 @@ sub validate_schema {
 }
 
 validate_schema($_, {}) for values %$definitions;
+
+# Compile only reviewed scalar forms. A ref with siblings is deliberately
+# unsupported: retaining JSON must not imply that overrides were interpreted.
+sub codec_resolve {
+  my ($schema) = @_;
+  return undef unless ref($schema) eq 'HASH';
+  if (exists $schema->{'$ref'}) {
+    return undef unless keys(%$schema) == 1;
+    my $key = $schema->{'$ref'};
+    $key =~ s{^#/definitions/}{};
+    $key =~ s/~1/\//g; $key =~ s/~0/~/g;
+    return codec_resolve($definitions->{$key});
+  }
+  return $schema;
+}
+
+sub codec_scalar {
+  my ($schema) = @_;
+  $schema = codec_resolve($schema);
+  return undef unless $schema;
+  my $type = $schema->{type} // '';
+  my %allowed = map { $_ => 1 } ($type eq 'number'
+    ? qw(type format minimum maximum multiple unit)
+    : qw(type size enum));
+  return undef if grep { !$allowed{$_} } keys %$schema;
+  if ($type eq 'number') {
+    my $format = $schema->{format} // '';
+    return undef unless $format =~ /^(u?)int(8|16|32)$/;
+    my ($signed, $bits) = ($1 eq '' ? 1 : 0, $2);
+    my $lo = $signed ? -(2 ** ($bits - 1)) : 0;
+    my $hi = $signed ? 2 ** ($bits - 1) - 1 : 2 ** $bits - 1;
+    my $min = $schema->{minimum} // $lo;
+    my $max = $schema->{maximum} // $hi;
+    return undef unless "$min" =~ /^-?\d+$/ && "$max" =~ /^-?\d+$/;
+    return undef if $min < $lo || $max > $hi || $min > $max;
+    my $multiple = $schema->{multiple} // 1;
+    return undef unless "$multiple" =~ /^(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/ && $multiple > 0;
+    return undef if exists $schema->{unit} && ref($schema->{unit});
+    return { size => $bits / 8, signed => $signed, min => $min, max => $max,
+      multiple => $multiple, unit => $schema->{unit}, states => [], number => 1 };
+  }
+  return undef unless $type eq 'state';
+  my $size = $schema->{size} // 0;
+  return undef unless "$size" =~ /^[124]$/ && ref($schema->{enum}) eq 'ARRAY' && @{$schema->{enum}};
+  my @states;
+  my %codes;
+  foreach my $state (@{$schema->{enum}}) {
+    return undef unless ref($state) eq 'HASH';
+    return undef if grep { !/^(edt|name|descriptions|readOnly)$/ } keys %$state;
+    my $edt = $state->{edt} // '';
+    return undef unless $edt =~ /^0x([0-9A-Fa-f]+)$/ && length($1) == 2 * $size;
+    my $code = hex($1);
+    return undef if $codes{$code}++ || !defined $state->{name} || ref($state->{name});
+    push @states, { code => $code, name => $state->{name}, readonly => $state->{readOnly} ? 1 : 0 };
+  }
+  return { size => $size, signed => 0, min => 0, max => 0, multiple => 1, states => \@states, number => 0 };
+}
+
+sub codec_constraint {
+  my ($schema) = @_;
+  $schema = codec_resolve($schema);
+  return undef unless $schema;
+  return codec_scalar($schema) unless exists $schema->{oneOf};
+  return undef unless keys(%$schema) == 1 && ref($schema->{oneOf}) eq 'ARRAY' && @{$schema->{oneOf}} >= 2;
+  my @parts = map { codec_scalar($_) } @{$schema->{oneOf}};
+  return undef if grep { !defined $_ } @parts;
+  my @numbers = grep { $_->{number} } @parts;
+  return undef unless @numbers == 1;
+  my %result = %{$numbers[0]};
+  my @states;
+  my %seen;
+  foreach my $part (grep { !$_->{number} } @parts) {
+    return undef unless $part->{size} == $result{size};
+    foreach my $state (@{$part->{states}}) {
+      my $value = $state->{code};
+      $value -= 2 ** (8 * $result{size}) if $result{signed} && $value >= 2 ** (8 * $result{size} - 1);
+      # Exact disjoint values only. No ambiguous oneOf precedence.
+      return undef if ($result{min} <= $value && $value <= $result{max}) || $seen{$state->{code}}++;
+      push @states, $state;
+    }
+  }
+  $result{states} = \@states;
+  return \%result;
+}
 
 # Read classes
 
@@ -269,11 +354,34 @@ foreach my $code (@codes) {
     $prop->{definition_id} = $id;
   }
 }
+print "#if defined(UECHO_DATABASE_CODEC_METADATA) && UECHO_DATABASE_CODEC_METADATA\n";
+print "#define UECHO_STD_CODEC_FIELD(value) , value\n";
+foreach my $id (0 .. $#property_definitions) {
+  my $entry = $property_definitions[$id];
+  my $prop = $entry->{prop};
+  my $constraint = defined $prop->{schema} ? codec_constraint(JSON::PP->new->decode($prop->{schema})) : undef;
+  $entry->{codec} = $constraint ? "&uecho_std_codec_$id" : "NULL";
+  next unless $constraint;
+  print "#if !defined(UECHO_DATABASE_NONE)\n" unless $entry->{essential};
+  my $states = $constraint->{states};
+  if (@$states) {
+    print "static const uEchoValueStateEntry uecho_std_states_$id\[\] = {\n";
+    foreach my $state (@$states) {
+      print "  { $state->{code}U, " . c_string($state->{name}) . ", $state->{readonly} },\n";
+    }
+    print "};\n";
+  }
+  my $unit = defined $constraint->{unit} ? c_string($constraint->{unit}) : "NULL";
+  my $state_pointer = @$states ? "uecho_std_states_$id" : "NULL";
+  print "static const uEchoValueConstraint uecho_std_codec_$id = { $constraint->{size}, $constraint->{number}, $constraint->{signed}, $constraint->{min}, $constraint->{max}, $constraint->{multiple}, $unit, $state_pointer, " . scalar(@$states) . " };\n";
+  print "#endif\n" unless $entry->{essential};
+}
+print "#else\n#define UECHO_STD_CODEC_FIELD(value)\n#endif\n\n";
 foreach my $id (0 .. $#property_definitions) {
   my $entry = $property_definitions[$id];
   my $prop = $entry->{prop};
   print "#if !defined(UECHO_DATABASE_NONE)\n" unless $entry->{essential};
-  printf("#define UECHO_STD_PROPERTY_%04d { 0x%s, %s, %s UECHO_STD_SCHEMA_FIELD(%s) }\n", $id, $prop->{epc}, $prop->{attr}, c_string($prop->{name}), defined $prop->{schema} ? c_string($prop->{schema}) : "NULL");
+  printf("#define UECHO_STD_PROPERTY_%04d { 0x%s, %s, %s UECHO_STD_SCHEMA_FIELD(%s) UECHO_STD_CODEC_FIELD(%s) }\n", $id, $prop->{epc}, $prop->{attr}, c_string($prop->{name}), defined $prop->{schema} ? c_string($prop->{schema}) : "NULL", $entry->{codec});
   print "#endif\n" unless $entry->{essential};
 }
 print "\n";

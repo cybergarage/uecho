@@ -178,11 +178,12 @@ def add_framework_target(src, product):
     ]
     settings = {
         "PRODUCT_NAME": "CGEcho",
+        "GCC_PREPROCESSOR_DEFINITIONS": q("$(inherited) UECHO_DATABASE_VALUE_METADATA=1 UECHO_DATABASE_CODEC_METADATA=1"),
         "PRODUCT_BUNDLE_IDENTIFIER": "org.cybergarage.CGEcho",
         "DEFINES_MODULE": "YES",
         "GENERATE_INFOPLIST_FILE": "YES",
         "CURRENT_PROJECT_VERSION": "1",
-        "MARKETING_VERSION": "1.0",
+        "MARKETING_VERSION": "1.4.3",
         "DYLIB_COMPATIBILITY_VERSION": "1",
         "DYLIB_CURRENT_VERSION": "1",
         "DYLIB_INSTALL_NAME_BASE": q("@rpath"),
@@ -206,6 +207,7 @@ def add_test_target(src, product, fw_product, fw_target, project_id):
     add(dependency, "{isa = PBXTargetDependency; target = %s; targetProxy = %s; }" % (fw_target, proxy))
     settings = {
         "PRODUCT_NAME": "CGEchoTests",
+        "GCC_PREPROCESSOR_DEFINITIONS": q("$(inherited) UECHO_DATABASE_VALUE_METADATA=1 UECHO_DATABASE_CODEC_METADATA=1"),
         "PRODUCT_BUNDLE_IDENTIFIER": "org.cybergarage.CGEchoTests",
         "GENERATE_INFOPLIST_FILE": "YES",
         "HEADER_SEARCH_PATHS": q("$(inherited) $(SRCROOT)/../uEcho/Private"),

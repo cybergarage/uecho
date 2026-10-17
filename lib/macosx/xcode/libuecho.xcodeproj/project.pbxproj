@@ -69,7 +69,9 @@
 		2185D9CD1B68D5BC00A5B0C3 /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = 2185D9CC1B68D5BC00A5B0C3 /* object.h */; };
 		2185D9CF1B68D5C600A5B0C3 /* object.c in Sources */ = {isa = PBXBuildFile; fileRef = 2185D9CE1B68D5C600A5B0C3 /* object.c */; };
 		2185D9D11B68DEED00A5B0C3 /* property.h in Headers */ = {isa = PBXBuildFile; fileRef = 2185D9D01B68DEED00A5B0C3 /* property.h */; };
+		F04C834FF18D9DB3E7DDA568 /* value.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EF21E54D6F553EE4CE56332 /* value.h */; };
 		2185D9D31B68DF1E00A5B0C3 /* property.c in Sources */ = {isa = PBXBuildFile; fileRef = 2185D9D21B68DF1E00A5B0C3 /* property.c */; };
+		AF4D17FB393EEBE82042726C /* value.c in Sources */ = {isa = PBXBuildFile; fileRef = BE81748707ACC7A5FC469824 /* value.c */; };
 		218688EE1B8D676B00B10494 /* node_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 218688ED1B8D676B00B10494 /* node_list.c */; };
 		218F56911B8C09E100C03219 /* node_listener.c in Sources */ = {isa = PBXBuildFile; fileRef = 218F56901B8C09E100C03219 /* node_listener.c */; };
 		218F56931B8C425D00C03219 /* controller_listener.c in Sources */ = {isa = PBXBuildFile; fileRef = 218F56921B8C425D00C03219 /* controller_listener.c */; };
@@ -175,7 +177,9 @@
 		2185D9CC1B68D5BC00A5B0C3 /* object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
 		2185D9CE1B68D5C600A5B0C3 /* object.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = object.c; sourceTree = "<group>"; };
 		2185D9D01B68DEED00A5B0C3 /* property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property.h; sourceTree = "<group>"; };
+		3EF21E54D6F553EE4CE56332 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
 		2185D9D21B68DF1E00A5B0C3 /* property.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = property.c; sourceTree = "<group>"; };
+		BE81748707ACC7A5FC469824 /* value.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = value.c; sourceTree = "<group>"; };
 		218688ED1B8D676B00B10494 /* node_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = node_list.c; sourceTree = "<group>"; };
 		218F56901B8C09E100C03219 /* node_listener.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = node_listener.c; sourceTree = "<group>"; };
 		218F56921B8C425D00C03219 /* controller_listener.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = controller_listener.c; sourceTree = "<group>"; };
@@ -276,6 +280,7 @@
 				2185D9CC1B68D5BC00A5B0C3 /* object.h */,
 				21E280611B7BA82C004956BA /* profile.h */,
 				2185D9D01B68DEED00A5B0C3 /* property.h */,
+				3EF21E54D6F553EE4CE56332 /* value.h */,
 				21678F0F1A8D51C800AE79AA /* typedef.h */,
 				217866E71B8F3F7C003AEB9B /* uecho.h */,
 				2146D07F282239D600DE4245 /* std */,
@@ -336,6 +341,7 @@
 				21837CFD293464290012F261 /* property_enum.c */,
 				2178B8301B7B3CC7007AA57B /* property_list.c */,
 				2185D9D21B68DF1E00A5B0C3 /* property.c */,
+				BE81748707ACC7A5FC469824 /* value.c */,
 				21D68B0C1B7C1D700032552C /* std */,
 				21678EFC1A8D512000AE79AA /* util */,
 			);
@@ -447,6 +453,7 @@
 				2111B1A01B940DAB005FDBD6 /* strings.h in Headers */,
 				218F5DC527E5C0DB00E79AC1 /* property.h in Headers */,
 				2185D9D11B68DEED00A5B0C3 /* property.h in Headers */,
+				F04C834FF18D9DB3E7DDA568 /* value.h in Headers */,
 				2111B18F1B93F757005FDBD6 /* _node.h in Headers */,
 				21217CE427E815120075C16B /* _log.h in Headers */,
 				2146D08328223A0500DE4245 /* manufacture.h in Headers */,
@@ -576,6 +583,7 @@
 				215B49451B8589D4002B20CE /* device.c in Sources */,
 				21F4EA5027C9F1840075E9DA /* logs.c in Sources */,
 				2185D9D31B68DF1E00A5B0C3 /* property.c in Sources */,
+				AF4D17FB393EEBE82042726C /* value.c in Sources */,
 				218F5DC927E5C0DB00E79AC1 /* message_observer_list.c in Sources */,
 				215B49491B858AEC002B20CE /* profile_super_class.c in Sources */,
 				2178B8311B7B3CC7007AA57B /* property_list.c in Sources */,
