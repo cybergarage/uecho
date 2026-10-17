@@ -1,3 +1,14 @@
+2026-10-17 Satoshi Konno <skonno@cybergarage.org>
+	* v1.4.3
+	* Added allocation-free C scalar EDT decode/encode with optional generated MRA constraints (UECHO_DATABASE_CODEC_METADATA), without runtime JSON or Foundation dependencies. Supports signed/unsigned 8/16/32-bit numbers, exact state enums and safe disjoint numeric/sentinel unions; preserves raw EDT, unit, special names, read-only annotations and unsupported/invalid/unknown outcomes (#21).
+	* Added the thin CGEchoValue Objective-C adapter and HomeKit migration examples. AC class 0130 B0 includes other (0x40) and 0x41-0x45; B3 supports 0-50 Celsius / undefined FD; BB supports signed temperature / unmeasurable 7E. This does not enable app AC writes or add typed network write/readback (#21).
+	* Rebuilt the Objective-C wrapper as asynchronous CGEchoController for macOS 12+ and iOS 15.4+, with immutable session snapshots, tri-state capabilities, cancellation, strict response matching and no automatic retries. The old borrowed-pointer wrapper API was removed; existing ObjC consumers must migrate (doc/objc.md). Also fixed POSIX worker/socket shutdown ordering and C property-map/lifecycle handling (#15).
+	* Imported the SwiftUI controller sample into examples/controller/ios (#16).
+	* Added immutable standard class/property metadata with correct device/profile inheritance, standard access flags and optional original MRA schemas/definitions (UECHO_DATABASE_VALUE_METADATA); standard requirements do not establish actual device support (#17, #18).
+	* Rejected format-2 property maps whose bitmap population does not match the declared count (#19).
+	* Updated README documentation and linked the separate uecho-simulator development simulator (#20).
+	* Added codec generator/runtime and feature-gate tests. Validation uses unit tests, fake transport and host/ESP-IDF builds; codec behavior against physical devices remains unverified. Complex schemas remain explicitly unsupported; session property descriptors, typed write/readback, 1/17-byte installation location and conditional access metadata remain follow-up work (NEWS, doc/edt-codec.md) (#21).
+
 2026-10-07 Satoshi Konno <skonno@cybergarage.org>
 	* v1.4.2
 	* Moved the standard object and manufacturer databases to const tables generated from the MRA and the manufacturer code list. They no longer use heap (about 124 KB on ESP32 before), and object and property names are looked up from the tables instead of being copied into each object (#13).

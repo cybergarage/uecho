@@ -183,7 +183,7 @@ def add_framework_target(src, product):
         "DEFINES_MODULE": "YES",
         "GENERATE_INFOPLIST_FILE": "YES",
         "CURRENT_PROJECT_VERSION": "1",
-        "MARKETING_VERSION": "1.0",
+        "MARKETING_VERSION": "1.4.3",
         "DYLIB_COMPATIBILITY_VERSION": "1",
         "DYLIB_CURRENT_VERSION": "1",
         "DYLIB_INSTALL_NAME_BASE": q("@rpath"),

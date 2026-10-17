@@ -41,7 +41,7 @@ if(ESP_PLATFORM)
   return()
 endif()
 
-project(uecho VERSION 1.4.2 LANGUAGES C CXX)
+project(uecho VERSION 1.4.3 LANGUAGES C CXX)
 
 option(UECHO_DATABASE_CODEC_METADATA "Include generated scalar EDT constraints" OFF)
 if(UECHO_DATABASE_CODEC_METADATA)

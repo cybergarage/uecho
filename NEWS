@@ -1,0 +1,58 @@
+uEcho 1.4.3
+==========
+
+Changes since the published 1.4.2 release
+---------------------------------------
+
+The C core now provides allocation-free scalar EDT conversion using optional
+constraints generated from the existing MRA 1.3.0 data. The generated codec
+metadata is independent of the optional original JSON metadata; ordinary C
+builds keep both disabled unless requested. CMake, Autotools compilation flags
+and ESP-IDF Kconfig support codec-enabled and metadata-disabled builds.
+
+The supported subset is signed/unsigned 8/16/32-bit numbers, exact 1/2/4-byte
+state enums, pure local refs, and one numeric branch combined with exact,
+same-width, disjoint state/sentinel branches. Results retain raw EDT, unit,
+read-only annotations and distinct unsupported, invalid, unknown, number, state
+and special outcomes. AC class 0130 B0 includes other (0x40) and 0x41-0x45;
+B3 supports 0-50 Celsius plus undefined FD, and BB supports signed temperature
+plus unmeasurable 7E. CGEchoValue is a thin Objective-C adapter to the C codec.
+See doc/edt-codec.md for the C and HomeKit migration examples.
+
+Since 1.4.2, the Objective-C wrapper has also been rebuilt around asynchronous
+CGEchoController, immutable session snapshots, tri-state maps, cancellation,
+strict response matching and no automatic retries. Standard metadata, optional
+original MRA schemas, the in-tree SwiftUI example, POSIX shutdown fixes and
+stricter format-2 map count validation are included. See ChangeLog for PRs.
+
+Compatibility and limits
+------------------------
+
+The old borrowed-pointer Objective-C wrapper API was removed. Existing ObjC
+applications must migrate to the new API (doc/objc.md); macOS 12+ and iOS 15.4+
+are required by the new framework. Compile all C sources with consistent
+metadata flags because they change internal table layouts. Standard mandatory
+flags never establish real device capability or permission.
+
+Complex constraints are explicitly unsupported: ref siblings/overrides,
+overlapping or duplicate unions, multiple numeric branches, state ranges,
+arrays/objects/bitmap/level, numeric enums, unknown types, multipleOf,
+coefficient-dependent scaling and implicit overflow/underflow codes. Unsupported
+conversion preserves raw bytes instead of guessing. Missing/external/cyclic
+refs and malformed JSON-pointer escapes reject generation.
+
+No new app AC-write path is enabled. Session-bound property descriptors over
+the union of Get/Set/INF maps, typed write/readback, 1/17-byte installation
+location decoding and conditional access metadata are follow-up work.
+Validation uses unit tests, fake transport, sanitizers and build matrices;
+physical-device codec interoperability has not been verified. Real-device smoke
+tests were not run as part of this release preparation.
+
+Publication
+-----------
+
+This PR prepares 1.4.3; it does not create a tag or publish a Release. The
+published 1.4.2 tag and Release remain unchanged. After PR #21 is confirmed
+merged, verify the merged commit and its CI/Sonar results, recheck that 1.4.3
+is still unused, then create an annotated 1.4.3 tag on that exact commit and
+publish matching GitHub Release notes. Do not tag the pre-merge PR branch.
