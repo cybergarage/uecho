@@ -112,17 +112,19 @@ am_uechotest_OBJECTS = ../ThreadTest.$(OBJEXT) ../ObjectTest.$(OBJEXT) \
 	../MessageTest.$(OBJEXT) ../ServerTest.$(OBJEXT) \
 	../ProfileTest.$(OBJEXT) ../ObserverTest.$(OBJEXT) \
 	../ControllerTest.$(OBJEXT) ../PropertyTest.$(OBJEXT) \
-	../NodeTest.$(OBJEXT) ../ClassTest.$(OBJEXT) \
-	../InterfaceTest.$(OBJEXT) ../DatabaseTest.$(OBJEXT) \
-	../uEchoTest.$(OBJEXT) ../DeviceTest.$(OBJEXT) \
-	../SocketTest.$(OBJEXT) ../BytesTest.$(OBJEXT) \
-	../TestDevice.$(OBJEXT) ../LogTest.$(OBJEXT) \
-	../ObjectListTest.$(OBJEXT) ../PropertyMapTest.$(OBJEXT) \
-	../PropertyListTest.$(OBJEXT) ../MiscTest.$(OBJEXT) \
-	../NodeListTest.$(OBJEXT) ../ClassListTest.$(OBJEXT) \
-	../MutexTest.$(OBJEXT)
+	../ValueTest.$(OBJEXT) ../NodeTest.$(OBJEXT) \
+	../ClassTest.$(OBJEXT) ../InterfaceTest.$(OBJEXT) \
+	../DatabaseTest.$(OBJEXT) ../uEchoTest.$(OBJEXT) \
+	../DeviceTest.$(OBJEXT) ../SocketTest.$(OBJEXT) \
+	../BytesTest.$(OBJEXT) ../TestDevice.$(OBJEXT) \
+	../LogTest.$(OBJEXT) ../ObjectListTest.$(OBJEXT) \
+	../PropertyMapTest.$(OBJEXT) ../PropertyListTest.$(OBJEXT) \
+	../MiscTest.$(OBJEXT) ../NodeListTest.$(OBJEXT) \
+	../ClassListTest.$(OBJEXT) ../MutexTest.$(OBJEXT)
 uechotest_OBJECTS = $(am_uechotest_OBJECTS)
 uechotest_DEPENDENCIES = ../../lib/unix/libuecho.a
+uechotest_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
+	$(uechotest_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -151,7 +153,7 @@ am__depfiles_remade = ../$(DEPDIR)/BytesTest.Po \
 	../$(DEPDIR)/PropertyMapTest.Po ../$(DEPDIR)/PropertyTest.Po \
 	../$(DEPDIR)/ServerTest.Po ../$(DEPDIR)/SocketTest.Po \
 	../$(DEPDIR)/TestDevice.Po ../$(DEPDIR)/ThreadTest.Po \
-	../$(DEPDIR)/uEchoTest.Po
+	../$(DEPDIR)/ValueTest.Po ../$(DEPDIR)/uEchoTest.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -159,8 +161,6 @@ AM_V_CXX = $(am__v_CXX_@AM_V@)
 am__v_CXX_ = $(am__v_CXX_@AM_DEFAULT_V@)
 am__v_CXX_0 = @echo "  CXX     " $@;
 am__v_CXX_1 = 
-uechotest_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
-	$(uechotest_LDFLAGS) $(LDFLAGS) -o $@
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
@@ -495,9 +495,9 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+
 # Tests use std::jthread for automatic thread lifetime management.
 AM_CXXFLAGS = -std=c++20
-
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/src -I../ $(UECHO_TEST_ALLOCATOR_CPPFLAGS)
 uechotest_SOURCES = \
 	../ThreadTest.cpp \
@@ -508,6 +508,7 @@ uechotest_SOURCES = \
 	../ObserverTest.cpp \
 	../ControllerTest.cpp \
 	../PropertyTest.cpp \
+	../ValueTest.cpp \
 	../NodeTest.cpp \
 	../ClassTest.cpp \
 	../InterfaceTest.cpp \
@@ -588,6 +589,8 @@ clean-checkPROGRAMS:
 	../$(DEPDIR)/$(am__dirstamp)
 ../PropertyTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
+../ValueTest.$(OBJEXT): ../$(am__dirstamp) \
+	../$(DEPDIR)/$(am__dirstamp)
 ../NodeTest.$(OBJEXT): ../$(am__dirstamp) ../$(DEPDIR)/$(am__dirstamp)
 ../ClassTest.$(OBJEXT): ../$(am__dirstamp) \
 	../$(DEPDIR)/$(am__dirstamp)
@@ -655,6 +658,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/SocketTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/TestDevice.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ThreadTest.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/ValueTest.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../$(DEPDIR)/uEchoTest.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -996,6 +1000,7 @@ distclean: distclean-am
 	-rm -f ../$(DEPDIR)/SocketTest.Po
 	-rm -f ../$(DEPDIR)/TestDevice.Po
 	-rm -f ../$(DEPDIR)/ThreadTest.Po
+	-rm -f ../$(DEPDIR)/ValueTest.Po
 	-rm -f ../$(DEPDIR)/uEchoTest.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -1066,6 +1071,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ../$(DEPDIR)/SocketTest.Po
 	-rm -f ../$(DEPDIR)/TestDevice.Po
 	-rm -f ../$(DEPDIR)/ThreadTest.Po
+	-rm -f ../$(DEPDIR)/ValueTest.Po
 	-rm -f ../$(DEPDIR)/uEchoTest.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

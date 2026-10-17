@@ -11,6 +11,7 @@
 uechoheaders = \
 	./uecho/typedef.h \
 	./uecho/property.h \
+	./uecho/value.h \
 	./uecho/object.h \
 	./uecho/class.h \
 	./uecho/esv.h \

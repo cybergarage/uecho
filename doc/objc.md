@@ -210,3 +210,6 @@ reject missing/external/cyclic refs. Mac tests pass full (35 fixtures) and none
 (12 metadata fixtures) with ASan/UBSan, and disabled (12) without sanitizers.
 Unsigned iPhone architecture framework/app builds and real Swift import also
 pass. No household device is contacted by these checks.
+
+Scalar EDT conversion is now available through `CGEchoValue`; see
+[the C codec and HomeKit migration guide](edt-codec.md).

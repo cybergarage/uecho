@@ -27,6 +27,7 @@ uechotest_SOURCES = \
 	../ObserverTest.cpp \
 	../ControllerTest.cpp \
 	../PropertyTest.cpp \
+	../ValueTest.cpp \
 	../NodeTest.cpp \
 	../ClassTest.cpp \
 	../InterfaceTest.cpp \

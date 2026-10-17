@@ -81,7 +81,7 @@ for name in objects_mra.c manufacturers.c "$STD_DIR/objects_mra.c" "$STD_DIR/man
   /*) src="$name" ;;
   *) src="$WORK_DIR/$name" ;;
   esac
-  for defs in "" "-DUECHO_DATABASE_NONE" "-DUECHO_DATABASE_VALUE_METADATA=1" "-DUECHO_DATABASE_NONE -DUECHO_DATABASE_VALUE_METADATA=1"; do
+  for defs in "" "-DUECHO_DATABASE_NONE" "-DUECHO_DATABASE_VALUE_METADATA=1" "-DUECHO_DATABASE_NONE -DUECHO_DATABASE_VALUE_METADATA=1" "-DUECHO_DATABASE_CODEC_METADATA=1" "-DUECHO_DATABASE_NONE -DUECHO_DATABASE_CODEC_METADATA=1" "-DUECHO_DATABASE_CODEC_METADATA=1 -DUECHO_DATABASE_VALUE_METADATA=1"; do
     if $CC -Wall -Werror -fsyntax-only -I "$ROOT_DIR/include" -I "$ROOT_DIR/src" $defs "$src"; then
       pass "$src compiles ${defs:-(full)}"
     else
@@ -125,7 +125,7 @@ int main(void) {
   return 0;
 }
 C
-for defs in "" "-DUECHO_DATABASE_NONE" "-DUECHO_DATABASE_VALUE_METADATA=1" "-DUECHO_DATABASE_NONE -DUECHO_DATABASE_VALUE_METADATA=1"; do
+for defs in "" "-DUECHO_DATABASE_NONE" "-DUECHO_DATABASE_VALUE_METADATA=1" "-DUECHO_DATABASE_NONE -DUECHO_DATABASE_VALUE_METADATA=1" "-DUECHO_DATABASE_CODEC_METADATA=1" "-DUECHO_DATABASE_NONE -DUECHO_DATABASE_CODEC_METADATA=1" "-DUECHO_DATABASE_CODEC_METADATA=1 -DUECHO_DATABASE_VALUE_METADATA=1"; do
   if $CC -Wall -Werror -I "$ROOT_DIR/include" -I "$ROOT_DIR/src" $defs "$WORK_DIR/objects_mra.c" "$WORK_DIR/schema-check.c" -o "$WORK_DIR/schema-check" && "$WORK_DIR/schema-check"; then
     pass "schema runtime gating ${defs:-(full, disabled)}"
   else
@@ -179,4 +179,5 @@ if [ "$failures" -ne 0 ]; then
   echo "$failures check(s) failed"
   exit 1
 fi
+python3 "$TEST_DIR/check_codecs.py" || exit 1
 echo "all checks passed"

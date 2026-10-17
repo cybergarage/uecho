@@ -34,6 +34,7 @@
 		21F7F1261BAAEFC5009399A0 /* object.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F7F0DC1BAAEFC5009399A0 /* object.c */; settings = {ASSET_TAGS = (); }; };
 		21F7F1271BAAEFC5009399A0 /* object_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F7F0DE1BAAEFC5009399A0 /* object_list.c */; settings = {ASSET_TAGS = (); }; };
 		21F7F1281BAAEFC5009399A0 /* property.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F7F0DF1BAAEFC5009399A0 /* property.c */; settings = {ASSET_TAGS = (); }; };
+		10F8D84186803FFE306CD813 /* value.c in Sources */ = {isa = PBXBuildFile; fileRef = BF836D2C7D2A599451E61F01 /* value.c */; settings = {ASSET_TAGS = (); }; };
 		21F7F1291BAAEFC5009399A0 /* property_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F7F0E11BAAEFC5009399A0 /* property_list.c */; settings = {ASSET_TAGS = (); }; };
 		21F7F12A1BAAEFC5009399A0 /* device.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F7F0EC1BAAEFC5009399A0 /* device.c */; settings = {ASSET_TAGS = (); }; };
 		21F7F12B1BAAEFC5009399A0 /* device_super_class.c in Sources */ = {isa = PBXBuildFile; fileRef = 21F7F0ED1BAAEFC5009399A0 /* device_super_class.c */; settings = {ASSET_TAGS = (); }; };
@@ -75,6 +76,7 @@
 		21F7F07A1BAAEF86009399A0 /* object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
 		21F7F07B1BAAEF86009399A0 /* profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profile.h; sourceTree = "<group>"; };
 		21F7F07C1BAAEF86009399A0 /* property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property.h; sourceTree = "<group>"; };
+		4DBD2E537FD0E9D264BF9CDD /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
 		21F7F07D1BAAEF86009399A0 /* typedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = typedef.h; sourceTree = "<group>"; };
 		21F7F07E1BAAEF86009399A0 /* uecho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uecho.h; sourceTree = "<group>"; };
 		21F7F0801BAAEF86009399A0 /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timer.h; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		21F7F0DD1BAAEFC5009399A0 /* object_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object_internal.h; sourceTree = "<group>"; };
 		21F7F0DE1BAAEFC5009399A0 /* object_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = object_list.c; sourceTree = "<group>"; };
 		21F7F0DF1BAAEFC5009399A0 /* property.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = property.c; sourceTree = "<group>"; };
+		BF836D2C7D2A599451E61F01 /* value.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = value.c; sourceTree = "<group>"; };
 		21F7F0E01BAAEFC5009399A0 /* property_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property_internal.h; sourceTree = "<group>"; };
 		21F7F0E11BAAEFC5009399A0 /* property_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = property_list.c; sourceTree = "<group>"; };
 		21F7F0EC1BAAEFC5009399A0 /* device.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = device.c; sourceTree = "<group>"; };
@@ -196,6 +199,7 @@
 				21F7F07A1BAAEF86009399A0 /* object.h */,
 				21F7F07B1BAAEF86009399A0 /* profile.h */,
 				21F7F07C1BAAEF86009399A0 /* property.h */,
+				4DBD2E537FD0E9D264BF9CDD /* value.h */,
 				21F7F07D1BAAEF86009399A0 /* typedef.h */,
 				21F7F07E1BAAEF86009399A0 /* uecho.h */,
 				21F7F07F1BAAEF86009399A0 /* util */,
@@ -236,6 +240,7 @@
 				21F7F0DD1BAAEFC5009399A0 /* object_internal.h */,
 				21F7F0DE1BAAEFC5009399A0 /* object_list.c */,
 				21F7F0DF1BAAEFC5009399A0 /* property.c */,
+				BF836D2C7D2A599451E61F01 /* value.c */,
 				21F7F0E01BAAEFC5009399A0 /* property_internal.h */,
 				21F7F0E11BAAEFC5009399A0 /* property_list.c */,
 				21F7F0E21BAAEFC5009399A0 /* std */,
@@ -382,6 +387,7 @@
 				21F7F1131BAAEFC5009399A0 /* mcast_server_list.c in Sources */,
 				21F7F12A1BAAEFC5009399A0 /* device.c in Sources */,
 				21F7F1281BAAEFC5009399A0 /* property.c in Sources */,
+				10F8D84186803FFE306CD813 /* value.c in Sources */,
 				21F7F1211BAAEFC5009399A0 /* net_function.c in Sources */,
 				21F7F1151BAAEFC5009399A0 /* object_property_observer_list.c in Sources */,
 				21F7F12C1BAAEFC5009399A0 /* node_profile_class.c in Sources */,

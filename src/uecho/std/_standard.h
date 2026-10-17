@@ -12,6 +12,7 @@
 #define _UECHO_STD_STANDARD_INTERNAL_H_
 
 #include <stddef.h>
+#include <uecho/value.h>
 
 #include <uecho/typedef.h>
 
@@ -37,6 +38,9 @@ typedef struct {
 #if defined(UECHO_DATABASE_VALUE_METADATA) && UECHO_DATABASE_VALUE_METADATA
   // Original MRA data schema JSON. Internal layout requires consistent build flags.
   const char* valueSchema;
+#endif
+#if defined(UECHO_DATABASE_CODEC_METADATA) && UECHO_DATABASE_CODEC_METADATA
+  const uEchoValueConstraint* valueConstraint;
 #endif
 } uEchoStdProperty;
 

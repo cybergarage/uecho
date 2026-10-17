@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 
 #import <CGEcho/CGEchoTypes.h>
+#import <CGEcho/CGEchoValue.h>
 #import <CGEcho/CGEchoError.h>
 #import <CGEcho/CGEchoControllerConfiguration.h>
 #import <CGEcho/CGEchoCapabilities.h>
