@@ -10,7 +10,7 @@
 #
 ##################################################################
 
-find_package(Boost REQUIRED COMPONENTS unit_test_framework system)
+find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 
 add_executable(uechotest
   ../BytesTest.cpp
@@ -52,7 +52,6 @@ target_include_directories(uechotest PRIVATE
 target_link_libraries(uechotest PRIVATE
   uecho
   Boost::unit_test_framework
-  Boost::system
 )
 
 add_test(NAME uechotest COMMAND uechotest)
