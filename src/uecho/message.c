@@ -223,6 +223,10 @@ bool uecho_message_setopcep(byte* opc, uEchoProperty*** ep, byte count)
   if (*opc <= 0)
     return true;
   *ep = (uEchoProperty**)malloc(sizeof(uEchoProperty*) * count);
+  if (!(*ep)) {
+    *opc = 0;
+    return false;
+  }
   for (n = 0; n < (size_t)count; n++) {
     (*ep)[n] = uecho_property_new();
   }
