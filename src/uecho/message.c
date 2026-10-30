@@ -854,21 +854,24 @@ bool uecho_message_parse(uEchoMessage* msg, const byte* data, size_t dataLen)
 
   if (uecho_message_isreadwritemessage(msg)) {
     // OPCSet
-    uecho_message_setopcset(msg, data[11]);
+    if (!uecho_message_setopcset(msg, data[11]))
+      return false;
     offset = 12;
     if (!uecho_message_property_parse(msg->opcSet, msg->epSet, data, dataLen, &offset))
       return false;
     // OPCGet
     if ((dataLen - 1) < offset)
       return false;
-    uecho_message_setopcget(msg, data[offset]);
+    if (!uecho_message_setopcget(msg, data[offset]))
+      return false;
     offset += 1;
     if (!uecho_message_property_parse(msg->opcGet, msg->epGet, data, dataLen, &offset))
       return false;
   }
   else {
     // OPC
-    uecho_message_setopc(msg, data[11]);
+    if (!uecho_message_setopc(msg, data[11]))
+      return false;
     offset = 12;
     if (!uecho_message_property_parse(msg->opc, msg->ep, data, dataLen, &offset))
       return false;
