@@ -18,13 +18,6 @@
 /* IP_PKTINFO */
 #undef HAVE_IP_PKTINFO
 
-/* Define to 1 if you have the `boost_system' library (-lboost_system). */
-#undef HAVE_LIBBOOST_SYSTEM
-
-/* Define to 1 if you have the `boost_system-mt' library (-lboost_system-mt).
-   */
-#undef HAVE_LIBBOOST_SYSTEM_MT
-
 /* Define to 1 if you have the `boost_unit_test_framework' library
    (-lboost_unit_test_framework). */
 #undef HAVE_LIBBOOST_UNIT_TEST_FRAMEWORK

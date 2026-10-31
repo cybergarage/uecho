@@ -1,3 +1,9 @@
+2026-10-31 Satoshi Konno <skonno@cybergarage.org>
+	* v1.4.4
+	* Fixed a NULL pointer write in uecho_message_setopcep() when allocating the property array fails; the OPC count is reset to 0 and false is returned (#22).
+	* uecho_message_parse() now fails when uecho_message_setopc(), uecho_message_setopcset() or uecho_message_setopcget() fails, instead of continuing as if the message had no properties (#23).
+	* Fixed builds on Ubuntu 26.04 (Boost 1.90, GCC 14+): removed the Boost.System library requirement from Autotools and CMake test builds (Boost.System is header-only, and Boost 1.89 removed the libboost_system stub), and included <unistd.h> for close() in CMake builds (#24).
+
 2026-10-17 Satoshi Konno <skonno@cybergarage.org>
 	* v1.4.3
 	* Added allocation-free C scalar EDT decode/encode with optional generated MRA constraints (UECHO_DATABASE_CODEC_METADATA), without runtime JSON or Foundation dependencies. Supports signed/unsigned 8/16/32-bit numbers, exact state enums and safe disjoint numeric/sentinel unions; preserves raw EDT, unit, special names, read-only annotations and unsupported/invalid/unknown outcomes (#21).
