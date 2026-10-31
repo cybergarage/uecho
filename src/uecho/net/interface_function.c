@@ -15,7 +15,7 @@
 #include "config.h"
 #endif
 
-#ifdef HAVE_UNISTD_H
+#if defined(HAVE_UNISTD_H) || !defined(WIN32)
 #include <unistd.h>
 #endif
 
