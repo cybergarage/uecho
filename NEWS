@@ -1,3 +1,25 @@
+uEcho 1.4.4
+==========
+
+Changes since the published 1.4.3 release
+---------------------------------------
+
+This is a maintenance release with message parsing robustness fixes and build
+fixes for newer toolchains. There are no API changes.
+
+- uecho_message_setopcep() no longer writes through a NULL pointer when the
+  property array allocation fails (#22).
+- uecho_message_parse() reports allocation failures of the OPC/OPCSet/OPCGet
+  property arrays instead of continuing with an empty property list (#23).
+- Test builds no longer require the Boost.System library, which Boost 1.89+
+  no longer provides. src/uecho/net/interface_function.c includes <unistd.h>
+  on all non-Windows builds so CMake builds compile with GCC 14+, which rejects
+  implicit function declarations. Ubuntu 26.04 CI runners (Boost 1.90) build
+  and pass the full test suite again (#24).
+
+The shipped configure script is regenerated so that it reports 1.4.4 and
+includes the #24 Autotools change.
+
 uEcho 1.4.3
 ==========
 
